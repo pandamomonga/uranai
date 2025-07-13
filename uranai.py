@@ -4,6 +4,10 @@ from datetime import datetime
 import json
 import os
 
+import streamlit as st
+
+st.set_page_config(page_title="波動占い", page_icon="🔮")
+st.title("🌟 波動占いアプリ Premium 🌟")
 # PDFから抽出した波動コードのデータ
 hadou_data = {
     "感情波動": {
