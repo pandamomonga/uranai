@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4月6日 勉強会 戦略マップ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #080808;
+    --dark: #111111;
+    --card: #181818;
+    --border: #2a2a2a;
+    --white: #f0ede6;
+    --amber: #f5a623;
+    --red: #ff2d2d;
+    --cyan: #00e5ff;
+    --green: #00ff88;
+    --muted: #888;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: relative;
+    padding: 60px 40px 50px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  header::after {
+    content: '勉強会';
+    position: absolute;
+    right: -20px;
+    top: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 22vw, 280px);
+    color: rgba(245,166,35,0.05);
+    letter-spacing: -5px;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .date-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: var(--white);
+  }
+
+  h1 span {
+    color: var(--amber);
+    display: block;
+  }
+
+  .header-sub {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ─── MAIN GRID ─── */
+  main {
+    padding: 0 20px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ─── BIG CONCLUSION BANNER ─── */
+  .conclusion-banner {
+    margin: 40px 0;
+    padding: 36px 40px;
+    background: var(--amber);
+    color: var(--black);
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.6s ease both;
+  }
+
+  .conclusion-banner::before {
+    content: '核心';
+    position: absolute;
+    right: -10px;
+    bottom: -30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 160px;
+    color: rgba(0,0,0,0.08);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .conclusion-banner .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+
+  .conclusion-banner p {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  .conclusion-banner strong {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    margin-bottom: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+  .section:nth-child(5) { animation-delay: 0.4s; }
+  .section:nth-child(6) { animation-delay: 0.5s; }
+  .section:nth-child(7) { animation-delay: 0.6s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--card);
+    border-left: 4px solid var(--amber);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .section-header:hover { background: #222; }
+
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--amber);
+    opacity: 0.4;
+    min-width: 48px;
+  }
+
+  .section-title-wrap { flex: 1; }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .toggle-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--muted);
+    transition: transform 0.3s, color 0.2s;
+    min-width: 28px;
+    text-align: center;
+  }
+
+  .section-header.open .toggle-icon {
+    transform: rotate(45deg);
+    color: var(--amber);
+  }
+
+  .section-body {
+    display: none;
+    background: #141414;
+    border-left: 4px solid #2a2a2a;
+    padding: 28px 28px 28px 32px;
+  }
+
+  .section-body.open { display: block; }
+
+  /* ─── CARDS INSIDE SECTIONS ─── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    border-color: var(--amber);
+    transform: translateY(-2px);
+  }
+
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+  }
+
+  .card h3 {
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .card p, .card li {
+    font-size: 13px;
+    color: #bbb;
+    line-height: 1.8;
+  }
+
+  .card ul { padding-left: 16px; }
+
+  /* ─── BIG STAT ─── */
+  .big-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 8px 0;
+  }
+
+  .big-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--amber);
+  }
+
+  .big-stat-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight {
+    background: rgba(245,166,35,0.1);
+    border: 1px solid rgba(245,166,35,0.3);
+    padding: 16px 20px;
+    margin: 14px 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .highlight strong {
+    color: var(--amber);
+    font-weight: 900;
+  }
+
+  /* ─── FLOW CHART ─── */
+  .flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 16px 0;
+  }
+
+  .flow-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .flow-arrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--amber);
+    padding: 0 6px;
+  }
+
+  /* ─── TABLE ─── */
+  .action-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 13px;
+  }
+
+  .action-table th {
+    background: var(--amber);
+    color: var(--black);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 12px;
+  }
+
+  .action-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    color: #ccc;
+    vertical-align: top;
+  }
+
+  .action-table tr:hover td { background: #1e1e1e; }
+
+  .action-table td:first-child {
+    color: var(--white);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* ─── PRIORITY TAG ─── */
+  .tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 2px 0;
+  }
+
+  .tag-red { background: var(--red); color: white; }
+  .tag-amber { background: var(--amber); color: black; }
+  .tag-cyan { background: var(--cyan); color: black; }
+  .tag-green { background: var(--green); color: black; }
+
+  /* ─── PILLAR BOXES ─── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .pillar {
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .pillar:hover { transform: scale(1.02); }
+
+  .pillar:nth-child(1) { background: #1a1400; border-color: rgba(245,166,35,0.3); }
+  .pillar:nth-child(2) { background: #001a1a; border-color: rgba(0,229,255,0.3); }
+  .pillar:nth-child(3) { background: #001a0a; border-color: rgba(0,255,136,0.3); }
+
+  .pillar-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .pillar-name {
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+
+  .pillar:nth-child(1) .pillar-name { color: var(--amber); }
+  .pillar:nth-child(2) .pillar-name { color: var(--cyan); }
+  .pillar:nth-child(3) .pillar-name { color: var(--green); }
+
+  .pillar-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ─── QUOTE BLOCK ─── */
+  .quote {
+    border-left: 4px solid var(--red);
+    padding: 12px 20px;
+    margin: 14px 0;
+    font-size: 14px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--white);
+    background: rgba(255,45,45,0.06);
+    line-height: 1.7;
+  }
+
+  /* ─── HEALTH METRICS ─── */
+  .metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .metric-box {
+    padding: 20px;
+    text-align: center;
+    border: 2px solid;
+  }
+
+  .metric-box:nth-child(1) { border-color: var(--red); background: rgba(255,45,45,0.07); }
+  .metric-box:nth-child(2) { border-color: var(--cyan); background: rgba(0,229,255,0.07); }
+
+  .metric-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+
+  .metric-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    line-height: 1;
+  }
+
+  .metric-box:nth-child(1) .metric-value { color: var(--red); }
+  .metric-box:nth-child(2) .metric-value { color: var(--cyan); }
+
+  .metric-sub { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+  /* ─── COURSE TABLE ─── */
+  .course-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .course-cell {
+    background: var(--card);
+    padding: 14px 16px;
+  }
+
+  .course-cell.header {
+    background: #222;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .course-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--amber);
+    line-height: 1;
+    margin-top: 4px;
+  }
+
+  .course-new .course-price { color: var(--green); }
+  .course-new { background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.2); }
+
+  /* ─── AI FLOW ─── */
+  .ai-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 16px 0;
+  }
+
+  .ai-step {
+    background: var(--card);
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+
+  .ai-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: rgba(245,166,35,0.2);
+    line-height: 1;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+  }
+
+  .ai-step-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+
+  .ai-step-text {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── RESISTANCE METER ─── */
+  .resist-bar {
+    margin: 10px 0;
+  }
+
+  .resist-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .resist-track {
+    height: 8px;
+    background: var(--border);
+    position: relative;
+  }
+
+  .resist-fill {
+    height: 100%;
+    transition: width 1s ease 0.5s;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--muted);
+  }
+
+  .footer-logo span { color: var(--amber); }
+
+  .footer-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .pulse { animation: pulse 2s ease infinite; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 640px) {
+    header { padding: 40px 20px 36px; }
+    .pillars { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .course-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .conclusion-banner { padding: 28px 24px; }
+    .section-header { padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="date-badge">2025.04.06 — STRATEGY SESSION</div>
+  <h1>治療 × AI<br><span>革命宣言</span></h1>
+  <p class="header-sub">三条健康堂 勉強会 完全戦略マップ</p>
+</header>
+
+<main>
+
+  <!-- CONCLUSION BANNER -->
+  <div class="conclusion-banner" style="animation-delay:0.05s">
+    <div class="label">▶ TODAY'S CORE THESIS</div>
+    <p>
+      <strong>治療の自動化（スティック革命）</strong>×
+      <strong>健康最優先（VO2MAX）</strong>×
+      <strong>AI一次情報コンテンツ（ジンドゥー再構築）</strong>の3つが揃った今が、
+      努力ゼロの<strong>永続循環</strong>を回すタイミング。
+    </p>
+  </div>
+
+  <!-- ===== SEC 1: 治療技術 ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">01</div>
+      <div class="section-title-wrap">
+        <div class="section-tag">TREATMENT INNOVATION</div>
+        <div class="section-title">🔧 治療技術の革新 — スティック導入</div>
+      </div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="section-body open">
+
+      <div class="highlight">
+        <strong>核心：</strong>施術の自動化は集客の<strong>100倍難しい</strong>。その最難関を攻略できたのが今回の最大の成果。15年かけて到達したブレークスルー。
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-accent" style="background:var(--amber)"></div>
+          <div class="big-stat">
+            <div class="big-stat-num">56</div>
+            <div class="big-stat-label">cm スティック<br>メインサイズ</div>
+          </div>
+          <h3>タイガーテール スティック</h3>
+          <ul>
+            <li>ボール（点）→ スティック（面）で全身一気にアプローチ</li>
+            <li>深部筋まで届く長さ</li>
+            <li>56cm・46cm・30cmを実験中</li>
+            <li>来週ムーにトレーニング実施</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-accent" style="background:var(--cyan)"></div>
+          <h3>⚡ 2025年最新エビデンス</h3>
+          <ul>
+            <li>トリガーポイントを押す<strong>最適秒数</strong>が論文で明確に</li>
+            <li>「何秒押す→何秒離す」のプロトコル確立</li>
+            <li>ボールで押す時間も数値化完了</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-accent" style="background:var(--red)"></div>
+          <h3>🧠 治療の本質 = 反射</h3>
+          <ul>
+            <li><span class="tag tag-amber">70%</span> 神経反射（脳→組織変化）</li>
+            <li><span class="tag tag-cyan">30%</span> 解剖学的アプローチ</li>
+            <li>反射が起きない人：腸内細菌・薬・睡眠不足・栄養不足が原因</li>
+            <li>スティックで反射の自動化が実現</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- COURSE TABLE -->
+      <p style="font-size:12px;color:var(--muted);margin:20px 0 8px;letter-spacing:2px;">▶ 新コース設計</p>
+      <div class="course-grid">
+        <div class="course-cell header">コース名</div>
+        <div class="course-cell header">内容</div>
+        <div class="course-cell header">価格</div>
+
+        <div class="course-cell">ボールコース</div>
+        <div class="course-cell">全身ボールほぐし 60分</div>
+        <div class="course-cell"><span class="course-price">4000</span><span style="font-size:11px;color:var(--muted)">円</span></div>
+
+        <div class="course-cell course-new" style="font-weight:900">ボール＋スティック<br>プレミアム <span class="tag tag-green">NEW</span></div>
+        <div class="course-cell course-new">スティック＋ボール ダブル 60分</div>
+        <div class="course-cell course-new"><span class="course-price" style="color:var(--green)">5000</span><span style="font-size:11px;color:var(--muted)">〜6000円</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SEC 2: ホームページ ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">02</div>
+      <div class="section-title-wrap">
+        <div class="section-tag">WEBSITE STRATEGY</div>
+        <div class="section-title">🌐 ジンドゥー全刷新 — 最強資産を磨く</div>
+      </div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="section-body open">
+
+      <div class="highlight">
+        <strong>気づき：</strong>ジンドゥーのホームページはすでに<strong>膨大な資産</strong>を持っていた。それを軸にAIでブラッシュアップするだけ。
+      </div>
+
+      <!-- AI FLOW -->
+      <p style="font-size:12px;color:var(--muted);margin:20px 0 8px;letter-spacing:2px;">▶ 超シンプル更新ルーティン</p>
+      <div class="ai-steps">
+        <div class="ai-step">
+          <div class="ai-step-num">1</div>
+          <span class="ai-step-icon">🎙️</span>
+          <div class="ai-step-text">自分の<br>一次情報を<br>ボイスで喋る</div>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num">2</div>
+          <span class="ai-step-icon">🤖</span>
+          <div class="ai-step-text">AIが<br>SEO記事に<br>変換</div>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num">3</div>
+          <span class="ai-step-icon">📋</span>
+          <div class="ai-step-text">コピペして<br>ホームページに<br>貼るだけ</div>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num">4</div>
+          <span class="ai-step-icon">✅</span>
+          <div class="ai-step-text">1日1ページ<br>×10日で<br>全刷新完了</div>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-accent" style="background:var(--amber)"></div>
+          <h3>毎日の臨床報告をコンテンツ化</h3>
+          <div class="flow" style="flex-direction:column;align-items:flex-start;gap:6px;">
+            <div class="flow-item">📝 今日のお客さんの症状・年齢を録音</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-item">🤖 AIで記事化</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-item">📂 ジンドゥーブログ</div>
+            <div class="flow-item">📍 Googleビジネス</div>
+            <div class="flow-item">🐦 X投稿 に使い回し</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-accent" style="background:var(--cyan)"></div>
+          <h3>AI時代でもジンドゥーが強い理由</h3>
+          <ul>
+            <li>ドメインの長期保有がSEOで圧倒的優位</li>
+            <li>AIが「信頼性のあるプラットフォーム」として選ぶ</li>
+            <li>一次情報＋エビデンスで信頼性MAX</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEC 3: マーケティング3本柱 ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">03</div>
+      <div class="section-title-wrap">
+        <div class="section-tag">MARKETING STRATEGY</div>
+        <div class="section-title">📊 集客3本柱に完全絞り込む</div>
+      </div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="section-body open">
+
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-icon">🏠</span>
+          <div class="pillar-name">ジンドゥー</div>
+          <div class="pillar-desc">SEOの軸<br>コンテンツの母艦<br>最強の長期資産</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">📍</span>
+          <div class="pillar-name">Google ビジネス</div>
+          <div class="pillar-desc">毎日の臨床報告<br>動画・写真で更新<br>近隣集客の要</div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">▶️</span>
+          <div class="pillar-name">YouTube</div>
+          <div class="pillar-desc">ランニングvlog<br>治療動画で導線<br>垂れ流しでOK</div>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <strong>YouTube戦略（ムーへ）：</strong>走りながらカメラ撮影→垂れ流しvlogアップするだけ。高松の山道・春日川沿いの田舎景色は<strong>需要がある</strong>。編集不要・撮って出しでOK。ショート（短）＋長尺（20〜30分）の2本立て。
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEC 4: 健康資産 ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">04</div>
+      <div class="section-title-wrap">
+        <div class="section-tag">HEALTH FIRST PHILOSOPHY</div>
+        <div class="section-title">💪 健康資産が最優先 — VO2MAXが全ての土台</div>
+      </div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="section-body open">
+
+      <div class="metrics">
+        <div class="metric-box">
+          <div class="metric-label">PRIMARY KPI</div>
+          <div class="metric-value">VO2MAX</div>
+          <div class="metric-sub">最大酸素摂取量<br>← これを上げ続ける</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">SECONDARY KPI</div>
+          <div class="metric-value">HbA1c</div>
+          <div class="metric-sub">血糖の安定指標<br>← 低く保つ</div>
+        </div>
+      </div>
+
+      <div class="quote">
+        「健康資産が下がったら、お金をいくら稼いでも"負債"になる。健康を守りながら金資産を稼ぐのが正しい順序。」
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-accent" style="background:var(--green)"></div>
+          <h3>運動の正解</h3>
+          <p style="margin-bottom:10px;color:var(--muted);font-size:12px;">VO2MAX向上に有効な2択だけに絞る</p>
+          <ul>
+            <li><span class="tag tag-green">OK</span> <strong>スロージョギング</strong>（ゆっくり長く）</li>
+            <li><span class="tag tag-green">OK</span> <strong>坂道ダッシュ</strong>（上りだけ・下りは歩く）</li>
+            <li><span class="tag tag-red">NG</span> ウォーキング → VO2MAXにほぼ効果なし</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-accent" style="background:var(--amber)"></div>
+          <h3>自宅サロンの最大優位性</h3>
+          <ul>
+            <li>移動コスト = ゼロ</li>
+            <li>待機時間 = ゼロ</li>
+            <li>近所を走るだけでVO2MAXが上がる</li>
+            <li>走りながらYouTubeコンテンツも生まれる</li>
+            <li>→「得することしかない」完全循環</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="font-size:12px;color:var(--muted);margin:20px 0 8px;letter-spacing:2px;">▶ 優先順位の逆転</p>
+      <div class="flow">
+        <div class="flow-item" style="background:rgba(255,45,45,0.15);border-color:var(--red);color:var(--red);font-weight:900">① VO2MAX最優先</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item" style="background:rgba(245,166,35,0.1)">② 集客は2番手</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item">③ 治療で稼ぐ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEC 5: AI活用 ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">05</div>
+      <div class="section-title-wrap">
+        <div class="section-tag">AI UTILIZATION</div>
+        <div class="section-title">🤖 AIの本質 — 努力ゼロシステムを作る道具</div>
+      </div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="section-body open">
+
+      <div class="quote" style="border-color:var(--cyan);background:rgba(0,229,255,0.06)">
+        「AIは努力をするために使うんじゃない。<strong style="color:var(--cyan)">努力しないために</strong>使う。1回の操作で終わる仕組みを作るのが目的。」
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-accent" style="background:var(--cyan)"></div>
+          <h3>作家風変換テクニック</h3>
+          <p>自分の経験・考えをAIに入力し「村上春樹風」「夏目漱石風」に変換させると：</p>
+          <ul style="margin-top:8px;">
+            <li>自己理解が深まる</li>
+            <li>読者に刺さる文章になる</li>
+            <li>文学の力を借りてブランドが立つ</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-accent" style="background:var(--amber)"></div>
+          <h3>1日の理想フロー</h3>
+          <ul>
+            <li>朝：走りながらカメラ撮影</li>
+            <li>帰宅後：ボイスレコーダー→AI→コピペ</li>
+            <li>施術：道具で全自動・超効率</li>
+            <li>夜：Googleビジネスに投稿</li>
+          </ul>
+          <p style="margin-top:10px;color:var(--amber);font-weight:900;font-size:13px;">→ これが「最高の1日」</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEC 6: ビジネスモデル本質論 ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">06</div>
+      <div class="section-title-wrap">
+        <div class="section-tag">BUSINESS MODEL PHILOSOPHY</div>
+        <div class="section-title">🧠 抵抗値を下げる — ビジネスモデルの核心</div>
+      </div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="section-body open">
+
+      <div class="highlight">
+        <strong>マッサージの本当の価値：</strong>ストレスに弱い人は<strong>10の力</strong>で跳ね返す→消耗・疲弊。マッサージ習慣がある人は<strong>1の力</strong>で跳ね返せる。RPGで言う「<strong>ホイミー（HP回復魔法）</strong>」の役割。
+      </div>
+
+      <p style="font-size:12px;color:var(--muted);margin:20px 0 8px;letter-spacing:2px;">▶ 各アクティビティの抵抗値</p>
+
+      <div class="resist-bar">
+        <div class="resist-label"><span>治療（自動化前）</span><span style="color:var(--red)">HIGH</span></div>
+        <div class="resist-track"><div class="resist-fill" style="width:90%;background:var(--red)"></div></div>
+      </div>
+      <div class="resist-bar">
+        <div class="resist-label"><span>治療（スティック自動化後）</span><span style="color:var(--green)">LOW</span></div>
+        <div class="resist-track"><div class="resist-fill" style="width:20%;background:var(--green)"></div></div>
+      </div>
+      <div class="resist-bar">
+        <div class="resist-label"><span>ホームページ更新（AI活用後）</span><span style="color:var(--green)">LOW</span></div>
+        <div class="resist-track"><div class="resist-fill" style="width:15%;background:var(--green)"></div></div>
+      </div>
+      <div class="resist-bar">
+        <div class="resist-label"><span>YouTube（垂れ流しvlog）</span><span style="color:var(--amber)">VERY LOW</span></div>
+        <div class="resist-track"><div class="resist-fill" style="width:10%;background:var(--amber)"></div></div>
+      </div>
+      <div class="resist-bar">
+        <div class="resist-label"><span>ランニング（趣味化後）</span><span style="color:var(--cyan)">ZERO</span></div>
+        <div class="resist-track"><div class="resist-fill" style="width:5%;background:var(--cyan)"></div></div>
+      </div>
+
+      <div class="quote" style="margin-top:20px;">
+        「抵抗値が高いビジネスモデルは長続きしない。全てをルーティン化し、努力を趣味に変換した時、初めてサステナブルな循環が生まれる。」
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEC 7: ACTION TABLE ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">07</div>
+      <div class="section-title-wrap">
+        <div class="section-tag">IMMEDIATE ACTION</div>
+        <div class="section-title">✅ 今すぐやること — アクションリスト</div>
+      </div>
+      <div class="toggle-icon">+</div>
+    </div>
+    <div class="section-body open">
+      <table class="action-table">
+        <tr>
+          <th>やること</th>
+          <th>内容</th>
+          <th>優先度</th>
+        </tr>
+        <tr>
+          <td>スティック購入</td>
+          <td>楽天で56cm購入。来週ムーと施術トレーニング実施</td>
+          <td><span class="tag tag-red">最優先</span></td>
+        </tr>
+        <tr>
+          <td>VO2MAX習慣化</td>
+          <td>スロージョギングor坂道ダッシュを毎朝のルーティンに</td>
+          <td><span class="tag tag-red">最優先</span></td>
+        </tr>
+        <tr>
+          <td>ジンドゥー刷新</td>
+          <td>1日1ページ×10日で全ページを一次情報＋AIで書き直す</td>
+          <td><span class="tag tag-amber">高</span></td>
+        </tr>
+        <tr>
+          <td>YouTube開始</td>
+          <td>走りながら撮影→垂れ流しvlog。ショート＋長尺の2本立て</td>
+          <td><span class="tag tag-amber">高</span></td>
+        </tr>
+        <tr>
+          <td>Google ビジネス</td>
+          <td>毎日の臨床報告をAIで短文化して最新情報に投稿</td>
+          <td><span class="tag tag-cyan">中</span></td>
+        </tr>
+        <tr>
+          <td>コース新設</td>
+          <td>ボール＋スティック プレミアムコース（5,000〜6,000円）を正式メニュー化</td>
+          <td><span class="tag tag-cyan">中</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">三条健康堂<span>接骨院</span></div>
+  <div class="footer-date">STRATEGY SESSION — 2025.04.06</div>
+</footer>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('open');
+    const body = el.nextElementSibling;
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
