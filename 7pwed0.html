@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本興業 10年戦略ビジョン</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --gold: #d4a843;
+  --gold-bright: #f0c85a;
+  --warm: #e8dcc8;
+  --white: #f5f0e8;
+  --card-bg: rgba(255,255,255,0.06);
+  --card-border: rgba(212,168,67,0.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--navy);color:var(--white);line-height:1.8;overflow-x:hidden}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px 80px;position:relative;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(212,168,67,.12) 0%,transparent 70%),linear-gradient(180deg,#0a1628,#0f1f38 50%,#0a1628)}
+.hero>*{position:relative;z-index:1}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy);font-weight:900;font-size:16px;padding:8px 28px;border-radius:50px;letter-spacing:3px;margin-bottom:28px}
+.hero-title{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(32px,6vw,64px);line-height:1.3;margin-bottom:12px}
+.hero-title .large{display:block;font-size:clamp(48px,9vw,100px);line-height:1.2;margin-top:8px;background:linear-gradient(135deg,var(--gold),var(--gold-bright),#fff,var(--gold-bright));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(16px,2.5vw,24px);color:var(--warm);opacity:.85;margin-bottom:48px;line-height:2}
+
+.hero-stats{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:0;max-width:680px;width:100%}
+.hero-stat{text-align:center;padding:8px 12px}
+.hero-stat-value{font-family:'Noto Serif JP',serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:var(--gold-bright);display:block;line-height:1.2}
+.hero-stat-label{font-size:13px;color:var(--warm);opacity:.6;display:block;margin-top:4px}
+.hero-arrow{font-size:clamp(24px,3.5vw,40px);color:var(--gold);opacity:.45;text-align:center}
+
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--gold);opacity:.45;text-align:center;animation:bounce 2s infinite}
+.scroll-hint::after{content:'▼';display:block;margin-top:4px;font-size:16px}
+
+/* COMMON */
+section{padding:80px 24px;max-width:960px;margin:0 auto}
+.section-label{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy);font-weight:900;font-size:14px;padding:5px 18px;border-radius:50px;letter-spacing:2px;margin-bottom:16px}
+.section-title{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(26px,4.5vw,44px);line-height:1.4;margin-bottom:16px}
+.section-desc{font-size:clamp(16px,2vw,20px);color:var(--warm);opacity:.8;margin-bottom:40px;max-width:780px;line-height:2}
+.gold-text{color:var(--gold-bright)}
+.sep{text-align:center;padding:32px 0}.sep::after{content:'◆ ◆ ◆';color:var(--gold);opacity:.2;font-size:12px;letter-spacing:12px}
+
+/* WIND CARDS */
+.wind-grid{display:grid;gap:24px}
+.wind-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.wind-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-bright))}
+.wind-top{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.wind-icon{font-size:40px;line-height:1;flex-shrink:0}
+.wind-name{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(20px,3vw,26px);line-height:1.4}
+.prob-bar{display:flex;align-items:center;gap:16px;margin-bottom:16px;background:rgba(255,255,255,.04);border-radius:12px;padding:12px 20px}
+.prob-badge{display:inline-flex;align-items:center;justify-content:center;min-width:90px;height:42px;border-radius:21px;font-weight:900;font-size:17px;color:var(--navy);flex-shrink:0}
+.prob-high{background:linear-gradient(135deg,#27ae60,#2ecc71)}
+.prob-mid{background:linear-gradient(135deg,var(--gold),var(--gold-bright))}
+.prob-text{font-size:14px;color:var(--warm);opacity:.65}
+.wind-body{font-size:clamp(15px,2vw,17px);color:var(--warm);line-height:2;opacity:.9}
+.wind-body strong{color:var(--gold-bright);font-weight:700}
+.wind-impact{margin-top:16px;padding:14px 20px;background:rgba(212,168,67,.08);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;font-size:clamp(15px,2vw,18px);font-weight:700;color:var(--gold-bright)}
+
+/* COMPOSITE */
+.composite-section{text-align:center;padding:40px 24px 60px;max-width:800px;margin:0 auto}
+.total-box{display:inline-block;background:linear-gradient(135deg,rgba(212,168,67,.15),rgba(212,168,67,.05));border:2px solid var(--gold);border-radius:24px;padding:32px 48px;margin:24px 0 20px}
+.total-label{font-size:15px;color:var(--warm);opacity:.65;margin-bottom:4px}
+.total-value{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(40px,7vw,64px);line-height:1.2;background:linear-gradient(135deg,var(--gold),var(--gold-bright),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.total-sub{font-size:13px;color:var(--warm);opacity:.45;margin-top:4px}
+
+/* BUFFET */
+.buffet-intro{text-align:center;padding:40px 24px 0;max-width:800px;margin:0 auto}
+.buffet-grid{display:grid;gap:28px}
+.buffet-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.buffet-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.buffet-num{font-family:'Noto Serif JP',serif;font-weight:900;font-size:32px;color:var(--gold);opacity:.3;line-height:1;flex-shrink:0;width:44px;text-align:center}
+.buffet-tag{display:inline-block;padding:3px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.tag-cost{background:rgba(39,174,96,.2);color:#2ecc71}
+.tag-new{background:rgba(52,152,219,.2);color:#5dade2}
+.tag-ir{background:rgba(230,126,34,.2);color:#f0a040}
+.tag-ma{background:rgba(155,89,182,.2);color:#bb8fce}
+.tag-ai{background:rgba(212,168,67,.2);color:var(--gold-bright)}
+.tag-stock{background:rgba(39,174,96,.15);color:#58d68d}
+.buffet-title{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(20px,3vw,28px);margin-bottom:14px;line-height:1.5}
+.buffet-desc{font-size:clamp(15px,2vw,17px);color:var(--warm);opacity:.85;line-height:2;margin-bottom:24px}
+.buffet-desc strong{color:var(--gold-bright)}
+
+/* METERS - fixed 3-col grid */
+.meter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.meter{background:rgba(255,255,255,.04);border-radius:14px;padding:14px 8px;text-align:center}
+.meter-label{font-size:12px;color:var(--warm);opacity:.5;margin-bottom:6px;line-height:1.3;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+.meter-stars{font-size:20px;letter-spacing:1px;line-height:1;margin-bottom:4px;white-space:nowrap}
+.s-on{color:var(--gold-bright)}.s-off{color:rgba(255,255,255,.1)}
+.meter-val{font-size:13px;font-weight:700;color:var(--warm);opacity:.8}
+
+/* NEXT STEP */
+.next-box{display:flex;align-items:flex-start;gap:12px;padding:16px 20px;background:linear-gradient(135deg,rgba(212,168,67,.1),rgba(212,168,67,.03));border:1px solid rgba(212,168,67,.2);border-radius:14px}
+.next-icon{font-size:24px;line-height:1;flex-shrink:0;margin-top:2px}
+.next-main{font-size:clamp(14px,1.8vw,16px);font-weight:700;color:var(--gold-bright);line-height:1.7}
+.next-sub{display:block;font-weight:400;font-size:13px;color:var(--warm);opacity:.55;margin-top:4px;line-height:1.5}
+
+/* CONCLUSION */
+.conclusion{text-align:center;padding:60px 24px 100px;max-width:860px;margin:0 auto;position:relative}
+.conclusion::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.conclusion-title{font-family:'Noto Serif JP',serif;font-weight:900;font-size:clamp(24px,4.5vw,40px);margin:36px 0 20px;line-height:1.5}
+.conclusion-body{font-size:clamp(16px,2vw,20px);color:var(--warm);opacity:.85;line-height:2.2;margin-bottom:40px}
+.final-msg{font-size:clamp(18px,2.5vw,24px);color:var(--gold-bright);font-weight:900;margin-top:36px;line-height:2}
+.footer-note{font-size:13px;color:var(--warm);opacity:.3;margin-top:60px;line-height:1.8}
+
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+@media(max-width:600px){
+  .hero{padding:48px 20px 72px}
+  .hero-stats{grid-template-columns:1fr auto 1fr;max-width:320px}
+  .hero-stats .hero-stat:nth-child(5){grid-column:1/-1;margin-top:8px}
+  .hero-stats .hero-arrow:nth-child(4){display:none}
+  section{padding:60px 16px}
+  .wind-card,.buffet-card{padding:24px 18px}
+  .meter-grid{gap:6px}
+  .meter{padding:10px 4px}
+  .meter-stars{font-size:16px}
+  .meter-label{font-size:11px;min-height:2.2em}
+  .next-box{flex-direction:column;gap:6px}
+  .total-box{padding:24px 24px}
+  .prob-bar{flex-direction:column;gap:6px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">戦 略 提 案 書</div>
+  <h1 class="hero-title">社長、お任せください。<span class="large">株価は2倍になります。</span></h1>
+  <p class="hero-sub">何もしなくても、時代の追い風だけで到達する未来——<br>そこに「一手」加えれば、確実なものに変わります。</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-value">148億</span><span class="hero-stat-label">現在の売上高</span></div>
+    <span class="hero-arrow">→</span>
+    <div class="hero-stat"><span class="hero-stat-value">296億</span><span class="hero-stat-label">10年後の目標</span></div>
+    <span class="hero-arrow">=</span>
+    <div class="hero-stat"><span class="hero-stat-value">×2</span><span class="hero-stat-label">株価目標</span></div>
+  </div>
+  <div class="scroll-hint">下にスクロール</div>
+</div>
+
+<section>
+  <div class="section-label">PART 1</div>
+  <h2 class="section-title">放っておいても吹く「3つの追い風」</h2>
+  <p class="section-desc">これらは御社が何もしなくても、時代が勝手に株価を押し上げる力です。<strong class="gold-text">どれか1つでも株価2倍に届きます。</strong></p>
+  <div class="wind-grid">
+    <div class="wind-card">
+      <div class="wind-top"><div class="wind-icon">🌊</div><div class="wind-name">南海トラフ地震で「国土を守る会社」になる</div></div>
+      <div class="prob-bar"><div class="prob-badge prob-mid">25–45%</div><div class="prob-text">10年以内に南海トラフ地震が発生する確率</div></div>
+      <div class="wind-body">政府の地震調査委員会は、30年以内の発生確率を<strong>60〜90%</strong>と評価。御社は<strong>全国8工場に分散配置</strong>されており、1箇所が被災しても他からサプライできます。この事実だけで<strong>「防災銘柄」</strong>として株式市場の注目を集めます。</div>
+      <div class="wind-impact">💡 震災銘柄化だけで株価2〜3倍の事例多数</div>
+    </div>
+    <div class="wind-card">
+      <div class="wind-top"><div class="wind-icon">🤖</div><div class="wind-name">フィジカルAIが工場コストを半分にする</div></div>
+      <div class="prob-bar"><div class="prob-badge prob-mid">30–40%</div><div class="prob-text">10年以内に工場人員50%削減が実現する確率</div></div>
+      <div class="wind-body">2026年、NVIDIAが<strong>「フィジカルAIのChatGPTモーメントが来た」</strong>と宣言。重量物搬送・型枠セット・品質検査がAI化されれば、営業利益率が<strong>4%→8〜10%に倍増</strong>する可能性があります。</div>
+      <div class="wind-impact">💡 利益2倍＝株価2倍の直接方程式</div>
+    </div>
+    <div class="wind-card">
+      <div class="wind-top"><div class="wind-icon">📈</div><div class="wind-name">東証PBR改革で株価が適正水準に戻る</div></div>
+      <div class="prob-bar"><div class="prob-badge prob-high">50–60%</div><div class="prob-text">10年以内にPBRが1倍に近づく確率</div></div>
+      <div class="wind-body">御社のPBRは現在<strong>わずか0.52倍</strong>。東証はPBR1倍以上を強く要請中。<strong>1倍に近づくだけで株価は約2倍</strong>。IR強化と配当方針の見直しだけで達成可能です。</div>
+      <div class="wind-impact">💡 事業を変えなくてもIR戦略だけで到達可能</div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<div class="composite-section">
+  <h2 class="section-title" style="font-size:clamp(22px,3.5vw,32px)">3つのうち<span class="gold-text">どれか1つ</span>が来る確率</h2>
+  <div class="total-box">
+    <div class="total-label">何もしなくても株価2倍の複合確率</div>
+    <div class="total-value">40〜55%</div>
+    <div class="total-sub">3つの追い風が少なくとも1つ発生する確率</div>
+  </div>
+  <p class="section-desc" style="text-align:center;margin:16px auto 0;max-width:640px"><strong class="gold-text" style="font-size:1.05em">コインを投げて表が出る以上の確率</strong>で株価は2倍に届きます。<br>ここに<strong class="gold-text">「一手」</strong>を加えれば、確率は格段に上がります。</p>
+</div>
+
+<div class="sep"></div>
+
+<div class="buffet-intro">
+  <div class="section-label">PART 2</div>
+  <h2 class="section-title">戦略のバイキング<br><span class="gold-text">お好きなものを、お好きな順で</span></h2>
+  <p class="section-desc" style="text-align:center;margin:0 auto 40px">「やれ」ではなく「こういう選択肢があります」というメニューです。<br>どれか1つからでも、組み合わせでも、御社のペースで選べます。</p>
+</div>
+
+<section style="padding-top:16px">
+  <div class="buffet-grid">
+
+    <div class="buffet-card">
+      <div class="buffet-head"><div class="buffet-num">01</div><div class="buffet-tag tag-cost">コスト改革</div></div>
+      <h3 class="buffet-title">製品を1/3に絞り「即納の王者」になる</h3>
+      <div class="buffet-desc">現在の多品種を<strong>売上上位の1/3に集中</strong>。製造ロットが3倍→単位コスト20〜30%削減。全国8工場に同じ主力製品を在庫し<strong>「どこで災害が起きても即日出荷」</strong>の体制が完成します。</div>
+      <div class="meter-grid">
+        <div class="meter"><div class="meter-label">実行しやすさ</div><div class="meter-stars"><span class="s-on">★★★★</span><span class="s-off">★</span></div><div class="meter-val">4 / 5</div></div>
+        <div class="meter"><div class="meter-label">利益インパクト</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">5 / 5</div></div>
+        <div class="meter"><div class="meter-label">成功確率</div><div class="meter-stars"><span class="s-on">★★★★</span><span class="s-off">★</span></div><div class="meter-val">70〜80%</div></div>
+      </div>
+      <div class="next-box"><div class="next-icon">👉</div><div class="next-main">最初の一手：全製品の売上パレート分析を実施<span class="next-sub">上位20%の製品で売上の何%を占めるか、まず数字で確認するだけでOK</span></div></div>
+    </div>
+
+    <div class="buffet-card">
+      <div class="buffet-head"><div class="buffet-num">02</div><div class="buffet-tag tag-new">防災新製品</div></div>
+      <h3 class="buffet-title">換気付き防災シェルターを自治体に売る</h3>
+      <div class="buffet-desc">御社のボックスカルバート技術で、<strong>第一種換気システム内蔵のコンクリート製シェルター</strong>を開発。政府ガイドラインも換気付きシェルターを要求中。<strong>競合は既に「シェル太君」を発売済み</strong>——御社も同じことが即座にでき、換気で差別化できます。</div>
+      <div class="meter-grid">
+        <div class="meter"><div class="meter-label">実行しやすさ</div><div class="meter-stars"><span class="s-on">★★★</span><span class="s-off">★★</span></div><div class="meter-val">3 / 5</div></div>
+        <div class="meter"><div class="meter-label">売上インパクト</div><div class="meter-stars"><span class="s-on">★★★★</span><span class="s-off">★</span></div><div class="meter-val">4 / 5</div></div>
+        <div class="meter"><div class="meter-label">話題性</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">5 / 5</div></div>
+      </div>
+      <div class="next-box"><div class="next-icon">👉</div><div class="next-main">最初の一手：換気メーカーに共同開発を打診<span class="next-sub">既存ボックスカルバートに換気ユニットを組み込む試作品を1台作るだけ</span></div></div>
+    </div>
+
+    <div class="buffet-card">
+      <div class="buffet-head"><div class="buffet-num">03</div><div class="buffet-tag tag-ai">AI営業革命</div></div>
+      <h3 class="buffet-title">AIが御社を勝手にレコメンドする仕組み</h3>
+      <div class="buffet-desc">御社の顧客である<strong>自治体の土木担当者やゼネコンの若手</strong>はAIに聞いて製品を選び始めています。自社サイトに<strong>技術仕様・施工事例・CADデータ</strong>を大量公開すれば、AIが「日本興業がおすすめ」と<strong>24時間365日</strong>推薦します。</div>
+      <div class="meter-grid">
+        <div class="meter"><div class="meter-label">実行しやすさ</div><div class="meter-stars"><span class="s-on">★★★★</span><span class="s-off">★</span></div><div class="meter-val">4 / 5</div></div>
+        <div class="meter"><div class="meter-label">コスト</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">ほぼゼロ</div></div>
+        <div class="meter"><div class="meter-label">5年後効果</div><div class="meter-stars"><span class="s-on">★★★★</span><span class="s-off">★</span></div><div class="meter-val">60%確率</div></div>
+      </div>
+      <div class="next-box"><div class="next-icon">👉</div><div class="next-main">最初の一手：自社サイトに施工事例を月5件ずつ追加<span class="next-sub">社内に眠っている施工写真を掘り起こすだけでスタートできる</span></div></div>
+    </div>
+
+    <div class="buffet-card">
+      <div class="buffet-head"><div class="buffet-num">04</div><div class="buffet-tag tag-ir">IR強化</div></div>
+      <h3 class="buffet-title">「ESG×防災」銘柄として機関投資家を呼ぶ</h3>
+      <div class="buffet-desc">PBR 0.52倍は<strong>資産価値の半分しか評価されていない</strong>状態。Necoコンクリート（CO2削減）＋国土強靭化で<strong>「ESG×防災」</strong>テーマ銘柄に。<strong>PBRが1倍に近づくだけで株価2倍</strong>です。</div>
+      <div class="meter-grid">
+        <div class="meter"><div class="meter-label">実行しやすさ</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">5 / 5</div></div>
+        <div class="meter"><div class="meter-label">株価インパクト</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">5 / 5</div></div>
+        <div class="meter"><div class="meter-label">投資額</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">極小</div></div>
+      </div>
+      <div class="next-box"><div class="next-icon">👉</div><div class="next-main">最初の一手：IR資料に「防災」と「CO2削減」を各1ページ追加<span class="next-sub">次回の決算説明会からすぐに始められる</span></div></div>
+    </div>
+
+    <div class="buffet-card">
+      <div class="buffet-head"><div class="buffet-num">05</div><div class="buffet-tag tag-ma">M&A拡大</div></div>
+      <h3 class="buffet-title">地方の廃業工場を安く買って全国制覇</h3>
+      <div class="buffet-desc">業界は高齢化・後継者不足で<strong>廃業が加速中</strong>。九州・東北の小規模工場を取得し主力製品だけを製造。<strong>「どこで震災が起きても供給できる唯一の会社」</strong>というストーリーが完成します。</div>
+      <div class="meter-grid">
+        <div class="meter"><div class="meter-label">実行しやすさ</div><div class="meter-stars"><span class="s-on">★★</span><span class="s-off">★★★</span></div><div class="meter-val">2 / 5</div></div>
+        <div class="meter"><div class="meter-label">売上インパクト</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">5 / 5</div></div>
+        <div class="meter"><div class="meter-label">防災ストーリー</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">最強</div></div>
+      </div>
+      <div class="next-box"><div class="next-icon">👉</div><div class="next-main">最初の一手：九州・東北の同業他社の後継者状況をリサーチ<span class="next-sub">業界団体経由で「売りたい工場」の情報を集めるだけ</span></div></div>
+    </div>
+
+    <div class="buffet-card">
+      <div class="buffet-head"><div class="buffet-num">06</div><div class="buffet-tag tag-stock">ストック収益</div></div>
+      <h3 class="buffet-title">防災製品の年額リース＋メンテナンス</h3>
+      <div class="buffet-desc">防災トイレやシェルターを<strong>年額リース＋定期メンテナンス</strong>で毎年安定収入が入る<strong>ストック型ビジネス</strong>に転換。株式市場はストック収益企業に<strong>高い評価倍率</strong>をつけます。</div>
+      <div class="meter-grid">
+        <div class="meter"><div class="meter-label">実行しやすさ</div><div class="meter-stars"><span class="s-on">★★★</span><span class="s-off">★★</span></div><div class="meter-val">3 / 5</div></div>
+        <div class="meter"><div class="meter-label">株価への効果</div><div class="meter-stars"><span class="s-on">★★★★</span><span class="s-off">★</span></div><div class="meter-val">4 / 5</div></div>
+        <div class="meter"><div class="meter-label">安定性</div><div class="meter-stars"><span class="s-on">★★★★★</span></div><div class="meter-val">最高</div></div>
+      </div>
+      <div class="next-box"><div class="next-icon">👉</div><div class="next-main">最初の一手：防災トイレ既存顧客にメンテナンス契約を試験提案<span class="next-sub">まず10自治体に年額プランを提示して反応を見る</span></div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<div class="conclusion">
+  <div class="section-label">まとめ</div>
+  <h2 class="conclusion-title">時代が御社を<span class="gold-text">押し上げます。</span><br>あとは、<span class="gold-text">一手を選ぶだけ。</span></h2>
+  <p class="conclusion-body">南海トラフの切迫、AI革命による工場変革、東証のPBR改革——<br>この3つの巨大な波は、<strong class="gold-text">止めることができません。</strong><br><br>御社は香川の地から全国8工場へ広がり、<br>70年近くインフラを守り続けてきた会社です。<br><br>その実績に、<strong class="gold-text">たった一手</strong>を加えるだけで——<br>株価2倍は「予測」ではなく「道筋」に変わります。</p>
+  <div class="total-box">
+    <div class="total-label">追い風＋一手で到達する確率</div>
+    <div class="total-value">70〜85%</div>
+    <div class="total-sub">バイキングから1つ選ぶだけで、ここまで上がります</div>
+  </div>
+  <p class="final-msg">社長、安心してお任せください。<br>この船は、すでに追い風の中にいます。</p>
+  <p class="footer-note">※本資料は投資助言ではなく、経営戦略の方向性を示すための参考資料です。<br>確率はマクロ環境の分析に基づく推計であり、将来の成果を保証するものではありません。<br>2026年4月 作成</p>
+</div>
+
+</body>
+</html>
