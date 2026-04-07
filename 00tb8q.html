@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>施術の真実｜谷弘誠</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+--bg:#080808;
+--card:#0f0f0f;
+--card2:#141414;
+--red:#FF2D2D;
+--yellow:#FFE000;
+--green:#00FF88;
+--cyan:#00E5FF;
+--white:#F5F5F0;
+--muted:#666;
+--border:#222;
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{background:var(--bg);color:var(--white);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;cursor:default}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--yellow);z-index:999;transition:width .1s linear;width:0%}
+
+/* NAV DOTS */
+#dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:998;display:flex;flex-direction:column;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:all .3s;cursor:pointer}
+.dot.active{background:var(--yellow);transform:scale(1.6)}
+
+/* SECTIONS */
+section{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:40px 20px;position:relative;overflow:hidden}
+
+/* HERO */
+.hero{background:var(--bg);border-bottom:1px solid var(--border);justify-content:flex-end;padding-bottom:60px}
+.hero-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--red);text-transform:uppercase;margin-bottom:20px}
+.hero-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,22vw,160px);color:var(--border);line-height:1;position:absolute;top:-10px;left:-8px;z-index:0;user-select:none}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,11vw,72px);line-height:1.05;letter-spacing:.02em;position:relative;z-index:1}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.hero h1 strong{font-style:normal;color:var(--red);-webkit-text-stroke:1px var(--red)}
+.hero-sub{font-size:13px;color:var(--muted);margin-top:16px;line-height:1.7;position:relative;z-index:1}
+.hero-badge{display:inline-block;background:var(--red);color:#fff;font-size:10px;font-family:'Space Mono',monospace;padding:4px 10px;letter-spacing:.1em;margin-bottom:24px}
+
+/* CARD */
+.card-section{background:var(--card)}
+.card-section:nth-child(even){background:var(--card2)}
+.section-num{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.3em;color:var(--muted);margin-bottom:8px}
+.answer-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,9vw,60px);line-height:1.05;margin-bottom:6px}
+.answer-title.red{color:var(--red)}
+.answer-title.yellow{color:var(--yellow)}
+.answer-title.green{color:var(--green)}
+.answer-title.cyan{color:var(--cyan)}
+.answer-title.white{color:var(--white)}
+.subtitle{font-size:12px;font-family:'Space Mono',monospace;color:var(--muted);margin-bottom:24px;letter-spacing:.05em}
+
+/* BIG NUMBER */
+.big-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,16vw,100px);line-height:1;color:var(--yellow);display:block;margin-bottom:4px}
+.big-unit{font-size:12px;font-family:'Space Mono',monospace;color:var(--muted);letter-spacing:.1em}
+
+/* PILL ROW */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.pill{padding:6px 14px;border-radius:2px;font-size:12px;font-weight:700;border:1px solid}
+.pill-r{border-color:var(--red);color:var(--red)}
+.pill-y{border-color:var(--yellow);color:var(--yellow)}
+.pill-g{border-color:var(--green);color:var(--green)}
+.pill-c{border-color:var(--cyan);color:var(--cyan)}
+.pill-w{border-color:#333;color:var(--muted)}
+
+/* DIVIDER */
+.div-line{border:none;border-top:1px solid var(--border);margin:20px 0}
+
+/* ROW ITEM */
+.row-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.row-item:last-child{border-bottom:none}
+.row-icon{width:32px;height:32px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;flex-shrink:0}
+.row-icon.r{background:var(--red);color:#fff}
+.row-icon.y{background:var(--yellow);color:#000}
+.row-icon.g{background:var(--green);color:#000}
+.row-icon.c{background:var(--cyan);color:#000}
+.row-body{flex:1}
+.row-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.row-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.row-tag{font-family:'Space Mono',monospace;font-size:9px;color:var(--yellow);letter-spacing:.1em;margin-top:4px}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:12px}
+.data-table th{text-align:left;padding:8px 6px;border-bottom:1px solid var(--red);color:var(--red);font-size:10px;font-family:'Space Mono',monospace;letter-spacing:.1em;font-weight:400}
+.data-table td{padding:10px 6px;border-bottom:1px solid var(--border);line-height:1.5;vertical-align:top}
+.data-table td:first-child{color:var(--yellow);font-weight:700;font-family:'Space Mono',monospace;white-space:nowrap}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:28px;margin:16px 0}
+.timeline::before{content:'';position:absolute;left:10px;top:4px;bottom:4px;width:1px;background:linear-gradient(to bottom,var(--red),var(--yellow),var(--green))}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-item::before{content:'';position:absolute;left:-22px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--yellow);border:1px solid var(--bg)}
+.tl-step{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--yellow)}
+.tl-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.tl-note{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* HIGHLIGHT BOX */
+.hl-box{border-left:3px solid var(--red);padding:14px 16px;background:#1a0808;margin:16px 0;border-radius:0 2px 2px 0}
+.hl-box.y{border-left-color:var(--yellow);background:#1a1600}
+.hl-box.g{border-left-color:var(--green);background:#001a0d}
+.hl-box.c{border-left-color:var(--cyan);background:#001a1a}
+.hl-text{font-size:13px;line-height:1.7}
+.hl-text strong{color:var(--yellow)}
+
+/* RECEPTOR TABLE */
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.rec-card{background:#0a0a0a;border:1px solid var(--border);padding:12px;border-radius:2px;position:relative;overflow:hidden}
+.rec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.rec-card.r::before{background:var(--red)}
+.rec-card.y::before{background:var(--yellow)}
+.rec-card.g::before{background:var(--green)}
+.rec-card.c::before{background:var(--cyan)}
+.rec-name{font-family:'Bebas Neue',sans-serif;font-size:16px;margin-bottom:4px}
+.rec-jp{font-size:10px;color:var(--muted);margin-bottom:8px}
+.rec-trigger{font-size:10px;font-family:'Space Mono',monospace;margin-bottom:6px;color:var(--muted);line-height:1.5}
+.rec-effect{font-size:11px;font-weight:700;line-height:1.4}
+.rec-card.r .rec-effect{color:var(--red)}
+.rec-card.y .rec-effect{color:var(--yellow)}
+.rec-card.g .rec-effect{color:var(--green)}
+.rec-card.c .rec-effect{color:var(--cyan)}
+
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:0;margin:16px 0}
+.flow-step{display:flex;align-items:stretch;gap:0}
+.flow-arrow{display:flex;flex-direction:column;align-items:center;width:32px;flex-shrink:0}
+.flow-dot2{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:11px;flex-shrink:0;margin-top:4px}
+.flow-line{flex:1;width:1px;background:var(--border);margin:2px 0}
+.flow-content{flex:1;padding:8px 0 16px 12px}
+.flow-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--yellow)}
+.flow-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.flow-note{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* RANKING */
+.rank-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.rank-item:last-child{border-bottom:none}
+.rank-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--border);line-height:1;min-width:36px}
+.rank-num.top{color:var(--red)}
+.rank-body{flex:1}
+.rank-name{font-size:14px;font-weight:700;margin-bottom:2px}
+.rank-note{font-size:11px;color:var(--muted)}
+.rank-pct{font-family:'Space Mono',monospace;font-size:10px;color:var(--yellow)}
+
+/* PROFILE */
+.profile-section{background:var(--bg);border-top:1px solid var(--border)}
+.prof-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,10vw,60px);letter-spacing:.05em;margin-bottom:4px}
+.prof-title{font-size:11px;font-family:'Space Mono',monospace;color:var(--muted);letter-spacing:.1em;margin-bottom:24px;line-height:1.7}
+.prof-stat{display:flex;gap:24px;margin-bottom:32px}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--yellow);display:block;line-height:1}
+.stat-l{font-size:10px;color:var(--muted);font-family:'Space Mono',monospace}
+.prof-bio{font-size:12px;color:var(--muted);line-height:1.8;border-top:1px solid var(--border);padding-top:20px}
+.prof-bio strong{color:var(--white)}
+.final-line{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,6vw,36px);color:var(--red);margin-top:32px;line-height:1.2}
+
+/* NOISE OVERLAY */
+section::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;opacity:.5;z-index:0}
+section>*{position:relative;z-index:1}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:380px){
+.rec-grid{grid-template-columns:1fr}
+.answer-title{font-size:clamp(28px,8vw,50px)}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<div id="dots"></div>
+
+<!-- HERO -->
+<section class="hero" id="s0">
+<div class="fade-in">
+<div class="hero-badge">CLINICAL PHILOSOPHY 完全版</div>
+<div class="hero-tag">30年 × 1万人 × 臨床知識</div>
+<div class="hero-num">30</div>
+<h1>施術の<em>本質</em>は<br><strong>反射</strong>だ。<br>筋膜も骨も<br>変形しない。</h1>
+<p class="hero-sub">年間200冊読む治療家 谷弘誠が<br>過去のやり取りを全部まとめた完全版</p>
+</div>
+</section>
+
+<!-- S1 -->
+<section class="card-section" id="s1">
+<div class="fade-in">
+<div class="section-num">01 / 09</div>
+<div class="answer-title red">筋膜は手で<br>変形しない</div>
+<div class="subtitle">でも、なぜ効くのか？</div>
+
+<div class="hl-box">
+<div class="hl-text">大腿筋膜を1%変形させるには<br><strong>約9,075N（925kg相当）</strong>の力が必要。<br>人間の手では絶対に不可能。<br>— Chaudhry 2008</div>
+</div>
+
+<div class="row-item">
+<div class="row-icon r">×</div>
+<div class="row-body">
+<div class="row-title">物理的変形モデル（旧）</div>
+<div class="row-desc">コラーゲン繊維を手でほぐす、伸ばす</div>
+</div>
+</div>
+
+<div class="row-item">
+<div class="row-icon g">✓</div>
+<div class="row-body">
+<div class="row-title">神経反射モデル（現在の定説）</div>
+<div class="row-desc">機械受容器→神経系→トーヌス変化</div>
+<div class="row-tag">Schleip 2003 / Stecco 2014</div>
+</div>
+</div>
+
+<div class="hl-box g" style="margin-top:16px">
+<div class="hl-text"><strong>結論：</strong>施術者は「組織を変える」のではなく<br>「神経系に入力している」だけ</div>
+</div>
+</div>
+</section>
+
+<!-- S2 -->
+<section class="card-section" id="s2">
+<div class="fade-in">
+<div class="section-num">02 / 09</div>
+<div class="answer-title yellow">押す時間は<br>17秒でいい</div>
+<div class="subtitle">「長く押す」は古い知識</div>
+
+<table class="data-table">
+<tr><th>手技</th><th>最適時間</th><th>根拠</th></tr>
+<tr><td>TP 1回目</td><td>約17秒</td><td>Szajkowski 2025</td></tr>
+<tr><td>TP 2回目</td><td>約9秒</td><td>受容器の順応</td></tr>
+<tr><td>TP 3回目</td><td>約7秒</td><td>同上</td></tr>
+<tr><td>MFR最小</td><td>60秒</td><td>Stecco 2014</td></tr>
+<tr><td>MFR理想</td><td>2〜5分</td><td>粘弾性応力緩和90%</td></tr>
+<tr><td>MET収縮</td><td>5秒</td><td>Fryer 2004</td></tr>
+<tr><td>振動療法</td><td>30秒〜</td><td>前シナプス抑制発動</td></tr>
+</table>
+
+<div class="hl-box y">
+<div class="hl-text">1点あたり<strong>3サイクル分けて合計60〜90秒</strong><br>サイクル間に10秒休憩（血液再灌流）<br>一定圧持続 ＞ 拍動的圧迫</div>
+</div>
+</div>
+</section>
+
+<!-- S3 -->
+<section class="card-section" id="s3">
+<div class="fade-in">
+<div class="section-num">03 / 09</div>
+<div class="answer-title cyan">5つの受容器が<br>全てを決める</div>
+<div class="subtitle">どこを触っても反射しか起きていない</div>
+
+<div class="rec-grid">
+<div class="rec-card r">
+<div class="rec-name">ルフィニ</div>
+<div class="rec-jp">Ruffini Endings</div>
+<div class="rec-trigger">反応：持続的な横方向牽引<br>速度：ゆっくり（SA型）</div>
+<div class="rec-effect">副交感神経ON<br>→全身脱力・リラックス</div>
+</div>
+<div class="rec-card y">
+<div class="rec-name">パチニ</div>
+<div class="rec-jp">Pacinian Corpuscles</div>
+<div class="rec-trigger">反応：急速な圧変化・振動<br>速度：速い（RA型）</div>
+<div class="rec-effect">固有受容リセット<br>※一定Hz→すぐ飽きる</div>
+</div>
+<div class="rec-card g">
+<div class="rec-name">筋紡錘</div>
+<div class="rec-jp">Muscle Spindle</div>
+<div class="rec-trigger">反応：筋の長さ・伸張速度<br>位置：筋腹内</div>
+<div class="rec-effect">伸張反射→収縮<br>METの伸張相</div>
+</div>
+<div class="rec-card c">
+<div class="rec-name">GTO</div>
+<div class="rec-jp">Golgi Tendon Organ</div>
+<div class="rec-trigger">反応：筋の張力<br>位置：筋腱移行部</div>
+<div class="rec-effect">自原抑制→脱力<br>アイソメトリック後</div>
+</div>
+</div>
+
+<div class="hl-box">
+<div class="hl-text">表層筋膜の神経支配密度は<br>皮膚に次ぐ<strong>33個/cm²</strong>（パドヴァ大学）<br>→ 筋膜は「感覚器官」</div>
+</div>
+</div>
+</section>
+
+<!-- S4 -->
+<section class="card-section" id="s4">
+<div class="fade-in">
+<div class="section-num">04 / 09</div>
+<div class="answer-title red">ストレッチは体を<br>柔らかくしない</div>
+<div class="subtitle">伸張耐性（知覚）が変わるだけ</div>
+
+<div class="row-item">
+<div class="row-icon r">✗</div>
+<div class="row-body">
+<div class="row-title">旧来の解釈</div>
+<div class="row-desc">ストレッチで筋・筋膜の組織が物理的に柔らかくなる</div>
+</div>
+</div>
+
+<div class="row-item">
+<div class="row-icon g">✓</div>
+<div class="row-body">
+<div class="row-title">エビデンスの結論</div>
+<div class="row-desc">MET前後で同じトルクをかけてもROMに有意差なし<br>→ 柔軟性向上は「組織変化」ではなく「伸張耐性の変化」</div>
+<div class="row-tag">Fryer 2004 / Cayco meta 39RCT n=1770</div>
+</div>
+</div>
+
+<div class="hl-box y">
+<div class="hl-text">ただし<strong>H反射振幅の低下</strong>と<br><strong>運動誘発電位サイレントピリオド延長</strong>は確認<br>→ 脊髄・皮質レベルでの<br>　 実際の神経学的抑制は起きている</div>
+</div>
+
+<div class="pills" style="margin-top:20px">
+<span class="pill pill-g">振動+ストレッチ ROM+18.4%</span>
+<span class="pill pill-y">MET効果持続24時間以上</span>
+<span class="pill pill-r">5秒収縮＞20秒収縮</span>
+</div>
+</div>
+</section>
+
+<!-- S5 -->
+<section class="card-section" id="s5">
+<div class="fade-in">
+<div class="section-num">05 / 09</div>
+<div class="answer-title yellow">肋骨から<br>全身を読め</div>
+<div class="subtitle">秘伝の評価プロトコル</div>
+
+<div class="hl-box c">
+<div class="hl-text"><strong>なぜ肋骨か？</strong><br>1日<strong>2万回</strong>動く唯一の骨格<br>→歪みが全身テンションに即反映される</div>
+</div>
+
+<div style="margin:20px 0">
+<div class="row-title" style="font-size:12px;color:var(--muted);margin-bottom:12px;font-family:'Space Mono',monospace;letter-spacing:.1em">視診4ポイント</div>
+<div class="row-item">
+<div class="row-icon y">①</div>
+<div class="row-body"><div class="row-name" style="font-size:13px;font-weight:700">肩甲骨の高さ</div></div>
+</div>
+<div class="row-item">
+<div class="row-icon y">②</div>
+<div class="row-body"><div class="row-name" style="font-size:13px;font-weight:700">肩の高さ</div></div>
+</div>
+<div class="row-item">
+<div class="row-icon y">③</div>
+<div class="row-body"><div class="row-name" style="font-size:13px;font-weight:700">耳の高さ</div></div>
+</div>
+<div class="row-item">
+<div class="row-icon y">④</div>
+<div class="row-body"><div class="row-name" style="font-size:13px;font-weight:700">指先の長さの左右差</div></div>
+</div>
+</div>
+
+<div class="hl-box y">
+<div class="hl-text">肋骨を中心に見ると<br>「どこが引っ張っているか」<br>テンションが辿れる<br><strong>脇・腰の付け根・仙骨・お尻</strong>へと繋がる</div>
+</div>
+</div>
+</section>
+
+<!-- S6 -->
+<section class="card-section" id="s6">
+<div class="fade-in">
+<div class="section-num">06 / 09</div>
+<div class="answer-title green">腰痛は腰から<br>触るな</div>
+<div class="subtitle">8ステップ黄金ルーティン</div>
+
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-step">01</div>
+<div class="tl-name">お尻</div>
+<div class="tl-note">腰より先にここから着手</div>
+</div>
+<div class="tl-item">
+<div class="tl-step">02</div>
+<div class="tl-name">お尻の横（TFL・大転子）</div>
+<div class="tl-note">側面テンションの解放</div>
+</div>
+<div class="tl-item">
+<div class="tl-step">03</div>
+<div class="tl-name">ハムストリング</div>
+<div class="tl-note">坐骨からの引っ張り解除</div>
+</div>
+<div class="tl-item">
+<div class="tl-step">04</div>
+<div class="tl-name">鵞足</div>
+<div class="tl-note">膝内側。見落とし注意</div>
+</div>
+<div class="tl-item">
+<div class="tl-step">05</div>
+<div class="tl-name">ふくらはぎ＋足首＋足裏</div>
+<div class="tl-note">末端まで通す</div>
+</div>
+<div class="tl-item">
+<div class="tl-step">06</div>
+<div class="tl-name">腰方形筋（横向き）</div>
+<div class="tl-note">硬い場合のみ。スティック推奨</div>
+</div>
+<div class="tl-item">
+<div class="tl-step">07</div>
+<div class="tl-name">ITバンド＋大腿筋膜張筋</div>
+<div class="tl-note">横向き継続。筋腹を狙う</div>
+</div>
+<div class="tl-item">
+<div class="tl-step">08</div>
+<div class="tl-name">大腰筋（仰向け）</div>
+<div class="tl-note">最後に腸腰筋でしめる</div>
+</div>
+</div>
+
+<div class="hl-box">
+<div class="hl-text"><strong>3回以内に劇的な変化</strong><br>慢性腰痛患者はリピート率が飛躍的に上がる</div>
+</div>
+</div>
+</section>
+
+<!-- S7 -->
+<section class="card-section" id="s7">
+<div class="fade-in">
+<div class="section-num">07 / 09</div>
+<div class="answer-title red">肋骨周辺TP<br>確率ランキング</div>
+<div class="subtitle">前鋸筋から触れ</div>
+
+<div class="rank-item">
+<div class="rank-num top">01</div>
+<div class="rank-body">
+<div class="rank-name">前鋸筋（第5〜8肋骨側面）</div>
+<div class="rank-note">背中→前面への典型放散。呼吸困難感</div>
+<div class="rank-pct">確率 80%</div>
+</div>
+</div>
+<div class="rank-item">
+<div class="rank-num top">02</div>
+<div class="rank-body">
+<div class="rank-name">肋間筋（第8〜9肋間）</div>
+<div class="rank-note">帯状痛。深呼吸で悪化</div>
+<div class="rank-pct">確率 70%</div>
+</div>
+</div>
+<div class="rank-item">
+<div class="rank-num">03</div>
+<div class="rank-body">
+<div class="rank-name">外腹斜筋（肋骨弓）</div>
+<div class="rank-note">ひねり動作で痛む</div>
+<div class="rank-pct">確率 60%</div>
+</div>
+</div>
+<div class="rank-item">
+<div class="rank-num">04</div>
+<div class="rank-body">
+<div class="rank-name">広背筋上部（腋窩後壁）</div>
+<div class="rank-note">腕を上げると背中に響く</div>
+<div class="rank-pct">確率 40%</div>
+</div>
+</div>
+<div class="rank-item">
+<div class="rank-num">05</div>
+<div class="rank-body">
+<div class="rank-name">腰方形筋上部（第12肋骨）</div>
+<div class="rank-note">体を横に倒すと痛い</div>
+<div class="rank-pct">確率 35%</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- S8 -->
+<section class="card-section" id="s8">
+<div class="fade-in">
+<div class="section-num">08 / 09</div>
+<div class="answer-title cyan">全手技は<br>入力装置の<br>違いだけ</div>
+<div class="subtitle">統一理論。受容器と反射の種類が違うだけ</div>
+
+<table class="data-table">
+<tr><th>入力</th><th>受容器</th><th>効果</th></tr>
+<tr><td>軽い持続牽引</td><td>ルフィニ</td><td>副交感ON・脱力</td></tr>
+<tr><td>振動（揺らぎ）</td><td>パチニ</td><td>固有受容リセット</td></tr>
+<tr><td>等尺性収縮後</td><td>GTO</td><td>自原抑制→弛緩</td></tr>
+<tr><td>深部圧迫</td><td>間質受容器</td><td>脊髄レベル抑制</td></tr>
+<tr><td>ストレッチ</td><td>筋紡錘</td><td>伸張反射→知覚変容</td></tr>
+<tr><td>アクチベーター</td><td>全受容器</td><td>防御反射バイパス</td></tr>
+</table>
+
+<div class="hl-box c">
+<div class="hl-text">ウェレンギャング＝<br><strong>全受容器を同時刺激する装置</strong><br>2〜20Hz側方交互振動＋ストキャスティック周波数<br>→ ルフィニ＋パチニが飽きずに反応し続ける</div>
+</div>
+
+<div class="hl-box g">
+<div class="hl-text">Littlejohn（1897）も言っていた：<br>「全身のBody Adjustmentなしの<br>局所治療は短命」<br><strong>100年前の答えが今の筋膜科学で証明された</strong></div>
+</div>
+</div>
+</section>
+
+<!-- S9 GOLDEN ROUTINE -->
+<section class="card-section" id="s9">
+<div class="fade-in">
+<div class="section-num">09 / 09</div>
+<div class="answer-title yellow">組み合わせが<br>最強</div>
+<div class="subtitle">ゴールデンルーティン ES=-1.40</div>
+
+<div class="hl-box y">
+<div class="hl-text">37件RCTメタ分析で<br><strong>4手技の組み合わせはES=-1.40</strong><br>単独療法を大幅に上回る</div>
+</div>
+
+<div class="flow">
+<div class="flow-step">
+<div class="flow-arrow">
+<div class="flow-dot2 r" style="background:var(--red);color:#fff">W</div>
+<div class="flow-line"></div>
+</div>
+<div class="flow-content">
+<div class="flow-num">01</div>
+<div class="flow-name">ウェレンギャング 5〜10分</div>
+<div class="flow-note">全身筋膜ネットワーク神経反射リセット<br>副交感優位の確立</div>
+</div>
+</div>
+<div class="flow-step">
+<div class="flow-arrow">
+<div class="flow-dot2 y" style="background:var(--yellow);color:#000">T</div>
+<div class="flow-line"></div>
+</div>
+<div class="flow-content">
+<div class="flow-num">02</div>
+<div class="flow-name">トリガーポイント圧迫</div>
+<div class="flow-note">17秒×3サイクル。段階的に圧を上げる<br>サイクル間10秒休憩</div>
+</div>
+</div>
+<div class="flow-step">
+<div class="flow-arrow">
+<div class="flow-dot2 g" style="background:var(--green);color:#000">M</div>
+<div class="flow-line"></div>
+</div>
+<div class="flow-content">
+<div class="flow-num">03</div>
+<div class="flow-name">MFR 筋膜リリース</div>
+<div class="flow-note">2〜5分ホールド。微細な揺らぎを加える<br>→コラゲナーゼ産生2倍（Langevin 2010）</div>
+</div>
+</div>
+<div class="flow-step">
+<div class="flow-arrow">
+<div class="flow-dot2 c" style="background:var(--cyan);color:#000">E</div>
+<div class="flow-line" style="opacity:0"></div>
+</div>
+<div class="flow-content">
+<div class="flow-num">04</div>
+<div class="flow-name">MET 筋エネルギーテクニック</div>
+<div class="flow-note">5秒収縮 20〜25%MVC × 3〜5回<br>PIR（等尺性収縮後弛緩）が相反抑制より優位</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROFILE -->
+<section class="profile-section" id="s10">
+<div class="fade-in">
+<div class="prof-name">谷 弘誠</div>
+<div class="prof-title">TANI KOSEI<br>柔道整復師 / 三条健康堂接骨院 院長<br>香川県高松市 由良町</div>
+
+<div class="prof-stat">
+<div>
+<span class="stat-n">30</span>
+<span class="stat-l">年の臨床経験</span>
+</div>
+<div>
+<span class="stat-n">1万+</span>
+<span class="stat-l">延べ患者数</span>
+</div>
+<div>
+<span class="stat-n">200</span>
+<span class="stat-l">冊/年読書</span>
+</div>
+</div>
+
+<div class="prof-bio">
+<strong>柔道整復師。三条健康堂接骨院 院長。</strong>香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。<br><br>
+トリガーポイント療法・筋膜リリース・MET・振動療法を統合した独自プロトコルを実践。「施術の本質は神経反射の誘発である」という哲学のもと、エビデンスと臨床知を融合した治療を提供する。
+</div>
+
+<div class="final-line">年間200冊読む治療家が<br>辿り着いた答え：<br>全部、反射だ。</div>
+</div>
+</section>
+
+<script>
+const sections=document.querySelectorAll('section');
+const dotsEl=document.getElementById('dots');
+const prog=document.getElementById('prog');
+
+sections.forEach((_,i)=>{
+const d=document.createElement('div');
+d.className='dot'+(i===0?' active':'');
+d.addEventListener('click',()=>sections[i].scrollIntoView({behavior:'smooth'}));
+dotsEl.appendChild(d);
+});
+
+const dots=document.querySelectorAll('.dot');
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+const i=[...sections].indexOf(e.target);
+dots.forEach((d,j)=>d.classList.toggle('active',i===j));
+}
+});
+},{threshold:.5});
+
+sections.forEach(s=>observer.observe(s));
+
+window.addEventListener('scroll',()=>{
+const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+prog.style.width=p+'%';
+});
+
+const fi=document.querySelectorAll('.fade-in');
+const fiObs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting)e.target.classList.add('visible');
+});
+},{threshold:.1});
+fi.forEach(el=>fiObs.observe(el));
+
+document.querySelectorAll('.fade-in').forEach((el,i)=>{
+el.style.transitionDelay=(i%3)*0.08+'s';
+});
+</script>
+</body>
+</html>
