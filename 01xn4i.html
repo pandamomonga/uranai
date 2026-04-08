@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>平野様 3年戦略</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Oswald:wght@700&family=Black+Han+Sans&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --deep: #0d0d0d;
+    --card: #141414;
+    --border: #222;
+    --accent: #c8f135;
+    --accent2: #ff4f4f;
+    --accent3: #4fd1ff;
+    --accent4: #ffb84f;
+    --white: #f2f2f2;
+    --muted: #666;
+    --font-jp: 'Noto Sans JP', sans-serif;
+    --font-en: 'Oswald', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-jp);
+    max-width: 430px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 20px 48px;
+    position: relative;
+    overflow: hidden;
+    background: #080808;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(200,241,53,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 10% 80%, rgba(79,209,255,0.08) 0%, transparent 70%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,241,53,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,241,53,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--font-en);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 12px;
+    margin-bottom: 24px;
+    position: relative;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-name {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: 15px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    position: relative;
+    animation: fadeUp 0.8s 0.1s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-title {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    position: relative;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    color: #888;
+    margin-top: 16px;
+    line-height: 1.8;
+    position: relative;
+    animation: fadeUp 0.8s 0.3s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-num {
+    position: absolute;
+    top: 40px; right: 20px;
+    font-family: var(--font-en);
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba(200,241,53,0.06);
+    line-height: 1;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: fadeUp 1s 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .scroll-hint span {
+    font-family: var(--font-en);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 1.5s infinite;
+  }
+
+  /* ── DATA SECTION ── */
+  .data-section {
+    background: var(--deep);
+    padding: 48px 20px 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-tag {
+    font-family: var(--font-en);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .section-title {
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 16px;
+  }
+
+  .data-cell {
+    background: var(--card);
+    padding: 16px 14px;
+    position: relative;
+  }
+
+  .data-cell.highlight { background: #1a1f0a; }
+
+  .data-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .data-before {
+    font-family: var(--font-en);
+    font-size: 28px;
+    font-weight: 700;
+    color: #555;
+  }
+
+  .data-after {
+    font-family: var(--font-en);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .data-change {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .data-change.neg { color: var(--accent3); }
+
+  .data-name {
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  .arrow-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 10px;
+    padding: 2px 6px;
+    margin-top: 4px;
+  }
+
+  /* ── STRATEGY CARD ── */
+  .strategy-section {
+    padding: 48px 20px 40px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .strategy-section:nth-child(even) { background: var(--deep); }
+
+  .strategy-number {
+    position: absolute;
+    top: 24px; right: -8px;
+    font-family: var(--font-en);
+    font-size: 100px;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.05;
+    color: var(--white);
+  }
+
+  .strategy-icon {
+    width: 52px; height: 52px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .icon-green { background: rgba(200,241,53,0.12); border: 1px solid rgba(200,241,53,0.3); }
+  .icon-red   { background: rgba(255,79,79,0.12);  border: 1px solid rgba(255,79,79,0.3); }
+  .icon-blue  { background: rgba(79,209,255,0.12); border: 1px solid rgba(79,209,255,0.3); }
+  .icon-gold  { background: rgba(255,184,79,0.12); border: 1px solid rgba(255,184,79,0.3); }
+  .icon-purple{ background: rgba(180,100,255,0.12);border: 1px solid rgba(180,100,255,0.3);}
+
+  .strategy-headline {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .strategy-headline span { color: var(--accent); }
+  .strategy-headline span.r { color: var(--accent2); }
+  .strategy-headline span.b { color: var(--accent3); }
+  .strategy-headline span.g { color: var(--accent4); }
+
+  .strategy-why {
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    border-left: 2px solid var(--accent);
+    padding-left: 12px;
+  }
+
+  /* Pills / tags */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .pill-g { border: 1px solid var(--accent);  color: var(--accent); }
+  .pill-r { border: 1px solid var(--accent2); color: var(--accent2); }
+  .pill-b { border: 1px solid var(--accent3); color: var(--accent3); }
+  .pill-gold { border: 1px solid var(--accent4); color: var(--accent4); }
+
+  /* Step cards */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    background: var(--card);
+    padding: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--accent);
+    min-width: 24px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .step-num.r { color: var(--accent2); }
+  .step-num.b { color: var(--accent3); }
+  .step-num.g { color: var(--accent4); }
+
+  .step-content {}
+
+  .step-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.7;
+  }
+
+  /* Evidence box */
+  .evidence-box {
+    background: #0d1200;
+    border: 1px solid rgba(200,241,53,0.2);
+    padding: 16px;
+    margin-bottom: 8px;
+  }
+
+  .evidence-box.blue {
+    background: #001020;
+    border-color: rgba(79,209,255,0.2);
+  }
+
+  .evidence-box.red {
+    background: #140800;
+    border-color: rgba(255,79,79,0.2);
+  }
+
+  .evidence-box.gold {
+    background: #140a00;
+    border-color: rgba(255,184,79,0.2);
+  }
+
+  .evidence-title {
+    font-family: var(--font-en);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .evidence-title.blue { color: var(--accent3); }
+  .evidence-title.red  { color: var(--accent2); }
+  .evidence-title.gold { color: var(--accent4); }
+
+  .evidence-text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #bbb;
+  }
+
+  /* Flow chart */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .flow-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 32px;
+  }
+
+  .flow-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .flow-dot.r { background: var(--accent2); }
+  .flow-dot.b { background: var(--accent3); }
+  .flow-dot.g { background: var(--accent4); }
+
+  .flow-line {
+    width: 1px;
+    flex: 1;
+    background: var(--border);
+    min-height: 20px;
+    margin: 4px 0;
+  }
+
+  .flow-text {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.7;
+    padding-bottom: 16px;
+    color: #ccc;
+  }
+
+  .flow-text strong { color: var(--white); font-weight: 700; }
+
+  /* Box breathing timer visual */
+  .box-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .box-phase {
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .box-phase.a { background: rgba(200,241,53,0.1); border: 1px solid rgba(200,241,53,0.3); }
+  .box-phase.b { background: rgba(79,209,255,0.1); border: 1px solid rgba(79,209,255,0.3); }
+  .box-phase.c { background: rgba(255,79,79,0.1);  border: 1px solid rgba(255,79,79,0.3); }
+  .box-phase.d { background: rgba(255,184,79,0.1); border: 1px solid rgba(255,184,79,0.3); }
+
+  .box-phase-num {
+    font-family: var(--font-en);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .box-phase.a .box-phase-num { color: var(--accent); }
+  .box-phase.b .box-phase-num { color: var(--accent3); }
+  .box-phase.c .box-phase-num { color: var(--accent2); }
+  .box-phase.d .box-phase-num { color: var(--accent4); }
+
+  .box-phase-label {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .box-phase-sub {
+    font-size: 10px;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  /* Trigger point time visual */
+  .tp-visual {
+    display: flex;
+    gap: 2px;
+    margin: 16px 0;
+  }
+
+  .tp-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tp-fill {
+    width: 100%;
+    border-radius: 2px;
+  }
+
+  .tp-fill-1 { height: 80px; background: var(--accent); }
+  .tp-fill-2 { height: 50px; background: var(--accent3); }
+  .tp-fill-3 { height: 36px; background: var(--accent2); }
+
+  .tp-num {
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .tp-1 { color: var(--accent); }
+  .tp-2 { color: var(--accent3); }
+  .tp-3 { color: var(--accent2); }
+
+  .tp-sec {
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 1px;
+  }
+
+  /* Daily protocol */
+  .protocol-section {
+    padding: 48px 20px 40px;
+    background: #060606;
+    border-top: 3px solid var(--accent);
+  }
+
+  .time-block {
+    margin-bottom: 24px;
+  }
+
+  .time-label {
+    font-family: var(--font-en);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .time-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .time-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .time-task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    padding: 12px 14px;
+  }
+
+  .task-icon {
+    font-size: 20px;
+    min-width: 28px;
+    text-align: center;
+  }
+
+  .task-name {
+    font-weight: 700;
+    font-size: 13px;
+    flex: 1;
+  }
+
+  .task-time {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* Vision section */
+  .vision-section {
+    padding: 48px 20px 64px;
+    background: #0a0f00;
+    border-top: 1px solid rgba(200,241,53,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vision-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(200,241,53,0.06) 0%, transparent 70%);
+  }
+
+  .vision-year {
+    font-family: var(--font-en);
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(200,241,53,0.08);
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    line-height: 1;
+  }
+
+  .vision-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 24px;
+  }
+
+  .vision-card {
+    background: rgba(200,241,53,0.05);
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+  }
+
+  .vision-card-month {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .vision-card-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #ccc;
+  }
+
+  .vision-card-text strong { color: var(--white); }
+
+  /* Final statement */
+  .final-statement {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--accent);
+    color: #000;
+    text-align: center;
+    position: relative;
+  }
+
+  .final-statement-text {
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .final-clinic {
+    margin-top: 8px;
+    font-size: 11px;
+    opacity: 0.7;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 0;
+    opacity: 0.3;
+  }
+
+  /* Ingredient cards for super onigiri */
+  .ingredient-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin: 16px 0;
+  }
+
+  .ing-card {
+    background: var(--card);
+    padding: 12px 8px;
+    text-align: center;
+  }
+
+  .ing-icon { font-size: 24px; margin-bottom: 4px; }
+  .ing-name { font-size: 11px; font-weight: 700; }
+  .ing-type { font-size: 9px; color: #666; margin-top: 2px; letter-spacing: 0.5px; }
+
+  /* Muscle diagram */
+  .muscle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 16px 0;
+  }
+
+  .muscle-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    padding: 10px 14px;
+  }
+
+  .muscle-bar-wrap {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .muscle-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 0;
+    transition: width 1s ease;
+  }
+
+  .muscle-bar.r { background: var(--accent2); }
+  .muscle-bar.b { background: var(--accent3); }
+  .muscle-bar.g { background: var(--accent4); }
+
+  .muscle-name { font-size: 12px; font-weight: 700; min-width: 90px; }
+  .muscle-effect { font-size: 10px; color: #666; min-width: 52px; text-align: right; }
+
+  /* Atopy flow */
+  .atopy-flow {
+    background: var(--card);
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .af-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .af-arrow {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .af-text {
+    font-size: 12px;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .af-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    background: rgba(200,241,53,0.15);
+    color: var(--accent);
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(1.2); }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Big stat */
+  .big-stat-row {
+    display: flex;
+    gap: 2px;
+    margin: 16px 0;
+  }
+
+  .big-stat {
+    flex: 1;
+    background: var(--card);
+    padding: 16px 10px;
+    text-align: center;
+  }
+
+  .big-stat-num {
+    font-family: var(--font-en);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .big-stat-num.r { color: var(--accent2); }
+  .big-stat-num.b { color: var(--accent3); }
+
+  .big-stat-label {
+    font-size: 10px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  /* Separator line */
+  .sep {
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+    margin: 16px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-num">3</div>
+  <span class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </span>
+
+  <div class="hero-tag">TOTAL STRATEGY 2025–2028</div>
+  <div class="hero-name">平野様（21歳）専用 完全戦略書</div>
+  <h1 class="hero-title">
+    今日が<br>
+    <em>全てを変える。</em>
+    3年後、最強の<br>社会人になる。
+  </h1>
+  <p class="hero-sub">
+    アトピー・腰痛・疲労蓄積を根本から変える<br>
+    科学的エビデンスに基づく5つの戦略
+  </p>
+</section>
+
+<!-- ═══ DATA ═══ -->
+<section class="data-section reveal">
+  <span class="section-tag">BEFORE / AFTER DATA</span>
+  <h2 class="section-title">施術で証明された<br>今日の変化</h2>
+
+  <div class="data-grid">
+    <div class="data-cell">
+      <div class="data-label">エネルギー</div>
+      <div class="data-before">17.64</div>
+      <div style="font-size:12px;color:#555;margin:2px 0">↓</div>
+      <div class="data-after">32.41</div>
+      <div class="data-change">+83.7%↑</div>
+      <div class="arrow-badge">基準以下→正常</div>
+    </div>
+    <div class="data-cell">
+      <div class="data-label">筋骨格系</div>
+      <div class="data-before" style="color:var(--accent2)">17.30</div>
+      <div style="font-size:12px;color:#555;margin:2px 0">↓</div>
+      <div class="data-after" style="color:var(--accent3)">0.88</div>
+      <div class="data-change neg">−94.9% 解放</div>
+      <div class="arrow-badge" style="background:var(--accent3)">過負荷→解消</div>
+    </div>
+    <div class="data-cell">
+      <div class="data-label">代謝</div>
+      <div class="data-before">1.10</div>
+      <div style="font-size:12px;color:#555;margin:2px 0">↓</div>
+      <div class="data-after">1.13</div>
+      <div class="data-change">基準以下→正常 ✓</div>
+    </div>
+    <div class="data-cell">
+      <div class="data-label">φ(+) 総合値</div>
+      <div class="data-before">423</div>
+      <div style="font-size:12px;color:#555;margin:2px 0">↓</div>
+      <div class="data-after">777</div>
+      <div class="data-change">+83.6%↑</div>
+    </div>
+  </div>
+
+  <div class="evidence-box" style="margin-top:8px">
+    <div class="evidence-title">WHAT THIS MEANS</div>
+    <div class="evidence-text">
+      トレーニング・自転車・大学作業の疲労が回復しきれず
+      全身にトリガーポイントが蓄積。施術1回でエネルギーと
+      代謝が<strong style="color:var(--accent)">正常域へ回復</strong>。
+      残課題は免疫系（12.37）と精神情動（0.78）の底上げ。
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ STRATEGY 1 ═══ -->
+<section class="strategy-section reveal">
+  <div class="strategy-number">01</div>
+  <div class="strategy-icon icon-green">🍙</div>
+  <span class="section-tag">STRATEGY 01 — NUTRITION</span>
+  <h2 class="strategy-headline">腸を変えれば、<br><span>アトピーが変わる。</span></h2>
+  <p class="strategy-why">
+    アトピーの本体はTh2免疫の過剰反応。腸内細菌が
+    短鎖脂肪酸を産生することでTh1/Th2バランスが
+    正常化し、皮膚炎症が根本から治まっていく。
+  </p>
+
+  <div class="atopy-flow">
+    <div class="af-row">
+      <span class="af-text"><strong>食物繊維を摂る</strong>（スーパーおにぎり）</span>
+    </div>
+    <div class="af-row">
+      <span class="af-arrow">↓</span>
+      <span class="af-text">腸内善玉菌が発酵 → <strong>短鎖脂肪酸</strong>を産生</span>
+    </div>
+    <div class="af-row">
+      <span class="af-arrow">↓</span>
+      <span class="af-text">腸バリア機能が強化・Treg細胞が活性化</span>
+    </div>
+    <div class="af-row">
+      <span class="af-arrow">↓</span>
+      <span class="af-text"><strong>Th2過剰反応が抑制</strong>（アトピーの本体）</span>
+      <span class="af-badge">KEY</span>
+    </div>
+    <div class="af-row">
+      <span class="af-arrow">↓</span>
+      <span class="af-text" style="color:var(--accent)"><strong>皮膚炎症シグナルが低下</strong></span>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px;font-weight:900;margin-bottom:12px;letter-spacing:1px">
+    スーパーおにぎり 全材料
+  </h3>
+  <div class="ingredient-grid">
+    <div class="ing-card">
+      <div class="ing-icon">🌾</div>
+      <div class="ing-name">もち麦・大麦</div>
+      <div class="ing-type">水溶性繊維</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🫘</div>
+      <div class="ing-name">小豆・大豆</div>
+      <div class="ing-type">不溶性繊維</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🌿</div>
+      <div class="ing-name">乾燥わかめ</div>
+      <div class="ing-type">アルギン酸</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🐟</div>
+      <div class="ing-name">サバ缶</div>
+      <div class="ing-type">EPA/DHA</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🍗</div>
+      <div class="ing-name">鶏むね肉</div>
+      <div class="ing-type">イミダペプチド</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🥬</div>
+      <div class="ing-name">緑黄色野菜</div>
+      <div class="ing-type">ビタミン</div>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🫙</div>
+      <div class="ing-name">オリーブ油</div>
+      <div class="ing-type">食べる時にかける</div>
+    </div>
+  </div>
+
+    <div class="evidence-box">
+    <div class="evidence-title">HOW TO MAKE</div>
+    <div class="evidence-text">
+      全材料（サバ缶＋鶏むね肉含む）を<strong style="color:var(--accent)">電気圧力鍋</strong>に投入 → 20分炊くだけ。
+      オリーブオイルは<strong style="color:var(--accent)">食べる時にかける</strong>。
+      準備5分、あとは放置。Amazon約<strong style="color:var(--accent)">7,000円</strong>で購入可。
+      一人暮らしでも確実に作れる。前夜仕込み→翌朝即食。
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ STRATEGY 2 ═══ -->
+<section class="strategy-section reveal">
+  <div class="strategy-number">02</div>
+  <div class="strategy-icon icon-red">🧱</div>
+  <span class="section-tag">STRATEGY 02 — POSTURE</span>
+  <h2 class="strategy-headline">1日<span class="r">2分</span>で<br>体型が変わる。</h2>
+  <p class="strategy-why">
+    2023年ブリティッシュ・ジャーナル・オブ・スポーツメディシン
+    メタ分析：ウォールシットは有酸素・筋トレ・HIITを上回る
+    血圧低下効果を持つ。インナーマッスルを内側から育てる。
+  </p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num r">1</div>
+      <div class="step-content">
+        <div class="step-title">フォーム確認</div>
+        <div class="step-desc">壁から60cm離れて立つ。背中全体（腰・肩甲骨・後頭部）を壁に密着。股関節90°・膝90°。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num r">2</div>
+      <div class="step-content">
+        <div class="step-title">IAP呼吸で腹圧を入れる</div>
+        <div class="step-desc">鼻から大きく吸い、お腹を<strong>360°全方向</strong>に膨らませる。前だけでなく横・後ろにも。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num r">3</div>
+      <div class="step-content">
+        <div class="step-title">キープ2分</div>
+        <div class="step-desc">腹圧を維持したまま静止。20〜30秒ごとに一度抜いて入れ直す。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="muscle-list">
+    <div class="muscle-item">
+      <div class="muscle-name">多裂筋（深部）</div>
+      <div class="muscle-bar-wrap"><div class="muscle-bar r" style="width:95%"></div></div>
+      <div class="muscle-effect">姿勢の柱</div>
+    </div>
+    <div class="muscle-item">
+      <div class="muscle-name">腹横筋（深部）</div>
+      <div class="muscle-bar-wrap"><div class="muscle-bar r" style="width:90%"></div></div>
+      <div class="muscle-effect">天然コルセット</div>
+    </div>
+    <div class="muscle-item">
+      <div class="muscle-name">大腿四頭筋</div>
+      <div class="muscle-bar-wrap"><div class="muscle-bar" style="width:85%"></div></div>
+      <div class="muscle-effect">代謝維持</div>
+    </div>
+    <div class="muscle-item">
+      <div class="muscle-name">大殿筋</div>
+      <div class="muscle-bar-wrap"><div class="muscle-bar" style="width:80%"></div></div>
+      <div class="muscle-effect">ヒップ安定</div>
+    </div>
+  </div>
+
+  <div class="big-stat-row">
+    <div class="big-stat">
+      <div class="big-stat-num r">2min</div>
+      <div class="big-stat-label">1日の目標</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num r">#1</div>
+      <div class="big-stat-label">血圧低下効果</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num r">NO</div>
+      <div class="big-stat-label">一酸化窒素放出</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ STRATEGY 3 ═══ -->
+<section class="strategy-section reveal">
+  <div class="strategy-number">03</div>
+  <div class="strategy-icon icon-blue">🫧</div>
+  <span class="section-tag">STRATEGY 03 — ISOMETRIC</span>
+  <h2 class="strategy-headline"><span class="b">室伏式</span>で<br>全身の筋肉を<br>一気に変える。</h2>
+  <p class="strategy-why">
+    「外に意識を向ける・紙風船を潰さない」イメージが
+    インナー＋アウター両方を同時に発火させる。
+    スライダーの不安定面が神経筋協調を最大化する。
+  </p>
+
+  <div class="evidence-box blue">
+    <div class="evidence-title blue">SCHLEIP NEUROBIOLOGICAL MODEL</div>
+    <div class="evidence-text">
+      「外へ広げる」意識 → ルフィニ終末が刺激 → 視床下部を介した
+      副交感神経シフト → <strong style="color:var(--accent3)">深層から表層への活性化連鎖が自動発生</strong>。
+      表層筋への命令ではなく、インナーが先に動く。
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num b">①</div>
+      <div class="step-content">
+        <div class="step-title">対角線プランク（最重要）</div>
+        <div class="step-desc">右手・左膝にスライダー。外へ「引っ張る」ながら腹圧キープ20秒。多裂筋・腹横筋・広背筋が同時発火。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num b">②</div>
+      <div class="step-content">
+        <div class="step-title">パイクプッシュアップホールド</div>
+        <div class="step-desc">両手スライダーで前方に張り出し、体全体を「球体」にキープ。体幹全周・肩甲帯を同時活性化。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num b">③</div>
+      <div class="step-content">
+        <div class="step-title">サイドスライドホールド</div>
+        <div class="step-desc">片膝スライダーで横に張り出したまま止める。腰方形筋・中殿筋・内転筋が同時に働く。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="evidence-box blue" style="margin-top:8px">
+    <div class="evidence-title blue">VS GYM</div>
+    <div class="evidence-text">
+      ジム：1種目＝1筋肉群。マシンが安定させるのでインナーは休む。<br>
+      スライダー：重力×不安定面×全方向等尺収縮。
+      <strong style="color:var(--accent3)">インナーが常に全開＋アウターが限界まで働く。</strong>
+      全身の神経筋動員が1動作で最大化される。
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ STRATEGY 4 ═══ -->
+<section class="strategy-section reveal">
+  <div class="strategy-number">04</div>
+  <div class="strategy-icon icon-gold">🎱</div>
+  <span class="section-tag">STRATEGY 04 — SELF CARE</span>
+  <h2 class="strategy-headline">痛いその日に<br><span class="g">自分でほぐす。</span></h2>
+  <p class="strategy-why">
+    Szajkowski 2025研究（n=79）で判明した最新メソッド。
+    「長く押す」より「分割して押す」方が機械受容器が
+    確実に反応し、トリガーポイントが効率的に解放される。
+  </p>
+
+  <h3 style="font-size:13px;font-weight:900;letter-spacing:2px;margin-bottom:12px;color:var(--accent4)">
+    17秒 · 9秒 · 7秒の法則
+  </h3>
+
+  <div class="tp-visual">
+    <div class="tp-bar">
+      <div class="tp-fill tp-fill-1"></div>
+      <div class="tp-num tp-1">17</div>
+      <div class="tp-sec">秒 STEP1</div>
+    </div>
+    <div class="tp-bar" style="align-items:center;justify-content:flex-end">
+      <div style="font-size:20px;color:#555;margin-bottom:8px">+</div>
+      <div style="font-size:10px;color:#555;margin-bottom:0">10秒休憩</div>
+    </div>
+    <div class="tp-bar">
+      <div class="tp-fill tp-fill-2"></div>
+      <div class="tp-num tp-2">9</div>
+      <div class="tp-sec">秒 STEP2</div>
+    </div>
+    <div class="tp-bar" style="align-items:center;justify-content:flex-end">
+      <div style="font-size:20px;color:#555;margin-bottom:8px">+</div>
+      <div style="font-size:10px;color:#555;margin-bottom:0">10秒休憩</div>
+    </div>
+    <div class="tp-bar">
+      <div class="tp-fill tp-fill-3"></div>
+      <div class="tp-num tp-3">7</div>
+      <div class="tp-sec">秒 STEP3</div>
+    </div>
+  </div>
+
+  <div class="evidence-box gold">
+    <div class="evidence-title gold">MECHANISM</div>
+    <div class="evidence-text">
+      ①VAS7/10「痛気持ちいい」圧で押す→機械受容器が反応（17秒）<br>
+      ②10秒休憩→血液再灌流→老廃物が流れる<br>
+      ③少し深める→新しいバリアで再反応（9秒）<br>
+      ④さらに深める（7秒）→筋紡錘がリセット→<strong style="color:var(--accent4)">筋肉が緩む</strong>
+    </div>
+  </div>
+
+  <div style="margin-top:16px">
+    <div class="step">
+      <div class="step-num g">①</div>
+      <div class="step-content">
+        <div class="step-title">肩甲骨内側（最優先）</div>
+        <div class="step-desc">自転車＋PC作業で最も硬結しやすい部位。菱形筋・僧帽筋中部。</div>
+      </div>
+    </div>
+    <div class="step" style="margin-top:2px">
+      <div class="step-num g">②</div>
+      <div class="step-content">
+        <div class="step-title">脊柱両脇（多裂筋ライン）</div>
+        <div class="step-desc">背中・腰痛の根源。脊柱から左右2〜3cmのライン。</div>
+      </div>
+    </div>
+    <div class="step" style="margin-top:2px">
+      <div class="step-num g">③</div>
+      <div class="step-content">
+        <div class="step-title">お尻（大殿筋・梨状筋）</div>
+        <div class="step-desc">自転車で圧迫されやすい。腰痛の遠因になりやすい。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ STRATEGY 5 ═══ -->
+<section class="strategy-section reveal">
+  <div class="strategy-number">05</div>
+  <div class="strategy-icon icon-purple">🧠</div>
+  <span class="section-tag">STRATEGY 05 — BREATHING</span>
+  <h2 class="strategy-headline">SEALsの呼吸で<br><span style="color:#b464ff">自律神経を<br>操作する。</span></h2>
+  <p class="strategy-why">
+    米国海軍SEALsが極限状態のパニック制御に使う呼吸法。
+    迷走神経を直接刺激し、コルチゾールを下げ、
+    アトピー・不眠・炎症の根本にあるストレス反応を断ち切る。
+  </p>
+
+  <div class="box-visual">
+    <div class="box-phase a">
+      <div class="box-phase-num">4</div>
+      <div class="box-phase-label">吸う</div>
+      <div class="box-phase-sub">鼻から<br>横隔膜を下げる</div>
+    </div>
+    <div class="box-phase b">
+      <div class="box-phase-num">4</div>
+      <div class="box-phase-label">止める①</div>
+      <div class="box-phase-sub">肺満タン<br>バロレセプター発火</div>
+    </div>
+    <div class="box-phase c">
+      <div class="box-phase-num">4</div>
+      <div class="box-phase-label">吐く</div>
+      <div class="box-phase-sub">迷走神経発火<br>コルチゾール↓</div>
+    </div>
+    <div class="box-phase d">
+      <div class="box-phase-num">4</div>
+      <div class="box-phase-label">止める②</div>
+      <div class="box-phase-sub">CO2耐性UP<br>パニック耐性</div>
+    </div>
+  </div>
+
+  <div class="flow" style="margin:16px 0">
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-text"><strong>吐く4秒が最重要</strong>：迷走神経→洞房結節にアセチルコリン放出→心拍低下→扁桃体の活動低下</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot b"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-text"><strong>5分継続でHRV上昇</strong>：心拍変動が改善＝自律神経の柔軟性が高い＝ストレス耐性が強い状態</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot r"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-text"><strong>アトピーへの直接効果</strong>：コルチゾール低下→Th1/Th2バランス正常化→IL-4・IL-13（炎症シグナル）が低下</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot g"></div>
+      </div>
+      <div class="flow-text"><strong>睡眠の質が上がる</strong>：就寝前5分で入眠促進→深睡眠中に成長ホルモン分泌→皮膚修復・筋修復が加速</div>
+    </div>
+  </div>
+
+  <div class="evidence-box" style="background:#0a0020;border-color:rgba(180,100,255,0.2)">
+    <div class="evidence-title" style="color:#b464ff">USE CASE FOR HIRANO</div>
+    <div class="evidence-text">
+      夜、痒くて眠れない時 → ボックス呼吸5分<br>
+      試験・発表前の緊張 → ボックス呼吸3分<br>
+      就寝前の必須ルーティン → ボックス呼吸5分<br>
+      <strong style="color:#b464ff">副交感神経への切り替え：数十秒で即効、30分以上持続</strong>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ DAILY PROTOCOL ═══ -->
+<section class="protocol-section reveal">
+  <span class="section-tag">DAILY PROTOCOL</span>
+  <h2 class="section-title">毎日の<br>完全ルーティン</h2>
+
+  <div class="time-block">
+    <div class="time-label">MORNING</div>
+    <div class="time-tasks">
+      <div class="time-task">
+        <div class="task-icon">🧱</div>
+        <div class="task-name">ウォールシット（IAP呼吸）</div>
+        <div class="task-time">2min</div>
+      </div>
+      <div class="time-task">
+        <div class="task-icon">🫧</div>
+        <div class="task-name">スライダーアイソメトリック</div>
+        <div class="task-time">3ポーズ</div>
+      </div>
+      <div class="time-task">
+        <div class="task-icon">🍙</div>
+        <div class="task-name">スーパーおにぎりを食べる</div>
+        <div class="task-time">食事</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-label">NIGHT</div>
+    <div class="time-tasks">
+      <div class="time-task">
+        <div class="task-icon">🎱</div>
+        <div class="task-name">壁＋ボール セルフケア</div>
+        <div class="task-time">2〜3P</div>
+      </div>
+      <div class="time-task">
+        <div class="task-icon">🧠</div>
+        <div class="task-name">ボックス呼吸（就寝前）</div>
+        <div class="task-time">5min</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-label">WEEKLY</div>
+    <div class="time-tasks">
+      <div class="time-task">
+        <div class="task-icon">🏥</div>
+        <div class="task-name">三条健康堂 施術<br><span style="font-size:10px;color:#888;font-weight:400">ストレス・転機・悩み・迷いがある時はいつでも来い</span></div>
+        <div class="task-time">来たい時</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-stat-row" style="margin-top:16px">
+    <div class="big-stat">
+      <div class="big-stat-num">15</div>
+      <div class="big-stat-label">朝の所要分数</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num">15</div>
+      <div class="big-stat-label">夜の所要分数</div>
+    </div>
+    <div class="big-stat">
+      <div class="big-stat-num">0</div>
+      <div class="big-stat-label">ジム不要</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ VISION ═══ -->
+<section class="vision-section reveal">
+  <div class="vision-year">2028</div>
+  <span class="section-tag">3-YEAR VISION</span>
+  <h2 class="section-title">3年後、<br>最強になる<br>タイムライン</h2>
+
+  <div class="vision-cards">
+    <div class="vision-card">
+      <div class="vision-card-month">2〜4 WEEKS</div>
+      <div class="vision-card-text">お通じの変化を実感。<strong>便の質が変わり始める。</strong>腸内細菌への食物繊維供給が始まった証拠。</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-card-month">1〜3 MONTHS</div>
+      <div class="vision-card-text">腸内細菌の比率が変化。<strong>アトピーの炎症シグナルが低下し始める。</strong>インナーマッスルが育ち始める。</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-card-month">3〜6 MONTHS</div>
+      <div class="vision-card-text"><strong>アトピーの症状が明らかに変化。</strong>腰・背中の再発が減少。ウエストに「根の張った幹」感が出始める。</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-card-month">6 MONTHS〜1 YEAR</div>
+      <div class="vision-card-text">腸内フローラが根本改善。<strong>薬への依存度が低下する可能性。</strong>ストレス耐性が明確に向上。</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-card-month">3 YEARS — 就職</div>
+      <div class="vision-card-text"><strong>アトピーをコントロール下に置いた状態で社会人スタート。</strong>自律神経・腸内環境・体幹すべてが整い、ストレスに動じない最強の体を持って就職する。</div>
+    </div>
+  </div>
+
+  <div class="final-statement">
+    <div class="final-statement-text">
+      21歳の今が<br>全てを決める。<br>毎朝15分が<br>3年後を作る。
+    </div>
+    <div class="final-clinic">三条健康堂接骨院 | 谷先生</div>
+  </div>
+</section>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
