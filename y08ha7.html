@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜北澤様</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --card2: #1c2128;
+    --border: #30363d;
+    --gold: #d4a843;
+    --gold2: #f0c860;
+    --green: #2ea043;
+    --green-bg: #1a3d28;
+    --red: #e05252;
+    --blue: #58a6ff;
+    --orange: #e07b3a;
+    --purple: #7b68ee;
+    --text: #e6edf3;
+    --muted: #8b949e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    border-radius: 2px;
+  }
+  .clinic-name {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .report-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gold2);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .patient-tag {
+    display: inline-block;
+    background: var(--green-bg);
+    border: 1px solid var(--green);
+    color: #7ee787;
+    font-size: 12px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-top: 4px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-left: 3px solid var(--gold);
+    padding-left: 10px;
+    margin-bottom: 14px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .card-body {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.75;
+  }
+
+  /* MEASUREMENT GRID */
+  .meas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .meas-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .meas-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .meas-value {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .meas-status {
+    font-size: 10px;
+    margin-top: 2px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+  .normal { color: #7ee787; background: rgba(46,160,67,0.15); }
+  .above  { color: #f0a050; background: rgba(224,123,58,0.15); }
+  .below  { color: #79c0ff; background: rgba(88,166,255,0.15); }
+  .hyper  { color: #ff8080; background: rgba(224,82,82,0.15); }
+
+  .heart-banner {
+    background: linear-gradient(135deg, #3d1a1a, #2a1010);
+    border: 1px solid var(--red);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .heart-icon { font-size: 28px; }
+  .heart-info .label { font-size: 11px; color: var(--muted); }
+  .heart-info .status { font-size: 15px; font-weight: 700; color: #ff8080; }
+  .heart-info .note { font-size: 12px; color: #c97070; margin-top: 2px; }
+
+  /* COMPARE */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .compare-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .compare-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .compare-box .val { font-size: 18px; font-weight: 700; }
+  .compare-box .sub { font-size: 10px; color: var(--muted); }
+  .arrow-icon { text-align: center; font-size: 18px; color: var(--gold); }
+
+  /* TREATMENT LIST */
+  .treat-list { list-style: none; }
+  .treat-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .treat-list li:last-child { border-bottom: none; }
+  .treat-num {
+    min-width: 24px; height: 24px;
+    background: var(--gold);
+    color: #0d1117;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .treat-text { flex: 1; font-size: 13px; line-height: 1.65; }
+  .treat-text strong { color: var(--gold2); }
+
+  /* TRAINING */
+  .training-card {
+    background: linear-gradient(135deg, var(--green-bg), #0f2a1a);
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .training-card h3 {
+    font-size: 15px;
+    color: #7ee787;
+    font-family: 'Noto Serif JP', serif;
+    margin-bottom: 10px;
+  }
+  .training-card p { font-size: 13px; color: #cde7d0; line-height: 1.7; }
+
+  .badge-row {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;
+  }
+  .badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(46,160,67,0.2);
+    border: 1px solid var(--green);
+    color: #7ee787;
+  }
+
+  /* RECIPE */
+  .recipe-card {
+    background: linear-gradient(135deg, #1a2a3d, #0f1e2f);
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .recipe-card h3 {
+    font-size: 15px;
+    color: var(--blue);
+    font-family: 'Noto Serif JP', serif;
+    margin-bottom: 12px;
+  }
+  .recipe-section { margin-bottom: 12px; }
+  .recipe-section-title {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ingredient-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+  }
+  .ing-item {
+    font-size: 12px;
+    color: #b0d0f0;
+    padding: 3px 0;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .ing-item::before { content: '◆'; font-size: 8px; color: var(--blue); }
+
+  .step-list { list-style: none; }
+  .step-list li {
+    display: flex; gap: 10px;
+    padding: 6px 0;
+    font-size: 12px;
+    color: #c0d8f0;
+    line-height: 1.6;
+  }
+  .step-num {
+    min-width: 20px; height: 20px;
+    background: var(--blue);
+    color: #0d1117;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .footer .clinic { color: var(--gold); font-weight: 700; font-size: 13px; }
+
+  /* COPY BUTTON */
+  .copy-section {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 24px;
+  }
+  .copy-section h4 { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .copy-textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    color: var(--text);
+    font-size: 12px;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+    resize: vertical;
+    min-height: 160px;
+  }
+  .copy-btn {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+    background: var(--gold);
+    color: #0d1117;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .copy-btn:active { opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="clinic-name">三条健康堂接骨院｜施術報告書</div>
+  <div class="report-title">北澤 様　施術記録</div>
+  <span class="patient-tag">ぎっくり腰・ぎっくり肩・膝の痛み</span>
+</div>
+
+<!-- 測定データ -->
+<div class="section">
+  <div class="section-title">⚡ バイオエネルギー測定結果</div>
+
+  <div class="heart-banner">
+    <div class="heart-icon">❤️</div>
+    <div class="heart-info">
+      <div class="label">心臓（左右）</div>
+      <div class="status">Hyperactive（過活動）</div>
+      <div class="note">代償性反応として経過観察を推奨</div>
+    </div>
+  </div>
+
+  <div class="meas-grid">
+    <div class="meas-card">
+      <div class="meas-label">エネルギーレベル</div>
+      <div class="meas-value" style="color:#7ee787">26.11</div>
+      <div class="meas-status normal">Normal</div>
+    </div>
+    <div class="meas-card">
+      <div class="meas-label">免疫システム</div>
+      <div class="meas-value" style="color:#7ee787">24.91</div>
+      <div class="meas-status normal">Normal</div>
+    </div>
+    <div class="meas-card">
+      <div class="meas-label">代謝</div>
+      <div class="meas-value" style="color:#f0a050">1.36</div>
+      <div class="meas-status above">Above norm</div>
+    </div>
+    <div class="meas-card">
+      <div class="meas-label">精神感情状態</div>
+      <div class="meas-value" style="color:#f0a050">1.35</div>
+      <div class="meas-status above">Above norm</div>
+    </div>
+    <div class="meas-card" style="grid-column: 1/-1;">
+      <div class="meas-label">筋骨格系 ⚠️</div>
+      <div class="meas-value" style="color:#79c0ff">0.86</div>
+      <div class="meas-status below">Below norm — 最優先ケア対象</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 測定値の解釈</div>
+    <div class="card-body">
+      心臓の過活動は、身体的ストレス（ぎっくり腰・ぎっくり肩）への<strong style="color:var(--gold2)">代償反応</strong>と考えられます。代謝・精神感情状態が上昇しているのも、急性ストレスへの反応パターンと一致。筋骨格系スコアの低下が今回の主訴と直結しており、施術の最重要ターゲットです。
+    </div>
+  </div>
+</div>
+
+<!-- 本日の施術 -->
+<div class="section">
+  <div class="section-title">🩺 本日の施術内容</div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-title">主訴と経緯</div>
+    <div class="card-body">
+      数日前に<strong style="color:var(--gold2)">「ぎっくり肩」</strong>（寝違えの肩バージョン）を発症。その後、荷物の運搬中に<strong style="color:var(--gold2)">「ぎっくり腰」</strong>に移行。膝の痛みも複合。頚部〜腰部〜下肢にわたる<strong style="color:var(--gold2)">全身性の筋膜連鎖</strong>が乱れた状態。
+    </div>
+  </div>
+
+  <ul class="treat-list">
+    <li>
+      <div class="treat-num">1</div>
+      <div class="treat-text">
+        <strong>マッスルエネルギーテクニック（MET）</strong><br>
+        骨盤の歪みを評価・調整。右側骨盤が上方に引き上げられた状態（右腰方形筋の過緊張）を確認し、段階的にリリース。
+      </div>
+    </li>
+    <li>
+      <div class="treat-num">2</div>
+      <div class="treat-text">
+        <strong>右腰方形筋トリガーポイント療法</strong><br>
+        腰部深層にあるトリガーポイントへ直接アプローチ。17秒→9秒→7秒プロトコルで段階的に解放。
+      </div>
+    </li>
+    <li>
+      <div class="treat-num">3</div>
+      <div class="treat-text">
+        <strong>臀部全筋群・ハムストリング・大腿直筋リリース</strong><br>
+        臀筋全体（大・中・小臀筋）の硬縮を確認。ハムストリング・大腿直筋も含めて下肢後面全体をリリース。
+      </div>
+    </li>
+    <li>
+      <div class="treat-num">4</div>
+      <div class="treat-text">
+        <strong>頚部右側（ぎっくり肩の痕跡）のリリース</strong><br>
+        通常は左頚部が硬くなるところ、<strong>右頚部が硬化</strong>していた＝ぎっくり肩の証拠。この反側の緊張がトータルバランスを崩す原因と判断し重点アプローチ。
+      </div>
+    </li>
+    <li>
+      <div class="treat-num">5</div>
+      <div class="treat-text">
+        <strong>右肩〜肩甲骨間の筋膜リリース</strong><br>
+        肩甲骨間（菱形筋・僧帽筋中部）の高度な硬縮と歪みを確認。全体をリリースし、体幹と上肢の連動性を回復。
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- ホームトレーニング -->
+<div class="section">
+  <div class="section-title">🏋️ ホームトレーニング処方</div>
+
+  <div class="training-card">
+    <h3>💪 ウォールシット（壁座り）</h3>
+    <p>
+      背中を壁にぴったりつけ、<strong style="color:#a0f0a0">股関節90°・膝関節90°</strong>のスクワット姿勢で静止。<br><br>
+      <strong style="color:#a0f0a0">処方：1日3セット</strong>（朝・昼・夜の目安）<br>
+      1セットあたりの目標時間は体力に合わせて調整。最初は30秒〜60秒から。
+    </p>
+    <div class="badge-row">
+      <span class="badge">インナーマッスル強化</span>
+      <span class="badge">骨盤安定化</span>
+      <span class="badge">血圧改善</span>
+      <span class="badge">怪我リスク低減</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">なぜウォールシットが必要か</div>
+    <div class="card-body">
+      今回のぎっくり腰の根本原因のひとつは<strong style="color:var(--gold2)">インナーマッスル（多裂筋・腸腰筋）の機能低下</strong>です。アウターマッスルでカバーしようとするため、腰方形筋・臀筋への過負荷が生じます。ウォールシットは器具不要で最も安全かつ効果的な脊柱安定化トレーニングです。
+    </div>
+  </div>
+</div>
+
+<!-- スーパーおにぎり -->
+<div class="section">
+  <div class="section-title">🍙 食事処方｜スーパーおにぎり</div>
+
+  <div class="recipe-card">
+    <h3>🍙 スーパーおにぎり（圧力鍋炊き込み式）</h3>
+
+    <div class="recipe-section">
+      <div class="recipe-section-title">▶ 炊き込み材料</div>
+      <div class="ingredient-grid">
+        <div class="ing-item">お米（または玄米）</div>
+        <div class="ing-item">もち麦</div>
+        <div class="ing-item">大麦（押し麦）</div>
+        <div class="ing-item">小豆</div>
+        <div class="ing-item">大豆</div>
+        <div class="ing-item">サバ缶（1缶・汁なし）</div>
+        <div class="ing-item">鶏胸肉（茹でてほぐす）</div>
+        <div class="ing-item">乾燥わかめ</div>
+        <div class="ing-item">緑黄色野菜（小松菜等）</div>
+        <div class="ing-item">オリーブオイル</div>
+      </div>
+    </div>
+
+    <div class="recipe-section">
+      <div class="recipe-section-title">▶ 一緒に食べるとさらに良いもの</div>
+      <div class="ingredient-grid">
+        <div class="ing-item" style="color:#ffe090">卵（ゆで卵 or 半熟）</div>
+        <div class="ing-item" style="color:#ffe090">納豆（1パック）</div>
+      </div>
+    </div>
+
+    <div class="recipe-section">
+      <div class="recipe-section-title">▶ 作り方</div>
+      <ol class="step-list">
+        <li><span class="step-num">1</span>鶏胸肉は一口大にカットするだけでOK。茹でる必要なし、そのまま投入</li>
+        <li><span class="step-num">2</span>圧力鍋に米・もち麦・大麦・小豆・大豆を入れる</li>
+        <li><span class="step-num">3</span>サバ缶は汁を捨て軽く洗ってから投入（塩分管理）</li>
+        <li><span class="step-num">4</span>鶏胸肉・乾燥わかめをそのまま加える</li>
+        <li><span class="step-num">5</span><strong style="color:#a0f0ff">電気圧力鍋は20分にセットして炊く</strong></li>
+        <li><span class="step-num">6</span>炊き上がったら刻んだ緑黄色野菜とオリーブオイルを混ぜ込む</li>
+        <li><span class="step-num">7</span>握って完成。卵・納豆を添えて食べる</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- タンパク質の多様化 -->
+  <div class="card" style="border-color: #d4a843; margin-bottom:12px">
+    <div class="card-title" style="color:var(--gold)">💡 市販プロテインより効果的な理由｜タンパク質の多様化</div>
+    <div class="card-body">
+      <p style="margin-bottom:10px">市販のプロテインパウダーは<strong style="color:var(--gold2)">単一のアミノ酸スペクトル</strong>しか持ちません。しかしスーパーおにぎりは、複数の食品タンパク質を同時に摂ることで、アミノ酸の種類と吸収タイミングを分散させます。</p>
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:6px 0;color:var(--muted);width:30%">サバ（EPA/DHA）</td>
+          <td style="padding:6px 0;color:#c0d8f0">炎症抑制・神経修復。今回の急性損傷に直接効く</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:6px 0;color:var(--muted)">鶏胸肉（イミダペプチド）</td>
+          <td style="padding:6px 0;color:#c0d8f0">疲労回復・筋持久力向上。インナーマッスル再建の核</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:6px 0;color:var(--muted)">卵（完全タンパク）</td>
+          <td style="padding:6px 0;color:#c0d8f0">全20種アミノ酸をカバー。吸収速度が速い</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:6px 0;color:var(--muted)">納豆（イソフラボン）</td>
+          <td style="padding:6px 0;color:#c0d8f0">植物性タンパク＋ナットウキナーゼで血流改善</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 0;color:var(--muted)">大豆・小豆</td>
+          <td style="padding:6px 0;color:#c0d8f0">植物性タンパク＋不溶性食物繊維の同時摂取</td>
+        </tr>
+      </table>
+      <p style="margin-top:10px;padding:8px 12px;background:rgba(212,168,67,0.1);border-left:3px solid var(--gold);font-size:12px;color:#e0c880">
+        <strong>結論：</strong>異なる吸収速度・異なるアミノ酸プロファイルのタンパク質を複数組み合わせることで、筋タンパク合成が長時間にわたり持続。市販プロテインのワンショット吸収を大きく上回ります。
+      </p>
+    </div>
+  </div>
+
+  <!-- 食物繊維×内臓負担 -->
+  <div class="card" style="border-color: var(--blue)">
+    <div class="card-title" style="color:var(--blue)">🫀 食物繊維との同時摂取で内臓負担が激減する理由</div>
+    <div class="card-body">
+      <p style="margin-bottom:10px">プロテインパウダーを<strong style="color:#79c0ff">食物繊維なしで摂ると</strong>、タンパク質が小腸で急速に吸収され、肝臓・腎臓への濾過負荷が一気にかかります。一方、スーパーおにぎりは食物繊維と一緒に摂るため、吸収速度が緩やかになります。</p>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:10px">
+        <tr style="background:rgba(88,166,255,0.08)">
+          <th style="padding:6px 8px;text-align:left;color:var(--blue);font-size:11px;border-bottom:1px solid var(--border)">比較項目</th>
+          <th style="padding:6px 8px;text-align:center;color:#ff8080;font-size:11px;border-bottom:1px solid var(--border)">市販プロテイン</th>
+          <th style="padding:6px 8px;text-align:center;color:#7ee787;font-size:11px;border-bottom:1px solid var(--border)">スーパーおにぎり</th>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:6px 8px;color:var(--muted);font-size:12px">タンパク質吸収速度</td>
+          <td style="padding:6px 8px;text-align:center;color:#ff8080;font-size:12px">急速（肝腎への瞬間負荷）</td>
+          <td style="padding:6px 8px;text-align:center;color:#7ee787;font-size:12px">緩やか（持続的吸収）</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:6px 8px;color:var(--muted);font-size:12px">腸内細菌への効果</td>
+          <td style="padding:6px 8px;text-align:center;color:#ff8080;font-size:12px">なし〜マイナス</td>
+          <td style="padding:6px 8px;text-align:center;color:#7ee787;font-size:12px">食物繊維が菌の餌に</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:6px 8px;color:var(--muted);font-size:12px">腎臓への窒素負荷</td>
+          <td style="padding:6px 8px;text-align:center;color:#ff8080;font-size:12px">高（尿素大量生成）</td>
+          <td style="padding:6px 8px;text-align:center;color:#7ee787;font-size:12px">低（緩衝される）</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px;color:var(--muted);font-size:12px">血糖値スパイク</td>
+          <td style="padding:6px 8px;text-align:center;color:#ff8080;font-size:12px">あり（添加物・糖質）</td>
+          <td style="padding:6px 8px;text-align:center;color:#7ee787;font-size:12px">なし（食物繊維が抑制）</td>
+        </tr>
+      </table>
+      <p style="padding:8px 12px;background:rgba(88,166,255,0.08);border-left:3px solid var(--blue);font-size:12px;color:#a0c8f0">
+        <strong>治療家の視点：</strong>今回の測定で代謝が「Above norm」になっていました。これは急性損傷への身体反応ですが、食物繊維とタンパク質の同時摂取を続けることで、内臓の処理負担が分散され、<strong>修復に使えるエネルギーが増えます。</strong>スーパーおにぎりは「食べながら治す」設計です。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="clinic">三条健康堂接骨院</div>
+  高松市由良町・真楽寺そば<br>
+  高松発・一生動ける身体と人生の教養研究室<br>
+  無借金・無車・自転車・圧力鍋生活を実践する治療家より<br><br>
+  <a href="https://lin.ee/dwRtwDv" style="color:var(--gold);text-decoration:none">💬 LINEでご相談</a>
+  &nbsp;|&nbsp;
+  <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" style="color:var(--gold);text-decoration:none">📍 Googleマップ</a>
+</div>
+
+<script>
+function copyText() {
+  var ta = document.getElementById('lineText');
+  ta.select();
+  ta.setSelectionRange(0, 99999);
+  try {
+    document.execCommand('copy');
+    var btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ コピーしました！';
+    setTimeout(function(){ btn.textContent = '📋 コピーする'; }, 2000);
+  } catch(e) {
+    try {
+      navigator.clipboard.writeText(ta.value).then(function(){
+        var btn = document.querySelector('.copy-btn');
+        btn.textContent = '✅ コピーしました！';
+        setTimeout(function(){ btn.textContent = '📋 コピーする'; }, 2000);
+      });
+    } catch(e2) {
+      ta.focus();
+      alert('テキストを選択してCtrl+Cでコピーしてください');
+    }
+  }
+}
+</script>
+</body>
+</html>
