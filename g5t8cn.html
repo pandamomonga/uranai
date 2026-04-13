@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>兼近様 報告書</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700&family=DM+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080a10;
+  --card: #111520;
+  --card2: #161c2a;
+  --border: #1e2540;
+  --lime: #b8ff00;
+  --cyan: #00f5e9;
+  --pink: #ff2d78;
+  --yellow: #ffe033;
+  --purple: #b46fff;
+  --white: #f0f4ff;
+  --muted: #5a6080;
+  --text: #ccd0e0;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  font-size:15px;
+}
+
+/* ══ HEADER ══ */
+.hdr{
+  padding:40px 18px 30px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hdr::before{
+  content:'';
+  position:absolute;
+  top:-60px;right:-60px;
+  width:260px;height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(184,255,0,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hdr-tag{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.2em;
+  color:var(--lime);
+  margin-bottom:12px;
+  opacity:.7;
+}
+.hdr-name{
+  font-family:'Noto Serif JP',serif;
+  font-size:38px;font-weight:700;
+  color:var(--white);
+  letter-spacing:.03em;
+  line-height:1.1;
+}
+.hdr-sub{
+  font-size:13px;color:var(--muted);
+  margin-top:6px;
+}
+.hdr-date{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--lime);
+  margin-top:14px;
+  opacity:.6;
+}
+.lime-line{
+  height:2px;
+  background:linear-gradient(90deg,var(--lime) 0%,transparent 80%);
+  margin-top:20px;
+}
+
+/* ══ SECTION ══ */
+.sec{
+  display:flex;align-items:center;gap:10px;
+  padding:30px 18px 12px;
+}
+.sec-n{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--lime);letter-spacing:.15em;opacity:.6;
+}
+.sec-t{
+  font-family:'Noto Serif JP',serif;
+  font-size:17px;font-weight:700;
+  color:var(--white);
+}
+.sec-l{flex:1;height:1px;background:var(--border);}
+
+/* ══ HOOK TITLE ══ */
+.hook{
+  margin:0 18px 8px;
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-left:4px solid var(--lime);
+  border-radius:0 14px 14px 0;
+  padding:14px 16px;
+}
+.hook-title{
+  font-size:18px;font-weight:900;
+  color:var(--lime);
+  line-height:1.4;
+  letter-spacing:.02em;
+}
+.hook-sub{
+  font-size:12px;color:var(--muted);
+  margin-top:4px;
+}
+
+/* ══ BEFORE/AFTER ══ */
+.ba-wrap{padding:0 18px;}
+.ba-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  margin-bottom:10px;
+}
+.ba-head{
+  padding:12px 16px;
+  font-size:11px;font-weight:700;
+  letter-spacing:.1em;
+}
+.ba-row{
+  display:flex;
+  border-bottom:1px solid var(--border);
+}
+.ba-row:last-child{border-bottom:none;}
+.ba-label{
+  padding:12px 14px;
+  font-size:12px;color:var(--muted);
+  width:38%;
+  display:flex;align-items:center;gap:6px;
+  border-right:1px solid var(--border);
+}
+.ba-before{
+  padding:12px 12px;
+  font-family:'DM Mono',monospace;
+  font-size:15px;font-weight:700;
+  color:var(--muted);
+  width:31%;
+  display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--border);
+}
+.ba-arrow{
+  display:flex;align-items:center;justify-content:center;
+  width:8%;color:var(--lime);font-size:16px;
+  border-right:1px solid var(--border);
+}
+.ba-after{
+  padding:12px 12px;
+  font-family:'DM Mono',monospace;
+  font-size:15px;font-weight:700;
+  width:23%;
+  display:flex;align-items:center;justify-content:center;
+}
+.change-down{color:var(--cyan);}
+.change-up{color:var(--pink);}
+.change-good{color:var(--lime);}
+.delta{
+  padding:8px 16px;
+  background:rgba(184,255,0,0.05);
+  font-size:12px;color:var(--lime);
+  display:flex;align-items:center;gap:6px;
+  border-top:1px solid rgba(184,255,0,0.1);
+}
+
+/* ══ ORGAN SIMPLE ══ */
+.organ-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:0 18px;
+  margin-bottom:10px;
+}
+.org-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+}
+.org-name{font-size:11px;color:var(--muted);font-weight:700;margin-bottom:6px;}
+.org-badge{
+  font-size:12px;font-weight:900;
+  padding:4px 12px;border-radius:20px;
+  display:inline-block;
+}
+.badge-down{background:rgba(0,245,233,0.1);color:var(--cyan);border:1px solid rgba(0,245,233,0.2);}
+.badge-up{background:rgba(255,45,120,0.1);color:var(--pink);border:1px solid rgba(255,45,120,0.2);}
+.org-note{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4;}
+
+/* ══ NOTICE ══ */
+.notice{
+  margin:0 18px 10px;
+  border-radius:12px;
+  padding:12px 14px;
+  font-size:13px;line-height:1.7;
+}
+.n-warn{background:rgba(255,224,51,0.07);border:1px solid rgba(255,224,51,0.2);color:#ffe033;}
+.n-ok{background:rgba(184,255,0,0.06);border:1px solid rgba(184,255,0,0.15);color:var(--lime);}
+.n-info{background:rgba(0,245,233,0.06);border:1px solid rgba(0,245,233,0.15);color:var(--cyan);}
+
+/* ══ FINDING ══ */
+.find-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  display:flex;gap:12px;
+  margin:0 18px 10px;
+  align-items:flex-start;
+}
+.find-icon{font-size:22px;flex-shrink:0;}
+.find-t{font-size:14px;font-weight:900;color:var(--white);margin-bottom:3px;}
+.find-d{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ══ ANS ══ */
+.ans-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  margin:0 18px;
+}
+.ans-title{
+  padding:16px 18px;
+  font-family:'Noto Serif JP',serif;
+  font-size:16px;font-weight:700;
+  color:var(--white);
+  border-bottom:1px solid var(--border);
+  text-align:center;line-height:1.6;
+}
+.ans-models{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.ans-m{
+  padding:18px 14px;
+  text-align:center;
+}
+.ans-m:first-child{border-right:1px solid var(--border);}
+.m-tag{font-size:10px;font-weight:700;letter-spacing:.1em;margin-bottom:8px;}
+.m-icon{font-size:30px;margin:8px 0;}
+.m-title{font-size:13px;font-weight:900;margin-bottom:6px;}
+.m-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+.dual-m{
+  display:flex;justify-content:center;
+  align-items:flex-end;gap:12px;
+  margin:10px 0;
+}
+.dm-c{text-align:center;}
+.dm-out{
+  width:26px;height:66px;
+  background:var(--border);
+  border-radius:4px;
+  position:relative;overflow:hidden;
+  margin:0 auto 4px;
+}
+.dm-in{position:absolute;bottom:0;left:0;right:0;border-radius:4px;}
+.dm-lb{font-size:9px;font-weight:700;line-height:1.4;}
+.ans-note{
+  margin:0 18px 18px;
+  background:rgba(0,245,233,0.06);
+  border:1px solid rgba(0,245,233,0.15);
+  border-radius:10px;
+  padding:12px 14px;
+  font-size:12px;color:var(--cyan);line-height:1.8;
+}
+
+/* ══ TREAT CARD ══ */
+.treat{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  margin:0 18px 12px;
+}
+.treat-top{
+  padding:16px 18px;
+  display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid var(--border);
+}
+.t-icon{
+  width:46px;height:46px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;flex-shrink:0;
+}
+.t-title{
+  font-family:'Noto Serif JP',serif;
+  font-size:17px;font-weight:700;
+  color:var(--white);line-height:1.3;
+}
+.t-sub{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:.1em;}
+.treat-body{padding:2px 18px 14px;}
+.t-step{
+  display:flex;gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+.t-step:last-child{border-bottom:none;}
+.t-num{
+  width:22px;height:22px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;
+  flex-shrink:0;margin-top:2px;
+}
+.t-lead{font-size:14px;font-weight:900;color:var(--white);}
+.t-note{font-size:12px;color:var(--muted);margin-top:2px;}
+
+/* ══ RECIPE ══ */
+.recipe-card{
+  background:var(--card);
+  border:1px solid rgba(184,255,0,0.2);
+  border-radius:16px;
+  overflow:hidden;
+  margin:0 18px 12px;
+}
+.recipe-head{
+  background:rgba(184,255,0,0.08);
+  padding:14px 18px;
+  border-bottom:1px solid rgba(184,255,0,0.15);
+}
+.recipe-htitle{
+  font-family:'Noto Serif JP',serif;
+  font-size:18px;font-weight:700;
+  color:var(--lime);
+  margin-bottom:2px;
+}
+.recipe-hsub{font-size:11px;color:var(--muted);}
+.recipe-body{padding:16px 18px;}
+
+/* Ingredients */
+.ing-title{
+  font-size:12px;font-weight:700;
+  color:var(--lime);
+  letter-spacing:.1em;
+  margin-bottom:10px;
+}
+.ing-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-bottom:16px;
+}
+.ing-item{
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:8px 12px;
+  display:flex;gap:8px;align-items:center;
+}
+.ing-icon{font-size:16px;flex-shrink:0;}
+.ing-name{font-size:12px;font-weight:700;color:var(--white);line-height:1.3;}
+.ing-note{font-size:10px;color:var(--muted);}
+
+/* Steps */
+.step-title{
+  font-size:12px;font-weight:700;
+  color:var(--cyan);
+  letter-spacing:.1em;
+  margin-bottom:10px;
+}
+.r-step{
+  display:flex;gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  align-items:flex-start;
+}
+.r-step:last-child{border-bottom:none;}
+.r-num{
+  width:28px;height:28px;
+  border-radius:8px;
+  background:rgba(0,245,233,0.12);
+  border:1px solid rgba(0,245,233,0.25);
+  color:var(--cyan);
+  font-family:'DM Mono',monospace;
+  font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.r-text{font-size:13px;line-height:1.7;}
+.r-head{font-weight:900;color:var(--white);}
+.r-body{color:var(--muted);font-size:12px;margin-top:2px;}
+
+.recipe-tip{
+  background:rgba(255,224,51,0.06);
+  border:1px solid rgba(255,224,51,0.15);
+  border-radius:10px;
+  padding:12px 14px;
+  font-size:12px;color:var(--yellow);line-height:1.8;
+  margin-top:12px;
+}
+
+/* ══ BOX BREATHING ══ */
+.box-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px 18px;
+  margin:0 18px;
+}
+.box-center-title{
+  text-align:center;
+  font-family:'Noto Serif JP',serif;
+  font-size:16px;font-weight:700;color:var(--white);
+  margin-bottom:4px;
+}
+.box-center-sub{text-align:center;font-size:12px;color:var(--muted);margin-bottom:20px;}
+.box-diag{
+  position:relative;
+  width:190px;height:190px;
+  margin:0 auto 20px;
+}
+.bsq{
+  position:absolute;
+  top:22px;left:22px;
+  width:146px;height:146px;
+  border:2.5px solid var(--cyan);
+  border-radius:14px;
+}
+.bdt{
+  position:absolute;
+  width:13px;height:13px;
+  border-radius:50%;
+  background:var(--cyan);
+}
+.bdt-tl{top:18px;left:18px;}
+.bdt-tr{top:18px;right:18px;}
+.bdt-br{bottom:18px;right:18px;}
+.bdt-bl{bottom:18px;left:18px;}
+.blb{
+  position:absolute;
+  font-family:'DM Mono',monospace;
+  font-weight:700;text-align:center;
+  line-height:1.3;font-size:11px;
+}
+.blb-t{top:0;left:50%;transform:translateX(-50%);color:var(--cyan);}
+.blb-r{right:-8px;top:50%;transform:translateY(-50%);color:var(--purple);}
+.blb-b{bottom:0;left:50%;transform:translateX(-50%);color:var(--cyan);}
+.blb-l{left:-8px;top:50%;transform:translateY(-50%);color:var(--yellow);}
+.bcenter{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:52px;height:52px;border-radius:50%;
+  background:var(--bg);
+  border:2px solid var(--cyan);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--cyan);font-weight:700;line-height:1.3;text-align:center;
+}
+.box-steps{}
+.bs-row{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 0;
+  border-bottom:1px solid var(--border);
+}
+.bs-row:last-child{border-bottom:none;}
+.bsn{
+  width:34px;height:34px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:13px;font-weight:700;
+  color:var(--bg);flex-shrink:0;
+}
+.bst{flex:1;}
+.bst-a{font-size:14px;font-weight:900;color:var(--white);}
+.bst-d{font-size:11px;color:var(--muted);margin-top:2px;}
+.bst-sec{
+  font-family:'DM Mono',monospace;
+  font-size:24px;font-weight:700;
+  flex-shrink:0;
+}
+
+/* ══ EVIDENCE ══ */
+.ev-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  margin:0 18px 10px;
+}
+.ev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.ev-title{font-size:14px;font-weight:900;color:var(--white);line-height:1.4;}
+.ev-lv{
+  flex-shrink:0;font-size:9px;font-weight:700;
+  padding:3px 8px;border-radius:20px;
+}
+.lv-h{background:rgba(184,255,0,0.1);color:var(--lime);border:1px solid rgba(184,255,0,0.2);}
+.lv-m{background:rgba(0,245,233,0.1);color:var(--cyan);border:1px solid rgba(0,245,233,0.2);}
+.lv-s{background:rgba(180,111,255,0.1);color:var(--purple);border:1px solid rgba(180,111,255,0.2);}
+.ev-body{font-size:12px;color:var(--muted);line-height:1.8;}
+.ev-star{color:var(--yellow);font-size:12px;margin-top:6px;}
+
+/* ══ SUMMARY ══ */
+.sum-card{
+  background:linear-gradient(135deg,#0e1220 0%,#16102a 100%);
+  border:1px solid rgba(184,255,0,0.2);
+  border-radius:16px;
+  padding:22px 18px;
+  margin:0 18px;
+}
+.sum-head{
+  font-family:'Noto Serif JP',serif;
+  font-size:20px;font-weight:700;
+  color:var(--lime);
+  text-align:center;
+  margin-bottom:18px;line-height:1.4;
+}
+.sum-item{
+  display:flex;gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+  align-items:flex-start;
+}
+.sum-item:last-child{border-bottom:none;}
+.si-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.si-head{font-size:14px;font-weight:900;color:var(--white);margin-bottom:4px;}
+.si-body{font-size:13px;color:var(--muted);line-height:1.7;}
+
+/* ══ FOOTER ══ */
+.footer{
+  margin:32px 18px 0;
+  padding:20px 0 50px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+.footer-name{
+  font-family:'Noto Serif JP',serif;
+  font-size:14px;color:var(--muted);margin-bottom:6px;
+}
+.footer-note{font-size:10px;color:#2a2f40;line-height:1.8;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-tag">三条健康堂接骨院　|　PATIENT REPORT</div>
+  <div class="hdr-name">兼近　様</div>
+  <div class="hdr-sub">本日の施術＋体のデータ＋これからやること、全部まとめました</div>
+  <div class="hdr-date">2026.04.13　院長 谷弘誠</div>
+  <div class="lime-line"></div>
+</div>
+
+<!-- 01 -->
+<div class="sec">
+  <span class="sec-n">01</span>
+  <span class="sec-t">体のデータ、変わってきてます</span>
+  <div class="sec-l"></div>
+</div>
+
+<div class="hook">
+  <div class="hook-title">「数字を見るとちゃんと変化してる」<br>— それが今日の計測結果です</div>
+  <div class="hook-sub">2回計測して比較。難しい話はなし、結果だけ見てください。</div>
+</div>
+
+<div class="ba-wrap">
+<div class="ba-card">
+  <div class="ba-head" style="background:rgba(184,255,0,0.06);border-bottom:1px solid var(--border);color:var(--lime);">
+    体全体のエネルギーと各システムの変化
+  </div>
+
+  <div class="ba-row">
+    <div class="ba-label">⚡ 全体エネルギー</div>
+    <div class="ba-before">17.61</div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-after change-down">16.99</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-label">🛡 免疫系</div>
+    <div class="ba-before">正常</div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-after change-up">低下</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-label">🔄 代謝</div>
+    <div class="ba-before" style="font-size:12px;">低め</div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-after change-up" style="font-size:12px;">低め続く</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-label">🧠 精神状態</div>
+    <div class="ba-before">0.61</div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-after change-good">0.70▲</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-label">💪 筋骨格系</div>
+    <div class="ba-before change-up" style="font-size:12px;">緊張↑</div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-after change-down" style="font-size:12px;">落ち着く↓</div>
+  </div>
+
+  <div class="delta">✨ 施術後に精神状態が改善。筋骨格の過緊張も落ち着きました。</div>
+</div>
+</div>
+
+<div class="organ-row">
+  <div class="org-card">
+    <div class="org-name">大腸（両計測）</div>
+    <span class="org-badge badge-down">機能低下</span>
+    <div class="org-note">ストレスが腸に出やすい体質。ここを改善するのが今回の核心。</div>
+  </div>
+  <div class="org-card">
+    <div class="org-name">膀胱（両計測）</div>
+    <span class="org-badge badge-up">過活動</span>
+    <div class="org-note">右側特に強め。交感神経の亢進が影響しています。</div>
+  </div>
+</div>
+
+<div class="notice n-info">
+  🔍 <strong>全体の読み方：</strong>ストレス → 交感神経が過剰に働く → 腸と膀胱に負荷がかかる。このパターンが今の体の状態です。だから今日やったことと、これからの対策が効きます。
+</div>
+
+<!-- 02 -->
+<div class="sec">
+  <span class="sec-n">02</span>
+  <span class="sec-t">今日、体で起きてたこと</span>
+  <div class="sec-l"></div>
+</div>
+
+<div class="hook">
+  <div class="hook-title">「頭が硬いのは、考えすぎてる証拠」<br>—— それ、才能でもあるんです</div>
+  <div class="hook-sub">施術で見つけたこと、正直に全部書きます</div>
+</div>
+
+<div class="find-card">
+  <div class="find-icon">😬</div>
+  <div>
+    <div class="find-t">顎と歯の食いしばり</div>
+    <div class="find-d">知らないうちにやってます。ストレスを「噛む力」で逃がそうとする体の反応。咬む筋肉の緊張が頭全体の硬さの引き金になっていました。</div>
+  </div>
+</div>
+
+<div class="find-card">
+  <div class="find-icon">🔴</div>
+  <div>
+    <div class="find-t">右の頭＋両肩甲骨にトリガーポイント</div>
+    <div class="find-d">「トリガーポイント」とは、押すと別の場所に痛みが飛ぶ硬結（こりの塊）のこと。右側頭・両肩甲骨に明確に出ていました。</div>
+  </div>
+</div>
+
+<div class="find-card">
+  <div class="find-icon">🧠</div>
+  <div>
+    <div class="find-t">全頭皮が硬くなっている = 考えすぎサイン</div>
+    <div class="find-d">よく考える思考タイプの人に特有のパターン。「考える力」が強い分、頭の筋肉にも力が入り続けます。今日の施術でこれを全て解放しました。</div>
+  </div>
+</div>
+
+<div class="notice n-ok">
+  ✅ <strong>全トリガーポイント、解放完了。</strong>今飲んでいる漢方の巡りが良くなりました。漢方＋施術の相乗効果で、全体的に楽になるはずです。
+</div>
+
+<!-- 03 -->
+<div class="sec">
+  <span class="sec-n">03</span>
+  <span class="sec-t">「リラックス」の誤解を解く</span>
+  <div class="sec-l"></div>
+</div>
+
+<div class="hook">
+  <div class="hook-title">「交感神経を下げればいい」は<br>大間違いだった</div>
+  <div class="hook-sub">ほとんどの人が知らない、自律神経の本当の仕組み</div>
+</div>
+
+<div class="ans-card">
+  <div class="ans-title">シーソーじゃなくて、<br><span style="color:var(--cyan);">2本のアクセルペダル</span></div>
+  <div class="ans-models">
+    <div class="ans-m" style="background:rgba(255,45,120,0.04);">
+      <div class="m-tag" style="color:var(--pink);">❌ 誤解</div>
+      <div class="m-icon">⚖️</div>
+      <div class="m-title" style="color:var(--pink);">シーソー説</div>
+      <div class="m-desc">交感神経↓で<br>副交感神経↑<br><br>→ ただ眠いだけ<br>→ 本物のリラックスじゃない</div>
+    </div>
+    <div class="ans-m" style="background:rgba(0,245,233,0.04);">
+      <div class="m-tag" style="color:var(--cyan);">✅ 正解</div>
+      <div class="dual-m">
+        <div class="dm-c">
+          <div class="dm-out"><div class="dm-in" style="height:55%;background:var(--pink);"></div></div>
+          <div class="dm-lb" style="color:var(--pink);">交感<br>神経</div>
+        </div>
+        <div style="font-size:16px;color:var(--cyan);margin-bottom:22px;">+</div>
+        <div class="dm-c">
+          <div class="dm-out"><div class="dm-in" style="height:85%;background:var(--cyan);"></div></div>
+          <div class="dm-lb" style="color:var(--cyan);">副交感<br>神経</div>
+        </div>
+      </div>
+      <div class="m-title" style="color:var(--cyan);">2本のアクセル</div>
+      <div class="m-desc">両方を高く保つ<br>→ 活力＋リラックス<br>→ これが最高の状態</div>
+    </div>
+  </div>
+</div>
+<div class="ans-note" style="margin-top:10px;">
+  💡 <strong>ボックス呼吸の目的：</strong>交感神経を0にするのではなく、<strong>副交感神経のアクセルをさらに踏み込むこと。</strong>この感覚が体感できると、呼吸が本物の「薬」になります。リウマチの炎症抑制にも、この副交感神経の高さが直結します。
+</div>
+
+<!-- 04 -->
+<div class="sec">
+  <span class="sec-n">04</span>
+  <span class="sec-t">スーパーおにぎり完全レシピ</span>
+  <div class="sec-l"></div>
+</div>
+
+<div class="hook">
+  <div class="hook-title" style="color:var(--lime);">「これ食べてたら腸が変わる」<br>院長30年のたどり着いた答え</div>
+  <div class="hook-sub">パンをやめなくていい。まず「これを足す」だけ。</div>
+</div>
+
+<div class="recipe-card">
+  <div class="recipe-head">
+    <div class="recipe-htitle">🍙 スーパーおにぎり</div>
+    <div class="recipe-hsub">目安：1日1〜1.5合　電気圧力鍋で全部いっきに炊くだけ</div>
+  </div>
+  <div class="recipe-body">
+
+    <div class="ing-title">◆ 材料（圧力鍋にそのまま入れる）</div>
+    <div class="ing-grid">
+      <div class="ing-item">
+        <div class="ing-icon">🌾</div>
+        <div>
+          <div class="ing-name">お米（または玄米）</div>
+          <div class="ing-note">1〜1.5合が目安</div>
+        </div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-icon">🌿</div>
+        <div>
+          <div class="ing-name">もち麦・押し麦</div>
+          <div class="ing-note">水溶性食物繊維の核</div>
+        </div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-icon">🟤</div>
+        <div>
+          <div class="ing-name">小豆・大豆</div>
+          <div class="ing-note">圧力鍋必須の理由</div>
+        </div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-icon">🐟</div>
+        <div>
+          <div class="ing-name">サバ缶（1缶）</div>
+          <div class="ing-note">汁は捨てて軽く洗う</div>
+        </div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-icon">🌊</div>
+        <div>
+          <div class="ing-name">乾燥わかめ</div>
+          <div class="ing-note">そのまま投入でOK</div>
+        </div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-icon">🥬</div>
+        <div>
+          <div class="ing-name">緑黄色野菜</div>
+          <div class="ing-note">小松菜・水菜など</div>
+        </div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-icon">🫒</div>
+        <div>
+          <div class="ing-name">オリーブオイル</div>
+          <div class="ing-note">炊き上がりに混ぜる</div>
+        </div>
+      </div>
+      <div class="ing-item">
+        <div class="ing-icon">🍗</div>
+        <div>
+          <div class="ing-name">鶏むね肉（任意）</div>
+          <div class="ing-note">茹でて混ぜ込む</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-title">◆ 作り方（4ステップ）</div>
+
+    <div class="r-step">
+      <div class="r-num">1</div>
+      <div class="r-text">
+        <div class="r-head">電気圧力鍋を準備する</div>
+        <div class="r-body">Amazonで7,000円前後。小豆・大豆を柔らかく炊くには圧力鍋が必須。普通の炊飯器では硬くて食べられません。</div>
+      </div>
+    </div>
+    <div class="r-step">
+      <div class="r-num">2</div>
+      <div class="r-text">
+        <div class="r-head">全部まとめて炊く</div>
+        <div class="r-body">米・もち麦・押し麦・小豆・大豆・乾燥わかめ・サバ缶（洗ったもの）を全部入れて炊くだけ。サバ缶の汁は塩分が多いので捨てること。</div>
+      </div>
+    </div>
+    <div class="r-step">
+      <div class="r-num">3</div>
+      <div class="r-text">
+        <div class="r-head">炊き上がったら野菜とオイルを混ぜる</div>
+        <div class="r-body">刻んだ緑黄色野菜とオリーブオイルを混ぜ込む。味付けは食べる時に好みのドレッシングを少量かけるだけ（黒酢玉ねぎドレッシングがおすすめ）。</div>
+      </div>
+    </div>
+    <div class="r-step">
+      <div class="r-num">4</div>
+      <div class="r-text">
+        <div class="r-head">アイラップに入れて持ち運ぶ</div>
+        <div class="r-body">小腹が空いたらギュッと握って即席おにぎり。これがあればコンビニに寄る必要がなくなります。1食あたりのコストは約100円。</div>
+      </div>
+    </div>
+
+    <div class="recipe-tip">
+      💡 <strong>なぜこれでリウマチに効くのか？</strong><br>
+      食物繊維の種類が圧倒的に多い → 腸内細菌が活性化 → 免疫細胞の過剰反応（＝リウマチ炎症）が抑えられる。腸と関節は免疫の軸でつながっています。<br><br>
+      ⏱ 2〜3週間で体が変わり始めます。お菓子・パンが「なんか食べたくないな」に変わる瞬間が必ず来ます。
+    </div>
+  </div>
+</div>
+
+<!-- 05 -->
+<div class="sec">
+  <span class="sec-n">05</span>
+  <span class="sec-t">ボックス呼吸のやり方</span>
+  <div class="sec-l"></div>
+</div>
+
+<div class="hook">
+  <div class="hook-title" style="color:var(--cyan);">「信号待ちのたびに、薬を飲んでいる」<br>そんな感覚になってほしい</div>
+  <div class="hook-sub">1セット16秒。場所も道具もいらない。</div>
+</div>
+
+<div class="box-card">
+  <div class="box-center-title">4秒 × 4フェーズ</div>
+  <div class="box-center-sub">1セット = 16秒　|　就寝前3〜5セット ＋ 信号待ちで習慣化</div>
+
+  <div class="box-diag">
+    <div class="bsq"></div>
+    <div class="bdt bdt-tl"></div>
+    <div class="bdt bdt-tr"></div>
+    <div class="bdt bdt-br"></div>
+    <div class="bdt bdt-bl"></div>
+    <div class="blb blb-t">① 吸う<br>4秒</div>
+    <div class="blb blb-r">② 止める<br>4秒</div>
+    <div class="blb blb-b">③ 吐く<br>4秒</div>
+    <div class="blb blb-l">④ 止める<br>4秒</div>
+    <div class="bcenter">1セット<br>16秒</div>
+  </div>
+
+  <div class="box-steps">
+    <div class="bs-row">
+      <div class="bsn" style="background:var(--cyan);color:#000;">①</div>
+      <div class="bst">
+        <div class="bst-a">鼻からゆっくり吸う</div>
+        <div class="bst-d">お腹を膨らませる横隔膜呼吸で</div>
+      </div>
+      <div class="bst-sec" style="color:var(--cyan);">4秒</div>
+    </div>
+    <div class="bs-row">
+      <div class="bsn" style="background:var(--purple);color:#000;">②</div>
+      <div class="bst">
+        <div class="bst-a">息を止める（保持）</div>
+        <div class="bst-d">肩の力を抜いてリラックスしたまま</div>
+      </div>
+      <div class="bst-sec" style="color:var(--purple);">4秒</div>
+    </div>
+    <div class="bs-row">
+      <div class="bsn" style="background:var(--cyan);color:#000;">③</div>
+      <div class="bst">
+        <div class="bst-a">完全に吐き切る</div>
+        <div class="bst-d">迷走神経が刺激され副交感神経が動く</div>
+      </div>
+      <div class="bst-sec" style="color:var(--cyan);">4秒</div>
+    </div>
+    <div class="bs-row">
+      <div class="bsn" style="background:var(--yellow);color:#000;">④</div>
+      <div class="bst">
+        <div class="bst-a">息を止める（空）</div>
+        <div class="bst-d">副交感神経が最も活性化する瞬間</div>
+      </div>
+      <div class="bst-sec" style="color:var(--yellow);">4秒</div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 -->
+<div class="sec">
+  <span class="sec-n">06</span>
+  <span class="sec-t">「本当に効くの?」への答え</span>
+  <div class="sec-l"></div>
+</div>
+
+<div class="hook">
+  <div class="hook-title" style="color:var(--yellow);">「院長が言ってるだけ」じゃなく<br>世界中の研究が証明してます</div>
+  <div class="hook-sub">難しい話は抜き。「やればこうなる」だけ。</div>
+</div>
+
+<div class="ev-item">
+  <div class="ev-top">
+    <div class="ev-title">🍙 スーパーおにぎりを続けると<br>→ リウマチの炎症が落ち着いてくる</div>
+    <span class="ev-lv lv-h">証拠★★★</span>
+  </div>
+  <div class="ev-body">食物繊維→腸内細菌が活性化→免疫細胞（制御性T細胞）が増える→リウマチの炎症源（TNF-α、IL-6など）が抑えられる。2022年Nature誌でも確認された経路。</div>
+  <div class="ev-star">★★★ 複数のRCT（臨床試験）で確認</div>
+</div>
+
+<div class="ev-item">
+  <div class="ev-top">
+    <div class="ev-title">🍙 スーパーおにぎりを続けると<br>→ 血液の炎症マーカーが下がる</div>
+    <span class="ev-lv lv-h">証拠★★★</span>
+  </div>
+  <div class="ev-body">食物繊維を増やすと、炎症の指標であるCRP（C反応性タンパク）が平均15〜30%低下。ランセット誌のメタ解析（2019）で確認。リウマチの活動性指標DAS28との相関も報告あり。</div>
+  <div class="ev-star">★★★ メタ解析（大規模データ）で確認</div>
+</div>
+
+<div class="ev-item">
+  <div class="ev-top">
+    <div class="ev-title">🫁 ボックス呼吸を続けると<br>→ 自律神経のバランスが整っていく</div>
+    <span class="ev-lv lv-h">証拠★★★</span>
+  </div>
+  <div class="ev-body">4秒サイクルの呼吸でHRV（心拍変動）が向上。4〜6週間継続でHRVが12〜18%改善（Frontiers in Physiology 2018）。米海軍特殊部隊SEALが採用する実証済みプロトコル。</div>
+  <div class="ev-star">★★★ RCT（臨床試験）で確認</div>
+</div>
+
+<div class="ev-item">
+  <div class="ev-top">
+    <div class="ev-title">🫁 ボックス呼吸を続けると<br>→ 炎症サイトカインが直接減る</div>
+    <span class="ev-lv lv-m">証拠★★</span>
+  </div>
+  <div class="ev-body">副交感神経→迷走神経→コリン作動性抗炎症経路（CAP）→リウマチの炎症物質（TNF-α・IL-1β・IL-6）を直接抑制。迷走神経刺激療法のRA適応はEU・米国で臨床試験進行中。</div>
+  <div class="ev-star">★★ 基礎研究＋臨床試験進行中</div>
+</div>
+
+<!-- 07 -->
+<div class="sec">
+  <span class="sec-n">07</span>
+  <span class="sec-t">今日から始めること、3つだけ</span>
+  <div class="sec-l"></div>
+</div>
+
+<div class="hook">
+  <div class="hook-title" style="color:var(--lime);">「難しいことは何もない」<br>これだけやれば体は変わります</div>
+  <div class="hook-sub">全部やろうとしなくていい。まず1つから。</div>
+</div>
+
+<div class="sum-card">
+  <div class="sum-head">兼近様へ、<br>院長からのメッセージ</div>
+
+  <div class="sum-item">
+    <div class="si-icon">🍙</div>
+    <div>
+      <div class="si-head">今日の夜、スーパーおにぎりの材料を買う</div>
+      <div class="si-body">パンをやめなくて大丈夫。おにぎりを「足す」だけ。お腹が満ちると自然にパンへの欲求が薄れます。2〜3週間で体が変わり始めます。</div>
+    </div>
+  </div>
+  <div class="sum-item">
+    <div class="si-icon">🫁</div>
+    <div>
+      <div class="si-head">今夜、布団の中でボックス呼吸3回</div>
+      <div class="si-body">就寝前3セットから始めてください。16秒×3＝48秒。それだけ。「信号待ちで1セット」を習慣にするとさらに加速します。</div>
+    </div>
+  </div>
+  <div class="sum-item">
+    <div class="si-icon">🧠</div>
+    <div>
+      <div class="si-head">顎に力が入ったら気づく、だけでいい</div>
+      <div class="si-body">「気づく」だけで体は変わり始めます。考えすぎる才能はそのままに。ただ顎と肩の力を、1日3回ふっと抜いてみてください。</div>
+    </div>
+  </div>
+  <div class="sum-item">
+    <div class="si-icon">💊</div>
+    <div>
+      <div class="si-head">今日の施術＋漢方が一番効く状態に整いました</div>
+      <div class="si-body">全身の巡りが改善され、今飲んでいる漢方の吸収と効きが良くなっています。食事＋呼吸＋施術の3点で、リウマチ克服の道筋が整いました。</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-name">三条健康堂接骨院<br>院長 谷 弘誠（柔道整復師・30年臨床）</div>
+  <div class="footer-note" style="margin-top:8px;color:var(--muted);">
+    高松発・一生動ける身体と人生の教養研究室<br>
+    無借金・無車・自転車・圧力鍋生活を実践する治療家より<br><br>
+    高松市由良町・真楽寺そば<br>
+    LINE相談・ご予約：lin.ee/dwRtwDv
+  </div>
+</div>
+
+</body>
+</html>
