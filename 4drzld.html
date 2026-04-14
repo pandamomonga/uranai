@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>施術保存カルテ｜AI分析専用ツール</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&family=M+PLUS+Rounded+1c:wght@400;700;800;900&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper:   #faf6ee;
+  --ink:     #100e0a;
+  --red:     #c0001c;
+  --red2:    #e8001f;
+  --yellow:  #ffe800;
+  --yellow2: #fff176;
+  --gray:    #888;
+  --light:   #f0ece2;
+  --serif:   'Noto Serif JP', serif;
+  --round:   'M PLUS Rounded 1c', sans-serif;
+  --zen:     'Zen Kurenaido', cursive;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--round);
+  line-height: 1.8;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* ══ HERO ══ */
+.hero {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 80px 60px 70px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 300px; height: 300px;
+  border: 40px solid var(--red);
+  border-radius: 50%;
+  opacity: 0.2;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 20%;
+  width: 200px; height: 200px;
+  border: 30px solid var(--yellow);
+  border-radius: 50%;
+  opacity: 0.12;
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  padding: 5px 16px;
+  margin-bottom: 28px;
+  font-family: var(--round);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.hero h1 .red { color: var(--red2); }
+.hero h1 .yel { 
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 0 8px;
+  display: inline-block;
+  transform: rotate(-0.8deg);
+  margin: 0 4px;
+}
+.hero-sub {
+  font-size: 18px; color: #bbb; margin-top: 20px;
+  font-family: var(--round); font-weight: 400;
+  max-width: 640px; line-height: 2;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.hero-tag {
+  border: 1px solid #444; color: #aaa;
+  padding: 5px 16px; border-radius: 20px; font-size: 13px;
+  font-family: var(--round);
+}
+.hero-sticker {
+  position: absolute; right: 80px; top: 60px;
+  background: var(--yellow);
+  color: var(--ink);
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: var(--round); font-weight: 900;
+  text-align: center;
+  transform: rotate(8deg);
+  box-shadow: 4px 4px 0 var(--red);
+  z-index: 2;
+}
+.hero-sticker .big { font-size: 32px; line-height: 1; }
+.hero-sticker .sm  { font-size: 11px; margin-top: 4px; letter-spacing: 0.05em; }
+
+/* ══ SECTION WRAPPER ══ */
+.section { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+.section-full { padding: 80px 60px; }
+.section-full .inner { max-width: 1200px; margin: 0 auto; }
+
+/* ══ SECTION LABELS ══ */
+.tag {
+  display: inline-block;
+  border: 2px solid var(--ink);
+  font-size: 11px; font-weight: 900;
+  letter-spacing: 0.2em;
+  padding: 3px 12px;
+  margin-bottom: 14px;
+  font-family: var(--round);
+  text-transform: uppercase;
+}
+.tag.red { background: var(--red); border-color: var(--red); color: #fff; }
+
+/* ══ HEADLINES ══ */
+.h-main {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.5vw, 44px);
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.h-main .marker {
+  background: var(--yellow);
+  padding: 2px 6px;
+}
+.h-main .red { color: var(--red); }
+
+/* ══ DIVIDER ══ */
+.divider {
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg, var(--ink) 0px, var(--ink) 12px, transparent 12px, transparent 18px
+  );
+  opacity: 0.15;
+  margin: 0;
+}
+
+/* ══ PAIN SECTION ══ */
+.pain-section { background: var(--ink); color: var(--paper); }
+.pain-section .inner { max-width: 1200px; margin: 0 auto; }
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin-top: 40px;
+}
+.pain-card {
+  border: 1px solid #333;
+  padding: 24px 22px;
+  position: relative;
+  background: #161410;
+}
+.pain-card::before {
+  content: '×';
+  position: absolute;
+  top: -14px; left: 18px;
+  background: var(--red);
+  color: #fff;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 14px;
+  border-radius: 50%;
+}
+.pain-card p { font-size: 15px; color: #ccc; line-height: 1.85; }
+.pain-card p strong { color: var(--paper); font-weight: 700; }
+.pain-arrow {
+  text-align: center; margin: 40px 0 10px;
+  font-size: 36px; color: var(--yellow); opacity: 0.6;
+}
+.pain-resolve {
+  text-align: center;
+  font-family: var(--serif); font-size: 28px; font-weight: 900;
+  color: var(--yellow);
+  letter-spacing: 0.04em;
+  padding-bottom: 10px;
+}
+
+/* ══ MERIT SECTION ══ */
+.merit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 44px;
+  border: 2px solid var(--ink);
+}
+.merit-card {
+  padding: 32px 30px;
+  border: 1px solid #ddd;
+  position: relative;
+  background: var(--paper);
+  transition: background 0.15s;
+}
+.merit-card:hover { background: var(--light); }
+.merit-num {
+  font-family: var(--serif);
+  font-size: 72px; font-weight: 900;
+  color: var(--yellow);
+  -webkit-text-stroke: 3px var(--ink);
+  line-height: 1; margin-bottom: 12px;
+  display: block;
+}
+.merit-card h3 {
+  font-family: var(--serif);
+  font-size: 21px; font-weight: 700;
+  line-height: 1.4; margin-bottom: 10px;
+}
+.merit-card h3 .marker { background: var(--yellow); padding: 1px 5px; }
+.merit-card p { font-size: 14px; color: #555; line-height: 1.9; }
+.merit-card .badge {
+  display: inline-block;
+  background: var(--red); color: #fff;
+  font-size: 11px; font-weight: 900;
+  padding: 2px 10px; border-radius: 20px;
+  margin-bottom: 14px; letter-spacing: 0.1em;
+}
+
+/* ══ FLOW SECTION ══ */
+.flow-section { background: var(--light); }
+.flow-steps {
+  display: flex; gap: 0; margin-top: 44px; align-items: stretch;
+}
+.flow-step {
+  flex: 1; padding: 28px 24px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  position: relative;
+  text-align: center;
+}
+.flow-step + .flow-step { margin-left: -1.5px; }
+.flow-step .circle {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--ink); color: var(--yellow);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 22px; font-weight: 900;
+  margin: 0 auto 16px;
+}
+.flow-step h4 {
+  font-family: var(--serif); font-size: 17px; font-weight: 700;
+  margin-bottom: 10px; line-height: 1.4;
+}
+.flow-step p { font-size: 13px; color: #666; line-height: 1.85; }
+.flow-step .note {
+  display: inline-block; margin-top: 12px;
+  font-size: 11px; background: var(--yellow); padding: 3px 10px;
+  font-weight: 700;
+}
+.flow-arr {
+  display: flex; align-items: center; padding: 0;
+  font-size: 28px; color: var(--red); font-weight: 900;
+  flex-shrink: 0; padding: 0 6px; margin-top: -30px;
+  z-index: 1; position: relative;
+}
+
+/* ══ AI SECTION ══ */
+.ai-section { background: var(--red); color: #fff; }
+.ai-section .inner { max-width: 1200px; margin: 0 auto; }
+.ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; align-items: start; }
+.ai-left h2 {
+  font-family: var(--serif); font-size: 36px; font-weight: 900;
+  line-height: 1.3; margin-bottom: 16px;
+}
+.ai-left h2 .yel { background: var(--yellow); color: var(--ink); padding: 0 6px; }
+.ai-left p { font-size: 15px; line-height: 2; opacity: 0.9; }
+.ai-stat-box {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 28px 24px; margin-top: 24px;
+}
+.ai-stat-box .num {
+  font-family: var(--serif); font-size: 52px; font-weight: 900; line-height: 1;
+  color: var(--yellow);
+}
+.ai-stat-box .label { font-size: 14px; margin-top: 6px; opacity: 0.8; }
+.ai-right { display: flex; flex-direction: column; gap: 16px; }
+.ai-card {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 20px 22px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.ai-card .icon {
+  font-size: 28px; flex-shrink: 0;
+  width: 44px; height: 44px; background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--round);
+}
+.ai-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+.ai-card p  { font-size: 13px; opacity: 0.85; line-height: 1.8; }
+
+/* ══ MANUAL SECTION ══ */
+.manual-steps { margin-top: 44px; display: flex; flex-direction: column; gap: 0; }
+.manual-step {
+  display: flex; gap: 28px; align-items: flex-start;
+  padding: 28px 0; border-bottom: 1px solid #e0dbd0;
+}
+.manual-step:first-child { border-top: 1px solid #e0dbd0; }
+.step-badge {
+  background: var(--ink); color: var(--yellow);
+  font-family: var(--serif); font-size: 20px; font-weight: 900;
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 4px;
+}
+.step-body { flex: 1; }
+.step-body h4 {
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  margin-bottom: 8px; line-height: 1.4;
+}
+.step-body p { font-size: 14px; color: #555; line-height: 1.9; }
+.step-warn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #fff5e0; border: 1px solid #f0a020;
+  color: #7a4400; font-size: 12px; padding: 6px 14px;
+  margin-top: 10px; font-weight: 700; border-radius: 2px;
+}
+
+/* ══ STORAGE SECTION ══ */
+.storage-section { background: var(--ink); color: var(--paper); }
+.storage-section .inner { max-width: 1200px; margin: 0 auto; }
+.storage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+.storage-card {
+  border: 1px solid #333; padding: 28px 24px;
+  background: #161410;
+}
+.storage-card h4 { font-size: 17px; font-weight: 700; color: var(--yellow); margin-bottom: 14px; }
+.storage-card .path {
+  font-family: monospace; font-size: 12px; color: #aaa;
+  background: #0a0908; padding: 12px 14px;
+  line-height: 2.2; margin-bottom: 14px;
+  border-left: 3px solid var(--red);
+}
+.storage-card p { font-size: 14px; color: #888; line-height: 1.9; }
+.storage-danger {
+  margin-top: 32px;
+  background: #2a0004; border: 2px solid var(--red);
+  padding: 22px 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.storage-danger .d-icon { font-size: 28px; flex-shrink: 0; font-family: var(--round); }
+.storage-danger p { font-size: 14px; color: #ffaaaa; line-height: 1.9; }
+.storage-danger p strong { color: #ff4444; }
+
+/* ══ COMPAT TABLE ══ */
+.compat-section { background: var(--light); }
+.compat-section .inner { max-width: 1200px; margin: 0 auto; }
+.compat-table {
+  width: 100%; border-collapse: collapse; margin-top: 36px;
+  font-size: 15px;
+}
+.compat-table th {
+  background: var(--ink); color: var(--yellow);
+  padding: 14px 20px; text-align: left;
+  font-family: var(--serif); font-size: 14px;
+  letter-spacing: 0.06em;
+}
+.compat-table td { padding: 14px 20px; border-bottom: 1px solid #ddd; }
+.compat-table tr:nth-child(even) td { background: #f5f1e8; }
+.ok  { color: #1a7a30; font-weight: 900; font-size: 17px; }
+.ng  { color: var(--red); font-weight: 900; font-size: 17px; }
+.memo { font-size: 13px; color: var(--gray); }
+
+/* ══ CTA FOOTER ══ */
+.cta-section {
+  background: var(--ink);
+  text-align: center;
+  padding: 80px 60px;
+}
+.cta-section h2 {
+  font-family: var(--serif); font-size: 40px; font-weight: 900;
+  color: var(--paper); line-height: 1.4; margin-bottom: 16px;
+}
+.cta-section h2 .yel { color: var(--yellow); }
+.cta-section p { color: #888; font-size: 15px; line-height: 2; margin-bottom: 36px; }
+.cta-copy-btn {
+  background: var(--yellow); border: none;
+  color: var(--ink); font-weight: 900; font-size: 18px;
+  padding: 18px 48px; cursor: pointer; font-family: var(--round);
+  letter-spacing: 0.06em; transition: all 0.15s;
+  box-shadow: 5px 5px 0 var(--red);
+}
+.cta-copy-btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--red); }
+.cta-copy-btn:active { transform: translate(0,0); box-shadow: 3px 3px 0 var(--red); }
+.cta-copy-btn.done { background: #44cc77; box-shadow: 5px 5px 0 #007733; color: #fff; }
+
+textarea.sink { position: absolute; left: -9999px; }
+</style>
+</head>
+<body>
+<textarea class="sink" id="sink"></textarea>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">AI × 施術記録</div>
+    <h1>
+      施術記録が<span class="yel">AI分析素材</span>に<br>
+      なる時代が、<span class="red">来た。</span>
+    </h1>
+    <p class="hero-sub">
+      インストール不要。Chrome1枚。<br>
+      記録するたびに自動保存。<br>
+      ボタン1つでGemini・Claude・ChatGPTに<br>
+      丸投げできる治療家専用ツール。
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">Chrome専用（Win / Mac / Linux対応）</span>
+      <span class="hero-tag">自動保存・自動読み込み</span>
+      <span class="hero-tag">AI分析専用コピー機能搭載</span>
+      <span class="hero-tag">患者データはPC内だけに保存</span>
+    </div>
+  </div>
+  <div class="hero-sticker">
+    <div class="big">0円</div>
+    <div class="sm">月額なし<br>永久使用</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ PAIN ══════════ -->
+<section class="section-full pain-section">
+  <div class="inner">
+    <div class="tag red">PROBLEM</div>
+    <div class="h-main" style="color:#fff;">
+      先生、<span style="color:var(--yellow);">こんな悩み</span>ないですか？
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <p><strong>「AIで記録を分析したい」</strong><br>でもデータがバラバラで、まとめてコピーするのが死ぬほど面倒</p>
+      </div>
+      <div class="pain-card">
+        <p><strong>「患者ごとの施術履歴を見返したい」</strong><br>でもメモ帳・Wordに散らばっていてどこに何があるかわからない</p>
+      </div>
+      <div class="pain-card">
+        <p><strong>「電子カルテは高すぎる」</strong><br>月額数万円のシステムはいらない。シンプルに記録できればいいだけ</p>
+      </div>
+    </div>
+    <div class="pain-arrow">↓</div>
+    <div class="pain-resolve">全部、このツール1本で解決します。</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ MERITS ══════════ -->
+<section class="section">
+  <div class="tag">MERITS</div>
+  <div class="h-main">
+    これが<span class="red">7つの</span>理由
+  </div>
+  <div class="merit-grid">
+
+    <div class="merit-card">
+      <span class="badge">圧倒的シンプル</span>
+      <span class="merit-num">01</span>
+      <h3>インストール不要。<br><span class="marker">ファイル1枚開くだけ</span></h3>
+      <p>HTMLファイルをChromeで開くだけで即起動。アカウント登録なし。月額なし。一度手に入れたら永久に使えます。</p>
+    </div>
+
+    <div class="merit-card">
+      <span class="badge">ストレスゼロ</span>
+      <span class="merit-num">02</span>
+      <h3>記録した瞬間に<br><span class="marker">自動保存される</span></h3>
+      <p>「保存するの忘れた！」は過去の話。登録ボタンを押した0.5秒後には指定したファイルへ書き込み完了。</p>
+    </div>
+
+    <div class="merit-card">
+      <span class="badge">AI連携の核心</span>
+      <span class="merit-num">03</span>
+      <h3>日付ドラッグで<br><span class="marker">範囲選択コピー</span></h3>
+      <p>来院日一覧から「第1回〜第15回」をドラッグで選択。文字数・トークン数がリアルタイム表示されてGeminiにそのまま投げられます。</p>
+    </div>
+
+    <div class="merit-card">
+      <span class="badge">容量の不安ゼロ</span>
+      <span class="merit-num">04</span>
+      <h3>3,000文字 × 30回でも<br><span class="marker">余裕で保存・分析</span></h3>
+      <p>保存容量はPCのストレージ次第で実質無制限。Gemini 1.5 Proの100万トークン上限に対し患者1人分は約45,000トークン。まるごと投げられます。</p>
+    </div>
+
+    <div class="merit-card">
+      <span class="badge">プライバシー保護</span>
+      <span class="merit-num">05</span>
+      <h3>患者データは<br><span class="marker">自分のPCの中だけ</span></h3>
+      <p>クラウドに1バイトも送信しません。インターネットが切れていても動きます。患者情報の漏洩リスクがありません。</p>
+    </div>
+
+    <div class="merit-card">
+      <span class="badge">どこでも使える</span>
+      <span class="merit-num">06</span>
+      <h3>Windows・Mac・Linux<br><span class="marker">Chrome対応機種すべて</span></h3>
+      <p>Windowsだけじゃない。MacでもLinuxでも同じように動きます。「Chrome専用」なのでOSを選びません。</p>
+    </div>
+
+    <div class="merit-card" style="grid-column: 1 / -1;">
+      <span class="badge">治療家が治療家のために作った</span>
+      <span class="merit-num">07</span>
+      <h3>30年・1万人以上の臨床経験を持つ<br>柔道整復師が<span class="marker">自分の現場で使うために作った</span></h3>
+      <p>「高機能より使いやすさ」「記録より分析の質」を優先した設計。余計な機能はいれていません。年間200冊読む治療家が、AIと組み合わせて実際に使っているツールです。</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ AI SECTION ══════════ -->
+<section class="section-full ai-section">
+  <div class="inner">
+    <div class="tag" style="border-color:#fff;color:#fff;">AI ANALYSIS</div>
+    <div class="ai-grid">
+      <div class="ai-left">
+        <h2>
+          AIに<span class="yel">丸投げ</span>すると<br>
+          何ができるのか
+        </h2>
+        <p>
+          コピーしたテキストをGeminiやClaudeに貼るだけで、<br>
+          こんな分析が数十秒で手に入ります。
+        </p>
+        <div class="ai-stat-box">
+          <div class="num">45,000</div>
+          <div class="label">患者1人・30回分のトークン数（目安）<br>Geminiの上限100万トークンの たった 4.5%</div>
+        </div>
+      </div>
+      <div class="ai-right">
+        <div class="ai-card">
+          <div class="icon">📈</div>
+          <div>
+            <h4>症状の変化の流れをまとめる</h4>
+            <p>初回から現在までの症状変化を時系列で整理。「第3回から可動域が改善」など客観的な視点で把握できます。</p>
+          </div>
+        </div>
+        <div class="ai-card">
+          <div class="icon">💡</div>
+          <div>
+            <h4>効果のあった施術アプローチを抽出</h4>
+            <p>どの手技・アプローチで改善が見られたか、記録から自動抽出。次回施術の根拠になります。</p>
+          </div>
+        </div>
+        <div class="ai-card">
+          <div class="icon">🔭</div>
+          <div>
+            <h4>今後の施術方針を提案させる</h4>
+            <p>「この患者に次回おすすめのアプローチは？」を30回分の文脈を持ったAIに聞ける。経験値の壁がなくなります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section class="section-full flow-section">
+  <div class="inner" style="max-width:1200px;margin:0 auto;padding:0 60px;">
+    <div class="tag">HOW TO USE</div>
+    <div class="h-main">
+      使い方は<span class="red">たった5ステップ</span>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="circle">1</div>
+        <h4>HTMLファイルを<br>Chromeで開く</h4>
+        <p>ダブルクリックでOK。アカウント不要。</p>
+        <div class="note">Chrome必須</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">
+        <div class="circle">2</div>
+        <h4>初回のみ<br>保存場所を指定</h4>
+        <p>デスクトップなど<br>わかりやすい場所を選択。</p>
+        <div class="note">1回きり</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">
+        <div class="circle">3</div>
+        <h4>患者を追加して<br>記録を登録</h4>
+        <p>施術後にコピペするだけ。自動で日時が記録される。</p>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">
+        <div class="circle">4</div>
+        <h4>日付を選んで<br>テキスト生成</h4>
+        <p>ドラッグ or クリックで範囲選択→コピーボタン1つ。</p>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">
+        <div class="circle">5</div>
+        <h4>AIに<br>貼り付けて分析</h4>
+        <p>GeminiでもClaudeでも。質問するだけで答えが返ってくる。</p>
+        <div class="note">ここが本番</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ MANUAL ══════════ -->
+<section class="section">
+  <div class="tag">MANUAL</div>
+  <div class="h-main">
+    <span class="marker">取扱説明書</span>
+  </div>
+  <div class="manual-steps">
+
+    <div class="manual-step">
+      <div class="step-badge">1</div>
+      <div class="step-body">
+        <h4>ファイルをChromeで開く</h4>
+        <p>「施術保存カルテ.html」をダブルクリック → Chromeで開いてください。SafariやFirefoxでは動きません。必ずGoogle Chromeを使ってください。</p>
+      </div>
+    </div>
+
+    <div class="manual-step">
+      <div class="step-badge">2</div>
+      <div class="step-body">
+        <h4>初回のみ：保存場所を設定する</h4>
+        <p>「📁 新規作成して始める」をクリック → 保存先フォルダを選択。ファイル名は <strong>「【削除禁止】施術カルテDB.json」</strong> で保存してください。デスクトップが最もわかりやすくおすすめです。</p>
+        <div class="step-warn">⚠️ このJSONファイルがデータ本体です。絶対に削除・移動しないでください</div>
+      </div>
+    </div>
+
+    <div class="manual-step">
+      <div class="step-badge">3</div>
+      <div class="step-body">
+        <h4>2回目以降：起動時に1クリックするだけ</h4>
+        <p>Chromeのセキュリティ仕様により、起動時に「▶ クリックしてカルテを開く」を1回クリックが必要です。これだけで自動読み込み完了。以降は記録するたびに自動書き込みが有効になります。</p>
+      </div>
+    </div>
+
+    <div class="manual-step">
+      <div class="step-badge">4</div>
+      <div class="step-body">
+        <h4>患者を追加・記録を登録する</h4>
+        <p>左サイドバーの「＋」ボタンで患者追加。患者名をクリックして選択 → 画面下の入力欄に施術内容をコピペ or 入力 → 「登録」ボタン（またはCtrl+Enter）で完了。登録と同時に日時が自動記録されます。</p>
+      </div>
+    </div>
+
+    <div class="manual-step">
+      <div class="step-badge">5</div>
+      <div class="step-body">
+        <h4>AI分析用にコピーする</h4>
+        <p>患者選択 → 「📋 全履歴コピー」ボタンをクリック → 来院日一覧が表示されます。</p>
+        <p style="margin-top:10px;"><strong>選択方法：</strong>行をクリック（1件ON/OFF）／ドラッグ（範囲選択）／「全選択」「全解除」ボタン／「年別表示」で年ごとグループ</p>
+        <p style="margin-top:8px;">「テキスト生成・コピー」→ GeminiやClaudeに貼り付けるだけ。</p>
+      </div>
+    </div>
+
+    <div class="manual-step">
+      <div class="step-badge">6</div>
+      <div class="step-body">
+        <h4>バックアップを取る（週1回推奨）</h4>
+        <p>ヘッダーの「💾 バックアップ」ボタンをクリック。日時付きのJSONファイルがダウンロードフォルダに保存されます。GoogleドライブやUSBに移しておけば安心です。</p>
+        <div class="step-warn">💡 古いバックアップは削除OK。最新1〜2個を残せば十分</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ STORAGE ══════════ -->
+<section class="section-full storage-section">
+  <div class="inner">
+    <div class="tag" style="border-color:#555;color:#aaa;">STORAGE</div>
+    <div class="h-main" style="color:var(--paper);">
+      データは<span style="color:var(--yellow);">どこに</span>保存されるのか
+    </div>
+    <div class="storage-grid">
+      <div class="storage-card">
+        <h4>🪟 Windows の場合</h4>
+        <div class="path">
+          C:\Users\（ユーザー名）\Desktop\<br>
+          【削除禁止】施術カルテDB.json
+        </div>
+        <p>デスクトップに保存した場合の例です。初回設定で自分が選んだ場所に保存されます。</p>
+      </div>
+      <div class="storage-card">
+        <h4>🍎 Mac の場合</h4>
+        <div class="path">
+          /Users/（ユーザー名）/Desktop/<br>
+          【削除禁止】施術カルテDB.json
+        </div>
+        <p>同様にデスクトップ保存の例です。場所は初回設定時に自分で決められます。</p>
+      </div>
+    </div>
+    <div class="storage-danger">
+      <div class="d-icon">⚠️</div>
+      <p>
+        このJSONファイルが<strong>データそのものです。</strong><br>
+        削除・移動・名前変更をすると、すべてのカルテデータが消えます。<br>
+        ファイル名の「<strong>【削除禁止】</strong>」はそのための警告表示です。絶対に触らないでください。<br>
+        万が一のために週1回「💾 バックアップ」でコピーを取る習慣をつけてください。
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ COMPAT ══════════ -->
+<section class="section-full compat-section">
+  <div class="inner">
+    <div class="tag">COMPATIBILITY</div>
+    <div class="h-main">動作環境</div>
+    <table class="compat-table">
+      <tr>
+        <th style="width:35%">環境</th>
+        <th style="width:15%">対応</th>
+        <th>備考</th>
+      </tr>
+      <tr>
+        <td><strong>Windows + Google Chrome</strong></td>
+        <td class="ok">✅ 対応</td>
+        <td class="memo">推奨環境</td>
+      </tr>
+      <tr>
+        <td><strong>Mac + Google Chrome</strong></td>
+        <td class="ok">✅ 対応</td>
+        <td class="memo">推奨環境</td>
+      </tr>
+      <tr>
+        <td>Linux + Google Chrome</td>
+        <td class="ok">✅ 対応</td>
+        <td class="memo"></td>
+      </tr>
+      <tr>
+        <td>Windows / Mac + Microsoft Edge</td>
+        <td class="ok">✅ ほぼ対応</td>
+        <td class="memo">Chromiumベースのため動作</td>
+      </tr>
+      <tr>
+        <td>Safari（Mac・iPhone・iPad）</td>
+        <td class="ng">❌ 非対応</td>
+        <td class="memo">File System Access API未対応</td>
+      </tr>
+      <tr>
+        <td>Firefox</td>
+        <td class="ng">❌ 非対応</td>
+        <td class="memo">File System Access API未対応</td>
+      </tr>
+      <tr>
+        <td>スマートフォン・タブレット</td>
+        <td class="ng">❌ 非推奨</td>
+        <td class="memo">PC（デスクトップ・ノート）での使用推奨</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-section">
+  <h2>
+    施術記録が、<br>
+    <span class="yel">AI分析の武器</span>になる。
+  </h2>
+  <p>
+    月額なし。インストールなし。Chromeがあれば今すぐ使える。<br>
+    年間200冊読む治療家が自分の臨床現場で使うために作ったツールです。
+  </p>
+  <button class="cta-copy-btn" id="cta-btn" onclick="copyIntro(this)">
+    📋 紹介文をコピーする
+  </button>
+</section>
+
+<script>
+const introText = `【施術保存カルテ｜AI分析専用ツール】
+
+施術記録が「AI分析素材」になる時代が来ました。
+
+このツール1つで：
+・記録するたびに自動保存（保存忘れゼロ）
+・来院日一覧からドラッグで範囲選択
+・ボタン1つでGemini・Claude・ChatGPTに貼り付け可能な形式に整形
+・3,000文字×30回分でも余裕で管理・分析
+
+インストール不要。HTMLファイルをChromeで開くだけ。
+月額なし。一度手に入れたら永久に使えます。
+
+対応OS：Windows / Mac / Linux（Chrome必須）
+データ保存：自分のPC内のみ（クラウドに送信しない）
+
+年間200冊読む柔道整復師が、
+自分の30年・1万人以上の臨床現場で使うために作りました。`;
+
+function copyIntro(btn) {
+  const sink = document.getElementById('sink');
+  sink.value = introText; sink.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch(e) {}
+  if (!ok && navigator.clipboard) navigator.clipboard.writeText(introText).catch(() => {});
+  btn.classList.add('done'); btn.textContent = '✅ コピー完了！';
+  setTimeout(() => { btn.classList.remove('done'); btn.textContent = '📋 紹介文をコピーする'; }, 3000);
+}
+</script>
+</body>
+</html>
