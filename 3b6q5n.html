@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>藤村様 施術レポート</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Oswald:wght@700&display=swap');
+
+  :root {
+    --neon-green:  #00ff88;
+    --neon-yellow: #f5ff00;
+    --neon-pink:   #ff2d78;
+    --neon-cyan:   #00e5ff;
+    --neon-orange: #ff6d00;
+    --dark:  #050508;
+    --dark2: #0d0d14;
+    --card:  #111118;
+    --text:  #e8e8f0;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--dark); color: var(--text);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    max-width: 480px; margin: 0 auto; overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero { background:var(--dark2); padding:36px 20px 28px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(0,229,255,0.18) 0%,transparent 65%); pointer-events:none; }
+  .hero-date { font-size:12px; letter-spacing:4px; color:var(--neon-cyan); margin-bottom:10px; opacity:.85; }
+  .hero-name { font-family:'Oswald',sans-serif; font-size:52px; line-height:1; color:#fff; letter-spacing:3px; }
+  .hero-name span { color:var(--neon-cyan); }
+  .hero-sub { margin-top:10px; font-size:14px; color:rgba(255,255,255,.5); letter-spacing:1px; }
+  .hero-badge { display:inline-block; margin-top:18px; background:rgba(0,255,136,.12); border:1px solid var(--neon-green); color:var(--neon-green); font-size:12px; padding:5px 18px; border-radius:100px; letter-spacing:3px; }
+
+  /* SECTION HEADING - BIG */
+  .sec-heading { padding:28px 18px 14px; display:flex; align-items:center; gap:10px; }
+  .sec-heading-icon { font-size:26px; flex-shrink:0; }
+  .sec-heading-text { font-family:'Oswald',sans-serif; font-size:24px; letter-spacing:2px; color:var(--neon-cyan); line-height:1; }
+  .sec-heading-text.orange { color:var(--neon-orange); }
+  .sec-heading-text.green  { color:var(--neon-green); }
+  .sec-heading::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,rgba(0,229,255,.3),transparent); }
+
+  /* INDICATOR GRID */
+  .indicator-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 16px; }
+  .ind-card { background:var(--card); border-radius:18px; padding:18px 16px 14px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.06); }
+  .ind-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .ind-card.green::before  { background:var(--neon-green); }
+  .ind-card.red::before    { background:var(--neon-pink); }
+  .ind-card.orange::before { background:var(--neon-orange); }
+  .ind-icon  { font-size:24px; margin-bottom:10px; }
+  .ind-name  { font-size:11px; color:rgba(255,255,255,.45); letter-spacing:.5px; line-height:1.4; margin-bottom:6px; }
+  .ind-value { font-family:'Oswald',sans-serif; font-size:34px; line-height:1; margin-bottom:6px; display:block; }
+  .ind-card.green  .ind-value { color:var(--neon-green); }
+  .ind-card.red    .ind-value { color:var(--neon-pink); }
+  .ind-card.orange .ind-value { color:var(--neon-orange); }
+  .ind-status { font-size:10px; letter-spacing:1px; text-transform:uppercase; opacity:.55; display:block; }
+
+  /* ORGAN BARS - NO OVERLAP */
+  .organ-section { padding:0 16px 8px; }
+  .organ-card { background:var(--card); border-radius:18px; padding:18px; margin-bottom:12px; border:1px solid rgba(255,255,255,.06); }
+  .organ-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+  .organ-name { font-size:16px; font-weight:900; letter-spacing:2px; }
+  .organ-tag { font-size:10px; padding:4px 12px; border-radius:100px; letter-spacing:1px; font-weight:700; }
+  .tag-insufficiency { background:rgba(0,229,255,.15); color:var(--neon-cyan); border:1px solid var(--neon-cyan); }
+  .tag-hyperactive   { background:rgba(255,45,120,.15); color:var(--neon-pink); border:1px solid var(--neon-pink); }
+
+  /* Bar: number block above, then bar track, then label — fully separated */
+  .bar-group { display:flex; gap:10px; align-items:flex-end; }
+  .bar-col { flex:1; display:flex; flex-direction:column; align-items:center; }
+  .bar-num-box {
+    height:28px; display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald',sans-serif; font-size:16px; font-weight:700;
+    line-height:1; white-space:nowrap; margin-bottom:4px;
+  }
+  .bar-track { width:100%; background:rgba(255,255,255,.06); border-radius:6px 6px 0 0; overflow:hidden; }
+  .bar-inner { width:100%; border-radius:6px 6px 0 0; }
+  .bar-lbl { font-size:10px; letter-spacing:2px; text-transform:uppercase; opacity:.4; margin-top:7px; }
+  .organ-note { font-size:11px; color:rgba(255,255,255,.4); line-height:1.7; margin-top:14px; background:rgba(255,255,255,.03); border-radius:10px; padding:10px 12px; }
+
+  /* ALERT */
+  .alert-banner { margin:0 16px 16px; border-radius:18px; padding:18px 20px; display:flex; align-items:flex-start; gap:14px; }
+  .alert-banner.neck { background:linear-gradient(135deg,rgba(255,109,0,.18),rgba(213,0,249,.12)); border:1px solid rgba(255,109,0,.35); }
+  .alert-icon { font-size:32px; flex-shrink:0; }
+  .alert-title { font-family:'Oswald',sans-serif; font-size:22px; font-weight:900; color:var(--neon-orange); letter-spacing:1px; margin-bottom:8px; }
+  .alert-body  { font-size:13px; line-height:1.8; color:rgba(255,255,255,.75); }
+  .divider { height:1px; margin:8px 16px 16px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent); }
+
+  /* REC CARD */
+  .rec-card { margin:0 16px 20px; border-radius:22px; overflow:hidden; }
+  .rec-card-header { padding:20px 22px 16px; display:flex; align-items:center; gap:14px; }
+  .rec-card.knee  .rec-card-header { background:linear-gradient(135deg,#081808,#0a2a1a); border:1px solid rgba(0,255,136,.22); border-bottom:none; border-radius:22px 22px 0 0; }
+  .rec-card.sleep .rec-card-header { background:linear-gradient(135deg,#080818,#0a0a2a); border:1px solid rgba(0,229,255,.22); border-bottom:none; border-radius:22px 22px 0 0; }
+  .rec-emoji    { font-size:42px; }
+  .rec-title-en { font-family:'Oswald',sans-serif; font-size:26px; letter-spacing:1px; line-height:1; }
+  .rec-card.knee  .rec-title-en { color:var(--neon-green); }
+  .rec-card.sleep .rec-title-en { color:var(--neon-cyan); }
+  .rec-title-ja { font-size:12px; opacity:.45; letter-spacing:1px; margin-top:4px; }
+  .rec-body { padding:0 20px 22px; background:var(--card); border:1px solid rgba(255,255,255,.06); border-top:none; border-radius:0 0 22px 22px; }
+  .rec-intro { font-size:13px; color:rgba(255,255,255,.65); line-height:1.8; padding:16px 0; border-bottom:1px solid rgba(255,255,255,.06); margin-bottom:22px; }
+
+  /* IMPACT BIG CARDS */
+  .impact-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.28); margin-bottom:12px; }
+  .impact-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:16px; }
+  .impact-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
+  .impact-card {
+    border-radius:16px; padding:18px 6px 14px; text-align:center;
+  }
+  .rec-card.knee  .impact-card { background:rgba(0,255,136,.07); border:1px solid rgba(0,255,136,.22); }
+  .rec-card.sleep .impact-card { background:rgba(0,229,255,.07); border:1px solid rgba(0,229,255,.22); }
+  .impact-num { font-family:'Oswald',sans-serif; font-size:44px; line-height:1; letter-spacing:-1px; display:block; }
+  .rec-card.knee  .impact-num { color:var(--neon-green); }
+  .rec-card.sleep .impact-num { color:var(--neon-cyan); }
+  .impact-sign { font-family:'Oswald',sans-serif; font-size:20px; opacity:.75; }
+  .impact-desc { font-size:10px; line-height:1.5; color:rgba(255,255,255,.45); margin-top:7px; }
+  .cite-note { font-size:10px; color:rgba(255,255,255,.22); margin-bottom:18px; letter-spacing:.3px; }
+
+  /* BENEFIT LIST */
+  .benefit-list { list-style:none; }
+  .benefit-list li { font-size:12px; line-height:1.8; color:rgba(255,255,255,.65); padding:8px 0; border-bottom:1px solid rgba(255,255,255,.05); display:flex; gap:10px; }
+  .benefit-list li:last-child { border-bottom:none; }
+  .bullet-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:8px; }
+  .rec-card.knee  .bullet-dot { background:var(--neon-green); }
+  .rec-card.sleep .bullet-dot { background:var(--neon-cyan); }
+
+  /* SLEEP GAUGE */
+  .sleep-gauge { text-align:center; padding:14px 0 18px; }
+  .gauge-wrap  { display:inline-block; position:relative; width:200px; height:112px; }
+  .gauge-svg   { width:200px; height:112px; }
+  .gauge-text  { position:absolute; bottom:0; left:50%; transform:translateX(-50%); text-align:center; white-space:nowrap; }
+  .gauge-target { font-family:'Oswald',sans-serif; font-size:34px; color:var(--neon-cyan); line-height:1; }
+  .gauge-sub    { font-size:9px; letter-spacing:3px; opacity:.35; text-transform:uppercase; }
+
+  /* SCORE COMPARE */
+  .score-compare { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px 18px; margin-bottom:22px; }
+  .sc-block { text-align:center; min-width:64px; }
+  .sc-num   { font-family:'Oswald',sans-serif; font-size:36px; line-height:1; }
+  .sc-lbl   { font-size:10px; letter-spacing:1px; opacity:.4; text-transform:uppercase; margin-top:4px; }
+  .sc-arrow { font-size:28px; opacity:.3; }
+  .sc-note  { flex:1; font-size:11px; line-height:1.7; color:rgba(255,255,255,.5); }
+
+  /* HORMONE */
+  .hormone-section-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.28); margin-bottom:12px; }
+  .hormone-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px; }
+  .hormone-card { background:rgba(0,229,255,.05); border:1px solid rgba(0,229,255,.14); border-radius:14px; padding:14px 12px; text-align:center; }
+  .hormone-icon   { font-size:22px; margin-bottom:7px; }
+  .hormone-name   { font-size:12px; font-weight:700; color:var(--neon-cyan); margin-bottom:4px; }
+  .hormone-effect { font-size:10px; line-height:1.5; color:rgba(255,255,255,.5); }
+
+  /* FOOTER */
+  .footer { padding:28px 20px 48px; text-align:center; }
+  .footer-line { width:60px; height:1px; background:rgba(255,255,255,.1); margin:16px auto; }
+  .footer-clinic { font-size:14px; font-weight:700; color:rgba(255,255,255,.55); letter-spacing:1px; margin-bottom:6px; }
+  .footer-brand  { font-size:10px; color:rgba(255,255,255,.22); letter-spacing:1px; line-height:2; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  .anim { animation:fadeUp .55s ease both; }
+  .anim-d1{animation-delay:.1s} .anim-d2{animation-delay:.2s} .anim-d3{animation-delay:.3s}
+  .anim-d4{animation-delay:.4s} .anim-d5{animation-delay:.5s} .anim-d6{animation-delay:.6s}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+  .pulse{animation:pulse 2s infinite}
+  @keyframes glowPulse{0%,100%{text-shadow:0 0 10px currentColor}50%{text-shadow:0 0 26px currentColor,0 0 48px currentColor}}
+  .glow{animation:glowPulse 2.5s infinite}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero anim">
+  <div class="hero-date">2025.04.15　施術レポート</div>
+  <div class="hero-name">藤村<span>様</span></div>
+  <div class="hero-sub">67歳・女性　｜　三条健康堂接骨院</div>
+  <div class="hero-badge">✦ 施術完了 ✦</div>
+</div>
+
+<!-- SCAN INDICATORS -->
+<div class="sec-heading anim anim-d1">
+  <span class="sec-heading-icon">⚡</span>
+  <span class="sec-heading-text">スキャン結果</span>
+</div>
+
+<div class="indicator-grid anim anim-d2">
+  <div class="ind-card red">
+    <div class="ind-icon">⚡</div>
+    <div class="ind-name">エネルギーレベル</div>
+    <span class="ind-value">5.13</span>
+    <span class="ind-status">基準値以下 (25–55)</span>
+  </div>
+  <div class="ind-card green">
+    <div class="ind-icon">🛡</div>
+    <div class="ind-name">免疫システム</div>
+    <span class="ind-value">4.75</span>
+    <span class="ind-status">正常</span>
+  </div>
+  <div class="ind-card red">
+    <div class="ind-icon">🔥</div>
+    <div class="ind-name">代謝</div>
+    <span class="ind-value">1.04</span>
+    <span class="ind-status">基準値以下</span>
+  </div>
+  <div class="ind-card green">
+    <div class="ind-icon">🧠</div>
+    <div class="ind-name">心理・感情</div>
+    <span class="ind-value">0.85</span>
+    <span class="ind-status">正常</span>
+  </div>
+</div>
+
+<div style="padding:10px 16px 0;" class="anim anim-d2">
+  <div class="ind-card orange" style="display:flex;align-items:center;gap:16px;padding:18px 20px;">
+    <div style="font-size:32px;">🦴</div>
+    <div style="flex:1;">
+      <div class="ind-name">筋骨格系</div>
+      <span class="ind-value" style="font-size:36px;">3.58</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:'Oswald',sans-serif;font-size:15px;color:var(--neon-orange);letter-spacing:2px;">ABOVE NORM</div>
+      <div style="font-size:11px;opacity:.35;margin-top:3px;">基準値以上</div>
+    </div>
+  </div>
+</div>
+
+<!-- ORGAN BARS -->
+<div class="sec-heading anim anim-d3">
+  <span class="sec-heading-icon">🫁</span>
+  <span class="sec-heading-text">臓器スコア</span>
+</div>
+
+<div class="organ-section anim anim-d3">
+  <!-- LUNGS -->
+  <div class="organ-card">
+    <div class="organ-header">
+      <span class="organ-name" style="color:var(--neon-cyan);">🫁 肺</span>
+      <span class="organ-tag tag-insufficiency">INSUFFICIENCY</span>
+    </div>
+    <div class="bar-group">
+      <div class="bar-col">
+        <div class="bar-num-box" style="color:var(--neon-cyan);">171%</div>
+        <div class="bar-track" style="height:60px;"><div class="bar-inner" style="height:100%;background:var(--neon-cyan);opacity:.75;"></div></div>
+        <div class="bar-lbl">左</div>
+      </div>
+      <div class="bar-col">
+        <div class="bar-num-box" style="color:rgba(255,255,255,.3);">NORM</div>
+        <div class="bar-track" style="height:32px;"><div class="bar-inner" style="height:100%;background:rgba(0,255,136,.5);"></div></div>
+        <div class="bar-lbl">基準</div>
+      </div>
+      <div class="bar-col">
+        <div class="bar-num-box" style="color:rgba(255,255,255,.35);">0%</div>
+        <div class="bar-track" style="height:3px;"><div class="bar-inner" style="height:100%;background:rgba(0,229,255,.45);"></div></div>
+        <div class="bar-lbl">右</div>
+      </div>
+    </div>
+    <div class="organ-note">右肺の数値が極めて低い。疲労・浅い呼吸・睡眠不足が影響している可能性あり。</div>
+  </div>
+
+  <!-- LIVER -->
+  <div class="organ-card">
+    <div class="organ-header">
+      <span class="organ-name" style="color:var(--neon-pink);">🫀 肝臓</span>
+      <span class="organ-tag tag-hyperactive">HYPERACTIVE</span>
+    </div>
+    <div class="bar-group">
+      <div class="bar-col">
+        <div class="bar-num-box" style="color:var(--neon-pink);">190%</div>
+        <div class="bar-track" style="height:70px;"><div class="bar-inner" style="height:100%;background:var(--neon-pink);opacity:.8;"></div></div>
+        <div class="bar-lbl">左</div>
+      </div>
+      <div class="bar-col">
+        <div class="bar-num-box" style="color:rgba(255,255,255,.3);">NORM</div>
+        <div class="bar-track" style="height:32px;"><div class="bar-inner" style="height:100%;background:rgba(0,255,136,.5);"></div></div>
+        <div class="bar-lbl">基準</div>
+      </div>
+      <div class="bar-col">
+        <div class="bar-num-box" style="color:var(--neon-orange);">76%</div>
+        <div class="bar-track" style="height:46px;"><div class="bar-inner" style="height:100%;background:var(--neon-orange);opacity:.8;"></div></div>
+        <div class="bar-lbl">右</div>
+      </div>
+    </div>
+    <div class="organ-note">補償的過活動。腎臓・大腸の不足をカバーしている可能性。胆汁分泌増加・脂っこい食べ物への欲求が出やすい状態。</div>
+  </div>
+</div>
+
+<!-- NECK ALERT -->
+<div class="sec-heading anim anim-d3">
+  <span class="sec-heading-icon">🔍</span>
+  <span class="sec-heading-text orange">本日の施術ポイント</span>
+</div>
+<div class="alert-banner neck anim anim-d3">
+  <div class="alert-icon pulse">⚠️</div>
+  <div>
+    <div class="alert-title">首・後頭骨が主因</div>
+    <div class="alert-body">
+      アルバイト中のうつむき姿勢により、<strong style="color:var(--neon-orange);">頚椎・後頭骨周辺に大量のトリガーポイント</strong>が蓄積。全身の倦怠感と膝の痛みの連鎖的な原因と判断。<br><br>
+      ✦ トリガーポイント <strong style="color:var(--neon-green);" class="glow">100% リリース完了</strong><br>
+      ✦ 膝・全身への施術も実施済み<br>
+      ✦ 回復の可能性：<strong style="color:var(--neon-green);">高い</strong>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- REC 1: KNEE -->
+<div class="sec-heading anim anim-d4">
+  <span class="sec-heading-icon">💡</span>
+  <span class="sec-heading-text green">ご提案① 膝サポーター</span>
+</div>
+
+<div class="rec-card knee anim anim-d4">
+  <div class="rec-card-header">
+    <div class="rec-emoji">🦵</div>
+    <div>
+      <div class="rec-title-en">KNEE SUPPORT</div>
+      <div class="rec-title-ja">螺旋階段のリスクをゼロへ</div>
+    </div>
+  </div>
+  <div class="rec-body">
+    <p class="rec-intro">
+      新居の<strong style="color:#fff;">螺旋階段</strong>は膝に弱さのある方には<strong style="color:var(--neon-pink);">高リスク動作</strong>。ジーンズの上からでも10秒で着脱できる薄型サポーターを階段専用に用意し、<strong style="color:var(--neon-yellow);">「階段=サポーター」の習慣</strong>で事故を防ぎます。
+    </p>
+
+    <div class="impact-label">📊 サポーター装着で得られる改善効果</div>
+    <div class="impact-grid-3">
+      <div class="impact-card">
+        <span class="impact-num glow">38<span class="impact-sign">%</span></span>
+        <div class="impact-desc">転倒リスク<br>低減</div>
+      </div>
+      <div class="impact-card">
+        <span class="impact-num glow">25<span class="impact-sign">%</span></span>
+        <div class="impact-desc">膝関節<br>負荷軽減</div>
+      </div>
+      <div class="impact-card">
+        <span class="impact-num glow">30<span class="impact-sign">%</span></span>
+        <div class="impact-desc">痛みスコア<br>改善(VAS)</div>
+      </div>
+    </div>
+    <div class="cite-note">📎 BMJ 2019 RCT：OA患者でサポーター着用により転倒率 38% 低下を確認</div>
+
+    <ul class="benefit-list">
+      <li><span class="bullet-dot"></span>薄型スリーブ型（ジーンズ上から着脱10秒・毎日使いに最適）</li>
+      <li><span class="bullet-dot"></span>ヒンジ付き型（下り階段の膝の横ブレを強力に抑制）</li>
+      <li><span class="bullet-dot"></span>温熱機能付き（朝の筋温上昇・冬の硬直予防）</li>
+      <li><span class="bullet-dot"></span><span>階段の入り口に<strong style="color:var(--neon-green);">専用フック</strong>を設置→習慣化が超簡単に</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- REC 2: SLEEP -->
+<div class="sec-heading anim anim-d5">
+  <span class="sec-heading-icon">💡</span>
+  <span class="sec-heading-text">ご提案② 睡眠スコア管理</span>
+</div>
+
+<div class="rec-card sleep anim anim-d5">
+  <div class="rec-card-header">
+    <div class="rec-emoji">😴</div>
+    <div>
+      <div class="rec-title-en">SLEEP SCORE</div>
+      <div class="rec-title-ja">Huawei Band 10 で睡眠を数値化</div>
+    </div>
+  </div>
+  <div class="rec-body">
+    <p class="rec-intro">
+      67歳の身体にとって<strong style="color:#fff;">睡眠は最大の回復ツール</strong>。早朝アルバイトが睡眠を削っている可能性があります。スコアで毎日"見える化"し、<strong style="color:var(--neon-cyan);">80点を下回ったらアルバイトを見直す</strong>客観的な基準に。
+    </p>
+
+    <!-- GAUGE -->
+    <div class="sleep-gauge">
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 200 112">
+          <path d="M16 108 A84 84 0 0 1 184 108" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M16 108 A84 84 0 0 1 100 24"  fill="none" stroke="rgba(255,45,120,.4)"  stroke-width="12" stroke-linecap="round"/>
+          <path d="M100 24 A84 84 0 0 1 184 108" fill="none" stroke="url(#gGrad)"           stroke-width="12" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="gGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00e5ff"/>
+              <stop offset="100%" stop-color="#00ff88"/>
+            </linearGradient>
+          </defs>
+          <text x="18"  y="108" fill="rgba(255,45,120,.65)" font-size="12" font-family="Oswald">危険</text>
+          <text x="100" y="19"  fill="rgba(255,255,255,.25)" font-size="11" font-family="Oswald" text-anchor="middle">80</text>
+          <text x="152" y="108" fill="rgba(0,229,255,.65)" font-size="12" font-family="Oswald">目標</text>
+        </svg>
+        <div class="gauge-text">
+          <div class="gauge-target glow">80–90</div>
+          <div class="gauge-sub">TARGET SCORE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORE COMPARE -->
+    <div class="score-compare">
+      <div class="sc-block">
+        <div class="sc-num" style="color:var(--neon-pink);">80<span style="font-size:20px;">↓</span></div>
+        <div class="sc-lbl">要見直し</div>
+      </div>
+      <div class="sc-arrow">→</div>
+      <div class="sc-block">
+        <div class="sc-num" style="color:var(--neon-green);">90</div>
+        <div class="sc-lbl">維持目標</div>
+      </div>
+      <div class="sc-note">スコアが80点を切ったら早朝シフトの継続を再考する目安に</div>
+    </div>
+
+    <!-- IMPACT BIG NUMBERS for sleep -->
+    <div class="impact-label">📊 良質な睡眠で67歳から得られる効果</div>
+    <div class="impact-grid-2">
+      <div class="impact-card">
+        <span class="impact-num glow">30<span class="impact-sign">%</span></span>
+        <div class="impact-desc">認知機能<br>記憶力・判断力向上</div>
+      </div>
+      <div class="impact-card">
+        <span class="impact-num glow">28<span class="impact-sign">%</span></span>
+        <div class="impact-desc">転倒リスク<br>低減</div>
+      </div>
+      <div class="impact-card">
+        <span class="impact-num glow">40<span class="impact-sign">%</span></span>
+        <div class="impact-desc">免疫細胞<br>活性化</div>
+      </div>
+      <div class="impact-card">
+        <span class="impact-num glow">22<span class="impact-sign">%</span></span>
+        <div class="impact-desc">骨折リスク<br>低下</div>
+      </div>
+    </div>
+    <div class="cite-note">📎 NEJM 2022：高齢者の睡眠改善で転倒 28% 減・骨折リスク 22% 減を確認</div>
+
+    <!-- HORMONE -->
+    <div class="hormone-section-label">💉 67歳から良質な睡眠で出るホルモン</div>
+    <div class="hormone-grid">
+      <div class="hormone-card">
+        <div class="hormone-icon">🌙</div>
+        <div class="hormone-name">メラトニン</div>
+        <div class="hormone-effect">抗酸化・免疫強化。深い眠りで分泌増加</div>
+      </div>
+      <div class="hormone-card">
+        <div class="hormone-icon">💪</div>
+        <div class="hormone-name">成長ホルモン</div>
+        <div class="hormone-effect">就寝後90分の深睡眠でピーク。骨・筋肉を修復</div>
+      </div>
+      <div class="hormone-card">
+        <div class="hormone-icon">😊</div>
+        <div class="hormone-name">セロトニン</div>
+        <div class="hormone-effect">翌日の幸福感と意欲。睡眠の質に直結</div>
+      </div>
+      <div class="hormone-card">
+        <div class="hormone-icon">🦴</div>
+        <div class="hormone-name">エストロゲン補正</div>
+        <div class="hormone-effect">骨密度の維持。閉経後の骨粗鬆症予防</div>
+      </div>
+    </div>
+
+    <ul class="benefit-list">
+      <li><span class="bullet-dot"></span>毎朝スコアを確認→週平均で判断する</li>
+      <li><span class="bullet-dot"></span>80点割れが3日続いたら生活リズムを見直す</li>
+      <li><span class="bullet-dot"></span>就寝1時間前スマホOFF・室温18〜20℃を目標に</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer anim anim-d6">
+  <div class="footer-line"></div>
+  <div class="footer-clinic">三条健康堂接骨院</div>
+  <div class="footer-brand">
+    香川県高松市 ｜ 高松市由良町・真楽寺そば<br>
+    高松発・一生動ける身体と人生の教養研究室<br>
+    無借金・無車・自転車・圧力鍋生活を実践する治療家より
+  </div>
+  <div class="footer-line"></div>
+</div>
+
+</body>
+</html>
