@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三条健康堂お客様専用｜AIのすすめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1f1912;
+    --ink-soft: #3d3528;
+    --paper: #f5f0e4;
+    --paper-deep: #ece5d3;
+    --paper-warm: #faf6ea;
+    --green: #1a3d28;
+    --green-dark: #0f2619;
+    --gold: #c4a44d;
+    --gold-soft: #d4b968;
+    --rouge: #a8412a;
+    --line: rgba(31, 25, 18, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(196, 164, 77, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(26, 61, 40, 0.03) 0%, transparent 50%);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ========= HERO ========= */
+  .hero {
+    background: var(--green);
+    color: var(--paper-warm);
+    padding: 48px 28px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px; right: 20px; bottom: 20px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 24px; left: 24px; right: 24px; bottom: 24px;
+    border: 1px solid rgba(196, 164, 77, 0.3);
+    pointer-events: none;
+  }
+  .hero-corner {
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 2px solid var(--gold);
+  }
+  .hero-corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+  .hero-corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+  .hero-corner.bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+  .hero-corner.br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+  .hero-tag {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(196, 164, 77, 0.4);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-title {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1.35;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.05em;
+  }
+  .hero-title .sub {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gold-soft);
+    letter-spacing: 0.3em;
+    margin-bottom: 10px;
+  }
+  .hero-lead {
+    font-size: 13.5px;
+    line-height: 1.95;
+    color: rgba(245, 240, 228, 0.88);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-clinic {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(196, 164, 77, 0.3);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--gold-soft);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ========= MAIN ========= */
+  main {
+    padding: 0 22px;
+  }
+
+  /* ========= INTRO BLOCK ========= */
+  .intro {
+    padding: 40px 4px 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .intro-kicker {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .intro h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    color: var(--green);
+  }
+  .intro p {
+    font-size: 14.5px;
+    line-height: 2;
+    margin-bottom: 14px;
+    color: var(--ink-soft);
+  }
+  .intro p:last-child { margin-bottom: 0; }
+
+  /* ========= CHAPTER ========= */
+  .chapter {
+    padding: 44px 4px 32px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .chapter-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .chapter-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .chapter-num-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .chapter-title {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--green);
+    letter-spacing: 0.03em;
+  }
+
+  .chapter p {
+    font-size: 14.5px;
+    line-height: 2;
+    margin-bottom: 16px;
+    color: var(--ink-soft);
+  }
+
+  .chapter h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--green);
+    margin: 28px 0 14px;
+    padding-left: 14px;
+    border-left: 3px solid var(--gold);
+  }
+
+  .highlight {
+    background: linear-gradient(transparent 65%, rgba(196, 164, 77, 0.35) 65%);
+    font-weight: 500;
+  }
+
+  .note-box {
+    background: var(--paper-deep);
+    border-left: 3px solid var(--green);
+    padding: 16px 18px;
+    margin: 20px 0;
+    font-size: 13.5px;
+    line-height: 1.9;
+  }
+  .note-box strong {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ========= 処方箋 PROMPT CARD ========= */
+  .prescription {
+    background: var(--paper-warm);
+    border: 1px solid var(--gold);
+    padding: 0;
+    margin: 26px 0;
+    position: relative;
+    box-shadow: 0 2px 0 var(--paper-deep);
+  }
+  .prescription::before {
+    content: '処方箋';
+    position: absolute;
+    top: -11px;
+    left: 18px;
+    background: var(--green);
+    color: var(--gold-soft);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    padding: 3px 14px 3px 16px;
+  }
+  .prescription-head {
+    padding: 22px 20px 12px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .prescription-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+  .prescription-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.5;
+  }
+  .prescription-body {
+    padding: 18px 20px;
+    font-family: 'Noto Sans JP', monospace;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: var(--ink);
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: #fff;
+    margin: 0 14px;
+    border: 1px solid var(--line);
+    font-weight: 400;
+  }
+  .prescription-foot {
+    padding: 14px 14px 18px;
+    text-align: center;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    color: var(--gold-soft);
+    border: none;
+    padding: 12px 28px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  .copy-btn:hover, .copy-btn:active {
+    background: var(--green-dark);
+    color: var(--gold);
+  }
+  .copy-btn.copied {
+    background: var(--gold);
+    color: var(--green-dark);
+  }
+  .copy-btn::before {
+    content: '▸';
+    font-size: 11px;
+  }
+
+  /* ========= STEP LIST ========= */
+  .steps {
+    margin: 18px 0 24px;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+  .steps li {
+    position: relative;
+    padding: 10px 0 10px 38px;
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    counter-increment: step;
+    border-bottom: 1px dotted var(--line);
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 12px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    width: 28px;
+    text-align: center;
+    border-right: 1px solid var(--gold);
+    padding-right: 4px;
+  }
+
+  /* ========= APPS TABLE ========= */
+  .apps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .app-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    padding: 20px;
+    position: relative;
+  }
+  .app-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 3px;
+    background: var(--gold);
+  }
+  .app-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .app-maker {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .app-desc {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+  }
+  .app-price {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .app-price strong {
+    color: var(--green);
+    font-size: 14px;
+  }
+
+  /* ========= CALLOUT ========= */
+  .callout {
+    background: var(--green);
+    color: var(--paper-warm);
+    padding: 24px 22px;
+    margin: 28px 0;
+    position: relative;
+  }
+  .callout::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid rgba(196, 164, 77, 0.5);
+    pointer-events: none;
+  }
+  .callout-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .callout h4 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+  .callout p {
+    font-size: 13.5px;
+    line-height: 1.95;
+    color: rgba(245, 240, 228, 0.9);
+    position: relative; z-index: 1;
+  }
+
+  /* ========= KEY INSIGHT ========= */
+  .insight {
+    margin: 28px 0;
+    padding: 22px 0;
+    border-top: 3px double var(--gold);
+    border-bottom: 3px double var(--gold);
+    text-align: center;
+  }
+  .insight-kanji {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--green);
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .insight-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+  }
+
+  /* ========= FOOTER ========= */
+  .closing {
+    background: var(--green);
+    color: var(--paper-warm);
+    padding: 44px 26px;
+    margin-top: 40px;
+    position: relative;
+  }
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: 16px; left: 16px; right: 16px; bottom: 16px;
+    border: 1px solid rgba(196, 164, 77, 0.4);
+    pointer-events: none;
+  }
+  .closing-seal {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(196, 164, 77, 0.3);
+    position: relative; z-index: 1;
+  }
+  .closing h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    text-align: center;
+    position: relative; z-index: 1;
+  }
+  .closing-brand {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--gold-soft);
+    text-align: center;
+    margin: 18px 0;
+    position: relative; z-index: 1;
+  }
+  .closing-info {
+    text-align: center;
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(245, 240, 228, 0.85);
+    position: relative; z-index: 1;
+  }
+  .closing-info a {
+    color: var(--gold-soft);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196, 164, 77, 0.4);
+    padding-bottom: 2px;
+  }
+  .closing-cta {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(196, 164, 77, 0.3);
+    text-align: center;
+    font-size: 12px;
+    color: var(--gold-soft);
+    letter-spacing: 0.15em;
+    position: relative; z-index: 1;
+  }
+
+  /* ========= TOC ========= */
+  .toc {
+    background: var(--paper-warm);
+    border: 1px solid var(--gold);
+    padding: 24px 22px;
+    margin: 0 0 10px;
+  }
+  .toc-label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .toc ol {
+    list-style: none;
+    padding: 0;
+  }
+  .toc li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px dotted var(--line);
+  }
+  .toc li:last-child { border-bottom: none; }
+  .toc li a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    flex: 1;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 500;
+  }
+  .toc-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 640px) {
+    body { font-size: 16px; }
+    .hero { padding: 64px 48px 56px; }
+    .hero-title { font-size: 40px; }
+    main { padding: 0 40px; }
+    .apps { grid-template-columns: 1fr 1fr; }
+    .chapter-title { font-size: 24px; }
+    .chapter-num { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <span class="hero-corner tl"></span>
+  <span class="hero-corner tr"></span>
+  <span class="hero-corner bl"></span>
+  <span class="hero-corner br"></span>
+  <div class="hero-tag">三条健康堂接骨院 お客様専用</div>
+  <h1 class="hero-title">
+    <span class="sub">A I の す す め</span>
+    一日三分で<br>暮らしが変わる<br>AIの処方箋
+  </h1>
+  <p class="hero-lead">
+    仕事のストレス、子育てのすれ違い、毎日の買い物、お子様の勉強 ――<br>
+    そのすべてを、スマホの中のAIが静かに助けてくれます。<br>
+    AIを触ったことがない方に向けて、30年の臨床から見えた<br>
+    「脳と言葉の関係」を踏まえた使い方を、処方箋のかたちでお伝えします。
+  </p>
+  <div class="hero-clinic">高 松 ・ 三 条 健 康 堂 接 骨 院 院 長　谷 弘 誠</div>
+</header>
+
+<main>
+
+<!-- ===== TOC ===== -->
+<nav class="toc">
+  <div class="toc-label">目 次</div>
+  <ol>
+    <li><span class="toc-num">序</span><a href="#intro">なぜ今、AIを使うのか</a></li>
+    <li><span class="toc-num">壱</span><a href="#ch1">準備篇｜スマホと2つのアプリ</a></li>
+    <li><span class="toc-num">弐</span><a href="#ch2">ストレスの処方箋</a></li>
+    <li><span class="toc-num">参</span><a href="#ch3">自分を知る処方箋</a></li>
+    <li><span class="toc-num">肆</span><a href="#ch4">家族・子どもと通じ合う処方箋</a></li>
+    <li><span class="toc-num">伍</span><a href="#ch5">台所の処方箋</a></li>
+    <li><span class="toc-num">陸</span><a href="#ch6">買い物の処方箋</a></li>
+    <li><span class="toc-num">漆</span><a href="#ch7">学びの処方箋（お子様の勉強）</a></li>
+  </ol>
+</nav>
+
+<!-- ===== INTRO ===== -->
+<section class="intro" id="intro">
+  <div class="intro-kicker">序 ・ は じ め に</div>
+  <h2>AIは、道具ではなく<br>「もう一人の自分の脳」です</h2>
+  <p>
+    私は30年、のべ1万人以上の身体をみてきました。<br>
+    来院される方の多くは、身体だけでなく<span class="highlight">「頭の中のごちゃごちゃ」</span>を抱えています。
+  </p>
+  <p>
+    ストレスの正体、すれ違いの正体、病気に近づいていく人の共通点 ――<br>
+    それらを突き詰めると、<strong>すべては「言葉」に行き着きます。</strong>
+  </p>
+  <p>
+    脳は言葉でしか世界を理解できません。<br>
+    だから、自分の持っている言葉が少ないと、出来事を消化できず、<br>
+    扁桃体が暴走し続け、不安と緊張が身体に溜まっていきます。
+  </p>
+  <p>
+    AIは、<span class="highlight">世界中の言葉を貸してくれるもう一人の自分</span>です。<br>
+    仕事のパートさんの毎日も、子育ても、ご自身の健康も。<br>
+    月3,000円ほどで、大きく楽になります。<br>
+    このガイドが、そのきっかけになれば嬉しいです。
+  </p>
+</section>
+
+<!-- ===== CH 1 ===== -->
+<section class="chapter" id="ch1">
+  <div class="chapter-head">
+    <div class="chapter-num">壱</div>
+    <div>
+      <span class="chapter-num-label">C H A P T E R ・ 0 1</span>
+      <h2 class="chapter-title">準備篇｜<br>スマホと2つのアプリを入れる</h2>
+    </div>
+  </div>
+
+  <p>
+    最初に揃えるものは、たった3つです。<br>
+    難しい設定も、契約も、長期の縛りもありません。
+  </p>
+
+  <h3>① できれば最新のスマートフォン</h3>
+  <p>
+    これからは<span class="highlight">「スマホに話しかけて、AIに処理してもらう」</span>時代です。<br>
+    音声入力の精度が世界トップクラスなのは、Googleの <strong>Pixelシリーズ（7以降）</strong>。<br>
+    iPhoneも最新モデルは非常に早くなっています。<br>
+    キーボードで打つのではなく、マイクボタンを押して話す習慣が、すべての入口になります。
+  </p>
+
+  <h3>② Claude と Gemini、両方を入れる</h3>
+  <p>
+    AIはたくさんありますが、私が毎日使っているのはこの2つです。<br>
+    それぞれに得意分野があり、両方持っているからこそ真価が出ます。
+  </p>
+
+  <div class="apps">
+    <div class="app-card">
+      <div class="app-name">Claude</div>
+      <div class="app-maker">A N T H R O P I C</div>
+      <div class="app-desc">
+        長い文章を深く理解し、人の感情や心理を繊細に読みとるのが得意。<br>
+        相談事・文章づくり・じっくり考える仕事に。
+      </div>
+      <div class="app-price">
+        月額 <strong>約3,000円</strong>（Pro）<br>
+        1ヶ月で解約可能
+      </div>
+    </div>
+    <div class="app-card">
+      <div class="app-name">Gemini</div>
+      <div class="app-maker">G O O G L E</div>
+      <div class="app-desc">
+        画像の分析・検索・リアルタイム情報が強い。<br>
+        買い物の成分表・レシピ・勉強の写真解析に。
+      </div>
+      <div class="app-price">
+        月額 <strong>約3,000円</strong>（Google AI Pro）<br>
+        1ヶ月で解約可能
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>合わせて月6,000円ほど</strong>。高いと感じるかもしれませんが、病院代・薬代・無駄な買い物・学習塾の補助費を考えると、<strong>一つの薬より安く、効果は比較にならないほど大きい</strong>というのが、私の実感です。
+  </div>
+
+  <h3>③ 音声入力の練習</h3>
+  <p>
+    入れたら、まずはAIのアプリを開き、マイクボタンを押して<br>
+    「おはよう、今日は何から始めたらいい？」と話しかけてみてください。<br>
+    これで準備完了です。
+  </p>
+</section>
+
+<!-- ===== CH 2 ===== -->
+<section class="chapter" id="ch2">
+  <div class="chapter-head">
+    <div class="chapter-num">弐</div>
+    <div>
+      <span class="chapter-num-label">C H A P T E R ・ 0 2</span>
+      <h2 class="chapter-title">ストレスの処方箋<br>―― 言葉で扁桃体を鎮める</h2>
+    </div>
+  </div>
+
+  <p>
+    仕事のパートさんも、ご家庭の方も、毎日いろいろなストレスを抱えています。<br>
+    ムッとした、傷ついた、納得いかない、理不尽だ ――<br>
+    その感情、まずAIに<span class="highlight">ぶちまけてください</span>。誰にも見られません。
+  </p>
+
+  <p>
+    スマホの音声入力で、<strong>相手がどんな人で、何があって、自分がどう感じたか</strong>を、早口でかまわないので話しまくります。遠慮も整えも要りません。
+  </p>
+
+  <div class="insight">
+    <div class="insight-kanji">言 葉 に し た 瞬 間<br>扁 桃 体 は 鎮 ま る</div>
+    <div class="insight-desc">— 脳科学が証明する、最も速いストレス処理 —</div>
+  </div>
+
+  <p>
+    そしてAIに、こう聞いてください。これが一つ目の処方箋です。
+  </p>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 1</div>
+      <div class="prescription-title">相手を心理学的に分析してもらう</div>
+    </div>
+    <div class="prescription-body" id="rx01">今から私が話した内容について、以下を教えてください。
+
+①相手はどのような人物なのか、心理学的に分析してください。
+②私が本当は何に悩んでいるのか、的確に言語化してください。
+③私がこの出来事をどう解釈すれば、心が軽くなるか教えてください。
+
+TikTok文法とヴィレバン文法で、親しみやすく教えてください。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx01', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>TikTok文法・ヴィレバン文法とは？</strong><br>
+    AIは放っておくと学術的で堅い言葉を返してきます。それでは頭に入りません。<br>
+    「TikTok文法で」「ヴィレバン（ヴィレッジヴァンガード）文法で」と書くと、砕けた・親しみやすい・読みやすい言葉に変わります。<strong>生活は砕けたものだから、砕けた言葉の方が脳に馴染む</strong>のです。
+  </div>
+
+  <p>
+    返ってきた内容を読むと、「あ、自分はこれに怒っていたのか」「相手はこういう人か」と、<span class="highlight">別の角度から自分の出来事が見えるようになります</span>。この瞬間、脳の扁桃体の興奮が収まります。
+  </p>
+
+  <h3>続けて、戦略の処方箋</h3>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 2</div>
+      <div class="prescription-title">次の対処方法を5つ予習する</div>
+    </div>
+    <div class="prescription-body" id="rx02">この状況に対して、私はこれからどう行動したらいいのでしょうか。
+世界中のエビデンス（研究結果）から、最も効果のある戦略を5つ、ランキングで教えてください。
+
+それぞれについて、
+・具体的な行動
+・期待できる効果
+・やってはいけないこと
+も添えてください。
+
+TikTok文法とヴィレバン文法で、実行しやすく教えてください。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx02', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <p>
+    これで、次に似た出来事が起きたときの<strong>対処方法を予習</strong>できます。<br>
+    言葉で解釈して、言葉で治癒する。これが現代の脳のメカニズムです。
+  </p>
+</section>
+
+<!-- ===== CH 3 ===== -->
+<section class="chapter" id="ch3">
+  <div class="chapter-head">
+    <div class="chapter-num">参</div>
+    <div>
+      <span class="chapter-num-label">C H A P T E R ・ 0 3</span>
+      <h2 class="chapter-title">自分を知る処方箋<br>―― 小説家の目で、自分を読む</h2>
+    </div>
+  </div>
+
+  <p>
+    自分の考えていることは、自分が一番わかっている ――<br>
+    そう思っていますが、<span class="highlight">実はほとんど分かっていません</span>。<br>
+    これは能力の問題ではなく、脳の仕組みの問題です。
+  </p>
+
+  <p>
+    日記や、今日あったこと、最近モヤモヤしていることを、音声入力で話します。<br>
+    そして、それを<strong>自分の好きな作家の文体で書き直してもらう</strong>のです。<br>
+    ご自身が読んでスッと入ってくる作家であれば、誰でもかまいません。
+  </p>
+
+  <div class="callout">
+    <div class="callout-label">P O I N T</div>
+    <h4>まず最初は「星新一」がおすすめです</h4>
+    <p>
+      モヤモヤした出来事の<strong>全体像をつかむのに、星新一の文体は驚くほど効きます</strong>。<br>
+      短く、簡潔で、余計な装飾がない。<br>
+      それでいて本質を一刺しで突くので、自分の話の「核」が一瞬で見えるのです。<br>
+      慣れてきたら、お好きな作家の名前に置き換えてみてください。
+    </p>
+  </div>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 3</div>
+      <div class="prescription-title">好きな作家の文体で書き換える</div>
+    </div>
+    <div class="prescription-body" id="rx03">今から私が話す内容は、私が最近感じていることです。
+これを、以下の作家の文体でそれぞれ書き直してください。
+
+①星新一風（短く、簡潔に、本質だけを）
+②（自分の好きな作家の名前を入れる：例 夏目漱石・村上春樹・吉本ばなな・宮部みゆき など)
+③（もう一人、別の好きな作家)
+
+書き直したうえで、「この人は本当は何を考えているのか」を
+私に理解させるつもりで、最後に解説を一段落つけてください。
+
+TikTok文法で、解説部分は親しみやすくお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx03', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <p>
+    他人の文体で書き直された自分の考えを読むと、<br>
+    「あ、自分ってこんなこと考えてたのか」と、<span class="highlight">メタ認知（自分を一歩引いて見ること）</span>ができます。<br>
+    これが、言葉によるセルフケアの最も強力な方法の一つです。
+  </p>
+</section>
+
+<!-- ===== CH 4 ===== -->
+<section class="chapter" id="ch4">
+  <div class="chapter-head">
+    <div class="chapter-num">肆</div>
+    <div>
+      <span class="chapter-num-label">C H A P T E R ・ 0 4</span>
+      <h2 class="chapter-title">家族・子どもと通じ合う処方箋<br>―― すれ違いは、能力の問題ではない</h2>
+    </div>
+  </div>
+
+  <p>
+    ご主人、奥様、お子さん、親御さん、職場の同僚 ――<br>
+    どうしてすれ違うのか、トラブルが起きるのか。<br>
+    答えは簡単で、<span class="highlight">相手の言っていることは、元々理解できないようにできている</span>からです。
+  </p>
+
+  <p>
+    これは能力の問題ではありません。脳の仕組み上、同じものを見ていても、<br>
+    人それぞれが自分の世界を脳の中に作り上げています。<br>
+    だから「分かち合う」ことは、もともと非常に難しいのです。
+  </p>
+
+  <div class="callout">
+    <div class="callout-label">P O I N T</div>
+    <h4>相手の言葉を、AIに翻訳してもらう</h4>
+    <p>
+      特にお子さんや思春期のお子さん、ご主人・奥様との会話で、<br>
+      「何を言いたいのか分からない」と感じたら ――<br>
+      その言葉をそのままAIに投げてください。<br>
+      AIは世界中の心理学・発達心理学から、<strong>相手の本当の声</strong>を訳してくれます。
+    </p>
+  </div>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 4</div>
+      <div class="prescription-title">相手の本音を推測してもらう</div>
+    </div>
+    <div class="prescription-body" id="rx04">身近な人（例：夫・妻・子ども・母・上司・同僚）から、次のように言われました。
+
+「（相手に言われた言葉をそのまま書く、または音声入力）」
+
+この言葉について、以下を推測してください。
+①この人は本当は何に心を痛めているのか
+②この人は私に何を求めているのか
+③私がどう接すれば、この人の心が少し軽くなるか
+
+私はこのことが全く理解できていません。
+私にわかるように、TikTok文法とヴィレバン文法で教えてください。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx04', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <h3>子育ての現場で、特に効きます</h3>
+
+  <p>
+    お子さんが急に黙り込んだ。学校に行きたがらない。反抗期で話にならない。<br>
+    そんなとき、親御さんの頭の中も真っ白になります。<br>
+    AIはあなたの代わりに、<span class="highlight">冷静で、世界中の研究に基づいた視点</span>を差し出してくれます。
+  </p>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 5</div>
+      <div class="prescription-title">子どもへの声のかけ方を相談する</div>
+    </div>
+    <div class="prescription-body" id="rx05">うちの子（年齢：○歳、性別：○）が、最近こんな様子です。
+
+「（状況を音声入力で自由に話す：学校のこと、家での態度、会話の内容など）」
+
+以下について教えてください。
+①この年齢の発達段階で、何が起きている可能性があるか
+②この子が本当に求めているものは何か
+③親として避けるべきNG対応と、おすすめの声かけ5つ
+④専門機関に相談すべきサインがあればそれも
+
+ヴィレバン文法で、親しみやすく、実行しやすい形でお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx05', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <p>
+    イライラする原因の一つは、<strong>まともな標準語で人と接しようとすること</strong>かもしれません。<br>
+    生活は学術とはかけ離れた世界。砕けた言葉のほうが、家族とうまくいきます。
+  </p>
+</section>
+
+<!-- ===== CH 5 ===== -->
+<section class="chapter" id="ch5">
+  <div class="chapter-head">
+    <div class="chapter-num">伍</div>
+    <div>
+      <span class="chapter-num-label">C H A P T E R ・ 0 5</span>
+      <h2 class="chapter-title">台所の処方箋<br>―― AIが最も得意なのは、料理</h2>
+    </div>
+  </div>
+
+  <p>
+    実はAIが最も得意なのは、料理です。<br>
+    世界中のレシピがすべて頭に入っているからです。
+  </p>
+
+  <p>
+    冷蔵庫を覗いて、今ある食材を音声入力するだけ。<br>
+    「脳のエネルギー」を献立で浪費する必要がなくなります。
+  </p>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 6</div>
+      <div class="prescription-title">冷蔵庫の食材でレシピを提案してもらう</div>
+    </div>
+    <div class="prescription-body" id="rx06">今、冷蔵庫と食品棚にあるのはこれだけです。
+
+（例：キャベツ、鶏むね肉、卵、豆腐、玉ねぎ、人参、味噌、醤油、米、パスタ）
+
+この食材だけで作れる、
+①時短（15分以内）
+②栄養バランスが良い
+③子どもも食べやすい
+
+という条件で、夕食のおすすめレシピを3つ提案してください。
+調理手順も、誰でもできるように細かく書いてください。
+
+ヴィレバン文法で、楽しく読めるようにお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx06', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <p>
+    献立の悩みが減ると、それだけで<span class="highlight">一日のストレスが大きく減ります</span>。<br>
+    AIに「時短で作れる簡単メニュー」「子どもが喜ぶ献立」と聞けば、無数に出してくれます。<br>
+    台所に立つ時間が、考え込む時間ではなく、味わう時間に変わります。
+  </p>
+</section>
+
+<!-- ===== CH 6 ===== -->
+<section class="chapter" id="ch6">
+  <div class="chapter-head">
+    <div class="chapter-num">陸</div>
+    <div>
+      <span class="chapter-num-label">C H A P T E R ・ 0 6</span>
+      <h2 class="chapter-title">買い物の処方箋<br>―― スーパーで迷わない人になる</h2>
+    </div>
+  </div>
+
+  <p>
+    スーパーで、どれを買えばいいか迷うこと。ありませんか。<br>
+    健康に良いのは？添加物は？自分の体に合うのは？<br>
+    <span class="highlight">写真を撮って、AIに聞けば、一瞬で答えが出ます</span>。
+  </p>
+
+  <h3>① 成分表をランキングしてもらう</h3>
+
+  <p>
+    例えば、白髪染めが3種類並んでいる。<br>
+    それぞれの成分表を写真に撮ってAIにアップロードし、聞いてください。
+  </p>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 7</div>
+      <div class="prescription-title">成分表をランキングしてもらう</div>
+    </div>
+    <div class="prescription-body" id="rx07">（写真を3枚アップロードしたうえで）
+
+今アップロードした3つの商品の成分表を見て、
+どれが最も体にやさしいか、ランキングをつけてください。
+
+判断基準：
+・発がん性が疑われる成分の有無
+・内分泌系への影響
+・肌への刺激性
+・添加物の総数
+
+それぞれの「避けたほうがよい成分」を具体的に挙げて、
+その理由も添えてください。
+
+TikTok文法で、買い物中でもサッと読めるようにお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx07', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <h3>② 自分の持病・体質に合う食材を選ぶ</h3>
+
+  <p>
+    持病がある方は、<strong>野菜や肉の写真を撮ってアップ</strong>してから聞いてください。
+  </p>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 8</div>
+      <div class="prescription-title">持病に合う食材を選んでもらう</div>
+    </div>
+    <div class="prescription-body" id="rx08">私は（例：高血圧・糖尿病・花粉症・逆流性食道炎）を持っています。
+
+今アップロードした写真の食材の中で、
+①私に最もメリットのある食材トップ3
+②避けたほうがよい食材
+③おすすめの調理方法
+
+を、それぞれの栄養素と体への作用をわかりやすく教えてください。
+
+ヴィレバン文法で、親しみやすくお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx08', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <h3>③ 知らない野菜・食材の使い方を聞く</h3>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 0 9</div>
+      <div class="prescription-title">見慣れない食材の活かし方</div>
+    </div>
+    <div class="prescription-body" id="rx09">（写真をアップロードしたうえで）
+
+この食材について教えてください。
+①名前と原産地
+②含まれる主な栄養素
+③私にとってのメリット（健康面・美容面）
+④おすすめの食べ方・調理法3つ
+⑤一緒に食べると効果が上がる食材
+
+TikTok文法で、明日から試したくなるようにお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx09', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-kanji">好 み で は な く<br>デ ー タ で 選 ぶ</div>
+    <div class="insight-desc">— 毎日の買い物が、未来の病気を遠ざける —</div>
+  </div>
+
+  <p>
+    こういう買い物を続けていくと、自分にメリットのあるものばかり手に取るようになります。<br>
+    そうすると、<span class="highlight">病気になる確率は確実に下がります</span>。<br>
+    これは30年、身体を診てきた私の実感です。
+  </p>
+</section>
+
+<!-- ===== CH 7 ===== -->
+<section class="chapter" id="ch7">
+  <div class="chapter-head">
+    <div class="chapter-num">漆</div>
+    <div>
+      <span class="chapter-num-label">C H A P T E R ・ 0 7</span>
+      <h2 class="chapter-title">学びの処方箋<br>―― AIは、お子様の家庭教師</h2>
+    </div>
+  </div>
+
+  <p>
+    お子様の勉強、そしてご自身の学び直し。<br>
+    AIは、<span class="highlight">一人ひとりの背景を理解して教えてくれる塾の先生</span>のように働きます。
+  </p>
+
+  <div class="callout">
+    <div class="callout-label">I M P O R T A N T</div>
+    <h4>問題が解けない本当の理由は、<br>「問いが理解できていない」こと</h4>
+    <p>
+      教育のデータが示しているのは、子どもたちが問題を解けないのは、<br>
+      計算ができないからではなく、<strong>問題が何を聞いているかを勘違いしている</strong>ということです。<br>
+      AIに「問いの意味」を解きほぐしてもらうだけで、成績は大きく変わります。
+    </p>
+  </div>
+
+  <h3>① まず、問題をスクショする</h3>
+
+  <p>
+    問題集の問題・解答・途中の式を一緒に写真またはスクリーンショットに撮って、AIにアップロード。そして、こう聞きます。
+  </p>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 1 0</div>
+      <div class="prescription-title">問題の意味を解きほぐしてもらう</div>
+    </div>
+    <div class="prescription-body" id="rx10">（問題と解答と解説の写真をアップロードしたうえで）
+
+この問題について、以下を教えてください。
+
+①この問題は、本当は何を問いかけているのか
+②この問題で、出題者が試したい力は何か
+③私の解き方のどこが、どのように間違っているのか
+④正しい解き方の流れを、中学生にもわかる言葉で
+⑤この問題の背景にある、もっと大きな考え方
+
+TikTok文法で、飽きずに読めるようにお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx10', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <p>
+    背景を一瞬で教えてくれるので、<span class="highlight">勉強にリズムが出て、止まらなくなります</span>。<br>
+    これが継続の鍵です。
+  </p>
+
+  <h3>② 覚えるべきことをランキングしてもらう</h3>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 1 1</div>
+      <div class="prescription-title">覚えるべきことにランキングをつける</div>
+    </div>
+    <div class="prescription-body" id="rx11">この問題・単元について、覚えておいたほうが良いことを、
+重要度のランキングTOP10で教えてください。
+
+①必ず覚える（定期テスト・入試頻出）
+②余裕があれば覚える（応用力アップ）
+③知っておくと理解が深まる背景知識
+
+それぞれ、なぜ重要なのかの理由も添えてください。
+
+ヴィレバン文法で、覚える気になるようにお願いします。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx11', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <h3>③ ストーリー仕立てで暗記する</h3>
+
+  <p>
+    脳は、バラバラの事実ではなく<strong>物語として記憶する</strong>のが得意です。<br>
+    だから、暗記したいことをストーリーにしてもらうのが最強です。
+  </p>
+
+  <div class="prescription">
+    <div class="prescription-head">
+      <div class="prescription-label">R x - 1 2</div>
+      <div class="prescription-title">イメージ暗記ノートを作ってもらう</div>
+    </div>
+    <div class="prescription-body" id="rx12">（覚えたい内容を入力したうえで）
+
+これを暗記するために、映像が思い浮かぶようなストーリーを作ってください。
+
+条件：
+・主人公が冒険しながら、覚えるべき要素を順番に使っていく
+・それぞれの要素に、印象的なイメージを紐づける
+・読み終えたとき、自然に暗記できている構成にする
+・中学生〜高校生にも楽しく読める長さで
+
+TikTok文法とヴィレバン文法で、ワクワクする物語にしてください。</div>
+    <div class="prescription-foot">
+      <button class="copy-btn" onclick="copyPrompt('rx12', this)">このプロンプトをコピー</button>
+    </div>
+  </div>
+
+  <p>
+    お子さんが勉強につまずいたとき、怒る前に、まずスマホを出して、問題を写真に撮ってAIに見せる。<br>
+    それだけで、<span class="highlight">家庭の空気が変わります</span>。
+  </p>
+</section>
+
+<!-- ===== CLOSING ===== -->
+</main>
+
+<footer class="closing">
+  <div class="closing-seal">終 章 ・ 結 び に</div>
+  <h3>AIを使う目的は、<br>効率化ではなく「静謐」です</h3>
+  <p style="font-size: 13.5px; line-height: 2; color: rgba(245,240,228,0.9); text-align: center; position: relative; z-index: 1;">
+    頭のごちゃごちゃが減り、<br>
+    家族との会話が穏やかになり、<br>
+    毎日の買い物と食事が整い、<br>
+    お子様の勉強が止まらなくなる。<br><br>
+    その積み重ねの先に、<br>
+    <span style="color: var(--gold); font-family: 'Shippori Mincho', serif; font-size: 20px; letter-spacing: 0.3em; font-weight: 700;">静 謐</span><br>
+    ── 静かで、落ち着いた暮らしがあります。<br><br>
+    それこそが、身体の治癒力を最大に引き出す土台です。
+  </p>
+
+  <div class="closing-brand">
+    高松発・一生動ける身体と<br>人生の教養研究室<br>
+    ｜年 間 2 0 0 冊 読 む 治 療 家 よ り
+  </div>
+
+  <div class="closing-info">
+    三条健康堂接骨院<br>
+    高松市由良町、真楽寺のそば<br><br>
+    📍 <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" target="_blank">Googleマップで確認する</a><br>
+    💬 <a href="https://lin.ee/dwRtwDv" target="_blank">LINEでご相談・ご予約</a>
+  </div>
+
+  <div class="closing-cta">
+    分 か ら な い こ と は<br>L I N E で お 気 軽 に
+  </div>
+</footer>
+
+</div>
+
+<script>
+  function copyPrompt(id, btn) {
+    const text = document.getElementById(id).innerText;
+    const originalText = btn.innerText;
+
+    // Primary method: textarea + execCommand
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.top = '0';
+    textarea.style.left = '0';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, text.length);
+
+    let success = false;
+    try {
+      success = document.execCommand('copy');
+    } catch (e) {
+      success = false;
+    }
+    document.body.removeChild(textarea);
+
+    if (success) {
+      btn.classList.add('copied');
+      btn.innerText = 'コピーしました ✓';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerText = originalText;
+      }, 2000);
+      return;
+    }
+
+    // Fallback 1: clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.innerText = 'コピーしました ✓';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerText = originalText;
+        }, 2000);
+      }).catch(() => {
+        fallbackSelect(id, btn, originalText);
+      });
+      return;
+    }
+
+    // Fallback 2: manual selection
+    fallbackSelect(id, btn, originalText);
+  }
+
+  function fallbackSelect(id, btn, originalText) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    btn.innerText = 'テキスト選択 → 長押しでコピー';
+    setTimeout(() => {
+      btn.innerText = originalText;
+    }, 3500);
+  }
+
+  // smooth scroll for TOC
+  document.querySelectorAll('.toc a').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
