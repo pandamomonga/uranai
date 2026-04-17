@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兼近様 施術レポート</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  :root {
+    --neon-green: #00ff88;
+    --neon-cyan: #00e5ff;
+    --neon-yellow: #ffee00;
+    --neon-pink: #ff2d78;
+    --neon-orange: #ff6b00;
+    --neon-purple: #c44dff;
+    --bg: #000000;
+    --card-bg: #0a0a0a;
+    --card-border: #1a1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: #fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 0 40px;
+  }
+
+  /* HEADER */
+  .header {
+    background: #000;
+    padding: 24px 20px 16px;
+    border-bottom: 2px solid var(--neon-green);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-green));
+    animation: slide 3s linear infinite;
+  }
+  @keyframes slide {
+    0%{background-position:0% 0%} 100%{background-position:200% 0%}
+  }
+  .header-tag {
+    font-size: 10px;
+    color: var(--neon-cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .header-name {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+  .header-name span { color: var(--neon-green); }
+  .header-sub {
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+  }
+  .session-badge {
+    display: inline-block;
+    background: var(--neon-pink);
+    color: #000;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    padding: 20px 20px 8px;
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* SCAN CARD */
+  .scan-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #111;
+    margin: 0 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #1a1a1a;
+  }
+  .scan-header-cell {
+    background: #0d0d0d;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #555;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .scan-header-cell.left { color: var(--neon-cyan); border-right: 1px solid #1a1a1a; }
+  .scan-header-cell.right { color: var(--neon-pink); }
+  .scan-row {
+    display: contents;
+  }
+  .scan-cell {
+    background: #050505;
+    padding: 12px 14px;
+    border-bottom: 1px solid #111;
+    border-right: 1px solid #111;
+  }
+  .scan-cell:nth-child(even) { border-right: none; }
+  .scan-label {
+    font-size: 9px;
+    color: #444;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .scan-val {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .scan-status {
+    font-size: 9px;
+    margin-top: 3px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .normal { color: var(--neon-green); }
+  .below { color: var(--neon-pink); }
+  .scan-val.normal-val { color: var(--neon-green); }
+  .scan-val.below-val { color: var(--neon-pink); text-shadow: 0 0 10px rgba(255,45,120,0.5); }
+
+  /* ALERT CARD */
+  .alert-box {
+    margin: 16px 16px 0;
+    background: linear-gradient(135deg, #0a0a0a, #100510);
+    border: 1px solid var(--neon-pink);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 0 20px rgba(255,45,120,0.1);
+  }
+  .alert-title {
+    font-size: 10px;
+    color: var(--neon-pink);
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .alert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .alert-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--neon-pink);
+    margin-top: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px var(--neon-pink);
+  }
+  .alert-text { font-size: 13px; line-height: 1.6; color: #ddd; }
+  .alert-text strong { color: var(--neon-yellow); }
+
+  /* BIG IMPACT CARD */
+  .impact-card {
+    margin: 16px 16px 0;
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .impact-card.green-glow {
+    background: linear-gradient(135deg, #001a0d, #000d07);
+    border: 1px solid var(--neon-green);
+    box-shadow: 0 0 30px rgba(0,255,136,0.08);
+  }
+  .impact-card.cyan-glow {
+    background: linear-gradient(135deg, #00070d, #00030a);
+    border: 1px solid var(--neon-cyan);
+    box-shadow: 0 0 30px rgba(0,229,255,0.08);
+  }
+  .impact-card.yellow-glow {
+    background: linear-gradient(135deg, #0d0c00, #070600);
+    border: 1px solid var(--neon-yellow);
+    box-shadow: 0 0 30px rgba(255,238,0,0.08);
+  }
+  .impact-card.purple-glow {
+    background: linear-gradient(135deg, #080010, #040008);
+    border: 1px solid var(--neon-purple);
+    box-shadow: 0 0 30px rgba(196,77,255,0.08);
+  }
+  .ic-tag {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ic-tag.g { color: var(--neon-green); }
+  .ic-tag.c { color: var(--neon-cyan); }
+  .ic-tag.y { color: var(--neon-yellow); }
+  .ic-tag.p { color: var(--neon-purple); }
+
+  .ic-headline {
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .ic-headline .h-g { color: var(--neon-green); }
+  .ic-headline .h-c { color: var(--neon-cyan); }
+  .ic-headline .h-y { color: var(--neon-yellow); }
+  .ic-headline .h-p { color: var(--neon-purple); }
+  .ic-headline .h-w { color: #fff; }
+
+  .ic-body { font-size: 12px; line-height: 1.8; color: #aaa; }
+  .ic-body strong { color: #fff; font-weight: 700; }
+  .ic-body em { color: var(--neon-cyan); font-style: normal; font-weight: 700; }
+
+  .evidence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 9px;
+    color: #666;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+  .evidence-badge span { color: var(--neon-cyan); font-weight: 700; }
+
+  /* STAT ROW */
+  .stat-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .stat-pill {
+    flex: 1;
+    background: #0a0a0a;
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+    border: 1px solid #1a1a1a;
+  }
+  .stat-num {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .stat-label { font-size: 9px; color: #555; margin-top: 3px; letter-spacing: 1px; }
+
+  /* FLOW CARD */
+  .flow-card {
+    margin: 16px 16px 0;
+    background: #050505;
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .flow-title {
+    font-size: 10px;
+    color: var(--neon-orange);
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    width: 2px;
+    height: calc(100% - 8px);
+    background: linear-gradient(to bottom, var(--neon-orange), transparent);
+  }
+  .flow-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--neon-orange);
+    color: #000;
+    font-size: 13px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(255,107,0,0.4);
+  }
+  .flow-content {}
+  .flow-main { font-size: 14px; font-weight: 700; color: #fff; }
+  .flow-sub { font-size: 11px; color: #666; margin-top: 2px; line-height: 1.5; }
+
+  /* SLEEP CARD */
+  .sleep-card {
+    margin: 16px 16px 0;
+    background: linear-gradient(135deg, #00040d, #000208);
+    border: 1px solid #0066cc;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,102,204,0.1);
+  }
+  .moon { font-size: 36px; margin-bottom: 8px; }
+  .sleep-head {
+    font-size: 18px;
+    font-weight: 900;
+    color: #4dd2ff;
+    margin-bottom: 8px;
+  }
+  .sleep-body { font-size: 12px; color: #888; line-height: 1.7; }
+  .sleep-body strong { color: #4dd2ff; }
+
+  /* FOOTER */
+  .footer {
+    margin: 24px 16px 0;
+    padding: 16px;
+    background: #050505;
+    border-radius: 12px;
+    border: 1px solid #111;
+    text-align: center;
+  }
+  .footer-clinic { font-size: 11px; color: #555; margin-bottom: 4px; }
+  .footer-brand { font-size: 10px; color: #333; }
+  .footer-brand span { color: var(--neon-green); }
+
+  /* divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #222, transparent);
+    margin: 16px 16px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">📋 施術レポート / Treatment Report</div>
+  <div class="header-name"><span>兼近</span>様</div>
+  <div class="header-sub">三条健康堂接骨院　|　2025年 第2回</div>
+  <div class="session-badge">🔴 SESSION 2 ／ 歯の食い縛り専門ケア</div>
+</div>
+
+<!-- SECTION: スキャン結果 -->
+<div class="section-label">▸ BIOENERGETIC SCAN</div>
+<div class="scan-grid">
+  <div class="scan-header-cell left">LEFT　φL</div>
+  <div class="scan-header-cell right">RIGHT　φR</div>
+
+  <!-- Energy -->
+  <div class="scan-cell">
+    <div class="scan-label">⚡ Energy Level</div>
+    <div class="scan-val normal-val">31.82</div>
+    <div class="scan-status normal">✓ Normal</div>
+  </div>
+  <div class="scan-cell">
+    <div class="scan-label">⚡ Energy Level</div>
+    <div class="scan-val normal-val">30.11</div>
+    <div class="scan-status normal">✓ Normal</div>
+  </div>
+
+  <!-- Immune -->
+  <div class="scan-cell">
+    <div class="scan-label">🛡 Immune System</div>
+    <div class="scan-val normal-val">19.51</div>
+    <div class="scan-status normal">✓ Normal</div>
+  </div>
+  <div class="scan-cell">
+    <div class="scan-label">🛡 Immune System</div>
+    <div class="scan-val below-val">8.32</div>
+    <div class="scan-status below">⚠ Below Norm</div>
+  </div>
+
+  <!-- Metabolism -->
+  <div class="scan-cell">
+    <div class="scan-label">♻ Metabolism</div>
+    <div class="scan-val normal-val">1.12</div>
+    <div class="scan-status normal">✓ Normal</div>
+  </div>
+  <div class="scan-cell">
+    <div class="scan-label">♻ Metabolism</div>
+    <div class="scan-val normal-val">1.19</div>
+    <div class="scan-status normal">✓ Normal</div>
+  </div>
+
+  <!-- Psycho -->
+  <div class="scan-cell">
+    <div class="scan-label">🧠 Psycho-Emotional</div>
+    <div class="scan-val below-val">0.73</div>
+    <div class="scan-status below">⚠ Below Norm</div>
+  </div>
+  <div class="scan-cell">
+    <div class="scan-label">🧠 Psycho-Emotional</div>
+    <div class="scan-val below-val">0.60</div>
+    <div class="scan-status below">⚠ Below Norm</div>
+  </div>
+
+  <!-- Musculoskeletal -->
+  <div class="scan-cell" style="border-bottom:none;">
+    <div class="scan-label">💪 Musculoskeletal</div>
+    <div class="scan-val below-val">0.85</div>
+    <div class="scan-status below">⚠ Below Norm</div>
+  </div>
+  <div class="scan-cell" style="border-bottom:none;">
+    <div class="scan-label">💪 Musculoskeletal</div>
+    <div class="scan-val below-val">0.81</div>
+    <div class="scan-status below">⚠ Below Norm</div>
+  </div>
+</div>
+
+<!-- ALERT BOX -->
+<div class="alert-box">
+  <div class="alert-title">🔴 KEY FINDINGS</div>
+  <div class="alert-item">
+    <div class="alert-dot"></div>
+    <div class="alert-text">右側の<strong>免疫系が大幅低下</strong>（19.51→8.32）。右後頭部の慢性緊張との相関を疑う。</div>
+  </div>
+  <div class="alert-item">
+    <div class="alert-dot"></div>
+    <div class="alert-text"><strong>精神-感情状態が両側とも低値</strong>。睡眠の質の低下と歯の食い縛りの悪循環が継続中。</div>
+  </div>
+  <div class="alert-item">
+    <div class="alert-dot" style="background:var(--neon-yellow);box-shadow:0 0 6px var(--neon-yellow);"></div>
+    <div class="alert-text">筋骨格系も両側でベロウノーム→<strong>首＋後頭部のトリガーポイントが主因</strong>と一致。</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CARD 1: TP Treatment -->
+<div class="section-label">▸ 今日の施術ポイント</div>
+<div class="impact-card green-glow">
+  <div class="ic-tag g">💥 TRIGGER POINT RELEASE</div>
+  <div class="ic-headline">
+    <span class="h-w">首＋右後頭部の</span><br>
+    <span class="h-g">TP全リリース</span><br>
+    <span class="h-w">→頭蓋骨のズレを整える</span>
+  </div>
+  <div class="ic-body">
+    頸部に<strong>巨大なトリガーポイント</strong>が集積。さらに<strong>右後頭部</strong>に複合的なTP集合体あり。これらを系統的にリリースすることで頭蓋-頸椎ジャンクションの<em>アライメントが大幅改善</em>する。神経筋反射の正常化が目的。
+  </div>
+  <div class="evidence-badge">
+    <span>📖</span> Stecco 2014 / Fryer 2004 / 筋膜連鎖理論
+  </div>
+</div>
+
+<!-- CRANIAL TWIST VISUAL -->
+<div style="margin:8px 16px 0;background:#050005;border:1px solid #ff2d78;border-radius:16px;padding:18px;box-shadow:0 0 24px rgba(255,45,120,0.07);">
+  <div style="font-size:9px;font-weight:900;letter-spacing:3px;color:#ff2d78;margin-bottom:10px;">🧠 RIGHT OCCIPITAL TP CLUSTER → 頭蓋骨ねじれのしくみ</div>
+
+  <!-- SVG skull diagram -->
+  <div style="background:#030003;border:1px solid #1a001a;border-radius:12px;padding:14px;margin-bottom:12px;">
+    <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <!-- Skull outline (top view) -->
+      <ellipse cx="150" cy="90" rx="80" ry="75" fill="none" stroke="#333" stroke-width="1.5"/>
+      <!-- Center line (should be) -->
+      <line x1="150" y1="20" x2="150" y2="175" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- Twisted skull - rotated indicator -->
+      <ellipse cx="150" cy="90" rx="80" ry="75" fill="none" stroke="#ff2d78" stroke-width="1.5" stroke-dasharray="5,3" transform="rotate(12 150 90)" opacity="0.6"/>
+      <!-- Actual center line (twisted) -->
+      <line x1="155" y1="20" x2="143" y2="175" stroke="#ff2d78" stroke-width="1.5"/>
+
+      <!-- RIGHT SIDE label -->
+      <text x="215" y="88" fill="#ff2d78" font-size="9" font-weight="bold" font-family="sans-serif">R</text>
+      <!-- LEFT SIDE label -->
+      <text x="72" y="88" fill="#00e5ff" font-size="9" font-weight="bold" font-family="sans-serif">L</text>
+
+      <!-- TP cluster right occipital -->
+      <circle cx="210" cy="140" r="14" fill="rgba(255,45,120,0.15)" stroke="#ff2d78" stroke-width="1.5"/>
+      <circle cx="210" cy="140" r="6" fill="#ff2d78" opacity="0.8"/>
+      <circle cx="224" cy="128" r="5" fill="#ff2d78" opacity="0.5"/>
+      <circle cx="198" cy="150" r="4" fill="#ff2d78" opacity="0.5"/>
+      <!-- TP label -->
+      <text x="228" y="143" fill="#ff2d78" font-size="8" font-family="sans-serif" font-weight="bold">TP集合</text>
+
+      <!-- Neck TP -->
+      <rect x="130" y="162" width="40" height="22" rx="5" fill="rgba(255,107,0,0.15)" stroke="#ff6b00" stroke-width="1.5"/>
+      <circle cx="143" cy="173" r="4" fill="#ff6b00" opacity="0.8"/>
+      <circle cx="157" cy="173" r="4" fill="#ff6b00" opacity="0.6"/>
+      <text x="110" y="188" fill="#ff6b00" font-size="7" font-family="sans-serif">首TP</text>
+
+      <!-- Twist arrows -->
+      <path d="M 150 55 Q 175 45 185 60" fill="none" stroke="#ff2d78" stroke-width="2" marker-end="url(#arr)"/>
+      <path d="M 150 130 Q 125 140 120 128" fill="none" stroke="#ff2d78" stroke-width="2" marker-end="url(#arr2)"/>
+
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#ff2d78"/>
+        </marker>
+        <marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#ff2d78"/>
+        </marker>
+      </defs>
+
+      <!-- Ideal center label -->
+      <text x="155" y="17" fill="#555" font-size="7" font-family="sans-serif">正中線（理想）</text>
+      <!-- Actual line label -->
+      <text x="156" y="180" fill="#ff2d78" font-size="7" font-family="sans-serif">実際の軸（ずれ）</text>
+    </svg>
+    <div style="text-align:center;font-size:9px;color:#444;margin-top:4px;letter-spacing:1px;">TOP VIEW（上から見た頭蓋骨）</div>
+  </div>
+
+  <!-- Step-by-step causation -->
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    <div style="background:#0a0005;border-left:3px solid #ff2d78;border-radius:0 8px 8px 0;padding:10px 12px;display:flex;align-items:flex-start;gap:8px;">
+      <div style="font-size:16px;flex-shrink:0;">🔴</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#ff2d78;">右後頭部にTPが集合</div>
+        <div style="font-size:10px;color:#777;margin-top:2px;">後頭下筋群（大・小後頭直筋、上・下頭斜筋）が慢性収縮</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:14px;color:#333;">↓</div>
+    <div style="background:#0a0005;border-left:3px solid #ff6b00;border-radius:0 8px 8px 0;padding:10px 12px;display:flex;align-items:flex-start;gap:8px;">
+      <div style="font-size:16px;flex-shrink:0;">⚠️</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#ff6b00;">右側の筋が短縮 → 後頭骨が右に引っ張られる</div>
+        <div style="font-size:10px;color:#777;margin-top:2px;">頭蓋底が右回旋・右側屈方向にねじれる</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:14px;color:#333;">↓</div>
+    <div style="background:#0a0005;border-left:3px solid #ffee00;border-radius:0 8px 8px 0;padding:10px 12px;display:flex;align-items:flex-start;gap:8px;">
+      <div style="font-size:16px;flex-shrink:0;">💀</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#ffee00;">頭蓋骨全体がねじれて固定される</div>
+        <div style="font-size:10px;color:#777;margin-top:2px;">縫合部の可動性低下・脳脊髄液の循環に影響</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:14px;color:#333;">↓</div>
+    <div style="background:#0a0005;border-left:3px solid #c44dff;border-radius:0 8px 8px 0;padding:10px 12px;display:flex;align-items:flex-start;gap:8px;">
+      <div style="font-size:16px;flex-shrink:0;">😬</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#c44dff;">顎関節のアライメントがずれ → 食い縛りが悪化</div>
+        <div style="font-size:10px;color:#777;margin-top:2px;">側頭骨の位置異常 → 下顎頭が非生理的咬合位に誘導される</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:14px;color:#333;">↓</div>
+    <div style="background:#001a0d;border-left:3px solid #00ff88;border-radius:0 8px 8px 0;padding:10px 12px;display:flex;align-items:flex-start;gap:8px;">
+      <div style="font-size:16px;flex-shrink:0;">✅</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#00ff88;">TP全リリース → ねじれが解除 → 顎が正位置に戻る</div>
+        <div style="font-size:10px;color:#777;margin-top:2px;">本日の施術の核心。前回ぐっすり眠れた理由がこれ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 2: Sleep -->
+<div class="sleep-card">
+  <div class="moon">🌙</div>
+  <div class="sleep-head">前回：施術当日から<br>「ぐっすり眠れた」</div>
+  <div class="sleep-body">
+    TP解放 → 自律神経の副交感トーン上昇 → <strong>睡眠の質が劇的改善</strong>。今回も同様の反応が期待できます。<br><br>
+    さらに今夜は<strong>ボックス呼吸＋三角ピロー</strong>のダブルケアで効果を最大化しましょう 👇
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CARD: ボックス呼吸 -->
+<div class="section-label">▸ 眠前ルーティン / 自律神経ハック</div>
+<div style="margin:0 16px;background:linear-gradient(135deg,#000a10,#000508);border:1px solid #00e5ff;border-radius:16px;padding:20px;box-shadow:0 0 30px rgba(0,229,255,0.07);">
+  <div style="font-size:9px;font-weight:900;letter-spacing:3px;color:#00e5ff;margin-bottom:8px;">🌬 BOX BREATHING × 自律神経科学</div>
+  <div style="font-size:20px;font-weight:900;line-height:1.2;margin-bottom:14px;">
+    <span style="color:#fff;">交感神経は</span><span style="color:#ff2d78;">そのまま</span><br>
+    <span style="color:#00e5ff;">副交感神経を上げる</span><br>
+    <span style="color:#fff;">これが正解</span>
+  </div>
+  <div style="font-size:12px;color:#aaa;line-height:1.8;margin-bottom:14px;">
+    よくある誤解は「リラックス＝交感神経を下げる」こと。<br>
+    ボックス呼吸の本質は<strong style="color:#fff;">迷走神経（副交感）を能動的に引き上げる</strong>ことで、交感・副交感の<em style="color:#00e5ff;">共活性化（co-activation）</em>状態を作ること。<br><br>
+    仕事モードの覚醒は維持しながら、<strong style="color:#fff;">筋肉の過緊張だけが緩む</strong>というのが理想的な眠前状態。
+  </div>
+
+  <!-- Box Breathing Visual: sequential arrow flow -->
+  <div style="background:#030d14;border:1px solid #0a2a3a;border-radius:12px;padding:16px;margin-bottom:14px;">
+    <div style="text-align:center;font-size:10px;color:#00e5ff;letter-spacing:3px;margin-bottom:14px;font-weight:700;">4-4-4-4 BOX METHOD　順番通りに繰り返す</div>
+    <!-- Step 1 -->
+    <div style="background:#041520;border:1px solid #0a3050;border-radius:10px;padding:12px;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:#00e5ff;color:#000;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">①</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:#00e5ff;line-height:1;">4秒　<span style="font-size:13px;color:#aaa;font-weight:400;">吸う</span></div>
+        <div style="font-size:10px;color:#666;margin-top:2px;">鼻からゆっくり、腹を膨らませる</div>
+      </div>
+    </div>
+    <!-- Arrow -->
+    <div style="text-align:center;font-size:20px;color:#0a3050;line-height:1.4;">↓</div>
+    <!-- Step 2 -->
+    <div style="background:#041520;border:1px solid #0a3050;border-radius:10px;padding:12px;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:#c44dff;color:#000;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">②</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:#c44dff;line-height:1;">4秒　<span style="font-size:13px;color:#aaa;font-weight:400;">止める（吸ったまま）</span></div>
+        <div style="font-size:10px;color:#666;margin-top:2px;">胸郭を広げたまま、肩の力を抜く</div>
+      </div>
+    </div>
+    <!-- Arrow -->
+    <div style="text-align:center;font-size:20px;color:#0a3050;line-height:1.4;">↓</div>
+    <!-- Step 3 -->
+    <div style="background:#041520;border:1px solid #0a3050;border-radius:10px;padding:12px;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:#00ff88;color:#000;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">③</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:#00ff88;line-height:1;">4秒　<span style="font-size:13px;color:#aaa;font-weight:400;">吐く</span></div>
+        <div style="font-size:10px;color:#666;margin-top:2px;">口から細く長く、腹をへこませる</div>
+      </div>
+    </div>
+    <!-- Arrow -->
+    <div style="text-align:center;font-size:20px;color:#0a3050;line-height:1.4;">↓</div>
+    <!-- Step 4 -->
+    <div style="background:#041520;border:1px solid #0a3050;border-radius:10px;padding:12px;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:#ffee00;color:#000;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">④</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:#ffee00;line-height:1;">4秒　<span style="font-size:13px;color:#aaa;font-weight:400;">止める（空のまま）</span></div>
+        <div style="font-size:10px;color:#666;margin-top:2px;">空っぽのまま静止、焦らず待つ</div>
+      </div>
+    </div>
+    <!-- Loop arrow -->
+    <div style="text-align:center;margin-top:10px;padding:8px;background:#020d18;border-radius:8px;border:1px solid #0a2a3a;">
+      <span style="font-size:12px;color:#00e5ff;font-weight:700;">↺　①に戻る　×　4〜6セット（約2〜3分）</span>
+    </div>
+  </div>
+
+  <!-- 食い縛りへの効果 -->
+  <div style="background:#040008;border:1px solid #2a0040;border-radius:10px;padding:14px;margin-bottom:12px;">
+    <div style="font-size:10px;color:#c44dff;letter-spacing:2px;font-weight:700;margin-bottom:8px;">💜 歯の食い縛りへの直接的効果</div>
+    <div style="font-size:11px;color:#999;line-height:1.8;">
+      副交感トーン↑ → <strong style="color:#fff;">咬筋・側頭筋の安静時緊張が低下</strong><br>
+      迷走神経刺激 → <strong style="color:#fff;">三叉神経核の興奮閾値が上昇</strong> → 食い縛り発火しにくくなる<br>
+      呼吸リズムの規則化 → <strong style="color:#fff;">睡眠段階の移行が安定</strong> → 浅い眠りで起動するブラキシズムが減少<br><br>
+      <em style="color:#c44dff;">研究では就寝前のスローペース呼吸（4〜6秒サイクル）が夜間のブラキシズムエピソード数を有意に削減</em>（Manfredini et al. 2015 / Orofacial Pain系統レビュー）
+    </div>
+  </div>
+
+  <div style="background:#030d14;border:1px solid #0a2a2a;border-radius:10px;padding:12px;">
+    <div style="font-size:10px;color:#00e5ff;letter-spacing:2px;font-weight:700;margin-bottom:6px;">⚡ なぜ「交感を下げない」が正解か</div>
+    <div style="font-size:11px;color:#888;line-height:1.7;">
+      交感神経を強制的に下げようとする（深呼吸を「頑張る」など）と<strong style="color:#fff;">かえって覚醒・緊張が高まる</strong>逆説反応が起きることがある。ボックス呼吸は「呼吸リズムの等間隔化」によって<em style="color:#00e5ff;">副交感系を積極的に招き入れる</em>アプローチ。仕事の記憶・集中モードを持ったまま、身体だけを眠りに誘う。これが<strong style="color:#fff;">プロのリカバリー技術</strong>。
+    </div>
+  </div>
+</div>
+<div class="impact-card cyan-glow">
+  <div class="ic-tag c">🔬 EVIDENCE-BASED PILLOW ／ 今すぐ手に入れるべき理由</div>
+  <div class="ic-headline">
+    <span style="color:#ff2d78;">まだ持っていない</span><br>
+    <span class="h-c">三角ピロー</span><br>
+    <span class="h-w">= 毎晩損している</span>
+  </div>
+  <div class="ic-body">
+    ボックス呼吸で副交感トーンを上げ、TP をリリースしても、<strong>枕が頸椎前弯を崩していれば夜中に全部リセットされる</strong>。三角ピローは「施術効果を翌朝まで持続させる装置」です。<br><br>
+    ▸ 頸椎C字カーブを終夜サポート → 舌骨上筋・咬筋が脱力を維持<br>
+    ▸ 側臥位でも頸部側屈ゼロ → 食い縛りの誘発トリガーを消す<br>
+    ▸ 下顎の位置 = 頸椎アライメントに直結する事実<br><br>
+    <strong>■ 選び方（Amazon検索：三角ピロー 頸椎）</strong><br>
+    高さ<em>8〜10cm・傾斜角15〜20°</em>のウレタン高密度フォーム製。価格帯 <strong>¥2,000〜¥5,000</strong> で十分な品質が揃います。
+  </div>
+  <div style="background:#001820;border:1px solid #005566;border-radius:10px;padding:12px;margin-top:12px;text-align:center;">
+    <div style="font-size:10px;color:#00e5ff;letter-spacing:2px;font-weight:700;margin-bottom:6px;">💡 先生からのひと言</div>
+    <div style="font-size:12px;color:#ccc;line-height:1.7;">施術1回分の何十分の一かの投資で、<strong style="color:#fff;">毎晩8時間ぶんの治療補助</strong>が得られます。<br>今週中にぜひ購入してください。</div>
+  </div>
+  <div class="evidence-badge" style="margin-top:10px;">
+    <span>📖</span> 睡眠歯科学 / 顎口腔系の神経筋協調 / ポジショニング研究
+  </div>
+  <div class="stat-row">
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--neon-cyan)">↓</div>
+      <div class="stat-label">咬筋<br>過活動</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--neon-cyan)">↑</div>
+      <div class="stat-label">頸椎<br>前弯保持</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--neon-cyan)">✓</div>
+      <div class="stat-label">施術効果<br>翌朝まで持続</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CARD 4: おにぎり × 食物繊維 × リウマチ -->
+<div class="section-label">▸ 食事戦略</div>
+<div class="impact-card yellow-glow">
+  <div class="ic-tag y">🍙 FOOD × IMMUNE HACK</div>
+  <div class="ic-headline">
+    <span class="h-y">スーパーおにぎり</span><br>
+    <span class="h-w">が免疫を守る理由</span>
+  </div>
+  <div class="ic-body">
+    スキャン結果で<strong>右免疫系が低下</strong>している今こそ、食物繊維の摂取が重要。<br><br>
+    <strong>■ リウマチへの効果</strong><br>
+    食物繊維は腸内の<em>酪酸産生菌</em>を増殖させ、腸管バリア機能を強化。腸内透過性の低下 → 全身性炎症（TNF-α・IL-6）の抑制 → <strong>関節炎症の軽減</strong>に繋がる。<br><br>
+    <strong>■ 今すぐできること</strong><br>
+    玄米・雑穀・具材豊富なおにぎりは<em>βグルカン・アラビノキシラン</em>を含み、単糖類より血糖上昇が穏やかで免疫の安定化に貢献。
+  </div>
+  <div class="evidence-badge">
+    <span>📖</span> Gut Microbiome × RA研究 / Liao et al. 2019
+  </div>
+</div>
+
+<!-- CARD 5: 子供の腸内細菌 × 学力 -->
+<div class="impact-card purple-glow" style="margin-top:8px;">
+  <div class="ic-tag p">🧬 GUT-BRAIN AXIS × 学力</div>
+  <div class="ic-headline">
+    <span class="h-p">高校生×食物繊維</span><br>
+    <span class="h-w">腸内細菌が</span><br>
+    <span class="h-p">学力まで変える</span>
+  </div>
+  <div class="ic-body">
+    <strong>■ 免疫への影響</strong><br>
+    食物繊維摂取 → <em>Bifidobacterium・Lactobacillus 増加</em> → 制御性T細胞活性化 → アレルギー・感染症リスク↓。10代での腸内細菌叢の確立が<strong>生涯免疫のベースライン</strong>になる。<br><br>
+    <strong>■ 学力・認知機能への影響</strong><br>
+    腸内細菌が産生する<em>短鎖脂肪酸（SCFA）</em>が血液脳関門を通過し、<strong>BDNF（脳由来神経栄養因子）</strong>産生を促進。集中力・記憶力・気分の安定に直結。食物繊維が少ない食事＝集中が続かない理由のひとつ。
+  </div>
+  <div class="stat-row">
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--neon-purple)">↑</div>
+      <div class="stat-label">BDNF<br>産生</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--neon-purple)">↓</div>
+      <div class="stat-label">炎症<br>マーカー</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--neon-purple)">↑</div>
+      <div class="stat-label">集中力<br>持続</div>
+    </div>
+  </div>
+  <div class="evidence-badge">
+    <span>📖</span> Gut-Brain Axis / Cryan et al. 2019 Nature
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CARD 6: 食欲コントロール戦略 -->
+<div class="section-label">▸ 菓子パン対策フロー</div>
+<div class="flow-card">
+  <div class="flow-title">🍌 おにぎり→バナナ→菓子パン激減 戦略</div>
+  
+  <div class="flow-step">
+    <div class="flow-num">1</div>
+    <div class="flow-content">
+      <div class="flow-main" style="color:var(--neon-green)">スーパーおにぎり（食物繊維）</div>
+      <div class="flow-sub">βグルカン・アラビノキシランが腸内の<em>GLP-1</em>分泌を刺激。満腹シグナルが脳に到達するまでの「架け橋」になる。</div>
+    </div>
+  </div>
+  <div class="flow-step">
+    <div class="flow-num">2</div>
+    <div class="flow-content">
+      <div class="flow-main" style="color:var(--neon-yellow)">バナナ（低GI・ペクチン）</div>
+      <div class="flow-sub">ペクチンが胃内の食物移動を遅らせ、血糖の急上昇を防止。セロトニン前駆体（トリプトファン）で情動的な食欲も安定化。</div>
+    </div>
+  </div>
+  <div class="flow-step">
+    <div class="flow-num" style="background:var(--neon-cyan);box-shadow:0 0 10px rgba(0,229,255,0.4);">3</div>
+    <div class="flow-content">
+      <div class="flow-main" style="color:var(--neon-cyan)">菓子パン → 「一口で十分」</div>
+      <div class="flow-sub">胃容量の70%がすでに充填 + 血糖安定 = 衝動的な甘味希求が劇的に低下。食べたとしても<strong>量が自然に減る</strong>。意志力に頼らない食欲マネジメント。</div>
+    </div>
+  </div>
+
+  <div style="background:#0a0a0a;border-radius:10px;padding:12px;margin-top:4px;border:1px solid #1a1a1a;">
+    <div style="font-size:10px;color:#555;letter-spacing:2px;margin-bottom:6px;">📊 EVIDENCE</div>
+    <div style="font-size:11px;color:#888;line-height:1.7;">
+      食物繊維の先行摂取（preload）は後続の<strong style="color:#fff;">高糖質食の摂取量を20〜35%削減</strong>するとの報告あり（Nutrition Journal 2020）。バナナのペクチンは胃排出を遅延させ食後血糖上昇抑制に有効（Dyssegaard et al. 2017）。意志力ではなく<em style="color:var(--neon-cyan);">生理的な順序で食欲をコントロール</em>する合理的戦略。
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SLEEP REMINDER -->
+<div style="margin:16px 16px 0;background:linear-gradient(135deg,#0d0600,#080400);border:1px solid var(--neon-orange);border-radius:16px;padding:18px;">
+  <div style="font-size:32px;margin-bottom:8px;text-align:center;">🛏️</div>
+  <div style="font-size:16px;font-weight:900;color:var(--neon-orange);margin-bottom:12px;text-align:center;">今夜の宿題 3ステップ</div>
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div style="background:#110800;border:1px solid #2a1500;border-radius:10px;padding:12px;display:flex;align-items:flex-start;gap:10px;">
+      <div style="font-size:18px;flex-shrink:0;">🌬</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;">STEP 1　ボックス呼吸 4〜6セット</div>
+        <div style="font-size:11px;color:#888;">就寝直前に実施。副交感トーンを上げて咬筋を脱力させる</div>
+      </div>
+    </div>
+    <div style="background:#110800;border:1px solid #2a1500;border-radius:10px;padding:12px;display:flex;align-items:flex-start;gap:10px;">
+      <div style="font-size:18px;flex-shrink:0;">🛒</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--neon-cyan);margin-bottom:2px;">STEP 2　三角ピローを今週中に購入</div>
+        <div style="font-size:11px;color:#888;">Amazon「三角ピロー 頸椎」¥2,000〜¥5,000。施術効果を8時間キープ</div>
+      </div>
+    </div>
+    <div style="background:#110800;border:1px solid #2a1500;border-radius:10px;padding:12px;display:flex;align-items:flex-start;gap:10px;">
+      <div style="font-size:18px;flex-shrink:0;">😴</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--neon-green);margin-bottom:2px;">STEP 3　仰向け・頸椎中間位でおやすみ</div>
+        <div style="font-size:11px;color:#888;">下顎を脱力。今夜も前回と同じくぐっすり眠れるはずです ✨</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-clinic">三条健康堂接骨院　香川県高松市</div>
+  <div class="footer-brand">高松発・一生動ける身体と人生の教養研究室<br><span>年間200冊読む治療家</span>より</div>
+</div>
+
+</body>
+</html>
