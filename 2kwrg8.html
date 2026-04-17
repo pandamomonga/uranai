@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJI Osmo Nano 貸し出しガイド</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf8f3;
+    --accent: #c0392b;
+    --gold: #c4a44d;
+    --muted: #6b6b6b;
+    --border: #ddd8ce;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  .header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .header::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin: 0 auto 24px;
+  }
+
+  .header .from-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .header .sub {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Alert box */
+  .alert {
+    background: var(--ink);
+    color: #fff;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .alert::before {
+    content: '重要事項';
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .alert p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .alert strong {
+    color: #ffcc44;
+    font-weight: 700;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Feature cards */
+  .feature-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .feature-card {
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .feature-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .feature-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .feature-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* Steps */
+  .steps {
+    display: grid;
+    gap: 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .step:last-child {
+    border-bottom: none;
+  }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--ink);
+    color: #fff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step.urgent .step-num {
+    background: var(--accent);
+  }
+
+  .step-content h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .step-content p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .step-content .url {
+    font-size: 11px;
+    background: #f0ede6;
+    padding: 4px 8px;
+    margin-top: 8px;
+    display: inline-block;
+    word-break: break-all;
+    font-family: monospace;
+    color: var(--ink);
+  }
+
+  .step-content .tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 8px;
+    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Promise box */
+  .promise {
+    border: 2px solid var(--accent);
+    padding: 24px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .promise::before {
+    content: '約束事項';
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--paper);
+    padding: 0 8px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .promise-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .promise-list li {
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .promise-list li:last-child {
+    border-bottom: none;
+  }
+
+  .promise-list li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Care Refresh highlight */
+  .care-highlight {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
+    color: #fff;
+    padding: 28px;
+    margin-bottom: 40px;
+  }
+
+  .care-highlight .care-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .care-highlight h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 12px;
+  }
+
+  .care-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  .care-item .care-icon {
+    color: var(--gold);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .care-item p {
+    font-size: 12px;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+
+  .care-item strong {
+    color: #ffdd66;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 2px solid var(--ink);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .footer strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* Print / share hint */
+  @media print {
+    body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="from-label">借用品のご案内</div>
+  <h1>DJI Osmo Nano<br>お貸し出しガイド</h1>
+  <p class="sub">大切なカメラをお預けします。以下をお読みください。</p>
+</div>
+
+<!-- 重要アラート -->
+<div class="alert">
+  <p>このカメラには<strong>DJI Care Refresh（2年保証）</strong>を付けています。<br>
+  <strong>電源を初めて入れたその日のうちに</strong>、ケアサポートの登録を必ず行ってください。<br>
+  完了後は<strong>確認画面のスクリーンショット</strong>を送ってもらえると助かります。</p>
+</div>
+
+<!-- Care Refreshとは -->
+<div class="care-highlight">
+  <div class="care-label">DJI CARE REFRESH とは</div>
+  <h2>神レベルの保証プログラム</h2>
+
+  <div class="care-item">
+    <span class="care-icon">★</span>
+    <p><strong>水没・落下・ぶつけても OK</strong>：少額（数千円）の追加費用だけで、新品同等品と交換してもらえます。修理ではなく「交換」です。</p>
+  </div>
+  <div class="care-item">
+    <span class="care-icon">★</span>
+    <p><strong>2年間有効</strong>：今回は2年版を購入。その間は安心して使えます。</p>
+  </div>
+  <div class="care-item">
+    <span class="care-icon">★</span>
+    <p><strong>未使用なら保証延長</strong>：2年間一度も交換申請しなかった場合、メーカー保証がさらに1年延長される特典あり。</p>
+  </div>
+  <div class="care-item">
+    <span class="care-icon">★</span>
+    <p><strong>送料無料</strong>：DJIへの往復送料も無料でカバー。</p>
+  </div>
+</div>
+
+<!-- Osmo Nanoの魅力 -->
+<div class="section">
+  <div class="section-label">About This Camera</div>
+  <h2>Osmo Nano ってどんなカメラ？</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎬</div>
+      <div>
+        <div class="feature-title">4K / 60fps の超高画質</div>
+        <div class="feature-desc">スマホを超える映像が撮れます。内蔵ストレージ128GBで長時間撮影可能。</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <div>
+        <div class="feature-title">大型タッチスクリーン搭載</div>
+        <div class="feature-desc">背面の大きな画面でリアルタイムプレビュー。自撮りもしやすい。</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏊</div>
+      <div>
+        <div class="feature-title">防水・耐衝撃性能</div>
+        <div class="feature-desc">アウトドアや旅行でも安心して使えるタフな設計。</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📲</div>
+      <div>
+        <div class="feature-title">DJI Memo アプリ連携</div>
+        <div class="feature-desc">スマホアプリと連動して操作・編集・管理が簡単にできます。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- セットアップ手順 -->
+<div class="section">
+  <div class="section-label">Setup Guide</div>
+  <h2>セットアップ手順</h2>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>DJI Memo アプリをインストール</h3>
+        <p>App Store または Google Play で「DJI Memo」を検索してインストール。DJIアカウントも作成しておく。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Osmo Nano の電源を入れる</h3>
+        <p>電源ボタン長押しで起動。アプリと接続してアクティベーション（初期設定）を完了させる。<br>
+        ⚠️ <strong>この時点から30日のカウントが始まります。</strong></p>
+      </div>
+    </div>
+
+    <div class="step urgent">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="tag">最重要 · 当日中に必ず</div>
+        <h3>DJI Care Refresh を登録する</h3>
+        <p>カードに書かれたアクティベーションコードを手元に用意して以下のページへアクセス。</p>
+        <div class="url">https://support.dji.com/care/active</div>
+        <p style="margin-top:8px;">① コードを入力　② シリアルナンバーを入力（箱のバーコード下部の番号）　③ メールアドレス等の個人情報を入力して送信</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>完了メールを確認・スクショを送る</h3>
+        <p>登録したメールアドレスにDJI Care Refreshのサービス規約メールが届きます。画面のスクリーンショット（または完了画面の写真）を私に送ってください。これが保証の証明になります。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h3>加入確認（任意）</h3>
+        <p>以下のページでシリアルナンバーを入力すると、Care Refreshの有効期間が確認できます。</p>
+        <div class="url">https://repair.dji.com/device/search?lang=ja&re=jp</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 約束事項 -->
+<div class="promise">
+  <ul class="promise-list">
+    <li>電源を初めて入れた日のうちに Care Refresh の登録を完了させること</li>
+    <li>登録完了のスクリーンショットを必ず送ること</li>
+    <li>万一、破損・水没した場合はすぐに連絡し、Care Refreshで対応すること</li>
+    <li>1〜2年後を目安に返却すること</li>
+    <li>SDカード等の付属品を含めて丁寧に扱うこと</li>
+  </ul>
+</div>
+
+<!-- フッター -->
+<div class="footer">
+  <strong>シリアルナンバー（S/N）メモ欄：</strong><br>
+  ___________________________<br><br>
+  Care Refresh 登録日：_____ 年 _____ 月 _____ 日<br><br>
+  <span style="font-size:11px;">何か分からないことがあれば気軽に連絡してください。</span>
+</div>
+
+</body>
+</html>
