@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="縁の処方箋">
+<meta name="theme-color" content="#080807">
+<title>縁の処方箋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080807;--bg2:#14130f;--bg3:#1f1d17;
+  --cream:#e8e2d0;--cream2:#a8a293;--cream3:#6d695d;
+  --gold:#c4a44d;--gold2:#8c7330;
+  --neon:#d4f03c;--pink:#f5a4c8;
+  --go:#7ddb6a;--warn:#e8a441;--stop:#c96f5a;
+  --line:#2a2720;
+  --f-s:"Noto Serif JP",serif;
+  --f-sans:"Hiragino Sans","Noto Sans JP",sans-serif;
+  --f-g:"Cormorant Garamond","Noto Serif JP",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--cream);font-family:var(--f-s);font-weight:300;min-height:100vh;overscroll-behavior:none}
+button,select,input,textarea{font-family:inherit;color:inherit;background:none;border:none;outline:none}
+.screen{display:none;min-height:100vh;padding:0 24px 40px;max-width:520px;margin:0 auto}
+.screen.active{display:block}
+
+.hdr{padding:28px 0 16px;text-align:center;border-bottom:0.5px solid var(--line);position:relative}
+.hdr-eye{font-family:var(--f-g);font-size:11px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:6px}
+.hdr-title{font-family:var(--f-g);font-size:24px;letter-spacing:7px;color:var(--cream);font-weight:400}
+.hdr-sub{font-size:11px;color:var(--cream3);letter-spacing:2px;margin-top:4px}
+.hdr-actions{position:absolute;top:30px;display:flex;gap:4px}
+.hdr-actions.left{left:0}
+.hdr-actions.right{right:0}
+.hdr-btn{color:var(--cream2);font-size:13px;padding:8px 10px;cursor:pointer;background:none;border:none;letter-spacing:1px}
+.hdr-btn.icon{font-size:18px;letter-spacing:0}
+
+.sec{margin:24px 0}
+.sec-lbl{font-family:var(--f-g);font-size:10px;color:var(--gold);letter-spacing:4px;margin-bottom:14px;text-transform:uppercase}
+.field{margin-bottom:18px}
+.field-lbl{display:block;font-size:12px;color:var(--cream2);letter-spacing:2px;margin-bottom:8px}
+.field-hint{font-size:11px;color:var(--cream3);margin-top:6px;letter-spacing:1px;line-height:1.6}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--bg2);border:0.5px solid var(--line);
+  padding:14px;font-size:16px;color:var(--cream);letter-spacing:1px;
+  border-radius:2px;transition:all .2s;font-family:inherit
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--neon);box-shadow:0 0 0 1px var(--neon)}
+.link-btn{
+  display:inline-block;color:var(--gold);font-size:12px;text-decoration:underline;
+  letter-spacing:2px;cursor:pointer;margin-top:8px;background:none;border:none;padding:4px 0
+}
+
+.btn-main{
+  display:block;width:100%;background:var(--neon);color:#080807;
+  padding:18px;font-size:14px;letter-spacing:6px;font-weight:500;
+  border-radius:2px;margin:24px 0 12px;cursor:pointer;transition:all .2s;border:none
+}
+.btn-main:active{transform:scale(0.98)}
+.btn-ghost{
+  display:block;width:100%;border:0.5px solid var(--gold2);color:var(--gold);
+  padding:14px;font-size:12px;letter-spacing:4px;border-radius:2px;
+  margin-top:10px;cursor:pointer;background:transparent
+}
+.btn-danger{color:var(--stop);border-color:var(--stop)}
+
+.write-date{text-align:center;font-family:var(--f-g);font-size:14px;color:var(--cream2);letter-spacing:3px;margin:20px 0 16px}
+.write-area{
+  width:100%;background:var(--bg2);border:0.5px solid var(--line);
+  padding:18px;font-size:15px;color:var(--cream);line-height:1.9;letter-spacing:1px;
+  border-radius:2px;min-height:280px;resize:vertical;font-family:inherit
+}
+.write-area:focus{border-color:var(--neon);box-shadow:0 0 0 1px var(--neon)}
+.write-hint{font-size:11px;color:var(--cream3);letter-spacing:1.5px;margin-top:10px;line-height:1.8;text-align:center}
+
+.load-wrap{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.load-svg{width:140px;height:140px;margin-bottom:28px}
+.load-svg .r1{animation:spin 3s linear infinite;transform-origin:70px 70px}
+.load-svg .r2{animation:spin 5s linear infinite reverse;transform-origin:70px 70px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-txt{font-family:var(--f-g);font-size:14px;color:var(--gold);letter-spacing:6px;text-align:center;margin-bottom:16px}
+.load-stages{font-size:11px;color:var(--cream3);letter-spacing:2px;text-align:center;line-height:2.2}
+.load-stage.done{color:var(--neon)}
+
+.res-date{text-align:center;font-family:var(--f-g);font-size:13px;color:var(--cream2);letter-spacing:3px;margin:20px 0 10px}
+.res-state{text-align:center;margin-bottom:22px}
+.res-state-eye{font-family:var(--f-g);font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:6px}
+.res-state-v{font-family:var(--f-g);font-size:26px;color:var(--neon);letter-spacing:5px}
+
+.item-card{
+  background:var(--bg2);border:0.5px solid var(--line);padding:18px 16px;
+  border-radius:2px;margin-bottom:12px
+}
+.item-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.item-title{font-family:var(--f-g);font-size:16px;color:var(--cream);letter-spacing:2px;line-height:1.4;flex:1;min-width:0;word-break:break-all}
+.item-type{font-size:10px;color:var(--gold);letter-spacing:2px;padding:3px 8px;border:0.5px solid var(--gold2);border-radius:2px;flex-shrink:0;white-space:nowrap}
+.item-go{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.item-go-lbl{font-family:var(--f-g);font-size:10px;color:var(--cream3);letter-spacing:3px;text-transform:uppercase}
+.item-go-v{font-family:var(--f-g);font-size:30px;font-weight:500;letter-spacing:2px;line-height:1}
+.item-go-u{font-size:11px;color:var(--cream3);letter-spacing:1px}
+.item-bar{height:3px;background:var(--bg3);border-radius:1px;overflow:hidden;margin-bottom:10px}
+.item-bar-f{height:100%;width:0;transition:width 1s ease-out}
+.item-reason{font-size:12px;color:var(--cream2);letter-spacing:1px;line-height:1.8}
+
+.nx-sec{margin-top:30px}
+.nx-head{
+  font-family:var(--f-g);font-size:11px;color:var(--gold);letter-spacing:4px;
+  text-align:center;text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;justify-content:center
+}
+.nx-head::before,.nx-head::after{content:'';flex:1;height:0.5px;background:var(--line);max-width:60px}
+.nx-note{text-align:center;font-size:11px;color:var(--cream3);letter-spacing:1px;line-height:1.8;margin-bottom:18px;padding:0 20px}
+
+.nx-card{position:relative;padding:18px 20px 20px;margin-bottom:12px;border-radius:0;background:var(--bg2)}
+.nx-card.s1{border-left:3px solid var(--neon);background:#1a1a0a}
+.nx-card.s2{border-left:3px solid var(--pink);background:#1a0f14}
+.nx-lbl{font-family:var(--f-g);font-size:11px;letter-spacing:3px;margin-bottom:4px}
+.s1 .nx-lbl{color:var(--neon)}
+.s2 .nx-lbl{color:var(--pink)}
+.nx-source{font-size:11px;color:var(--cream3);letter-spacing:1px;margin-bottom:12px;font-family:var(--f-sans);font-style:italic}
+.nx-origin-lbl{font-family:var(--f-g);font-size:9px;color:var(--cream3);letter-spacing:2px;margin-bottom:4px;text-transform:uppercase}
+.nx-origin{font-size:13px;color:var(--cream2);letter-spacing:1px;line-height:1.9;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px dashed var(--line);font-family:var(--f-s)}
+.nx-translate-lbl{font-family:var(--f-g);font-size:9px;letter-spacing:2px;margin-bottom:4px;text-transform:uppercase}
+.s1 .nx-translate-lbl{color:var(--neon)}
+.s2 .nx-translate-lbl{color:var(--pink)}
+.nx-translate{font-family:var(--f-sans);line-height:1.7;letter-spacing:0.5px}
+.s1 .nx-translate{font-size:17px;color:#f5e873;font-weight:500}
+.s2 .nx-translate{font-size:16px;color:#f5d6e4;font-weight:400}
+.nx-copy{
+  position:absolute;top:14px;right:14px;background:transparent;
+  border:0.5px solid var(--line);color:var(--cream3);font-size:10px;
+  letter-spacing:2px;padding:5px 10px;border-radius:2px;cursor:pointer;font-family:var(--f-g)
+}
+.nx-copy:active{background:var(--bg3)}
+.nx-copy.ok{color:var(--neon);border-color:var(--neon)}
+
+.err-box{background:var(--bg2);border:0.5px solid var(--stop);padding:18px;border-radius:2px;margin:20px 0}
+.err-title{color:var(--stop);font-size:12px;letter-spacing:2px;margin-bottom:8px}
+.err-msg{font-size:12px;color:var(--cream2);letter-spacing:1px;line-height:1.8;white-space:pre-wrap}
+
+.empty{padding:36px 20px;text-align:center;font-size:12px;color:var(--cream3);letter-spacing:2px;line-height:2}
+
+.guide-card{background:var(--bg2);border:0.5px solid var(--line);padding:20px;border-radius:2px;margin-bottom:14px}
+.guide-step{font-family:var(--f-g);font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.guide-txt{font-size:13px;color:var(--cream);letter-spacing:1px;line-height:1.9}
+.guide-txt a{color:var(--neon);text-decoration:underline}
+
+.hist-list{margin:20px 0}
+.hist-item{
+  padding:14px 4px;border-bottom:0.5px solid var(--line);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center
+}
+.hist-item:last-child{border-bottom:none}
+.hist-l{flex:1;min-width:0}
+.hist-d{font-size:10px;color:var(--cream3);letter-spacing:2px;margin-bottom:3px}
+.hist-s{font-family:var(--f-g);font-size:14px;color:var(--cream);letter-spacing:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist-g{font-family:var(--f-g);font-size:15px;letter-spacing:1px;padding:5px 10px;border-radius:2px;min-width:48px;text-align:center;flex-shrink:0;margin-left:10px}
+.g-hi{background:var(--go);color:#0b2306}
+.g-md{background:var(--warn);color:#3e2507}
+.g-lo{background:var(--stop);color:#36100a}
+
+.sum-range{text-align:center;font-family:var(--f-g);font-size:18px;color:var(--cream);letter-spacing:4px;margin:20px 0}
+.sum-metric{background:var(--bg2);border:0.5px solid var(--line);padding:14px 18px;border-radius:2px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+.sum-metric-k{font-size:11px;color:var(--cream3);letter-spacing:3px}
+.sum-metric-v{font-family:var(--f-g);font-size:18px;color:var(--neon);letter-spacing:2px}
+.sum-insight{background:var(--bg2);border-left:2px solid var(--neon);padding:18px;margin:16px 0;border-radius:0}
+.sum-insight-lbl{font-family:var(--f-g);font-size:10px;color:var(--neon);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.sum-insight-txt{font-size:14px;color:var(--cream);letter-spacing:1px;line-height:2}
+
+.det-body{font-size:14px;color:var(--cream2);letter-spacing:1px;line-height:2;padding:18px;background:var(--bg2);border-radius:2px;margin:16px 0;border-left:2px solid var(--line);white-space:pre-wrap}
+
+.bday-hint{font-size:11px;color:var(--cream3);letter-spacing:1px;margin-top:6px}
+.bday-prev{font-family:var(--f-g);font-size:15px;color:var(--gold);letter-spacing:2px;margin-top:6px;min-height:20px}
+</style>
+</head>
+<body>
+
+<!-- ======== Setup ======== -->
+<div class="screen" id="scr-setup">
+  <div class="hdr">
+    <div class="hdr-eye">Initial Setup</div>
+    <div class="hdr-title">縁の処方箋</div>
+    <div class="hdr-sub">はじめに一度だけ</div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">あなたの情報</div>
+    <div class="field">
+      <label class="field-lbl">名前</label>
+      <input id="s-name" placeholder="お名前">
+    </div>
+    <div class="field">
+      <label class="field-lbl">生年月日（数字8桁）</label>
+      <input id="s-bday" type="tel" inputmode="numeric" maxlength="8" placeholder="19651205" oninput="previewBday('s-bday','s-bday-prev')">
+      <div class="bday-hint">例：1965年12月5日 → 19651205 と入力</div>
+      <div class="bday-prev" id="s-bday-prev"></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">Groq APIキー</div>
+    <div class="field">
+      <label class="field-lbl">APIキー（gsk_〜で始まる文字列）</label>
+      <input id="s-key" type="password" placeholder="gsk_..." autocomplete="off">
+      <div class="field-hint">
+        ※Groq無料枠で動きます。キーは端末内にだけ保存されます<br>
+        ※外部に送信されません（Groq APIへの問い合わせにのみ使用）
+      </div>
+      <button class="link-btn" onclick="showScreen('scr-keyguide')">キーの取得方法 →</button>
+    </div>
+  </div>
+  <button class="btn-main" onclick="saveProfile()">はじめる</button>
+</div>
+
+<!-- ======== Key Guide ======== -->
+<div class="screen" id="scr-keyguide">
+  <div class="hdr">
+    <div class="hdr-actions left"><button class="hdr-btn" onclick="showScreen('scr-setup')">‹ 戻る</button></div>
+    <div class="hdr-eye">How To</div>
+    <div class="hdr-title">APIキー取得</div>
+    <div class="hdr-sub">3分で完了・無料</div>
+  </div>
+  <div class="sec">
+    <div class="guide-card">
+      <div class="guide-step">Step 1</div>
+      <div class="guide-txt"><a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a> を開く</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 2</div>
+      <div class="guide-txt">Googleアカウントでログイン</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 3</div>
+      <div class="guide-txt">「Create API Key」を押す</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 4</div>
+      <div class="guide-txt">表示された「gsk_〜」をコピー</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 5</div>
+      <div class="guide-txt">このアプリに貼り付ける</div>
+    </div>
+  </div>
+  <div class="field-hint" style="padding:16px 4px;line-height:2">
+    ※Groqは無料枠が大きく、個人利用では使い切れません<br>
+    ※クレジットカード登録は不要です
+  </div>
+</div>
+
+<!-- ======== Home = Write ======== -->
+<div class="screen" id="scr-home">
+  <div class="hdr">
+    <div class="hdr-eye">Today's Journal</div>
+    <div class="hdr-title">縁の処方箋</div>
+    <div class="hdr-actions right">
+      <button class="hdr-btn" onclick="showScreen('scr-history')">履歴</button>
+      <button class="hdr-btn" onclick="showScreen('scr-summary')">まとめ</button>
+      <button class="hdr-btn icon" onclick="openSettings()">⚙</button>
+    </div>
+  </div>
+  <div class="write-date" id="w-date">—</div>
+  <textarea class="write-area" id="w-text" placeholder="今日あったこと、感じたこと、迷っていること、嬉しかったこと、モヤモヤすること——まとまらなくていい。思いつくまま書いてください。"></textarea>
+  <div class="write-hint">AIが項目を抽出し、心に響く格言と行動のヒントをビレバン訳で出します</div>
+  <button class="btn-main" onclick="runAnalysis()">解析する</button>
+</div>
+
+<!-- ======== History ======== -->
+<div class="screen" id="scr-history">
+  <div class="hdr">
+    <div class="hdr-actions left"><button class="hdr-btn" onclick="showScreen('scr-home')">‹ 戻る</button></div>
+    <div class="hdr-eye">Records</div>
+    <div class="hdr-title">履歴</div>
+  </div>
+  <div class="hist-list" id="h-list"></div>
+</div>
+
+<!-- ======== Loading ======== -->
+<div class="screen" id="scr-loading">
+  <div class="load-wrap">
+    <svg class="load-svg" viewBox="0 0 140 140">
+      <circle cx="70" cy="70" r="58" fill="none" stroke="#2a2720" stroke-width="0.5"/>
+      <g class="r2"><circle cx="70" cy="70" r="46" fill="none" stroke="#c4a44d" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.5"/></g>
+      <g class="r1">
+        <circle cx="70" cy="18" r="3" fill="#d4f03c"/>
+        <circle cx="18" cy="70" r="2" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="122" cy="70" r="2" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="70" cy="122" r="2" fill="#c4a44d" opacity="0.6"/>
+      </g>
+      <circle cx="70" cy="70" r="4" fill="#d4f03c"/>
+    </svg>
+    <div class="load-txt">AI解析中</div>
+    <div class="load-stages">
+      <div class="load-stage" id="ls1">日記を読み込み</div>
+      <div class="load-stage" id="ls2">項目を抽出</div>
+      <div class="load-stage" id="ls3">格言を選定</div>
+      <div class="load-stage" id="ls4">ビレバン訳を生成</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== Result ======== -->
+<div class="screen" id="scr-result">
+  <div class="hdr">
+    <div class="hdr-actions left"><button class="hdr-btn" onclick="showScreen('scr-home')">‹ ホーム</button></div>
+    <div class="hdr-eye">Prescription</div>
+    <div class="hdr-title">処方箋</div>
+  </div>
+  <div class="res-date" id="r-date">—</div>
+  <div class="res-state">
+    <div class="res-state-eye">今の状態</div>
+    <div class="res-state-v" id="r-state">—</div>
+  </div>
+  <div id="r-items"></div>
+
+  <div class="nx-sec">
+    <div class="nx-head">今日の処方</div>
+    <div class="nx-note">世界のエビデンスと格言を、毎日届くビレバン訳に。<br>蓄積すると、考え方が変わります（メタ認知・Lieberman 2007）</div>
+
+    <div class="nx-card s1">
+      <div class="nx-lbl">心に響く</div>
+      <div class="nx-source" id="r-s1-source">—</div>
+      <div class="nx-origin-lbl">Origin</div>
+      <div class="nx-origin" id="r-s1-origin">—</div>
+      <div class="nx-translate-lbl">ビレバン訳</div>
+      <div class="nx-translate" id="r-s1-tr">—</div>
+      <button class="nx-copy" onclick="copyCard('r-s1')">コピー</button>
+    </div>
+
+    <div class="nx-card s2">
+      <div class="nx-lbl">行動のヒント</div>
+      <div class="nx-source" id="r-s2-source">—</div>
+      <div class="nx-origin-lbl">Evidence</div>
+      <div class="nx-origin" id="r-s2-origin">—</div>
+      <div class="nx-translate-lbl">今日の一手</div>
+      <div class="nx-translate" id="r-s2-tr">—</div>
+      <button class="nx-copy" onclick="copyCard('r-s2')">コピー</button>
+    </div>
+  </div>
+
+  <button class="btn-main" onclick="saveAndHome()">保存してホームへ</button>
+</div>
+
+<!-- ======== Error ======== -->
+<div class="screen" id="scr-error">
+  <div class="hdr">
+    <div class="hdr-actions left"><button class="hdr-btn" onclick="showScreen('scr-home')">‹ 戻る</button></div>
+    <div class="hdr-eye">Error</div>
+    <div class="hdr-title">解析できません</div>
+  </div>
+  <div class="err-box">
+    <div class="err-title">エラー内容</div>
+    <div class="err-msg" id="e-msg">—</div>
+  </div>
+  <div class="field-hint" style="padding:12px 4px;line-height:2">
+    ・「Failed to fetch」→ GitHub Pages等のhttps URLで開く必要あり<br>
+    ・APIキーが正しいか設定で確認<br>
+    ・通信エラーならもう一度試す<br>
+    ・Groq無料枠を使い切った場合は時間を置く
+  </div>
+  <button class="btn-main" onclick="showScreen('scr-home')">ホームに戻る</button>
+  <button class="btn-ghost" onclick="openSettings()">設定を確認する</button>
+</div>
+
+<!-- ======== Summary ======== -->
+<div class="screen" id="scr-summary">
+  <div class="hdr">
+    <div class="hdr-actions left"><button class="hdr-btn" onclick="showScreen('scr-home')">‹ ホーム</button></div>
+    <div class="hdr-eye">Half-Month Report</div>
+    <div class="hdr-title">まとめ</div>
+    <div class="hdr-sub">半月ごとの感情マネジメント</div>
+  </div>
+  <div class="sum-range" id="sm-range">—</div>
+  <div id="sm-body"></div>
+</div>
+
+<!-- ======== Detail ======== -->
+<div class="screen" id="scr-detail">
+  <div class="hdr">
+    <div class="hdr-actions left"><button class="hdr-btn" onclick="showScreen('scr-history')">‹ 履歴</button></div>
+    <div class="hdr-eye">Record</div>
+    <div class="hdr-title">過去の記録</div>
+  </div>
+  <div class="res-date" id="d-date">—</div>
+  <div class="res-state">
+    <div class="res-state-eye">そのときの状態</div>
+    <div class="res-state-v" id="d-state">—</div>
+  </div>
+  <div class="sec-lbl" style="margin:20px 0 10px">元の日記</div>
+  <div class="det-body" id="d-body">—</div>
+  <div class="sec-lbl" style="margin:20px 0 10px">判定結果</div>
+  <div id="d-items"></div>
+
+  <div class="nx-sec">
+    <div class="nx-head">そのときの処方</div>
+    <div class="nx-card s1">
+      <div class="nx-lbl">心に響く</div>
+      <div class="nx-source" id="d-s1-source">—</div>
+      <div class="nx-origin-lbl">Origin</div>
+      <div class="nx-origin" id="d-s1-origin">—</div>
+      <div class="nx-translate-lbl">ビレバン訳</div>
+      <div class="nx-translate" id="d-s1-tr">—</div>
+    </div>
+    <div class="nx-card s2">
+      <div class="nx-lbl">行動のヒント</div>
+      <div class="nx-source" id="d-s2-source">—</div>
+      <div class="nx-origin-lbl">Evidence</div>
+      <div class="nx-origin" id="d-s2-origin">—</div>
+      <div class="nx-translate-lbl">今日の一手</div>
+      <div class="nx-translate" id="d-s2-tr">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== Settings ======== -->
+<div class="screen" id="scr-settings">
+  <div class="hdr">
+    <div class="hdr-actions left"><button class="hdr-btn" onclick="showScreen('scr-home')">‹ ホーム</button></div>
+    <div class="hdr-eye">Settings</div>
+    <div class="hdr-title">設定</div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">プロフィール</div>
+    <div class="field">
+      <label class="field-lbl">名前</label>
+      <input id="st-name">
+    </div>
+    <div class="field">
+      <label class="field-lbl">生年月日（数字8桁）</label>
+      <input id="st-bday" type="tel" inputmode="numeric" maxlength="8" placeholder="19651205" oninput="previewBday('st-bday','st-bday-prev')">
+      <div class="bday-prev" id="st-bday-prev"></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">Groq APIキー</div>
+    <div class="field">
+      <label class="field-lbl">APIキー</label>
+      <input id="st-key" type="password" placeholder="gsk_...">
+      <button class="link-btn" onclick="showScreen('scr-keyguide')">キーの取得方法 →</button>
+    </div>
+  </div>
+  <button class="btn-main" onclick="updateSettings()">保存</button>
+  <button class="btn-ghost btn-danger" onclick="clearAll()">全データを削除</button>
+</div>
+
+<script>
+let profile=JSON.parse(localStorage.getItem('en4_profile')||'null');
+let history=JSON.parse(localStorage.getItem('en4_history')||'[]');
+let current=null;
+let detailId=null;
+
+const MODEL='qwen/qwen3-32b';
+const API_URL='https://api.groq.com/openai/v1/chat/completions';
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function esc(s){return(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function fmtDate(iso){const d=new Date(iso);return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0');}
+function fmtDateShort(iso){const d=new Date(iso);return(d.getMonth()+1)+'/'+d.getDate();}
+function goClass(g){if(g>=70)return'g-hi';if(g>=45)return'g-md';return'g-lo';}
+function goColor(g){if(g>=70)return'var(--go)';if(g>=45)return'var(--warn)';return'var(--stop)';}
+
+function previewBday(inputId,prevId){
+  const v=document.getElementById(inputId).value.replace(/\D/g,'');
+  const prev=document.getElementById(prevId);
+  if(v.length===8){
+    const y=v.substring(0,4),m=v.substring(4,6),d=v.substring(6,8);
+    prev.textContent=y+'年'+parseInt(m)+'月'+parseInt(d)+'日';
+  }else{
+    prev.textContent='';
+  }
+}
+function parseBday(v){
+  const s=(v||'').replace(/\D/g,'');
+  if(s.length!==8)return null;
+  const y=s.substring(0,4),m=s.substring(4,6),d=s.substring(6,8);
+  const dt=new Date(parseInt(y),parseInt(m)-1,parseInt(d));
+  if(dt.getFullYear()!=parseInt(y)||dt.getMonth()!=parseInt(m)-1||dt.getDate()!=parseInt(d))return null;
+  return y+'-'+m+'-'+d;
+}
+
+function copyText(text,btn){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+  if(btn){
+    const orig=btn.textContent;
+    btn.textContent='コピー済';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('ok');},1500);
+  }
+}
+function copyCard(prefix){
+  const source=document.getElementById(prefix+'-source').textContent;
+  const origin=document.getElementById(prefix+'-origin').textContent;
+  const tr=document.getElementById(prefix+'-tr').textContent;
+  const text=tr+'\n\n— '+source+'\n'+origin;
+  const btn=event.target;
+  copyText(text,btn);
+}
+
+function saveProfile(){
+  const name=document.getElementById('s-name').value.trim();
+  const bdayRaw=document.getElementById('s-bday').value;
+  const bday=parseBday(bdayRaw);
+  const key=document.getElementById('s-key').value.trim();
+  if(!name){alert('名前を入れてください');return;}
+  if(!bday){alert('生年月日を8桁の数字で入れてください（例：19651205）');return;}
+  if(!key||!key.startsWith('gsk_')){alert('Groq APIキーを入れてください（gsk_で始まる）');return;}
+  profile={name,bday,key};
+  localStorage.setItem('en4_profile',JSON.stringify(profile));
+  initHome();showScreen('scr-home');
+}
+
+function openSettings(){
+  document.getElementById('st-name').value=profile?.name||'';
+  document.getElementById('st-bday').value=(profile?.bday||'').replace(/\D/g,'');
+  previewBday('st-bday','st-bday-prev');
+  document.getElementById('st-key').value=profile?.key||'';
+  showScreen('scr-settings');
+}
+
+function updateSettings(){
+  const name=document.getElementById('st-name').value.trim();
+  const bdayRaw=document.getElementById('st-bday').value;
+  const bday=parseBday(bdayRaw);
+  const key=document.getElementById('st-key').value.trim();
+  if(!name){alert('名前を入れてください');return;}
+  if(!bday){alert('生年月日を8桁の数字で入れてください');return;}
+  if(!key||!key.startsWith('gsk_')){alert('Groq APIキーを入れてください');return;}
+  profile={name,bday,key};
+  localStorage.setItem('en4_profile',JSON.stringify(profile));
+  alert('保存しました');
+  initHome();showScreen('scr-home');
+}
+
+function clearAll(){
+  if(!confirm('全データを削除します。よろしいですか？'))return;
+  localStorage.removeItem('en4_profile');
+  localStorage.removeItem('en4_history');
+  profile=null;history=[];
+  showScreen('scr-setup');
+}
+
+function initHome(){
+  const d=new Date();
+  document.getElementById('w-date').textContent=d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日';
+  document.getElementById('w-text').value='';
+  renderHistory();
+}
+
+function renderHistory(){
+  const box=document.getElementById('h-list');
+  if(!box)return;
+  const items=[...history].reverse();
+  if(items.length===0){
+    box.innerHTML='<div class="empty">まだ記録がありません<br>ホームで日記を書いてください</div>';
+    return;
+  }
+  box.innerHTML=items.map(h=>{
+    const top=h.items?.[0];
+    const g=top?.go_probability||0;
+    return `<div class="hist-item" onclick="openDetail('${h.id}')">
+      <div class="hist-l">
+        <div class="hist-d">${fmtDateShort(h.date)}　${esc(h.meta_state||'')}</div>
+        <div class="hist-s">${esc(top?.title||'(項目なし)')}</div>
+      </div>
+      <div class="hist-g ${goClass(g)}">${g}</div>
+    </div>`;
+  }).join('');
+}
+
+const SYS_PROMPT=`あなたは日本語の感情マネジメントAIです。日記を読み、以下のJSONだけを出力してください。前置き不要。
+
+【出力JSON】
+{
+  "meta_state": "今の状態（4〜8字）例：選択回避期／再起動中／燃え尽き寸前／自己拡張期／フロー状態／逆境後成長",
+  "items": [
+    {
+      "rank": 1,
+      "title": "対象の名前や行動（15字以内）",
+      "type": "人|行動|モノ|感情|場所|健康",
+      "go_probability": 0〜100の整数,
+      "priority_reason": "なぜこの順位か（35字以内・口語可）"
+    }
+  ],
+  "prescription_wisdom": {
+    "source": "格言・古典の出典。例『老子・道徳経 第44章』『論語・衛霊公篇』『マルクス=アウレリウス 自省録 第4巻』『ブッダ・ダンマパダ 第5偈』『荘子・内篇』『モンテーニュ随想録』『カミュ シーシュポスの神話』",
+    "origin": "原典の格言を80字以内で日本語で引用または要約。「——」を使って補足説明を加えてもよい",
+    "translate": "その格言を現代ビレバンPOP口語で翻訳。40字以内・2行まで。「〜説」「〜じゃなくて〜が正解」「〜ってこと」等のSNS文法"
+  },
+  "prescription_action": {
+    "source": "心理学・行動科学のエビデンス出典。研究者名と年号。例『認知的不協和理論（Festinger 1957）』『If-Thenプランニング（Gollwitzer 1999）』『affect labeling（Lieberman 2007）』『Implementation Intentions（Gollwitzer & Sheeran 2006）』『Self-Determination Theory（Deci & Ryan 1985）』",
+    "origin": "そのエビデンスの核を80字以内で日本語解説。何が証明されたかを明確に",
+    "translate": "そのエビデンスから導かれる今日の具体的な一手を現代ビレバン口語で。40字以内・2行まで。行動が浮かぶ具体性で"
+  }
+}
+
+【鉄則】
+- itemsは最大3件・重要度順
+- 格言と心理学エビデンスは日記の内容に必ず関連させる。汎用的な名言を貼らない
+- 出典（source）は実在するものを使う。研究者名・年号も実在する研究
+- originは学びになる密度で書く。読むだけで賢くなる情報量
+- translateは絶対にダサくしない。口語・体言止め・SNS文法で切れ味重視
+- 説教・励まし・一般論は禁止。観察と発見のトーン
+- 出力はJSONオブジェクトのみ`;
+
+async function runAnalysis(){
+  const text=document.getElementById('w-text').value.trim();
+  if(!text){alert('日記を書いてください');return;}
+  if(text.length<10){alert('もう少し書いてみましょう（10文字以上）');return;}
+  if(!profile?.key){alert('APIキーが設定されていません');openSettings();return;}
+
+  showScreen('scr-loading');
+  ['ls1','ls2','ls3','ls4'].forEach(id=>document.getElementById(id).classList.remove('done'));
+  document.getElementById('ls1').classList.add('done');
+  setTimeout(()=>document.getElementById('ls2').classList.add('done'),700);
+  setTimeout(()=>document.getElementById('ls3').classList.add('done'),1400);
+
+  try{
+    const res=await fetch(API_URL,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+profile.key,'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:MODEL,
+        messages:[
+          {role:'system',content:SYS_PROMPT},
+          {role:'user',content:'日記：\n---\n'+text+'\n---'}
+        ],
+        temperature:0.7,
+        max_tokens:2000,
+        response_format:{type:'json_object'}
+      })
+    });
+    if(!res.ok){
+      const errText=await res.text();
+      let detail='';
+      try{const errJson=JSON.parse(errText);detail=errJson.error?.message||errJson.error?.code||errText;}
+      catch(e){detail=errText;}
+      throw new Error('HTTP '+res.status+'\n'+detail.slice(0,400));
+    }
+    const data=await res.json();
+    const content=data.choices?.[0]?.message?.content;
+    if(!content)throw new Error('AIからの応答が空でした');
+    let parsed;
+    try{parsed=JSON.parse(content);}
+    catch(e){
+      const m=content.match(/\{[\s\S]*\}/);
+      if(m)parsed=JSON.parse(m[0]);
+      else throw new Error('AIの応答がJSON形式ではありません');
+    }
+    document.getElementById('ls4').classList.add('done');
+
+    current={
+      id:'r'+Date.now(),
+      date:new Date().toISOString(),
+      text:text,
+      meta_state:parsed.meta_state||'—',
+      items:(parsed.items||[]).slice(0,3),
+      s1_source:parsed.prescription_wisdom?.source||'',
+      s1_origin:parsed.prescription_wisdom?.origin||'',
+      s1_tr:parsed.prescription_wisdom?.translate||'',
+      s2_source:parsed.prescription_action?.source||'',
+      s2_origin:parsed.prescription_action?.origin||'',
+      s2_tr:parsed.prescription_action?.translate||''
+    };
+    setTimeout(()=>{renderResult();showScreen('scr-result');},500);
+  }catch(err){
+    document.getElementById('e-msg').textContent=err.message||'通信に失敗しました';
+    showScreen('scr-error');
+  }
+}
+
+function renderResult(){
+  const c=current;
+  document.getElementById('r-date').textContent=fmtDate(c.date);
+  document.getElementById('r-state').textContent=c.meta_state;
+  document.getElementById('r-items').innerHTML=renderItems(c.items);
+  document.getElementById('r-s1-source').textContent=c.s1_source;
+  document.getElementById('r-s1-origin').textContent=c.s1_origin;
+  document.getElementById('r-s1-tr').textContent=c.s1_tr;
+  document.getElementById('r-s2-source').textContent=c.s2_source;
+  document.getElementById('r-s2-origin').textContent=c.s2_origin;
+  document.getElementById('r-s2-tr').textContent=c.s2_tr;
+  setTimeout(()=>{
+    document.querySelectorAll('#r-items .item-bar-f').forEach(b=>{b.style.width=b.dataset.w+'%';});
+  },100);
+}
+
+function renderItems(items){
+  if(!items.length)return '<div class="empty">項目が抽出できませんでした</div>';
+  return items.map(it=>{
+    const g=it.go_probability||0;
+    return `<div class="item-card">
+      <div class="item-head">
+        <div class="item-title">${esc(it.title||'')}</div>
+        <div class="item-type">${esc(it.type||'')}</div>
+      </div>
+      <div class="item-go">
+        <span class="item-go-lbl">Go</span>
+        <span class="item-go-v" style="color:${goColor(g)}">${g}</span>
+        <span class="item-go-u">/ 100</span>
+      </div>
+      <div class="item-bar"><div class="item-bar-f" data-w="${g}" style="background:${goColor(g)}"></div></div>
+      <div class="item-reason">${esc(it.priority_reason||'')}</div>
+    </div>`;
+  }).join('');
+}
+
+function saveAndHome(){
+  history.push(current);
+  if(history.length>200)history=history.slice(-200);
+  localStorage.setItem('en4_history',JSON.stringify(history));
+  current=null;
+  initHome();showScreen('scr-home');
+}
+
+function openDetail(id){
+  const h=history.find(x=>x.id===id);
+  if(!h)return;
+  detailId=id;
+  document.getElementById('d-date').textContent=fmtDate(h.date);
+  document.getElementById('d-state').textContent=h.meta_state||'—';
+  document.getElementById('d-body').textContent=h.text||'(日記なし)';
+  document.getElementById('d-items').innerHTML=renderItems(h.items||[]);
+  document.getElementById('d-s1-source').textContent=h.s1_source||'';
+  document.getElementById('d-s1-origin').textContent=h.s1_origin||'';
+  document.getElementById('d-s1-tr').textContent=h.s1_tr||'';
+  document.getElementById('d-s2-source').textContent=h.s2_source||'';
+  document.getElementById('d-s2-origin').textContent=h.s2_origin||'';
+  document.getElementById('d-s2-tr').textContent=h.s2_tr||'';
+  showScreen('scr-detail');
+  setTimeout(()=>{document.querySelectorAll('#d-items .item-bar-f').forEach(b=>{b.style.width=b.dataset.w+'%';});},100);
+}
+
+async function openSummary(){
+  const now=new Date();
+  const from=new Date();from.setDate(from.getDate()-15);
+  const entries=history.filter(h=>new Date(h.date)>=from);
+  document.getElementById('sm-range').textContent=fmtDateShort(from.toISOString())+' 〜 '+fmtDateShort(now.toISOString());
+  const body=document.getElementById('sm-body');
+  if(entries.length<2){
+    body.innerHTML='<div class="empty">まとめを作るには2件以上の記録が必要です。<br>半月ごとにAIが振り返りを作成します</div>';
+    return;
+  }
+  const counts={};
+  let totalGo=0,goCount=0;
+  const states={};
+  entries.forEach(e=>{
+    (e.items||[]).forEach(it=>{
+      const k=it.title;
+      if(!counts[k])counts[k]={count:0,goSum:0};
+      counts[k].count++;counts[k].goSum+=it.go_probability||0;
+      totalGo+=it.go_probability||0;goCount++;
+    });
+    if(e.meta_state)states[e.meta_state]=(states[e.meta_state]||0)+1;
+  });
+  const top3=Object.entries(counts).sort((a,b)=>b[1].count-a[1].count).slice(0,3);
+  const avgGo=goCount?Math.round(totalGo/goCount):0;
+  const domState=Object.entries(states).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
+
+  body.innerHTML=`
+    <div class="sum-metric"><span class="sum-metric-k">記録数</span><span class="sum-metric-v">${entries.length}</span></div>
+    <div class="sum-metric"><span class="sum-metric-k">Go平均</span><span class="sum-metric-v">${avgGo}</span></div>
+    <div class="sum-metric"><span class="sum-metric-k">最頻の状態</span><span class="sum-metric-v">${esc(domState)}</span></div>
+    <div class="sec-lbl" style="margin:24px 0 10px">よく登場した項目</div>
+    ${top3.length?top3.map((t,i)=>`
+      <div class="sum-metric">
+        <span class="sum-metric-k">${i+1}. ${esc(t[0])}</span>
+        <span class="sum-metric-v" style="font-size:13px">${t[1].count}回 / 平均${Math.round(t[1].goSum/t[1].count)}</span>
+      </div>`).join(''):''}
+    <div id="sm-insight-wrap"><div class="empty">AIが半月のまとめを作成中...</div></div>
+  `;
+
+  try{
+    const brief=entries.map(e=>({date:fmtDateShort(e.date),state:e.meta_state,top:e.items?.[0]?.title,go:e.items?.[0]?.go_probability}));
+    const sumPrompt=`あなたは感情マネジメントAIです。以下の半月分の日記履歴を読み、JSONのみ出力してください。前置き不要。
+
+【出力JSON】
+{
+  "core_insight": "この期間の核となる気づき。100字以内。観察と発見のトーンで。ビレバン口語寄り",
+  "growth": "成長した領域。40字以内",
+  "attention": "注意すべき領域。40字以内",
+  "wisdom_source": "この半月の流れに合う格言の出典。例『老子 道徳経』『荘子』『論語』等",
+  "wisdom_origin": "その格言の引用。60字以内",
+  "wisdom_translate": "ビレバン口語で翻訳。30字以内",
+  "next_focus": "次の半月の一手。ビレバン口語で40字以内"
+}
+
+履歴（${entries.length}件）：
+${JSON.stringify(brief)}`;
+
+    const res=await fetch(API_URL,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+profile.key,'Content-Type':'application/json'},
+      body:JSON.stringify({model:MODEL,messages:[{role:'user',content:sumPrompt}],temperature:0.7,max_tokens:1000,response_format:{type:'json_object'}})
+    });
+    if(!res.ok)throw new Error('まとめ生成失敗');
+    const data=await res.json();
+    const content=data.choices?.[0]?.message?.content;
+    let s;
+    try{s=JSON.parse(content);}
+    catch(e){const m=content.match(/\{[\s\S]*\}/);s=m?JSON.parse(m[0]):null;}
+    if(!s)throw new Error('応答の解析失敗');
+
+    document.getElementById('sm-insight-wrap').innerHTML=`
+      <div class="sum-insight">
+        <div class="sum-insight-lbl">Core Insight</div>
+        <div class="sum-insight-txt">${esc(s.core_insight||'')}</div>
+      </div>
+      <div class="sum-metric"><span class="sum-metric-k">成長した領域</span><span class="sum-metric-v" style="font-size:13px">${esc(s.growth||'—')}</span></div>
+      <div class="sum-metric"><span class="sum-metric-k">注意すべき領域</span><span class="sum-metric-v" style="font-size:13px;color:var(--warn)">${esc(s.attention||'—')}</span></div>
+      <div class="nx-card s1" style="margin-top:16px">
+        <div class="nx-lbl">この半月の格言</div>
+        <div class="nx-source">${esc(s.wisdom_source||'')}</div>
+        <div class="nx-origin-lbl">Origin</div>
+        <div class="nx-origin">${esc(s.wisdom_origin||'')}</div>
+        <div class="nx-translate-lbl">ビレバン訳</div>
+        <div class="nx-translate">${esc(s.wisdom_translate||'')}</div>
+      </div>
+      <div class="sum-insight" style="border-color:var(--pink);margin-top:12px">
+        <div class="sum-insight-lbl" style="color:var(--pink)">Next Focus</div>
+        <div class="sum-insight-txt">${esc(s.next_focus||'')}</div>
+      </div>
+    `;
+  }catch(err){
+    document.getElementById('sm-insight-wrap').innerHTML=`<div class="empty">AIまとめ失敗：${esc(err.message)}</div>`;
+  }
+}
+
+const origShowScreen=showScreen;
+showScreen=function(id){
+  origShowScreen(id);
+  if(id==='scr-summary')openSummary();
+  if(id==='scr-history')renderHistory();
+};
+
+if(profile){
+  initHome();showScreen('scr-home');
+}else{
+  showScreen('scr-setup');
+}
+</script>
+</body>
+</html>
