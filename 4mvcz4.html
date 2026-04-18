@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="縁の処方箋">
+<meta name="theme-color" content="#080807">
+<title>縁の処方箋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080807;--bg2:#14130f;--bg3:#1f1d17;
+  --cream:#e8e2d0;--cream2:#a8a293;--cream3:#6d695d;
+  --gold:#c4a44d;--gold2:#8c7330;
+  --neon:#d4f03c;--go:#7ddb6a;--warn:#e8a441;--stop:#c96f5a;
+  --line:#2a2720;
+  --f-s:"Noto Serif JP",serif;
+  --f-g:"Cormorant Garamond","Noto Serif JP",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--cream);font-family:var(--f-s);font-weight:300;min-height:100vh;overscroll-behavior:none}
+button,select,input,textarea{font-family:inherit;color:inherit;background:none;border:none;outline:none}
+.screen{display:none;min-height:100vh;padding:0 24px 40px;max-width:520px;margin:0 auto}
+.screen.active{display:block}
+
+.hdr{padding:32px 0 20px;text-align:center;border-bottom:0.5px solid var(--line);position:relative}
+.hdr-eye{font-family:var(--f-g);font-size:11px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px}
+.hdr-title{font-family:var(--f-g);font-size:26px;letter-spacing:8px;color:var(--cream);font-weight:400}
+.hdr-sub{font-size:12px;color:var(--cream3);letter-spacing:2px;margin-top:6px}
+.back{position:absolute;top:34px;left:0;color:var(--cream2);font-size:14px;padding:8px;cursor:pointer;background:none;border:none}
+.settings-btn{position:absolute;top:34px;right:0;color:var(--cream2);font-size:18px;padding:6px 10px;cursor:pointer;background:none;border:none;letter-spacing:2px}
+
+.sec{margin:28px 0}
+.sec-lbl{font-family:var(--f-g);font-size:10px;color:var(--gold);letter-spacing:4px;margin-bottom:16px;text-transform:uppercase}
+.field{margin-bottom:18px}
+.field-lbl{display:block;font-size:12px;color:var(--cream2);letter-spacing:2px;margin-bottom:8px}
+.field-hint{font-size:11px;color:var(--cream3);margin-top:6px;letter-spacing:1px;line-height:1.6}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--bg2);border:0.5px solid var(--line);
+  padding:14px;font-size:16px;color:var(--cream);letter-spacing:1px;
+  border-radius:2px;transition:all .2s;font-family:inherit
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--neon);box-shadow:0 0 0 1px var(--neon)}
+.link-btn{
+  display:inline-block;color:var(--gold);font-size:12px;text-decoration:underline;
+  letter-spacing:2px;cursor:pointer;margin-top:8px;background:none;border:none;padding:4px 0
+}
+
+.btn-main{
+  display:block;width:100%;background:var(--neon);color:#080807;
+  padding:18px;font-size:14px;letter-spacing:6px;font-weight:500;
+  border-radius:2px;margin:24px 0 12px;cursor:pointer;transition:all .2s;border:none
+}
+.btn-main:active{transform:scale(0.98)}
+.btn-main:disabled{opacity:.4;cursor:not-allowed}
+.btn-ghost{
+  display:block;width:100%;border:0.5px solid var(--gold2);color:var(--gold);
+  padding:14px;font-size:12px;letter-spacing:4px;border-radius:2px;
+  margin-top:10px;cursor:pointer;background:transparent
+}
+.btn-danger{color:var(--stop);border-color:var(--stop)}
+
+.home-status{
+  background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);
+  border:0.5px solid var(--line);padding:22px 20px;margin:24px 0;border-radius:2px
+}
+.home-status-eye{font-family:var(--f-g);font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px}
+.home-status-state{font-family:var(--f-g);font-size:22px;color:var(--neon);letter-spacing:4px;margin-bottom:6px}
+.home-status-sub{font-size:11px;color:var(--cream2);letter-spacing:2px;line-height:1.7}
+
+.home-main{
+  background:var(--neon);color:#080807;padding:38px 20px;text-align:center;
+  margin:20px 0;border-radius:2px;cursor:pointer;transition:transform .2s;border:none;width:100%
+}
+.home-main:active{transform:scale(0.98)}
+.home-main-eye{font-family:var(--f-g);font-size:10px;letter-spacing:4px;opacity:.7;margin-bottom:8px}
+.home-main-ttl{font-family:var(--f-g);font-size:26px;letter-spacing:5px;font-weight:400}
+
+.home-list{margin-top:28px}
+.home-list-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.home-list-eye{font-family:var(--f-g);font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase}
+.home-list-link{font-size:11px;color:var(--cream2);letter-spacing:2px;cursor:pointer;background:none;border:none}
+.hist-item{
+  padding:14px 4px;border-bottom:0.5px solid var(--line);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center
+}
+.hist-item:last-child{border-bottom:none}
+.hist-item-l{flex:1;min-width:0}
+.hist-item-date{font-size:10px;color:var(--cream3);letter-spacing:2px;margin-bottom:3px}
+.hist-item-state{font-family:var(--f-g);font-size:14px;color:var(--cream);letter-spacing:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist-item-go{font-family:var(--f-g);font-size:16px;letter-spacing:1px;padding:5px 10px;border-radius:2px;min-width:52px;text-align:center;flex-shrink:0;margin-left:10px}
+.g-hi{background:var(--go);color:#0b2306}
+.g-md{background:var(--warn);color:#3e2507}
+.g-lo{background:var(--stop);color:#36100a}
+
+.write-date{text-align:center;font-family:var(--f-g);font-size:14px;color:var(--cream2);letter-spacing:3px;margin-top:20px}
+.write-area{
+  width:100%;background:var(--bg2);border:0.5px solid var(--line);
+  padding:18px;font-size:15px;color:var(--cream);line-height:1.9;letter-spacing:1px;
+  border-radius:2px;margin-top:16px;min-height:260px;resize:vertical;font-family:inherit
+}
+.write-area:focus{border-color:var(--neon);box-shadow:0 0 0 1px var(--neon)}
+.write-hint{font-size:11px;color:var(--cream3);letter-spacing:1.5px;margin-top:8px;line-height:1.7}
+
+.load-wrap{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.load-svg{width:140px;height:140px;margin-bottom:28px}
+.load-svg .r1{animation:spin 3s linear infinite;transform-origin:70px 70px}
+.load-svg .r2{animation:spin 5s linear infinite reverse;transform-origin:70px 70px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-txt{font-family:var(--f-g);font-size:14px;color:var(--gold);letter-spacing:6px;text-align:center;margin-bottom:16px}
+.load-stages{font-size:11px;color:var(--cream3);letter-spacing:2px;text-align:center;line-height:2}
+.load-stage.done{color:var(--neon)}
+
+.res-date{text-align:center;font-family:var(--f-g);font-size:13px;color:var(--cream2);letter-spacing:3px;margin:24px 0 12px}
+.res-state{text-align:center;margin-bottom:24px}
+.res-state-eye{font-family:var(--f-g);font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:6px}
+.res-state-v{font-family:var(--f-g);font-size:28px;color:var(--neon);letter-spacing:5px}
+
+.item-card{
+  background:var(--bg2);border:0.5px solid var(--line);padding:20px 18px;
+  border-radius:2px;margin-bottom:14px;position:relative
+}
+.item-rank{
+  position:absolute;top:-9px;left:14px;background:var(--bg);padding:0 8px;
+  font-family:var(--f-g);font-size:11px;color:var(--gold);letter-spacing:3px
+}
+.item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.item-title{
+  font-family:var(--f-g);font-size:18px;color:var(--cream);letter-spacing:2px;
+  line-height:1.4;flex:1;min-width:0;word-break:break-all
+}
+.item-type{
+  font-size:10px;color:var(--gold);letter-spacing:2px;padding:3px 8px;
+  border:0.5px solid var(--gold2);border-radius:2px;flex-shrink:0;white-space:nowrap
+}
+.item-go{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+.item-go-lbl{font-family:var(--f-g);font-size:10px;color:var(--cream3);letter-spacing:3px;text-transform:uppercase}
+.item-go-v{font-family:var(--f-g);font-size:34px;font-weight:500;letter-spacing:2px;line-height:1}
+.item-go-u{font-size:12px;color:var(--cream3);letter-spacing:1px}
+.item-bar{height:3px;background:var(--bg3);border-radius:1px;overflow:hidden;margin-bottom:12px}
+.item-bar-f{height:100%;width:0;transition:width 1s ease-out}
+.item-reason{font-size:12px;color:var(--cream2);letter-spacing:1px;line-height:1.8;margin-bottom:10px}
+.item-ev{
+  font-size:10px;color:var(--gold);letter-spacing:2px;padding:4px 8px;
+  background:var(--bg3);border-radius:2px;display:inline-block
+}
+
+.reframe-sec{margin-top:32px}
+.reframe-head{
+  font-family:var(--f-g);font-size:11px;color:var(--gold);letter-spacing:4px;
+  text-align:center;text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;justify-content:center
+}
+.reframe-head::before,.reframe-head::after{content:'';flex:1;height:0.5px;background:var(--line)}
+.reframe-head::before{max-width:60px}
+.reframe-head::after{max-width:60px}
+.reframe-note{
+  text-align:center;font-size:11px;color:var(--cream3);letter-spacing:1.5px;
+  line-height:1.8;margin-bottom:16px;padding:0 20px
+}
+.reframe-card{
+  background:var(--bg2);border-left:2px solid var(--gold);padding:16px 18px;
+  margin-bottom:12px;border-radius:0
+}
+.reframe-lbl{
+  font-family:var(--f-g);font-size:10px;color:var(--gold);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:8px
+}
+.reframe-txt{font-size:13px;color:var(--cream);letter-spacing:1px;line-height:2}
+
+.err-box{
+  background:var(--bg2);border:0.5px solid var(--stop);padding:18px;
+  border-radius:2px;margin:20px 0
+}
+.err-title{color:var(--stop);font-size:12px;letter-spacing:2px;margin-bottom:8px}
+.err-msg{font-size:12px;color:var(--cream2);letter-spacing:1px;line-height:1.8}
+
+.empty{padding:40px 20px;text-align:center;font-size:12px;color:var(--cream3);letter-spacing:2px;line-height:2}
+
+.guide-card{
+  background:var(--bg2);border:0.5px solid var(--line);padding:20px;
+  border-radius:2px;margin-bottom:14px
+}
+.guide-step{
+  font-family:var(--f-g);font-size:11px;color:var(--gold);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:8px
+}
+.guide-txt{font-size:13px;color:var(--cream);letter-spacing:1px;line-height:1.9}
+.guide-txt a{color:var(--neon);text-decoration:underline}
+
+.sum-month{
+  text-align:center;font-family:var(--f-g);font-size:22px;color:var(--cream);
+  letter-spacing:5px;margin:20px 0
+}
+.sum-metric{
+  background:var(--bg2);border:0.5px solid var(--line);padding:16px 18px;
+  border-radius:2px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline
+}
+.sum-metric-k{font-size:11px;color:var(--cream3);letter-spacing:3px}
+.sum-metric-v{font-family:var(--f-g);font-size:18px;color:var(--neon);letter-spacing:2px}
+.sum-rank{
+  background:var(--bg2);border:0.5px solid var(--line);padding:14px 16px;
+  border-radius:2px;margin-bottom:8px;display:flex;align-items:center;gap:14px
+}
+.sum-rank-n{font-family:var(--f-g);font-size:20px;color:var(--gold);letter-spacing:1px;width:28px}
+.sum-rank-t{flex:1;font-size:13px;color:var(--cream);letter-spacing:1px}
+.sum-rank-c{font-size:11px;color:var(--cream3);letter-spacing:2px}
+.sum-insight{
+  background:var(--bg2);border-left:2px solid var(--neon);padding:18px;
+  margin:16px 0;border-radius:0
+}
+.sum-insight-lbl{font-family:var(--f-g);font-size:10px;color:var(--neon);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.sum-insight-txt{font-size:14px;color:var(--cream);letter-spacing:1px;line-height:2}
+
+.det-body{font-size:14px;color:var(--cream2);letter-spacing:1px;line-height:2;padding:18px;background:var(--bg2);border-radius:2px;margin:16px 0;border-left:2px solid var(--line);white-space:pre-wrap}
+</style>
+</head>
+<body>
+
+<!-- ======== Setup ======== -->
+<div class="screen active" id="scr-setup">
+  <div class="hdr">
+    <div class="hdr-eye">Initial Setup</div>
+    <div class="hdr-title">縁の処方箋</div>
+    <div class="hdr-sub">はじめに一度だけ</div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">あなたの情報</div>
+    <div class="field">
+      <label class="field-lbl">名前</label>
+      <input id="s-name" placeholder="お名前">
+    </div>
+    <div class="field">
+      <label class="field-lbl">生年月日</label>
+      <input id="s-bday" type="date">
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">Groq APIキー</div>
+    <div class="field">
+      <label class="field-lbl">APIキー（gsk_〜で始まる文字列）</label>
+      <input id="s-key" type="password" placeholder="gsk_..." autocomplete="off">
+      <div class="field-hint">
+        ※Groq無料枠で使えます。キーはこの端末内にだけ保存されます<br>
+        ※キーは外部に送信されません（Groq APIへの問い合わせにのみ使用）
+      </div>
+      <button class="link-btn" onclick="showScreen('scr-keyguide')">キーの取得方法 →</button>
+    </div>
+  </div>
+  <button class="btn-main" onclick="saveProfile()">はじめる</button>
+</div>
+
+<!-- ======== Key Guide ======== -->
+<div class="screen" id="scr-keyguide">
+  <button class="back" onclick="history.back?history.back():showScreen('scr-setup')">‹ 戻る</button>
+  <div class="hdr">
+    <div class="hdr-eye">How To</div>
+    <div class="hdr-title">APIキー取得</div>
+    <div class="hdr-sub">3分で完了・無料</div>
+  </div>
+  <div class="sec">
+    <div class="guide-card">
+      <div class="guide-step">Step 1</div>
+      <div class="guide-txt">
+        <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a> を開く
+      </div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 2</div>
+      <div class="guide-txt">Googleアカウントでログイン</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 3</div>
+      <div class="guide-txt">「Create API Key」ボタンを押す</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 4</div>
+      <div class="guide-txt">表示された「gsk_〜」で始まる文字列をコピー</div>
+    </div>
+    <div class="guide-card">
+      <div class="guide-step">Step 5</div>
+      <div class="guide-txt">このアプリの設定画面に貼り付ける</div>
+    </div>
+  </div>
+  <div class="field-hint" style="padding:16px 4px;line-height:2">
+    ※Groqは無料枠が充実しており、個人利用では使い切れないレベルです。<br>
+    ※クレジットカード登録は不要です。<br>
+    ※一度取得したキーは、このアプリ以外でも利用できます。
+  </div>
+</div>
+
+<!-- ======== Home ======== -->
+<div class="screen" id="scr-home">
+  <div class="hdr">
+    <div class="hdr-eye">Emotion Management</div>
+    <div class="hdr-title">縁の処方箋</div>
+    <button class="settings-btn" onclick="showScreen('scr-settings')">⚙</button>
+  </div>
+
+  <div class="home-status">
+    <div class="home-status-eye">今の状態</div>
+    <div class="home-status-state" id="h-state">—</div>
+    <div class="home-status-sub" id="h-substate">まだ日記がありません</div>
+  </div>
+
+  <button class="home-main" onclick="openWrite()">
+    <div class="home-main-eye">Write</div>
+    <div class="home-main-ttl">今日の日記を書く</div>
+  </button>
+
+  <button class="btn-ghost" onclick="openSummary()">今月のまとめを見る</button>
+
+  <div class="home-list">
+    <div class="home-list-head">
+      <span class="home-list-eye">最近の記録</span>
+    </div>
+    <div id="h-history"></div>
+  </div>
+</div>
+
+<!-- ======== Write ======== -->
+<div class="screen" id="scr-write">
+  <button class="back" onclick="showScreen('scr-home')">‹ 戻る</button>
+  <div class="hdr">
+    <div class="hdr-eye">Today's Journal</div>
+    <div class="hdr-title">日記を書く</div>
+  </div>
+  <div class="write-date" id="w-date">—</div>
+  <textarea class="write-area" id="w-text" placeholder="今日あったこと、感じたこと、迷っていること、嬉しかったこと、モヤモヤすること——まとまらなくて大丈夫。思いつくまま書いてください。"></textarea>
+  <div class="write-hint">AIが最大3つの項目を抽出し、心理学エビデンスに基づいて優先順位とGoサイン確率を判定します。さらに3つの文体で言い換え、メタ認知を促します。</div>
+  <button class="btn-main" id="w-btn" onclick="runAnalysis()">解析する</button>
+</div>
+
+<!-- ======== Loading ======== -->
+<div class="screen" id="scr-loading">
+  <div class="load-wrap">
+    <svg class="load-svg" viewBox="0 0 140 140">
+      <circle cx="70" cy="70" r="58" fill="none" stroke="#2a2720" stroke-width="0.5"/>
+      <g class="r2"><circle cx="70" cy="70" r="46" fill="none" stroke="#c4a44d" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.5"/></g>
+      <g class="r1">
+        <circle cx="70" cy="18" r="3" fill="#d4f03c"/>
+        <circle cx="18" cy="70" r="2" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="122" cy="70" r="2" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="70" cy="122" r="2" fill="#c4a44d" opacity="0.6"/>
+      </g>
+      <circle cx="70" cy="70" r="4" fill="#d4f03c"/>
+    </svg>
+    <div class="load-txt">AI解析中</div>
+    <div class="load-stages">
+      <div class="load-stage" id="ls1">① 日記を読み込み</div>
+      <div class="load-stage" id="ls2">② 項目を抽出</div>
+      <div class="load-stage" id="ls3">③ 心理学的に判定</div>
+      <div class="load-stage" id="ls4">④ 3つの文体で言い換え</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== Result ======== -->
+<div class="screen" id="scr-result">
+  <button class="back" onclick="showScreen('scr-home')">‹ ホーム</button>
+  <div class="hdr">
+    <div class="hdr-eye">Prescription</div>
+    <div class="hdr-title">処方箋</div>
+  </div>
+  <div class="res-date" id="r-date">—</div>
+  <div class="res-state">
+    <div class="res-state-eye">今の状態</div>
+    <div class="res-state-v" id="r-state">—</div>
+  </div>
+
+  <div id="r-items"></div>
+
+  <div class="reframe-sec">
+    <div class="reframe-head">言い換えによるメタ認知</div>
+    <div class="reframe-note">同じ気持ちを3つの角度から言い換えます。読むだけで脳がメタ認知を始め、ストレス反応が和らぎます（Lieberman 2007, Pennebaker 1997）。</div>
+    <div class="reframe-card">
+      <div class="reframe-lbl">作家の文体で</div>
+      <div class="reframe-txt" id="r-rf1">—</div>
+    </div>
+    <div class="reframe-card">
+      <div class="reframe-lbl">心理学用語で</div>
+      <div class="reframe-txt" id="r-rf2">—</div>
+    </div>
+    <div class="reframe-card">
+      <div class="reframe-lbl">状態を示す用語で</div>
+      <div class="reframe-txt" id="r-rf3">—</div>
+    </div>
+  </div>
+
+  <button class="btn-main" onclick="saveAndHome()">保存してホームへ</button>
+  <button class="btn-ghost" onclick="showScreen('scr-write')">もう一度書く</button>
+</div>
+
+<!-- ======== Error ======== -->
+<div class="screen" id="scr-error">
+  <button class="back" onclick="showScreen('scr-write')">‹ 戻る</button>
+  <div class="hdr">
+    <div class="hdr-eye">Error</div>
+    <div class="hdr-title">解析できませんでした</div>
+  </div>
+  <div class="err-box">
+    <div class="err-title">エラー内容</div>
+    <div class="err-msg" id="e-msg">—</div>
+  </div>
+  <div class="field-hint" style="padding:12px 4px;line-height:2">
+    多くの場合は次のいずれかです：<br>
+    ・APIキーが正しくない（設定画面で確認）<br>
+    ・一時的な通信エラー（もう一度試す）<br>
+    ・Groqの無料枠を使い切った（時間を置く）
+  </div>
+  <button class="btn-main" onclick="showScreen('scr-write')">もう一度試す</button>
+  <button class="btn-ghost" onclick="showScreen('scr-settings')">設定を確認する</button>
+</div>
+
+<!-- ======== Summary ======== -->
+<div class="screen" id="scr-summary">
+  <button class="back" onclick="showScreen('scr-home')">‹ ホーム</button>
+  <div class="hdr">
+    <div class="hdr-eye">Monthly Summary</div>
+    <div class="hdr-title">まとめ</div>
+  </div>
+  <div class="sum-month" id="sm-month">—</div>
+  <div id="sm-body"></div>
+</div>
+
+<!-- ======== Detail ======== -->
+<div class="screen" id="scr-detail">
+  <button class="back" onclick="showScreen('scr-home')">‹ ホーム</button>
+  <div class="hdr">
+    <div class="hdr-eye">Record</div>
+    <div class="hdr-title">過去の記録</div>
+  </div>
+  <div class="res-date" id="d-date">—</div>
+  <div class="res-state">
+    <div class="res-state-eye">そのときの状態</div>
+    <div class="res-state-v" id="d-state">—</div>
+  </div>
+  <div class="home-list-eye" style="margin:20px 0 10px">元の日記</div>
+  <div class="det-body" id="d-body">—</div>
+  <div class="home-list-eye" style="margin:20px 0 10px">判定結果</div>
+  <div id="d-items"></div>
+  <div class="reframe-sec" style="margin-top:24px">
+    <div class="reframe-head">言い換え</div>
+    <div class="reframe-card"><div class="reframe-lbl">作家の文体で</div><div class="reframe-txt" id="d-rf1">—</div></div>
+    <div class="reframe-card"><div class="reframe-lbl">心理学用語で</div><div class="reframe-txt" id="d-rf2">—</div></div>
+    <div class="reframe-card"><div class="reframe-lbl">状態を示す用語で</div><div class="reframe-txt" id="d-rf3">—</div></div>
+  </div>
+</div>
+
+<!-- ======== Settings ======== -->
+<div class="screen" id="scr-settings">
+  <button class="back" onclick="showScreen('scr-home')">‹ ホーム</button>
+  <div class="hdr">
+    <div class="hdr-eye">Settings</div>
+    <div class="hdr-title">設定</div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">プロフィール</div>
+    <div class="field">
+      <label class="field-lbl">名前</label>
+      <input id="st-name">
+    </div>
+    <div class="field">
+      <label class="field-lbl">生年月日</label>
+      <input id="st-bday" type="date">
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-lbl">Groq APIキー</div>
+    <div class="field">
+      <label class="field-lbl">APIキー</label>
+      <input id="st-key" type="password" placeholder="gsk_...">
+      <button class="link-btn" onclick="showScreen('scr-keyguide')">キーの取得方法 →</button>
+    </div>
+  </div>
+  <button class="btn-main" onclick="updateSettings()">保存</button>
+  <button class="btn-ghost btn-danger" onclick="clearAll()">全データを削除</button>
+</div>
+
+<script>
+/* ========== Storage ========== */
+let profile=JSON.parse(localStorage.getItem('en3_profile')||'null');
+let history=JSON.parse(localStorage.getItem('en3_history')||'[]');
+let current=null;
+let detailId=null;
+
+const MODEL='qwen/qwen3-32b';
+const API_URL='https://api.groq.com/openai/v1/chat/completions';
+
+/* ========== Utility ========== */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function esc(s){return(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function fmtDate(iso){const d=new Date(iso);return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0');}
+function fmtDateShort(iso){const d=new Date(iso);return(d.getMonth()+1)+'/'+d.getDate();}
+function goClass(g){if(g>=70)return'g-hi';if(g>=45)return'g-md';return'g-lo';}
+function goColor(g){if(g>=70)return'var(--go)';if(g>=45)return'var(--warn)';return'var(--stop)';}
+
+/* ========== Profile ========== */
+function saveProfile(){
+  const name=document.getElementById('s-name').value.trim();
+  const bday=document.getElementById('s-bday').value;
+  const key=document.getElementById('s-key').value.trim();
+  if(!name||!bday){alert('名前と生年月日を入れてください');return;}
+  if(!key||!key.startsWith('gsk_')){alert('Groq APIキーを入れてください（gsk_で始まる文字列）');return;}
+  profile={name,bday,key};
+  localStorage.setItem('en3_profile',JSON.stringify(profile));
+  initHome();showScreen('scr-home');
+}
+
+function updateSettings(){
+  const name=document.getElementById('st-name').value.trim();
+  const bday=document.getElementById('st-bday').value;
+  const key=document.getElementById('st-key').value.trim();
+  if(!name||!bday){alert('名前と生年月日を入れてください');return;}
+  if(!key||!key.startsWith('gsk_')){alert('Groq APIキーを入れてください');return;}
+  profile={name,bday,key};
+  localStorage.setItem('en3_profile',JSON.stringify(profile));
+  alert('保存しました');
+  initHome();showScreen('scr-home');
+}
+
+function clearAll(){
+  if(!confirm('全データを削除します。よろしいですか？'))return;
+  localStorage.removeItem('en3_profile');
+  localStorage.removeItem('en3_history');
+  profile=null;history=[];
+  showScreen('scr-setup');
+}
+
+function openSettings(){
+  document.getElementById('st-name').value=profile.name||'';
+  document.getElementById('st-bday').value=profile.bday||'';
+  document.getElementById('st-key').value=profile.key||'';
+  showScreen('scr-settings');
+}
+
+/* ========== Home ========== */
+function initHome(){
+  if(!profile)return;
+  renderStatus();renderHistory();
+}
+
+function renderStatus(){
+  const state=document.getElementById('h-state');
+  const sub=document.getElementById('h-substate');
+  if(history.length===0){
+    state.textContent='—';
+    sub.textContent='まだ日記がありません。今日から始めましょう。';
+    return;
+  }
+  const latest=history[history.length-1];
+  state.textContent=latest.meta_state||'—';
+  const last=new Date(latest.date);
+  const days=Math.floor((new Date()-last)/(1000*60*60*24));
+  const avgGo=Math.round(history.slice(-7).reduce((s,h)=>s+(h.items[0]?.go_probability||0),0)/Math.min(history.length,7));
+  sub.textContent=`直近のGo平均 ${avgGo}　／　最終記録 ${days===0?'今日':days+'日前'}`;
+}
+
+function renderHistory(){
+  const box=document.getElementById('h-history');
+  const recent=history.slice(-5).reverse();
+  if(recent.length===0){
+    box.innerHTML='<div class="empty">まだ記録がありません</div>';
+    return;
+  }
+  box.innerHTML=recent.map(h=>{
+    const top=h.items[0];
+    const g=top?.go_probability||0;
+    return `<div class="hist-item" onclick="openDetail('${h.id}')">
+      <div class="hist-item-l">
+        <div class="hist-item-date">${fmtDateShort(h.date)}　${h.meta_state||''}</div>
+        <div class="hist-item-state">${esc(top?.title||'(項目なし)')}</div>
+      </div>
+      <div class="hist-item-go ${goClass(g)}">${g}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ========== Write ========== */
+function openWrite(){
+  if(!profile.key){alert('設定画面でAPIキーを登録してください');return;}
+  const d=new Date();
+  document.getElementById('w-date').textContent=d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日';
+  document.getElementById('w-text').value='';
+  showScreen('scr-write');
+}
+
+/* ========== Analysis (Groq) ========== */
+const SYS_PROMPT=`あなたは心理学と感情マネジメントに基づく日記分析AIです。ユーザーの日記を読み、以下のJSONだけを厳密に出力してください。前置きや説明は一切不要です。
+
+【出力JSON】
+{
+  "meta_state": "今の状態を4〜8字で（例：選択回避期／自己拡張期／再起動中／燃え尽き寸前／フロー状態／逆境後成長）",
+  "items": [
+    {
+      "rank": 1,
+      "title": "対象の名前や行動（15字以内）",
+      "type": "人|行動|モノ|感情|場所",
+      "go_probability": 0〜100の整数,
+      "priority_reason": "なぜこの順位か（35字以内）",
+      "psych_concept": "関連する心理学概念（例：自己効力感／認知的不協和／affect labeling／post-traumatic growth／選択パラドックス）"
+    }
+  ],
+  "reframe_literary": "作家の文体で日記の感情を3文で言い換える。詩的で比喩的に。",
+  "reframe_psychology": "心理学用語（affect labeling, cognitive reappraisal, emotional granularity, self-efficacy 等）を使い3文で言い換え",
+  "reframe_state": "状態を示す用語（フロー, 燃え尽き, 逆境後成長, 選択回避, 拡張, 再統合 等）で3文で言い換え"
+}
+
+【ルール】
+- itemsは最大3件。重要度順
+- 優先順位は心理学的インパクトで判定（人間関係・行動変容 > モノ・場所）
+- go_probabilityは「今それに取り組むと良い結果になる確率」。感情の明瞭度・自己との整合性・エネルギーレベルから算出
+- psych_conceptは実在する学術概念を使用（日本語または英語）
+- 日記の言葉を引用するよりも、心理状態を抽象化して表現する
+- 出力はJSONオブジェクトのみ`;
+
+async function runAnalysis(){
+  const text=document.getElementById('w-text').value.trim();
+  if(!text){alert('日記を書いてください');return;}
+  if(text.length<10){alert('もう少し書いてみましょう（10文字以上）');return;}
+
+  showScreen('scr-loading');
+  ['ls1','ls2','ls3','ls4'].forEach(id=>document.getElementById(id).classList.remove('done'));
+  document.getElementById('ls1').classList.add('done');
+  setTimeout(()=>document.getElementById('ls2').classList.add('done'),800);
+  setTimeout(()=>document.getElementById('ls3').classList.add('done'),1600);
+
+  try{
+    const res=await fetch(API_URL,{
+      method:'POST',
+      headers:{
+        'Authorization':'Bearer '+profile.key,
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        model:MODEL,
+        messages:[
+          {role:'system',content:SYS_PROMPT},
+          {role:'user',content:'日記：\n---\n'+text+'\n---'}
+        ],
+        temperature:0.6,
+        max_tokens:2000,
+        response_format:{type:'json_object'}
+      })
+    });
+
+    if(!res.ok){
+      const errText=await res.text();
+      let detail='';
+      try{
+        const errJson=JSON.parse(errText);
+        detail=errJson.error?.message||errJson.error?.code||errText;
+      }catch(e){detail=errText;}
+      throw new Error('HTTP '+res.status+'\n'+detail.slice(0,400));
+    }
+
+    const data=await res.json();
+    const content=data.choices?.[0]?.message?.content;
+    if(!content)throw new Error('AIからの応答が空でした');
+
+    let parsed;
+    try{parsed=JSON.parse(content);}
+    catch(e){
+      const m=content.match(/\{[\s\S]*\}/);
+      if(m)parsed=JSON.parse(m[0]);
+      else throw new Error('AIの応答がJSON形式ではありませんでした');
+    }
+
+    document.getElementById('ls4').classList.add('done');
+
+    current={
+      id:'r'+Date.now(),
+      date:new Date().toISOString(),
+      text:text,
+      meta_state:parsed.meta_state||'—',
+      items:(parsed.items||[]).slice(0,3),
+      rf1:parsed.reframe_literary||'',
+      rf2:parsed.reframe_psychology||'',
+      rf3:parsed.reframe_state||''
+    };
+
+    setTimeout(()=>{renderResult();showScreen('scr-result');},600);
+
+  }catch(err){
+    document.getElementById('e-msg').textContent=err.message||'通信に失敗しました';
+    showScreen('scr-error');
+  }
+}
+
+/* ========== Result ========== */
+function renderResult(){
+  const c=current;
+  document.getElementById('r-date').textContent=fmtDate(c.date);
+  document.getElementById('r-state').textContent=c.meta_state;
+  document.getElementById('r-items').innerHTML=renderItems(c.items);
+  document.getElementById('r-rf1').textContent=c.rf1;
+  document.getElementById('r-rf2').textContent=c.rf2;
+  document.getElementById('r-rf3').textContent=c.rf3;
+  setTimeout(()=>{
+    document.querySelectorAll('#r-items .item-bar-f').forEach(b=>{
+      b.style.width=b.dataset.w+'%';
+    });
+  },100);
+}
+
+function renderItems(items){
+  if(!items.length)return '<div class="empty">項目が抽出できませんでした</div>';
+  return items.map(it=>{
+    const g=it.go_probability||0;
+    return `<div class="item-card">
+      <div class="item-rank">Priority ${it.rank||'?'}</div>
+      <div class="item-head">
+        <div class="item-title">${esc(it.title||'')}</div>
+        <div class="item-type">${esc(it.type||'')}</div>
+      </div>
+      <div class="item-go">
+        <span class="item-go-lbl">Go</span>
+        <span class="item-go-v" style="color:${goColor(g)}">${g}</span>
+        <span class="item-go-u">/ 100</span>
+      </div>
+      <div class="item-bar"><div class="item-bar-f" data-w="${g}" style="background:${goColor(g)}"></div></div>
+      <div class="item-reason">${esc(it.priority_reason||'')}</div>
+      <div class="item-ev">${esc(it.psych_concept||'')}</div>
+    </div>`;
+  }).join('');
+}
+
+function saveAndHome(){
+  history.push(current);
+  if(history.length>200)history=history.slice(-200);
+  localStorage.setItem('en3_history',JSON.stringify(history));
+  current=null;
+  initHome();showScreen('scr-home');
+}
+
+/* ========== Detail ========== */
+function openDetail(id){
+  const h=history.find(x=>x.id===id);
+  if(!h)return;
+  detailId=id;
+  document.getElementById('d-date').textContent=fmtDate(h.date);
+  document.getElementById('d-state').textContent=h.meta_state||'—';
+  document.getElementById('d-body').textContent=h.text||'(日記なし)';
+  document.getElementById('d-items').innerHTML=renderItems(h.items||[]);
+  document.getElementById('d-rf1').textContent=h.rf1||'';
+  document.getElementById('d-rf2').textContent=h.rf2||'';
+  document.getElementById('d-rf3').textContent=h.rf3||'';
+  showScreen('scr-detail');
+  setTimeout(()=>{
+    document.querySelectorAll('#d-items .item-bar-f').forEach(b=>{b.style.width=b.dataset.w+'%';});
+  },100);
+}
+
+/* ========== Summary ========== */
+async function openSummary(){
+  const now=new Date();
+  const from=new Date();from.setDate(from.getDate()-30);
+  const entries=history.filter(h=>new Date(h.date)>=from);
+
+  document.getElementById('sm-month').textContent=(from.getMonth()+1)+'/'+from.getDate()+' 〜 '+(now.getMonth()+1)+'/'+now.getDate();
+  const body=document.getElementById('sm-body');
+
+  if(entries.length<2){
+    body.innerHTML='<div class="empty">まとめを作るには、2件以上の記録が必要です。<br>日記を数日続けてください。</div>';
+    showScreen('scr-summary');
+    return;
+  }
+
+  /* 集計（ローカル） */
+  const counts={};
+  let totalGo=0,goCount=0;
+  const states={};
+  entries.forEach(e=>{
+    (e.items||[]).forEach(it=>{
+      const key=it.title;
+      if(!counts[key])counts[key]={count:0,goSum:0};
+      counts[key].count++;
+      counts[key].goSum+=it.go_probability||0;
+      totalGo+=it.go_probability||0;goCount++;
+    });
+    if(e.meta_state){states[e.meta_state]=(states[e.meta_state]||0)+1;}
+  });
+  const top3=Object.entries(counts).sort((a,b)=>b[1].count-a[1].count).slice(0,3);
+  const avgGo=goCount?Math.round(totalGo/goCount):0;
+  const domState=Object.entries(states).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
+
+  body.innerHTML=`
+    <div class="sum-metric"><span class="sum-metric-k">記録数</span><span class="sum-metric-v">${entries.length}</span></div>
+    <div class="sum-metric"><span class="sum-metric-k">Go平均</span><span class="sum-metric-v">${avgGo}</span></div>
+    <div class="sum-metric"><span class="sum-metric-k">最頻の状態</span><span class="sum-metric-v">${esc(domState)}</span></div>
+
+    <div class="home-list-eye" style="margin:24px 0 10px">よく登場した項目</div>
+    ${top3.length?top3.map((t,i)=>`
+      <div class="sum-rank">
+        <span class="sum-rank-n">${i+1}</span>
+        <span class="sum-rank-t">${esc(t[0])}</span>
+        <span class="sum-rank-c">${t[1].count}回　平均${Math.round(t[1].goSum/t[1].count)}</span>
+      </div>`).join(''):'<div class="empty">データ不足</div>'}
+
+    <div id="sm-insight-wrap"><div class="empty">AIがまとめを作成中...</div></div>
+  `;
+  showScreen('scr-summary');
+
+  /* AIまとめ生成 */
+  try{
+    const brief=entries.map(e=>({
+      date:fmtDateShort(e.date),
+      state:e.meta_state,
+      top:e.items?.[0]?.title,
+      go:e.items?.[0]?.go_probability
+    }));
+    const sumPrompt=`あなたは心理学に基づく感情マネジメントAIです。以下は過去${entries.length}件の日記分析履歴です。これを読み、以下のJSONだけを出力してください。
+
+【出力JSON】
+{
+  "dominant_state": "この期間を象徴する心理状態（5〜10字）",
+  "growth_point": "成長したと思われる領域（30字以内）",
+  "attention_point": "注意すべき領域（30字以内）",
+  "insight": "最も重要な気づき（80字以内、一文）",
+  "next_focus": "次の期間に向けた一手（30字以内）"
+}
+
+履歴：
+${JSON.stringify(brief)}`;
+
+    const res=await fetch(API_URL,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+profile.key,'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:MODEL,
+        messages:[{role:'user',content:sumPrompt}],
+        temperature:0.6,
+        max_tokens:800,
+        response_format:{type:'json_object'}
+      })
+    });
+    if(!res.ok)throw new Error('まとめ生成に失敗');
+    const data=await res.json();
+    const content=data.choices?.[0]?.message?.content;
+    let s;
+    try{s=JSON.parse(content);}
+    catch(e){const m=content.match(/\{[\s\S]*\}/);s=m?JSON.parse(m[0]):null;}
+    if(!s)throw new Error('応答が解析できません');
+
+    document.getElementById('sm-insight-wrap').innerHTML=`
+      <div class="sum-insight">
+        <div class="sum-insight-lbl">Core Insight</div>
+        <div class="sum-insight-txt">${esc(s.insight||'')}</div>
+      </div>
+      <div class="sum-metric"><span class="sum-metric-k">象徴する状態</span><span class="sum-metric-v">${esc(s.dominant_state||'—')}</span></div>
+      <div class="sum-metric"><span class="sum-metric-k">成長の領域</span><span class="sum-metric-v" style="font-size:14px;letter-spacing:1px">${esc(s.growth_point||'—')}</span></div>
+      <div class="sum-metric"><span class="sum-metric-k">注意の領域</span><span class="sum-metric-v" style="font-size:14px;letter-spacing:1px;color:var(--warn)">${esc(s.attention_point||'—')}</span></div>
+      <div class="sum-insight" style="border-color:var(--gold)">
+        <div class="sum-insight-lbl" style="color:var(--gold)">Next Focus</div>
+        <div class="sum-insight-txt">${esc(s.next_focus||'')}</div>
+      </div>
+    `;
+  }catch(err){
+    document.getElementById('sm-insight-wrap').innerHTML=`<div class="empty">AIまとめの取得に失敗しました：${esc(err.message)}</div>`;
+  }
+}
+
+/* ========== Settings wrapper ========== */
+document.getElementById('scr-settings').addEventListener('click',function(e){
+  if(e.target.id==='scr-settings'&&!this.dataset.init){
+    this.dataset.init='1';
+  }
+},{once:true});
+
+/* Override showScreen to init settings fields */
+const origShow=showScreen;
+showScreen=function(id){
+  origShow(id);
+  if(id==='scr-settings'&&profile){
+    document.getElementById('st-name').value=profile.name||'';
+    document.getElementById('st-bday').value=profile.bday||'';
+    document.getElementById('st-key').value=profile.key||'';
+  }
+};
+
+/* ========== Init ========== */
+if(profile){
+  initHome();showScreen('scr-home');
+}else{
+  showScreen('scr-setup');
+}
+</script>
+</body>
+</html>
