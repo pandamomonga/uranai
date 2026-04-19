@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田様｜施術報告書 × 戦略アドバイス</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#000;
+    color:#fff;
+    font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;
+    font-weight:700;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position:relative;
+    padding:40px 24px 32px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,0,255,.35), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(0,255,255,.3), transparent 50%),
+      #000;
+    border-bottom:3px solid #ff00ff;
+  }
+  .tag {
+    display:inline-block;
+    background:#ff00ff;
+    color:#000;
+    padding:4px 12px;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:16px;
+    font-weight:900;
+  }
+  .hero h1 {
+    font-size:44px;
+    line-height:1.1;
+    color:#fff;
+    text-shadow:0 0 20px #ff00ff, 0 0 40px #ff00ff;
+    margin-bottom:8px;
+  }
+  .hero h1 span { color:#00ffff; text-shadow:0 0 20px #00ffff; }
+  .hero .date {
+    color:#ffff00;
+    font-size:14px;
+    letter-spacing:2px;
+    margin-top:12px;
+  }
+
+  /* ===== SECTION ===== */
+  section {
+    padding:36px 24px;
+    border-bottom:1px dashed #333;
+  }
+  .sec-num {
+    font-size:80px;
+    color:#111;
+    -webkit-text-stroke:1px #00ffff;
+    font-weight:900;
+    line-height:0.8;
+    margin-bottom:-30px;
+    position:relative;
+    z-index:0;
+  }
+  h2 {
+    font-size:28px;
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff;
+    margin-bottom:20px;
+    position:relative;
+    z-index:1;
+  }
+  h2 .small { display:block; font-size:12px; color:#fff; letter-spacing:3px; margin-bottom:4px; }
+  h3 {
+    font-size:18px;
+    color:#ffff00;
+    margin:16px 0 8px;
+    border-left:4px solid #ffff00;
+    padding-left:10px;
+  }
+  p { font-size:15px; color:#ddd; margin-bottom:12px; font-weight:500; }
+  .lead {
+    font-size:20px;
+    color:#fff;
+    font-weight:700;
+    line-height:1.5;
+    margin-bottom:16px;
+  }
+
+  /* ===== BODY DIAGNOSIS ===== */
+  .diag {
+    background:#0a0a0a;
+    border:2px solid #ff00ff;
+    padding:20px;
+    margin:16px 0;
+  }
+  .diag .row {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid #222;
+  }
+  .diag .row:last-child { border:none; }
+  .diag .label { color:#aaa; font-size:13px; }
+  .diag .val { color:#00ff00; font-weight:900; font-size:15px; }
+  .diag .val.bad { color:#ff3366; }
+
+  /* ===== BIG QUOTE ===== */
+  .big-quote {
+    background:linear-gradient(135deg,#ff00ff 0%,#00ffff 100%);
+    padding:3px;
+    margin:24px 0;
+  }
+  .big-quote-inner {
+    background:#000;
+    padding:24px;
+    text-align:center;
+  }
+  .big-quote .label {
+    color:#ffff00;
+    font-size:12px;
+    letter-spacing:4px;
+    margin-bottom:12px;
+  }
+  .big-quote .text {
+    font-size:40px;
+    font-weight:900;
+    color:#fff;
+    line-height:1.2;
+    text-shadow:0 0 20px #ff00ff;
+  }
+  .big-quote .text span { color:#00ffff; }
+
+  /* ===== VARIABLE LIST ===== */
+  .var-list {
+    display:grid;
+    gap:10px;
+    margin:16px 0;
+  }
+  .var-item {
+    background:#111;
+    border-left:4px solid #00ffff;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .var-item .num {
+    color:#ff00ff;
+    font-size:22px;
+    font-weight:900;
+    min-width:32px;
+  }
+  .var-item .txt { color:#fff; font-size:14px; }
+
+  /* ===== PREDICTION ===== */
+  .predict {
+    background:#0a0a0a;
+    border:2px dashed #ffff00;
+    padding:20px;
+    margin:20px 0;
+    text-align:center;
+  }
+  .predict .arrow {
+    font-size:32px;
+    color:#ffff00;
+    margin:12px 0;
+  }
+  .batter {
+    display:inline-block;
+    padding:12px 20px;
+    font-weight:900;
+    font-size:18px;
+  }
+  .batter.weak { background:#333; color:#aaa; }
+  .batter.strong { background:#ff00ff; color:#000; box-shadow:0 0 20px #ff00ff; }
+
+  /* ===== AI FINAL ===== */
+  .ai-box {
+    background:
+      linear-gradient(90deg, transparent 0%, rgba(0,255,0,.1) 50%, transparent 100%),
+      #000;
+    border:2px solid #00ff00;
+    padding:24px;
+    margin:16px 0;
+  }
+  .ai-box .title {
+    color:#00ff00;
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:12px;
+    text-shadow:0 0 10px #00ff00;
+  }
+  .ai-box p { color:#ccc; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background:#111;
+    padding:32px 24px;
+    text-align:center;
+    border-top:3px solid #00ffff;
+  }
+  footer .clinic {
+    color:#00ffff;
+    font-size:16px;
+    font-weight:900;
+    margin-bottom:8px;
+    text-shadow:0 0 10px #00ffff;
+  }
+  footer .tagline {
+    color:#888;
+    font-size:11px;
+    line-height:1.8;
+  }
+
+  /* ===== ACCENTS ===== */
+  .accent-pink { color:#ff00ff; }
+  .accent-cyan { color:#00ffff; }
+  .accent-yellow { color:#ffff00; }
+  .accent-green { color:#00ff00; }
+  .strike { text-decoration:line-through; color:#666; }
+
+  /* Responsive */
+  @media (max-width:500px) {
+    .hero h1 { font-size:34px; }
+    .big-quote .text { font-size:28px; }
+    h2 { font-size:22px; }
+    .sec-num { font-size:60px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="tag">TREATMENT × STRATEGY REPORT</span>
+    <h1>福田様<br>お疲れさまでした<br><span>今日の一手。</span></h1>
+    <div class="date">◆ 本日の施術報告＆次の一手アドバイス ◆</div>
+  </section>
+
+  <!-- SECTION 1 : BODY REPORT -->
+  <section>
+    <div class="sec-num">01</div>
+    <h2><span class="small">TODAY'S BODY</span>本日のお身体</h2>
+
+    <p class="lead">野球 × 週4日の会議座位<br>→ <span class="accent-pink">いつもの弱点・左足</span>がカチカチ状態でした。</p>
+
+    <div class="diag">
+      <div class="row"><span class="label">全体の硬さ</span><span class="val bad">かなり硬い</span></div>
+      <div class="row"><span class="label">原因①</span><span class="val">野球による筋疲労</span></div>
+      <div class="row"><span class="label">原因②</span><span class="val">週4日の会議座位</span></div>
+      <div class="row"><span class="label">ウィークポイント</span><span class="val bad">左足（常連）</span></div>
+      <div class="row"><span class="label">代償パターン</span><span class="val bad">右・大腿直筋の硬化</span></div>
+    </div>
+
+    <h3>本日の施術</h3>
+    <p>✓ <span class="accent-cyan">トリガーポイント療法</span>（深部のコリ）<br>
+       ✓ <span class="accent-cyan">マイオファッシャルリリース（筋膜リリース）</span>で表層〜深部の滑走性UP<br>
+       ✓ 代償で硬くなった<span class="accent-yellow">右・大腿直筋</span>もリリース</p>
+
+    <p style="margin-top:16px;color:#ffff00;">⏰ 数日後、楽になる可能性が高いです。</p>
+  </section>
+
+  <!-- SECTION 2 : KEY POINT -->
+  <section>
+    <div class="sec-num">02</div>
+    <h2><span class="small">KEY POINT</span>ポイントはシンプル</h2>
+
+    <div class="big-quote">
+      <div class="big-quote-inner">
+        <div class="label">◆ POINT ◆</div>
+        <div class="text">座りすぎると<br><span>左足に来る。</span></div>
+      </div>
+    </div>
+
+    <p>左足を守るため、代償で働いている右・大腿直筋にも負荷が集中します。<br>
+    <span class="accent-pink">＝ 左だけケアしても不十分。代償側もセットで。</span></p>
+  </section>
+
+  <!-- SECTION 3 : STRATEGY -->
+  <section>
+    <div class="sec-num">03</div>
+    <h2><span class="small">BUSINESS STRATEGY</span>次の一手・戦略アドバイス</h2>
+
+    <div class="big-quote">
+      <div class="big-quote-inner">
+        <div class="label">◆ MISSION ◆</div>
+        <div class="text"><span>変数</span>を<br>見つけろ。</div>
+      </div>
+    </div>
+
+    <p class="lead">全工場の<span class="accent-pink">ウィークポイント</span>を変数化する。<br>
+    基準は「<span class="accent-cyan">震災・有事でも即・出荷できるか？</span>」</p>
+  </section>
+
+  <!-- SECTION 4 : VARIABLES -->
+  <section>
+    <div class="sec-num">04</div>
+    <h2><span class="small">VARIABLES</span>変数の例</h2>
+
+    <p>小さなことでOK。積み上げが勝負を決めます。</p>
+
+    <div class="var-list">
+      <div class="var-item"><span class="num">01</span><span class="txt">トラックが入れるか／間口の広さ</span></div>
+      <div class="var-item"><span class="num">02</span><span class="txt">工場前の道路の幅・強度</span></div>
+      <div class="var-item"><span class="num">03</span><span class="txt">高速・幹線道路までの所要時間</span></div>
+      <div class="var-item"><span class="num">04</span><span class="txt">街路樹・障害物（大型車の動線）</span></div>
+      <div class="var-item"><span class="num">05</span><span class="txt">周辺インフラの脆弱性</span></div>
+      <div class="var-item"><span class="num">06</span><span class="txt">気候変動リスク（浸水・高温）</span></div>
+      <div class="var-item"><span class="num">07</span><span class="txt">震災時の復旧スピード想定</span></div>
+    </div>
+
+    <p style="margin-top:20px;">これらを<span class="accent-yellow">掛け合わせる</span>ことで、<br>
+    注力すべき工場がくっきり浮かび上がります。</p>
+  </section>
+
+  <!-- SECTION 5 : FUTURE -->
+  <section>
+    <div class="sec-num">05</div>
+    <h2><span class="small">FUTURE FORECAST</span>未来予測の視点</h2>
+
+    <p>気候変動 × 震災 × 物流変数 を掛け合わせると──</p>
+
+    <div class="predict">
+      <div class="batter weak">今は8番バッター<br>（弱い商品）</div>
+      <div class="arrow">▼ 数年後 ▼</div>
+      <div class="batter strong">4番バッター化<br>する可能性</div>
+    </div>
+
+    <p><span class="accent-pink">いまの「弱い商品」が、未来の主力になる。</span><br>
+    この予測を<span class="accent-cyan">今のうちに</span>立てておくのが、経営者の一手です。</p>
+  </section>
+
+  <!-- SECTION 6 : AI -->
+  <section>
+    <div class="sec-num">06</div>
+    <h2><span class="small">FINAL MOVE</span>最後の一手・チーム強化</h2>
+
+    <div class="ai-box">
+      <div class="title">▶ AI活用の基盤を、部下に仕込む。</div>
+      <p>福田様の<span class="accent-green">部下専用</span>に、<br>
+      AIを使うための<span class="accent-green">専用トレーニングアプリ</span>を自動化で作り、<br>
+      チーム全員が「AIを使える基盤」を持つ状態にする。</p>
+      <p style="margin-top:12px;color:#00ff00;">＝ 一人の天才より、全員が使える組織が勝つ時代。</p>
+    </div>
+
+    <p>※ 専用トレーニングアプリは、三条健康堂接骨院の<br>
+    ノウハウを応用して設計可能です。</p>
+  </section>
+
+  <!-- SUMMARY -->
+  <section style="background:#0a0a0a;">
+    <h2 style="color:#ff00ff;text-shadow:0 0 10px #ff00ff;"><span class="small">TODAY'S SUMMARY</span>今日の要点</h2>
+
+    <div class="diag" style="border-color:#00ffff;">
+      <div class="row"><span class="label accent-cyan">身体</span><span class="val">代償側（右）までケア済</span></div>
+      <div class="row"><span class="label accent-cyan">戦略</span><span class="val">変数を見つけろ</span></div>
+      <div class="row"><span class="label accent-cyan">未来</span><span class="val">8番→4番の予測を持つ</span></div>
+      <div class="row"><span class="label accent-cyan">組織</span><span class="val">AI基盤を部下に仕込む</span></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="tagline">
+      柔道整復師・30年の臨床経験<br>
+      香川県高松市｜年間200冊読む治療家<br>
+      ——高松発・一生動ける身体と人生の教養研究室——<br>
+      無借金・無車・自転車・圧力鍋生活を実践する治療家より
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
