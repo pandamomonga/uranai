@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>肩は、心臓に話していた</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #080a10;
+    color: #e8e8e8;
+    font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+    line-height: 1.9;
+    padding: 24px 18px 60px;
+    overflow-x: hidden;
+  }
+
+  .wrap { max-width: 600px; margin: 0 auto; }
+
+  /* ヘッダー */
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #1a1d28;
+    border: 1px solid #ff2e9a;
+    color: #ff2e9a;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+
+  .patient-name {
+    color: #888;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  /* メインタイトル */
+  .main-title {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+
+  .main-title .glow {
+    color: #00ffd1;
+    text-shadow: 0 0 20px rgba(0, 255, 209, 0.6);
+  }
+
+  .subtitle {
+    color: #ffe600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px dashed #2a2d3a;
+  }
+
+  /* 挨拶ブロック */
+  .greeting {
+    background: linear-gradient(135deg, #11141c 0%, #0d1018 100%);
+    border-left: 3px solid #00ffd1;
+    padding: 20px 22px;
+    margin-bottom: 40px;
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  /* セクション見出し */
+  .section-num {
+    display: inline-block;
+    background: #ff2e9a;
+    color: #000;
+    font-weight: 900;
+    padding: 4px 10px;
+    font-size: 12px;
+    margin-right: 10px;
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    margin: 50px 0 20px;
+    line-height: 1.3;
+    border-bottom: 2px solid #ffe600;
+    padding-bottom: 12px;
+  }
+
+  h2 .neon-pink { color: #ff2e9a; text-shadow: 0 0 15px rgba(255, 46, 154, 0.5); }
+  h2 .neon-yellow { color: #ffe600; text-shadow: 0 0 15px rgba(255, 230, 0, 0.5); }
+  h2 .neon-cyan { color: #00ffd1; text-shadow: 0 0 15px rgba(0, 255, 209, 0.5); }
+
+  p {
+    font-size: 15px;
+    margin-bottom: 18px;
+    color: #d4d4d4;
+  }
+
+  .emphasis {
+    color: #00ffd1;
+    font-weight: 700;
+  }
+
+  /* 数値カード */
+  .data-card {
+    background: #11141c;
+    border: 1px solid #2a2d3a;
+    border-radius: 4px;
+    padding: 22px 20px;
+    margin: 24px 0;
+  }
+
+  .data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #1f2230;
+  }
+  .data-row:last-child { border-bottom: none; }
+
+  .data-label {
+    font-size: 14px;
+    color: #aaa;
+    letter-spacing: 1px;
+  }
+
+  .data-value {
+    font-size: 22px;
+    font-weight: 900;
+    font-family: 'Courier New', monospace;
+  }
+
+  .val-danger { color: #ff2e9a; text-shadow: 0 0 10px rgba(255, 46, 154, 0.6); }
+  .val-warn { color: #ffe600; text-shadow: 0 0 10px rgba(255, 230, 0, 0.5); }
+  .val-ok { color: #00ffd1; text-shadow: 0 0 10px rgba(0, 255, 209, 0.5); }
+
+  /* 警告ブロック */
+  .alert-box {
+    background: linear-gradient(135deg, #2a0d1f 0%, #1a0814 100%);
+    border: 2px solid #ff2e9a;
+    padding: 24px 22px;
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .alert-label {
+    color: #ff2e9a;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .alert-text {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  /* サインリスト */
+  .sign-item {
+    background: #11141c;
+    border-left: 3px solid #ffe600;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+
+  .sign-title {
+    color: #ffe600;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .sign-body {
+    color: #c8c8c8;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* 教養ブロック */
+  .wisdom {
+    background: linear-gradient(135deg, #0d1a1a 0%, #081414 100%);
+    border: 1px dashed #00ffd1;
+    padding: 26px 22px;
+    margin: 30px 0;
+    font-style: italic;
+  }
+
+  .wisdom-quote {
+    color: #00ffd1;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin: 14px 0;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(0, 255, 209, 0.4);
+  }
+
+  /* 招待リスト */
+  .invite-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #ff2e9a;
+    color: #000;
+    font-weight: 900;
+    border-radius: 50%;
+    font-size: 14px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(255, 46, 154, 0.5);
+  }
+
+  .invite-item {
+    display: flex;
+    align-items: flex-start;
+    background: #11141c;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+  }
+
+  .invite-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #d4d4d4;
+  }
+
+  /* 結び */
+  .closing {
+    background: linear-gradient(135deg, #1a1018 0%, #0d0810 100%);
+    border-top: 2px solid #ff2e9a;
+    border-bottom: 2px solid #00ffd1;
+    padding: 28px 22px;
+    margin: 40px 0 30px;
+    text-align: center;
+  }
+
+  .closing p {
+    color: #e0e0e0;
+    margin-bottom: 14px;
+  }
+
+  .closing-line {
+    color: #ffe600;
+    font-size: 18px;
+    font-weight: 900;
+    margin-top: 18px;
+    text-shadow: 0 0 15px rgba(255, 230, 0, 0.5);
+    letter-spacing: 1px;
+  }
+
+  /* CTA */
+  .cta-box {
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px dashed #2a2d3a;
+  }
+
+  .cta-link {
+    display: block;
+    background: #11141c;
+    border: 1px solid #00ffd1;
+    color: #00ffd1;
+    padding: 16px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+
+  .cta-link:hover {
+    background: #00ffd1;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 209, 0.6);
+  }
+
+  .signature {
+    margin-top: 24px;
+    color: #666;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+
+  /* ブレイク要素 */
+  .break-line {
+    text-align: center;
+    color: #ff2e9a;
+    margin: 30px 0;
+    letter-spacing: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="badge">TODAY'S REPORT</div>
+  <div class="patient-name">新庄 きよこ 様</div>
+
+  <h1 class="main-title">肩は、<br><span class="glow">心臓に話していた</span></h1>
+  <div class="subtitle">—— 今日、数値が告白したこと</div>
+
+  <div class="greeting">
+    新庄さん、今日は来てくださってありがとうございます。<br>
+    左肩、よくここまで我慢されましたね。<br>
+    <span class="emphasis">これは誰でもきついですよ。</span><br>
+    我慢の上手な方ほど、身体が静かに先回りして肩代わりをしてしまう。今日の肩は、その「肩代わり」の最終便でした。
+  </div>
+
+  <h2><span class="section-num">01</span><span class="neon-pink">凍ったロープが、三本。</span></h2>
+  <p>三角筋に、太い結び目が三つ。僧帽筋の左側にも、湿った粘土のような硬さが帯になって伸びていました。上腕の二頭と三頭、ここにも古いゴムがねじれて固まっている。一つひとつ、丁寧にほどいていきました。</p>
+  <p>中盤、ここが中心からほぐれはじめた瞬間、ふっと呼吸が一段深くなりましたね。氷の塊が、外からではなく芯から崩れていくような感覚。<span class="emphasis">あれが、身体が「もう守らなくていい」と判断した合図です。</span></p>
+
+  <div class="break-line">━ ◆ ━</div>
+
+  <h2><span class="section-num">02</span><span class="neon-yellow">数値は、嘘をつかない。</span></h2>
+
+  <div class="data-card">
+    <div class="data-row">
+      <span class="data-label">心臓 / 右</span>
+      <span class="data-value val-danger">144%</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">心臓 / 左</span>
+      <span class="data-value val-warn">89%</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">代謝</span>
+      <span class="data-value val-warn">1.01</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">筋骨格系</span>
+      <span class="data-value val-warn">0.83</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">心理状態</span>
+      <span class="data-value val-ok">0.86</span>
+    </div>
+  </div>
+
+  <p>心臓が頑張りすぎているサインです。肩が上がらないという情報を脳が受け取ると、脳は「世界の半分が動かない」という緊急放送を出す。<span class="emphasis">その放送を、心臓が一人で引き受けていました。</span></p>
+
+  <p>筋骨格系のスコアが低めに出ていたのは、弱っているのではなく、肩が長く戦線を張りつづけていた証拠。代謝も少しだけ沈んでいる。身体全体が、肩というひとつの拠点に予算を集中させていたのです。</p>
+
+  <div class="alert-box">
+    <div class="alert-label">★ DOCTOR'S NOTE ★</div>
+    <div class="alert-text">五十肩の、<br>一歩手前。</div>
+  </div>
+
+  <p>正直に申し上げると、今日の肩は少し危険な位置にありました。あと一段崩れると、いわゆる五十肩の入り口へ近づいてしまう状態。だから今日は、細かいトリガーポイントまで全部、灯りを当てるように一つずつ刺激しました。</p>
+
+  <h2><span class="section-num">03</span><span class="neon-cyan">見えてきた身体のサイン</span></h2>
+
+  <div class="sign-item">
+    <div class="sign-title">▶ 呼吸が浅くなっていた</div>
+    <div class="sign-body">夜、布団に入ってから三回、ゆっくり息を吐く。それだけで肩は半歩戻ります。</div>
+  </div>
+
+  <div class="sign-item">
+    <div class="sign-title">▶ 夕方の集中が途切れやすい</div>
+    <div class="sign-body">脳が肩の警報を受けつづけているからです。十五分の昼の目つむりが効きます。</div>
+  </div>
+
+  <div class="sign-item">
+    <div class="sign-title">▶ 朝、肩より先に頭が重い日がある</div>
+    <div class="sign-body">心臓が夜のあいだ走りすぎている合図。前夜の食事を少しだけ軽くしてみてください。</div>
+  </div>
+
+  <h2><span class="section-num">04</span><span class="neon-pink">深読みの一筆</span></h2>
+  <div class="wisdom">
+    <p>三百年前に書かれた養生の書に、こんな一行があります。</p>
+    <div class="wisdom-quote">「身体は、心の住む家である」</div>
+    <p>家の柱が一本だけ傾けば、住む人も眠れない。逆に、住む人が穏やかであれば、柱は自分でまっすぐを思い出そうとする。</p>
+    <p style="margin-top: 14px; color: #00ffd1; text-align: center;">今日、左肩というひとつの柱が、<br>わずかにまっすぐを思い出しました。</p>
+  </div>
+
+  <h2><span class="section-num">05</span><span class="neon-yellow">3つの小さな招待</span></h2>
+
+  <div class="invite-item">
+    <div class="invite-num">1</div>
+    <div class="invite-text">朝、壁の前に立って、小さなボールを左肩に当てて三十秒。今日お伝えした位置で。<span class="emphasis">壁が一緒に治してくれます。</span></div>
+  </div>
+
+  <div class="invite-item">
+    <div class="invite-num">2</div>
+    <div class="invite-text">夜、湯船で左腕をゆっくり前から後ろへ一回。可動域を測らない、ただ通路を確かめるだけ。</div>
+  </div>
+
+  <div class="invite-item">
+    <div class="invite-num">3</div>
+    <div class="invite-text">食事に、温かい汁物を一品だけ足してみてください。代謝が一段、起き上がってきます。</div>
+  </div>
+
+  <div class="closing">
+    <p>肩は、長いあいだ、新庄さんの代わりに何かを支えていました。</p>
+    <p>今日、その荷物を少しだけ預かりました。</p>
+    <p>次にお会いするまでに、身体が自分で続きを書いていきます。</p>
+    <div class="closing-line">—— 肩が静かになる夜が、<br>戻ってきます。</div>
+  </div>
+
+  <div class="cta-box">
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" class="cta-link">📍 GOOGLE MAPS で確認する</a>
+    <a href="https://lin.ee/dwRtwDv" class="cta-link">💬 LINE でご相談・ご予約</a>
+  </div>
+
+  <div class="signature">
+    高松発・一生動ける身体と人生の教養研究室<br>
+    無借金・無車・自転車・圧力鍋生活を実践する治療家より
+  </div>
+
+</div>
+</body>
+</html>
