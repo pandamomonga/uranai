@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#050507">
+<title>新庄明紀様｜今日の身体からの手紙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=RocknRoll+One&family=Reggae+One&family=Bebas+Neue&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050507;
+  --bg-soft:#0c0c12;
+  --bg-card:#101018;
+  --ink:#f5f5f7;
+  --ink-soft:#9b9ba5;
+  --ink-faint:#5a5a66;
+  --neon-red:#ff2d55;
+  --neon-cyan:#00e5ff;
+  --neon-yellow:#e5ff00;
+  --neon-pink:#ff006e;
+  --gold:#c4a44d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;}
+
+html,body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Serif JP',serif;
+  line-height:1.75;
+  font-size:16px;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.015) 1px, transparent 0);
+  background-size:3px 3px;
+  pointer-events:none;
+  z-index:1;
+}
+
+.container{
+  max-width:480px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+
+section{
+  padding:80px 24px;
+  position:relative;
+}
+
+/* === HERO === */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:60px 24px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 15% 20%,rgba(255,45,85,0.18),transparent 50%),
+    radial-gradient(ellipse at 85% 80%,rgba(0,229,255,0.10),transparent 50%);
+  pointer-events:none;
+}
+
+.hero::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--neon-yellow),transparent);
+  opacity:0.6;
+}
+
+.hero-meta{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:12px;
+  letter-spacing:0.4em;
+  color:var(--neon-yellow);
+  margin-bottom:32px;
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.hero-meta::before{
+  content:'';
+  width:24px;
+  height:1px;
+  background:var(--neon-yellow);
+}
+
+.hero-name{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:900;
+  font-size:20px;
+  margin-bottom:48px;
+  position:relative;
+  z-index:1;
+  border-left:3px solid var(--neon-yellow);
+  padding-left:14px;
+  letter-spacing:0.05em;
+}
+
+.hero-title{
+  font-family:'RocknRoll One',sans-serif;
+  font-size:64px;
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  margin-bottom:32px;
+  position:relative;
+  z-index:1;
+}
+
+.hero-title .line1{
+  display:block;
+  color:var(--ink);
+}
+
+.hero-title .accent{
+  display:block;
+  color:var(--neon-red);
+  text-shadow:
+    0 0 20px rgba(255,45,85,0.5),
+    0 0 40px rgba(255,45,85,0.3);
+  position:relative;
+}
+
+.hero-title .dot{
+  color:var(--neon-yellow);
+}
+
+.hero-subtitle{
+  font-family:'Shippori Mincho',serif;
+  font-size:14px;
+  color:var(--ink-soft);
+  letter-spacing:0.15em;
+  position:relative;
+  z-index:1;
+  padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  max-width:280px;
+}
+
+.scroll-hint{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:10px;
+  letter-spacing:0.5em;
+  color:var(--neon-yellow);
+  animation:bounce 2s infinite;
+  z-index:1;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateX(-50%) translateY(0);opacity:0.5;}
+  50%{transform:translateX(-50%) translateY(8px);opacity:1;}
+}
+
+/* === CHAPTER HEADER === */
+.vv-header{
+  margin:0 -24px 36px;
+  padding:32px 24px;
+  position:relative;
+  background:linear-gradient(90deg,rgba(229,255,0,0.04) 0%,transparent 60%);
+  border-left:4px solid var(--neon-yellow);
+}
+
+.vv-number{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:12px;
+  letter-spacing:0.4em;
+  color:var(--neon-yellow);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.vv-number::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,var(--neon-yellow),transparent);
+  opacity:0.4;
+}
+
+.vv-title{
+  font-family:'RocknRoll One',sans-serif;
+  font-size:34px;
+  font-weight:900;
+  line-height:1.2;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+}
+
+.vv-title .strike{
+  color:var(--neon-red);
+}
+
+.vv-title .yellow{
+  color:var(--neon-yellow);
+}
+
+/* === BODY TEXT === */
+.body p{
+  margin-bottom:22px;
+  font-size:16px;
+  line-height:1.95;
+  color:var(--ink);
+}
+
+.body strong{
+  color:var(--neon-yellow);
+  font-weight:700;
+  background:linear-gradient(transparent 65%,rgba(229,255,0,0.18) 65%);
+  padding:0 3px;
+}
+
+/* === PULL QUOTE === */
+.pull-quote{
+  font-family:'Reggae One',sans-serif;
+  font-size:44px;
+  line-height:1.25;
+  font-weight:900;
+  color:var(--neon-yellow);
+  text-align:center;
+  padding:60px 0;
+  position:relative;
+  letter-spacing:-0.02em;
+  text-shadow:0 0 30px rgba(229,255,0,0.25);
+}
+
+.pull-quote::before,.pull-quote::after{
+  content:'';
+  display:block;
+  width:40px;
+  height:2px;
+  background:var(--neon-yellow);
+  margin:0 auto 24px;
+  opacity:0.6;
+}
+.pull-quote::after{margin:24px auto 0;}
+
+/* === GREETING TAG === */
+.greeting-tag{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px;
+  letter-spacing:0.4em;
+  color:var(--neon-cyan);
+  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.greeting-tag::before{
+  content:'';
+  width:20px;
+  height:1px;
+  background:var(--neon-cyan);
+}
+
+/* === NUMBERS GRID === */
+.numbers-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:36px 0;
+}
+
+.num-card{
+  background:var(--bg-card);
+  border:1px solid rgba(255,255,255,0.05);
+  padding:18px 14px;
+  border-radius:2px;
+  position:relative;
+  overflow:hidden;
+}
+
+.num-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:3px;
+  height:100%;
+  background:var(--neon-red);
+}
+
+.num-card.ok::before{background:var(--neon-cyan);}
+
+.num-label{
+  font-size:11px;
+  color:var(--ink-soft);
+  letter-spacing:0.1em;
+  margin-bottom:10px;
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:700;
+}
+
+.num-value{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:42px;
+  line-height:0.95;
+  color:var(--neon-red);
+  margin-bottom:6px;
+}
+
+.num-value.ok{color:var(--neon-cyan);}
+
+.num-status{
+  font-size:9px;
+  color:var(--ink-faint);
+  letter-spacing:0.15em;
+  font-family:'Bebas Neue',sans-serif;
+}
+
+/* === MEGA NUMBER === */
+.mega-block{
+  margin:56px -24px;
+  padding:48px 24px;
+  background:radial-gradient(ellipse at center,rgba(255,45,85,0.08),transparent 70%);
+  text-align:center;
+  position:relative;
+}
+
+.mega-block::before,.mega-block::after{
+  content:'';
+  position:absolute;
+  left:24px;right:24px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--neon-red),transparent);
+}
+.mega-block::before{top:0;}
+.mega-block::after{bottom:0;}
+
+.mega-label{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:700;
+  font-size:14px;
+  color:var(--neon-red);
+  letter-spacing:0.3em;
+  margin-bottom:12px;
+}
+
+.mega-value{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:140px;
+  line-height:0.85;
+  color:var(--neon-red);
+  text-shadow:
+    0 0 40px rgba(255,45,85,0.6),
+    0 0 80px rgba(255,45,85,0.3);
+  letter-spacing:-0.04em;
+}
+
+.mega-value .pct{
+  font-size:56px;
+  vertical-align:super;
+  margin-left:-8px;
+}
+
+.mega-caption{
+  font-family:'Shippori Mincho',serif;
+  font-size:13px;
+  color:var(--ink-soft);
+  margin-top:20px;
+  letter-spacing:0.05em;
+}
+
+/* === SIGNS === */
+.signs{
+  margin:40px 0;
+}
+
+.sign-item{
+  margin-bottom:24px;
+  padding:28px 24px 24px;
+  background:var(--bg-card);
+  border-radius:2px;
+  position:relative;
+  border-top:2px solid var(--neon-cyan);
+}
+
+.sign-num{
+  position:absolute;
+  top:-18px;
+  left:20px;
+  background:var(--bg);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:36px;
+  color:var(--neon-cyan);
+  padding:0 14px;
+  line-height:1;
+  letter-spacing:0.05em;
+}
+
+.sign-where{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:900;
+  font-size:22px;
+  margin-bottom:10px;
+  color:var(--ink);
+  letter-spacing:0.02em;
+}
+
+.sign-meaning{
+  font-family:'Shippori Mincho',serif;
+  font-size:14px;
+  color:var(--ink-soft);
+  margin-bottom:16px;
+  line-height:1.8;
+}
+
+.sign-action{
+  font-size:13px;
+  color:var(--neon-yellow);
+  padding:12px 14px;
+  background:rgba(229,255,0,0.05);
+  border-left:2px solid var(--neon-yellow);
+  line-height:1.7;
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:400;
+}
+
+/* === DEEP === */
+.deep{
+  background:linear-gradient(180deg,var(--bg) 0%,#0a0814 50%,var(--bg) 100%);
+  position:relative;
+}
+
+.deep-quote{
+  font-family:'Shippori Mincho',serif;
+  font-size:38px;
+  font-weight:800;
+  line-height:1.4;
+  text-align:center;
+  color:var(--ink);
+  margin:48px 0;
+  letter-spacing:0.05em;
+  position:relative;
+}
+
+.deep-quote .em{
+  color:var(--neon-yellow);
+  display:block;
+  margin-top:12px;
+  text-shadow:0 0 25px rgba(229,255,0,0.3);
+}
+
+.deep-quote::before{
+  content:'「';
+  font-size:60px;
+  color:var(--neon-yellow);
+  opacity:0.4;
+  position:absolute;
+  top:-20px;
+  left:0;
+}
+.deep-quote::after{
+  content:'」';
+  font-size:60px;
+  color:var(--neon-yellow);
+  opacity:0.4;
+  position:absolute;
+  bottom:-40px;
+  right:0;
+}
+
+/* === INVITATIONS === */
+.invite-grid{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin:36px 0;
+}
+
+.invite{
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+  padding:24px 20px;
+  background:var(--bg-card);
+  border-radius:2px;
+  border-left:2px solid var(--neon-yellow);
+  position:relative;
+}
+
+.invite-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:52px;
+  line-height:0.85;
+  color:var(--neon-yellow);
+  flex-shrink:0;
+  text-shadow:0 0 15px rgba(229,255,0,0.3);
+}
+
+.invite-body{
+  flex:1;
+  font-size:14px;
+  line-height:1.7;
+  padding-top:6px;
+  color:var(--ink-soft);
+  font-family:'Shippori Mincho',serif;
+}
+
+.invite-body strong{
+  display:block;
+  font-size:16px;
+  margin-bottom:6px;
+  color:var(--ink);
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:700;
+}
+
+/* === CLOSING === */
+.closing{
+  text-align:center;
+  padding:80px 24px;
+  background:linear-gradient(180deg,var(--bg) 0%,#08050c 100%);
+  position:relative;
+}
+
+.closing::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--neon-yellow),transparent);
+}
+
+.closing p{
+  font-size:15px;
+  line-height:1.95;
+  margin-bottom:20px;
+  color:var(--ink);
+  font-family:'Shippori Mincho',serif;
+}
+
+.closing strong{
+  color:var(--neon-yellow);
+  font-weight:700;
+}
+
+.closing .final{
+  font-family:'RocknRoll One',sans-serif;
+  font-size:28px;
+  color:var(--neon-yellow);
+  line-height:1.5;
+  margin-top:48px;
+  letter-spacing:-0.01em;
+  text-shadow:0 0 20px rgba(229,255,0,0.25);
+}
+
+/* === CTA === */
+.cta-section{
+  padding:48px 24px 60px;
+  background:var(--bg);
+}
+
+.cta-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:20px 24px;
+  margin-bottom:14px;
+  background:var(--bg-card);
+  border:1px solid rgba(255,255,255,0.12);
+  color:var(--ink);
+  text-decoration:none;
+  border-radius:2px;
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:700;
+  font-size:15px;
+  text-align:center;
+  letter-spacing:0.08em;
+  transition:all 0.3s ease;
+}
+
+.cta-button.line{
+  background:linear-gradient(135deg,#06c755 0%,#04a047 100%);
+  border-color:transparent;
+  color:#fff;
+}
+
+.cta-button.map{
+  border-color:var(--neon-cyan);
+  color:var(--neon-cyan);
+}
+
+/* === SIGNATURE === */
+.signature{
+  padding:48px 24px 64px;
+  text-align:center;
+  font-size:11px;
+  color:var(--ink-faint);
+  line-height:1.9;
+  letter-spacing:0.05em;
+  border-top:1px solid rgba(255,255,255,0.05);
+  font-family:'Shippori Mincho',serif;
+}
+
+.signature-brand{
+  font-family:'Bebas Neue',sans-serif;
+  letter-spacing:0.4em;
+  font-size:10px;
+  color:var(--neon-yellow);
+  margin-bottom:20px;
+  opacity:0.7;
+}
+
+/* === SCROLL ANIMATIONS === */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* === MOBILE FINE TUNE === */
+@media (max-width:380px){
+  .hero-title{font-size:54px;}
+  .vv-title{font-size:30px;}
+  .pull-quote{font-size:38px;}
+  .mega-value{font-size:120px;}
+  .deep-quote{font-size:32px;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-meta">REPORT / 2026.04.19</div>
+    <div class="hero-name">新庄 明紀 様</div>
+    <h1 class="hero-title">
+      <span class="line1">考えは、</span>
+      <span class="accent">肩に降りる<span class="dot">.</span></span>
+    </h1>
+    <div class="hero-subtitle">——今日の身体が語ったこと。<br>三条健康堂接骨院・谷より</div>
+    <div class="scroll-hint">SCROLL ↓</div>
+  </section>
+
+  <!-- 01 GREETING -->
+  <section>
+    <div class="greeting-tag">CHAPTER 01 / GREETING</div>
+    <div class="body">
+      <p>新庄様、今日もお越しくださってありがとうございます。</p>
+      <p>仕事の移動。頭の中で同時に走らせている複数のこと。それらを抱えながら、ここまで身体を運んでくださったこと——まず、それを受け取らせてください。</p>
+      <p><strong>これは、誰にとっても静かに重い荷物です。</strong></p>
+    </div>
+  </section>
+
+  <!-- 02 SHOULDER -->
+  <section>
+    <div class="vv-header">
+      <div class="vv-number">CHAPTER 02</div>
+      <h2 class="vv-title">肩は、<br><span class="strike">嘘をつかなかった。</span></h2>
+    </div>
+    <div class="body">
+      <p>左肩に触れた瞬間、そこに小さな結び目のようなものがありました。指で押すと、ゴム紐がきつく結ばれて固くなったような手応え。</p>
+    </div>
+
+    <div class="pull-quote">今日の身体の<br>最大のサイン<span style="color:var(--neon-red);">。</span></div>
+
+    <div class="body">
+      <p>施術が進むにつれ、その結び目が溶ける速度は、ゆっくりでしたが確かでした。</p>
+      <p>湯気がふわりと立ちのぼるように結びがほどけ、肩甲骨が背中の中で滑り出しました。同じ頃、肋骨が一本ずつ呼吸に応えはじめ、<strong>横隔膜の下に小さな空間が戻ってきました。</strong></p>
+    </div>
+  </section>
+
+  <!-- 03 NUMBERS -->
+  <section style="background:#08080d;">
+    <div class="vv-header">
+      <div class="vv-number">CHAPTER 03</div>
+      <h2 class="vv-title">数字は、<br>静かに<span class="yellow">教えてくれた。</span></h2>
+    </div>
+    <div class="body">
+      <p>測定値は、今日の身体の状態を素直に映していました。</p>
+    </div>
+
+    <div class="numbers-grid">
+      <div class="num-card">
+        <div class="num-label">心と感情</div>
+        <div class="num-value">0.78</div>
+        <div class="num-status">BELOW NORM</div>
+      </div>
+      <div class="num-card">
+        <div class="num-label">筋肉系</div>
+        <div class="num-value">0.82</div>
+        <div class="num-status">BELOW NORM</div>
+      </div>
+      <div class="num-card">
+        <div class="num-label">代謝</div>
+        <div class="num-value">0.99</div>
+        <div class="num-status">BELOW NORM</div>
+      </div>
+      <div class="num-card">
+        <div class="num-label">免疫</div>
+        <div class="num-value">15.64</div>
+        <div class="num-status">BELOW NORM</div>
+      </div>
+    </div>
+
+    <div class="body">
+      <p><strong>どれも「あと一息」のところで、踏ん張っている数字です。</strong></p>
+    </div>
+
+    <div class="mega-block">
+      <div class="mega-label">膀 胱 ・ 右</div>
+      <div class="mega-value">169<span class="pct">%</span></div>
+      <div class="mega-caption">外の情報量に、<br>内側から押し返している。</div>
+    </div>
+
+    <div class="body">
+      <p>これは故障ではありません。脳が「疲れているけれど、まだやれる」と判断している、<strong>代償の証拠</strong>です。</p>
+      <p>身体は今、頑張っている最中です。</p>
+    </div>
+  </section>
+
+  <!-- 04 SIGNS -->
+  <section>
+    <div class="vv-header">
+      <div class="vv-number">CHAPTER 04</div>
+      <h2 class="vv-title">足元にも、<br><span class="yellow">声があった。</span></h2>
+    </div>
+
+    <div class="signs">
+      <div class="sign-item">
+        <div class="sign-num">01</div>
+        <div class="sign-where">左足の内側</div>
+        <div class="sign-meaning">「ここで一度、立ち止まりたい」という、身体の小声。</div>
+        <div class="sign-action">→ 湯船で太ももの内側を、10秒だけ温めてみてください。</div>
+      </div>
+      <div class="sign-item">
+        <div class="sign-num">02</div>
+        <div class="sign-where">右膝の内側</div>
+        <div class="sign-meaning">長時間の移動で、骨盤が左に流れている合図。</div>
+        <div class="sign-action">→ 歩きはじめの最初の3歩、踵を意識するだけで戻ります。</div>
+      </div>
+      <div class="sign-item">
+        <div class="sign-num">03</div>
+        <div class="sign-where">肩甲骨と肋骨の連動</div>
+        <div class="sign-meaning">今日の前半は固かった部位。施術後、滑り出しています。</div>
+        <div class="sign-action">→ 寝る前に背中を丸めて10秒、伸ばして10秒。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 DEEP -->
+  <section class="deep">
+    <div class="vv-header">
+      <div class="vv-number">CHAPTER 05</div>
+      <h2 class="vv-title">深読みの、<br>一筆<span class="yellow">.</span></h2>
+    </div>
+
+    <div class="deep-quote">
+      考えは、
+      <span class="em">肩に降りる。</span>
+    </div>
+
+    <div class="body">
+      <p>300年前に書かれた、東洋の養生書の一節です。</p>
+      <p>頭で巡らせていた思考は、行き場を失うと首から肩へ、そして腕へと滑り落ちていく——と、書かれていました。</p>
+      <p>フランスのある哲学者も、似たことを書いています。<strong>身体は、世界に向かって開かれた窓である。</strong>窓が曇る時、それは外ではなく、内側から立ちのぼった湯気のせいなのだ、と。</p>
+      <p>新庄様の左肩は、たぶん今週、ずっと考え続けてきた場所です。</p>
+    </div>
+  </section>
+
+  <!-- 06 INVITATIONS -->
+  <section>
+    <div class="vv-header">
+      <div class="vv-number">CHAPTER 06</div>
+      <h2 class="vv-title">次回までの、<br>3つの<span class="yellow">招待。</span></h2>
+    </div>
+
+    <div class="invite-grid">
+      <div class="invite">
+        <div class="invite-num">01</div>
+        <div class="invite-body">
+          <strong>湯船にゆっくり浸かる夜を</strong>
+          週に3日、自分にプレゼント。
+        </div>
+      </div>
+      <div class="invite">
+        <div class="invite-num">02</div>
+        <div class="invite-body">
+          <strong>23時以降は、新しい情報を入れない</strong>
+          脳の余白をつくる時間帯を。
+        </div>
+      </div>
+      <div class="invite">
+        <div class="invite-num">03</div>
+        <div class="invite-body">
+          <strong>朝の3分、窓を開けて呼吸を3回</strong>
+          深く、ただ深く。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 CLOSING -->
+  <section class="closing">
+    <div class="greeting-tag" style="justify-content:center;">CHAPTER 07 / FINAL</div>
+    <p>今日の左肩は、確かにひとつ、軽くなりました。</p>
+    <p>けれど身体は、一度の施術で<br>全てを覚えるわけではありません。</p>
+    <p>次にお会いする時、肩甲骨と肋骨が今日よりさらに自由に滑り出していたら——<strong>それが本当の変化のはじまりです。</strong></p>
+    <div class="final">
+      考えすぎる夜には、<br>
+      左肩に、そっと<br>
+      手を当ててみてください<span style="color:var(--ink);">.</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <a href="https://lin.ee/dwRtwDv" class="cta-button line">LINEでご相談・ご予約</a>
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" class="cta-button map">Googleマップで確認する</a>
+  </section>
+
+  <!-- SIGNATURE -->
+  <div class="signature">
+    <div class="signature-brand">SANJO KENKODO</div>
+    高松発・一生動ける身体と<br>
+    人生の教養研究室<br><br>
+    無借金・無車・自転車・圧力鍋生活を<br>
+    実践する治療家より
+  </div>
+
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('section').forEach(s => {
+  s.classList.add('reveal');
+  observer.observe(s);
+});
+</script>
+</body>
+</html>
