@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#ff5500">
+<title>3ヶ月で、脳が変わる｜谷先生のAIトレーニング使用ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0a0a;
+  --concrete-900:#121212;
+  --concrete-800:#1a1a1a;
+  --concrete-700:#222222;
+  --concrete-600:#2c2c2c;
+  --concrete-500:#3a3a3a;
+  --ash:#888888;
+  --cement:#b8b5ad;
+  --bone:#e8e5db;
+  --hiviz:#ff5500;
+  --hiviz-dim:#cc4400;
+  --hiviz-glow:#ff7733;
+  --signal:#ffb800;
+  --verified:#00c896;
+  --alert:#ff3355;
+  --grid-line:rgba(255,85,0,0.06);
+  --border:rgba(255,255,255,0.08);
+  --border-soft:rgba(255,255,255,0.04);
+  --border-hiviz:rgba(255,85,0,0.35);
+  --display:'Oswald', 'Noto Sans JP', sans-serif;
+  --sans:'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --mono:'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:17px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--void);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:40px 40px;
+  color:var(--bone);
+  line-height:1.75;
+  font-weight:400;
+  letter-spacing:0.01em;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+main{max-width:680px;margin:0 auto;padding:0 16px 48px}
+
+/* SPEC BAR */
+.spec-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;margin:0 -16px;
+  background:var(--concrete-900);border-bottom:1px solid var(--border);
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;
+}
+.spec-bar .dot{
+  display:inline-block;width:8px;height:8px;
+  background:var(--hiviz);border-radius:50%;margin-right:8px;
+  box-shadow:0 0 12px var(--hiviz);animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.spec-bar .right{color:var(--hiviz);font-weight:700}
+
+/* HERO */
+.hero{
+  position:relative;padding:60px 24px 48px;margin:0 -16px 40px;
+  background:linear-gradient(180deg, var(--concrete-900) 0%, var(--void) 100%);
+  border-bottom:2px solid var(--hiviz);overflow:hidden;text-align:center;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:repeating-linear-gradient(45deg, var(--hiviz) 0 12px, var(--void) 12px 24px);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;
+  color:var(--hiviz);background:rgba(255,85,0,0.08);
+  border:1px solid var(--border-hiviz);padding:6px 14px;
+  margin-bottom:24px;text-transform:uppercase;font-weight:700;
+}
+.hero-days{
+  font-family:var(--display);font-size:96px;font-weight:700;
+  line-height:0.9;color:var(--hiviz);letter-spacing:-0.04em;
+  margin-bottom:8px;
+}
+.hero-days .unit{font-size:32px;color:var(--bone);margin-left:8px;letter-spacing:-0.02em}
+.hero-title{
+  font-family:var(--sans);font-weight:900;font-size:38px;
+  line-height:1.25;color:var(--bone);margin-bottom:18px;letter-spacing:-0.015em;
+}
+.hero-title .accent{color:var(--hiviz)}
+.hero-sub{
+  font-size:16px;color:var(--cement);line-height:1.85;
+  max-width:500px;margin:0 auto;
+}
+.hero-sub strong{color:var(--bone);font-weight:500}
+
+/* SECTION */
+.section{margin-bottom:56px;position:relative}
+.section-head{margin-bottom:28px}
+.section-label{
+  display:inline-block;font-family:var(--mono);font-size:11px;
+  letter-spacing:3px;color:var(--hiviz);margin-bottom:12px;
+  text-transform:uppercase;font-weight:700;
+}
+.section-label::before{content:'▸ '}
+.section-title{
+  font-family:var(--sans);font-weight:900;font-size:32px;
+  line-height:1.25;color:var(--bone);margin-bottom:10px;letter-spacing:-0.01em;
+}
+.section-title .accent{color:var(--hiviz)}
+.section-desc{font-size:15px;color:var(--cement);line-height:1.85;max-width:600px}
+.section-desc strong{color:var(--bone);font-weight:500}
+
+/* ===== PART 1: DAILY ROUTINE ===== */
+.routine{
+  background:linear-gradient(180deg, var(--concrete-900) 0%, var(--concrete-800) 100%);
+  margin:0 -16px 40px;padding:40px 24px;
+  border-top:1px solid var(--border-hiviz);
+  border-bottom:1px solid var(--border-hiviz);
+  position:relative;
+}
+.routine::before{
+  content:'DAILY · 30 SEC';
+  position:absolute;top:-8px;left:24px;
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;
+  background:var(--hiviz);color:var(--void);padding:2px 10px;font-weight:700;
+}
+.routine-title{
+  font-family:var(--sans);font-weight:900;font-size:26px;
+  line-height:1.3;color:var(--bone);margin-bottom:10px;
+}
+.routine-title .accent{color:var(--hiviz)}
+.routine-desc{
+  font-size:14px;color:var(--cement);line-height:1.85;margin-bottom:24px;
+}
+.routine-steps{
+  display:flex;flex-direction:column;gap:12px;
+}
+.routine-step{
+  display:grid;grid-template-columns:56px 1fr;gap:16px;
+  background:var(--concrete-700);border:1px solid var(--border);
+  padding:18px 20px;position:relative;align-items:center;
+}
+.routine-step-num{
+  font-family:var(--display);font-size:36px;font-weight:700;
+  color:var(--hiviz);line-height:1;letter-spacing:-0.03em;text-align:center;
+}
+.routine-step-head{
+  font-family:var(--sans);font-weight:900;font-size:17px;
+  color:var(--bone);margin-bottom:4px;line-height:1.4;
+}
+.routine-step-body{
+  font-size:13px;color:var(--cement);line-height:1.7;
+}
+.routine-step-body strong{color:var(--hiviz);font-weight:500}
+.routine-step-time{
+  display:inline-block;font-family:var(--mono);font-size:10px;
+  letter-spacing:2px;color:var(--signal);margin-top:6px;
+  border:1px solid rgba(255,184,0,0.3);padding:2px 8px;
+}
+
+/* ===== PART 2: TIMELINE ===== */
+.timeline{position:relative;padding:0 0 0 0}
+
+.phase{
+  position:relative;margin-bottom:24px;
+}
+.phase-head{
+  display:flex;align-items:center;gap:16px;margin-bottom:14px;
+}
+.phase-day{
+  flex-shrink:0;
+  width:76px;height:76px;
+  background:var(--concrete-800);
+  border:2px solid var(--hiviz);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:700;
+  line-height:1;
+}
+.phase-day .d{font-size:10px;color:var(--hiviz);letter-spacing:2px;margin-bottom:3px}
+.phase-day .n{font-size:30px;color:var(--bone);letter-spacing:-0.02em}
+.phase-day .u{font-size:9px;color:var(--ash);letter-spacing:2px;margin-top:3px}
+
+/* Phase color progression */
+.phase.p1 .phase-day{border-color:var(--ash)}
+.phase.p1 .phase-day .d{color:var(--ash)}
+.phase.p1 .phase-icon{color:var(--ash)}
+.phase.p2 .phase-day{border-color:var(--signal)}
+.phase.p2 .phase-day .d{color:var(--signal)}
+.phase.p2 .phase-icon{color:var(--signal)}
+.phase.p3 .phase-day{border-color:var(--hiviz)}
+.phase.p3 .phase-day .d{color:var(--hiviz)}
+.phase.p3 .phase-icon{color:var(--hiviz)}
+.phase.p4 .phase-day{border-color:var(--verified)}
+.phase.p4 .phase-day .d{color:var(--verified)}
+.phase.p4 .phase-icon{color:var(--verified)}
+
+.phase-meta{flex:1}
+.phase-name{
+  font-family:var(--sans);font-weight:900;font-size:22px;
+  line-height:1.3;color:var(--bone);margin-bottom:4px;letter-spacing:-0.005em;
+}
+.phase-sub{
+  font-family:var(--mono);font-size:11px;
+  color:var(--cement);letter-spacing:1px;
+}
+
+.phase-body{
+  margin-left:0;padding:22px 22px 20px;
+  background:var(--concrete-800);border:1px solid var(--border);
+  position:relative;
+}
+.phase.p1 .phase-body{border-left:4px solid var(--ash)}
+.phase.p2 .phase-body{border-left:4px solid var(--signal)}
+.phase.p3 .phase-body{border-left:4px solid var(--hiviz)}
+.phase.p4 .phase-body{border-left:4px solid var(--verified)}
+
+.phase-action{
+  font-family:var(--sans);font-weight:700;font-size:16px;
+  color:var(--bone);margin-bottom:12px;line-height:1.5;
+}
+.phase-action::before{
+  content:'▸ ';color:var(--hiviz);font-weight:900;
+}
+.phase-detail{
+  font-size:14px;color:var(--cement);line-height:1.85;
+  margin-bottom:16px;
+}
+.phase-detail strong{color:var(--bone);font-weight:500}
+
+.phase-brain{
+  background:var(--concrete-900);border:1px solid var(--border);
+  padding:14px 16px;margin-top:14px;
+}
+.phase-brain-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  margin-bottom:8px;font-weight:700;text-transform:uppercase;
+}
+.phase.p1 .phase-brain-label{color:var(--ash)}
+.phase.p2 .phase-brain-label{color:var(--signal)}
+.phase.p3 .phase-brain-label{color:var(--hiviz)}
+.phase.p4 .phase-brain-label{color:var(--verified)}
+.phase-brain-body{
+  font-size:13px;color:var(--bone);line-height:1.85;font-weight:500;
+}
+
+/* Connector line between phases */
+.phase:not(:last-child)::after{
+  content:'';position:absolute;
+  left:37px;bottom:-24px;width:2px;height:24px;
+  background:repeating-linear-gradient(180deg, var(--hiviz) 0 4px, transparent 4px 8px);
+}
+
+/* Milestone callout */
+.milestone{
+  background:linear-gradient(135deg, var(--hiviz) 0%, var(--hiviz-dim) 100%);
+  color:var(--void);padding:28px 24px;margin:24px -16px;
+  position:relative;overflow:hidden;
+}
+.milestone::before{
+  content:'MILESTONE';
+  position:absolute;top:-10px;right:-14px;
+  font-family:var(--display);font-weight:700;font-size:120px;
+  color:rgba(0,0,0,0.08);letter-spacing:-6px;line-height:1;
+}
+.milestone-day{
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;
+  font-weight:700;margin-bottom:8px;text-transform:uppercase;
+}
+.milestone-title{
+  font-family:var(--sans);font-weight:900;font-size:26px;
+  line-height:1.3;margin-bottom:10px;letter-spacing:-0.01em;
+}
+.milestone-body{
+  font-size:14px;line-height:1.85;font-weight:500;
+}
+.milestone-body strong{font-weight:900}
+
+/* ===== PART 3: DOMAIN BENEFITS ===== */
+.domains{display:flex;flex-direction:column;gap:14px}
+
+.domain{
+  background:var(--concrete-800);border:1px solid var(--border);
+  padding:22px 20px 20px;position:relative;
+}
+.domain::before{
+  content:'';position:absolute;top:-1px;left:-1px;
+  width:80px;height:3px;background:var(--verified);
+}
+.domain-head{
+  display:flex;align-items:center;gap:14px;margin-bottom:16px;
+  padding-bottom:14px;border-bottom:1px solid var(--border);
+}
+.domain-icon{
+  flex-shrink:0;width:48px;height:48px;
+  background:var(--concrete-700);border:1px solid var(--border-hiviz);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--hiviz);
+}
+.domain-icon svg{width:24px;height:24px;stroke-width:1.8}
+.domain-title{
+  font-family:var(--sans);font-weight:900;font-size:20px;
+  line-height:1.3;color:var(--bone);margin-bottom:2px;letter-spacing:-0.005em;
+}
+.domain-catch{
+  font-family:var(--mono);font-size:11px;color:var(--verified);
+  letter-spacing:1px;
+}
+
+.compare{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  background:var(--border);border:1px solid var(--border);
+  margin-bottom:14px;
+}
+.compare-cell{
+  background:var(--concrete-900);padding:16px 14px;
+}
+.compare-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  margin-bottom:10px;font-weight:700;text-transform:uppercase;
+}
+.compare-before .compare-label{color:var(--alert)}
+.compare-after .compare-label{color:var(--verified)}
+.compare-body{
+  font-size:13px;color:var(--bone);line-height:1.75;font-weight:400;
+}
+.compare-body .item{
+  display:flex;gap:8px;margin-bottom:8px;align-items:flex-start;
+}
+.compare-body .item:last-child{margin-bottom:0}
+.compare-body .item::before{
+  content:'';flex-shrink:0;width:6px;height:6px;
+  margin-top:8px;border-radius:50%;
+}
+.compare-before .item::before{background:var(--alert)}
+.compare-after .item::before{background:var(--verified)}
+
+.domain-quote{
+  background:var(--concrete-900);border-left:3px solid var(--hiviz);
+  padding:14px 16px;font-size:13px;line-height:1.85;
+  color:var(--cement);font-style:normal;
+}
+.domain-quote strong{color:var(--hiviz);font-weight:500;font-style:normal}
+
+/* ===== OUTCOME (FINAL CALLOUT) ===== */
+.outcome{
+  background:var(--void);border:2px solid var(--verified);
+  padding:36px 26px;margin:40px -16px;position:relative;
+}
+.outcome::before{
+  content:'';position:absolute;top:-2px;left:-2px;right:-2px;height:6px;
+  background:repeating-linear-gradient(90deg, var(--verified) 0 12px, var(--void) 12px 24px);
+}
+.outcome-label{
+  display:inline-block;font-family:var(--mono);font-size:11px;
+  letter-spacing:3px;color:var(--verified);background:rgba(0,200,150,0.1);
+  border:1px solid rgba(0,200,150,0.3);padding:5px 14px;
+  margin-bottom:18px;font-weight:700;text-transform:uppercase;
+}
+.outcome-title{
+  font-family:var(--sans);font-weight:900;font-size:28px;
+  line-height:1.25;color:var(--bone);margin-bottom:16px;letter-spacing:-0.01em;
+}
+.outcome-title .accent{color:var(--verified)}
+.outcome-body{
+  font-size:15px;color:var(--cement);line-height:2;
+}
+.outcome-body strong{color:var(--bone);font-weight:500}
+.outcome-body em{color:var(--verified);font-style:normal;font-weight:500}
+
+/* FOOTER */
+footer{
+  margin:48px -16px 0;padding:36px 24px;
+  background:var(--concrete-900);color:var(--cement);
+  text-align:center;border-top:2px solid var(--hiviz);
+}
+.clinic-name{
+  font-family:var(--sans);font-weight:900;font-size:18px;
+  color:var(--bone);margin-bottom:8px;letter-spacing:0.5px;
+}
+.clinic-sub{font-size:13px;line-height:1.9;margin-bottom:18px;color:var(--ash)}
+.clinic-tag{
+  margin-top:18px;padding-top:16px;
+  border-top:1px solid var(--border);
+  font-size:11px;color:var(--ash);line-height:1.8;
+  font-family:var(--mono);letter-spacing:1px;
+}
+
+/* RESPONSIVE */
+@media (max-width:380px){
+  html{font-size:16px}
+  .hero-title{font-size:30px}
+  .hero-days{font-size:72px}
+  .section-title,.routine-title{font-size:24px}
+  .phase-name{font-size:19px}
+  .milestone-title,.outcome-title{font-size:22px}
+  .domain-title{font-size:17px}
+  .compare{grid-template-columns:1fr}
+}
+
+/* ANIMATION */
+@keyframes slide-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.phase, .domain, .routine-step{animation:slide-up 0.5s ease-out backwards}
+.phase:nth-child(2){animation-delay:0.05s}
+.phase:nth-child(3){animation-delay:0.1s}
+.phase:nth-child(4){animation-delay:0.15s}
+.domain:nth-child(2){animation-delay:0.05s}
+.domain:nth-child(3){animation-delay:0.1s}
+.domain:nth-child(4){animation-delay:0.15s}
+.domain:nth-child(5){animation-delay:0.2s}
+.domain:nth-child(6){animation-delay:0.25s}
+</style>
+</head>
+<body>
+
+<div class="spec-bar">
+  <span><span class="dot"></span>USAGE GUIDE</span>
+  <span class="right">3-MONTH PROTOCOL</span>
+</div>
+
+<main>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="hero-tag">
+    <span>VISUAL GUIDE · 使い方と未来</span>
+  </div>
+  <div class="hero-days">90<span class="unit">日</span></div>
+  <h1 class="hero-title">3ヶ月で、<br><span class="accent">脳が物理的に変わる</span></h1>
+  <p class="hero-sub">AIトレーニングは<strong>毎日30秒</strong>。<br>1ヶ月で手応え、2ヶ月で気づき、<strong>3ヶ月で行動が変わる</strong>。<br>これはあなたの人生の運転手を交代させる、90日の旅です。</p>
+</header>
+
+<!-- ========== PART 1: DAILY ROUTINE ========== -->
+<section class="routine">
+  <h2 class="routine-title">毎日のルーティン<span class="accent">（たった30秒）</span></h2>
+  <p class="routine-desc">難しいことは何もない。<strong>スマホに向かって喋る → 寝る前に1枚貼る</strong>。これだけを続けます。</p>
+
+  <div class="routine-steps">
+    <div class="routine-step">
+      <div class="routine-step-num">1</div>
+      <div>
+        <div class="routine-step-head">付属プロンプトをコピーしてAIに貼る</div>
+        <div class="routine-step-body">12本のプロンプトから用途に合うものを選んでコピー。AIに貼って、原材料（愚痴・議事録・目標など）を音声入力で追加。<strong>プロンプト冒頭の「[TANI-ID: XX]」マーカーが必須</strong>——これがあるから後で自動整理できる。<br><span class="routine-step-time">所要時間：1〜5分／回</span></div>
+      </div>
+    </div>
+    <div class="routine-step">
+      <div class="routine-step-num">2</div>
+      <div>
+        <div class="routine-step-head">寝る前、DAY EXPORTを1枚貼る</div>
+        <div class="routine-step-body">今日AIと話した会話の最後に、<strong>DAY EXPORTプロンプト</strong>を貼るだけ。マーカー付きのやり取りだけを自動抽出してJSONで返してくれる。<br><span class="routine-step-time">所要時間：10秒</span></div>
+      </div>
+    </div>
+    <div class="routine-step">
+      <div class="routine-step-num">3</div>
+      <div>
+        <div class="routine-step-head">返ってきたJSONをアプリに貼る</div>
+        <div class="routine-step-body">ログアプリの「貼り付けエリア」にペースト → <strong>「内容を確認して追加」</strong>を押すだけ。今日の記録がすべて保存完了。<br><span class="routine-step-time">所要時間：20秒</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PART 2: 3-MONTH TIMELINE ========== -->
+<section class="section">
+  <div class="section-head">
+    <span class="section-label">3-MONTH TIMELINE · 脳の変化</span>
+    <h2 class="section-title">90日間で起こる<span class="accent">4つのフェーズ</span></h2>
+    <p class="section-desc">同じルーティンを続けても、脳は<strong>日ごとに変化</strong>しています。科学的に観測された神経可塑性の進行を、視覚化しました。</p>
+  </div>
+
+  <div class="timeline">
+
+    <!-- PHASE 1 -->
+    <div class="phase p1">
+      <div class="phase-head">
+        <div class="phase-day">
+          <div class="d">DAY</div>
+          <div class="n">01</div>
+          <div class="u">〜30</div>
+        </div>
+        <div class="phase-meta">
+          <div class="phase-name">ため期｜Accumulate</div>
+          <div class="phase-sub">WEEK 1—4 · 最初の1ヶ月</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-action">毎日ただ「喋って貼る」を続ける</div>
+        <div class="phase-detail">最初の1ヶ月は、<strong>結果を焦らず積み重ねる期間</strong>。喋ったことをAIが整理する感覚に慣れる。まだ「使っている」より「使ってみている」段階でOK。</div>
+        <div class="phase-brain">
+          <div class="phase-brain-label">◆ 脳の中で起こっていること</div>
+          <div class="phase-brain-body">感情を言語化するたびに、扁桃体の活動がわずかに下がり始める。まだ本人は自覚しにくいが、<strong>神経回路が結び直される下地が作られる</strong>時期。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MILESTONE: Day 30 -->
+    <div class="milestone">
+      <div class="milestone-day">Day 30 · 1回目の月次分析</div>
+      <div class="milestone-title">ボタンを1回押す。<br>最初のレポートが返ってくる。</div>
+      <div class="milestone-body">ログアプリで<strong>「今月のログをコピー」</strong>を押すだけ。分析プロンプトと1ヶ月分の記録が自動で合体。AIに貼ると、<strong>感情パターン・人生OS・神経可塑性スコア</strong>を含む詳細レポートが返ってきます。<br><br>初めて<strong>自分の脳を外から見た</strong>瞬間。この驚きがすべての始まりです。</div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase p2">
+      <div class="phase-head">
+        <div class="phase-day">
+          <div class="d">DAY</div>
+          <div class="n">31</div>
+          <div class="u">〜60</div>
+        </div>
+        <div class="phase-meta">
+          <div class="phase-name">気づき期｜Awareness</div>
+          <div class="phase-sub">WEEK 5—8 · 2ヶ月目</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-action">レポートで見た「自分のクセ」を意識して暮らす</div>
+        <div class="phase-detail">1ヶ月目のレポートで指摘された<strong>反復している悩みのパターン</strong>が、日常で「あ、今まさにそれだ」と見える瞬間が増える。まだ変えられないが、<strong>気づく力</strong>が付いてくる。</div>
+        <div class="phase-brain">
+          <div class="phase-brain-label">◆ 脳の中で起こっていること</div>
+          <div class="phase-brain-body">前頭前野（メタ認知の司令塔）の活動が増える。<strong>自分を一歩引いて観察する力</strong>が物理的に厚くなる。Harvard研究では、週3回以上のこの訓練で灰白質密度が増加することが確認されている。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MILESTONE: Day 60 -->
+    <div class="milestone" style="background:linear-gradient(135deg, var(--signal) 0%, #cc9200 100%)">
+      <div class="milestone-day">Day 60 · 2回目の月次分析</div>
+      <div class="milestone-title">先月と比べてみる。<br>スコアが上がっている。</div>
+      <div class="milestone-body">2回目のレポートで、<strong>神経可塑性スコア</strong>（5軸100点満点）が1ヶ月目より上昇しているのが見える。感情ラベリング深度、メタ認知の厚み、イフゼン実行率——どこかが確実に伸びている。<br><br>これは<strong>錯覚ではなく、脳の物理的な変化</strong>です。</div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase p3">
+      <div class="phase-head">
+        <div class="phase-day">
+          <div class="d">DAY</div>
+          <div class="n">61</div>
+          <div class="u">〜90</div>
+        </div>
+        <div class="phase-meta">
+          <div class="phase-name">定着期｜Embed</div>
+          <div class="phase-sub">WEEK 9—12 · 3ヶ月目</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-action">AIに聞く前に、AI的に考えている自分に気づく</div>
+        <div class="phase-detail">ある日、嫌な出来事があった瞬間、<strong>無意識に「事実と解釈を分ける」思考</strong>が動く。「もしXが起きたらYする」のイフゼン計画が自然に浮かぶ。この時、脳はすでに変わっている。</div>
+        <div class="phase-brain">
+          <div class="phase-brain-label">◆ 脳の中で起こっていること</div>
+          <div class="phase-brain-body">ヘブの法則「Neurons that fire together, wire together」。3ヶ月間、同じパターンで発火した神経細胞は、<strong>物理的に結び直されて1つの回路</strong>になっている。これがあなたの新しい「既定動作」。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase p4">
+      <div class="phase-head">
+        <div class="phase-day">
+          <div class="d">DAY</div>
+          <div class="n">90</div>
+          <div class="u">〜</div>
+        </div>
+        <div class="phase-meta">
+          <div class="phase-name">変化期｜Transform</div>
+          <div class="phase-sub">WEEK 13+ · 3ヶ月目以降</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-action">周囲が気づき始める。あなた自身が気づく前に。</div>
+        <div class="phase-detail">同僚、配偶者、親が言う。「最近、<strong>落ち着いて話すようになったね</strong>」「判断が早くなったね」「怒らなくなったね」。あなた自身はまだ実感がない。それくらい<strong>自然に変化が染み込んでいる</strong>状態。</div>
+        <div class="phase-brain">
+          <div class="phase-brain-label">◆ 脳の中で起こっていること</div>
+          <div class="phase-brain-body">これは「頑張って変えた」のではなく、<strong>毎日の小さな反復が回路を書き換えた</strong>結果。もはや意識する必要がない。脳が自動で、新しいあなたを運転している。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== PART 3: DOMAIN BENEFITS ========== -->
+<section class="section">
+  <div class="section-head">
+    <span class="section-label">LIFE DOMAINS · 変わる6つの領域</span>
+    <h2 class="section-title">仕事も、家庭も、<span class="accent">人間関係も</span></h2>
+    <p class="section-desc">AIトレーニングの効果は、特定の場面ではなく<strong>人生のあらゆる領域</strong>に染み出します。6つのライフドメインで起こる具体的な変化を紹介します。</p>
+  </div>
+
+  <div class="domains">
+
+    <!-- Domain 1: WORK -->
+    <div class="domain">
+      <div class="domain-head">
+        <div class="domain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="7" width="18" height="14" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+        </div>
+        <div>
+          <div class="domain-title">仕事・ビジネス</div>
+          <div class="domain-catch">会議 · 商談 · 意思決定</div>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-cell compare-before">
+          <div class="compare-label">BEFORE</div>
+          <div class="compare-body">
+            <div class="item">会議の要点を掴めずモヤモヤ</div>
+            <div class="item">商談で気付くと譲歩している</div>
+            <div class="item">判断が遅く、後悔が多い</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-after">
+          <div class="compare-label">AFTER</div>
+          <div class="compare-body">
+            <div class="item">議事録が自動で整理される</div>
+            <div class="item">相手の本音と次の一手が見える</div>
+            <div class="item">選択肢が3つに絞れて即決できる</div>
+          </div>
+        </div>
+      </div>
+      <div class="domain-quote">
+        <strong>想定される未来：</strong>「あの若手、最近判断が早いね」「議事録がいつも的確」と周囲が気づく。評価面談で上司が変化を口にする。</div>
+    </div>
+
+    <!-- Domain 2: PARENTING -->
+    <div class="domain">
+      <div class="domain-head">
+        <div class="domain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div>
+          <div class="domain-title">育児・子どもとの関係</div>
+          <div class="domain-catch">イライラ · 伝え方 · 自己嫌悪</div>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-cell compare-before">
+          <div class="compare-label">BEFORE</div>
+          <div class="compare-body">
+            <div class="item">感情的に怒鳴って後悔する</div>
+            <div class="item">子の気持ちが分からずすれ違う</div>
+            <div class="item">疲れて話を聴く余裕がない</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-after">
+          <div class="compare-label">AFTER</div>
+          <div class="compare-body">
+            <div class="item">何にイラついたかを言葉にできる</div>
+            <div class="item">子への伝え方を3案で選べる</div>
+            <div class="item">寝る前に吐き出してスッキリ</div>
+          </div>
+        </div>
+      </div>
+      <div class="domain-quote">
+        <strong>想定される未来：</strong>子どもから「最近のお父さん（お母さん）、話を聞いてくれる」と言われる。家庭の空気が静かに整っていく。</div>
+    </div>
+
+    <!-- Domain 3: LEARNING -->
+    <div class="domain">
+      <div class="domain-head">
+        <div class="domain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div>
+          <div class="domain-title">学習・教育・読書</div>
+          <div class="domain-catch">インプット · 資格 · 成長</div>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-cell compare-before">
+          <div class="compare-label">BEFORE</div>
+          <div class="compare-body">
+            <div class="item">積読が増えるだけで読めない</div>
+            <div class="item">読んでも1週間で忘れる</div>
+            <div class="item">資格勉強が続かない</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-after">
+          <div class="compare-label">AFTER</div>
+          <div class="compare-body">
+            <div class="item">1冊30分で要点を吸収</div>
+            <div class="item">著者と対話して弱点まで理解</div>
+            <div class="item">試験ノートが自動生成される</div>
+          </div>
+        </div>
+      </div>
+      <div class="domain-quote">
+        <strong>想定される未来：</strong>年間50冊の知識が身につく。会議で「よく知ってるね」と驚かれる。新しい分野を怖がらずに学べる脳になる。</div>
+    </div>
+
+    <!-- Domain 4: RELATIONSHIPS -->
+    <div class="domain">
+      <div class="domain-head">
+        <div class="domain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div class="domain-title">夫婦・友人・人間関係</div>
+          <div class="domain-catch">不満 · 感謝 · つながり</div>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-cell compare-before">
+          <div class="compare-label">BEFORE</div>
+          <div class="compare-body">
+            <div class="item">小さな不満が毎日蓄積</div>
+            <div class="item">言いたいことが言えず喧嘩</div>
+            <div class="item">関係が少しずつ冷めていく</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-after">
+          <div class="compare-label">AFTER</div>
+          <div class="compare-body">
+            <div class="item">不満を具体的に言語化できる</div>
+            <div class="item">キツい言葉を柔らかく変換</div>
+            <div class="item">相手の本音を読み取れる</div>
+          </div>
+        </div>
+      </div>
+      <div class="domain-quote">
+        <strong>想定される未来：</strong>妻（夫）に「最近話しやすくなった」と言われる。喧嘩の頻度が激減。感謝を言葉にする回数が増え、関係が温まっていく。</div>
+    </div>
+
+    <!-- Domain 5: DAILY LIFE -->
+    <div class="domain">
+      <div class="domain-head">
+        <div class="domain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <div>
+          <div class="domain-title">日常生活・メンタル</div>
+          <div class="domain-catch">睡眠 · ストレス · 健康</div>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-cell compare-before">
+          <div class="compare-label">BEFORE</div>
+          <div class="compare-body">
+            <div class="item">夜、不安で眠れない</div>
+            <div class="item">モヤモヤが翌日まで引きずる</div>
+            <div class="item">疲れが抜けず自己嫌悪</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-after">
+          <div class="compare-label">AFTER</div>
+          <div class="compare-body">
+            <div class="item">寝る前に吐き出してスッキリ</div>
+            <div class="item">扁桃体が鎮まり睡眠の質↑</div>
+            <div class="item">翌朝の気分が安定する</div>
+          </div>
+        </div>
+      </div>
+      <div class="domain-quote">
+        <strong>想定される未来：</strong>UCLA研究で実証された「感情ラベリングによる扁桃体鎮静」が毎晩起こる。<strong>欠勤リスクが下がり、健康寿命が延びる</strong>。</div>
+    </div>
+
+    <!-- Domain 6: COMMUNICATION -->
+    <div class="domain">
+      <div class="domain-head">
+        <div class="domain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <div class="domain-title">コミュニケーション全般</div>
+          <div class="domain-catch">メール · 言葉選び · 伝達力</div>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-cell compare-before">
+          <div class="compare-label">BEFORE</div>
+          <div class="compare-body">
+            <div class="item">メールの言葉選びで悩み続ける</div>
+            <div class="item">強く言うと角が立つ</div>
+            <div class="item">説明が長くて伝わらない</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-after">
+          <div class="compare-label">AFTER</div>
+          <div class="compare-body">
+            <div class="item">3パターンの言い換えが即出る</div>
+            <div class="item">角を立てず芯を通せる</div>
+            <div class="item">難しい話を小学生にも伝えられる</div>
+          </div>
+        </div>
+      </div>
+      <div class="domain-quote">
+        <strong>想定される未来：</strong>メールの返信率が上がる。プレゼンで「わかりやすい」と言われる。ビジネスマンとしての<strong>基礎能力そのものが底上げ</strong>される。</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== OUTCOME CALLOUT ========== -->
+<section class="outcome">
+  <span class="outcome-label">The Ultimate Outcome</span>
+  <h2 class="outcome-title">90日後、あなたは<br><span class="accent">人生の運転手</span>が変わっている</h2>
+  <p class="outcome-body">
+    これは自己啓発ではありません。<strong>毎日の小さな反復が、脳の回路を物理的に書き換える</strong>科学的なトレーニングです。<br><br>
+    <em>感情に振り回されない。迷わず判断できる。言葉で人を動かせる。</em><br>
+    そんなあなたに、90日後、必ずなっています。<br><br>
+    <strong>始まりはたった30秒。</strong>
+  </p>
+</section>
+
+<footer>
+  <div class="clinic-name">三条健康堂接骨院</div>
+  <div class="clinic-sub">高松市由良町・真楽寺そば<br>柔道整復師 谷弘誠｜30年・延べ1万人以上の施術</div>
+  <div class="clinic-tag">
+    高松発・一生動ける身体と人生の教養研究室<br>
+    年間200冊読む治療家／無借金・無車・自転車・圧力鍋生活
+  </div>
+</footer>
+
+</main>
+
+</body>
+</html>
