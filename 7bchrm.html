@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0806">
+<title>選ばれし者へ｜AIに食われないための30日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Noto+Sans+JP:wght@400;700;900&family=Yusei+Magic&family=RocknRoll+One&family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    background: #0a0806;
+    color: #f5f0e4;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
+    font-feature-settings: "palt";
+  }
+  body {
+    max-width: 480px;
+    margin: 0 auto;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,62,127,0.12) 0%, transparent 45%),
+      radial-gradient(ellipse at 80% 70%, rgba(0,229,255,0.08) 0%, transparent 45%),
+      #0a0806;
+    min-height: 100vh;
+    position: relative;
+  }
+  /* ノイズ */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.94  0 0 0 0 0.89  0 0 0 0.04 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+  }
+  .wrap { position: relative; z-index: 2; }
+
+  /* --- HERO --- */
+  .hero {
+    padding: 30px 22px 60px;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 40px; right: -30px;
+    width: 220px; height: 220px;
+    background: #ffd600;
+    border-radius: 50%;
+    opacity: 0.08;
+    filter: blur(20px);
+  }
+  .tape {
+    display: inline-block;
+    background: #ffd600;
+    color: #0a0806;
+    font-family: 'DotGothic16', monospace;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 16px;
+    transform: rotate(-2deg);
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.6);
+  }
+  .hero-kicker {
+    font-family: 'Yusei Magic', serif;
+    font-size: 14px;
+    color: #ff3e7f;
+    margin-bottom: 12px;
+    letter-spacing: 0.1em;
+  }
+  .hero-title {
+    font-family: 'RocknRoll One', 'Noto Serif JP', serif;
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+  .hero-title .strike {
+    position: relative;
+    display: inline-block;
+    color: #888;
+  }
+  .hero-title .strike::after {
+    content: "";
+    position: absolute;
+    left: -4px; right: -4px;
+    top: 55%;
+    height: 6px;
+    background: #ff3e7f;
+    transform: rotate(-3deg);
+  }
+  .hero-title .yellow { color: #ffd600; }
+  .hero-title .pink { color: #ff3e7f; }
+  .hero-lead {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #d8d2c4;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+  .hero-lead b { color: #ffd600; font-weight: 900; }
+  .stamp {
+    display: inline-block;
+    border: 3px double #ff3e7f;
+    color: #ff3e7f;
+    font-family: 'Yusei Magic', serif;
+    font-size: 13px;
+    padding: 8px 18px;
+    border-radius: 50px;
+    transform: rotate(-4deg);
+    letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+  .scroll-hint {
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'DotGothic16', monospace;
+    font-size: 11px;
+    color: #666;
+    letter-spacing: 0.3em;
+    animation: bounce 1.8s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(6px); opacity: 1; }
+  }
+
+  /* --- SECTION COMMON --- */
+  section {
+    padding: 70px 22px;
+    position: relative;
+  }
+  .sec-num {
+    font-family: 'RocknRoll One', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px #ff3e7f;
+    line-height: 1;
+    margin-bottom: -10px;
+    letter-spacing: -0.04em;
+  }
+  .sec-label {
+    font-family: 'DotGothic16', monospace;
+    font-size: 11px;
+    color: #ffd600;
+    letter-spacing: 0.3em;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .sec-title {
+    font-family: 'RocknRoll One', 'Noto Serif JP', serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .sec-title .hl {
+    background: linear-gradient(transparent 60%, #ffd600 60%);
+    color: #fff;
+    padding: 0 4px;
+  }
+  .sec-body {
+    font-size: 16px;
+    line-height: 1.95;
+    color: #d8d2c4;
+    font-weight: 500;
+  }
+  .sec-body p { margin-bottom: 18px; }
+  .sec-body b { color: #ffd600; font-weight: 900; }
+  .sec-body em {
+    font-style: normal;
+    color: #ff3e7f;
+    font-weight: 900;
+  }
+
+  /* --- POP BOX --- */
+  .pop {
+    background: #ffd600;
+    color: #0a0806;
+    padding: 22px 20px;
+    margin: 28px -4px;
+    transform: rotate(-1deg);
+    font-family: 'Yusei Magic', serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.6;
+    box-shadow: 4px 4px 0 #ff3e7f;
+    border: 2px solid #0a0806;
+  }
+  .pop .big {
+    font-family: 'RocknRoll One', serif;
+    font-size: 28px;
+    color: #ff3e7f;
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .pop-pink {
+    background: #ff3e7f;
+    color: #fff;
+    box-shadow: 4px 4px 0 #ffd600;
+    transform: rotate(1deg);
+  }
+  .pop-pink .big { color: #ffd600; }
+
+  /* --- DIVIDER --- */
+  .divider {
+    text-align: center;
+    padding: 30px 0 10px;
+    font-family: 'DotGothic16', monospace;
+    color: #444;
+    font-size: 13px;
+    letter-spacing: 0.5em;
+  }
+
+  /* --- 80/20 VISUAL --- */
+  .ratio {
+    background: #120e0a;
+    border: 1px solid rgba(255,214,0,0.2);
+    padding: 26px 20px;
+    margin: 30px 0;
+    border-radius: 4px;
+    position: relative;
+  }
+  .ratio::before {
+    content: "DATA";
+    position: absolute;
+    top: -10px; left: 16px;
+    background: #0a0806;
+    padding: 0 10px;
+    font-family: 'DotGothic16', monospace;
+    font-size: 10px;
+    color: #ffd600;
+    letter-spacing: 0.3em;
+  }
+  .bar {
+    display: flex;
+    height: 34px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 14px 0 10px;
+  }
+  .bar-80 {
+    width: 80%;
+    background: #3a2c20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'RocknRoll One', serif;
+    font-size: 14px;
+    color: #888;
+    font-weight: 900;
+  }
+  .bar-20 {
+    width: 20%;
+    background: #ffd600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'RocknRoll One', serif;
+    font-size: 14px;
+    color: #0a0806;
+    font-weight: 900;
+  }
+  .ratio-note {
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    margin-top: 4px;
+    font-family: 'DotGothic16', monospace;
+  }
+
+  /* --- CORE CARD (日記→言い換え) --- */
+  .core {
+    background: linear-gradient(135deg, #1a1208 0%, #0a0806 100%);
+    border: 2px solid #ffd600;
+    padding: 28px 22px;
+    margin: 30px 0;
+    border-radius: 4px;
+    position: relative;
+  }
+  .core::before {
+    content: "★ CORE ★";
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: #ffd600;
+    color: #0a0806;
+    padding: 3px 14px;
+    font-family: 'RocknRoll One', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    font-weight: 900;
+  }
+  .core-title {
+    font-family: 'RocknRoll One', serif;
+    font-size: 24px;
+    color: #ffd600;
+    margin-bottom: 16px;
+    line-height: 1.3;
+    text-align: center;
+  }
+  .core-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .flow-step {
+    background: rgba(255,214,0,0.06);
+    border-left: 3px solid #ffd600;
+    padding: 12px 14px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .flow-step b { color: #ffd600; font-weight: 900; display: block; margin-bottom: 2px; font-family: 'Yusei Magic'; }
+
+  /* --- エビデンスカード --- */
+  .evidence-section {
+    background: #f5f0e4;
+    color: #1a1410;
+    margin: 0 -22px;
+    padding: 60px 22px;
+  }
+  .evidence-section .sec-label {
+    color: #993556;
+  }
+  .evidence-section .sec-num {
+    -webkit-text-stroke: 2px #993556;
+  }
+  .evidence-section .sec-title {
+    color: #1a1410;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+  }
+  .evidence-section .sec-title .hl {
+    background: linear-gradient(transparent 60%, #ffd600 60%);
+  }
+  .evidence-lead {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #444;
+    margin-bottom: 30px;
+    font-weight: 500;
+  }
+  .ev-card {
+    background: #fff;
+    border: 1px solid #d8d0be;
+    border-radius: 3px;
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    position: relative;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.04);
+  }
+  .ev-card::before {
+    content: attr(data-tag);
+    position: absolute;
+    top: -10px; left: 14px;
+    background: #1a1410;
+    color: #ffd600;
+    font-family: 'DotGothic16', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    padding: 3px 10px;
+  }
+  .ev-head {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    color: #993556;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+  .ev-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 19px;
+    font-weight: 900;
+    color: #1a1410;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .ev-body {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #333;
+    font-weight: 500;
+  }
+  .ev-body b {
+    background: linear-gradient(transparent 65%, #ffd600 65%);
+    font-weight: 700;
+  }
+  .ev-insight {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #fef8e6;
+    border-left: 3px solid #ffd600;
+    font-size: 13px;
+    color: #3d2f0d;
+    font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .ev-insight::before {
+    content: "→ ";
+    color: #993556;
+    font-weight: 900;
+  }
+
+  /* --- ROUTINE --- */
+  .routine {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .r-step {
+    background: #120e0a;
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 18px 18px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .r-time {
+    font-family: 'DotGothic16', monospace;
+    font-size: 10px;
+    color: #00e5ff;
+    letter-spacing: 0.3em;
+    margin-bottom: 6px;
+  }
+  .r-label {
+    font-family: 'Yusei Magic', serif;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .r-min {
+    display: inline-block;
+    background: #00e5ff;
+    color: #0a0806;
+    font-family: 'RocknRoll One';
+    font-size: 11px;
+    padding: 2px 8px;
+    margin-left: 8px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  .r-desc {
+    font-size: 13px;
+    color: #a8a295;
+    line-height: 1.7;
+  }
+
+  /* --- OUTCOMES --- */
+  .outcomes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .out-card {
+    border: 1px solid rgba(255,214,0,0.3);
+    padding: 18px 18px;
+    border-radius: 4px;
+    background: rgba(255,214,0,0.04);
+  }
+  .out-head {
+    font-family: 'RocknRoll One', serif;
+    font-size: 15px;
+    color: #ffd600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .out-head::before {
+    content: "●";
+    color: #ff3e7f;
+    font-size: 10px;
+  }
+  .out-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #d8d2c4;
+  }
+
+  /* --- MISSION --- */
+  .mission {
+    background: #0a0806;
+    padding: 80px 22px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .mission::before {
+    content: "";
+    position: absolute;
+    top: 20%; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,214,0,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .mission-kicker {
+    font-family: 'DotGothic16', monospace;
+    font-size: 11px;
+    color: #ff3e7f;
+    letter-spacing: 0.5em;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .mission-title {
+    font-family: 'RocknRoll One', serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    letter-spacing: -0.02em;
+  }
+  .mission-title .yellow { color: #ffd600; }
+  .mission-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+    position: relative;
+  }
+  .mission-list li {
+    font-family: 'Yusei Magic', serif;
+    font-size: 17px;
+    color: #f5f0e4;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(255,214,0,0.2);
+  }
+  .mission-list li::before {
+    content: "☑ ";
+    color: #ffd600;
+    font-weight: 900;
+  }
+  .mission-final {
+    margin-top: 40px;
+    padding: 30px 20px;
+    border: 2px solid #ffd600;
+    background: rgba(255,214,0,0.05);
+    position: relative;
+  }
+  .mission-final::before {
+    content: "君への命令";
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: #0a0806;
+    color: #ff3e7f;
+    padding: 2px 14px;
+    font-family: 'Yusei Magic', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+  }
+  .mission-final p {
+    font-family: 'RocknRoll One', serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #fff;
+  }
+  .mission-final .big {
+    display: block;
+    color: #ffd600;
+    font-size: 30px;
+    margin: 10px 0;
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    padding: 40px 22px 60px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-sign {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+  .footer-brand {
+    font-family: 'Yusei Magic', serif;
+    font-size: 13px;
+    color: #ffd600;
+    line-height: 1.7;
+  }
+
+  /* --- 引用数字 --- */
+  sup {
+    font-size: 10px;
+    color: #993556;
+    font-weight: 900;
+    padding: 0 2px;
+  }
+
+  /* --- 参考文献 --- */
+  .refs {
+    background: #1a1410;
+    color: #888;
+    margin: 0 -22px;
+    padding: 40px 22px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  .refs-title {
+    font-family: 'DotGothic16', monospace;
+    font-size: 11px;
+    color: #ffd600;
+    letter-spacing: 0.3em;
+    margin-bottom: 16px;
+  }
+  .refs ol {
+    padding-left: 20px;
+  }
+  .refs li {
+    margin-bottom: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- =========== HERO =========== -->
+<section class="hero">
+  <span class="tape">// CHOSEN_ONES_ONLY</span>
+  <div class="hero-kicker">── 選ばれし者へ</div>
+  <h1 class="hero-title">
+    <span class="strike">AIで生産性</span><br>
+    <span class="yellow">笑わせるな。</span><br>
+    勝負はその<span class="pink">先</span>だ。
+  </h1>
+  <p class="hero-lead">
+    AIが論理を作る時代。<br>
+    でも社会の<b>80%</b>は、<br>
+    その論理が「通じない」。<br><br>
+    だから組織は腐敗する。<br>
+    だから会議は進まない。<br>
+    だから家族すら噛み合わない。
+  </p>
+  <span class="stamp">残り20%側への、招待状</span>
+  <div class="scroll-hint">▼ SCROLL ▼</div>
+</section>
+
+<div class="divider">- - - 01 - - -</div>
+
+<!-- =========== SEC 01 =========== -->
+<section>
+  <span class="sec-label">PROBLEM / 01</span>
+  <div class="sec-num">01</div>
+  <h2 class="sec-title">論理は、<span class="hl">もう武器じゃない</span>。</h2>
+  <div class="sec-body">
+    <p>
+      AIで生産性を上げる──<br>
+      それ、<em>5年後には全員やってる</em>。<br>
+      君の強みじゃなくなる。
+    </p>
+    <p>
+      本当の勝負は、<br>
+      <b>「論理を通じさせる力」</b>に移った。
+    </p>
+
+    <div class="ratio">
+      <div style="font-size:13px; color:#d8d2c4; margin-bottom:6px;">世の中のリアル</div>
+      <div class="bar">
+        <div class="bar-80">論理が通じない 80%</div>
+        <div class="bar-20">20%</div>
+      </div>
+      <div class="ratio-note">← ここを動かせる奴だけが、本当の仕事をする</div>
+    </div>
+
+    <p>
+      会議。クライアント。スピーチ。<br>
+      あいつとの他愛ない雑談。<br>
+      本当の問題はいつも、<br>
+      <b>「相手の気持ちが読めない」</b>側にある。
+    </p>
+  </div>
+
+  <div class="pop">
+    <span class="big">AIは論理を吐く。</span>
+    人間の仕事は、<br>それを「刺さる言葉」に変えること。
+  </div>
+</section>
+
+<div class="divider">- - - 02 - - -</div>
+
+<!-- =========== SEC 02 =========== -->
+<section>
+  <span class="sec-label">THE CORE / 02</span>
+  <div class="sec-num">02</div>
+  <h2 class="sec-title">核心は、<span class="hl">日記を言い換える</span>こと。</h2>
+  <div class="sec-body">
+    <p>
+      毎日<b>3分</b>。たったそれだけ。<br>
+      愚痴でもいい。感謝でもいい。<br>
+      不満でもいい。違和感でもいい。
+    </p>
+    <p>
+      音声入力で、<em>ぜんぶ吐け</em>。<br>
+      そしてAIに問わせる。<br>
+      「この話の、本当の核は？」
+    </p>
+
+    <div class="core">
+      <div class="core-title">日記 → 本質 → 言い換え</div>
+      <div class="core-flow">
+        <div class="flow-step">
+          <b>STEP 1｜吐く</b>
+          今日のモヤモヤを音声で丸ごと録音。
+        </div>
+        <div class="flow-step">
+          <b>STEP 2｜掘る</b>
+          AIに「本当は何を言いたい？」と問わせる。
+        </div>
+        <div class="flow-step">
+          <b>STEP 3｜置き換える</b>
+          自分でも言い換え、AIの答えと並べる。
+        </div>
+      </div>
+    </div>
+
+    <p>
+      これを毎日やるだけで──<br>
+      <b>相手の気持ちを読む筋肉</b>が育つ。
+    </p>
+  </div>
+
+  <div class="pop pop-pink">
+    <span class="big">共感は、才能じゃない。</span>
+    毎日3分の、筋トレだ。
+  </div>
+</section>
+
+<!-- =========== EVIDENCE =========== -->
+<section class="evidence-section">
+  <span class="sec-label">EVIDENCE / 03</span>
+  <div class="sec-num">03</div>
+  <h2 class="sec-title">なぜ効くのか。<br><span class="hl">神経科学の答え</span>。</h2>
+  <p class="evidence-lead">
+    この方法は「気合い」でも「根性」でもない。<br>
+    過去40年の心理学・脳科学研究が、<br>
+    その効果を積み重ねて立証してきた手法である。
+  </p>
+
+  <div class="ev-card" data-tag="EVIDENCE 01">
+    <div class="ev-head">Pennebaker, 1986 〜</div>
+    <div class="ev-title">「書くだけで免疫機能が改善する」</div>
+    <div class="ev-body">
+      テキサス大学のPennebaker教授は、<br>
+      <b>1日20分×4日間</b>ネガティブな感情を書き出した被験者が、その後数ヶ月にわたり免疫細胞の活性・通院回数・抑うつ指標で有意に改善することを報告した<sup>※1</sup>。<br>
+      <br>
+      メタ解析でも効果量 <b>d=0.08〜0.40</b> で頑健に再現されている<sup>※2</sup>。
+    </div>
+    <div class="ev-insight">書くことは、それ自体が「薬」である。</div>
+  </div>
+
+  <div class="ev-card" data-tag="EVIDENCE 02">
+    <div class="ev-head">Lieberman et al., 2007 / UCLA, fMRI</div>
+    <div class="ev-title">「感情に名前をつけると、扁桃体が鎮まる」</div>
+    <div class="ev-body">
+      UCLAの神経科学者Liebermanらは、怒りや恐れなどの感情に<b>ことばのラベルを貼る</b>だけで、扁桃体（恐怖と怒りの中枢）の活動が有意に低下し、前頭前野の活動が上がることをfMRIで観察した<sup>※3</sup>。<br>
+      <br>
+      これが <b>Affect Labeling</b>（感情ラベリング効果）である。
+    </div>
+    <div class="ev-insight">言語化＝脳のクールダウンボタン。</div>
+  </div>
+
+  <div class="ev-card" data-tag="EVIDENCE 03">
+    <div class="ev-head">Gross, Cognitive Reappraisal</div>
+    <div class="ev-title">「言い換えれば、感情そのものが変わる」</div>
+    <div class="ev-body">
+      スタンフォードのGrossは、出来事の意味を別の枠で捉え直す<b>認知的再評価</b>が、情動反応そのもの（心拍・不安・ネガティブ感情）を下げることを実験的に示した<sup>※4</sup>。<br>
+      <br>
+      「抑え込む」のではなく、「書き換える」ことが脳に効く。
+    </div>
+    <div class="ev-insight">言い換え＝感情の再生成。</div>
+  </div>
+
+  <div class="ev-card" data-tag="EVIDENCE 04">
+    <div class="ev-head">Rosenberg, Nonviolent Communication</div>
+    <div class="ev-title">「愚痴の裏には、必ずニーズが隠れている」</div>
+    <div class="ev-body">
+      心理学者Rosenbergが提唱した<b>非暴力コミュニケーション（NVC）</b>は、発言を「観察・感情・ニーズ・要求」の4層に分解する訓練である<sup>※5</sup>。<br>
+      <br>
+      医療・教育・紛争解決の現場で導入されており、<br>
+      <b>「表層の言葉」から「本当の要求」を掘る</b>ための標準技法になっている。
+    </div>
+    <div class="ev-insight">共感力は、構造的に訓練できる。</div>
+  </div>
+
+  <div class="ev-card" data-tag="SYNTHESIS">
+    <div class="ev-head">統合すると</div>
+    <div class="ev-title">4つのエビデンスが、同じ1点を指している。</div>
+    <div class="ev-body">
+      <b>「感情を言語化し、別の言葉で置き換える」</b><br>
+      ──この行為が、<br>
+      ● 免疫系を整え（Pennebaker）<br>
+      ● 扁桃体を鎮め（Lieberman）<br>
+      ● 感情を書き換え（Gross）<br>
+      ● 共感を鍛える（Rosenberg）。
+    </div>
+    <div class="ev-insight">日記＋言い換え＝4つの効果を同時に得る、最短ルート。</div>
+  </div>
+</section>
+
+<div class="divider">- - - 04 - - -</div>
+
+<!-- =========== SEC 04 ROUTINE =========== -->
+<section>
+  <span class="sec-label">ROUTINE / 04</span>
+  <div class="sec-num">04</div>
+  <h2 class="sec-title">1日<span class="hl">3分</span>のルーティン。</h2>
+  <div class="sec-body">
+    <p>
+      難しいことは一切いらない。<br>
+      毎日、この4つを回すだけ。
+    </p>
+  </div>
+
+  <div class="routine">
+    <div class="r-step">
+      <div class="r-time">MORNING / or ANYTIME</div>
+      <div class="r-label">🎙️ 吐く<span class="r-min">60秒</span></div>
+      <div class="r-desc">愚痴、不満、違和感、怒り、嬉しさ──なんでもいい。音声入力で、編集せずに吐き出す。</div>
+    </div>
+    <div class="r-step">
+      <div class="r-time">CORE STEP</div>
+      <div class="r-label">🤖 AIに問わせる<span class="r-min">60秒</span></div>
+      <div class="r-desc">「この話の本質は？」「本当は何を求めてる？」──AIが鏡になる。</div>
+    </div>
+    <div class="r-step">
+      <div class="r-time">KEY STEP</div>
+      <div class="r-label">✍️ 自分でも言い換える<span class="r-min">60秒</span></div>
+      <div class="r-desc">AIの答えと、自分の答え。必ず並べる。違いこそが、君の伸びしろ。</div>
+    </div>
+    <div class="r-step">
+      <div class="r-time">WEEKEND</div>
+      <div class="r-label">📖 読み返す<span class="r-min">5分</span></div>
+      <div class="r-desc">1週間分の「本当に言いたかったこと」を眺める。自分の型が、見えてくる。</div>
+    </div>
+  </div>
+
+  <div class="pop">
+    <span class="big">AIに答えを出させるな。</span>
+    AIを、自分に問いを投げる「鏡」にしろ。
+  </div>
+</section>
+
+<div class="divider">- - - 05 - - -</div>
+
+<!-- =========== SEC 05 OUTCOMES =========== -->
+<section>
+  <span class="sec-label">OUTCOME / 05</span>
+  <div class="sec-num">05</div>
+  <h2 class="sec-title">30日で、<br><span class="hl">何が変わるか</span>。</h2>
+
+  <div class="outcomes">
+    <div class="out-card">
+      <div class="out-head">仕事で</div>
+      <div class="out-desc">
+        会議で「で、結局なに？」がなくなる。<br>
+        クライアントが「この人、わかってる」と感じる。<br>
+        スピーチ・資料・提案の<b style="color:#ffd600">核</b>が、勝手に立ち上がる。
+      </div>
+    </div>
+    <div class="out-card">
+      <div class="out-head">人間関係で</div>
+      <div class="out-desc">
+        部下・上司・家族の「本当に言いたいこと」が透けて見える。<br>
+        噛み合わない会話が、減る。
+      </div>
+    </div>
+    <div class="out-card">
+      <div class="out-head">メンタルで</div>
+      <div class="out-desc">
+        扁桃体が鎮まる。<br>
+        怒り・焦り・不安が、「言語化された瞬間」に溶ける。<br>
+        <b style="color:#ffd600">一生モノのストレスマネジメント</b>が手に入る。
+      </div>
+    </div>
+    <div class="out-card">
+      <div class="out-head">AIリテラシーで</div>
+      <div class="out-desc">
+        AIに「使われる」側から、<br>
+        AIを「鏡として使う」側へ。<br>
+        これからの10年、埋もれない人間になる。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== MISSION =========== -->
+<section class="mission">
+  <div class="mission-kicker">YOUR MISSION</div>
+  <h2 class="mission-title">
+    君は、<br>
+    <span class="yellow">選ばれた20%側</span>。<br>
+    それを、証明しろ。
+  </h2>
+
+  <ul class="mission-list">
+    <li>毎日3分、書け。</li>
+    <li>AIに、本質を問わせろ。</li>
+    <li>自分でも、言い換えろ。</li>
+    <li>週末に、読み返せ。</li>
+  </ul>
+
+  <div class="mission-final">
+    <p>
+      30日続けたら、<br>
+      君の言葉は<br>
+      <span class="big">社会の80%</span>
+      を動かす武器になる。
+    </p>
+  </div>
+</section>
+
+<!-- =========== REFERENCES =========== -->
+<div class="refs">
+  <div class="refs-title">REFERENCES / 参考文献</div>
+  <ol>
+    <li>Pennebaker, J.W., &amp; Beall, S.K. (1986). Confronting a traumatic event: Toward an understanding of inhibition and disease. <em>Journal of Abnormal Psychology</em>, 95(3), 274–281.</li>
+    <li>Frattaroli, J. (2006). Experimental disclosure and its moderators: A meta-analysis. <em>Psychological Bulletin</em>, 132(6), 823–865.</li>
+    <li>Lieberman, M.D., Eisenberger, N.I., Crockett, M.J., Tom, S.M., Pfeifer, J.H., &amp; Way, B.M. (2007). Putting feelings into words: Affect labeling disrupts amygdala activity in response to affective stimuli. <em>Psychological Science</em>, 18(5), 421–428.</li>
+    <li>Gross, J.J. (1998). The emerging field of emotion regulation: An integrative review. <em>Review of General Psychology</em>, 2(3), 271–299.</li>
+    <li>Rosenberg, M.B. (2003). <em>Nonviolent Communication: A Language of Life</em>. PuddleDancer Press.</li>
+  </ol>
+</div>
+
+<!-- =========== FOOTER =========== -->
+<footer>
+  <div class="footer-sign">
+    柔道整復師。三条健康堂接骨院 院長。<br>
+    香川県高松市にて30年間、延べ1万人以上の施術を行う。<br>
+    年間約200冊の読書を続け、<br>
+    noteメンバーシップ「50代からの教養ノート」を主宰。
+  </div>
+  <div class="footer-brand">
+    高松発・一生動ける身体と人生の教養研究室<br>
+    ｜無借金・無車・自転車・圧力鍋生活を実践する治療家より
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
