@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#ff5500">
+<title>谷先生のAIトレーニング｜脳を鍛える実戦プロンプト・ラボ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0a0a;
+  --concrete-900:#121212;
+  --concrete-800:#1a1a1a;
+  --concrete-700:#222222;
+  --concrete-600:#2c2c2c;
+  --concrete-500:#3a3a3a;
+  --concrete-400:#555555;
+  --ash:#888888;
+  --cement:#b8b5ad;
+  --bone:#e8e5db;
+  --paper:#f4f1e8;
+
+  --hiviz:#ff5500;
+  --hiviz-dim:#cc4400;
+  --hiviz-glow:#ff7733;
+  --signal:#ffb800;
+  --verified:#00c896;
+  --alert:#ff3355;
+
+  --grid-line:rgba(255,85,0,0.06);
+  --border:rgba(255,255,255,0.08);
+  --border-soft:rgba(255,255,255,0.04);
+  --border-hiviz:rgba(255,85,0,0.35);
+
+  --display:'Oswald', 'Noto Sans JP', sans-serif;
+  --sans:'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --mono:'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:17px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--void);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:40px 40px;
+  color:var(--bone);
+  line-height:1.75;
+  font-weight:400;
+  letter-spacing:0.01em;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+main{max-width:680px;margin:0 auto;padding:0 16px 48px}
+
+/* ========= SPEC BAR (top status line) ========= */
+.spec-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
+  margin:0 -16px 0;
+  background:var(--concrete-900);
+  border-bottom:1px solid var(--border);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--ash);
+  text-transform:uppercase;
+}
+.spec-bar .dot{
+  display:inline-block;
+  width:8px;height:8px;
+  background:var(--hiviz);
+  border-radius:50%;
+  margin-right:8px;
+  box-shadow:0 0 12px var(--hiviz);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:0.4}
+}
+.spec-bar .right{color:var(--hiviz);font-weight:700}
+
+/* ========= HERO ========= */
+.hero{
+  position:relative;
+  padding:56px 24px 48px;
+  margin:0 -16px 40px;
+  background:
+    linear-gradient(180deg, var(--concrete-900) 0%, var(--void) 100%);
+  border-bottom:2px solid var(--hiviz);
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background:repeating-linear-gradient(
+    45deg,
+    var(--hiviz) 0 12px,
+    var(--void) 12px 24px
+  );
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  top:24px;right:-20px;
+  width:140px;height:140px;
+  border:2px solid var(--hiviz);
+  opacity:0.08;
+  transform:rotate(12deg);
+}
+.hero-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--hiviz);
+  background:rgba(255,85,0,0.08);
+  border:1px solid var(--border-hiviz);
+  padding:6px 14px;
+  margin-bottom:24px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.hero-tag .num{color:var(--bone);font-family:var(--display);font-weight:700}
+.hero-title{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:48px;
+  line-height:0.95;
+  color:var(--bone);
+  margin-bottom:18px;
+  letter-spacing:-0.02em;
+  text-transform:none;
+}
+.hero-title .jp{
+  font-family:var(--sans);
+  font-weight:900;
+  display:block;
+  font-size:38px;
+  line-height:1.15;
+  margin-top:4px;
+}
+.hero-title .accent{
+  color:var(--hiviz);
+  position:relative;
+}
+.hero-sub{
+  font-size:17px;
+  color:var(--cement);
+  line-height:1.85;
+  margin-bottom:28px;
+  max-width:560px;
+  font-weight:400;
+}
+.hero-sub strong{color:var(--bone);font-weight:700}
+
+.hero-metrics{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:2px;
+  background:var(--border);
+  border:1px solid var(--border);
+  margin-top:12px;
+}
+.metric{
+  background:var(--concrete-900);
+  padding:18px 12px 16px;
+  text-align:center;
+}
+.metric-num{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:36px;
+  color:var(--hiviz);
+  line-height:1;
+  letter-spacing:-0.02em;
+  margin-bottom:4px;
+}
+.metric-num .unit{font-size:16px;color:var(--bone);margin-left:2px}
+.metric-label{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--ash);
+  text-transform:uppercase;
+}
+
+/* ========= SECTION ========= */
+.section{margin-bottom:56px;position:relative}
+.section-number{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:80px;
+  color:var(--concrete-700);
+  line-height:0.9;
+  position:absolute;
+  top:-20px;right:0;
+  z-index:0;
+  pointer-events:none;
+}
+.section-head{position:relative;z-index:1;margin-bottom:28px}
+.section-label{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--hiviz);
+  margin-bottom:10px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.section-label::before{
+  content:'▸';
+  margin-right:6px;
+}
+.section-title{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:34px;
+  line-height:1.25;
+  color:var(--bone);
+  margin-bottom:10px;
+  letter-spacing:-0.01em;
+}
+.section-title .accent{color:var(--hiviz)}
+.section-desc{
+  font-size:16px;
+  color:var(--cement);
+  line-height:1.8;
+  max-width:600px;
+}
+.section-desc strong{color:var(--bone);font-weight:500}
+
+/* ========= SETUP STEPS ========= */
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{
+  background:var(--concrete-800);
+  border:1px solid var(--border);
+  border-left:4px solid var(--hiviz);
+  padding:20px 22px;
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:18px;
+  align-items:center;
+  transition:border-color 0.2s;
+}
+.step:hover{border-left-color:var(--signal)}
+.step-num{
+  font-family:var(--display);
+  font-size:44px;
+  font-weight:700;
+  color:var(--hiviz);
+  line-height:1;
+  letter-spacing:-0.03em;
+}
+.step-head{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:18px;
+  margin-bottom:6px;
+  line-height:1.4;
+  color:var(--bone);
+}
+.step-body{
+  font-size:14px;
+  color:var(--cement);
+  line-height:1.7;
+}
+
+/* ========= EVIDENCE (脳科学) ========= */
+.evidence{
+  background:linear-gradient(180deg, var(--concrete-900) 0%, var(--concrete-800) 100%);
+  margin:0 -16px 56px;
+  padding:48px 24px;
+  border-top:1px solid var(--border-hiviz);
+  border-bottom:1px solid var(--border-hiviz);
+  position:relative;
+}
+.evidence::before{
+  content:'EVIDENCE-BASED';
+  position:absolute;
+  top:-8px;left:24px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:3px;
+  background:var(--hiviz);
+  color:var(--void);
+  padding:2px 10px;
+  font-weight:700;
+}
+.evidence-title{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:30px;
+  line-height:1.3;
+  color:var(--bone);
+  margin-bottom:10px;
+}
+.evidence-title .accent{color:var(--hiviz)}
+.evidence-lead{
+  font-size:15px;
+  color:var(--cement);
+  line-height:1.9;
+  margin-bottom:28px;
+  max-width:560px;
+}
+.evidence-lead strong{color:var(--bone);font-weight:500}
+
+.ev-card{
+  background:var(--concrete-700);
+  border:1px solid var(--border);
+  padding:22px 22px 20px;
+  margin-bottom:12px;
+  position:relative;
+}
+.ev-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:6px;height:100%;
+  background:var(--hiviz);
+}
+.ev-head{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  margin-bottom:14px;
+}
+.ev-badge{
+  flex-shrink:0;
+  font-family:var(--display);
+  font-size:28px;
+  font-weight:700;
+  color:var(--hiviz);
+  line-height:1;
+  padding-top:2px;
+  min-width:42px;
+}
+.ev-title{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:18px;
+  line-height:1.45;
+  color:var(--bone);
+}
+.ev-source{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--hiviz);
+  letter-spacing:1px;
+  margin-top:4px;
+  font-weight:500;
+}
+.ev-body{
+  font-size:14px;
+  line-height:1.85;
+  color:var(--cement);
+  margin-bottom:14px;
+}
+.ev-body strong{color:var(--bone);font-weight:500}
+.ev-outcome{
+  background:var(--concrete-900);
+  border:1px solid var(--border-hiviz);
+  padding:12px 14px;
+  font-size:13px;
+  line-height:1.7;
+  color:var(--bone);
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:12px;
+  align-items:start;
+}
+.ev-outcome .tag{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--hiviz);
+  font-weight:700;
+  padding-top:3px;
+  white-space:nowrap;
+}
+.ev-outcome .body{color:var(--bone)}
+
+/* ========= VOICE ========= */
+.voice-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  margin-bottom:16px;
+}
+.voice-item{
+  background:var(--concrete-800);
+  border:1px solid var(--border);
+  border-top:3px solid var(--signal);
+  padding:18px 10px;
+  text-align:center;
+}
+.voice-head{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:17px;
+  color:var(--bone);
+  margin-bottom:6px;
+  line-height:1.25;
+}
+.voice-sub{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--ash);
+  line-height:1.5;
+  text-transform:uppercase;
+}
+.voice-note{
+  background:var(--concrete-800);
+  border:1px solid var(--border);
+  border-left:4px solid var(--verified);
+  padding:18px 20px;
+  font-size:14px;
+  line-height:1.9;
+  color:var(--cement);
+}
+.voice-note strong{color:var(--verified);font-weight:700}
+
+/* ========= LAB SECTION ========= */
+.lab{
+  background:
+    linear-gradient(180deg, var(--concrete-900) 0%, var(--void) 100%);
+  margin:0 -16px 56px;
+  padding:48px 24px;
+  position:relative;
+  border-top:4px solid var(--hiviz);
+  border-bottom:1px solid var(--border);
+}
+.lab-stamp{
+  position:absolute;
+  top:16px;right:20px;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:3px;
+  color:var(--hiviz);
+  border:1px solid var(--border-hiviz);
+  padding:4px 10px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+.lab-label{
+  display:inline-block;
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:11px;
+  color:var(--signal);
+  letter-spacing:3px;
+  margin-bottom:14px;
+  text-transform:uppercase;
+}
+.lab-label::before{content:'▸ ';color:var(--hiviz)}
+.lab-title{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:34px;
+  line-height:1.25;
+  color:var(--bone);
+  margin-bottom:12px;
+  letter-spacing:-0.01em;
+}
+.lab-title .accent{color:var(--hiviz)}
+.lab-desc{
+  font-size:15px;
+  line-height:1.9;
+  color:var(--cement);
+  margin-bottom:24px;
+  max-width:600px;
+}
+.lab-desc strong{color:var(--bone);font-weight:500}
+
+.lab-flow{
+  background:var(--concrete-800);
+  border:1px solid var(--border);
+  padding:20px;
+  margin-bottom:28px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+.flow-step{
+  display:grid;
+  grid-template-columns:36px 1fr;
+  gap:14px;
+  font-size:14px;
+  line-height:1.7;
+  color:var(--cement);
+}
+.flow-step .fn{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:22px;
+  color:var(--hiviz);
+  line-height:1;
+}
+.flow-step strong{color:var(--bone);font-weight:700}
+
+/* ========= PROMPT CARD ========= */
+.prompt-card{
+  background:var(--concrete-800);
+  border:1px solid var(--border);
+  padding:24px 22px 22px;
+  margin-bottom:14px;
+  position:relative;
+  transition:border-color 0.2s;
+}
+.prompt-card:hover{border-color:var(--border-hiviz)}
+.prompt-card::before{
+  content:'';
+  position:absolute;
+  top:-1px;left:-1px;
+  width:80px;height:3px;
+  background:var(--hiviz);
+}
+
+.prompt-head{
+  display:flex;
+  gap:16px;
+  margin-bottom:18px;
+  align-items:flex-start;
+}
+.prompt-badge{
+  flex-shrink:0;
+  width:64px;height:64px;
+  background:var(--hiviz);
+  color:var(--void);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--display);
+  font-weight:700;
+  line-height:1;
+  border:1px solid var(--hiviz);
+}
+.badge-label{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:2px;
+  margin-bottom:4px;
+  font-weight:700;
+}
+.badge-num{
+  font-size:26px;
+  letter-spacing:-0.02em;
+}
+
+.prompt-title{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:21px;
+  line-height:1.4;
+  margin-bottom:6px;
+  color:var(--bone);
+  letter-spacing:-0.005em;
+}
+.prompt-title .bracket{color:var(--hiviz)}
+.prompt-catch{
+  font-size:14px;
+  color:var(--cement);
+  line-height:1.7;
+}
+
+/* ビジネスKPI bar */
+.kpi-bar{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:12px;
+  align-items:center;
+  background:var(--concrete-900);
+  border:1px solid var(--border-hiviz);
+  padding:10px 14px;
+  margin-bottom:14px;
+}
+.kpi-tag{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--hiviz);
+  font-weight:700;
+  text-transform:uppercase;
+  padding-right:12px;
+  border-right:1px solid var(--border-hiviz);
+}
+.kpi-body{
+  font-size:13px;
+  line-height:1.6;
+  color:var(--bone);
+  font-weight:500;
+}
+.kpi-body .num{
+  font-family:var(--display);
+  color:var(--hiviz);
+  font-weight:700;
+  font-size:17px;
+  letter-spacing:-0.02em;
+}
+
+.situation{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:16px;
+}
+.sit-cell{padding:12px 14px}
+.sit-cell .label{
+  display:block;
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:5px;
+  text-transform:uppercase;
+}
+.sit-cell .body{
+  font-size:13px;
+  line-height:1.55;
+  font-weight:500;
+}
+.sit-before{background:rgba(255,51,85,0.08);border:1px solid rgba(255,51,85,0.2)}
+.sit-before .label{color:var(--alert)}
+.sit-before .body{color:var(--bone)}
+.sit-after{background:rgba(0,200,150,0.08);border:1px solid rgba(0,200,150,0.2)}
+.sit-after .label{color:var(--verified)}
+.sit-after .body{color:var(--bone)}
+
+.prompt-card textarea{
+  width:100%;
+  min-height:130px;
+  padding:14px 16px;
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.75;
+  border:1px solid var(--border);
+  background:var(--void);
+  color:var(--bone);
+  resize:none;
+  margin-bottom:12px;
+  -webkit-user-select:all;
+  user-select:all;
+  border-radius:0;
+}
+.prompt-card textarea:focus{outline:1px solid var(--hiviz);outline-offset:-1px}
+
+.copy-btn{
+  width:100%;
+  min-height:56px;
+  background:var(--hiviz);
+  color:var(--void);
+  border:1px solid var(--hiviz);
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:15px;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:all 0.15s ease;
+  border-radius:0;
+  position:relative;
+  overflow:hidden;
+}
+.copy-btn::after{
+  content:'▸';
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+  font-family:var(--display);
+  font-weight:400;
+}
+.copy-btn:active{transform:scale(0.98);background:var(--hiviz-glow);border-color:var(--hiviz-glow)}
+.copy-btn.copied{background:var(--verified);border-color:var(--verified);color:var(--void)}
+
+/* Lab prompt cards use darker tone */
+.lab .prompt-card{background:var(--concrete-700)}
+.lab .prompt-card textarea{background:var(--concrete-900)}
+
+/* ========= RESCUE ========= */
+.rescue{
+  background:
+    linear-gradient(135deg, var(--hiviz) 0%, var(--hiviz-dim) 100%);
+  color:var(--void);
+  margin:56px -16px 48px;
+  padding:48px 24px;
+  position:relative;
+  overflow:hidden;
+}
+.rescue::before{
+  content:'FINAL';
+  position:absolute;
+  top:-12px;right:-8px;
+  font-family:var(--display);
+  font-weight:700;
+  font-size:200px;
+  color:rgba(0,0,0,0.08);
+  letter-spacing:-10px;
+  line-height:1;
+}
+.rescue-label{
+  display:inline-block;
+  background:var(--void);
+  color:var(--hiviz);
+  font-family:var(--mono);
+  font-weight:700;
+  padding:5px 14px;
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:18px;
+  text-transform:uppercase;
+}
+.rescue-title{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:32px;
+  line-height:1.25;
+  margin-bottom:16px;
+  position:relative;
+  color:var(--void);
+  letter-spacing:-0.01em;
+}
+.rescue-problem{
+  background:rgba(0,0,0,0.25);
+  border-left:3px solid var(--void);
+  padding:16px 18px;
+  font-size:14px;
+  line-height:1.85;
+  margin-bottom:18px;
+  color:var(--void);
+  font-weight:500;
+}
+.rescue-problem strong{color:var(--void);font-weight:900}
+
+.rescue .kpi-bar{
+  background:rgba(0,0,0,0.25);
+  border-color:var(--void);
+  margin-bottom:16px;
+}
+.rescue .kpi-tag{
+  color:var(--void);
+  border-right-color:rgba(0,0,0,0.3);
+}
+.rescue .kpi-body{color:var(--void);font-weight:700}
+.rescue .kpi-body .num{color:var(--void)}
+
+.rescue textarea{
+  width:100%;
+  min-height:210px;
+  padding:16px;
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.75;
+  border:2px solid var(--void);
+  background:rgba(0,0,0,0.25);
+  color:var(--void);
+  resize:none;
+  margin-bottom:14px;
+  border-radius:0;
+  font-weight:500;
+}
+.rescue textarea::placeholder{color:rgba(0,0,0,0.5)}
+.rescue .copy-btn{
+  background:var(--void);
+  border-color:var(--void);
+  color:var(--hiviz);
+  font-size:16px;
+}
+.rescue .copy-btn:active{background:var(--concrete-800);color:var(--hiviz-glow)}
+
+/* ========= ROADMAP ========= */
+.roadmap{
+  background:var(--concrete-800);
+  border:1px solid var(--border);
+  padding:28px 24px;
+  position:relative;
+}
+.roadmap::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:40%;height:3px;
+  background:var(--hiviz);
+}
+.roadmap-title{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:20px;
+  margin-bottom:18px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+  color:var(--bone);
+}
+.roadmap-item{
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid var(--border-soft);
+  font-size:15px;
+  line-height:1.75;
+  align-items:start;
+}
+.roadmap-item:last-child{border-bottom:none}
+.roadmap-day{
+  font-family:var(--mono);
+  font-weight:700;
+  color:var(--hiviz);
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding-top:3px;
+}
+.roadmap-task{color:var(--bone);font-weight:400}
+.roadmap-task strong{color:var(--hiviz);font-weight:700}
+
+/* ========= MONITOR NOTICE ========= */
+.monitor{
+  background:var(--concrete-900);
+  border:2px dashed var(--border-hiviz);
+  padding:20px 22px;
+  margin:40px 0;
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.9;
+  color:var(--cement);
+}
+.monitor-head{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:16px;
+  color:var(--hiviz);
+  margin-bottom:10px;
+  letter-spacing:1px;
+}
+.monitor strong{color:var(--bone);font-weight:500}
+
+/* ========= FOOTER ========= */
+footer{
+  margin:48px -16px 0;
+  padding:36px 24px;
+  background:var(--concrete-900);
+  color:var(--cement);
+  text-align:center;
+  border-top:2px solid var(--hiviz);
+}
+.clinic-name{
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:18px;
+  color:var(--bone);
+  margin-bottom:8px;
+  letter-spacing:0.5px;
+}
+.clinic-sub{font-size:13px;line-height:1.9;margin-bottom:18px;color:var(--ash)}
+.clinic-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.clinic-link{
+  display:inline-block;
+  background:var(--hiviz);
+  color:var(--void);
+  padding:12px 20px;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  font-family:var(--sans);
+  letter-spacing:1px;
+}
+.clinic-link:hover{background:var(--hiviz-glow)}
+.clinic-tag{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid var(--border);
+  font-size:11px;
+  color:var(--ash);
+  line-height:1.8;
+  font-family:var(--mono);
+  letter-spacing:1px;
+}
+
+/* ========= TOAST ========= */
+.toast{
+  position:fixed;
+  bottom:24px;left:50%;
+  transform:translateX(-50%) translateY(120px);
+  background:var(--hiviz);
+  color:var(--void);
+  padding:14px 28px;
+  font-family:var(--sans);
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:2px;
+  box-shadow:0 8px 32px rgba(255,85,0,0.4);
+  z-index:9999;
+  transition:transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space:nowrap;
+  text-transform:uppercase;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width:380px){
+  html{font-size:16px}
+  .hero-title{font-size:40px}
+  .hero-title .jp{font-size:30px}
+  .section-title,.lab-title{font-size:28px}
+  .rescue-title,.evidence-title{font-size:26px}
+  .prompt-title{font-size:19px}
+  .metric-num{font-size:30px}
+}
+@media (min-width:641px){
+  main{padding:0 24px 48px}
+  .hero,.lab,.rescue,.evidence,.spec-bar,footer{margin-left:0;margin-right:0}
+}
+
+/* iOS: prevent zoom on focus */
+@media screen and (-webkit-min-device-pixel-ratio:0){
+  select,textarea,input{font-size:16px !important}
+  .prompt-card textarea,.rescue textarea{font-size:13px !important}
+}
+
+/* ========= ANIMATION ========= */
+@keyframes slide-up{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.prompt-card,.ev-card{animation:slide-up 0.5s ease-out backwards}
+.prompt-card:nth-child(2),.ev-card:nth-child(2){animation-delay:0.05s}
+.prompt-card:nth-child(3),.ev-card:nth-child(3){animation-delay:0.1s}
+.prompt-card:nth-child(4),.ev-card:nth-child(4){animation-delay:0.15s}
+.prompt-card:nth-child(5),.ev-card:nth-child(5){animation-delay:0.2s}
+</style>
+</head>
+<body>
+
+<div class="spec-bar">
+  <span><span class="dot"></span>AI TRAINING LAB</span>
+  <span class="right">REV. 2026</span>
+</div>
+
+<main>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="hero-tag">
+    <span class="num">v2.0</span>
+    <span>TANI SENSEI × PROMPT TRAINING</span>
+  </div>
+  <h1 class="hero-title">
+    TRAIN YOUR BRAIN<span class="jp">谷先生の<span class="accent">AIトレーニング</span></span>
+  </h1>
+  <p class="hero-sub">
+    高松の治療家が、30年1万人の臨床と年間200冊の読書から組み上げた
+    <strong>脳を鍛えるための実戦プロンプト図鑑</strong>。
+    コピーしてAIに貼るだけ。それを毎日繰り返せば、思考と判断のベースラインが変わる。
+  </p>
+
+  <div class="hero-metrics">
+    <div class="metric">
+      <div class="metric-num">12<span class="unit">本</span></div>
+      <div class="metric-label">Prompts</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">2<span class="unit">倍</span></div>
+      <div class="metric-label">Goal Rate</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">70<span class="unit">%</span></div>
+      <div class="metric-label">Time Saved</div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MONITOR NOTICE ========== -->
+<div class="monitor">
+  <div class="monitor-head">※ 本商品について</div>
+  本商品は <strong>ChatGPT Plus / Claude Pro / Gemini Advanced</strong> いずれかの有料AIをすでにご利用の方を対象とした<strong>モニター版</strong>です。無料版では一部プロンプトが制限にかかる場合があります。お気づきの点は下記LINEまで直接ご連絡ください。正式版に反映いたします。
+</div>
+
+<!-- ========== SETUP ========== -->
+<section class="section">
+  <div class="section-number">01</div>
+  <div class="section-head">
+    <span class="section-label">SETUP</span>
+    <h2 class="section-title">まず3分、<span class="accent">武器を手元に装填する</span></h2>
+    <p class="section-desc">スマホとPCで同じAI「Claude（クロード）」を使います。最初は<strong>無料で起動できます</strong>。本気で使いはじめたら月額課金を検討してください。</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-head">「claude.ai」で検索してログイン</div>
+        <div class="step-body">PCで開いて、Googleアカウントでログイン。以上。アカウント作成の待ち時間ゼロ。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-head">スマホアプリを同期</div>
+        <div class="step-body">App Store / Google Playで「Claude」を検索し、PCと同じアカウントでログイン。これで移動中も通勤中もAIが常駐。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-head">月3,000円のProプランで本稼働</div>
+        <div class="step-body">回数制限が消え、画像・PDF・音声の読み込みが可能に。日経新聞の定期購読と同額で、思考の外部エンジンが手に入ります。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EVIDENCE ========== -->
+<section class="evidence">
+  <h2 class="evidence-title">繰り返すと、<span class="accent">脳が物理的に変わる</span></h2>
+  <p class="evidence-lead">
+    これは気休めのセルフヘルプではありません。<strong>感情を言語化し、思考を構造化し、目標を条件型に落とし込む</strong>という行為は、世界の一流大学で<strong>脳の構造変化と行動変容が測定された</strong>トレーニング手法です。AIに毎日投げるだけで、そのすべてが自動化されます。
+  </p>
+
+  <div class="ev-card">
+    <div class="ev-head">
+      <div class="ev-badge">01</div>
+      <div>
+        <div class="ev-title">感情の言語化で、扁桃体の活動が下がる</div>
+        <div class="ev-source">UCLA / Lieberman et al. 2007, Psychological Science</div>
+      </div>
+    </div>
+    <div class="ev-body">
+      自分の感情を<strong>「言葉でラベリング」</strong>するだけで、脳の不安中枢（扁桃体）の活動が低下し、理性を司る右腹外側前頭前野が活性化することがfMRIで確認されました。愚痴・モヤモヤをAIに吐き出すだけで、<strong>脳レベルで鎮静化</strong>が起きます。
+    </div>
+    <div class="ev-outcome">
+      <span class="tag">想定成果</span>
+      <span class="body">イライラ頻度の減少／睡眠の質向上／冷静な意思決定力の向上</span>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head">
+      <div class="ev-badge">02</div>
+      <div>
+        <div class="ev-title">イフゼン計画で、目標達成率が2〜3倍に</div>
+        <div class="ev-source">NYU / Gollwitzer & Sheeran 2006, Meta-analysis of 94 studies</div>
+      </div>
+    </div>
+    <div class="ev-body">
+      <strong>「もしXが起きたら、Yをする」</strong>という条件型の計画（実装意図）を立てた被験者は、そうでない被験者と比べ目標達成率が<strong>2〜3倍</strong>高いことが94研究のメタ分析で示されています。ダイエット・資格取得・営業目標、すべてに効きます。
+    </div>
+    <div class="ev-outcome">
+      <span class="tag">想定成果</span>
+      <span class="body">年次目標の達成確率 大幅向上／三日坊主からの脱出／継続力の獲得</span>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head">
+      <div class="ev-badge">03</div>
+      <div>
+        <div class="ev-title">感情の書き出しで、免疫機能が改善する</div>
+        <div class="ev-source">Pennebaker et al. / University of Texas 1988, 1999</div>
+      </div>
+    </div>
+    <div class="ev-body">
+      ペネベーカー教授らの一連の研究で、<strong>1日15〜20分の「感情の書き出し」を4日間続けた被験者</strong>は、免疫指標の改善、病院受診回数の減少、血圧低下が確認されました。AIとの対話は、この書き出しを<strong>毎日・低摩擦で</strong>回す装置になります。
+    </div>
+    <div class="ev-outcome">
+      <span class="tag">想定成果</span>
+      <span class="body">ストレス性の欠勤リスク低減／回復力向上／健康寿命の延伸</span>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head">
+      <div class="ev-badge">04</div>
+      <div>
+        <div class="ev-title">メタ認知の訓練で、前頭前野が厚くなる</div>
+        <div class="ev-source">Neuroplasticity research / Fleming, Dolan et al. 2010–</div>
+      </div>
+    </div>
+    <div class="ev-body">
+      自分の思考を一歩引いて眺める<strong>「メタ認知」</strong>を反復すると、判断・計画・自制を司る前頭前野の灰白質密度が増加することが複数の研究で報告されています。本プロンプト集の「本音の鏡」「心の整理整頓」はこの機能を直接鍛えます。
+    </div>
+    <div class="ev-outcome">
+      <span class="tag">想定成果</span>
+      <span class="body">衝動的判断の減少／長期視点の獲得／周囲からの信頼蓄積</span>
+    </div>
+  </div>
+
+  <div class="ev-card">
+    <div class="ev-head">
+      <div class="ev-badge">05</div>
+      <div>
+        <div class="ev-title">神経可塑性 — 繰り返しが回路を作る</div>
+        <div class="ev-source">Hebbian Rule / "Neurons that fire together, wire together"</div>
+      </div>
+    </div>
+    <div class="ev-body">
+      ヘブの法則によれば、<strong>同時に発火する神経細胞は結びつきを強める</strong>。AIと毎日「整理する／構造化する／問い直す」を繰り返せば、それが脳の既定動作になります。3ヶ月続けた頃、<strong>AIに聞く前にAI的に考えている</strong>自分に気づくはずです。
+    </div>
+    <div class="ev-outcome">
+      <span class="tag">想定成果</span>
+      <span class="body">思考のスピードと深さの両立／即応力の獲得／仕事の前提能力の底上げ</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VOICE ========== -->
+<section class="section">
+  <div class="section-number">02</div>
+  <div class="section-head">
+    <span class="section-label">INPUT METHOD</span>
+    <h2 class="section-title">タイピングは<span class="accent">もう古い</span>。音声入力が最強</h2>
+    <p class="section-desc">読むのが苦手でも、書くのが面倒でも、<strong>喋るだけで済みます</strong>。しかも科学的には、喋った方が本音が出て、脳の鎮静効果も高い。</p>
+  </div>
+  <div class="voice-grid">
+    <div class="voice-item">
+      <div class="voice-head">手打ち<br>ゼロ</div>
+      <div class="voice-sub">Tap & Speak</div>
+    </div>
+    <div class="voice-item">
+      <div class="voice-head">本音が<br>出る</div>
+      <div class="voice-sub">Unfiltered</div>
+    </div>
+    <div class="voice-item">
+      <div class="voice-head">通勤中<br>でも可</div>
+      <div class="voice-sub">On the go</div>
+    </div>
+  </div>
+  <div class="voice-note">
+    愚痴を喋る → AIが整理する、この一往復で<strong>扁桃体活動が低下</strong>することはUCLAで実証済み（上記エビデンス01）。つまり喋って貼るだけで、科学的にストレスが減ります。
+  </div>
+</section>
+
+<!-- ========== LAB (BIZ) ========== -->
+<section class="lab">
+  <span class="lab-stamp">BUSINESS-GRADE</span>
+  <span class="lab-label">BIZ TRAINING · 業務特化・上級編</span>
+  <h2 class="lab-title">Plaud Note × Claude<br><span class="accent">最強ビジネスマン製造ラボ</span></h2>
+  <p class="lab-desc">
+    会議・商談・電話の「言った言わない」を科学する。Plaud Noteなどの録音アプリで文字起こし → 下記のプロンプトでAIに分析させれば、<strong>あなたは常に相手の一歩先を読めるビジネスマン</strong>になれます。
+  </p>
+
+  <div class="lab-flow">
+    <div class="flow-step">
+      <div class="fn">1</div>
+      <div><strong>録音する</strong> — Plaud Note / スマホボイスメモ / iPhone標準の通話録音 等</div>
+    </div>
+    <div class="flow-step">
+      <div class="fn">2</div>
+      <div><strong>文字起こしをコピー</strong> — アプリの自動文字起こしか、Claude/ChatGPTに音声投入</div>
+    </div>
+    <div class="flow-step">
+      <div class="fn">3</div>
+      <div><strong>下のプロンプトと一緒に貼る</strong> — 目的に応じて5本から選ぶだけ</div>
+    </div>
+  </div>
+
+  <!-- BIZ 01 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">BIZ</div><div class="badge-num">01</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>議事録の神<span class="bracket">】</span>会議の決定・宿題・力学を自動抽出</div>
+        <div class="prompt-catch">冗長な録音から「意思決定に使える議事録」を5分で生成。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">会議後処理時間 <span class="num">-70%</span>／決定事項の漏れ <span class="num">0件</span>へ</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">会議が長引き要点が掴めない</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">担当者と期限まで自動整理</span></div>
+    </div>
+    <textarea id="b1" readonly>[TANI-ID: b1]
+あなたはマッキンゼー出身のベテラン議事録職人です。
+以下の文字起こしから、意思決定に使える議事録を作成してください。
+
+【文字起こし】
+（Plaudなどの録音アプリから貼り付け）
+
+【出力構成】
+1. 会議の目的（1行）
+2. 決定事項（箇条書き・担当者と期限つき）
+3. ペンディング事項（理由と次の判断タイミング）
+4. 主要論点と対立軸（A派vsB派の構造で）
+5. 発言者別の立場サマリー
+6. 次回までのアクションアイテム
+7. 隠れた力学（誰が決定権を持っていたか、発言量の偏り）
+
+ルール：冗長な発言は削る。要点だけ残す。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('b1', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- BIZ 02 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">BIZ</div><div class="badge-num">02</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>交渉の裏側を読む<span class="bracket">】</span>相手の本音と次の一手を解析</div>
+        <div class="prompt-catch">ハーバード流交渉学で、商談の勝ち筋を可視化。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">商談の譲歩ミス <span class="num">激減</span>／再交渉の切り口が<span class="num">明確化</span></span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">なぜか譲歩しすぎてしまった</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">相手の本音と次の戦略が見える</span></div>
+    </div>
+    <textarea id="b2" readonly>[TANI-ID: b2]
+あなたはハーバード流交渉学の専門家です。
+以下の商談・交渉の文字起こしを分析してください。
+
+【文字起こし】
+（ここに貼る）
+
+【分析】
+1. 相手のBATNA（次善の選択肢）の推定
+2. 相手のゾーン（最低ライン・希望ライン）の推定
+3. こちらが譲歩しすぎた点／引き出せなかった点
+4. 相手が本音を漏らした瞬間（タイミングと発言）
+5. 次回の交渉で狙うべき3つの論点
+6. 相手に響きそうなフレーム（利得／損失／関係性）
+
+最後に、次回の冒頭で使える一言を提案してください。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('b2', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- BIZ 03 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">BIZ</div><div class="badge-num">03</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>会話のクセ診断<span class="bracket">】</span>自分と相手のすれ違い原因を特定</div>
+        <div class="prompt-catch">噛み合わない原因を認知心理学で分析し、改善策まで提示。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">社内摩擦コスト <span class="num">大幅減</span>／関係再構築のトリガー発見</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">あの人と毎回話が噛み合わない</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">すれ違いの正体が言語化される</span></div>
+    </div>
+    <textarea id="b3" readonly>[TANI-ID: b3]
+あなたは認知心理学者です。
+以下の会話記録から、私と相手の対話パターンを分析してください。
+
+【会話記録】
+（文字起こしを貼る）
+
+【分析】
+1. 私の話し方のクセ（語尾・論法・感情表現）
+2. 相手の話し方のクセ
+3. 噛み合っていない瞬間とその原因
+4. 相手が興味を持った話題／冷めた話題
+5. 次に会う時のアプローチ改善案を3つ
+
+※上から目線ではなく、温かいアドバイスのトーンで。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('b3', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- BIZ 04 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">BIZ</div><div class="badge-num">04</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>角が立たない魔法<span class="bracket">】</span>キツい表現を3パターンに言い換え</div>
+        <div class="prompt-catch">メール・LINE・口頭で「刺さりすぎる言葉」を柔らかく変換。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">関係資本の <span class="num">維持</span>／メール返信率向上／炎上リスク<span class="num">低減</span></span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">強く言いたいが関係を壊したくない</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">芯は通るが柔らかい3案が出る</span></div>
+    </div>
+    <textarea id="b4" readonly>[TANI-ID: b4]
+以下の文章を、角が立たず、かつ伝えたいことがブレない表現に言い換えてください。
+
+【元の文章】
+（キツい表現・曖昧な表現を貼る）
+
+【出力】
+3パターン提示してください：
+1. 丁寧だが明確に伝えるビジネス版
+2. 相手を立てつつ主張するパワー版
+3. 柔らかく包むが芯はブレない温かい版
+
+各バージョンに「どんな相手に有効か」を一言添えて。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('b4', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- BIZ 05 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">BIZ</div><div class="badge-num">05</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>次の一手コンサル<span class="bracket">】</span>状況から3つの打ち手を提案</div>
+        <div class="prompt-catch">迷った局面で、効果・リスク・実行難易度つきで戦略を出す。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">意思決定速度 <span class="num">2倍</span>／判断の盲点を<span class="num">可視化</span></span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">この後どう動くべきか迷っている</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">盲点まで指摘した3つの選択肢</span></div>
+    </div>
+    <textarea id="b5" readonly>[TANI-ID: b5]
+あなたは経験豊富な戦略コンサルタントです。
+以下の状況から、私が打つべき「次の一手」を3つ提案してください。
+
+【状況】
+（会議の結論／商談の結果／人間関係の悩みなど）
+
+【提案フォーマット】
+それぞれの案に：
+- 一手の内容
+- 期待できる効果
+- 想定されるリスク
+- 実行難易度（星1〜3）
+- 具体的な最初のアクション（今日中にできること）
+
+最後に、私の盲点になっている可能性のある視点を1つ指摘してください。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('b5', this)">このプロンプトをコピー</button>
+  </div>
+
+</section>
+
+<!-- ========== DAILY PROMPTS ========== -->
+<section class="section">
+  <div class="section-number">03</div>
+  <div class="section-head">
+    <span class="section-label">DAILY TRAINING · 日常で刺さる・基本編</span>
+    <h2 class="section-title">心と暮らしの<span class="accent">魔法プロンプト</span></h2>
+    <p class="section-desc">愚痴・目標・読書・資料・文章・学習。毎日の悩みに1枚ずつ貼り付けて使ってください。<strong>繰り返しが脳を変えます</strong>。</p>
+  </div>
+
+  <!-- Magic 01 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">MAGIC</div><div class="badge-num">01</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>心の整理整頓<span class="bracket">】</span>愚痴も不安も5分でスッキリ</div>
+        <div class="prompt-catch">心理学8ステップで感情をラベリング。扁桃体が鎮まる科学的セラピー。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">ストレス起因の<span class="num">欠勤リスク減</span>／翌朝のパフォーマンス向上</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">夜、不安で眠れない</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">座右の銘までついて心が整う</span></div>
+    </div>
+    <textarea id="m1" readonly>[TANI-ID: m1]
+あなたは「言語化セラピスト」です。
+心理言語学・脳科学・認知心理学の最新研究に基づき、私のモヤモヤを温かく寄り添って整理してください。上から目線は禁止。
+
+【今の気持ち・日記・悩み】
+（ここに自由に書く。箇条書きでも、ぐちゃぐちゃでもOK）
+
+以下の8ステップで変換してください：
+1. 感情のラベリング（精緻に。複数あれば全部列挙）
+2. 事実と解釈を分離する
+3. ことばの変換（ネガ→共感できるポジへ）
+4. 10年後の自分・第三者視点で見直す
+5. 成長マインドセット変換（失敗=脳が成長する瞬間）
+6. 感謝・つながりのことばを3つ
+7. イフゼンプランニング（もし○○なら△△する）を2〜3個
+8. 今日の一言（座右の銘）を大きく強調して締める</textarea>
+    <button class="copy-btn" onclick="copyPrompt('m1', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- Magic 02 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">MAGIC</div><div class="badge-num">02</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>夢を現実に変える<span class="bracket">】</span>痩せる・貯める・始めるエンジン</div>
+        <div class="prompt-catch">NYU研究の「WOOPの法則」で、目標達成率を2倍に。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">目標達成率 <span class="num">2〜3倍</span>（NYU 94研究メタ分析）</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">目標が立てられない・続かない</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">イフゼン形式の行動計画が完成</span></div>
+    </div>
+    <textarea id="m2" readonly>[TANI-ID: m2]
+あなたはNYU・エッティンゲンのWOOP研究を熟知した目標達成コーチです。
+以下の4ステップで、私の壁打ち相手になってください。一方的にアドバイスせず、私が気づくように問いかけること。
+
+【私の目標】
+（例：夏までに5kg痩せる／NISAで資産運用を始める／英語を学び直す）
+
+1. Wish（願望の明確化：期限と数値を入れて再定義）
+2. Outcome（叶ったときの情景描写。テンションが上がる形で）
+3. Obstacle（内面的な弱さ・現実的な障壁を鋭く指摘）
+4. Plan（もし○○が起きたら△△する、のイフゼン計画）
+
+最後に必ず、核心を突く質問を1つ投げかけてください。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('m2', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- Magic 03 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">MAGIC</div><div class="badge-num">03</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>積読を瞬殺<span class="bracket">】</span>1冊30分で吸収する速読ブースター</div>
+        <div class="prompt-catch">本を著者との対話に変え、弱点まで掴む究極読書術。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">読書の吸収効率 <span class="num">4倍</span>／専門知識の棚卸しが高速化</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">読みたい本が山積みで進まない</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">主張と論理の弱点まで腹落ち</span></div>
+    </div>
+    <textarea id="m3" readonly>[TANI-ID: m3]
+以下のテキストを、アドラー『本を読む本』の「積極的読書」のルールで分析してください。
+
+【テキスト】
+（本の章、記事、PDF抽出文などを貼り付け）
+
+【出力構成】
+1. 全体構造と要約（主題・論理骨格3〜5ステップ・全体要約）
+2. 核心的な命題の抽出（重要キーワードと定義・著者の命題）
+3. 著者との対話（問いと仮想返答を3組）
+ Q1：根拠と論理の妥当性への問い
+ Q2：反対の視点・限界への問い
+ Q3：意義（What of it?）への問い
+4. 最終評価（それは真実か？論理的完成度と読者への価値）</textarea>
+    <button class="copy-btn" onclick="copyPrompt('m3', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- Magic 04 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">MAGIC</div><div class="badge-num">04</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>資料瞬殺<span class="bracket">】</span>会議で無敵になる網羅抽出マシン</div>
+        <div class="prompt-catch">PDFを「要約」せず「網羅抽出」。数字・事例・専門用語すべて保持。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">資料インプット時間 <span class="num">1/10</span>／質疑で一番詳しい人になれる</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">読めない分厚い資料が回ってきた</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">質疑応答で一番詳しい人になる</span></div>
+    </div>
+    <textarea id="m4" readonly>[TANI-ID: m4]
+あなたは高度な情報分析官です。添付のPDF・文書を「要約」ではなく「網羅抽出」してください。
+
+【厳守ルール】
+1. 情報の欠落を防ぐ（細かいニュアンス・具体的数値・事例も省略しない）
+2. 構造化する(文書の流れに沿って見出しごとに整理)
+3. 箇条書きを階層化（インデントで詳細まで展開）
+4. 専門用語は言い換えずそのまま維持
+
+【出力形式】
+# [文書タイトル] 全情報抽出
+## [章やセクションのタイトル]
+- **重要ポイント**: [詳細な説明]
+  - 具体的データ/根拠: [詳細]
+  - 関連する事例: [詳細]
+  - 結論/示唆: [詳細]
+（文書の最後まで続ける。長くても可）</textarea>
+    <button class="copy-btn" onclick="copyPrompt('m4', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- Magic 05 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">MAGIC</div><div class="badge-num">05</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>本音の鏡<span class="bracket">】</span>自分の人生OSを可視化する</div>
+        <div class="prompt-catch">日記から隠れた価値観・行動パターンを学術手法であぶり出す。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">自己認識の<span class="num">深化</span>／同じ失敗の反復パターン断絶</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">同じ失敗を繰り返している気がする</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">人生の隠れたテーマが物語化</span></div>
+    </div>
+    <textarea id="m5" readonly>[TANI-ID: m5]
+あなたはリフレクシブ・テーマ分析（Braun & Clarke）の世界的エキスパートです。
+以下の日記や気づきから、表面的な要約ではなく「意味のパターン（テーマ）」を構築してください。
+
+【入力データ】
+（日記・メモ・愚痴・アイデアを貼る）
+
+【分析ルール】
+1. 要約禁止（なぜそう感じたか、どんな価値観か、に焦点）
+2. 能動的な構築（テーマはデータから「構築」するもの）
+
+【出力】
+1. 心のレンガ（主要コードを3〜5個、タグ付け）
+2. 構築されたテーマ（比喩的タイトル＋200字解説）
+3. あなたの物語（肯定的な視点で短く物語化）
+4. リフレクシブな問い（ハッとする質問を1つだけ）</textarea>
+    <button class="copy-btn" onclick="copyPrompt('m5', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- Magic 06 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">MAGIC</div><div class="badge-num">06</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>文章が劇変<span class="bracket">】</span>メールを一流の文体に変換</div>
+        <div class="prompt-catch">漱石・春樹・ジョブズ…あなたの下書きを名文家の筆致で書き直す。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">提案メールの<span class="num">印象度UP</span>／読み手のレスポンス率向上</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">文章が事務的で味気ない</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">読ませる一文に生まれ変わる</span></div>
+    </div>
+    <textarea id="m6" readonly>[TANI-ID: m6]
+以下の文章を、指定のペルソナと文体でリライトしてください。
+
+【リライトする文章】
+（ここに自分の文章を貼る）
+
+【ペルソナ例から1つ選ぶ】
+・敏腕キャッチコピーライター
+・代ゼミのカリスマ予備校講師
+・ベテラン編集者
+・ハードボイルド探偵
+・凄腕の営業マン
+
+【文体例から1つ選ぶ】
+・村上春樹風（比喩多用／やれやれ／都市的喪失感）
+・夏目漱石風（知性的／皮肉／漢語多め）
+・ヘミングウェイ風（短文／氷山理論／ハードボイルド）
+・スティーブ・ジョブズ風（シンプル／情熱的／プレゼン調）
+・三島由紀夫風（華麗／耽美／格式高い美文）
+
+【トーン】
+結論ファースト／歯切れ良く／小学生でもわかる比喩で</textarea>
+    <button class="copy-btn" onclick="copyPrompt('m6', this)">このプロンプトをコピー</button>
+  </div>
+
+  <!-- Magic 07 -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-badge"><div class="badge-label">MAGIC</div><div class="badge-num">07</div></div>
+      <div>
+        <div class="prompt-title"><span class="bracket">【</span>脳に一発インストール<span class="bracket">】</span>難テーマを試験ノート化</div>
+        <div class="prompt-catch">伏せ字＋Q&A形式で、何でも覚えられる「脳インストール型ノート」へ変換。</div>
+      </div>
+    </div>
+    <div class="kpi-bar">
+      <span class="kpi-tag">BIZ IMPACT</span>
+      <span class="kpi-body">学習定着率 <span class="num">向上</span>／資格・新分野キャッチアップを加速</span>
+    </div>
+    <div class="situation">
+      <div class="sit-cell sit-before"><span class="label">Before</span><span class="body">難しい分野を一気に押さえたい</span></div>
+      <div class="sit-cell sit-after"><span class="label">After</span><span class="body">クイズ形式で記憶に刻まれる</span></div>
+    </div>
+    <textarea id="m7" readonly>[TANI-ID: m7]
+以下のテーマを、読者の脳の予測機能（空白の原則）を刺激する「脳インストール型試験対策ノート」に変換してください。
+
+【テーマ】
+（ここに学びたいテーマを入力）
+
+【ルール】
+・ペルソナ：自信満々でエネルギッシュな「天才解説者」。「脳に直接インストール」「極意を伝授」を使う
+・タイトル：必ず「〇〇」の伏せ字を含む衝撃的なもの
+・見出し：Q1、Q2…のクイズ形式（〇〇を含む疑問形）
+・本文：最初にズバリ「A. 答え」→「なぜなら〜」の順
+・全項目を網羅
+・最後に簡単総復習チェックリスト
+・拡散用ハッシュタグを易しい単語で5個</textarea>
+    <button class="copy-btn" onclick="copyPrompt('m7', this)">このプロンプトをコピー</button>
+  </div>
+
+</section>
+
+<!-- ========== RESCUE ========== -->
+<section class="rescue">
+  <span class="rescue-label">FINAL WEAPON · 最終兵器</span>
+  <h2 class="rescue-title">AIの答えが難しすぎる…<br>を一撃で殺す<span style="border-bottom:3px solid var(--void)">超訳プロンプト</span></h2>
+  <div class="rescue-problem">
+    <strong>AI利用者の99%がぶつかる壁。</strong><br>
+    「AIの回答、正しいのは分かるけど…結局何が言いたいの？」<br>
+    このプロンプトをAIの回答の下に貼るだけで、脳にスッと入る形に翻訳し直してくれます。
+  </div>
+  <div class="kpi-bar">
+    <span class="kpi-tag">BIZ IMPACT</span>
+    <span class="kpi-body">情報処理の<span class="num">ボトルネック解消</span>／部下・上司への再説明も高速化</span>
+  </div>
+  <textarea id="rescue" readonly>[TANI-ID: rescue]
+あなたは「ビレバン×TikTok超訳家」です。
+上記のAIの回答を、読むのが苦手な人・本を読まない人・疲れた50代でも脳にスッと入る形に翻訳し直してください。
+
+【絶対ルール】
+1. 小学生でも分かる言葉に変換する（専門用語は必ず日常の比喩で置き換える）
+2. 1文は短く。20文字以内を目安に
+3. 冒頭は必ず「結論から言うと…」で始める
+4. 見出しは「Q1〜」のクイズ形式で、読者の予測機能を刺激する
+5. 本文は「A. 答えはズバリ○○」→「なぜなら〜」の順
+6. 語尾は親しみを持たせる（〜だぜ／〜じゃん／〜ヤバい、を控えめに混ぜる）
+7. 煽りすぎない。温かさを残す
+8. 最後に「これだけ覚えて帰って！」と3行まとめ
+9. 拡散用ハッシュタグを易しい単語で5個
+
+【翻訳したい元の文章】
+（ここにAIの難しい回答を貼り付け、または「上記」と書く）</textarea>
+  <button class="copy-btn" onclick="copyPrompt('rescue', this)">最終兵器プロンプトをコピー</button>
+</section>
+
+<!-- ========== ROADMAP ========== -->
+<section class="section">
+  <div class="section-number">04</div>
+  <div class="section-head">
+    <span class="section-label">7-DAY PROTOCOL</span>
+    <h2 class="section-title">最初の1週間・<span class="accent">ロードマップ</span></h2>
+    <p class="section-desc">いきなり全部使わなくて大丈夫。<strong>1日1つずつ</strong>、毎日の暮らしに溶かしていきましょう。この7日間で、脳の回路が少しずつ繋がり直します。</p>
+  </div>
+  <div class="roadmap">
+    <p class="roadmap-title">あなたの変化の7日間</p>
+    <div class="roadmap-item"><div class="roadmap-day">Day 01</div><div class="roadmap-task">Claudeをスマホに入れる。<strong>音声で今日の気分を1分</strong>喋る。</div></div>
+    <div class="roadmap-item"><div class="roadmap-day">Day 02</div><div class="roadmap-task">魔法01「心の整理整頓」で、<strong>最近のモヤモヤを整理</strong>する。</div></div>
+    <div class="roadmap-item"><div class="roadmap-day">Day 03</div><div class="roadmap-task">コンビニ弁当の成分表を写真で撮って、<strong>健康影響を質問</strong>。</div></div>
+    <div class="roadmap-item"><div class="roadmap-day">Day 04</div><div class="roadmap-task">積読から1冊、魔法03「速読ブースター」で<strong>要点を掴む</strong>。</div></div>
+    <div class="roadmap-item"><div class="roadmap-day">Day 05</div><div class="roadmap-task">魔法02「夢を現実に」で<strong>週末の小さな目標</strong>をイフゼン化。</div></div>
+    <div class="roadmap-item"><div class="roadmap-day">Day 06</div><div class="roadmap-task">難しい回答が出たら、<strong>最終兵器プロンプトで超訳</strong>する。</div></div>
+    <div class="roadmap-item"><div class="roadmap-day">Day 07</div><div class="roadmap-task">魔法05「本音の鏡」で<strong>1週間を振り返り</strong>、人生OSを可視化。</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="clinic-name">三条健康堂接骨院</div>
+  <div class="clinic-sub">高松市由良町・真楽寺そば<br>柔道整復師 谷弘誠｜30年・延べ1万人以上の施術</div>
+  <div class="clinic-links">
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" class="clinic-link">Googleマップ</a>
+    <a href="https://lin.ee/dwRtwDv" class="clinic-link">LINEで予約</a>
+  </div>
+  <div class="clinic-tag">
+    高松発・一生動ける身体と人生の教養研究室<br>
+    年間200冊読む治療家／無借金・無車・自転車・圧力鍋生活
+  </div>
+</footer>
+
+</main>
+
+<div id="toast" class="toast">COPIED</div>
+
+<script>
+function copyPrompt(textId, btnEl){
+  var ta = document.getElementById(textId);
+  var orig = btnEl.textContent;
+  var ok = false;
+  try{
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, 999999);
+    ok = document.execCommand('copy');
+  }catch(e){ ok = false; }
+
+  if(!ok && navigator.clipboard){
+    navigator.clipboard.writeText(ta.value).then(function(){
+      success(btnEl, orig);
+    }).catch(function(){
+      ta.focus(); ta.select();
+      btnEl.textContent = 'Ctrl+C（⌘+C）で手動コピー';
+      setTimeout(function(){ btnEl.textContent = orig; }, 3000);
+    });
+    return;
+  }
+
+  if(ok){
+    success(btnEl, orig);
+  }else{
+    ta.focus(); ta.select();
+    btnEl.textContent = 'Ctrl+C（⌘+C）で手動コピー';
+    setTimeout(function(){ btnEl.textContent = orig; }, 3000);
+  }
+}
+
+function success(btnEl, orig){
+  btnEl.classList.add('copied');
+  btnEl.textContent = '✓ COPIED';
+  showToast();
+  try{ if(navigator.vibrate) navigator.vibrate(20); }catch(e){}
+  setTimeout(function(){
+    btnEl.classList.remove('copied');
+    btnEl.textContent = orig;
+  }, 2200);
+}
+
+function showToast(){
+  var t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 1800);
+}
+</script>
+
+</body>
+</html>
