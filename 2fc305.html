@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#ff5500">
+<title>谷先生のAIトレーニング・ログ v2｜一括取込＆月次分析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0a0a;
+  --concrete-900:#121212;
+  --concrete-800:#1a1a1a;
+  --concrete-700:#222222;
+  --concrete-600:#2c2c2c;
+  --concrete-500:#3a3a3a;
+  --ash:#888888;
+  --cement:#b8b5ad;
+  --bone:#e8e5db;
+  --hiviz:#ff5500;
+  --hiviz-dim:#cc4400;
+  --hiviz-glow:#ff7733;
+  --signal:#ffb800;
+  --verified:#00c896;
+  --alert:#ff3355;
+  --grid-line:rgba(255,85,0,0.06);
+  --border:rgba(255,255,255,0.08);
+  --border-soft:rgba(255,255,255,0.04);
+  --border-hiviz:rgba(255,85,0,0.35);
+  --display:'Oswald', 'Noto Sans JP', sans-serif;
+  --sans:'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  --mono:'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:17px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--void);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:40px 40px;
+  color:var(--bone);
+  line-height:1.75;
+  font-weight:400;
+  letter-spacing:0.01em;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+main{max-width:680px;margin:0 auto;padding:0 16px 48px}
+
+.spec-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;margin:0 -16px;
+  background:var(--concrete-900);border-bottom:1px solid var(--border);
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;
+}
+.spec-bar .dot{
+  display:inline-block;width:8px;height:8px;
+  background:var(--hiviz);border-radius:50%;margin-right:8px;
+  box-shadow:0 0 12px var(--hiviz);animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.spec-bar .right{color:var(--hiviz);font-weight:700}
+
+.hero{
+  position:relative;padding:48px 24px 40px;margin:0 -16px 28px;
+  background:linear-gradient(180deg, var(--concrete-900) 0%, var(--void) 100%);
+  border-bottom:2px solid var(--hiviz);overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:repeating-linear-gradient(45deg, var(--hiviz) 0 12px, var(--void) 12px 24px);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;
+  color:var(--hiviz);background:rgba(255,85,0,0.08);
+  border:1px solid var(--border-hiviz);padding:6px 14px;
+  margin-bottom:20px;text-transform:uppercase;font-weight:700;
+}
+.hero-title{
+  font-family:var(--sans);font-weight:900;font-size:32px;
+  line-height:1.2;color:var(--bone);margin-bottom:14px;
+  letter-spacing:-0.01em;
+}
+.hero-title .accent{color:var(--hiviz)}
+.hero-sub{font-size:15px;color:var(--cement);line-height:1.85;max-width:560px}
+.hero-sub strong{color:var(--bone);font-weight:500}
+
+.stats-bar{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:var(--border);border:1px solid var(--border);margin:20px 0 0;
+}
+.stat{background:var(--concrete-900);padding:14px 10px;text-align:center}
+.stat-num{
+  font-family:var(--display);font-weight:700;font-size:30px;
+  color:var(--hiviz);line-height:1;margin-bottom:3px;letter-spacing:-0.02em;
+}
+.stat-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;
+}
+
+.section{margin-bottom:44px}
+.section-label{
+  display:inline-block;font-family:var(--mono);font-size:11px;
+  letter-spacing:3px;color:var(--hiviz);margin-bottom:10px;
+  text-transform:uppercase;font-weight:700;
+}
+.section-label::before{content:'▸ '}
+.section-title{
+  font-family:var(--sans);font-weight:900;font-size:26px;
+  line-height:1.3;color:var(--bone);margin-bottom:8px;letter-spacing:-0.01em;
+}
+.section-title .accent{color:var(--hiviz)}
+.section-desc{font-size:14px;color:var(--cement);line-height:1.8;margin-bottom:20px}
+.section-desc strong{color:var(--bone);font-weight:500}
+
+.card{
+  background:var(--concrete-800);border:1px solid var(--border);
+  padding:22px 20px;margin-bottom:14px;position:relative;
+}
+.card::before{
+  content:'';position:absolute;top:-1px;left:-1px;
+  width:80px;height:3px;background:var(--hiviz);
+}
+.card.signal::before{background:var(--signal)}
+.card.verified::before{background:var(--verified)}
+
+label{
+  display:block;font-family:var(--mono);font-size:11px;
+  letter-spacing:2px;color:var(--hiviz);margin-bottom:8px;
+  font-weight:700;text-transform:uppercase;
+}
+select, textarea, input[type=text], input[type=date]{
+  width:100%;padding:12px 14px;font-family:var(--sans);
+  font-size:15px;line-height:1.7;border:1px solid var(--border);
+  background:var(--void);color:var(--bone);border-radius:0;margin-bottom:16px;
+}
+select:focus, textarea:focus, input:focus{
+  outline:1px solid var(--hiviz);outline-offset:-1px;
+}
+textarea{resize:vertical;min-height:110px;font-family:var(--sans)}
+textarea.mono{font-family:var(--mono);font-size:13px;line-height:1.75}
+select{
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%23ff5500' d='M2 4l4 4 4-4z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  background-size:12px;padding-right:40px;cursor:pointer;
+}
+select option{background:var(--concrete-800);color:var(--bone)}
+
+.btn{
+  display:inline-block;width:100%;min-height:52px;
+  padding:14px 20px;font-family:var(--sans);font-weight:900;
+  font-size:14px;letter-spacing:2px;cursor:pointer;
+  transition:all 0.15s ease;border-radius:0;border:1px solid;text-align:center;
+}
+.btn-primary{background:var(--hiviz);color:var(--void);border-color:var(--hiviz)}
+.btn-primary:active{transform:scale(0.98);background:var(--hiviz-glow)}
+.btn-primary.done{background:var(--verified);border-color:var(--verified)}
+.btn-signal{background:var(--signal);color:var(--void);border-color:var(--signal)}
+.btn-signal:active{transform:scale(0.98);background:#ffc933}
+.btn-verified{background:var(--verified);color:var(--void);border-color:var(--verified)}
+.btn-verified:active{transform:scale(0.98);background:#33d4a8}
+.btn-ghost{background:transparent;color:var(--bone);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--hiviz);color:var(--hiviz)}
+.btn-danger{background:transparent;color:var(--alert);border-color:rgba(255,51,85,0.3)}
+.btn-danger:hover{background:rgba(255,51,85,0.1)}
+.btn-group{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+
+/* Main action box - prominent */
+.main-action{
+  background:var(--concrete-700);
+  border:2px solid var(--border-hiviz);
+  padding:22px 20px;
+  margin-bottom:14px;
+  position:relative;
+}
+.main-action::before{
+  content:'';
+  position:absolute;top:-2px;left:-2px;
+  width:80px;height:4px;background:var(--hiviz);
+}
+.main-action-title{
+  font-family:var(--sans);font-weight:900;font-size:16px;
+  color:var(--bone);margin-bottom:8px;letter-spacing:0.5px;
+  display:flex;align-items:center;gap:8px;
+}
+.main-action-title::before{
+  content:'';display:inline-block;width:4px;height:16px;background:var(--hiviz);
+}
+.main-action-desc{
+  font-size:13px;color:var(--cement);line-height:1.8;margin-bottom:16px;
+}
+.main-action-desc strong{color:var(--bone);font-weight:500}
+
+/* Collapsible advanced section */
+.advanced{
+  border:1px solid var(--border);
+  background:var(--concrete-900);
+  margin-bottom:14px;
+}
+.advanced summary{
+  padding:14px 18px;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  color:var(--ash);text-transform:uppercase;font-weight:700;
+  user-select:none;list-style:none;transition:color 0.15s;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.advanced summary:hover{color:var(--hiviz)}
+.advanced summary::-webkit-details-marker{display:none}
+.advanced summary::after{
+  content:'▼';font-size:10px;transition:transform 0.2s;
+}
+.advanced[open] summary{
+  color:var(--bone);border-bottom:1px solid var(--border);
+}
+.advanced[open] summary::after{transform:rotate(180deg)}
+.advanced-body{padding:18px}
+.advanced-desc{
+  font-size:12px;color:var(--ash);line-height:1.8;
+  margin-bottom:14px;font-family:var(--sans);
+}
+
+.filter-bar{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;
+}
+.filter-bar select, .filter-bar input{margin-bottom:0;padding:10px 12px;font-size:14px}
+.filter-bar select{padding-right:36px}
+
+.log-item{
+  background:var(--concrete-700);border:1px solid var(--border);
+  padding:16px 18px;margin-bottom:10px;position:relative;
+}
+.log-item-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;gap:10px;
+}
+.log-badge{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  color:var(--hiviz);background:rgba(255,85,0,0.1);
+  border:1px solid var(--border-hiviz);padding:3px 8px;
+  font-weight:700;text-transform:uppercase;white-space:nowrap;
+}
+.log-date{
+  font-family:var(--mono);font-size:11px;color:var(--ash);letter-spacing:1px;
+}
+.log-title{
+  font-family:var(--sans);font-weight:700;font-size:15px;
+  color:var(--bone);margin-bottom:8px;line-height:1.4;
+}
+.log-preview{
+  font-size:13px;color:var(--cement);line-height:1.7;
+  max-height:60px;overflow:hidden;position:relative;margin-bottom:10px;
+}
+.log-preview::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:24px;
+  background:linear-gradient(180deg, transparent 0%, var(--concrete-700) 100%);
+  pointer-events:none;
+}
+.log-actions{display:flex;gap:6px;flex-wrap:wrap}
+.log-actions button{
+  flex:1;min-width:80px;padding:8px 10px;font-size:11px;
+  letter-spacing:1px;min-height:36px;
+}
+
+.export-box{
+  background:var(--concrete-700);border:1px dashed var(--border-hiviz);
+  padding:18px;margin-bottom:14px;
+}
+.export-box p{font-size:13px;color:var(--cement);margin-bottom:12px;line-height:1.8}
+
+.analysis-card{
+  background:var(--concrete-800);border:1px solid var(--border);
+  padding:22px 20px;margin-bottom:12px;position:relative;
+}
+.analysis-card::before{
+  content:'';position:absolute;top:-1px;left:-1px;
+  width:80px;height:3px;background:var(--signal);
+}
+.analysis-head{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.analysis-badge{
+  flex-shrink:0;width:56px;height:56px;background:var(--signal);
+  color:var(--void);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font-family:var(--display);
+  font-weight:700;line-height:1;
+}
+.analysis-badge .l{font-family:var(--mono);font-size:9px;letter-spacing:2px;margin-bottom:3px;font-weight:700}
+.analysis-badge .n{font-size:22px;letter-spacing:-0.02em}
+.analysis-title{
+  font-family:var(--sans);font-weight:900;font-size:18px;
+  line-height:1.4;color:var(--bone);margin-bottom:4px;
+}
+.analysis-catch{font-size:13px;color:var(--cement);line-height:1.65}
+.analysis-card textarea{
+  font-family:var(--mono);font-size:13px;line-height:1.75;
+  background:var(--void);min-height:160px;margin-bottom:12px;
+}
+
+/* Import tab specific */
+.quick-flow{
+  background:var(--concrete-700);border-left:4px solid var(--verified);
+  padding:18px 20px;margin-bottom:20px;
+}
+.quick-flow-title{
+  font-family:var(--sans);font-weight:900;font-size:16px;
+  color:var(--verified);margin-bottom:12px;letter-spacing:0.5px;
+}
+.flow-steps{counter-reset:step}
+.flow-step{
+  counter-increment:step;
+  display:grid;grid-template-columns:32px 1fr;gap:12px;
+  margin-bottom:10px;font-size:14px;line-height:1.7;color:var(--bone);
+}
+.flow-step::before{
+  content:counter(step);
+  font-family:var(--display);font-weight:700;font-size:22px;
+  color:var(--verified);line-height:1;
+}
+.flow-step strong{color:var(--verified);font-weight:700}
+
+.preview-area{
+  background:var(--concrete-900);border:1px solid var(--border);
+  padding:16px 18px;margin-bottom:14px;
+  max-height:400px;overflow-y:auto;
+}
+.preview-empty{
+  text-align:center;padding:30px 20px;color:var(--ash);
+  font-family:var(--mono);font-size:13px;
+}
+.preview-item{
+  background:var(--concrete-700);border:1px solid var(--border);
+  padding:14px 16px;margin-bottom:10px;
+}
+.preview-item-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:8px;gap:10px;flex-wrap:wrap;
+}
+.preview-item-title{
+  font-family:var(--sans);font-weight:700;font-size:14px;color:var(--bone);
+}
+.preview-item-meta{
+  font-family:var(--mono);font-size:11px;color:var(--verified);letter-spacing:1px;
+}
+.preview-item-body{
+  font-size:12px;color:var(--cement);line-height:1.65;
+  max-height:100px;overflow:hidden;position:relative;
+}
+.preview-item-body.expanded{max-height:none}
+.preview-count{
+  font-family:var(--display);font-size:36px;font-weight:700;
+  color:var(--verified);line-height:1;margin-bottom:6px;letter-spacing:-0.02em;
+}
+.preview-count-label{
+  font-family:var(--mono);font-size:11px;color:var(--ash);
+  letter-spacing:2px;text-transform:uppercase;
+}
+
+.status-line{
+  font-family:var(--mono);font-size:12px;color:var(--ash);
+  margin-bottom:12px;padding:10px 12px;
+  background:var(--concrete-900);border-left:3px solid var(--ash);
+}
+.status-line.error{color:var(--alert);border-left-color:var(--alert)}
+.status-line.ok{color:var(--verified);border-left-color:var(--verified)}
+
+.toast{
+  position:fixed;bottom:24px;left:50%;
+  transform:translateX(-50%) translateY(120px);
+  background:var(--hiviz);color:var(--void);
+  padding:14px 28px;font-family:var(--sans);font-weight:900;
+  font-size:14px;letter-spacing:2px;
+  box-shadow:0 8px 32px rgba(255,85,0,0.4);
+  z-index:9999;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  white-space:nowrap;text-transform:uppercase;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.danger{background:var(--alert)}
+.toast.verified{background:var(--verified)}
+
+.empty{
+  text-align:center;padding:40px 20px;
+  border:1px dashed var(--border);color:var(--ash);
+  font-family:var(--mono);font-size:13px;line-height:1.8;
+}
+
+.tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:var(--border);
+  border:1px solid var(--border);margin:0 -16px 28px;
+}
+.tab{
+  background:var(--concrete-900);color:var(--ash);
+  padding:14px 6px;text-align:center;cursor:pointer;
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;
+  font-weight:700;text-transform:uppercase;transition:all 0.15s;
+  border:none;line-height:1.3;
+}
+.tab.active{background:var(--hiviz);color:var(--void)}
+.tab:hover:not(.active){color:var(--bone);background:var(--concrete-700)}
+.tab .count{
+  display:block;font-family:var(--display);font-size:20px;
+  margin-top:2px;letter-spacing:-0.02em;
+}
+.tab.active .count{color:var(--void)}
+.tab.verified-tab.active{background:var(--verified)}
+
+.panel{display:none}
+.panel.active{display:block}
+
+.modal-bg{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.85);z-index:10000;
+  display:none;justify-content:center;align-items:flex-start;
+  overflow-y:auto;padding:20px 16px;
+}
+.modal-bg.show{display:flex}
+.modal{
+  background:var(--concrete-800);border:1px solid var(--border-hiviz);
+  padding:24px;max-width:600px;width:100%;margin:auto;
+}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);
+}
+.modal-title{font-family:var(--sans);font-weight:900;font-size:18px;color:var(--bone)}
+.modal-close{
+  background:none;border:none;color:var(--hiviz);
+  font-size:28px;cursor:pointer;font-family:var(--display);line-height:1;
+  padding:0;width:32px;height:32px;
+}
+.modal-body{
+  font-size:14px;line-height:1.85;color:var(--bone);
+  max-height:70vh;overflow-y:auto;white-space:pre-wrap;
+  font-family:var(--mono);background:var(--void);
+  padding:16px;border:1px solid var(--border);
+}
+
+@media (max-width:380px){
+  html{font-size:16px}
+  .hero-title{font-size:28px}
+  .section-title{font-size:22px}
+  .tab{font-size:9px;padding:12px 4px}
+  .tab .count{font-size:18px}
+}
+@media screen and (-webkit-min-device-pixel-ratio:0){
+  select,textarea,input{font-size:16px !important}
+  textarea.mono,.analysis-card textarea{font-size:13px !important}
+}
+
+@keyframes slide-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.analysis-card, .log-item, .preview-item{animation:slide-up 0.4s ease-out backwards}
+</style>
+</head>
+<body>
+
+<div class="spec-bar">
+  <span><span class="dot"></span>TRAINING LOG v2</span>
+  <span class="right">BULK IMPORT READY</span>
+</div>
+
+<main>
+
+<header class="hero">
+  <div class="hero-tag">
+    <span>v2.0 · ONE-PASTE MODE</span>
+  </div>
+  <h1 class="hero-title">谷先生のAIトレーニング<br><span class="accent">ログ＆分析ラボ</span></h1>
+  <p class="hero-sub">寝る前に<strong>1枚のプロンプトを貼るだけ</strong>で、今日の対話がすべて構造化されてログに保存されます。月末は<strong>1ボタン・1貼り付け</strong>で、脳の変化がレポートになって返ってきます。</p>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num" id="stat-total">0</div>
+      <div class="stat-label">Total Logs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="stat-month">0</div>
+      <div class="stat-label">This Month</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="stat-streak">0</div>
+      <div class="stat-label">Streak Days</div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab verified-tab active" data-tab="import">Import<span class="count">1-paste</span></button>
+  <button class="tab" data-tab="save">Manual<span class="count">＋</span></button>
+  <button class="tab" data-tab="logs">Logs<span class="count" id="tab-c3">0</span></button>
+</nav>
+
+<!-- ========== PANEL: IMPORT (DAY EXPORT) ========== -->
+<div class="panel active" data-panel="import">
+
+  <section class="section">
+    <span class="section-label">1-PASTE IMPORT · 推奨フロー</span>
+    <h2 class="section-title">寝る前、1枚貼るだけで<span class="accent">全部保存</span></h2>
+    <p class="section-desc">AIとの今日の対話の<strong>最後に下記プロンプトを貼る</strong>だけ。<strong>「[TANI-ID: XX]」マーカー付きの付属プロンプトを使った対話</strong>のみを自動抽出してJSONで返してくれるので、それを下のエリアに貼って<strong>「内容を確認して追加」</strong>を押すだけ。</p>
+
+    <div class="quick-flow">
+      <div class="quick-flow-title">▶︎ 使い方（毎日3ステップ）</div>
+      <div class="flow-steps">
+        <div class="flow-step"><div><strong>寝る前</strong>に、今日使っていたAIの会話画面を開く</div></div>
+        <div class="flow-step"><div>下の<strong>DAY EXPORTプロンプト</strong>をコピーして、AIに貼る</div></div>
+        <div class="flow-step"><div>AIが返したJSONをコピーし、<strong>貼り付けエリア</strong>に貼ってLOGに追加</div></div>
+      </div>
+    </div>
+
+    <!-- DAY EXPORT prompt card -->
+    <div class="card verified">
+      <label>STEP 1 · このプロンプトをコピー</label>
+      <textarea id="day-export-prompt" readonly class="mono" style="min-height:380px">あなたは「AIトレーニング・ログ抽出官」です。
+この会話の中で、私が「谷先生のAIトレーニング」公式プロンプトを使って行ったやり取りだけを抽出し、以下のJSON形式で返してください。
+
+【絶対条件・厳守】
+✅ 抽出するのは、プロンプトの冒頭に「[TANI-ID: XX]」というマーカーが含まれているやり取りのみ。
+❌ マーカーがない通常の会話・質問・雑談は、内容がどれだけ似ていても絶対に抽出しない。
+
+【抽出手順】
+1. 会話を遡り、「[TANI-ID: XX]」マーカーを含むユーザーの投稿を探す
+2. マーカーの「XX」部分をそのまま promptType に使う（自動判定しない）
+3. マーカーを含むユーザー投稿のうち、プロンプト本体ではない「原材料部分」（愚痴・文書・目標など）を input に入れる
+4. その直後のAIの回答全文を output に入れる
+5. 同じ会話内に複数のマーカー付きやり取りがあれば、それぞれ別エントリとして抽出する
+6. 感情・テーマを2〜4個、日本語でtagsに付与する
+
+【カテゴリID一覧（マーカーから取得）】
+- b1: BIZ01 議事録の神
+- b2: BIZ02 交渉の裏側
+- b3: BIZ03 会話のクセ診断
+- b4: BIZ04 角が立たない魔法
+- b5: BIZ05 次の一手コンサル
+- m1: 魔法01 心の整理整頓
+- m2: 魔法02 夢を現実に変える
+- m3: 魔法03 積読を瞬殺
+- m4: 魔法04 資料瞬殺
+- m5: 魔法05 本音の鏡
+- m6: 魔法06 文章が劇変
+- m7: 魔法07 脳に一発インストール
+- rescue: 超訳プロンプト
+
+【出力形式】厳守
+前置きやコードブロック記法（```）なしで、JSON配列のみを返してください。
+
+[
+  {
+    "date": "2026-04-19",
+    "promptType": "m1",
+    "input": "ユーザーが投げた原材料テキスト",
+    "output": "AIが返した回答全文",
+    "tags": ["不安", "仕事"]
+  }
+]
+
+※dateは今日の日付（YYYY-MM-DD形式）
+※promptTypeは必ずマーカーから取得（推測禁止）
+※マーカー付きのやり取りが無ければ空配列 [] を返す</textarea>
+      <button class="btn btn-verified" onclick="copyText('day-export-prompt', this)">このプロンプトをコピー</button>
+    </div>
+
+    <!-- Paste area -->
+    <div class="card">
+      <label>STEP 2 · AIが返したJSONを貼り付け</label>
+      <textarea id="import-json-area" class="mono" placeholder='[{"date":"2026-04-19","promptType":"m1","input":"...","output":"...","tags":["..."]}]' style="min-height:200px"></textarea>
+      <button class="btn btn-primary" id="parse-btn">内容を確認して追加</button>
+    </div>
+
+    <!-- Preview -->
+    <div class="card" id="preview-card" style="display:none">
+      <label>STEP 3 · 取り込み内容の確認</label>
+      <div class="status-line" id="parse-status"></div>
+      <div style="text-align:center;margin-bottom:16px">
+        <div class="preview-count" id="preview-count">0</div>
+        <div class="preview-count-label">Entries to Import</div>
+      </div>
+      <div class="preview-area" id="preview-list"></div>
+      <button class="btn btn-verified" id="bulk-save-btn">この内容をLOGに追加</button>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- ========== PANEL: MANUAL SAVE ========== -->
+<div class="panel" data-panel="save">
+
+  <section class="section">
+    <span class="section-label">MANUAL SAVE · 手動保存</span>
+    <h2 class="section-title">1件ずつ<span class="accent">手入力で保存</span></h2>
+    <p class="section-desc">Import機能が使えない時や、特定の1件だけ保存したい時用。通常はImportタブの1-pasteモードを使ってください。</p>
+
+    <div class="card">
+      <label>プロンプト種別を選ぶ</label>
+      <select id="prompt-type">
+        <optgroup label="BIZ · 業務特化">
+          <option value="b1">BIZ01｜議事録の神</option>
+          <option value="b2">BIZ02｜交渉の裏側を読む</option>
+          <option value="b3">BIZ03｜会話のクセ診断</option>
+          <option value="b4">BIZ04｜角が立たない魔法</option>
+          <option value="b5">BIZ05｜次の一手コンサル</option>
+        </optgroup>
+        <optgroup label="MAGIC · 心と暮らし">
+          <option value="m1">魔法01｜心の整理整頓</option>
+          <option value="m2">魔法02｜夢を現実に変える</option>
+          <option value="m3">魔法03｜積読を瞬殺</option>
+          <option value="m4">魔法04｜資料瞬殺</option>
+          <option value="m5">魔法05｜本音の鏡</option>
+          <option value="m6">魔法06｜文章が劇変</option>
+          <option value="m7">魔法07｜脳に一発インストール</option>
+        </optgroup>
+        <optgroup label="FINAL · 最終兵器">
+          <option value="rescue">超訳プロンプト</option>
+        </optgroup>
+      </select>
+
+      <label>日付</label>
+      <input type="date" id="log-date">
+
+      <label>入力した内容（原材料）</label>
+      <textarea id="log-input" placeholder="AIに投げた愚痴・目標・文書・議事録などの原文をここに貼る"></textarea>
+
+      <label>AIの回答（出力）</label>
+      <textarea id="log-output" placeholder="AIが返したテキストをここに貼る" style="min-height:180px"></textarea>
+
+      <label>タグ（任意、カンマ区切り）</label>
+      <input type="text" id="log-tags" placeholder="例: 仕事,不安,達成">
+
+      <button class="btn btn-primary" id="save-btn">この記録を保存</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== PANEL: LOGS ========== -->
+<div class="panel" data-panel="logs">
+
+  <section class="section">
+    <span class="section-label">LOG ARCHIVE</span>
+    <h2 class="section-title">記録<span class="accent">アーカイブ</span></h2>
+    <p class="section-desc">保存済みの記録を一覧・検索・書き出し。月末は下の<strong>「今月のログをコピー」</strong>を押すだけ。分析プロンプトと今月分のログが自動で合体してコピーされます。AIに貼るだけで詳細レポートが返ってきます。</p>
+
+    <div class="filter-bar">
+      <select id="filter-type">
+        <option value="all">すべての種別</option>
+        <optgroup label="業務">
+          <option value="b1">BIZ01 議事録</option>
+          <option value="b2">BIZ02 交渉</option>
+          <option value="b3">BIZ03 会話診断</option>
+          <option value="b4">BIZ04 角立たず</option>
+          <option value="b5">BIZ05 次の一手</option>
+        </optgroup>
+        <optgroup label="心と暮らし">
+          <option value="m1">魔法01 心の整理</option>
+          <option value="m2">魔法02 夢を現実に</option>
+          <option value="m3">魔法03 積読</option>
+          <option value="m4">魔法04 資料</option>
+          <option value="m5">魔法05 本音の鏡</option>
+          <option value="m6">魔法06 文章</option>
+          <option value="m7">魔法07 インストール</option>
+        </optgroup>
+        <option value="rescue">超訳</option>
+      </select>
+      <select id="filter-month">
+        <option value="all">全期間</option>
+      </select>
+    </div>
+
+    <div class="main-action">
+      <div class="main-action-title">月末の分析作業</div>
+      <div class="main-action-desc">下のボタンを押すと、<strong>詳細な月次分析プロンプト＋今月分のログ</strong>がまとめてコピーされます。そのままAIに貼るだけで、<strong>5項目の詳細レポート</strong>（感情パターン／人生OS解析／ビジネス成果／神経可塑性スコア／来月の処方箋）が返ってきます。</div>
+      <button class="btn btn-primary" id="export-month">今月のログをコピー（分析用）</button>
+    </div>
+
+    <details class="advanced">
+      <summary>▸ 詳細設定（バックアップ・削除）</summary>
+      <div class="advanced-body">
+        <div class="advanced-desc">普段は使いません。スマホの機種変更時のバックアップ、または記録をリセットしたい時だけ使ってください。</div>
+        <div class="btn-group">
+          <button class="btn btn-ghost" id="export-json">バックアップを保存</button>
+          <button class="btn btn-ghost" id="import-file-btn">バックアップから復元</button>
+        </div>
+        <button class="btn btn-danger" id="clear-all">すべての記録を削除</button>
+        <input type="file" id="import-file" accept=".json" style="display:none">
+      </div>
+    </details>
+
+    <div id="log-list"></div>
+
+  </section>
+
+</div>
+
+
+</main>
+
+<div id="toast" class="toast">SAVED</div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-title">記録の詳細</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const KEY = 'tani_log_v1';
+const LABELS = {
+  b1:{label:'BIZ01', title:'議事録の神', cat:'biz'},
+  b2:{label:'BIZ02', title:'交渉の裏側を読む', cat:'biz'},
+  b3:{label:'BIZ03', title:'会話のクセ診断', cat:'biz'},
+  b4:{label:'BIZ04', title:'角が立たない魔法', cat:'biz'},
+  b5:{label:'BIZ05', title:'次の一手コンサル', cat:'biz'},
+  m1:{label:'魔法01', title:'心の整理整頓', cat:'mind'},
+  m2:{label:'魔法02', title:'夢を現実に変える', cat:'mind'},
+  m3:{label:'魔法03', title:'積読を瞬殺', cat:'learn'},
+  m4:{label:'魔法04', title:'資料瞬殺', cat:'learn'},
+  m5:{label:'魔法05', title:'本音の鏡', cat:'mind'},
+  m6:{label:'魔法06', title:'文章が劇変', cat:'learn'},
+  m7:{label:'魔法07', title:'脳に一発インストール', cat:'learn'},
+  rescue:{label:'FINAL', title:'超訳プロンプト', cat:'rescue'}
+};
+
+// preview state
+let previewEntries = [];
+
+function loadLogs(){
+  try{ const raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : []; }catch(e){ return []; }
+}
+function saveLogs(logs){
+  try{ localStorage.setItem(KEY, JSON.stringify(logs)); return true; }
+  catch(e){ showToast('容量オーバー。古いログを削除してください', 'danger'); return false; }
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('log-date').value = today;
+
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click', ()=>switchTab(t.dataset.tab));
+  });
+
+  document.getElementById('save-btn').addEventListener('click', saveLog);
+  document.getElementById('parse-btn').addEventListener('click', parseImport);
+  document.getElementById('bulk-save-btn').addEventListener('click', bulkSave);
+
+  document.getElementById('filter-type').addEventListener('change', renderLogs);
+  document.getElementById('filter-month').addEventListener('change', renderLogs);
+
+  document.getElementById('export-month').addEventListener('click', exportMonth);
+  document.getElementById('export-json').addEventListener('click', exportJSON);
+  document.getElementById('import-file-btn').addEventListener('click', ()=>document.getElementById('import-file').click());
+  document.getElementById('import-file').addEventListener('change', importJSONFile);
+  document.getElementById('clear-all').addEventListener('click', clearAll);
+
+  document.getElementById('modal-bg').addEventListener('click', function(e){
+    if(e.target === this) closeModal();
+  });
+
+  refreshAll();
+});
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.panel===name));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ========== BULK IMPORT ==========
+function extractJSON(raw){
+  // Strip common wrappers: ```json ... ```, ``` ... ```, leading/trailing prose
+  let s = raw.trim();
+  // Remove code fences
+  s = s.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/,'');
+  // Try to find first [ and last ] to extract array
+  const first = s.indexOf('[');
+  const last = s.lastIndexOf(']');
+  if(first !== -1 && last !== -1 && last > first){
+    s = s.slice(first, last+1);
+  }
+  return s;
+}
+
+function parseImport(){
+  const raw = document.getElementById('import-json-area').value.trim();
+  const statusEl = document.getElementById('parse-status');
+  const card = document.getElementById('preview-card');
+
+  if(!raw){
+    statusEl.className = 'status-line error';
+    statusEl.textContent = 'JSONが空です';
+    card.style.display = 'block';
+    renderPreview([]);
+    return;
+  }
+
+  let parsed;
+  try{
+    parsed = JSON.parse(extractJSON(raw));
+  }catch(e){
+    statusEl.className = 'status-line error';
+    statusEl.textContent = 'JSONの形式が不正です: ' + e.message;
+    card.style.display = 'block';
+    renderPreview([]);
+    return;
+  }
+
+  if(!Array.isArray(parsed)){
+    statusEl.className = 'status-line error';
+    statusEl.textContent = 'JSON配列が期待されていますが、配列ではありません';
+    card.style.display = 'block';
+    renderPreview([]);
+    return;
+  }
+
+  // Validate each entry
+  const valid = [];
+  const issues = [];
+  parsed.forEach((e, i)=>{
+    if(!e || typeof e !== 'object'){ issues.push(`#${i+1}: オブジェクトではない`); return; }
+    if(!e.promptType || !LABELS[e.promptType]){ issues.push(`#${i+1}: 不明なpromptType (${e.promptType})`); return; }
+    if(!e.output || typeof e.output !== 'string'){ issues.push(`#${i+1}: outputが空`); return; }
+    valid.push({
+      date: e.date || new Date().toISOString().split('T')[0],
+      promptType: e.promptType,
+      input: e.input || '',
+      output: e.output,
+      tags: Array.isArray(e.tags) ? e.tags : []
+    });
+  });
+
+  previewEntries = valid;
+
+  if(valid.length === 0){
+    statusEl.className = 'status-line error';
+    statusEl.textContent = '有効なエントリが見つかりませんでした' + (issues.length ? ' / ' + issues.slice(0,3).join(' / ') : '');
+  }else if(issues.length > 0){
+    statusEl.className = 'status-line';
+    statusEl.textContent = `${valid.length}件を検出 (${issues.length}件スキップ: ${issues.slice(0,2).join(' / ')})`;
+  }else{
+    statusEl.className = 'status-line ok';
+    statusEl.textContent = `${valid.length}件の有効なエントリを検出しました`;
+  }
+
+  card.style.display = 'block';
+  renderPreview(valid);
+  card.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function renderPreview(entries){
+  document.getElementById('preview-count').textContent = entries.length;
+  const list = document.getElementById('preview-list');
+  if(entries.length === 0){
+    list.innerHTML = '<div class="preview-empty">有効なエントリがありません</div>';
+    document.getElementById('bulk-save-btn').style.display = 'none';
+    return;
+  }
+  document.getElementById('bulk-save-btn').style.display = 'block';
+  document.getElementById('bulk-save-btn').textContent = `${entries.length}件をLOGに追加`;
+
+  list.innerHTML = entries.map((e, i)=>{
+    const l = LABELS[e.promptType];
+    const preview = (e.output || '').slice(0, 120).replace(/</g,'&lt;');
+    const tags = e.tags && e.tags.length ? e.tags.map(t=>'<span style="display:inline-block;font-size:10px;color:var(--verified);background:rgba(0,200,150,0.1);padding:2px 6px;margin-right:4px;font-family:var(--mono);letter-spacing:1px">#'+escapeHTML(t)+'</span>').join('') : '';
+    return `
+      <div class="preview-item">
+        <div class="preview-item-head">
+          <span class="preview-item-title">${l.label}｜${l.title}</span>
+          <span class="preview-item-meta">${e.date}</span>
+        </div>
+        ${tags ? '<div style="margin-bottom:8px">'+tags+'</div>' : ''}
+        <div class="preview-item-body">${preview}${e.output.length>120?'…':''}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function bulkSave(){
+  if(previewEntries.length === 0){
+    showToast('保存対象がありません', 'danger');
+    return;
+  }
+
+  const logs = loadLogs();
+  let added = 0;
+  previewEntries.forEach(e=>{
+    logs.unshift({
+      id: Date.now().toString() + '_' + Math.random().toString(36).slice(2,8),
+      date: e.date,
+      promptType: e.promptType,
+      promptLabel: LABELS[e.promptType].label + '｜' + LABELS[e.promptType].title,
+      category: LABELS[e.promptType].cat,
+      input: e.input,
+      output: e.output,
+      tags: e.tags
+    });
+    added++;
+  });
+
+  if(saveLogs(logs)){
+    document.getElementById('import-json-area').value = '';
+    document.getElementById('preview-card').style.display = 'none';
+    previewEntries = [];
+    const btn = document.getElementById('bulk-save-btn');
+    btn.classList.add('done');
+    btn.textContent = `✓ ${added}件 LOGに追加完了`;
+    setTimeout(()=>{ btn.classList.remove('done'); }, 2000);
+    showToast(`${added}件 ADDED`, 'verified');
+    refreshAll();
+  }
+}
+
+// ========== MANUAL SAVE ==========
+function saveLog(){
+  const type = document.getElementById('prompt-type').value;
+  const date = document.getElementById('log-date').value;
+  const input = document.getElementById('log-input').value.trim();
+  const output = document.getElementById('log-output').value.trim();
+  const tagsRaw = document.getElementById('log-tags').value.trim();
+
+  if(!output){ showToast('AIの回答は必須です', 'danger'); return; }
+
+  const logs = loadLogs();
+  const entry = {
+    id: Date.now().toString() + '_' + Math.random().toString(36).slice(2,8),
+    date: date || new Date().toISOString().split('T')[0],
+    promptType: type,
+    promptLabel: LABELS[type].label + '｜' + LABELS[type].title,
+    category: LABELS[type].cat,
+    input: input,
+    output: output,
+    tags: tagsRaw ? tagsRaw.split(',').map(s=>s.trim()).filter(Boolean) : []
+  };
+  logs.unshift(entry);
+
+  if(saveLogs(logs)){
+    document.getElementById('log-input').value = '';
+    document.getElementById('log-output').value = '';
+    document.getElementById('log-tags').value = '';
+    const btn = document.getElementById('save-btn');
+    btn.classList.add('done');
+    btn.textContent = '✓ 保存完了';
+    setTimeout(()=>{
+      btn.classList.remove('done');
+      btn.textContent = 'この記録を保存';
+    }, 1800);
+    showToast('SAVED', 'verified');
+    refreshAll();
+  }
+}
+
+// ========== RENDER ==========
+function refreshAll(){
+  const logs = loadLogs();
+  updateStats(logs);
+  updateMonthFilter(logs);
+  renderLogs();
+  document.getElementById('tab-c3').textContent = logs.length;
+}
+
+function updateStats(logs){
+  const now = new Date();
+  const thisMonth = now.toISOString().slice(0,7);
+  const monthCount = logs.filter(l=>l.date.slice(0,7)===thisMonth).length;
+
+  const dates = [...new Set(logs.map(l=>l.date))].sort().reverse();
+  let streak = 0;
+  const today = new Date().toISOString().split('T')[0];
+  const yesterday = new Date(Date.now()-86400000).toISOString().split('T')[0];
+  if(dates[0]===today || dates[0]===yesterday){
+    streak = 1;
+    for(let i=1;i<dates.length;i++){
+      const prev = new Date(dates[i-1]);
+      const curr = new Date(dates[i]);
+      const diff = (prev-curr)/86400000;
+      if(diff===1) streak++;
+      else break;
+    }
+  }
+  document.getElementById('stat-total').textContent = logs.length;
+  document.getElementById('stat-month').textContent = monthCount;
+  document.getElementById('stat-streak').textContent = streak;
+}
+
+function updateMonthFilter(logs){
+  const months = [...new Set(logs.map(l=>l.date.slice(0,7)))].sort().reverse();
+  const sel = document.getElementById('filter-month');
+  const current = sel.value;
+  sel.innerHTML = '<option value="all">全期間</option>';
+  months.forEach(m=>{
+    const opt = document.createElement('option');
+    opt.value = m;
+    const [y,mo] = m.split('-');
+    opt.textContent = y + '年' + parseInt(mo) + '月';
+    sel.appendChild(opt);
+  });
+  const thisMonth = new Date().toISOString().slice(0,7);
+  if(current && [...sel.options].some(o=>o.value===current)){
+    sel.value = current;
+  }else if(months.includes(thisMonth)){
+    sel.value = thisMonth;
+  }
+}
+
+function renderLogs(){
+  const logs = loadLogs();
+  const typeFilter = document.getElementById('filter-type').value;
+  const monthFilter = document.getElementById('filter-month').value;
+
+  const filtered = logs.filter(l=>{
+    if(typeFilter !== 'all' && l.promptType !== typeFilter) return false;
+    if(monthFilter !== 'all' && l.date.slice(0,7) !== monthFilter) return false;
+    return true;
+  });
+
+  const list = document.getElementById('log-list');
+  if(filtered.length === 0){
+    list.innerHTML = '<div class="empty">該当する記録がありません。<br>Importタブで一括取込するか、Manualタブで保存してください。</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(l=>{
+    const preview = (l.output || '').slice(0, 140).replace(/</g,'&lt;');
+    const tags = l.tags && l.tags.length ? l.tags.map(t=>'<span style="display:inline-block;font-size:10px;color:var(--hiviz);background:rgba(255,85,0,0.08);padding:2px 6px;margin-right:4px;font-family:var(--mono);letter-spacing:1px">#'+escapeHTML(t)+'</span>').join('') : '';
+    return `
+      <div class="log-item">
+        <div class="log-item-head">
+          <span class="log-badge">${LABELS[l.promptType]?.label || l.promptType}</span>
+          <span class="log-date">${l.date}</span>
+        </div>
+        <div class="log-title">${LABELS[l.promptType]?.title || l.promptType}</div>
+        ${tags ? '<div style="margin-bottom:8px">'+tags+'</div>' : ''}
+        <div class="log-preview">${preview}${l.output.length>140?'…':''}</div>
+        <div class="log-actions">
+          <button class="btn btn-ghost" onclick="viewLog('${l.id}')">詳細</button>
+          <button class="btn btn-ghost" onclick="copyLog('${l.id}')">コピー</button>
+          <button class="btn btn-danger" onclick="deleteLog('${l.id}')">削除</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHTML(s){
+  return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+function viewLog(id){
+  const log = loadLogs().find(l=>l.id===id);
+  if(!log) return;
+  document.getElementById('modal-title').textContent = log.date + ' · ' + LABELS[log.promptType].label + ' ' + LABELS[log.promptType].title;
+  const body = '【入力】\n' + (log.input || '(なし)') + '\n\n【出力】\n' + log.output + (log.tags&&log.tags.length ? '\n\n【タグ】\n'+log.tags.map(t=>'#'+t).join(' ') : '');
+  document.getElementById('modal-body').textContent = body;
+  document.getElementById('modal-bg').classList.add('show');
+}
+
+function closeModal(){ document.getElementById('modal-bg').classList.remove('show'); }
+
+function copyLog(id){
+  const log = loadLogs().find(l=>l.id===id);
+  if(!log) return;
+  copyToClipboard(formatLog(log));
+  showToast('COPIED', 'verified');
+}
+
+function deleteLog(id){
+  if(!confirm('この記録を削除しますか？')) return;
+  const logs = loadLogs().filter(l=>l.id!==id);
+  saveLogs(logs);
+  refreshAll();
+  showToast('DELETED', 'danger');
+}
+
+function formatLog(log){
+  const l = LABELS[log.promptType] || {label:log.promptType, title:''};
+  return `━━━━━━━━━━━━━━━━━━━━━━━━
+[${log.date}] ${l.label} ${l.title}
+${log.tags && log.tags.length ? 'Tags: ' + log.tags.map(t=>'#'+t).join(' ') + '\n' : ''}━━━━━━━━━━━━━━━━━━━━━━━━
+【入力】
+${log.input || '(なし)'}
+
+【出力】
+${log.output}
+`;
+}
+
+function exportMonth(){
+  const monthFilter = document.getElementById('filter-month').value;
+  const typeFilter = document.getElementById('filter-type').value;
+  const logs = loadLogs().filter(l=>{
+    if(typeFilter !== 'all' && l.promptType !== typeFilter) return false;
+    if(monthFilter !== 'all' && l.date.slice(0,7) !== monthFilter) return false;
+    return true;
+  });
+
+  if(logs.length === 0){ showToast('対象記録がありません', 'danger'); return; }
+
+  const periodLabel = monthFilter === 'all' ? '全期間' : monthFilter;
+  const typeLabel = typeFilter === 'all' ? 'すべて' : (LABELS[typeFilter]?.label+' '+LABELS[typeFilter]?.title);
+
+  // ===== MASTER ANALYSIS PROMPT =====
+  const masterPrompt = `あなたは臨床心理学・神経科学・行動経済学・戦略コンサルティングを横断する、極めて優秀なパーソナル・アナリストです。
+以下は私の過去1ヶ月のAIトレーニング記録です。これを徹底的に横断分析し、詳細な月次レポートを作成してください。
+
+【絶対の原則】
+- トーン：上から目線禁止。治療家のような温かさと、プロフェッショナルの鋭さを両立させる
+- 根拠主義：すべての指摘は記録データから具体例を引用して裏付ける（推測で埋めない）
+- 実用性：読んで終わりではなく、来月の行動が変わる示唆を含める
+- 見やすさ：マークダウンで見出し・太字・表・箇条書きを駆使する
+- 省略禁止：5セクションすべてを詳細に書き切る。長くても構わない
+
+【出力する月次レポート構成】
+
+---
+
+# 📊 月次分析レポート｜${periodLabel}
+
+## 🔴 SECTION 01｜総合振り返り（認知行動療法・CBT視点）
+
+**1-1. 頻出した感情トップ3**
+各感情がどの場面で現れたか、記録から具体例を引用して示してください。
+
+**1-2. 反復している悩みのパターン（脳のクセ）**
+3つ挙げ、なぜそのクセが生まれているか仮説を添えてください。
+
+**1-3. 事実と解釈が混ざっていた典型的な場面**
+2〜3例。「事実は◯◯」「あなたの解釈は△△」と分解して示してください。
+
+**1-4. 今月、確実に前進した点**
+小さくてもOK。5つ以上挙げてください。
+
+**1-5. 脳が新しい回路を作り始めた兆候**
+具体的な記録を引用して指摘してください。
+
+---
+
+## 🟠 SECTION 02｜人生OS解析（Braun & Clarke リフレクシブ・テーマ分析）
+
+**2-1. 心のレンガ（頻出コード5〜7個）**
+記録から繰り返し現れる要素をタグ化してください。
+
+**2-2. 構築されたテーマ（比喩的タイトル3つ）**
+各テーマに200字程度の解説を添えてください。
+
+**2-3. 今月の物語**
+肯定的視点で300〜400字の短編として描いてください。
+
+**2-4. 隠れた価値観（守ろうとしているもの）**
+3つ抽出し、なぜそれを大事にしているか考察してください。
+
+---
+
+## 🟡 SECTION 03｜ビジネス成果レビュー（マッキンゼー視点）
+
+**3-1. 今月の意思決定の質**
+良判断3つ／悪判断3つ、根拠つきで示してください。
+
+**3-2. 繰り返し譲歩している相手・場面**
+パターンを指摘してください。
+
+**3-3. 交渉・商談のクセ（強み／弱み）**
+具体例つきで示してください。
+
+**3-4. 今月の「隠れたMVP行動」**
+地味だが効いた一手を引き出してください。
+
+**3-5. 盲点になっている可能性のある視点**
+トップ3を挙げてください。
+
+---
+
+## 🟢 SECTION 04｜神経可塑性スコア（5軸100点満点）
+
+以下5軸で採点し、必ず表形式で提示してください。各軸に記録からの引用根拠を添えること。
+
+| 軸 | スコア | 根拠（記録から引用） |
+|---|---|---|
+| 感情ラベリング深度 | XX/100 | ... |
+| メタ認知の厚み | XX/100 | ... |
+| イフゼン計画の実行率 | XX/100 | ... |
+| 事実と解釈の分離 | XX/100 | ... |
+| 学習の横断統合 | XX/100 | ... |
+
+**総合スコア：XXX / 500点**
+**神経可塑性レベル：S / A / B / C / D 判定**
+**判定根拠：3〜4文で説明**
+
+---
+
+## 🔵 SECTION 05｜来月の処方箋（WOOP法・NYU研究）
+
+**5-1. 今月の記録から浮かび上がる「本当はやりたかったこと」**
+3つ抽出してください。
+
+**5-2. 来月フォーカスすべき1つ**
+理由つきで選定してください。
+
+**5-3. WOOP設計**
+- **Wish**：期限と数値を入れた願望
+- **Outcome**：叶った時の情景（テンションが上がる描写）
+- **Obstacle**：内面・現実両方の障壁
+- **Plan**：「もしXが起きたらYをする」イフゼン計画を5本
+
+**5-4. 脳のクセを回避するイフゼン追加2本**
+
+---
+
+## 💊 処方メッセージ
+
+来月1日の朝に読み返すべき「処方メッセージ」を1段落（200〜300字）。
+温かく、しかし核心を突く内容で締めてください。
+
+---
+
+それでは以下の記録データを分析し、上記フォーマットで月次レポートを作成してください。
+
+【今月の記録データ】
+期間: ${periodLabel}
+種別: ${typeLabel}
+件数: ${logs.length}件
+
+`;
+
+  const sorted = [...logs].sort((a,b)=>a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
+  const body = sorted.map(formatLog).join('\n');
+  copyToClipboard(masterPrompt + body);
+  showToast(`分析プロンプト+${logs.length}件 COPIED`, 'verified');
+}
+
+function exportJSON(){
+  const logs = loadLogs();
+  if(logs.length === 0){ showToast('記録がありません', 'danger'); return; }
+  const blob = new Blob([JSON.stringify(logs, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'tani_logs_' + new Date().toISOString().split('T')[0] + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('EXPORTED', 'verified');
+}
+
+function importJSONFile(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    try{
+      const imported = JSON.parse(evt.target.result);
+      if(!Array.isArray(imported)) throw new Error('Invalid format');
+      if(!confirm(`${imported.length}件を読み込みます。既存の記録とマージしますか？\n（OK=マージ / キャンセル=上書き確認）`)){
+        if(!confirm('既存のログを上書きしますか？この操作は元に戻せません。')) return;
+        saveLogs(imported);
+      }else{
+        const existing = loadLogs();
+        const existingIds = new Set(existing.map(l=>l.id));
+        const merged = [...existing];
+        imported.forEach(l=>{ if(!existingIds.has(l.id)) merged.push(l); });
+        merged.sort((a,b)=>b.date.localeCompare(a.date));
+        saveLogs(merged);
+      }
+      refreshAll();
+      showToast('IMPORTED', 'verified');
+    }catch(err){
+      showToast('読み込み失敗', 'danger');
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+function clearAll(){
+  if(!confirm('すべての記録を削除します。この操作は元に戻せません。本当によろしいですか？')) return;
+  if(!confirm('最終確認：本当にすべて削除しますか？')) return;
+  localStorage.removeItem(KEY);
+  refreshAll();
+  showToast('ALL CLEARED', 'danger');
+}
+
+function copyText(id, btn){
+  const ta = document.getElementById(id);
+  copyTextareaValue(ta, btn);
+}
+
+function copyTextareaValue(ta, btn){
+  const orig = btn.textContent;
+  let ok = false;
+  try{
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, 999999);
+    ok = document.execCommand('copy');
+  }catch(e){ ok = false; }
+
+  if(!ok && navigator.clipboard){
+    navigator.clipboard.writeText(ta.value).then(()=>{
+      success(btn, orig);
+    }).catch(()=>{
+      ta.focus(); ta.select();
+      btn.textContent = 'Ctrl+Cで手動コピー';
+      setTimeout(()=>{ btn.textContent = orig; }, 3000);
+    });
+    return;
+  }
+
+  if(ok) success(btn, orig);
+  else{
+    ta.focus(); ta.select();
+    btn.textContent = 'Ctrl+Cで手動コピー';
+    setTimeout(()=>{ btn.textContent = orig; }, 3000);
+  }
+}
+
+function success(btn, orig){
+  btn.classList.add('done');
+  btn.textContent = '✓ COPIED';
+  showToast('COPIED', 'verified');
+  try{ if(navigator.vibrate) navigator.vibrate(20); }catch(e){}
+  setTimeout(()=>{
+    btn.classList.remove('done');
+    btn.textContent = orig;
+  }, 2000);
+}
+
+function copyToClipboard(text){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position='fixed';ta.style.left='-9999px';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  let ok = false;
+  try{ ok = document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta);
+  if(!ok && navigator.clipboard){
+    navigator.clipboard.writeText(text).catch(()=>{});
+  }
+}
+
+function showToast(msg, variant){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.remove('danger','verified');
+  if(variant) t.classList.add(variant);
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>{ t.classList.remove('show'); }, 1800);
+}
+</script>
+
+</body>
+</html>
