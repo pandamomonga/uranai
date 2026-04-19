@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="思考力養成所">
+<meta name="theme-color" content="#1a1810">
+<title>思考力養成所 - アドラー式AI分析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a1810;--bg2:#242018;--bg3:#2d2b20;
+  --text:#f5f1e8;--text2:#c8c3b8;--text3:#8b8680;
+  --gold:#d4a574;--gold2:#b8926a;
+  --green:#7a9b7e;--blue:#6b89a8;--red:#a8726b;
+  --accent:#f4e6d2;
+  --line:rgba(212,165,116,0.15);
+  --shadow:rgba(0,0,0,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--text);font-family:'Noto Serif JP','Crimson Text',serif;line-height:1.7;min-height:100vh;overflow-x:hidden}
+button,select,input,textarea{font-family:inherit;color:inherit;background:none;border:none;outline:none}
+
+.app{max-width:520px;margin:0 auto;min-height:100vh;background:var(--bg)}
+.screen{display:none;min-height:100vh;padding:0 20px 60px}
+.screen.active{display:block}
+
+.hdr{padding:28px 0 20px;text-align:center;border-bottom:1px solid var(--line);position:relative}
+.hdr-badge{display:inline-block;background:var(--gold);color:var(--bg);font-size:10px;font-weight:600;letter-spacing:2px;padding:4px 12px;border-radius:12px;margin-bottom:12px;text-transform:uppercase}
+.hdr-title{font-family:'Crimson Text',serif;font-size:26px;font-weight:600;color:var(--accent);letter-spacing:3px;margin-bottom:6px}
+.hdr-sub{font-size:12px;color:var(--text3);letter-spacing:1px}
+.nav-btn{position:absolute;top:30px;font-size:13px;color:var(--gold);padding:8px 12px;cursor:pointer;background:none;border:none;letter-spacing:1px}
+.nav-btn.left{left:0}
+.nav-btn.right{right:0}
+
+.api-notice{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:16px;margin:20px 0;text-align:center}
+.api-notice.warning{border-color:var(--red);background:rgba(168,114,107,0.1)}
+.api-notice h3{font-size:14px;color:var(--gold);margin-bottom:8px;letter-spacing:1px}
+.api-notice p{font-size:12px;color:var(--text2);line-height:1.6}
+
+.field{margin-bottom:20px}
+.field-label{display:block;font-size:12px;color:var(--gold);margin-bottom:8px;letter-spacing:1px;font-weight:600}
+.field-input{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:12px 16px;font-size:14px;color:var(--text);transition:border-color 0.3s}
+.field-input:focus{border-color:var(--gold)}
+.field-input.lg{min-height:120px;resize:vertical;font-family:inherit;line-height:1.6}
+
+.btn{display:inline-block;padding:12px 24px;border-radius:6px;font-size:13px;font-weight:600;text-align:center;cursor:pointer;transition:all 0.3s;letter-spacing:1px;border:1px solid transparent}
+.btn-primary{background:var(--gold);color:var(--bg)}
+.btn-primary:hover{background:var(--gold2)}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed}
+.btn-secondary{background:var(--bg2);color:var(--text);border:1px solid var(--line)}
+.btn-secondary:hover{border-color:var(--gold)}
+.btn.full{width:100%}
+.btn.icon{padding:8px 12px;font-size:16px}
+
+.analysis-section{background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-bottom:20px;overflow:hidden}
+.analysis-header{background:var(--bg3);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.analysis-number{background:var(--gold);color:var(--bg);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.analysis-title{font-size:14px;color:var(--accent);font-weight:600;letter-spacing:1px}
+.analysis-content{padding:18px;font-size:13px;line-height:1.8}
+.analysis-content h4{color:var(--gold);font-size:13px;font-weight:600;margin:16px 0 8px 0;letter-spacing:0.5px}
+.analysis-content h4:first-child{margin-top:0}
+.analysis-content p{margin-bottom:12px;color:var(--text2)}
+.analysis-content ul{padding-left:16px;margin-bottom:12px}
+.analysis-content li{margin-bottom:6px;color:var(--text2)}
+
+.loading{display:flex;flex-direction:column;align-items:center;gap:16px;padding:40px 20px}
+.spinner{width:32px;height:32px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:13px;color:var(--text3);letter-spacing:1px}
+
+.history-grid{display:grid;gap:12px;margin-top:20px}
+.history-card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:16px;cursor:pointer;transition:border-color 0.3s}
+.history-card:hover{border-color:var(--gold)}
+.history-date{font-size:11px;color:var(--gold);letter-spacing:1px;margin-bottom:8px}
+.history-title{font-size:13px;color:var(--text);font-weight:600;margin-bottom:6px;line-height:1.4}
+.history-preview{font-size:12px;color:var(--text3);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.empty-state{text-align:center;padding:60px 20px;color:var(--text3)}
+.empty-state-icon{font-size:48px;margin-bottom:16px;opacity:0.5}
+.empty-state-text{font-size:13px;letter-spacing:1px}
+
+.status-bar{background:var(--bg3);padding:12px 20px;text-align:center;position:fixed;bottom:0;left:0;right:0;transform:translateY(100%);transition:transform 0.3s;z-index:1000;max-width:520px;margin:0 auto}
+.status-bar.show{transform:translateY(0)}
+.status-text{font-size:12px;color:var(--gold);letter-spacing:1px}
+
+@media (display-mode: standalone){.hdr{padding-top:40px}}
+@media (max-width: 400px){.screen{padding:0 16px 50px}.hdr-title{font-size:22px}.analysis-content{padding:14px}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div id="screen-main" class="screen active">
+  <div class="hdr">
+    <div class="hdr-badge">AI Training</div>
+    <h1 class="hdr-title">思考力養成所</h1>
+    <div class="hdr-sub">アドラー式分析トレーニング</div>
+    <button class="nav-btn right" onclick="showSettings()">設定</button>
+  </div>
+
+  <div id="api-status" class="api-notice warning">
+    <h3>API設定が必要です</h3>
+    <p>Groq APIキーを設定してください</p>
+  </div>
+
+  <div class="field">
+    <label class="field-label">分析したいテキスト</label>
+    <textarea id="input-text" class="field-input lg" placeholder="記事、ニュース、メール、資料など...&#10;&#10;例：&#10;・読んだ本の一部&#10;・気になったニュース記事&#10;・ビジネス文書&#10;・思考を整理したいテキスト"></textarea>
+  </div>
+
+  <button id="analyze-btn" class="btn btn-primary full" onclick="startAnalysis()" disabled>
+    アドラー式分析を開始
+  </button>
+
+  <div class="field" style="margin-top:30px;">
+    <button class="btn btn-secondary full" onclick="showHistory()">
+      過去の分析履歴
+    </button>
+  </div>
+</div>
+
+<div id="screen-result" class="screen">
+  <div class="hdr">
+    <button class="nav-btn left" onclick="showMain()">← 戻る</button>
+    <div class="hdr-badge">Analysis</div>
+    <h1 class="hdr-title">分析結果</h1>
+    <div class="hdr-sub">思考力トレーニング</div>
+  </div>
+
+  <div id="analysis-loading" class="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">アドラー式分析中...</div>
+  </div>
+
+  <div id="analysis-result" style="display:none"></div>
+
+  <div id="save-section" style="display:none; margin-top:24px;">
+    <button class="btn btn-secondary full" onclick="saveAnalysis()">
+      分析結果を保存
+    </button>
+  </div>
+</div>
+
+<div id="screen-history" class="screen">
+  <div class="hdr">
+    <button class="nav-btn left" onclick="showMain()">← 戻る</button>
+    <div class="hdr-badge">History</div>
+    <h1 class="hdr-title">分析履歴</h1>
+    <div class="hdr-sub">学習の軌跡</div>
+  </div>
+
+  <div id="history-content">
+    <div class="empty-state">
+      <div class="empty-state-icon">📚</div>
+      <div class="empty-state-text">まだ分析履歴がありません</div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-settings" class="screen">
+  <div class="hdr">
+    <button class="nav-btn left" onclick="showMain()">← 戻る</button>
+    <div class="hdr-badge">Settings</div>
+    <h1 class="hdr-title">設定</h1>
+    <div class="hdr-sub">API Configuration</div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Groq API Key</label>
+    <input type="password" id="api-key" class="field-input" placeholder="gsk_...">
+    <p style="font-size:11px;color:var(--text3);margin-top:8px;line-height:1.5;">
+      ※ APIキーはお使いのデバイスにのみ保存され、外部に送信されません<br>
+      ※ Groqの無料プランで十分利用できます
+    </p>
+  </div>
+
+  <button class="btn btn-primary full" onclick="saveSettings()">
+    設定を保存
+  </button>
+
+  <div style="margin-top:40px; padding:20px; background:var(--bg2); border-radius:8px;">
+    <h3 style="font-size:14px; color:var(--gold); margin-bottom:12px;">Groq APIキーの取得方法</h3>
+    <ol style="font-size:12px; color:var(--text2); line-height:1.6; padding-left:16px;">
+      <li>console.groq.com にアクセス</li>
+      <li>アカウントを作成（無料）</li>
+      <li>API Keysページで新しいキーを作成</li>
+      <li>キーをコピーして上記に貼り付け</li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+<div id="status-bar" class="status-bar">
+  <div class="status-text">保存しました</div>
+</div>
+
+<script>
+let apiKey = localStorage.getItem('groq-api-key') || '';
+let analysisHistory = JSON.parse(localStorage.getItem('analysis-history') || '[]');
+let currentAnalysis = null;
+
+const ADLER_PROMPT = `あなたはモーティマー・アドラーの『本を読む本』で提唱されている「積極的読書」のルールに従って分析・要約を行う専門家です。
+
+以下のテキストを、アドラー式積極的読書の手法で分析してください。
+
+【分析対象テキスト】
+{TEXT}
+
+【出力形式】
+以下の構成に従って、テキストを網羅的に分析してください。
+
+**1. 全体構造と要約（地図の把握）**
+* **主題（一言で）：** このテキストは何について書かれているか
+* **論理展開の骨格：** 著者の結論に至るまでの道のりを3〜5つのステップで整理
+* **全体の要約：** 上記の骨格に沿って主張全体を簡潔に要約
+
+**2. 核心的な命題の抽出（詳細の理解）**
+* **重要キーワードと定義：** 結論を支える最重要キーワードとその定義
+* **著者の命題：** このテキストを通じて最も強く主張していること
+
+**3. 著者との対話（分析的読書）**
+以下の3つの視点で「問い」と「回答」を作成：
+
+* **Q1. 根拠と論理の妥当性**
+    * 問い：主張を裏付ける根拠は何か？論理の飛躍はないか？
+    * 回答：（テキストの記述を基にした著者の仮想返答）
+
+* **Q2. 反対の視点・限界**
+    * 問い：この主張が通用しない例外や反論はないか？
+    * 回答：（著者がその反論にどう答えるか、限界をどう設定しているか）
+
+* **Q3. 意義（What of it?）**
+    * 問い：この主張が真実だとしたら、何が重要なのか？
+    * 回答：（結論がもたらす本質的価値や実践的意義）
+
+**4. 最終評価**
+このテキストの論理的完成度と読者に提供する価値を評価
+
+日本語で、理解しやすく構造化して出力してください。`;
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateApiStatus();
+  updateHistoryView();
+});
+
+function updateApiStatus() {
+  const statusEl = document.getElementById('api-status');
+  const analyzeBtn = document.getElementById('analyze-btn');
+  if (apiKey) {
+    statusEl.style.display = 'none';
+    analyzeBtn.disabled = false;
+  } else {
+    statusEl.style.display = 'block';
+    analyzeBtn.disabled = true;
+  }
+}
+
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+
+function showMain() { showScreen('screen-main'); }
+function showHistory() { updateHistoryView(); showScreen('screen-history'); }
+function showSettings() {
+  document.getElementById('api-key').value = apiKey;
+  showScreen('screen-settings');
+}
+
+function saveSettings() {
+  const newKey = document.getElementById('api-key').value.trim();
+  apiKey = newKey;
+  localStorage.setItem('groq-api-key', apiKey);
+  updateApiStatus();
+  showStatus('設定を保存しました');
+  showMain();
+}
+
+async function startAnalysis() {
+  const text = document.getElementById('input-text').value.trim();
+  if (!text) {
+    alert('分析したいテキストを入力してください');
+    return;
+  }
+  showScreen('screen-result');
+  document.getElementById('analysis-loading').style.display = 'block';
+  document.getElementById('analysis-result').style.display = 'none';
+  document.getElementById('save-section').style.display = 'none';
+
+  try {
+    const analysis = await callGroqAPI(text);
+    displayAnalysis(analysis);
+    currentAnalysis = {
+      id: Date.now(),
+      date: new Date().toISOString(),
+      originalText: text,
+      analysis: analysis
+    };
+  } catch (error) {
+    document.getElementById('analysis-loading').style.display = 'none';
+    alert('分析中にエラーが発生しました: ' + error.message);
+    showMain();
+  }
+}
+
+// Groq API呼び出し（2026年4月時点の現行モデルに対応）
+async function callGroqAPI(text) {
+  const prompt = ADLER_PROMPT.replace('{TEXT}', text);
+  
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'user', content: prompt }
+      ],
+      max_completion_tokens: 3000,
+      temperature: 0.3
+    })
+  });
+
+  if (!response.ok) {
+    let errorDetail = '';
+    try {
+      const errorData = await response.json();
+      errorDetail = errorData.error?.message || JSON.stringify(errorData);
+    } catch(e) {
+      errorDetail = await response.text();
+    }
+    throw new Error(`API Error ${response.status}: ${errorDetail}`);
+  }
+
+  const data = await response.json();
+  return data.choices[0].message.content;
+}
+
+function displayAnalysis(analysis) {
+  document.getElementById('analysis-loading').style.display = 'none';
+  const resultEl = document.getElementById('analysis-result');
+  const sections = parseAnalysis(analysis);
+  resultEl.innerHTML = sections.map((section, index) => `
+    <div class="analysis-section">
+      <div class="analysis-header">
+        <div class="analysis-number">${index + 1}</div>
+        <div class="analysis-title">${section.title}</div>
+      </div>
+      <div class="analysis-content">${formatContent(section.content)}</div>
+    </div>
+  `).join('');
+  resultEl.style.display = 'block';
+  document.getElementById('save-section').style.display = 'block';
+}
+
+function parseAnalysis(text) {
+  const sections = [
+    { title: '全体構造と要約', content: '' },
+    { title: '核心的な命題', content: '' },
+    { title: '著者との対話', content: '' },
+    { title: '最終評価', content: '' }
+  ];
+  const lines = text.split('\n');
+  let currentSection = 0;
+  let currentContent = [];
+
+  lines.forEach(line => {
+    line = line.trim();
+    if (!line) return;
+    if (line.includes('**1.') || line.match(/^1\./)) {
+      if (currentContent.length > 0) { sections[currentSection].content = currentContent.join('\n'); currentContent = []; }
+      currentSection = 0;
+    } else if (line.includes('**2.') || line.match(/^2\./)) {
+      if (currentContent.length > 0) { sections[currentSection].content = currentContent.join('\n'); currentContent = []; }
+      currentSection = 1;
+    } else if (line.includes('**3.') || line.match(/^3\./)) {
+      if (currentContent.length > 0) { sections[currentSection].content = currentContent.join('\n'); currentContent = []; }
+      currentSection = 2;
+    } else if (line.includes('**4.') || line.match(/^4\./)) {
+      if (currentContent.length > 0) { sections[currentSection].content = currentContent.join('\n'); currentContent = []; }
+      currentSection = 3;
+    }
+    currentContent.push(line);
+  });
+  if (currentContent.length > 0) sections[currentSection].content = currentContent.join('\n');
+  return sections;
+}
+
+function formatContent(content) {
+  return content
+    .replace(/\*\*(.*?)\*\*/g, '<h4>$1</h4>')
+    .replace(/\* (.*?)(?=\n|$)/g, '<p>• $1</p>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+}
+
+function saveAnalysis() {
+  if (!currentAnalysis) return;
+  analysisHistory.unshift(currentAnalysis);
+  localStorage.setItem('analysis-history', JSON.stringify(analysisHistory));
+  showStatus('分析結果を保存しました');
+  document.getElementById('input-text').value = '';
+  showMain();
+}
+
+function updateHistoryView() {
+  const contentEl = document.getElementById('history-content');
+  if (analysisHistory.length === 0) {
+    contentEl.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">📚</div>
+        <div class="empty-state-text">まだ分析履歴がありません</div>
+      </div>`;
+    return;
+  }
+  const historyHTML = analysisHistory.map(item => {
+    const date = new Date(item.date);
+    const dateStr = `${date.getMonth()+1}/${date.getDate()} ${date.getHours()}:${date.getMinutes().toString().padStart(2,'0')}`;
+    const title = extractTitle(item.originalText);
+    const preview = item.originalText.substring(0, 100) + '...';
+    return `
+      <div class="history-card" onclick="viewHistoryItem(${item.id})">
+        <div class="history-date">${dateStr}</div>
+        <div class="history-title">${title}</div>
+        <div class="history-preview">${preview}</div>
+      </div>`;
+  }).join('');
+  contentEl.innerHTML = `<div class="history-grid">${historyHTML}</div>`;
+}
+
+function extractTitle(text) {
+  const firstLine = text.split('\n')[0].trim();
+  return firstLine.substring(0, 30) + (firstLine.length > 30 ? '...' : '');
+}
+
+function viewHistoryItem(id) {
+  const item = analysisHistory.find(h => h.id === id);
+  if (!item) return;
+  displayAnalysis(item.analysis);
+  currentAnalysis = item;
+  document.getElementById('save-section').style.display = 'none';
+  showScreen('screen-result');
+}
+
+function showStatus(message) {
+  const statusEl = document.getElementById('status-bar');
+  statusEl.querySelector('.status-text').textContent = message;
+  statusEl.classList.add('show');
+  setTimeout(() => { statusEl.classList.remove('show'); }, 2000);
+}
+</script>
+
+</body>
+</html>
