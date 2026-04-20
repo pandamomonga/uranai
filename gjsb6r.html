@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0a0a">
+<title>谷先生のAIトレーニング｜13本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&family=RocknRoll+One&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html, body { background:#0a0a0a; color:#f0f0f0; font-family:'Noto Sans JP',sans-serif; overflow-x:hidden; }
+  body { min-height:100vh; padding:14px 12px 60px; }
+
+  /* ===== BG NOISE ===== */
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position:relative; z-index:1; text-align:center;
+    padding:10px 0 16px; margin-bottom:14px;
+    border-bottom:1px solid rgba(255,0,110,.25);
+  }
+  .brand {
+    font-family:'Bebas Neue'; font-size:13px; letter-spacing:.3em;
+    color:#00f5ff; text-shadow:0 0 12px rgba(0,245,255,.6); margin-bottom:4px;
+  }
+  h1 {
+    font-family:'RocknRoll One'; font-size:22px; line-height:1.2;
+    color:#fff;
+    text-shadow:0 0 18px rgba(255,0,110,.7), 0 0 40px rgba(255,0,110,.4);
+  }
+  h1 span { color:#ff006e; }
+  .sub {
+    font-size:10px; color:#888; letter-spacing:.15em; margin-top:6px;
+    font-family:'Bebas Neue';
+  }
+
+  /* ===== SECTION LABEL ===== */
+  .sec {
+    display:flex; align-items:center; gap:8px;
+    margin:14px 2px 8px; font-family:'Bebas Neue'; font-size:13px; letter-spacing:.25em;
+  }
+  .sec::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, currentColor, transparent); opacity:.4; }
+  .sec.biz { color:#00f5ff; }
+  .sec.mag { color:#ff006e; }
+  .sec.final { color:#c4ff00; }
+
+  /* ===== GRID ===== */
+  .grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:8px;
+    position:relative; z-index:1;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    position:relative;
+    background:#141414;
+    border:1px solid #262626;
+    border-radius:10px;
+    padding:12px 10px 10px;
+    cursor:pointer;
+    transition:all .15s ease;
+    overflow:hidden;
+    min-height:88px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .card:active { transform:scale(.97); }
+  .card::before {
+    content:''; position:absolute; top:0; left:0; width:3px; height:100%;
+    background:var(--accent); box-shadow:0 0 8px var(--accent);
+  }
+  .card .num {
+    font-family:'Bebas Neue'; font-size:10px; letter-spacing:.15em;
+    color:var(--accent); opacity:.9; margin-bottom:2px;
+  }
+  .card .name {
+    font-family:'RocknRoll One'; font-size:14px; line-height:1.25;
+    color:#fff; margin-bottom:6px;
+  }
+  .card .tag {
+    font-size:10.5px; line-height:1.4; color:#aaa;
+    display:flex; flex-wrap:wrap; align-items:center; gap:2px;
+  }
+  .card .tag .before { color:#888; }
+  .card .tag .arrow { color:var(--accent); font-weight:900; margin:0 2px; }
+  .card .tag .after { color:#e8e8e8; font-weight:700; }
+
+  /* BIZ = cyan, MAGIC = pink, FINAL = lime */
+  .card.biz { --accent:#00f5ff; }
+  .card.mag { --accent:#ff006e; }
+  .card.final {
+    --accent:#c4ff00; grid-column:span 2; min-height:72px;
+    background:linear-gradient(135deg, #1a1f08 0%, #141414 60%);
+    border-color:rgba(196,255,0,.35);
+  }
+  .card.final .name { font-size:16px; }
+
+  /* COPIED STATE */
+  .card.copied {
+    border-color:var(--accent); background:#1a1a1a;
+    box-shadow:0 0 20px var(--accent), inset 0 0 20px rgba(255,255,255,.05);
+  }
+  .card.copied .name::after {
+    content:' ✓ COPIED'; font-family:'Bebas Neue'; font-size:11px;
+    color:var(--accent); letter-spacing:.2em; margin-left:4px;
+  }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px);
+    background:#fff; color:#0a0a0a; font-weight:900; font-size:13px;
+    padding:10px 20px; border-radius:999px;
+    box-shadow:0 0 30px rgba(255,255,255,.3);
+    z-index:100; opacity:0; transition:all .3s ease;
+    letter-spacing:.05em; pointer-events:none;
+  }
+  #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    margin-top:24px; text-align:center; font-size:10px; color:#555;
+    letter-spacing:.15em; line-height:1.7;
+    position:relative; z-index:1;
+  }
+  footer .brand-line { color:#00f5ff; font-family:'Bebas Neue'; font-size:11px; letter-spacing:.25em; }
+
+  /* ===== HIDE TEXTAREAS ===== */
+  .clip { position:absolute; left:-9999px; top:-9999px; opacity:0; pointer-events:none; }
+
+  /* Tiny screens adjustment */
+  @media (max-width: 360px) {
+    .card .name { font-size:13px; }
+    .card .tag { font-size:10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">TANI SENSEI × AI TRAINING</div>
+  <h1>谷先生の<span>AI</span>トレーニング</h1>
+  <div class="sub">TAP → COPY → PASTE TO YOUR CHAT</div>
+</header>
+
+<!-- ============= BIZ ============= -->
+<div class="sec biz">▸ BIZ / 仕事で効く 5本</div>
+
+<div class="grid">
+  <div class="card biz" data-id="b1">
+    <div>
+      <div class="num">BIZ 01</div>
+      <div class="name">議事録の神</div>
+    </div>
+    <div class="tag">
+      <span class="before">カオスな議事録</span>
+      <span class="arrow">→</span>
+      <span class="after">30分で構造化</span>
+    </div>
+  </div>
+
+  <div class="card biz" data-id="b2">
+    <div>
+      <div class="num">BIZ 02</div>
+      <div class="name">交渉の裏側を読む</div>
+    </div>
+    <div class="tag">
+      <span class="before">相手の本音</span>
+      <span class="arrow">→</span>
+      <span class="after">3秒で透視</span>
+    </div>
+  </div>
+
+  <div class="card biz" data-id="b3">
+    <div>
+      <div class="num">BIZ 03</div>
+      <div class="name">会話のクセ診断</div>
+    </div>
+    <div class="tag">
+      <span class="before">話し方のクセ</span>
+      <span class="arrow">→</span>
+      <span class="after">一発で可視化</span>
+    </div>
+  </div>
+
+  <div class="card biz" data-id="b4">
+    <div>
+      <div class="num">BIZ 04</div>
+      <div class="name">角が立たない魔法</div>
+    </div>
+    <div class="tag">
+      <span class="before">キツい一言</span>
+      <span class="arrow">→</span>
+      <span class="after">やわらか変換</span>
+    </div>
+  </div>
+
+  <div class="card biz" data-id="b5">
+    <div>
+      <div class="num">BIZ 05</div>
+      <div class="name">次の一手コンサル</div>
+    </div>
+    <div class="tag">
+      <span class="before">迷い</span>
+      <span class="arrow">→</span>
+      <span class="after">3手先の戦略</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============= MAGIC ============= -->
+<div class="sec mag">▸ MAGIC / 人生で効く 7本</div>
+
+<div class="grid">
+  <div class="card mag" data-id="m1">
+    <div>
+      <div class="num">MAGIC 01</div>
+      <div class="name">心の整理整頓</div>
+    </div>
+    <div class="tag">
+      <span class="before">モヤモヤ</span>
+      <span class="arrow">→</span>
+      <span class="after">8ステップで整頓</span>
+    </div>
+  </div>
+
+  <div class="card mag" data-id="m2">
+    <div>
+      <div class="num">MAGIC 02</div>
+      <div class="name">夢を現実に変える</div>
+    </div>
+    <div class="tag">
+      <span class="before">妄想</span>
+      <span class="arrow">→</span>
+      <span class="after">実行計画</span>
+    </div>
+  </div>
+
+  <div class="card mag" data-id="m3">
+    <div>
+      <div class="num">MAGIC 03</div>
+      <div class="name">積読を瞬殺</div>
+    </div>
+    <div class="tag">
+      <span class="before">積読10冊</span>
+      <span class="arrow">→</span>
+      <span class="after">3分で要旨</span>
+    </div>
+  </div>
+
+  <div class="card mag" data-id="m4">
+    <div>
+      <div class="num">MAGIC 04</div>
+      <div class="name">資料瞬殺</div>
+    </div>
+    <div class="tag">
+      <span class="before">100ページ</span>
+      <span class="arrow">→</span>
+      <span class="after">3分で把握</span>
+    </div>
+  </div>
+
+  <div class="card mag" data-id="m5">
+    <div>
+      <div class="num">MAGIC 05</div>
+      <div class="name">本音の鏡</div>
+    </div>
+    <div class="tag">
+      <span class="before">自分の本心</span>
+      <span class="arrow">→</span>
+      <span class="after">可視化</span>
+    </div>
+  </div>
+
+  <div class="card mag" data-id="m6">
+    <div>
+      <div class="num">MAGIC 06</div>
+      <div class="name">文章が劇変</div>
+    </div>
+    <div class="tag">
+      <span class="before">堅い文</span>
+      <span class="arrow">→</span>
+      <span class="after">刺さる文</span>
+    </div>
+  </div>
+
+  <div class="card mag" data-id="m7">
+    <div>
+      <div class="num">MAGIC 07</div>
+      <div class="name">脳に一発インストール</div>
+    </div>
+    <div class="tag">
+      <span class="before">難しい概念</span>
+      <span class="arrow">→</span>
+      <span class="after">物語で理解</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============= FINAL ============= -->
+<div class="sec final">▸ FINAL / 最終兵器</div>
+
+<div class="grid">
+  <div class="card final" data-id="rescue">
+    <div>
+      <div class="num">★ FINAL WEAPON</div>
+      <div class="name">超訳プロンプト</div>
+    </div>
+    <div class="tag">
+      <span class="before">どんなテキストも</span>
+      <span class="arrow">→</span>
+      <span class="after">ビレバン×TikTok化</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="brand-line">SANJO KENKODO × AI LAB</div>
+  高松発・一生動ける身体と人生の教養研究室<br>
+  年間200冊読む治療家より
+</footer>
+
+<div id="toast">✓ コピー完了 ／ チャットに貼ってください</div>
+
+<!-- ============= PROMPT BODIES (hidden) ============= -->
+<textarea class="clip" id="p-b1">[TANI-ID: b1]
+あなたはマッキンゼー出身のベテラン議事録職人です。
+以下の議事録・会議メモ・録音文字起こしを、以下の形式で瞬時に構造化してください。
+
+## 形式
+【決定事項】箇条書き
+【検討事項】箇条書き
+【次のアクション】誰が・いつまでに・何を
+【論点】議論のコア
+【ネクストステップ】次回までにやること
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※ここに議事録やメモを貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-b2">[TANI-ID: b2]
+あなたはハーバード流交渉学の専門家です。
+以下のやり取り・メール・会話から、相手の「本音・懸念・期待・譲れないライン」を読み解いてください。
+
+## 出力
+1. 相手のポジション（表向きの主張）
+2. 相手のインタレスト（本当の関心）
+3. BATNA（相手の代替案の強さ）
+4. 譲れないライン（推定）
+5. こちらが取るべき次の一手
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※やり取り・メール・会話文を貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-b3">[TANI-ID: b3]
+あなたは会話分析の専門家です。
+以下の会話記録・メール・発言から、私の「話し方のクセ・思考のパターン・無意識の口癖」を診断してください。
+
+## 出力
+1. 頻出ワード・言い回し
+2. 思考の傾向（論理型／感情型／直感型）
+3. 弱み（誤解されやすい表現）
+4. 強み（相手に刺さる表現）
+5. 今日から直すべき3点
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※自分の発言・文章を貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-b4">[TANI-ID: b4]
+あなたは組織心理学の専門家です。
+以下のメッセージを、伝えたい内容はそのまま、角が立たず相手が動きたくなる表現に変換してください。
+
+## 出力
+1. 変換後テキスト
+2. 変換のポイント3つ（何を柔らかくしたか）
+3. さらに柔らかい版（必要なら）
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※キツいメッセージを貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-b5">[TANI-ID: b5]
+あなたは戦略コンサルです。
+以下の状況から、次の一手・その先の一手・そのまた先の一手を提示してください。
+
+## 出力
+1. 現状分析（3行）
+2. 第1手（今週やること）
+3. 第2手（今月やること）
+4. 第3手（3ヶ月後の布石）
+5. 最悪シナリオと回避策
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※今の状況を貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-m1">[TANI-ID: m1]
+あなたは「言語化セラピスト」です。
+心理言語学・脳科学・認知心理学の最新研究に基づいて、私の気持ち・日記・ストレス・悩みを言語化で変換するプロフェッショナルです。治療家が寄り添うような温かみで、上から目線にならず、共感しながら丁寧に進めてください。
+
+━━━━━━━━━━━━━━━━━━━
+【入力】以下に今の気持ち・日記・ストレス・悩みを書いてください：
+（自由に書く。箇条書きでも文章でもOK）
+━━━━━━━━━━━━━━━━━━━
+
+上記の内容に対して、以下の8ステップで変換・整理してください。
+
+## STEP 1｜感情のラベリング（UCLA・リーバーマン研究）
+感情を具体的にラベリング。「モヤモヤ」ではなく「承認されていないと感じて不安」のように精緻に。
+
+## STEP 2｜事実と解釈を分離（イエール大・ローゼンブリット）
+「変えられない客観的事実」と「自分の解釈」を切り分ける。
+
+## STEP 3｜ことばの変換（ミシガン大・リフレーミング研究）
+ネガティブ表現を共感的かつ現実的にポジティブ変換。
+
+## STEP 4｜10年後・第三者視点（セルフ・ディスタンシング）
+10年後の自分から今を見る／非一人称で状況を描写。
+
+## STEP 5｜成長マインドセット（スタンフォード大・ドウェック）
+「能力の限界」ではなく「脳が成長する瞬間」として捉え直す。
+
+## STEP 6｜感謝・つながりのことば（エモンズ感謝研究）
+今の状況の中にある「感謝できること」3つ。
+
+## STEP 7｜イフゼンプランニング（ゴルヴィッツァー実行意図）
+「もし◯◯になったら△△する」を2〜3個。
+
+## STEP 8｜今日の一言
+すべてを踏まえた座右の銘を一行で。</textarea>
+
+<textarea class="clip" id="p-m2">[TANI-ID: m2]
+あなたはコーチング×行動科学の専門家です。
+以下の「やりたいこと／夢／目標」を、現実に変えるための90日ロードマップに変換してください。
+
+## 出力
+1. ゴール定義（測定可能な形で）
+2. 90日後の姿（五感で描写）
+3. 30日ごとのマイルストーン
+4. 毎週の行動3つ
+5. 毎日の最小行動1つ
+6. 障害予測と対処
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※夢・やりたいことを貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-m3">[TANI-ID: m3]
+あなたは「読書要点抽出のプロ」です。
+以下の本の目次・章タイトル・抜粋から、3分で本質を掴むための要約を作ってください。
+
+## 出力
+1. この本が一言で言っていること
+2. 核心の3つの主張
+3. 今の自分に刺さる一文
+4. 実践できる行動1つ
+5. 読まなくてもいい章／読むべき章
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※本のタイトル・目次・抜粋を貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-m4">[TANI-ID: m4]
+あなたは「情報処理のプロ」です。
+以下の長文資料・PDF・レポートを、3分で把握できる形に圧縮してください。
+
+## 出力
+1. 全体の結論（1行）
+2. 重要ポイント5つ
+3. 数字・固有名詞（落としてはいけないもの）
+4. 反論・弱点
+5. 次のアクション候補
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※長文資料を貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-m5">[TANI-ID: m5]
+あなたは「本音を映す鏡」です。
+以下の私の発言・文章・愚痴から、私が自分でも気づいていない「本当に言いたかったこと／本当に欲しいもの」を引き出してください。
+
+## 出力
+1. 表面の主張
+2. その奥にある感情
+3. さらに奥にある欲求
+4. あなたは本当は何が欲しいのか（一文）
+5. 今日できる小さな行動
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※自分の発言・文章を貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-m6">[TANI-ID: m6]
+あなたは「文章の変換職人」です。
+以下の文章を、指定のペルソナと文体でリライトしてください。
+
+## 出力
+1. ペルソナ（例：村上春樹風／ビレバンPOP風／古典調）
+2. 変換後の文章
+3. 変換のキモ（3点）
+4. さらに強くする一工夫
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※元の文章 + 変換したいペルソナを貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-m7">[TANI-ID: m7]
+以下のテーマを、読者の脳の予測機能（空白の原則）を刺激する「脳インストール型試験対策ノート」に変換してください。
+
+## 必須要件
+- ペルソナ：自信満々でエネルギッシュな「天才解説者」
+- 構成：Q1〜Q10のクイズ形式（伏せ字「○○」を含む見出し）
+- 各Qは「答え → なぜなら〜」の順
+- 最後に簡単総復習
+- 拡散用ハッシュタグ5個（易しい単語）
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※学びたいテーマ・記事・資料を貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="clip" id="p-rescue">[TANI-ID: rescue]
+あなたは「ビレバン×TikTok超訳家」です。
+以下のテキストを、スマホで流し見される前提で、3秒で刺さる言葉に超訳してください。
+
+## 出力
+1. タイトル（15文字以内・反直感）
+2. 5枚スライド（ストップ／ゆさぶり／転換／余韻／CTA）
+3. キャプション（タイトル・本文・CTA・ハッシュタグ5個）
+4. 全体の一言総括
+
+━━━━━━━━━━━━━━━━━━━
+【素材】※超訳したいテキストを貼り付け
+━━━━━━━━━━━━━━━━━━━</textarea>
+
+<script>
+(function(){
+  var toast = document.getElementById('toast');
+  var toastTimer;
+
+  function showToast(msg){
+    if(msg) toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1600);
+  }
+
+  function copyText(text, cardEl){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.top = '0';
+    ta.style.left = '0';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+    document.body.removeChild(ta);
+
+    if(ok){
+      success(cardEl);
+      return;
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        success(cardEl);
+      }).catch(function(){
+        fallback(text);
+      });
+    } else {
+      fallback(text);
+    }
+  }
+
+  function success(cardEl){
+    showToast('✓ コピー完了 ／ チャットに貼ってください');
+    try { if(navigator.vibrate) navigator.vibrate(20); } catch(e){}
+    if(cardEl){
+      cardEl.classList.add('copied');
+      setTimeout(function(){ cardEl.classList.remove('copied'); }, 1400);
+    }
+  }
+
+  function fallback(text){
+    var w = window.prompt('下のテキストを長押しでコピー', text);
+  }
+
+  document.querySelectorAll('.card').forEach(function(card){
+    card.addEventListener('click', function(){
+      var id = card.getAttribute('data-id');
+      var ta = document.getElementById('p-' + id);
+      if(!ta) return;
+      copyText(ta.value, card);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
