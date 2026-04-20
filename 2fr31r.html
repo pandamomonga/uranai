@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>谷先生の日記トレーニング</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=RocknRoll+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:#080808;color:#f0ede6;font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;min-height:100vh}
+
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:32px 20px 28px;text-align:center;
+border-bottom:1px solid rgba(255,0,110,.2)}
+.hero-label{font-family:'Bebas Neue';font-size:11px;letter-spacing:.4em;color:#ff006e;
+text-shadow:0 0 10px rgba(255,0,110,.5);margin-bottom:10px}
+.hero h1{font-family:'RocknRoll One';font-size:26px;line-height:1.2;color:#fff;
+text-shadow:0 0 24px rgba(255,0,110,.5),0 0 60px rgba(255,0,110,.2);margin-bottom:6px}
+.hero h1 em{color:#ff006e;font-style:normal}
+.hero-sub{font-size:12px;color:#888;letter-spacing:.1em;line-height:1.7;margin-top:8px}
+.hero-sub strong{color:#f0ede6}
+
+/* WHAT IS */
+.section{position:relative;z-index:1;padding:24px 18px}
+.sec-label{font-family:'Bebas Neue';font-size:11px;letter-spacing:.35em;
+color:#ff006e;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sec-label::after{content:'';flex:1;height:1px;
+background:linear-gradient(90deg,rgba(255,0,110,.4),transparent)}
+
+/* EFFECT CARDS */
+.effects{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0}
+.eff{background:#111;border:1px solid #222;border-radius:10px;padding:14px 12px;
+position:relative;overflow:hidden}
+.eff::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--c);
+box-shadow:0 0 8px var(--c)}
+.eff .icon{font-size:20px;margin-bottom:6px;display:block}
+.eff .title{font-family:'RocknRoll One';font-size:13px;color:#fff;margin-bottom:4px}
+.eff .desc{font-size:10.5px;color:#999;line-height:1.6}
+.eff .tag{display:inline-block;font-size:9px;font-family:'Bebas Neue';letter-spacing:.15em;
+padding:2px 7px;border-radius:3px;margin-top:6px;background:rgba(255,255,255,.06);
+color:var(--c);border:1px solid var(--c);opacity:.8}
+.eff:nth-child(1){--c:#ff006e}
+.eff:nth-child(2){--c:#00f5ff}
+.eff:nth-child(3){--c:#c4ff00}
+.eff:nth-child(4){--c:#ff9500}
+
+/* HOW TO */
+.howto{position:relative;z-index:1;padding:0 18px 24px}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;align-items:flex-start;gap:12px;background:#111;
+border:1px solid #1e1e1e;border-radius:10px;padding:14px 14px}
+.step-num{font-family:'Bebas Neue';font-size:28px;color:#ff006e;
+text-shadow:0 0 12px rgba(255,0,110,.5);line-height:1;flex-shrink:0;width:28px;text-align:center}
+.step-body{}
+.step-title{font-family:'RocknRoll One';font-size:13px;color:#fff;margin-bottom:3px}
+.step-desc{font-size:11px;color:#888;line-height:1.65}
+.step-desc strong{color:#f0ede6}
+
+/* PROMPT SECTION */
+.prompt-sec{position:relative;z-index:1;padding:0 18px 32px}
+.prompt-box{background:#0e0e0e;border:1px solid #282828;border-radius:12px;overflow:hidden}
+.prompt-header{display:flex;align-items:center;justify-content:space-between;
+padding:12px 16px;border-bottom:1px solid #1e1e1e;background:#111}
+.prompt-title{font-family:'Bebas Neue';font-size:13px;letter-spacing:.2em;color:#ff006e}
+.prompt-badge{font-size:9px;font-family:'Bebas Neue';letter-spacing:.15em;
+padding:3px 8px;border-radius:3px;background:rgba(255,0,110,.1);
+border:1px solid rgba(255,0,110,.3);color:#ff006e}
+.prompt-preview{padding:16px;max-height:200px;overflow:hidden;position:relative}
+.prompt-preview::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;
+background:linear-gradient(transparent,#0e0e0e)}
+.prompt-preview pre{font-size:11px;color:#777;line-height:1.7;font-family:'Noto Sans JP',sans-serif;white-space:pre-wrap;word-break:break-all}
+
+/* COPY BUTTON */
+.copy-btn{display:flex;align-items:center;justify-content:center;gap:10px;
+width:100%;padding:18px;background:#ff006e;border:none;border-radius:0 0 12px 12px;
+cursor:pointer;transition:all .15s ease;font-family:'RocknRoll One';
+font-size:17px;color:#fff;letter-spacing:.05em;
+text-shadow:0 0 10px rgba(255,255,255,.3);
+box-shadow:0 0 30px rgba(255,0,110,.35)}
+.copy-btn:active{transform:scale(.98);background:#e0005f}
+.copy-btn.done{background:#00c47a;box-shadow:0 0 30px rgba(0,196,122,.35)}
+.copy-btn .icon{font-size:20px}
+
+/* HIDDEN */
+.clip{position:absolute;left:-9999px;top:0;opacity:0;pointer-events:none;width:1px;height:1px}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+background:#fff;color:#080808;font-weight:900;font-size:12px;
+padding:10px 20px;border-radius:999px;box-shadow:0 0 28px rgba(255,255,255,.2);
+z-index:100;opacity:0;transition:all .28s ease;pointer-events:none;letter-spacing:.05em;white-space:nowrap}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;text-align:center;padding:16px 18px 40px;
+font-size:10px;color:#444;letter-spacing:.12em;line-height:1.8}
+footer .bl{font-family:'Bebas Neue';font-size:11px;color:#ff006e;letter-spacing:.25em}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">TANI SENSEI / DIARY TRAINING</div>
+  <h1>谷先生の<em>日記</em>トレーニング</h1>
+  <p class="hero-sub">
+    今日あったこと・感じたこと・モヤモヤ。<br>
+    <strong>なんでも貼るだけで</strong>、AIが共感して<br>
+    心理学とメタ認知でコンサルしてくれる。
+  </p>
+</div>
+
+<!-- EFFECTS -->
+<div class="section">
+  <div class="sec-label">▸ これを使うと、こうなる</div>
+  <div class="effects">
+
+    <div class="eff">
+      <span class="icon">🫂</span>
+      <div class="title">共感から入る</div>
+      <div class="desc">まず解決しない。読んでもらえた安心感が先。</div>
+      <div class="tag">感情安全</div>
+    </div>
+
+    <div class="eff">
+      <span class="icon">🔍</span>
+      <div class="title">感情に名前がつく</div>
+      <div class="desc">「認知的不協和」「反芻思考」など、モヤモヤの正体が分かる。</div>
+      <div class="tag">心理学用語</div>
+    </div>
+
+    <div class="eff">
+      <span class="icon">🌍</span>
+      <div class="title">偉人も同じだった</div>
+      <div class="desc">あなたの状況に似た偉人のエピソードで、乗り越え方を知る。</div>
+      <div class="tag">歴史×共鳴</div>
+    </div>
+
+    <div class="eff">
+      <span class="icon">🛸</span>
+      <div class="title">空から自分を見る</div>
+      <div class="desc">感情ではなく「構造」で自分のパターンを見える化。</div>
+      <div class="tag">メタ認知</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HOW TO -->
+<div class="howto">
+  <div class="sec-label">▸ 使い方は3ステップ</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">下のボタンを押してコピー</div>
+        <div class="step-desc">プロンプト全文がコピーされます。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">ChatGPTに貼り付ける</div>
+        <div class="step-desc">プロンプトの中の <strong>【入力】</strong> の下に、<br>今日の日記・メモ・ひとりごとを追記。</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">送信するだけ</div>
+        <div class="step-desc">共感→心理学→偉人→メタ認知→アドバイスの<br><strong>5ステップで答えが返ってくる。</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMPT -->
+<div class="prompt-sec">
+  <div class="sec-label">▸ プロンプト</div>
+  <div class="prompt-box">
+    <div class="prompt-header">
+      <div class="prompt-title">共感×メタ認知コンサル</div>
+      <div class="prompt-badge">FULL PROMPT</div>
+    </div>
+    <div class="prompt-preview">
+      <pre>あなたは「共感とメタ認知の天才コンサルタント」です。
+心理学・哲学・歴史・偉人の知恵を持ち合わせた、
+最高の対話者として振る舞ってください。
+
+私の日記・メモ・つぶやきを読んで、
+5ステップで応えてください。
+
+━━━━━━━━━━━━━━
+【入力】今日の日記を貼り付けてください：
+━━━━━━━━━━━━━━
+
+STEP 1 共感から始まる...
+STEP 2 心理学用語で名前をつける...
+STEP 3 偉人のエピソード...
+STEP 4 メタ認知で構造を見る...
+STEP 5 今日からの3つのアプローチ...
+（コピーすると全文が取得できます）</pre>
+    </div>
+    <button class="copy-btn" id="copyBtn" onclick="doCopy()">
+      <span class="icon">📋</span>
+      <span id="btnText">タップしてプロンプトをコピー</span>
+    </button>
+  </div>
+</div>
+
+<footer>
+  <div class="bl">SANJO KENKODO DIARY LAB</div>
+  高松発・一生動ける身体と人生の教養研究室<br>
+  年間200冊読む治療家より
+</footer>
+
+<div id="toast">✓ コピー完了 ／ ChatGPTに貼ってください</div>
+
+<!-- FULL PROMPT (hidden) -->
+<textarea class="clip" id="fullPrompt">あなたは「共感とメタ認知の天才コンサルタント」です。
+心理学・哲学・歴史・偉人の知恵を持ち合わせた、最高の対話者として振る舞ってください。
+
+私の日記・メモ・つぶやきを読んで、以下の5ステップで応えてください。
+
+━━━━━━━━━━━━━━━━━━━━━
+【入力】今日の日記・メモを貼り付けてください：
+
+（ここに自由に書く。箇条書きでも、ぐちゃぐちゃでもOK）
+━━━━━━━━━━━━━━━━━━━━━
+
+## STEP 1｜今日の私、こういう状態です（共感）
+・日記から「今日感じていたこと」を3〜5行で要約する
+・まず評価せず、ただ寄り添う
+・「それは辛かったですね」「そう感じるのは自然です」
+・解決策はここでは出さない。共感だけ。
+
+## STEP 2｜心理学的に言うと、これです
+・今の状態に、心理学の言葉で名前をつける
+　例：認知的不協和 / 学習性無力感 / 反芻思考 /
+　　　承認欲求の葛藤 / 自己効力感の低下 / 防衛機制
+・その言葉の意味を日常語で1行で説明する
+・「あなたが感じていたのは、実はこれだったんです」と伝える
+
+## STEP 3｜世界の偉人も同じ経験をしています
+・日記の内容に最も近いエピソードを持つ偉人を1〜2名選ぶ
+・その人が似た状況に置かれたとき、何を感じ、どう乗り越えたかを語る
+・「あなたは今、〇〇が通った道を歩いています」と伝える
+・正確な名言・記録があれば引用する（不確かなものは使わない）
+
+## STEP 4｜メタ認知で見ると、こう見えます
+・「今の自分を空から見るとどう見えるか」を描写する
+・感情ではなく、構造として整理する
+　例：「あなたは今、Aという状況でBという反応をしている。
+　　　それはCというパターンです」
+・繰り返しの思考のクセ・パターンがあれば、優しく指摘する
+
+## STEP 5｜今日からできる、3つのアプローチ
+・メタ認知に基づいた実践的なアプローチを3つ
+・心理学のエビデンスがあるものを優先する
+・「やれ」ではなく「試してみてください」の招待形で
+
+━━━━━━━━━━━━━━━━━━━━━
+【出力スタイル・必ず守ること】
+━━━━━━━━━━━━━━━━━━━━━
+▶ 返答はビレバン×TikTok文法で
+・一文が短い（15字以内が理想）
+・体言止め・リズム重視
+・難しい言葉は使わない
+
+▶「もっと分かりやすく」と言われたら
+→ 比喩・たとえ話・日常の具体例に変換
+→「あ、なるほど！」と感じるまで格下げし続ける
+→ 最後は小学生でも分かる言葉で説明できること
+━━━━━━━━━━━━━━━━━━━━━</textarea>
+
+<script>
+var timer;
+function doCopy(){
+  var text=document.getElementById('fullPrompt').value;
+  var btn=document.getElementById('copyBtn');
+  var btnText=document.getElementById('btnText');
+  var toast=document.getElementById('toast');
+
+  var ta=document.createElement('textarea');
+  ta.value=text;
+  ta.style.cssText='position:fixed;top:0;left:0;opacity:0;width:1px;height:1px';
+  document.body.appendChild(ta);
+  ta.focus();ta.select();ta.setSelectionRange(0,text.length);
+  var ok=false;
+  try{ok=document.execCommand('copy')}catch(e){}
+  document.body.removeChild(ta);
+
+  if(!ok&&navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){success(btn,btnText,toast)}).catch(function(){fallback(text)});
+    return;
+  }
+  if(ok){success(btn,btnText,toast)}else{fallback(text)}
+}
+
+function success(btn,btnText,toast){
+  btn.classList.add('done');
+  btnText.textContent='✓ コピー完了！ChatGPTに貼ってください';
+  toast.classList.add('show');
+  try{if(navigator.vibrate)navigator.vibrate(20)}catch(e){}
+  clearTimeout(timer);
+  timer=setTimeout(function(){
+    btn.classList.remove('done');
+    btnText.textContent='タップしてプロンプトをコピー';
+    toast.classList.remove('show');
+  },2500);
+}
+
+function fallback(t){window.prompt('長押しでコピー',t)}
+</script>
+</body>
+</html>
