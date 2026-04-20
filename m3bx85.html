@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>日記＆分析プロンプト｜Claude専用</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:#0a0e0a;color:#f5f0e4;font-family:"Hiragino Mincho ProN","游明朝","Yu Mincho",serif;-webkit-font-smoothing:antialiased;line-height:1.7}
+body{min-height:100vh;padding:20px 16px 60px;background:radial-gradient(ellipse at top,#1a2a1a 0%,#0a0e0a 60%)}
+
+/* ヘッダー */
+.hero{text-align:center;padding:14px 0 28px;border-bottom:1px solid #2a3a2a;margin-bottom:24px}
+.hero .badge{display:inline-block;font-size:10px;letter-spacing:0.3em;color:#c4a44d;padding:4px 12px;border:1px solid #c4a44d;margin-bottom:14px;font-family:sans-serif}
+.hero h1{font-size:24px;font-weight:600;letter-spacing:0.05em;line-height:1.4;margin-bottom:8px}
+.hero h1 .accent{color:#c4a44d}
+.hero p{font-size:12px;color:#9ca99c;letter-spacing:0.05em}
+
+/* カード */
+.card{background:linear-gradient(180deg,#121812,#0d120d);border:1px solid #2a3a2a;border-radius:2px;padding:20px 16px;margin-bottom:24px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c4a44d,transparent)}
+.card-num{display:inline-block;font-family:"Helvetica Neue",sans-serif;font-size:11px;letter-spacing:0.3em;color:#c4a44d;background:#0a0e0a;padding:3px 10px;border:1px solid #c4a44d;margin-bottom:10px}
+.card h2{font-size:18px;font-weight:600;letter-spacing:0.04em;margin-bottom:6px;color:#f5f0e4}
+.card .desc{font-size:13px;color:#a8b3a8;margin-bottom:16px;line-height:1.6}
+
+/* プロンプトプレビュー */
+.preview{background:#060906;border:1px solid #1f2a1f;border-radius:2px;padding:12px;font-family:"Menlo","Monaco",monospace;font-size:11px;color:#7a8a7a;line-height:1.5;max-height:140px;overflow:hidden;position:relative;margin-bottom:14px}
+.preview::after{content:"";position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(180deg,transparent,#060906)}
+
+/* コピーボタン */
+.copy-btn{display:block;width:100%;padding:18px;background:#c4a44d;color:#0a0e0a;border:none;font-family:"Hiragino Sans","Yu Gothic",sans-serif;font-size:15px;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;transition:all 0.2s;position:relative;overflow:hidden}
+.copy-btn:active{transform:scale(0.98);background:#d4b45d}
+.copy-btn.done{background:#5d8a5d;color:#fff}
+.copy-btn .icon{margin-right:6px}
+
+/* 使い方ガイド */
+.usage{background:#0d120d;border-left:2px solid #c4a44d;padding:12px 14px;margin-top:14px;font-size:12px;color:#a8b3a8;line-height:1.7}
+.usage strong{color:#c4a44d;font-weight:600}
+
+/* トースト */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#c4a44d;color:#0a0e0a;padding:14px 24px;border-radius:2px;font-size:13px;font-weight:700;letter-spacing:0.05em;opacity:0;transition:all 0.3s;z-index:1000;font-family:"Hiragino Sans",sans-serif}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* フッター */
+.footer{text-align:center;font-size:10px;color:#5a6a5a;letter-spacing:0.2em;margin-top:30px;padding-top:20px;border-top:1px solid #1a2a1a}
+.footer .clinic{color:#c4a44d;font-size:11px;margin-bottom:4px}
+
+/* 注意書き */
+.notice{background:#1a1410;border:1px solid #4d3d1d;padding:10px 12px;margin-bottom:24px;font-size:11px;color:#c4a44d;line-height:1.6;letter-spacing:0.03em}
+.notice .label{font-weight:700;margin-right:6px}
+
+/* テキストエリア（隠し） */
+.hidden-ta{position:fixed;top:-9999px;left:-9999px;opacity:0}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">CLAUDE 専用 v2</div>
+  <h1>日記を<span class="accent">言い換える</span><br>分析する<span class="accent">プロンプト</span></h1>
+  <p>音声入力 → 言語化 → 蓄積 → 月次分析</p>
+</div>
+
+<div class="notice">
+  <span class="label">⚠ 重要</span>このプロンプトはClaude（claude.ai）でお使いください。ChatGPT・Geminiでも動きますが、過去日記の検索・分析にはClaudeの履歴検索が最適です。
+</div>
+
+<!-- ① 日記プロンプト -->
+<div class="card">
+  <div class="card-num">PROMPT 01</div>
+  <h2>📔 日記を書く</h2>
+  <p class="desc">音声入力した日記を、5ステップで言語化する。出力の先頭に日付フックが自動で付く。</p>
+
+  <div class="preview" id="preview1">あなたは「言語化セラピスト」です。
+心理言語学・脳科学・認知心理学に基づいて、私の気持ちを言語化で変換するプロフェッショナル...
+
+【出力の最初に必ず以下のヘッダーを付けてください】
+📔[DIARY-YYYY/MM/DD-HH:MM]
+
+STEP 1｜共感から始める
+STEP 2｜感情に名前をつける
+STEP 3｜偉人と共鳴する
+STEP 4｜空から自分を見る
+STEP 5｜今日からできる3つ...</div>
+
+  <button class="copy-btn" onclick="doCopy(1)" id="btn1">
+    <span class="icon">📋</span><span id="btnText1">タップしてコピー</span>
+  </button>
+
+  <div class="usage">
+    <strong>使い方｜</strong>このプロンプトをコピー → Claudeに貼る → 「━━━」の下に今日の出来事や愚痴を音声入力で貼る → 送信
+  </div>
+</div>
+
+<!-- ② 分析プロンプト -->
+<div class="card">
+  <div class="card-num">PROMPT 02</div>
+  <h2>📊 まとめ分析する</h2>
+  <p class="desc">過去の日記を検索して、感情グラフ＋テーマ抽出＋隠れたパターンを可視化する。</p>
+
+  <div class="preview" id="preview2">あなたは私の過去の日記を分析するアシスタントです。
+
+【手順】
+① conversation_searchで「📔[DIARY」を検索
+② recent_chatsで日付範囲を絞る
+③ 時系列順に整理
+
+【分析範囲】
+（ここに「先月」「過去1週間」など指定）
+
+1. 感情の起伏グラフ（chart_display_v0でライン表示）
+2. 繰り返し登場するテーマ
+3. 感情の変化の傾向
+4. 隠れたパターン
+5. 次のステップ...</div>
+
+  <button class="copy-btn" onclick="doCopy(2)" id="btn2">
+    <span class="icon">📊</span><span id="btnText2">タップしてコピー</span>
+  </button>
+
+  <div class="usage">
+    <strong>使い方｜</strong>このプロンプトをコピー → Claudeに貼る → <strong>【分析範囲】</strong>欄に「先月」「過去1週間」などを書き込む → 送信。Claudeが自動で過去の日記を検索してグラフ表示まで一気にやります。
+  </div>
+</div>
+
+<div class="footer">
+  <div class="clinic">三条健康堂接骨院</div>
+  <div>高松発・一生動ける身体と人生の教養研究室</div>
+</div>
+
+<div class="toast" id="toast">✓ コピー完了！Claudeに貼ってください</div>
+
+<!-- 隠しプロンプト本体 -->
+<textarea class="hidden-ta" id="prompt1">あなたは「言語化セラピスト」です。
+心理言語学・脳科学・認知心理学の最新研究に基づいて、私の気持ち・日記・ストレス・悩みを言語化で変換するプロフェッショナルです。治療家が寄り添うような温かみで、上から目線にならず、共感しながら丁寧に進めてください。
+
+━━━━━━━━━━━━━━━━━━━━━
+【重要：出力の最初に必ず以下のフォーマットでヘッダーを付けてください】
+
+📔[DIARY-YYYY/MM/DD-HH:MM] #日記
+
+※YYYY/MM/DD-HH:MM は実際の今日の日付と現在時刻に置き換える
+※このヘッダーは後日、過去の日記を検索する時のフックになります
+※必ず1行目に出力してください
+━━━━━━━━━━━━━━━━━━━━━
+
+【入力】以下に今の気持ち・出来事・愚痴・なんでも貼ってください：
+
+（ここに自由に書く。音声入力でも、箇条書きでも、ぐちゃぐちゃでもOK）
+
+━━━━━━━━━━━━━━━━━━━━━
+
+上記の内容に対して、以下の5ステップで変換・整理してください。
+
+## STEP 1｜まず共感する
+書かれた内容に対して、評価せずに、まず深く共感する2〜3文を書いてください。
+「それは大変でしたね」のような表面的なものではなく、
+書き手の感情の奥にあるものを汲み取った言葉で。
+
+## STEP 2｜感情に名前をつける（Affect Labeling）
+（UCLA・Lieberman 2007／扁桃体活動の低下が実証）
+感じている感情を心理学的に精緻にラベリングしてください。
+「モヤモヤ」ではなく「承認されていないと感じて不安」
+「期待を裏切ったと思って恥ずかしい」のように具体的に。
+複数ある場合はすべて列挙。
+
+## STEP 3｜偉人や歴史の人物と共鳴する
+今この人が感じていることと近いことを、
+歴史上の人物・哲学者・作家・芸術家がどう表現してきたか、
+1〜2人の例を引いて紹介してください。
+（孤独を感じているなら西行、悔しさならニーチェ、など）
+「あなただけじゃない」という共鳴を作る。
+
+## STEP 4｜空から自分を見る（メタ認知）
+（カリフォルニア大・Kross 2014／非一人称内省の効果）
+「あなたは今、〇〇という状況に置かれている」と
+非一人称・客観視点で状況を描写してください。2〜3文で。
+
+## STEP 5｜今日からできる3つのアプローチ
+心理学のエビデンスに基づいた、無理のない実践案を3つ提示してください。
+「やれ」ではなく「試してみてください」の招待形で。
+
+━━━━━━━━━━━━━━━━━━━━━
+【出力スタイル・必ず守ること】
+━━━━━━━━━━━━━━━━━━━━━
+▶ ビレバン×TikTok文法
+・一文が短い（15字以内が理想）
+・体言止め・リズム重視
+・難しい言葉は使わない
+
+▶ 最後に「今日の一言」を1行で
+・シンプルで力強い日本語
+・手帳に書きたくなる一文
+━━━━━━━━━━━━━━━━━━━━━</textarea>
+
+<textarea class="hidden-ta" id="prompt2">あなたは私の過去の日記を分析するアシスタントです。
+私はClaudeで日記を書いており、各エントリの先頭には「📔[DIARY-YYYY/MM/DD-HH:MM] #日記」のヘッダーが付いています。
+
+━━━━━━━━━━━━━━━━━━━━━
+【手順】必ずこの順序で実行してください
+━━━━━━━━━━━━━━━━━━━━━
+
+① conversation_searchツールで「📔[DIARY」をキーワードに検索する
+② 必要に応じてrecent_chatsツールで日付範囲を絞り込む
+③ 見つかった日記エントリをすべて時系列順に整理する
+④ 各エントリから「📔[DIARY-...]」のヘッダー、本文（5ステップ）を抽出する
+
+━━━━━━━━━━━━━━━━━━━━━
+【分析範囲】
+━━━━━━━━━━━━━━━━━━━━━
+
+（ここに範囲を指定 → 例：「過去1ヶ月」「過去3ヶ月」「2026年4月」「過去1週間」）
+
+━━━━━━━━━━━━━━━━━━━━━
+【分析内容】以下5つを順番に出してください
+━━━━━━━━━━━━━━━━━━━━━
+
+## 1. 感情の起伏グラフ
+chart_display_v0ツールでラインチャートを描画してください。
+・X軸：日付（時系列）
+・Y軸：その日の感情スコア（-10〜+10）
+・スコアの根拠：各エントリのSTEP2「感情ラベリング」から判定
+　（ネガティブ感情のみ→マイナス、ポジティブのみ→プラス、両方→中央寄り）
+・タイトル：「日記の感情推移｜[期間]」
+
+## 2. 繰り返し登場するテーマ TOP5
+頻度の高い悩み・人間関係・状況・思考パターンを5個リストアップ。
+各テーマに「登場回数」と「代表的なフレーズ」を付ける。
+
+## 3. 感情の変化の傾向
+時系列で見たときの全体の動きを2〜3文で。
+・改善傾向か、悪化傾向か、波があるか
+・特定の曜日・出来事・人物がトリガーになっていないか
+
+## 4. 隠れたパターン
+本人が気づいていない可能性のあるパターンを1〜2個指摘。
+ただし断定せず「〜という可能性があります」「〜かもしれません」の形で。
+例：「月曜の夜にネガティブ感情が集中している」
+　　「Aさんに関する話題の後、必ず自己肯定感が下がっている」
+
+## 5. 次のステップの提案
+パターンを踏まえた、無理のない実践案を3つ。
+ビレバン×TikTok文法（短文・体言止め）で。
+
+━━━━━━━━━━━━━━━━━━━━━
+【重要】
+━━━━━━━━━━━━━━━━━━━━━
+・分析対象の日記が見つからなかった場合は、その旨を率直に伝えてください
+・診断ではなく、観察と提案であることを忘れずに
+・温かいトーンで、上から目線にならないように</textarea>
+
+<script>
+var timer1, timer2;
+
+function doCopy(num){
+  var text = document.getElementById('prompt'+num).value;
+  var btn = document.getElementById('btn'+num);
+  var btnText = document.getElementById('btnText'+num);
+  var toast = document.getElementById('toast');
+
+  // textarea + execCommand 方式（最も確実）
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;width:1px;height:1px';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  ta.setSelectionRange(0, text.length);
+
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+
+  // フォールバック: clipboard API
+  if (!ok && navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){
+      success(btn, btnText, toast, num);
+    }).catch(function(){
+      window.prompt('長押しでコピー', text);
+    });
+    return;
+  }
+
+  if (ok) {
+    success(btn, btnText, toast, num);
+  } else {
+    window.prompt('長押しでコピー', text);
+  }
+}
+
+function success(btn, btnText, toast, num){
+  btn.classList.add('done');
+  btnText.textContent = '✓ コピー完了！Claudeに貼ってください';
+  toast.classList.add('show');
+  try { if(navigator.vibrate) navigator.vibrate(20); } catch(e) {}
+
+  var t = num === 1 ? timer1 : timer2;
+  clearTimeout(t);
+  var newTimer = setTimeout(function(){
+    btn.classList.remove('done');
+    btnText.textContent = num === 1 ? 'タップしてコピー' : 'タップしてコピー';
+    toast.classList.remove('show');
+  }, 2800);
+  if (num === 1) timer1 = newTimer; else timer2 = newTimer;
+}
+</script>
+</body>
+</html>
