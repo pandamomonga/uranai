@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日の身体からの手紙｜富野様</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf6ed;
+    --paper-deep: #f3ecdb;
+    --ink: #1a1a1a;
+    --ink-soft: #3a3a3a;
+    --ink-mute: #6b6356;
+    --gold: #b8964a;
+    --gold-deep: #8a6e2f;
+    --line: rgba(60, 50, 35, 0.15);
+
+    /* 5カテゴリ識別色 — それぞれ静謐なトーンで */
+    --c1: #8b3a3a;      /* ① 挨拶／共感 — 茜 */
+    --c1-bg: #f5e6e0;
+    --c2: #5c3a21;      /* ② 身体の所見 — 土 */
+    --c2-bg: #ede2d2;
+    --c3: #3d5a3d;      /* ③ 数値の変化 — 苔 */
+    --c3-bg: #e2ebdf;
+    --c4: #2c4660;      /* ④ 深読みの一筆 — 群青 */
+    --c4-bg: #dde5ed;
+    --c5: #8a6e2f;      /* ⑤ 三つの招待 — 山吹 */
+    --c5-bg: #f0e8d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Shippori Mincho", "Noto Serif JP", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184, 150, 74, 0.04), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(60, 90, 61, 0.03), transparent 40%);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ====== 表紙 ====== */
+  .cover {
+    padding: 56px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-eyebrow {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold-deep);
+    letter-spacing: 0.15em;
+    margin-bottom: 18px;
+  }
+
+  .cover-title {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .cover-sub {
+    font-size: 15px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+    margin-bottom: 28px;
+  }
+
+  .cover-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+  }
+
+  .cover-meta-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* ====== ナビゲーション（カテゴリ凡例） ====== */
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 56px;
+    padding: 18px 14px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    border: 1px solid var(--line);
+  }
+
+  .legend-item {
+    text-align: center;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  .legend-bar {
+    height: 4px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+
+  .legend-num {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  /* ====== セクション共通 ====== */
+  .section {
+    margin-bottom: 48px;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(60, 50, 35, 0.04), 0 8px 24px rgba(60, 50, 35, 0.05);
+    border: 1px solid var(--line);
+  }
+
+  .section-header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .section-num {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+  }
+
+  .section-body {
+    padding: 28px 32px 32px;
+  }
+
+  .section-body p {
+    margin-bottom: 16px;
+    color: var(--ink-soft);
+  }
+
+  .section-body p:last-child { margin-bottom: 0; }
+
+  /* === セクション色分け === */
+  .s1 .section-header::before { background: var(--c1); }
+  .s1 .section-eyebrow { color: var(--c1); }
+  .s1 .section-header { background: linear-gradient(180deg, var(--c1-bg) 0%, white 100%); }
+
+  .s2 .section-header::before { background: var(--c2); }
+  .s2 .section-eyebrow { color: var(--c2); }
+  .s2 .section-header { background: linear-gradient(180deg, var(--c2-bg) 0%, white 100%); }
+
+  .s3 .section-header::before { background: var(--c3); }
+  .s3 .section-eyebrow { color: var(--c3); }
+  .s3 .section-header { background: linear-gradient(180deg, var(--c3-bg) 0%, white 100%); }
+
+  .s4 .section-header::before { background: var(--c4); }
+  .s4 .section-eyebrow { color: var(--c4); }
+  .s4 .section-header { background: linear-gradient(180deg, var(--c4-bg) 0%, white 100%); }
+
+  .s5 .section-header::before { background: var(--c5); }
+  .s5 .section-eyebrow { color: var(--c5); }
+  .s5 .section-header { background: linear-gradient(180deg, var(--c5-bg) 0%, white 100%); }
+
+  /* ====== セクション②：身体マップ ====== */
+  .body-map {
+    margin: 24px 0;
+    padding: 24px;
+    background: var(--c2-bg);
+    border-radius: 4px;
+  }
+
+  .body-map-title {
+    font-size: 13px;
+    color: var(--c2);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    font-family: "Cormorant Garamond", serif;
+    text-transform: uppercase;
+  }
+
+  .body-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .body-point {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: white;
+    border-radius: 3px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .body-point-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--c2);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ====== セクション③：数値比較 ====== */
+  .metrics {
+    margin: 24px 0 8px;
+  }
+
+  .metric {
+    margin-bottom: 22px;
+  }
+
+  .metric:last-child { margin-bottom: 0; }
+
+  .metric-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+
+  .metric-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+  }
+
+  .metric-delta {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .metric-delta.up { color: var(--c3); }
+  .metric-delta.down { color: var(--c5); }
+  .metric-delta.flat { color: var(--ink-mute); }
+
+  .metric-bars {
+    display: grid;
+    grid-template-columns: 38px 1fr 60px;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .metric-bars + .metric-bars {
+    margin-top: 6px;
+  }
+
+  .metric-label {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: right;
+  }
+
+  .metric-bar-track {
+    height: 10px;
+    background: var(--paper-deep);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .metric-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1.2s ease-out;
+  }
+
+  .before .metric-bar-fill { background: #c9bfa8; }
+  .after .metric-bar-fill { background: var(--c3); }
+
+  .metric-value {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    text-align: right;
+  }
+
+  .metric-note {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--c3-bg);
+    border-radius: 3px;
+    font-size: 13px;
+    color: var(--c3);
+    line-height: 1.6;
+  }
+
+  .metric-note.gold {
+    background: var(--c5-bg);
+    color: var(--c5);
+  }
+
+  .metric-note.mute {
+    background: var(--paper-deep);
+    color: var(--ink-mute);
+  }
+
+  /* 平均値ハイライト */
+  .average-card {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--c3);
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .average-label {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    opacity: 0.85;
+    font-family: "Cormorant Garamond", serif;
+    text-transform: uppercase;
+  }
+
+  .average-values {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .average-before {
+    font-size: 18px;
+    opacity: 0.6;
+    text-decoration: line-through;
+  }
+
+  .average-arrow {
+    opacity: 0.6;
+  }
+
+  .average-after {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  /* ====== セクション⑤：三つの招待 ====== */
+  .invitations {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 8px 0;
+  }
+
+  .invitation {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 18px 20px;
+    background: var(--c5-bg);
+    border-radius: 4px;
+    align-items: start;
+  }
+
+  .invitation-num {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--c5);
+    line-height: 1;
+    text-align: center;
+    border-right: 1px solid rgba(138, 110, 47, 0.2);
+    padding-right: 14px;
+    padding-top: 4px;
+  }
+
+  .invitation-content { padding-top: 2px; }
+
+  .invitation-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--c5);
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .invitation-text {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ====== 結び ====== */
+  .closing {
+    margin: 56px 0 40px;
+    padding: 36px 32px;
+    background: linear-gradient(180deg, white 0%, var(--paper-deep) 100%);
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid var(--line);
+    position: relative;
+  }
+
+  .closing::before, .closing::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .closing::before { top: 18px; }
+  .closing::after { bottom: 18px; }
+
+  .closing-text {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 2;
+    letter-spacing: 0.04em;
+  }
+
+  /* ====== フッター ====== */
+  .footer {
+    margin-top: 40px;
+    padding: 32px 24px;
+    background: #2a2520;
+    color: #d4ccbb;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #f0e8d0;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(184, 150, 74, 0.3);
+    transition: background 0.2s;
+  }
+
+  .footer-link:hover { background: rgba(184, 150, 74, 0.15); }
+
+  .footer-link svg {
+    width: 16px; height: 16px;
+    stroke: #b8964a;
+  }
+
+  .footer-sign {
+    font-size: 11px;
+    line-height: 1.8;
+    color: #8a8275;
+    letter-spacing: 0.05em;
+    border-top: 1px solid rgba(184, 150, 74, 0.2);
+    padding-top: 18px;
+  }
+
+  .footer-clinic {
+    font-size: 13px;
+    color: #b8964a;
+    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  /* ====== レスポンシブ ====== */
+  @media (max-width: 540px) {
+    body { font-size: 15px; }
+    .container { padding: 0 14px 40px; }
+    .cover { padding: 40px 0 32px; margin-bottom: 36px; }
+    .cover-title { font-size: 26px; }
+    .legend { grid-template-columns: repeat(5, 1fr); gap: 4px; padding: 12px 8px; margin-bottom: 36px; }
+    .legend-item { font-size: 9px; }
+    .legend-num { font-size: 12px; }
+    .section { margin-bottom: 32px; border-radius: 4px; }
+    .section-header { padding: 22px 20px 16px; }
+    .section-body { padding: 22px 20px 24px; }
+    .section-title { font-size: 19px; }
+    .body-points { grid-template-columns: 1fr; gap: 6px; }
+    .body-map { padding: 16px; }
+    .metric-bars { grid-template-columns: 32px 1fr 50px; gap: 8px; }
+    .metric-name { font-size: 14px; }
+    .invitation { padding: 14px 16px; gap: 12px; }
+    .invitation-num { font-size: 26px; }
+    .closing { padding: 28px 20px; }
+    .closing-text { font-size: 14px; }
+    .average-after { font-size: 24px; }
+  }
+
+  /* セリフ強調 */
+  strong {
+    font-weight: 700;
+    color: var(--ink);
+    background: linear-gradient(transparent 65%, rgba(184, 150, 74, 0.18) 65%);
+    padding: 0 2px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 表紙 -->
+  <header class="cover">
+    <div class="cover-eyebrow">A LETTER FROM YOUR BODY</div>
+    <h1 class="cover-title">右肩は、まだ運んでいた</h1>
+    <p class="cover-sub">——下ろし忘れていた荷物の話</p>
+    <div class="cover-meta">
+      <span>富野様</span>
+      <span class="cover-meta-dot"></span>
+      <span>三条健康堂</span>
+      <span class="cover-meta-dot"></span>
+      <span>本日の手紙</span>
+    </div>
+  </header>
+
+  <!-- カテゴリ凡例 -->
+  <nav class="legend">
+    <div class="legend-item">
+      <div class="legend-bar" style="background: var(--c1);"></div>
+      <span class="legend-num">I</span>
+      ご挨拶
+    </div>
+    <div class="legend-item">
+      <div class="legend-bar" style="background: var(--c2);"></div>
+      <span class="legend-num">II</span>
+      身体の所見
+    </div>
+    <div class="legend-item">
+      <div class="legend-bar" style="background: var(--c3);"></div>
+      <span class="legend-num">III</span>
+      数値の変化
+    </div>
+    <div class="legend-item">
+      <div class="legend-bar" style="background: var(--c4);"></div>
+      <span class="legend-num">IV</span>
+      深読みの一筆
+    </div>
+    <div class="legend-item">
+      <div class="legend-bar" style="background: var(--c5);"></div>
+      <span class="legend-num">V</span>
+      三つの招待
+    </div>
+  </nav>
+
+  <!-- ① 挨拶／共感 -->
+  <section class="section s1">
+    <header class="section-header">
+      <div class="section-eyebrow">
+        <span class="section-num">I</span>
+        <span>Greeting</span>
+      </div>
+      <h2 class="section-title">本日もありがとうございました</h2>
+      <p class="section-subtitle">身体は、終わったことをすぐには忘れない</p>
+    </header>
+    <div class="section-body">
+      <p>富野様、本日もありがとうございました。</p>
+      <p>布団の繁忙期から少し時間が経ったのに、<strong>右肩がまだ「あの仕事」を覚えていました</strong>。身体は、終わったことをすぐには忘れてくれないものです。今日はその記憶を、ひとつずつ下ろしていく時間でした。</p>
+    </div>
+  </section>
+
+  <!-- ② 身体の所見 -->
+  <section class="section s2">
+    <header class="section-header">
+      <div class="section-eyebrow">
+        <span class="section-num">II</span>
+        <span>What the Body Said</span>
+      </div>
+      <h2 class="section-title">右半身は、ひとり踏ん張っていた</h2>
+      <p class="section-subtitle">触診で届いてきた、ひと続きの綱</p>
+    </header>
+    <div class="section-body">
+      <p>触診で最初に届いてきたのは、<strong>右の肋骨——8番、9番、10番のあたり</strong>。指の腹に、固く乾いた粘土の塊のような手応えがありました。トリガーポイントというより、何かを抱え続けてきた跡のような硬さです。</p>
+
+      <p>その上に乗っていたのが、右の肩甲骨、右の肩、右の首。さらに辿っていくと、右の骨盤、右のハムストリングス、右の脇腹までが、<strong>ひと続きの綱</strong>のように張っていました。</p>
+
+      <div class="body-map">
+        <div class="body-map-title">— Today's Findings —</div>
+        <div class="body-points">
+          <div class="body-point"><span class="body-point-dot"></span>右の肋骨 8・9・10番</div>
+          <div class="body-point"><span class="body-point-dot"></span>右の肩甲骨</div>
+          <div class="body-point"><span class="body-point-dot"></span>右の肩・右の首</div>
+          <div class="body-point"><span class="body-point-dot"></span>右の骨盤</div>
+          <div class="body-point"><span class="body-point-dot"></span>右ハムストリングス</div>
+          <div class="body-point"><span class="body-point-dot"></span>右の脇腹</div>
+          <div class="body-point"><span class="body-point-dot"></span>左足（仰向け時）</div>
+          <div class="body-point"><span class="body-point-dot"></span>鎖骨・腕の歪み</div>
+        </div>
+      </div>
+
+      <p>仰向けになっていただいた瞬間、<strong>左足が静かに外へ開いて</strong>——右半身がどれだけひとりで踏ん張っていたかが、左との対比で浮かび上がりました。</p>
+
+      <p>そして、右腕。前に出ていました。布団を抱えていた頃の姿勢を、肩の方がまだ覚えていたのだと思います。</p>
+    </div>
+  </section>
+
+  <!-- ③ 数値の変化 -->
+  <section class="section s3">
+    <header class="section-header">
+      <div class="section-eyebrow">
+        <span class="section-num">III</span>
+        <span>Numbers Don't Lie</span>
+      </div>
+      <h2 class="section-title">数値は、ゆるむと下がる</h2>
+      <p class="section-subtitle">施術の前と後で、身体が示したこと</p>
+    </header>
+    <div class="section-body">
+
+      <div class="metrics">
+
+        <!-- Energy -->
+        <div class="metric">
+          <div class="metric-head">
+            <span class="metric-name">エネルギー</span>
+            <span class="metric-delta up">＋29%</span>
+          </div>
+          <div class="metric-bars before">
+            <span class="metric-label">前</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 60%"></div></div>
+            <span class="metric-value">29.83</span>
+          </div>
+          <div class="metric-bars after">
+            <span class="metric-label">後</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 78%"></div></div>
+            <span class="metric-value">38.49</span>
+          </div>
+        </div>
+
+        <!-- Immune -->
+        <div class="metric">
+          <div class="metric-head">
+            <span class="metric-name">免疫</span>
+            <span class="metric-delta up">＋30%</span>
+          </div>
+          <div class="metric-bars before">
+            <span class="metric-label">前</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 26%"></div></div>
+            <span class="metric-value">13.03</span>
+          </div>
+          <div class="metric-bars after">
+            <span class="metric-label">後</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 34%"></div></div>
+            <span class="metric-value">16.93</span>
+          </div>
+          <div class="metric-note">外側を守る力が、内側に戻ってきた動きです</div>
+        </div>
+
+        <!-- Musculoskeletal -->
+        <div class="metric">
+          <div class="metric-head">
+            <span class="metric-name">筋骨格系</span>
+            <span class="metric-delta down">−15%</span>
+          </div>
+          <div class="metric-bars before">
+            <span class="metric-label">前</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 47%"></div></div>
+            <span class="metric-value">0.93</span>
+          </div>
+          <div class="metric-bars after">
+            <span class="metric-label">後</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 40%"></div></div>
+            <span class="metric-value">0.79</span>
+          </div>
+          <div class="metric-note gold"><strong>鎧を脱いだ証拠です</strong>——脳が「もう警報を鳴らさなくていい」と判断した時、筋肉のセンサーはおとなしくなります</div>
+        </div>
+
+        <!-- Metabolism -->
+        <div class="metric">
+          <div class="metric-head">
+            <span class="metric-name">代謝</span>
+            <span class="metric-delta flat">変化なし</span>
+          </div>
+          <div class="metric-bars before">
+            <span class="metric-label">前</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 30%"></div></div>
+            <span class="metric-value">1.07</span>
+          </div>
+          <div class="metric-bars after">
+            <span class="metric-label">後</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 30%"></div></div>
+            <span class="metric-value">1.07</span>
+          </div>
+        </div>
+
+        <!-- Psycho -->
+        <div class="metric">
+          <div class="metric-head">
+            <span class="metric-name">心の状態</span>
+            <span class="metric-delta flat">ほぼ変化なし</span>
+          </div>
+          <div class="metric-bars before">
+            <span class="metric-label">前</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 18%"></div></div>
+            <span class="metric-value">0.59</span>
+          </div>
+          <div class="metric-bars after">
+            <span class="metric-label">後</span>
+            <div class="metric-bar-track"><div class="metric-bar-fill" style="width: 18%"></div></div>
+            <span class="metric-value">0.60</span>
+          </div>
+          <div class="metric-note mute">代謝と心は、いっぺんに動かさないのが長く続けるコツです</div>
+        </div>
+
+      </div>
+
+      <!-- 平均値ハイライト -->
+      <div class="average-card">
+        <div>
+          <div class="average-label">Average</div>
+          <div style="font-size: 12px; opacity: 0.8; margin-top: 4px;">全体の平均値</div>
+        </div>
+        <div class="average-values">
+          <span class="average-before">29.83</span>
+          <span class="average-arrow">→</span>
+          <span class="average-after">38.49</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 深読みの一筆 -->
+  <section class="section s4">
+    <header class="section-header">
+      <div class="section-eyebrow">
+        <span class="section-num">IV</span>
+        <span>A Deeper Note</span>
+      </div>
+      <h2 class="section-title">握り返していた手のこと</h2>
+      <p class="section-subtitle">荷物を下ろしても残るもの</p>
+    </header>
+    <div class="section-body">
+      <p>昔、フランスのある哲学者が「<strong>身体は世界を握り返している</strong>」と書きました。</p>
+
+      <p>荷物を運ぶとき、私たちは荷物を握っているつもりで、実は身体の内側でも同じ形を握り返している。その握りは、荷物を下ろした後も、しばらく内側に残ります。</p>
+
+      <p>身体がその握りをほどくには、握っていたという事実を、誰かに見てもらう時間が要る——今日はその<strong>見届けの時間</strong>でした。</p>
+    </div>
+  </section>
+
+  <!-- ⑤ 三つの招待 -->
+  <section class="section s5">
+    <header class="section-header">
+      <div class="section-eyebrow">
+        <span class="section-num">V</span>
+        <span>Three Small Invitations</span>
+      </div>
+      <h2 class="section-title">次回までの、三つの小さな招待</h2>
+      <p class="section-subtitle">無理のない範囲で、よければ</p>
+    </header>
+    <div class="section-body">
+      <div class="invitations">
+
+        <div class="invitation">
+          <div class="invitation-num">i</div>
+          <div class="invitation-content">
+            <div class="invitation-title">眠 り</div>
+            <div class="invitation-text">右を下にして寝ない夜を、三日だけ。仰向けか、左下で。</div>
+          </div>
+        </div>
+
+        <div class="invitation">
+          <div class="invitation-num">ii</div>
+          <div class="invitation-content">
+            <div class="invitation-title">呼 吸</div>
+            <div class="invitation-text">朝、台所に立つ前に、吐く息を三回だけ長く。</div>
+          </div>
+        </div>
+
+        <div class="invitation">
+          <div class="invitation-num">iii</div>
+          <div class="invitation-content">
+            <div class="invitation-title">食 事</div>
+            <div class="invitation-text">温かい汁物を一杯。胃が温まると、右の脇腹もほどけてきます。</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 結び -->
+  <div class="closing">
+    <p class="closing-text">
+      右肩が前に出ていた身体が、<br>
+      今日少しだけ後ろに戻りました。<br>
+      完全に戻りきるのは、次回かその次。<br>
+      慌てずに、身体が自分のペースで荷物を下ろしていくのを、<br>
+      隣で見守らせてください。
+    </p>
+  </div>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-clinic">SANJO KENKODO</div>
+    <div class="footer-links">
+      <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" class="footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Googleマップで確認する
+      </a>
+      <a href="https://lin.ee/dwRtwDv" class="footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        LINEでご相談・ご予約
+      </a>
+    </div>
+    <p class="footer-sign">
+      高松発・一生動ける身体と人生の教養研究室<br>
+      無借金・無車・自転車・圧力鍋生活を実践する治療家より
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
