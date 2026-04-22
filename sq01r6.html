@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北澤様 施術報告書</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    padding: 16px;
+    line-height: 1.7;
+  }
+  .container { max-width: 480px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, #ff006e 0%, #fb5607 50%, #ffbe0b 100%);
+    padding: 20px 16px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.4);
+  }
+  .header .tag {
+    display: inline-block;
+    background: #000;
+    color: #ffbe0b;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+  }
+  .header .sub { font-size: 13px; color: #fff; margin-top: 6px; opacity: 0.95; font-weight: 700; }
+
+  .copy-btn {
+    display: block;
+    width: 100%;
+    background: linear-gradient(90deg, #ff006e, #ffbe0b);
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 0 #000;
+    letter-spacing: 1px;
+  }
+  .copy-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #000; }
+
+  .section {
+    background: #1a1a1a;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .section::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #ffbe0b);
+    z-index: -1;
+  }
+  .section.empathy { border-color: #ff006e; }
+  .section.image { border-color: #8338ec; }
+  .section.naruhodo { border-color: #3a86ff; }
+  .section.bridge { border-color: #06d6a0; }
+  .section.kyouyou { border-color: #ffbe0b; }
+
+  .label {
+    display: inline-block;
+    background: #ff006e;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .label.image { background: #8338ec; }
+  .label.naruhodo { background: #3a86ff; }
+  .label.bridge { background: #06d6a0; color: #000; }
+  .label.kyouyou { background: #ffbe0b; color: #000; }
+
+  .section h2 {
+    font-size: 17px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .section p { font-size: 14px; color: #eee; margin-bottom: 8px; }
+  .section .highlight {
+    background: #ffbe0b;
+    color: #000;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 900;
+  }
+  .section .pink { color: #ff006e; font-weight: 900; }
+  .section .green { color: #06d6a0; font-weight: 900; }
+  .section .blue { color: #3a86ff; font-weight: 900; }
+
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .food-item {
+    background: #000;
+    border: 1px solid #06d6a0;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #06d6a0;
+  }
+
+  .evidence {
+    background: #000;
+    border-left: 3px solid #ffbe0b;
+    padding: 8px 12px;
+    margin-top: 10px;
+    font-size: 11px;
+    color: #aaa;
+    border-radius: 4px;
+  }
+  .evidence strong { color: #ffbe0b; }
+
+  .training-card {
+    background: #000;
+    border: 2px dashed #ff006e;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 12px 0;
+  }
+  .training-card .name {
+    font-size: 16px;
+    font-weight: 900;
+    color: #ff006e;
+    margin-bottom: 6px;
+  }
+  .training-card .desc {
+    font-size: 13px;
+    color: #fff;
+  }
+
+  .footer {
+    background: linear-gradient(135deg, #1a3d28, #0a1f14);
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 20px;
+    border: 1px solid #c4a44d;
+    text-align: center;
+  }
+  .footer .clinic {
+    color: #c4a44d;
+    font-weight: 900;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .footer .quote {
+    color: #f5f0e4;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="tag">★ TREATMENT REPORT ★</span>
+    <h1>北澤様 施術報告書</h1>
+    <div class="sub">全身緊張からの脱却と若返りの兆候</div>
+  </div>
+
+  <button class="copy-btn" onclick="copyReport()">📋 報告書テキストをコピー</button>
+
+  <div class="section empathy">
+    <span class="label">①共感</span>
+    <h2>書き物で全身がガチガチ、よく早めに来てくれました</h2>
+    <p>書き物で肩がガチガチになり、ぎっくり腰になりかけていた——その<span class="pink">「ひどくなる前」</span>のタイミングで来院してくださったのは大正解でした。今回、肩甲骨・首・頭皮・骨盤・肋骨まで全身がカチカチになっていましたね。</p>
+  </div>
+
+  <div class="section image">
+    <span class="label image">②イメージ</span>
+    <h2>身体は一枚の網</h2>
+    <p>後ろから見ると、首の後ろから背中、お尻、ふくらはぎ、足裏まで<span class="highlight">一本の筋膜のシート</span>でつながっています。書き物で頭と肩が固まると、その緊張は背中を伝って腰と骨盤に降りてくる。<span class="pink">「肩が凝るとぎっくり腰になる」</span>のは気のせいではなく、構造の話なんです。</p>
+    <div class="evidence">
+      <strong>EVIDENCE:</strong> 後面の筋膜（後表線）は仙骨から下肢、上肢、頭蓋まで連続し、痛覚線維を持つことが解剖学研究で示されている (Barker & Briggs)。
+    </div>
+  </div>
+
+  <div class="section naruhodo">
+    <span class="label naruhodo">③なるほど</span>
+    <h2>ウォールシットで「短期間の若返り」が起きた理由</h2>
+    <p>骨盤と腰のくびれが、こんな短期間で若返るのは<span class="green">珍しいケース</span>です。これは<span class="highlight">筋肉が増えた</span>のではなく、<span class="highlight">筋肉がきちんと反応するようになった</span>ということ。神経-筋の応答性が戻ってきた証拠です。</p>
+    <div class="evidence">
+      <strong>EVIDENCE:</strong> Edwards JJ et al., BJSM 2023 (270 RCT・15,827名のメタ解析)。等尺性運動は他のどの運動様式より血圧低下効果が高く（-8.24/-4.00 mmHg）、ウォールスクワット単体では-10.5/-5.3 mmHgで降圧薬1剤に匹敵。自律神経・血管・神経筋の<span style="color:#ffbe0b;">短期適応</span>が起こる種目。
+    </div>
+  </div>
+
+  <div class="section naruhodo">
+    <span class="label naruhodo">③なるほど</span>
+    <h2>左膝の不安定感 → ヒップスラストで解決します</h2>
+    <p>膝の安定性は、膝そのものではなく<span class="pink">ハムストリング（もも裏）と大殿筋（お尻）</span>がつくっています。この2つが弱ると、膝はカクカクと前にズレやすくなる。だから今日、<span class="highlight">ヒップスラスト</span>を追加しました。</p>
+    <div class="training-card">
+      <div class="name">★ ヒップスラスト</div>
+      <div class="desc">床に肩を預けて膝を立て、お尻を上げる動作。ハムストリングと大殿筋を同時に鍛える、膝の安定装置の最強ビルダー。</div>
+    </div>
+    <div class="evidence">
+      <strong>EVIDENCE 1:</strong> Contreras B et al., J Appl Biomech 2015。ヒップスラストはバックスクワットと比較して、上部大殿筋EMG 69.5% vs 29.4%、下部大殿筋 86.8% vs 45.4%、大腿二頭筋 40.8% vs 14.9% MVIC——いずれも有意に高い。<br><br>
+      <strong>EVIDENCE 2:</strong> Blackburn JT & Padua DA, Clin Biomech 2011。ハムストリングの剛性が高いほど膝は安定し、前方脛骨偏位が小さい。剛性は<span style="color:#ffbe0b;">トレーニングで修正可能</span>な特性である。
+    </div>
+  </div>
+
+  <div class="section bridge">
+    <span class="label bridge">④生活への橋</span>
+    <h2>食事——若返りのエンジン</h2>
+    <p>筋肉が反応する身体になったので、ここから<span class="green">栄養を入れれば加速します</span>。ポイントは<span class="highlight">タンパク質と食物繊維</span>。</p>
+
+    <p style="margin-top: 12px; font-weight: 900; color: #ff006e;">▼ タンパク質を多めに（1食20-30g）</p>
+    <div class="food-grid">
+      <div class="food-item">高野豆腐</div>
+      <div class="food-item">大豆・納豆</div>
+      <div class="food-item">卵</div>
+      <div class="food-item">鶏もも・胸</div>
+      <div class="food-item">鯖缶</div>
+      <div class="food-item">鮭</div>
+    </div>
+
+    <p style="margin-top: 12px; font-weight: 900; color: #06d6a0;">▼ 食物繊維（おにぎりは必ず）</p>
+    <p>おにぎりのお米に含まれるレジスタントスターチが腸内細菌のエサになり、<span class="blue">短鎖脂肪酸（SCFA）</span>が産生されます。これが筋肉の合成スイッチを押すんです。</p>
+
+    <p style="margin-top: 12px; font-weight: 900; color: #ffbe0b;">▼ 良い油（PFCバランスのF）</p>
+    <div class="food-grid">
+      <div class="food-item" style="border-color:#ffbe0b;color:#ffbe0b;">オリーブオイル</div>
+      <div class="food-item" style="border-color:#ffbe0b;color:#ffbe0b;">ピスタチオ</div>
+      <div class="food-item" style="border-color:#ffbe0b;color:#ffbe0b;">マカダミア</div>
+      <div class="food-item" style="border-color:#ffbe0b;color:#ffbe0b;">ナッツ全般</div>
+    </div>
+    <p style="font-size:12px;color:#999;">※ナッツアレルギーがなければ</p>
+
+    <div class="evidence">
+      <strong>EVIDENCE 1:</strong> Deutz NEP et al., Clin Nutr 2014 (ESPEN勧告)。健康な高齢者は<span style="color:#ffbe0b;">1.0-1.2 g/kg体重/日</span>のタンパク質を摂取すべき。1食20-30gで筋合成が最大化。<br><br>
+      <strong>EVIDENCE 2:</strong> Liu C et al., J Cachexia Sarcopenia Muscle 2021。食物繊維由来のSCFAs（酢酸・プロピオン酸・酪酸）は骨格筋の成長を促進し、<span style="color:#ffbe0b;">gut-muscle軸</span>を介してサルコペニアを抑制する。<br><br>
+      <strong>EVIDENCE 3:</strong> Rondanelli M et al., Nutrients 2023。地中海食（オリーブオイルのMUFA＋ポリフェノール）は骨吸収と筋萎縮を抑制する。Cervoらの横断研究では地中海食高アドヒアランス群のサルコペニア有病率は4%（低群16%）。
+    </div>
+  </div>
+
+  <div class="section kyouyou">
+    <span class="label kyouyou">⑤教養の滲ませ</span>
+    <h2>PFCバランスは「若返りの三角形」</h2>
+    <p><span class="highlight">P</span>rotein（タンパク質）で材料を入れ、<span class="highlight">F</span>at（良質な脂質）で炎症を抑え、<span class="highlight">C</span>arbohydrate（炭水化物＝食物繊維含む）で腸内細菌を養う。この三辺がそろって初めて、<span class="pink">運動の効果が身体に定着</span>します。</p>
+    <p>運動だけでも、食事だけでもダメ。<span class="green">「ウォールシット＋ヒップスラスト」×「PFC＋食物繊維」</span>——この掛け算が、北澤様の身体を以前の状態に戻し、さらに先へ進めます。</p>
+  </div>
+
+  <div class="section empathy" style="background:linear-gradient(135deg,#ff006e22,#8338ec22);">
+    <h2 style="color:#ffbe0b;">📌 今週の処方</h2>
+    <p>① ウォールシット → これまで通り継続<br>
+    ② <span class="pink">ヒップスラスト → 今日から追加</span><br>
+    ③ タンパク質食材を毎食20-30g<br>
+    ④ おにぎりは必ず食べる<br>
+    ⑤ オリーブオイル＋ナッツでF（脂質）を補う</p>
+    <p style="margin-top:10px;font-weight:900;color:#06d6a0;">→ この組み合わせで膝の痛みは消え、以前の状態に戻れます。確信しています。</p>
+  </div>
+
+  <div class="footer">
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="quote">高松発・一生動ける身体と人生の教養研究室<br>無借金・無車・自転車・圧力鍋生活を実践する治療家より</div>
+  </div>
+
+</div>
+
+<textarea id="reportText" style="position:absolute;left:-9999px;">北澤様 施術報告書
+
+【今回の所見】
+書き物で肩がガチガチになり、ぎっくり腰になりかけたところで早めに来院してくださいました。今回、肩甲骨・首・頭皮・骨盤・肋骨まで全身がカチカチになっており、これは後ろから見ると一本のシートのようにつながっている「後面の筋膜」全体が緊張していた状態です。
+
+【良い兆候】
+通っていただいている効果で、身体が確実に反応しています。ウォールシットを続けてもらった結果、骨盤と腰のくびれが明らかに若返りました。こんな短期間で若返るのは珍しいケースで、これは筋肉が増えたというより「筋肉がきちんと反応するようになった」ということです。神経-筋の応答性が戻ってきた証拠です。
+
+【本日追加：ヒップスラスト】
+左膝の不安定な感じは、膝そのものではなくハムストリング（もも裏）と大殿筋（お尻）の出力低下が原因です。ヒップスラストはこの2つを同時に鍛える、膝の安定装置を作る最強の種目。必ず続けてください。ハムストリングが強くなると、膝の不安定感はほとんど出なくなります。
+
+【食事のポイント：PFCバランス】
+筋肉が反応する身体になったので、栄養を入れれば加速します。
+
+▼タンパク質を多めに（1食20-30g）
+高野豆腐、大豆、納豆、卵、鶏のもも肉・胸肉、鯖の缶詰、鮭
+
+▼食物繊維（おにぎりは必ず）
+お米のレジスタントスターチが腸内細菌のエサになり、短鎖脂肪酸が産生されます。これが筋肉の合成スイッチを押します。
+
+▼良い油（PFCのF）
+オリーブオイル、ピスタチオ、マカダミアナッツなど（アレルギーがなければ）
+
+【今週の処方】
+① ウォールシット → 継続
+② ヒップスラスト → 今日から追加
+③ タンパク質食材を毎食20-30g
+④ おにぎりは必ず食べる
+⑤ オリーブオイル＋ナッツでF（脂質）を補う
+
+この組み合わせで膝の痛みは消え、以前の状態に戻れます。確信しています。
+
+──────────────
+三条健康堂接骨院
+高松発・一生動ける身体と人生の教養研究室
+無借金・無車・自転車・圧力鍋生活を実践する治療家より</textarea>
+
+<script>
+function copyReport() {
+  const textarea = document.getElementById('reportText');
+  textarea.style.left = '0';
+  textarea.style.top = '0';
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  let success = false;
+  try {
+    success = document.execCommand('copy');
+  } catch(e) {
+    success = false;
+  }
+
+  textarea.style.left = '-9999px';
+
+  if (success) {
+    const btn = document.querySelector('.copy-btn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ コピーしました！';
+    btn.style.background = 'linear-gradient(90deg,#06d6a0,#3a86ff)';
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.style.background = 'linear-gradient(90deg,#ff006e,#ffbe0b)';
+    }, 2000);
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(textarea.value).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.innerHTML = '✅ コピーしました！';
+      setTimeout(() => btn.innerHTML = '📋 報告書テキストをコピー', 2000);
+    }).catch(() => {
+      alert('コピーに失敗しました。テキストを長押しで選択してください。');
+    });
+  } else {
+    alert('お使いのブラウザは自動コピーに対応していません。テキストを長押しで選択してください。');
+  }
+}
+</script>
+
+</body>
+</html>
