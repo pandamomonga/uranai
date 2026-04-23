@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIが、あなたの毎日を賢くする7枚</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-deep: #0d2818;
+    --green: #1a3d28;
+    --green-mid: #2a5d3e;
+    --gold: #c4a44d;
+    --gold-bright: #e5c76b;
+    --ivory: #f5f0e4;
+    --ivory-soft: #faf7ee;
+    --ink: #1a1a1a;
+    --ink-soft: #333;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ivory);
+    background: linear-gradient(180deg, #0a1f13 0%, var(--green-deep) 50%, var(--green) 100%);
+    min-height: 100vh;
+    padding: 0 0 80px 0;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ============= HEADER ============= */
+  header {
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+  }
+
+  .accent-line {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 24px;
+  }
+
+  .eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold-bright);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(32px, 7vw, 52px);
+    line-height: 1.3;
+    color: var(--ivory);
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  h1 .highlight {
+    color: var(--gold);
+    display: inline-block;
+  }
+
+  .subtitle {
+    font-size: 19px;
+    color: rgba(245, 240, 228, 0.85);
+    font-weight: 500;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ============= HOW TO USE ============= */
+  .howto {
+    max-width: 560px;
+    margin: 40px auto 60px;
+    padding: 32px 28px;
+    background: rgba(245, 240, 228, 0.06);
+    border: 1.5px solid rgba(196, 164, 77, 0.4);
+    border-radius: 8px;
+  }
+
+  .howto-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold-bright);
+    text-align: center;
+    margin-bottom: 28px;
+    letter-spacing: 0.05em;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 22px;
+    align-items: flex-start;
+  }
+
+  .step:last-of-type { margin-bottom: 24px; }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-text {
+    flex: 1;
+    font-size: 17px;
+    line-height: 1.7;
+    padding-top: 6px;
+    color: var(--ivory);
+  }
+
+  .step-text b {
+    color: var(--gold-bright);
+    font-weight: 700;
+  }
+
+  .howto-note {
+    text-align: center;
+    font-size: 15px;
+    color: rgba(245, 240, 228, 0.7);
+    padding-top: 20px;
+    border-top: 1px dashed rgba(196, 164, 77, 0.3);
+    font-style: italic;
+  }
+
+  /* ============= ZONE ============= */
+  .zone {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .zone-header {
+    text-align: center;
+    margin: 60px 0 36px;
+    position: relative;
+  }
+
+  .zone-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .zone-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: 32px;
+    color: var(--ivory);
+    margin-bottom: 10px;
+  }
+
+  .zone-subtitle {
+    font-size: 16px;
+    color: rgba(245, 240, 228, 0.7);
+  }
+
+  .zone-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto 0;
+  }
+
+  /* ============= CARD ============= */
+  .card {
+    background: var(--ivory-soft);
+    border-radius: 12px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(196, 164, 77, 0.25);
+    position: relative;
+  }
+
+  .card-top {
+    padding: 28px 26px 20px;
+    background: var(--green);
+    color: var(--ivory);
+    position: relative;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.4;
+    color: var(--ivory);
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .card-purpose {
+    font-size: 16px;
+    color: var(--gold-bright);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  .card-body {
+    padding: 24px 22px 22px;
+  }
+
+  .prompt-box {
+    background: #fff;
+    border: 1px solid rgba(26, 61, 40, 0.15);
+    border-radius: 6px;
+    padding: 18px 18px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ink);
+    max-height: 240px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-bottom: 18px;
+  }
+
+  .prompt-box::-webkit-scrollbar { width: 6px; }
+  .prompt-box::-webkit-scrollbar-track { background: transparent; }
+  .prompt-box::-webkit-scrollbar-thumb { background: rgba(196, 164, 77, 0.5); border-radius: 3px; }
+
+  .copy-btn {
+    width: 100%;
+    min-height: 60px;
+    padding: 16px 20px;
+    background: var(--green);
+    color: var(--ivory);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .copy-btn:hover {
+    background: var(--green-mid);
+    transform: translateY(-1px);
+  }
+
+  .copy-btn:active { transform: translateY(0); }
+
+  .copy-btn.copied {
+    background: var(--gold);
+    color: var(--green-deep);
+  }
+
+  .copy-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .btn-text { display: inline-block; }
+
+  /* ============= TOAST ============= */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: var(--gold);
+    color: var(--green-deep);
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ============= FOOTER ============= */
+  footer {
+    text-align: center;
+    margin-top: 70px;
+    padding: 0 24px;
+  }
+
+  .footer-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 24px;
+  }
+
+  .footer-msg {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold-bright);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-sub {
+    font-size: 15px;
+    color: rgba(245, 240, 228, 0.6);
+    font-style: italic;
+  }
+
+  /* ============= MOBILE ============= */
+  @media (max-width: 520px) {
+    header { padding: 50px 20px 30px; }
+    .howto { padding: 28px 22px; margin: 30px 16px 50px; }
+    .step { gap: 16px; }
+    .step-num { width: 40px; height: 40px; font-size: 20px; }
+    .step-text { font-size: 16px; }
+    .zone { padding: 0 14px; }
+    .card-top { padding: 24px 22px 18px; }
+    .card-title { font-size: 22px; }
+    .card-body { padding: 20px 18px 18px; }
+    .prompt-box { font-size: 14px; padding: 16px; max-height: 200px; }
+    .copy-btn { font-size: 17px; }
+    .zone-title { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="accent-line"></div>
+  <div class="eyebrow">AI PROMPTS FOR DAILY LIFE</div>
+  <h1>AIが、<br>あなたの毎日を<br><span class="highlight">賢くする</span>7枚。</h1>
+  <p class="subtitle">タップしてコピー、貼って使う。それだけ。</p>
+</header>
+
+<div class="howto">
+  <div class="howto-title">── 使いかた ──</div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-text">AIを開いたら、まず<b>自分の言いたいこと</b>を自由に話してみる。</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-text">下のカードから「これだ」と思うものの<b>ボタンをタップ</b>してコピー。</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-text">AIの入力欄に<b>そのまま貼り付ける</b>だけ。</div>
+  </div>
+
+  <div class="howto-note">どれから始めても大丈夫。<br>毎日、何度でも使えます。</div>
+</div>
+
+<!-- ============= ZONE 1: DAILY ============= -->
+<div class="zone">
+  <div class="zone-header">
+    <div class="zone-label">Z O N E &nbsp; 1</div>
+    <div class="zone-title">日常を整える</div>
+    <div class="zone-subtitle">毎日の心を、言葉にする</div>
+    <div class="zone-divider"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num">01</div>
+      <div class="card-title">書いた瞬間、<br>過去になる。</div>
+      <div class="card-purpose">3行書くだけ。AIがやさしい問いを返す。毎日の入口に。</div>
+    </div>
+    <div class="card-body">
+      <div class="prompt-box" id="p1">あなたは、私の心に寄り添う日記の相棒です。
+
+以下の私の「3行日記」を読んで、次のことをしてください。
+
+1. まず、私の気持ちに一言だけ共感してください（共感は1行のみ）
+2. そのあと、私がまだ気づいていない「心の奥」に触れる、やさしい問いを1つだけ投げかけてください
+3. 問いは「なぜ」ではなく「どんなふうに」で始めてください
+
+説教・アドバイス・励ましはいりません。
+ただ、私が明日もう一歩深く自分を見つめられるような、小さな問いをください。
+
+---
+【今日の3行日記】
+事実：（今日あったこと）
+感情：（そのとき感じたこと）
+気づき：（ふりかえって思うこと）</div>
+      <button class="copy-btn" data-target="p1">
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span class="btn-text">タップしてコピー</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num">02</div>
+      <div class="card-title">あなたの言葉を、<br>あなたより賢いAIに読ませる。</div>
+      <div class="card-purpose">日記・愚痴・メモを貼る。思考のクセと隠れた価値観を浮かび上がらせる。</div>
+    </div>
+    <div class="card-body">
+      <div class="prompt-box" id="p2"># 依頼：
+あなたは「リフレクシブ・テーマ分析（TA）」の世界的エキスパートです。以下の【入力データ】（私の日記や気づき）を分析し、表面的な要約ではなく、その奥にある「意味のパターン（テーマ）」を構築してください。
+
+# 分析のルール（ブラウン＆クラークのメソッドに基づく）：
+1. **要約禁止**：単に「何があったか」をまとめる（トピック要約）のではなく、「なぜそう感じたのか」「どんな価値観が隠れているか」という【意味】に焦点を当ててください。
+2. **能動的な構築**：テーマはデータの中に落ちているものではなく、あなたが私の言葉から「構築」するものです。創造性を発揮してください。
+3. **6つのフェーズを意識**：
+   - まずデータに深く浸る（熟知）。
+   - 意味のある単位にラベルを貼る（コーディング）。
+   - コードを集めて「中心的な概念」を作る（テーマ生成）。
+
+# 出力フォーマット：
+
+## 🧱 ステップ1：心のレンガ（主要なコード）
+* （データの中で特に感情や価値観が強く表れている部分を3〜5つ、タグ付けのような形で抽出）
+* 例：「失敗への過剰な恐れ」「自由への渇望」など
+
+## 🏛️ ステップ2：構築されたテーマ（中心となる概念）
+* **【テーマ名：キャッチーで比喩的なタイトル】**
+   * **解説：** （コードを繋ぎ合わせて見えてきた、私の思考のクセや隠れた価値観を200文字程度で言語化。「AだからBである」というストーリーにする）
+
+## 📖 ステップ3：あなたの「物語」
+* （分析結果を元に、今の私がどのような「人生のストーリー」を生きているのか、肯定的な視点で短く物語化する）
+
+## 🪞 ステップ4：リフレクシブな問い（鏡の問い）
+* （私の気づきをさらに深めるための、ハッとするような質問を1つだけ投げかける）
+
+---
+# 【入力データ】
+（ここに日記、メモ、愚痴、アイデアなどを貼り付けてください）</div>
+      <button class="copy-btn" data-target="p2">
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span class="btn-text">タップしてコピー</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============= ZONE 2: BODY ============= -->
+<div class="zone">
+  <div class="zone-header">
+    <div class="zone-label">Z O N E &nbsp; 2</div>
+    <div class="zone-title">身体を科学する</div>
+    <div class="zone-subtitle">数字と皿から、未来を読み取る</div>
+    <div class="zone-divider"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num">03</div>
+      <div class="card-title">この数字は、<br>3年後のあなたの身体。</div>
+      <div class="card-purpose">血液検査の写真を撮るだけ。食事・運動・未来予測まで。</div>
+    </div>
+    <div class="card-body">
+      <div class="prompt-box" id="p3">あなたは、臨床経験豊富な予防医学のスペシャリストです。
+
+私の血液検査結果の画像を読み取り、以下の構成で答えてください。
+専門用語はできるだけ日常の言葉に置き換えてください。
+
+## 1. 今の身体の翻訳
+検査結果から読み取れる「今の身体の状態」を、物語のように3行で教えてください。
+
+## 2. 注目すべき数値 トップ3
+基準値から外れている、または境界にある数値を3つ挙げ、それぞれ「放置するとどうなるか」を教えてください。
+
+## 3. 今日から変える食事
+明日のスーパーで買うべき食材を5つ、なぜそれが必要かの理由つきで教えてください。
+
+## 4. 身体に合う運動
+今の状態に合った、無理のない運動を3つ。頻度と時間も具体的に。
+
+## 5. 3年後のシナリオ
+- このまま何もしなかった場合の3年後
+- 上の提案を続けた場合の3年後
+この2つを、短い物語として書いてください。
+
+最後に、今日から始められる「たった1つのこと」を教えてください。
+
+※ この後に、血液検査結果の写真を添付します。</div>
+      <button class="copy-btn" data-target="p3">
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span class="btn-text">タップしてコピー</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num">04</div>
+      <div class="card-title">今日の皿が、<br>10年後の身体をつくる。</div>
+      <div class="card-purpose">食事の写真を撮る。足りない栄養と明日の買い物リストが届く。</div>
+    </div>
+    <div class="card-body">
+      <div class="prompt-box" id="p4">あなたは、栄養学と予防医学に精通した食の専門家です。
+
+添付した食事の写真を見て、以下を教えてください。
+
+## 1. この一皿の栄養バランス
+タンパク質・脂質・炭水化物・ビタミン・ミネラル・食物繊維のバランスを、5段階で評価してください。
+
+## 2. 足りていない栄養素
+この食事に「足りないもの」を3つ挙げ、それぞれが身体にどんな影響を与えるかを教えてください。
+
+## 3. 明日の買い物リスト
+今日の食事を補うために、明日買うとよい食材を5つ、優先順位つきで。
+
+## 4. 10年後のあなたへの手紙
+この食生活を10年続けたら、身体はどうなっているか。
+やさしく、でも正直に、短い手紙として書いてください。
+
+## 5. 今夜か明日、すぐできる改善
+今の食習慣に、たった1つだけ足すとしたら何がいいか。理由つきで教えてください。
+
+※ この後に、食事の写真を添付します。</div>
+      <button class="copy-btn" data-target="p4">
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span class="btn-text">タップしてコピー</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============= ZONE 3: STUDY ============= -->
+<div class="zone">
+  <div class="zone-header">
+    <div class="zone-label">Z O N E &nbsp; 3</div>
+    <div class="zone-title">勉強を加速する</div>
+    <div class="zone-subtitle">写真を撮るだけ。AIが家庭教師になる</div>
+    <div class="zone-divider"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num">05</div>
+      <div class="card-title">解けない問題を、<br>解説できる奴に変えろ。</div>
+      <div class="card-purpose">問題の写真を撮る。解答・本質解説・類題3問・現場応用まで。</div>
+    </div>
+    <div class="card-body">
+      <div class="prompt-box" id="p5">あなたは、電気工学を教えるのが大好きなベテラン講師です。
+私は高専の電気科3年生です。
+
+添付した問題の写真を見て、以下の順で答えてください。
+
+## 1. 解答
+まず、正解と答えに至る式を示してください。
+
+## 2. 中学生にもわかる解説
+この問題が「何を問うているのか」を、中学生にもわかる言葉で説明してください。たとえ話を使ってOKです。
+
+## 3. 使っている公式・法則の意味
+この問題で使う公式や法則が「なぜそうなるのか」の本質を教えてください。
+
+## 4. 類題3問
+同じ考え方で解ける類題を3問、難易度を少しずつ上げて作ってください。答えは最後にまとめて。
+
+## 5. 実務での使いどころ
+この知識が、実際の電気技術者の現場でどう使われているかを1つ教えてください。
+
+テストで点を取るだけじゃなく、「自分で使える知識」に変わるように教えてください。
+
+※ この後に、問題の写真を添付します。</div>
+      <button class="copy-btn" data-target="p5">
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span class="btn-text">タップしてコピー</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num">06</div>
+      <div class="card-title">1ページを、<br>10分で自分のものにする。</div>
+      <div class="card-purpose">教科書の写真を撮る。要点・出題予想・覚え方・自己テストまで。</div>
+    </div>
+    <div class="card-body">
+      <div class="prompt-box" id="p6">あなたは、記憶のプロ・学習コーチです。
+私は高専の電気科3年生で、テスト対策にこのページを10分で自分のものにしたいです。
+
+添付した教科書のページを読み取り、以下を教えてください。
+
+## 1. このページの要点（3つだけ）
+本当に大事な3つのポイントを、短い言葉で。
+
+## 2. テストに出るポイント
+もし私がテストを作る立場なら、ここを問う、という箇所を具体的に3つ。
+
+## 3. 覚え方
+各要点について、語呂合わせ・イメージ・ストーリーのどれかで、忘れない覚え方を教えてください。
+
+## 4. 自分への質問3問
+このページを理解できたか自分でチェックするための質問を3問。
+すぐ答えられなかったら、もう一度読み返すサインです。
+
+## 5. 1行まとめ
+このページ全体を、たった1行で言うと何か。つぶやきくらいの長さで。
+
+10分で読める分量でお願いします。
+
+※ この後に、教科書のページの写真を添付します。</div>
+      <button class="copy-btn" data-target="p6">
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span class="btn-text">タップしてコピー</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-num">07</div>
+      <div class="card-title">電気は目に見えない。<br>だからAIに見せてもらえ。</div>
+      <div class="card-purpose">回路図や公式の写真を撮る。日常のたとえ・電子の物語・実務応用まで。</div>
+    </div>
+    <div class="card-body">
+      <div class="prompt-box" id="p7">あなたは、電気を目に見えるようにしてくれる、想像力豊かな物理の先生です。
+私は高専の電気科3年生です。
+
+添付した回路図（または公式）の写真を見て、以下を教えてください。
+
+## 1. 日常のたとえに置き換える
+この回路（または公式）を、日常生活のたとえ（水の流れ・道路・人の動きなど）に置き換えて説明してください。
+
+## 2. 電子の気持ちで物語化
+この回路の中を流れる電子が「どこから来て、どこへ行き、何をしているか」を、短い物語として書いてください。
+
+## 3. 実務でどう使われるか
+この回路（または公式）が、家電・スマホ・工場のどこでどう使われているか、具体例を1つ。
+
+## 4. テストではこう出る
+この内容が試験に出るとき、どんな形式で問われるか。典型的なパターンを2つ教えてください。
+
+## 5. つまずきポイント
+多くの高専生がここで間違える、という落とし穴を1つ教えてください。
+
+目に見えない電気を、頭の中で「見える」ようにしてください。
+
+※ この後に、回路図または公式の写真を添付します。</div>
+      <button class="copy-btn" data-target="p7">
+        <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        <span class="btn-text">タップしてコピー</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-line"></div>
+  <div class="footer-msg">迷ったら、①から。</div>
+  <div class="footer-sub">— 今日のあなたが、明日のあなたを賢くする。</div>
+</footer>
+
+<div class="toast" id="toast">✓ コピーしました</div>
+
+<script>
+(function() {
+  function copyText(text, btn) {
+    // Primary: textarea + execCommand (reliable across environments)
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.top = '-9999px';
+    ta.style.left = '-9999px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+
+    var success = false;
+    try {
+      success = document.execCommand('copy');
+    } catch (e) {
+      success = false;
+    }
+    document.body.removeChild(ta);
+
+    if (success) {
+      showFeedback(btn);
+      return;
+    }
+
+    // Fallback 1: clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        showFeedback(btn);
+      }).catch(function() {
+        manualCopyPrompt(text);
+      });
+      return;
+    }
+
+    // Fallback 2: manual
+    manualCopyPrompt(text);
+  }
+
+  function manualCopyPrompt(text) {
+    alert('自動コピーできませんでした。\n\n表示されたプロンプトを長押しして「すべて選択」→「コピー」してください。');
+  }
+
+  function showFeedback(btn) {
+    var originalHTML = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span class="btn-text">コピーしました</span>';
+
+    var toast = document.getElementById('toast');
+    toast.classList.add('show');
+
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      btn.innerHTML = originalHTML;
+      toast.classList.remove('show');
+    }, 1800);
+  }
+
+  var buttons = document.querySelectorAll('.copy-btn');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function() {
+      var targetId = this.getAttribute('data-target');
+      var el = document.getElementById(targetId);
+      if (el) {
+        copyText(el.textContent, this);
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
