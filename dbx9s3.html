@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兼近様 本日の施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: #0f2a1c;
+    color: #f5f0e4;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #1a3d28;
+  }
+  .section {
+    padding: 60px 28px;
+    border-bottom: 1px solid rgba(196, 164, 77, 0.2);
+    position: relative;
+  }
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: #c4a44d;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #c4a44d;
+    border: 1px solid #c4a44d;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+  .section-number {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    color: #c4a44d;
+    letter-spacing: 6px;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+  .gold {
+    color: #c4a44d;
+  }
+  .huge {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #c4a44d;
+    letter-spacing: -0.02em;
+  }
+  .strike {
+    text-decoration: line-through;
+    text-decoration-color: #c4a44d;
+    text-decoration-thickness: 2px;
+    color: rgba(245, 240, 228, 0.5);
+  }
+  .punch {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.7;
+    margin: 16px 0;
+  }
+  .body-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(245, 240, 228, 0.9);
+    margin: 12px 0;
+  }
+  .quote-box {
+    border-left: 3px solid #c4a44d;
+    padding: 14px 18px;
+    margin: 20px 0;
+    background: rgba(196, 164, 77, 0.08);
+  }
+  .quote-box .q {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+  .divider {
+    text-align: center;
+    margin: 24px 0;
+    color: #c4a44d;
+    letter-spacing: 8px;
+    font-size: 12px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(180deg, #1a3d28 0%, #0f2a1c 100%);
+    padding: 100px 28px 80px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-deco {
+    width: 40px; height: 40px;
+    border: 2px solid #c4a44d;
+    border-radius: 50%;
+    margin: 0 auto 32px;
+    position: relative;
+  }
+  .hero-deco::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; height: 8px;
+    background: #c4a44d;
+    border-radius: 50%;
+  }
+  .hero .kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    letter-spacing: 8px;
+    color: #c4a44d;
+    margin-bottom: 20px;
+  }
+  .hero .title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .hero .main {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #c4a44d;
+    margin-bottom: 24px;
+  }
+  .hero .sub {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: rgba(245, 240, 228, 0.7);
+    margin-top: 40px;
+  }
+
+  /* DATA CARDS */
+  .data-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .data-card {
+    background: rgba(196, 164, 77, 0.08);
+    border-left: 3px solid #c4a44d;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .data-label {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .data-status {
+    font-size: 10px;
+    color: #c4a44d;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+  .data-value {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #c4a44d;
+  }
+
+  /* PRESCRIPTION */
+  .rx-icon {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(196, 164, 77, 0.3);
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+  .rx-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+  .rx-en {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #c4a44d;
+    margin-bottom: 20px;
+  }
+  .rx-steps {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .rx-steps li {
+    padding: 10px 0 10px 28px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.7;
+    border-bottom: 1px dashed rgba(196, 164, 77, 0.3);
+  }
+  .rx-steps li::before {
+    content: '●';
+    position: absolute;
+    left: 0; top: 10px;
+    color: #c4a44d;
+    font-size: 10px;
+  }
+  .rx-why {
+    margin-top: 20px;
+    padding: 14px;
+    background: rgba(196, 164, 77, 0.1);
+    border: 1px solid rgba(196, 164, 77, 0.3);
+  }
+  .rx-why .label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #c4a44d;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .rx-why .text {
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 700;
+  }
+
+  /* CLOSING */
+  .closing {
+    text-align: center;
+    padding: 80px 28px;
+    background: #0f2a1c;
+  }
+  .closing-mark {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 40px;
+    color: #c4a44d;
+    margin-bottom: 24px;
+  }
+  .closing-msg {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .signature {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(196, 164, 77, 0.3);
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(245, 240, 228, 0.7);
+  }
+  .signature .clinic {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #c4a44d;
+    letter-spacing: 2px;
+    margin: 8px 0;
+  }
+
+  .highlight-box {
+    background: #c4a44d;
+    color: #1a3d28;
+    padding: 20px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .highlight-box .hl-main {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.4;
+  }
+
+  .breath-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin: 20px 0;
+  }
+  .breath-step {
+    background: rgba(196, 164, 77, 0.15);
+    border: 1px solid #c4a44d;
+    padding: 14px 4px;
+    text-align: center;
+  }
+  .breath-step .num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #c4a44d;
+  }
+  .breath-step .lbl {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-deco"></div>
+    <div class="kanji">本 日 の 報 告 書</div>
+    <div class="title">兼近 様 へ</div>
+    <div class="main">すべて、<br>良く<br>なっています。</div>
+    <div style="width:40px;height:1px;background:#c4a44d;margin:32px auto;"></div>
+    <div class="sub">2026.04.23 &nbsp;&nbsp; REPORT</div>
+  </div>
+
+  <!-- SECTION 1: 食いしばり -->
+  <div class="section">
+    <span class="tag">FINDING 01</span>
+    <div class="section-number">今 日 の 発 見 ①</div>
+    <h1>食いしばりが<br>出ました。</h1>
+    <div class="punch gold">しかも、いつもと反対側。</div>
+    <div class="body-text">
+      ──と聞くと、「悪化した？」と思いますよね。<br>
+      違います。
+    </div>
+    <div class="highlight-box">
+      <div class="hl-main">身体が"今のストレス"を<br>正直に出し始めた</div>
+    </div>
+    <div class="body-text">
+      初回は奥に隠れていた緊張が、<br>
+      2回目で<span class="gold">表に出てきた</span>。<br>
+      つまり身体が <strong>回復モード</strong> に入った証拠です。
+    </div>
+  </div>
+
+  <!-- SECTION 2: 最大の気づき -->
+  <div class="section">
+    <span class="tag">FINDING 02</span>
+    <div class="section-number">今 日 の 発 見 ②</div>
+    <div class="quote-box">
+      <div class="q strike">"手が痛いくらい、<br>大したことない"</div>
+    </div>
+    <div class="huge" style="margin:28px 0;">これが<br>一番の<br>ストレス源<br>でした。</div>
+    <div class="body-text">
+      リウマチは、社会の都合で<br>
+      「大したことない」と扱っていい病気じゃない。<br><br>
+      医療の視点から見れば、<br>
+      <span class="gold">初期であっても「体最優先」</span>が正解です。
+    </div>
+    <div class="highlight-box">
+      <div class="hl-main">身体は、社会の<br>都合では動かない。</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: 24時間 -->
+  <div class="section">
+    <span class="tag">FINDING 03</span>
+    <div class="section-number">今 日 の 発 見 ③</div>
+    <h1>24時間、<br>仕事のことを<br>考えてしまう。</h1>
+    <div class="quote-box">
+      <div class="q strike">"自分が執着深いから？"<br>"性格の問題？"</div>
+    </div>
+    <div class="huge" style="margin:24px 0;">ちがう。</div>
+    <div class="punch">
+      あなたの身体が、<br>
+      <span class="gold">リウマチから守ろうとして</span><br>
+      必死に働いていた。
+    </div>
+    <div class="body-text">
+      執着じゃない。<br>
+      <strong>防衛反応</strong>だった。<br><br>
+      だから──
+    </div>
+    <div class="highlight-box">
+      <div class="hl-main">自分を<br>責めなくていい。</div>
+    </div>
+  </div>
+
+  <!-- PRESCRIPTION HEADER -->
+  <div class="section" style="text-align:center; padding: 60px 28px 40px;">
+    <div class="kanji" style="font-family:'Noto Serif JP',serif; font-size:13px; letter-spacing:8px; color:#c4a44d; margin-bottom:16px;">処 方 箋</div>
+    <h1 style="font-size:36px;">身体を<br>整える<br><span class="gold">4つの習慣</span></h1>
+    <div class="divider">━ ━ ━</div>
+    <div class="body-text" style="font-size:13px;">
+      薬だけじゃない。<br>
+      自分の身体で、自分を守る方法。
+    </div>
+  </div>
+
+  <!-- RX 1: ウォールシット -->
+  <div class="section">
+    <div class="rx-icon">一</div>
+    <div class="rx-name">ウォールシット</div>
+    <div class="rx-en">RX.01 &nbsp;&nbsp; WALL SIT</div>
+    <div class="punch">お風呂の前か、<br>お風呂上がりに。</div>
+    <ul class="rx-steps">
+      <li>壁に背中をつける</li>
+      <li>太ももが床と水平になるまで下げる</li>
+      <li>そのまま<strong>2分キープ</strong></li>
+      <li>休憩1分 → もう1回（計2セット）</li>
+    </ul>
+    <div class="rx-why">
+      <div class="label">W H Y</div>
+      <div class="text">
+        270本の研究で判明：<br>
+        <span class="gold">血圧降下No.1の運動</span>。<br>
+        副交感神経が上がる＝<br>
+        食いしばり↓ 血圧↓ 炎症↓
+      </div>
+    </div>
+  </div>
+
+  <!-- RX 2: 首アイソメトリック -->
+  <div class="section">
+    <div class="rx-icon">二</div>
+    <div class="rx-name">首 360°</div>
+    <div class="rx-en">RX.02 &nbsp;&nbsp; NECK ISOMETRIC</div>
+    <div class="punch">手で押して、<br>首は動かさない。</div>
+    <ul class="rx-steps">
+      <li>前：額を手で押して抵抗 <strong>5秒</strong></li>
+      <li>後：後頭部を手で押して抵抗 <strong>5秒</strong></li>
+      <li>右：右こめかみを押して抵抗 <strong>5秒</strong></li>
+      <li>左：左こめかみを押して抵抗 <strong>5秒</strong></li>
+    </ul>
+    <div class="rx-why">
+      <div class="label">W H Y</div>
+      <div class="text">
+        食いしばりの根っこは<br>
+        <span class="gold">首にある</span>。<br>
+        首が整う → 顎の緊張が抜ける。
+      </div>
+    </div>
+  </div>
+
+  <!-- RX 3: ボックス呼吸 -->
+  <div class="section">
+    <div class="rx-icon">三</div>
+    <div class="rx-name">ボックス呼吸</div>
+    <div class="rx-en">RX.03 &nbsp;&nbsp; BOX BREATHING</div>
+    <div class="punch">寝る前。<br>電気を消して。</div>
+    <div class="breath-box">
+      <div class="breath-step"><div class="num">4</div><div class="lbl">吸う</div></div>
+      <div class="breath-step"><div class="num">4</div><div class="lbl">止める</div></div>
+      <div class="breath-step"><div class="num">4</div><div class="lbl">吐く</div></div>
+      <div class="breath-step"><div class="num">4</div><div class="lbl">止める</div></div>
+    </div>
+    <div class="body-text" style="text-align:center;">
+      秒 &nbsp;&nbsp; 秒 &nbsp;&nbsp; 秒 &nbsp;&nbsp; 秒
+    </div>
+    <div class="punch" style="margin-top:20px;">
+      眠くなるまで、ずっと。
+    </div>
+    <div class="rx-why">
+      <div class="label">W H Y</div>
+      <div class="text">
+        副交感神経優位で眠れる＝<br>
+        <span class="gold">歯ぎしりの確率が激減</span>。<br>
+        薬のスプリントより根本的。
+      </div>
+    </div>
+  </div>
+
+  <!-- RX 4: 信号待ち呼吸 -->
+  <div class="section">
+    <div class="rx-icon">四</div>
+    <div class="rx-name">信号待ち呼吸</div>
+    <div class="rx-en">RX.04 &nbsp;&nbsp; DAYTIME BREATHING</div>
+    <div class="punch">日中の<br>リセット呼吸。</div>
+    <ul class="rx-steps">
+      <li>鼻からスッと <strong>吸う</strong></li>
+      <li>もう一回、追加で <strong>吸う</strong></li>
+      <li>口から <strong>ゆーーーっくり</strong> 長く吐く</li>
+    </ul>
+    <div class="punch gold" style="text-align:center; margin:24px 0;">
+      吸う→吸う→長く吐く
+    </div>
+    <div class="rx-why">
+      <div class="label">W H Y</div>
+      <div class="text">
+        2段吸い＋ロング吐きは<br>
+        <span class="gold">副交感神経に直結</span>。<br>
+        信号・レジ・エレベーター、<br>
+        どこでも使える"即効リセット"。
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA -->
+  <div class="section">
+    <span class="tag">DATA</span>
+    <div class="section-number">本 日 の 測 定</div>
+    <h1>数値は、<br>嘘をつかない。</h1>
+    <div class="data-grid">
+      <div class="data-card">
+        <div>
+          <div class="data-label">Energy level</div>
+          <div class="data-status">エネルギー</div>
+        </div>
+        <div class="data-value">10.10</div>
+      </div>
+      <div class="data-card">
+        <div>
+          <div class="data-label">Immune system</div>
+          <div class="data-status">免疫 ・ NORMAL</div>
+        </div>
+        <div class="data-value">8.17</div>
+      </div>
+      <div class="data-card">
+        <div>
+          <div class="data-label">Metabolism</div>
+          <div class="data-status">代謝</div>
+        </div>
+        <div class="data-value">0.95</div>
+      </div>
+      <div class="data-card">
+        <div>
+          <div class="data-label">Psycho-emotional</div>
+          <div class="data-status">心理情動 ・ NORMAL</div>
+        </div>
+        <div class="data-value">0.84</div>
+      </div>
+      <div class="data-card">
+        <div>
+          <div class="data-label">Musculoskeletal</div>
+          <div class="data-status">運動器 ・ NORMAL</div>
+        </div>
+        <div class="data-value">0.93</div>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:32px;">
+      <div class="hl-main">すべての項目が<br>改善方向。</div>
+    </div>
+    <div class="body-text" style="text-align:center; margin-top:20px;">
+      身体は、ちゃんと<br>
+      良くなっている。
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="closing-mark">─ ◆ ─</div>
+    <div class="closing-msg">
+      リウマチは、<br>
+      "社会の都合"で<br>
+      軽く扱う病気じゃない。<br><br>
+      <span class="gold">体、最優先で。</span>
+    </div>
+    <div class="divider">━ ━ ━</div>
+    <div class="body-text" style="font-size:13px;">
+      できる日だけ、できる分だけ。<br>
+      完璧を目指さなくていい。<br>
+      身体が喜ぶ方向へ、一歩ずつ。
+    </div>
+    <div class="signature">
+      <div style="font-size:10px; letter-spacing:4px;">TAKAMATSU ・ KAGAWA</div>
+      <div class="clinic">三 条 健 康 堂 接 骨 院</div>
+      <div style="font-size:11px;">谷 弘 誠</div>
+      <div style="margin-top:16px; font-size:10px; color:rgba(245,240,228,0.5); letter-spacing:2px;">
+        年間200冊読む治療家
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
