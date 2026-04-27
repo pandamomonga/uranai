@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>谷先生が作った教育プロトコル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4ede0;
+    --paper: #faf6ec;
+    --ink: #1a1a1a;
+    --navy: #1d2d44;
+    --gold: #b08d57;
+    --rust: #c4582d;
+    --line: #c8b896;
+    --slate: #4a4a4a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: var(--cream); }
+
+  body {
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 17px;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    padding: 56px 24px 80px;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header {
+    border-top: 5px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 36px 0 32px;
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--rust);
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 44px;
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .subtitle {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 21px;
+    line-height: 1.65;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  .section { margin: 64px 0; }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--rust);
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 30px;
+    line-height: 1.4;
+    font-weight: 700;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+    color: var(--ink);
+  }
+
+  h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 21px;
+    font-weight: 700;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: var(--navy);
+  }
+
+  p {
+    margin-bottom: 18px;
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  ul, ol {
+    margin-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  li { margin-bottom: 10px; font-size: 17px; }
+
+  strong { color: var(--navy); font-weight: 700; }
+
+  /* ---------- PULLQUOTE ---------- */
+  .pullquote {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 23px;
+    line-height: 1.7;
+    color: var(--navy);
+    font-weight: 500;
+    border-left: 5px solid var(--rust);
+    padding: 10px 0 10px 26px;
+    margin: 36px 0;
+  }
+
+  /* ---------- INSIGHT BOX ---------- */
+  .insight-box {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 26px 30px;
+    margin: 28px 0;
+  }
+
+  .insight-box .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--rust);
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .insight-box p { margin-bottom: 10px; }
+  .insight-box p:last-child { margin-bottom: 0; }
+
+  /* ---------- WARNING ---------- */
+  .warning {
+    background: #f7e9d0;
+    border: 1px solid var(--gold);
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+
+  .warning .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--rust);
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .warning p { margin: 0; color: var(--ink); }
+
+  /* ---------- CATEGORY LIST ---------- */
+  .category-list {
+    counter-reset: cat;
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .category-list li {
+    counter-increment: cat;
+    padding: 18px 0 18px 60px;
+    border-bottom: 1px dashed var(--line);
+    position: relative;
+  }
+
+  .category-list li:last-child { border-bottom: none; }
+
+  .category-list li::before {
+    content: counter(cat, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    color: var(--rust);
+    font-weight: 700;
+  }
+
+  .category-list li strong {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 18px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .example {
+    font-family: 'Shippori Mincho', serif;
+    color: var(--slate);
+    font-size: 16px;
+    line-height: 1.7;
+    display: block;
+    padding-left: 12px;
+    border-left: 2px solid var(--line);
+  }
+
+  /* ---------- DAY FLOW ---------- */
+  .day-flow {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0 22px;
+    margin: 28px 0;
+  }
+
+  .day-flow .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--rust);
+    font-weight: 700;
+    padding-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .day-flow .action {
+    border-left: 2px solid var(--line);
+    padding: 0 0 22px 22px;
+    margin-bottom: 8px;
+  }
+
+  .day-flow .action:last-child { padding-bottom: 0; }
+
+  .day-flow .action h4 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .day-flow .action p { font-size: 16px; margin-bottom: 0; }
+
+  /* ---------- PROMPT BLOCK ---------- */
+  .prompt-block {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 32px;
+    margin: 32px 0;
+    border: 1px solid var(--ink);
+  }
+
+  .prompt-textarea {
+    width: 100%;
+    min-height: 520px;
+    background: transparent;
+    color: var(--paper);
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    resize: vertical;
+    padding: 0;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .prompt-textarea:focus { outline: none; }
+
+  .copy-btn {
+    display: block;
+    width: 100%;
+    background: var(--rust);
+    color: #ffffff;
+    border: none;
+    padding: 20px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    margin-top: 18px;
+    transition: background 0.2s;
+  }
+
+  .copy-btn:hover { background: #a04020; }
+  .copy-btn.copied { background: var(--gold); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    border-top: 5px solid var(--ink);
+    margin-top: 80px;
+    padding-top: 32px;
+    text-align: center;
+  }
+
+  .footer p {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 17px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .footer .brand {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    color: var(--slate);
+  }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 600px) {
+    body { padding: 36px 18px 60px; font-size: 16px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 19px; }
+    .subtitle { font-size: 18px; }
+    .pullquote { font-size: 19px; padding-left: 18px; }
+    .day-flow { grid-template-columns: 1fr; }
+    .day-flow .time {
+      padding-top: 0;
+      margin-bottom: 6px;
+      padding-left: 0;
+    }
+    .day-flow .action {
+      border-left: none;
+      padding-left: 0;
+      padding-top: 4px;
+      padding-bottom: 24px;
+      border-top: 2px solid var(--line);
+      padding-top: 12px;
+      margin-top: 0;
+    }
+    .prompt-block { padding: 22px; }
+    .prompt-textarea { font-size: 13px; min-height: 480px; }
+    .category-list li { padding-left: 50px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== HEADER ==================== -->
+<header class="header">
+  <div class="eyebrow">EDUCATION PROTOCOL ・ 2026</div>
+  <h1>谷先生が作った<br>教育プロトコル</h1>
+  <p class="subtitle">3年目を、年内に10年目レベルへ。<br>音声ドリル自動化システム。</p>
+</header>
+
+<!-- ==================== 01 OVERVIEW ==================== -->
+<section class="section">
+  <div class="section-num">01 / OVERVIEW</div>
+  <h2>このプロトコルの正体</h2>
+  <p>会社のアウトラインを掴む——「会社全体がどう動いているか」「どこが急所か」「誰に何を聞けばいいか」が分かる人になる。これが、3年目と10年目を本当に隔てているものです。</p>
+  <p>このプロトコルは、その差を <strong>1年で埋める</strong> ために作られました。条件はひとつ。<strong>毎日続けられる仕組みであること。</strong></p>
+
+  <div class="pullquote">
+    コツコツやれる人間は、ほとんどいない。<br>
+    だから、コツコツやらなくても続く仕組みを作る。
+  </div>
+</section>
+
+<!-- ==================== 02 CORE INSIGHT ==================== -->
+<section class="section">
+  <div class="section-num">02 / CORE INSIGHT</div>
+  <h2>核心は「ドリルの自動化」</h2>
+  <p>10年目になるためにやるべきことは、本質的に<strong>ドリル（反復練習）</strong>です。会社の構造を、毎日少しずつ言葉にして、繋ぎ直して、自分の中に沈めていく。</p>
+  <p>でも、人間は手で書こうとすると続きません。だから、<strong>気づいた瞬間に声で残す。</strong>これが唯一スケールする方法です。</p>
+
+  <div class="insight-box">
+    <div class="label">THE FORMULA</div>
+    <p><strong>気づいた瞬間に音声録音 → テキスト化してClaudeに蓄積 → 寝る前にドリルプロンプトで反芻。</strong></p>
+    <p>この三段ループを毎日回すだけ。Claudeが10年目視点で構造化し直してくれるので、3年目の脳に「会社の地図」が少しずつ書き込まれていきます。</p>
+  </div>
+</section>
+
+<!-- ==================== 03 TOOLS ==================== -->
+<section class="section">
+  <div class="section-num">03 / TOOLS</div>
+  <h2>必要な道具</h2>
+
+  <h3>絶対条件：音声認識の速いスマホ</h3>
+  <p>気づいた瞬間に <strong>1秒で起動して、しゃべれること。</strong>これが命です。最新のiPhoneやAndroidなら問題ありません。古い端末で反応が鈍いと、習慣になりません。スマホへの投資はここで回収します。</p>
+
+  <h3>最強：Plaud Note（プラウドノート）</h3>
+  <p>持っているなら、これを最優先で使ってください。録音とテキスト化が一体化しているうえ、室長との会話を自然に残せる。会議中も違和感なく置けるのが強みです。</p>
+
+  <h3>持っていなくてもOK：スマホ標準アプリ</h3>
+  <ul>
+    <li><strong>iPhone</strong>：「ボイスメモ」アプリ。ロック画面の左下スワイプからもショートカット可能。</li>
+    <li><strong>Android</strong>：標準「レコーダー」アプリ＋Google Keepの音声入力（自動文字起こしされる）。</li>
+    <li>どちらも無料。慣れれば3秒で録音を始められます。</li>
+  </ul>
+
+  <div class="warning">
+    <div class="label">⚠ 重要</div>
+    <p>「あとでメモに書こう」は禁句。気づきは <strong>30秒で消えます。</strong>歩きながらでも、会議の直後でも、トイレに立った時でも、その場で声に残す。これが習慣化できるかどうかで、1年後の景色が変わります。</p>
+  </div>
+</section>
+
+<!-- ==================== 04 WHAT TO CAPTURE ==================== -->
+<section class="section">
+  <div class="section-num">04 / WHAT TO CAPTURE</div>
+  <h2>毎日、何を録音するか</h2>
+  <p>以下の <strong>7つのカテゴリ</strong> のどれかに当てはまったら、即録音。考え込まなくていい。30秒の独り言で十分です。</p>
+
+  <ol class="category-list">
+    <li>
+      <strong>室長の言葉</strong>
+      <span class="example">「2026年4月◯日、朝のミーティングで室長が『あの工場の不良率は原料じゃなくて湿度だ』と言っていた」</span>
+    </li>
+    <li>
+      <strong>工場で見た違和感</strong>
+      <span class="example">「A工場のラインが、なぜか毎週水曜の午後だけ止まる。原因は不明」</span>
+    </li>
+    <li>
+      <strong>数字（不良率・生産量・納期・歩留まり・コスト）</strong>
+      <span class="example">「今月のB工場の出荷量、先月比1.2倍。なぜか分からない」</span>
+    </li>
+    <li>
+      <strong>分からなかった用語・専門語</strong>
+      <span class="example">「『骨材』と『細骨材』の違い、いまだに曖昧」</span>
+    </li>
+    <li>
+      <strong>同僚や先輩が困っていたこと</strong>
+      <span class="example">「先輩が、現場と本社の連絡が遅いとぼやいていた。なぜそうなる？」</span>
+    </li>
+    <li>
+      <strong>業務フローへの「なぜ？」</strong>
+      <span class="example">「発注書がなぜ紙でも回るのか。ITで一本化しない理由があるはず」</span>
+    </li>
+    <li>
+      <strong>顧客・トラブル対応で見聞きしたこと</strong>
+      <span class="example">「クレーム対応で、現場の判断と本社の判断がずれていた。誰の権限？」</span>
+    </li>
+  </ol>
+
+  <p style="margin-top: 24px;">大事なのは <strong>「日付・場所・誰が言ったか・どんな状況か」</strong> をセットで残すこと。文脈が消えると、暗黙知は死にます。</p>
+</section>
+
+<!-- ==================== 05 DAILY FLOW ==================== -->
+<section class="section">
+  <div class="section-num">05 / DAILY FLOW</div>
+  <h2>1日の流れ</h2>
+
+  <div class="day-flow">
+    <div class="time">朝 〜 夕</div>
+    <div class="action">
+      <h4>気づいたら即・録音</h4>
+      <p>5秒〜30秒でOK。文章にしなくていい。話し言葉のまま、状況込みで吹き込む。</p>
+    </div>
+
+    <div class="time">帰 宅 後</div>
+    <div class="action">
+      <h4>音声をテキスト化してClaudeに貼る</h4>
+      <p>Plaud Note なら自動。スマホ標準アプリでもGoogle音声入力で自動文字起こし可能。テキストをコピーして、Claudeのプロジェクトに「日次記録 2026-04-27」のような名前で追加。</p>
+    </div>
+
+    <div class="time">寝 る 前</div>
+    <div class="action">
+      <h4>ドリルプロンプトを投げて、読む</h4>
+      <p>下の「ドリルプロンプト」をコピーして、今日の記録を貼り付け、Claudeに送る。返ってきた構造化された答えを、寝る前に1回読む。これだけ。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 06 THE PROMPT ==================== -->
+<section class="section">
+  <div class="section-num">06 / THE PROMPT</div>
+  <h2>寝る前に投げる<br>ドリルプロンプト</h2>
+  <p>ここがプロトコルの<strong>心臓部</strong>です。コピーしてClaudeに貼り、最後に「今日の記録」を加えて送るだけ。</p>
+
+  <div class="prompt-block">
+    <textarea id="prompt-text" class="prompt-textarea" readonly>あなたは日本興業株式会社の全工場・全業務フローを熟知した10年目のベテラン社員です。
+私は3年目の社員で、毎日現場で気づいたこと・室長から聞いた言葉・資料で読んだこと・自分が分からなかった用語を音声で記録し、ここに蓄積しています。
+
+【あなたの役割】
+1. 今日蓄積した一次情報・室長の言葉・気づきを、会社全体のアウトラインの中に位置づけてください。
+2. 私が断片的に持っている知識を、業務フロー・組織構造・経営視点から繋ぎ直してください。
+3. 「10年目の社員ならここをこう見る」という視点を必ず加えてください。表面的な原因ではなく構造的な原因。表面的な指示ではなくその裏にある経営判断。
+4. 私の知識の穴(まだ知らない領域)を1つ指摘し、明日室長に聞くべき質問を1つだけ提案してください。
+
+【出力フォーマット】
+■ ① 今日の気づきの再配置
+今日の記録が、会社全体の業務フロー・組織構造のどこに位置するかを示す。
+
+■ ② 10年目視点での解釈
+3年目には見えない、ベテランならではの本質的な解釈。
+
+■ ③ 関連する業務フロー・他工場・他部署との繋がり
+今日の話題が、どの工場・どの部署・どの業務と繋がっているかを示す。
+
+■ ④ 明日の宿題
+私の知識の穴を埋めるために、明日室長に聞くべき具体的な質問を1つだけ提案。
+
+【私の今日の記録(音声→テキスト化)】
+(ここに今日録音した内容を貼り付け)
+
+【蓄積されている資料・過去の記録】
+(プロジェクトに保存されている資料・過去の日次記録を参照してください)
+
+---
+表面的な答えではなく、本質を突いた構造化を頼みます。
+私が年内に10年目レベルのアウトラインを掴むことが目標です。</textarea>
+    <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">プロンプトをコピーする</button>
+  </div>
+</section>
+
+<!-- ==================== 07 WHY THIS WORKS ==================== -->
+<section class="section">
+  <div class="section-num">07 / WHY THIS WORKS</div>
+  <h2>なぜこれで<br>10年目レベルになれるのか</h2>
+  <p>普通の会社では、3つの知識層が分断されています。</p>
+  <ul>
+    <li><strong>形式知</strong>：資料・業務フロー・設計図（資料庫に眠っている）</li>
+    <li><strong>暗黙知</strong>：室長の頭の中の地図（飲み会でしか出てこない）</li>
+    <li><strong>一次情報</strong>：自分が現場で感じたこと（その場で消える）</li>
+  </ul>
+  <p>このプロトコルは、Claudeを<strong>統合層</strong>として使うことで、3つを毎日結び直す。3年目の彼は、室長の頭の中に擬似的に常時アクセスしている状態になる。これは構造的な発明です。</p>
+
+  <div class="pullquote">
+    1年後、彼は10年目の体力や人脈までは持っていない。<br>
+    しかし、10年目と同じ「会社の地図」を持っている。<br>
+    会社にとって、これは大きな資産です。
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <p>谷先生が作った教育プロトコル　v1.0</p>
+  <p class="brand">高松発・一生動ける身体と人生の教養研究室｜無借金・無車・自転車・圧力鍋生活を実践する治療家より</p>
+</footer>
+
+</div>
+
+<script>
+function copyPrompt() {
+  var textarea = document.getElementById('prompt-text');
+  var btn = document.getElementById('copy-btn');
+  var originalText = 'プロンプトをコピーする';
+
+  // Primary: textarea + execCommand
+  textarea.removeAttribute('readonly');
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, 99999);
+
+  var success = false;
+  try {
+    success = document.execCommand('copy');
+  } catch(e) {
+    success = false;
+  }
+
+  textarea.setAttribute('readonly', 'true');
+
+  if (success) {
+    btn.textContent = '✓ コピーしました';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = originalText;
+      btn.classList.remove('copied');
+    }, 2000);
+    return;
+  }
+
+  // Fallback: Clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(textarea.value).then(function() {
+      btn.textContent = '✓ コピーしました';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      alert('コピーできませんでした。テキストを長押しで全選択し、手動でコピーしてください。');
+    });
+  } else {
+    alert('コピーできませんでした。テキストを長押しで全選択し、手動でコピーしてください。');
+  }
+}
+</script>
+
+</body>
+</html>
