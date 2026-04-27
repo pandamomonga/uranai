@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>谷先生が作った教育プロトコル v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4ede0;
+    --paper: #faf6ec;
+    --ink: #1a1a1a;
+    --navy: #1d2d44;
+    --gold: #b08d57;
+    --rust: #c4582d;
+    --line: #c8b896;
+    --slate: #4a4a4a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); }
+
+  body {
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 17px;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    padding: 56px 24px 80px;
+  }
+
+  .container { max-width: 820px; margin: 0 auto; }
+
+  .header {
+    border-top: 5px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 36px 0 32px;
+    margin-bottom: 56px;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.25em;
+    color: var(--rust); font-weight: 700;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 44px; line-height: 1.25;
+    font-weight: 800; letter-spacing: 0.02em;
+    color: var(--ink); margin-bottom: 18px;
+  }
+  .subtitle {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 21px; line-height: 1.65;
+    color: var(--navy); font-weight: 500;
+  }
+
+  .section { margin: 64px 0; }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--rust);
+    letter-spacing: 0.2em; font-weight: 700;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 30px; line-height: 1.4;
+    font-weight: 700; margin-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px; color: var(--ink);
+  }
+  h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 21px; font-weight: 700;
+    margin-top: 28px; margin-bottom: 12px;
+    color: var(--navy);
+  }
+  p { margin-bottom: 18px; font-size: 17px; color: var(--ink); }
+  ul, ol { margin-left: 24px; margin-bottom: 20px; }
+  li { margin-bottom: 10px; font-size: 17px; }
+  strong { color: var(--navy); font-weight: 700; }
+
+  .pullquote {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 23px; line-height: 1.7;
+    color: var(--navy); font-weight: 500;
+    border-left: 5px solid var(--rust);
+    padding: 10px 0 10px 26px; margin: 36px 0;
+  }
+
+  .insight-box {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 26px 30px; margin: 28px 0;
+  }
+  .insight-box .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--rust);
+    letter-spacing: 0.2em; font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .insight-box p { margin-bottom: 10px; }
+  .insight-box p:last-child { margin-bottom: 0; }
+
+  .warning {
+    background: #f7e9d0;
+    border: 1px solid var(--gold);
+    padding: 22px 26px; margin: 28px 0;
+  }
+  .warning .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--rust);
+    letter-spacing: 0.2em; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .warning p { margin: 0; color: var(--ink); }
+
+  .category-list { counter-reset: cat; list-style: none; margin-left: 0; }
+  .category-list li {
+    counter-increment: cat;
+    padding: 18px 0 18px 60px;
+    border-bottom: 1px dashed var(--line);
+    position: relative;
+  }
+  .category-list li:last-child { border-bottom: none; }
+  .category-list li::before {
+    content: counter(cat, decimal-leading-zero);
+    position: absolute; left: 0; top: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px; color: var(--rust); font-weight: 700;
+  }
+  .category-list li strong {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 18px; color: var(--ink);
+    display: block; margin-bottom: 4px;
+  }
+  .example {
+    font-family: 'Shippori Mincho', serif;
+    color: var(--slate); font-size: 16px;
+    line-height: 1.7; display: block;
+    padding-left: 12px; border-left: 2px solid var(--line);
+  }
+
+  .day-flow { display: grid; grid-template-columns: 110px 1fr; gap: 0 22px; margin: 28px 0; }
+  .day-flow .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--rust);
+    font-weight: 700; padding-top: 4px; letter-spacing: 0.05em;
+  }
+  .day-flow .action {
+    border-left: 2px solid var(--line);
+    padding: 0 0 22px 22px; margin-bottom: 8px;
+  }
+  .day-flow .action:last-child { padding-bottom: 0; }
+  .day-flow .action h4 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 19px; font-weight: 700;
+    margin-bottom: 6px; color: var(--ink);
+  }
+  .day-flow .action p { font-size: 16px; margin-bottom: 0; }
+
+  .prompt-block {
+    background: var(--ink); color: var(--paper);
+    padding: 32px; margin: 32px 0;
+    border: 1px solid var(--ink);
+  }
+  .prompt-block.variant-monthly { background: #2a3d5a; }
+  .prompt-block.variant-half { background: #4a5d3a; }
+  .prompt-block.variant-yearly { background: #5a3520; }
+
+  .prompt-textarea {
+    width: 100%; min-height: 540px;
+    background: transparent; color: var(--paper);
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; line-height: 1.8;
+    resize: vertical; padding: 0;
+    -webkit-text-size-adjust: 100%;
+  }
+  .prompt-textarea:focus { outline: none; }
+  .prompt-textarea.short { min-height: 400px; }
+
+  .copy-btn {
+    display: block; width: 100%;
+    background: var(--rust); color: #ffffff;
+    border: none; padding: 20px;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 19px; font-weight: 700;
+    letter-spacing: 0.12em; cursor: pointer;
+    margin-top: 18px; transition: background 0.2s;
+  }
+  .copy-btn:hover { background: #a04020; }
+  .copy-btn.copied { background: var(--gold); }
+
+  .prompt-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.15em;
+    color: var(--gold); margin-bottom: 16px; font-weight: 700;
+  }
+
+  /* TAG SAMPLE BLOCK */
+  .tag-sample {
+    background: var(--paper);
+    border: 2px solid var(--navy);
+    padding: 22px 26px; margin: 24px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; line-height: 1.9;
+    color: var(--ink);
+  }
+  .tag-sample .tag-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--rust); margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .tag-sample .tag-key { color: var(--navy); font-weight: 700; }
+  .tag-sample .tag-val { color: var(--ink); }
+  .tag-sample .star { color: var(--rust); font-weight: 700; }
+
+  /* SIMPLE 3 FILES */
+  .three-files {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin: 28px 0;
+  }
+  .file-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .file-card .icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--rust);
+    letter-spacing: 0.2em; font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .file-card h4 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 19px; font-weight: 700;
+    margin-bottom: 8px; color: var(--ink);
+  }
+  .file-card .freq {
+    font-size: 13px; color: var(--slate);
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .footer {
+    border-top: 5px solid var(--ink);
+    margin-top: 80px; padding-top: 32px;
+    text-align: center;
+  }
+  .footer p {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 17px; color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .footer .brand {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px; color: var(--slate);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 36px 18px 60px; font-size: 16px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 19px; }
+    .subtitle { font-size: 18px; }
+    .pullquote { font-size: 19px; padding-left: 18px; }
+    .day-flow { grid-template-columns: 1fr; }
+    .day-flow .time { padding-top: 0; margin-bottom: 6px; }
+    .day-flow .action {
+      border-left: none; padding-left: 0;
+      border-top: 2px solid var(--line);
+      padding-top: 12px; padding-bottom: 24px;
+    }
+    .prompt-block { padding: 22px; }
+    .prompt-textarea { font-size: 13px; min-height: 480px; }
+    .prompt-textarea.short { min-height: 380px; }
+    .category-list li { padding-left: 50px; }
+    .three-files { grid-template-columns: 1fr; }
+    .tag-sample { font-size: 13px; padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="eyebrow">EDUCATION PROTOCOL ・ v3.0</div>
+  <h1>谷先生が作った<br>教育プロトコル</h1>
+  <p class="subtitle">3年目を、年内に10年目レベルへ。<br>音声ドリル × タグ自動付与 × 縦断分析。</p>
+</header>
+
+<!-- 01 OVERVIEW -->
+<section class="section">
+  <div class="section-num">01 / OVERVIEW</div>
+  <h2>このプロトコルの正体</h2>
+  <p>会社のアウトラインを掴む——「会社全体がどう動いているか」「どこが急所か」「誰に何を聞けばいいか」が分かる人になる。これが、3年目と10年目を本当に隔てているものです。</p>
+  <p>このプロトコルは、その差を <strong>1年で埋める</strong> ために作られました。条件はひとつ。<strong>毎日続けられる仕組みであること。</strong></p>
+  <div class="pullquote">
+    コツコツやれる人間は、ほとんどいない。<br>
+    だから、コツコツやらなくても続く仕組みを作る。
+  </div>
+</section>
+
+<!-- 02 CORE INSIGHT -->
+<section class="section">
+  <div class="section-num">02 / CORE INSIGHT</div>
+  <h2>核心は「ドリルの自動化」</h2>
+  <p>10年目になるためにやるべきことは、本質的に<strong>ドリル（反復練習）</strong>です。会社の構造を、毎日少しずつ言葉にして、繋ぎ直して、自分の中に沈めていく。</p>
+  <p>でも、人間は手で書こうとすると続きません。だから、<strong>気づいた瞬間に声で残す。</strong>これが唯一スケールする方法です。</p>
+  <div class="insight-box">
+    <div class="label">THE FORMULA</div>
+    <p><strong>気づいた瞬間に音声録音 → チャットでドリルプロンプト → タグ付きで構造化 → 月次/半期/年次で自動抽出。</strong></p>
+    <p>毎日の記録は <strong>タグ付き</strong> で蓄積されるので、後から「室長語録だけ」「★★★だけ」「B工場だけ」と切り出せます。これが時間が経つほど効いてきます。</p>
+  </div>
+</section>
+
+<!-- 03 TOOLS -->
+<section class="section">
+  <div class="section-num">03 / TOOLS</div>
+  <h2>必要な道具</h2>
+  <h3>絶対条件：音声認識の速いスマホ</h3>
+  <p>気づいた瞬間に <strong>1秒で起動して、しゃべれること。</strong>これが命です。最新のiPhoneやAndroidなら問題ありません。古い端末で反応が鈍いと、習慣になりません。スマホへの投資はここで回収します。</p>
+  <h3>最強：Plaud Note（プラウドノート）</h3>
+  <p>持っているなら、これを最優先で使ってください。録音とテキスト化が一体化しているうえ、室長との会話を自然に残せる。会議中も違和感なく置けるのが強みです。</p>
+  <h3>持っていなくてもOK：スマホ標準アプリ</h3>
+  <ul>
+    <li><strong>iPhone</strong>：「ボイスメモ」アプリ。ロック画面の左下スワイプからもショートカット可能。</li>
+    <li><strong>Android</strong>：標準「レコーダー」アプリ＋Google Keepの音声入力（自動文字起こしされる）。</li>
+    <li>どちらも無料。慣れれば3秒で録音を始められます。</li>
+  </ul>
+  <div class="warning">
+    <div class="label">⚠ 重要</div>
+    <p>「あとでメモに書こう」は禁句。気づきは <strong>30秒で消えます。</strong>歩きながらでも、会議の直後でも、トイレに立った時でも、その場で声に残す。これが習慣化できるかどうかで、1年後の景色が変わります。</p>
+  </div>
+</section>
+
+<!-- 04 WHAT TO CAPTURE -->
+<section class="section">
+  <div class="section-num">04 / WHAT TO CAPTURE</div>
+  <h2>毎日、何を録音するか</h2>
+  <p>以下の <strong>7つのカテゴリ</strong> のどれかに当てはまったら、即録音。考え込まなくていい。30秒の独り言で十分です。</p>
+  <ol class="category-list">
+    <li><strong>室長の言葉</strong><span class="example">「2026年4月◯日、朝のミーティングで室長が『あの工場の不良率は原料じゃなくて湿度だ』と言っていた」</span></li>
+    <li><strong>工場で見た違和感</strong><span class="example">「A工場のラインが、なぜか毎週水曜の午後だけ止まる。原因は不明」</span></li>
+    <li><strong>数字（不良率・生産量・納期・歩留まり・コスト）</strong><span class="example">「今月のB工場の出荷量、先月比1.2倍。なぜか分からない」</span></li>
+    <li><strong>分からなかった用語・専門語</strong><span class="example">「『骨材』と『細骨材』の違い、いまだに曖昧」</span></li>
+    <li><strong>同僚や先輩が困っていたこと</strong><span class="example">「先輩が、現場と本社の連絡が遅いとぼやいていた。なぜそうなる？」</span></li>
+    <li><strong>業務フローへの「なぜ？」</strong><span class="example">「発注書がなぜ紙でも回るのか。ITで一本化しない理由があるはず」</span></li>
+    <li><strong>顧客・トラブル対応で見聞きしたこと</strong><span class="example">「クレーム対応で、現場の判断と本社の判断がずれていた。誰の権限？」</span></li>
+  </ol>
+  <p style="margin-top: 24px;">大事なのは <strong>「日付・場所・誰が言ったか・どんな状況か」</strong> をセットで残すこと。文脈が消えると、暗黙知は死にます。</p>
+</section>
+
+<!-- 05 TAG SYSTEM -->
+<section class="section">
+  <div class="section-num">05 / TAG SYSTEM</div>
+  <h2>タグ自動付与システム</h2>
+  <p>このプロトコルの <strong>最大の発明</strong> は、毎日のドリルプロンプトに「タグを必ず最後に出力させる」指示を組み込んでいることです。これがあるおかげで、3年経って何百日分の記録が溜まっても、Claudeに「室長語録だけ抽出して」「★★★だけ並べて」と言うだけで一発で取り出せます。</p>
+
+  <p>毎日の記録は、自動的にこういうタグが末尾に付きます：</p>
+
+  <div class="tag-sample">
+    <div class="tag-title">【TAGS】 — 自動出力例</div>
+    <div><span class="tag-key">カテゴリ:</span> <span class="tag-val">#室長語録 #業務フロー</span></div>
+    <div><span class="tag-key">場所:</span> <span class="tag-val">#B工場 #本社</span></div>
+    <div><span class="tag-key">人物:</span> <span class="tag-val">#室長 #品質管理部長</span></div>
+    <div><span class="tag-key">テーマ:</span> <span class="tag-val">#不良率 #湿度 #原料</span></div>
+    <div><span class="tag-key">重要度:</span> <span class="star">★★★</span></div>
+  </div>
+
+  <p><strong>5項目だけ</strong>。考えなくていい、Claudeが毎日勝手に付けてくれます。これが3年積み上がると、自分専用の検索可能データベースが完成します。</p>
+
+  <div class="insight-box">
+    <div class="label">なぜタグなのか</div>
+    <p>タグなしの記録は、量が増えれば増えるほどノイズになります。「あの時の室長の発言、どこにあったっけ」が探せなくなる。タグがあれば、何百日経っても <strong>1秒で構造化された切り口で取り出せる。</strong>これが、月次・半期・年次レビューの精度を決めます。</p>
+  </div>
+</section>
+
+<!-- 06 DAILY FLOW -->
+<section class="section">
+  <div class="section-num">06 / DAILY FLOW</div>
+  <h2>1日の流れ</h2>
+  <div class="day-flow">
+    <div class="time">朝 〜 夕</div>
+    <div class="action">
+      <h4>気づいたら即・録音</h4>
+      <p>5秒〜30秒でOK。文章にしなくていい。話し言葉のまま、状況込みで吹き込む。</p>
+    </div>
+    <div class="time">帰 宅 後</div>
+    <div class="action">
+      <h4>音声をテキスト化してチャットに貼る</h4>
+      <p>Plaud Note なら自動。スマホ標準アプリでもGoogle音声入力で自動文字起こし可能。テキストをコピーして、Claudeのチャットに貼り付けるだけ。<strong>プロジェクトには入れない。</strong></p>
+    </div>
+    <div class="time">寝 る 前</div>
+    <div class="action">
+      <h4>ドリルプロンプトを投げて、読む</h4>
+      <p>下の「ドリルプロンプト」をコピーして、今日の記録と一緒にClaudeに送る。返ってくる構造化された答え（末尾にタグ付き）を、寝る前に1回読む。これだけ。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 07 DAILY DRILL PROMPT -->
+<section class="section">
+  <div class="section-num">07 / DAILY DRILL</div>
+  <h2>寝る前に投げる<br>ドリルプロンプト</h2>
+  <p>ここが心臓部。タグ自動付与の指示が組み込まれています。<strong>このまま毎晩使うだけで、勝手にタグ付き記録が積み上がります。</strong></p>
+  <div class="prompt-block">
+    <div class="prompt-meta">DAILY ・ 毎晩</div>
+    <textarea id="prompt-daily" class="prompt-textarea" readonly>あなたは日本興業株式会社の全工場・全業務フローを熟知した10年目のベテラン社員です。
+私は3年目の社員で、毎日現場で気づいたこと・室長から聞いた言葉・資料で読んだこと・自分が分からなかった用語を音声で記録し、ここに貼り付けます。
+
+【あなたの役割】
+1. 今日蓄積した一次情報・室長の言葉・気づきを、会社全体のアウトラインの中に位置づけてください。
+2. 私が断片的に持っている知識を、業務フロー・組織構造・経営視点から繋ぎ直してください。
+3. 「10年目の社員ならここをこう見る」という視点を必ず加えてください。表面的な原因ではなく構造的な原因。表面的な指示ではなくその裏にある経営判断。
+4. 私の知識の穴(まだ知らない領域)を1つ指摘し、明日室長に聞くべき質問を1つだけ提案してください。
+
+【出力フォーマット】
+■ ① 今日の気づきの再配置
+今日の記録が、会社全体の業務フロー・組織構造のどこに位置するかを示す。
+
+■ ② 10年目視点での解釈
+3年目には見えない、ベテランならではの本質的な解釈。
+
+■ ③ 関連する業務フロー・他工場・他部署との繋がり
+今日の話題が、どの工場・どの部署・どの業務と繋がっているかを示す。
+
+■ ④ 明日の宿題
+私の知識の穴を埋めるために、明日室長に聞くべき具体的な質問を1つだけ提案。
+
+■ ⑤ 【TAGS】(必ず最後にこの形式で出力)
+カテゴリ: #○○ #○○ (下記7つから選ぶ)
+  #室長語録 #現場違和感 #数字 #用語 #同僚 #業務フロー #顧客対応
+場所: #○○ (例: #A工場 #B工場 #本社 #品質管理部)
+人物: #○○ (例: #室長 #先輩A #部長)
+テーマ: #○○ #○○ (例: #不良率 #湿度 #納期 #コスト #人間関係)
+重要度: ★ / ★★ / ★★★ (★=雑談レベル、★★=学びあり、★★★=10年目になるための核心)
+
+【私の今日の記録(音声→テキスト化)】
+(ここに今日録音した内容を貼り付け)
+
+---
+表面的な答えではなく、本質を突いた構造化を頼みます。
+タグは必ず最後に出力してください。後で月次・半期・年次のレビューで自動抽出するために使います。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('prompt-daily', this)">プロンプトをコピーする</button>
+  </div>
+</section>
+
+<!-- 08 PROJECT STRUCTURE -->
+<section class="section">
+  <div class="section-num">08 / PROJECT STRUCTURE</div>
+  <h2>プロジェクトに入れるのは<br>たった3種類だけ</h2>
+  <p>毎日の記録はチャットに残るので、<strong>プロジェクトには入れない</strong>。プロジェクトに入れるのは、これから作る「縦断分析の結果」だけ。3種類しかありません。</p>
+
+  <div class="three-files">
+    <div class="file-card">
+      <div class="icon">MONTHLY</div>
+      <h4>月次レビュー</h4>
+      <div class="freq">毎月末に1本</div>
+    </div>
+    <div class="file-card">
+      <div class="icon">HALF-YEAR</div>
+      <h4>半期分析</h4>
+      <div class="freq">6ヶ月に1本</div>
+    </div>
+    <div class="file-card">
+      <div class="icon">YEARLY</div>
+      <h4>年次総括</h4>
+      <div class="freq">1年に1本</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="label">3年経っても20本ちょっと</div>
+    <p>これだけ。3年経っても、月次36本＋半期6本＋年次3本＝<strong>45本程度のファイル</strong>がプロジェクトに溜まるだけ。読み返せば、自分の道のり・成長・癖が全部見える。フォルダ分けも要らない。日付順に並べておけば十分です。</p>
+    <p style="margin-top: 12px;">毎日の記録は、タグ付きでチャット履歴に残っている。そこから月末に <strong>「今月の#室長語録 を全部抽出して月次レビューを作って」</strong> と頼めば、Claudeがタグで拾って一気にまとめてくれます。</p>
+  </div>
+</section>
+
+<!-- 09 LONGITUDINAL ANALYSIS -->
+<section class="section">
+  <div class="section-num">09 / LONGITUDINAL ANALYSIS</div>
+  <h2>月次・半期・年次の<br>分析プロンプト</h2>
+  <p>タグ付きで蓄積された記録を、Claudeに <strong>「縦に読ませる」</strong> ことで、自分の理解の進捗・偏り・成長曲線が見えてきます。タグを使った抽出指示が組み込まれています。</p>
+
+  <h3>① 月次レビュープロンプト</h3>
+  <p>毎月末に投げる。出てきた結果をコピーして、プロジェクトに「2026-04_月次レビュー」のような名前で保存。</p>
+  <div class="prompt-block variant-monthly">
+    <div class="prompt-meta">MONTHLY ・ 毎月末</div>
+    <textarea id="prompt-monthly" class="prompt-textarea short" readonly>あなたは私の教育プロトコルを伴走している10年目視点のメンターです。
+今月(YYYY年MM月)のチャット履歴から、毎日のドリル記録(末尾に【TAGS】が付いているもの)を縦に読み返し、月次レビューを作ってください。
+
+【タグを使った抽出】
+1. #室長語録 タグがついた記録を全件リストアップ
+2. ★★★(重要度MAX)の記録を全件リストアップ
+3. 出現頻度の高い#テーマ タグ トップ5
+4. 場所タグの分布(どの工場・部署の話題が多かったか)
+5. カテゴリタグの分布(7カテゴリのうちどれに偏っていたか)
+
+【その上での分析】
+1. 今月、私が新しく理解できた領域は何か
+2. 今月、繰り返し出てきたが、まだ私が消化しきれていないテーマは何か
+3. 今月のカテゴリ偏りから見える「私の盲点」(例: #数字 が極端に少ないなら数字に弱い)
+4. 来月、特に意識して観察・質問すべきテーマを3つ
+
+【出力ルール】
+- 私の自己評価を甘くしない。理解が浅い箇所は浅いと指摘する。
+- 「ただ記録しただけ」と「本当に理解した」を区別する。
+- 抽象論ではなく、タグで抽出した具体例を必ず根拠として引用する。
+
+【参照する記録】
+今月分のチャット履歴のドリル記録すべて(タグ付き)を参照してください。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('prompt-monthly', this)">月次プロンプトをコピー</button>
+  </div>
+
+  <h3>② 半期分析プロンプト</h3>
+  <p>6ヶ月ごとに投げる。プロジェクトに溜まった月次レビュー6本＋チャット履歴を参照させる。</p>
+  <div class="prompt-block variant-half">
+    <div class="prompt-meta">HALF-YEAR ・ 半期に1回</div>
+    <textarea id="prompt-half" class="prompt-textarea short" readonly>あなたは私の教育プロトコルを伴走している10年目視点のメンターです。
+過去6ヶ月の月次レビュー6本(プロジェクト内)とチャット履歴のタグ付き記録を縦読みし、半期分析を作ってください。
+
+【タグを使った縦断分析】
+1. 6ヶ月のカテゴリタグ分布の推移(月ごとの偏りの変化)
+2. 場所タグ・人物タグの分布から見える「私の動き方」
+3. ★★★記録のテーマ変遷(何が私の核心テーマだったか)
+4. 6ヶ月で繰り返し登場した #テーマ トップ10とその変遷
+
+【その上での診断】
+1. 私の思考の「癖」や「傾向」(どんな視点に強く、どんな視点に弱いか)
+2. 私が無意識に避けている領域(タグ分布から判断: 数字・人間関係・経営視点・現場感のうちどれが薄いか)
+3. 室長との関係性の中で、私の質問の質はどう変化したか(#室長語録 の中身の変化を見る)
+4. 「3年目らしい視野の狭さ」が残っている箇所と、「ベテランの片鱗」が出てきた箇所
+
+【出力ルール】
+- 褒めない。冷静に構造を診断してほしい。
+- 私自身が気づいていないパターンを言語化してほしい。
+- 抽象論ではなく、具体的な日付・タグ・記録を根拠として引用してほしい。
+
+【参照する記録】
+プロジェクト内の月次レビュー6本と、過去6ヶ月のチャット履歴のタグ付きドリル記録すべてを縦断的に分析してください。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('prompt-half', this)">半期プロンプトをコピー</button>
+  </div>
+
+  <h3>③ 年次総括プロンプト</h3>
+  <p>1年経った日に投げる。プロジェクトの月次12本＋半期2本＋チャット履歴を参照させる。</p>
+  <div class="prompt-block variant-yearly">
+    <div class="prompt-meta">YEARLY ・ 1年に1回</div>
+    <textarea id="prompt-yearly" class="prompt-textarea short" readonly>あなたは私の教育プロトコルを1年間伴走してきた10年目視点のメンターです。
+プロジェクトに蓄積された月次レビュー12本・半期分析2本と、1年分のチャット履歴のタグ付き記録を縦読みし、年次総括を作ってください。
+
+【タグを使った1年間の縦断分析】
+1. カテゴリタグ分布の年間推移(7カテゴリのバランスの変化)
+2. ★★★記録の年間推移(私の核心テーマの進化)
+3. 年間で最も出現頻度が高かった #テーマ トップ20
+4. 場所タグの年間分布(私の活動範囲)
+5. 人物タグの年間分布(誰から学んだか)
+
+【出力構成】
+■ 1. 1年前の私と今の私の差(箇条書きで具体的に)
+■ 2. 「会社のアウトライン」の獲得度合い(0〜100で構造評価)
+   - 工場理解 / 業務フロー理解 / 組織構造理解 / 経営視点 / 顧客視点 の5軸でそれぞれ点数と根拠
+■ 3. 室長から1年で得た最重要の知見トップ5(#室長語録 ★★★ から抽出)
+■ 4. 私の最大の強み(視点・思考の癖の中で武器になるもの)
+■ 5. 私の最大の弱点(タグ分布の薄い領域から判断)
+■ 6. 来年1年で取り組むべきテーマ3つ(優先順位つき)
+■ 7. このまま続ければ何年で「真の10年目レベル」(=アウトライン+体力+人脈)に到達するかの推定
+
+【出力ルール】
+- 1年間の進歩を過大評価しない。
+- 「アウトラインを掴んだ」と「現場で動ける」は別物として区別する。
+- 評価の根拠は必ずタグ・日付・記録の具体例から引用する。
+- 来年へのテーマは、1年分のタグデータから本当に必要なものを選ぶ。
+
+【参照する記録】
+プロジェクト内の全ファイルと、過去1年分のチャット履歴のタグ付きドリル記録すべてを縦断的に分析してください。</textarea>
+    <button class="copy-btn" onclick="copyPrompt('prompt-yearly', this)">年次プロンプトをコピー</button>
+  </div>
+</section>
+
+<!-- 10 WHY THIS WORKS -->
+<section class="section">
+  <div class="section-num">10 / WHY THIS WORKS</div>
+  <h2>なぜこれで<br>10年目レベルになれるのか</h2>
+  <p>普通の会社では、3つの知識層が分断されています。</p>
+  <ul>
+    <li><strong>形式知</strong>：資料・業務フロー・設計図（資料庫に眠っている）</li>
+    <li><strong>暗黙知</strong>：室長の頭の中の地図（飲み会でしか出てこない）</li>
+    <li><strong>一次情報</strong>：自分が現場で感じたこと（その場で消える）</li>
+  </ul>
+  <p>このプロトコルは、Claudeを<strong>統合層</strong>として使うことで、3つを毎日結び直す。さらに <strong>タグ自動付与</strong> によって、何年経っても自分の道のりを構造的に見渡せる。</p>
+  <div class="pullquote">
+    1年後、彼は10年目の体力や人脈までは持っていない。<br>
+    しかし、10年目と同じ「会社の地図」を持ち、<br>
+    自分の癖と弱点までタグで言語化できている。<br>
+    会社にとって、これは大きな資産です。
+  </div>
+</section>
+
+<footer class="footer">
+  <p>谷先生が作った教育プロトコル　v3.0</p>
+  <p class="brand">高松発・一生動ける身体と人生の教養研究室｜無借金・無車・自転車・圧力鍋生活を実践する治療家より</p>
+</footer>
+
+</div>
+
+<script>
+function copyPrompt(textareaId, btn) {
+  var textarea = document.getElementById(textareaId);
+  var originalText = btn.textContent;
+  textarea.removeAttribute('readonly');
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, 99999);
+  var success = false;
+  try { success = document.execCommand('copy'); } catch(e) { success = false; }
+  textarea.setAttribute('readonly', 'true');
+  if (success) {
+    btn.textContent = '✓ コピーしました';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = originalText;
+      btn.classList.remove('copied');
+    }, 2000);
+    return;
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(textarea.value).then(function() {
+      btn.textContent = '✓ コピーしました';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      alert('コピーできませんでした。テキストを長押しで全選択し、手動でコピーしてください。');
+    });
+  } else {
+    alert('コピーできませんでした。テキストを長押しで全選択し、手動でコピーしてください。');
+  }
+}
+</script>
+
+</body>
+</html>
