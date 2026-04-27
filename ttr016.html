@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>離脱作戦 × 勝ち組派遣社員戦略｜兼近様へ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@500;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1f2e;
+  --ink-soft:#2c3344;
+  --paper:#f6f1e6;
+  --paper-deep:#ede5d2;
+  --gold:#a87c3a;
+  --gold-deep:#7a5824;
+  --wine:#7d2935;
+  --wine-deep:#5a1923;
+  --teal:#1f4d4a;
+  --line:#c9b893;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Noto Serif JP',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.85;
+  font-size:17px;
+  background-image:
+    radial-gradient(ellipse at top left, rgba(168,124,58,0.06), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(125,41,53,0.05), transparent 50%);
+  min-height:100vh;
+}
+
+.wrap{
+  max-width:880px;
+  margin:0 auto;
+  padding:60px 32px 120px;
+}
+
+/* ============ 表紙 ============ */
+.cover{
+  border:2px solid var(--ink);
+  padding:64px 40px 56px;
+  margin-bottom:80px;
+  position:relative;
+  background:
+    linear-gradient(135deg, rgba(168,124,58,0.04) 0%, transparent 50%, rgba(125,41,53,0.04) 100%),
+    var(--paper);
+}
+.cover::before,.cover::after{
+  content:"";position:absolute;width:24px;height:24px;
+  border:2px solid var(--gold-deep);
+}
+.cover::before{top:8px;left:8px;border-right:none;border-bottom:none}
+.cover::after{bottom:8px;right:8px;border-left:none;border-top:none}
+
+.cover-eyebrow{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:18px;
+  letter-spacing:0.3em;
+  color:var(--wine);
+  text-align:center;
+  margin-bottom:18px;
+  text-transform:uppercase;
+}
+
+.cover h1{
+  font-family:'Shippori Mincho',serif;
+  font-weight:800;
+  font-size:42px;
+  line-height:1.4;
+  text-align:center;
+  margin-bottom:8px;
+  letter-spacing:0.05em;
+}
+.cover h1 .cross{
+  display:inline-block;
+  margin:0 14px;
+  color:var(--gold);
+  font-size:32px;
+  vertical-align:middle;
+}
+
+.cover-sub{
+  text-align:center;
+  font-size:18px;
+  color:var(--ink-soft);
+  margin-top:20px;
+  font-weight:500;
+}
+
+.cover-rule{
+  width:80px;height:1px;
+  background:var(--gold-deep);
+  margin:32px auto 28px;
+}
+
+.cover-to{
+  text-align:center;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:20px;
+  color:var(--ink-soft);
+  margin-top:24px;
+}
+.cover-to span{
+  font-family:'Shippori Mincho',serif;
+  font-style:normal;
+  font-weight:700;
+  color:var(--wine);
+  margin-left:8px;
+}
+
+/* ============ 序文 ============ */
+.intro{
+  font-size:18px;
+  line-height:2.1;
+  margin-bottom:80px;
+  padding:0 8px;
+}
+.intro p{margin-bottom:18px}
+.intro .lead{
+  font-size:21px;
+  font-weight:700;
+  color:var(--wine-deep);
+  border-left:4px solid var(--gold);
+  padding-left:18px;
+  line-height:1.8;
+}
+
+/* ============ セクション ============ */
+.section{
+  margin-bottom:90px;
+}
+
+.sec-head{
+  display:flex;
+  align-items:baseline;
+  gap:18px;
+  margin-bottom:32px;
+  padding-bottom:14px;
+  border-bottom:2px solid var(--ink);
+  position:relative;
+}
+.sec-head::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;left:0;
+  width:80px;height:2px;
+  background:var(--gold);
+}
+.sec-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;
+  font-weight:600;
+  color:var(--gold);
+  line-height:1;
+  font-style:italic;
+}
+.sec-title{
+  font-family:'Shippori Mincho',serif;
+  font-weight:700;
+  font-size:28px;
+  color:var(--ink);
+  letter-spacing:0.04em;
+}
+.sec-title small{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:15px;
+  color:var(--gold-deep);
+  font-weight:400;
+  margin-top:4px;
+  letter-spacing:0.15em;
+}
+
+/* ============ 三層構造図 ============ */
+.three-layer{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin:32px 0;
+}
+.layer{
+  border:2px solid var(--ink);
+  padding:22px 26px;
+  background:var(--paper);
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:22px;
+  align-items:center;
+}
+.layer-num{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:38px;
+  font-weight:600;
+  color:var(--paper);
+  background:var(--ink);
+  width:54px;height:54px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+}
+.layer:nth-child(1) .layer-num{background:var(--wine)}
+.layer:nth-child(2) .layer-num{background:var(--gold-deep)}
+.layer:nth-child(3) .layer-num{background:var(--teal)}
+.layer-body h4{
+  font-family:'Shippori Mincho',serif;
+  font-size:20px;font-weight:700;
+  margin-bottom:4px;
+}
+.layer-body p{
+  font-size:16px;
+  color:var(--ink-soft);
+  line-height:1.7;
+}
+.layer-arrow{
+  text-align:center;
+  font-size:22px;
+  color:var(--gold);
+  margin:-4px 0;
+  font-weight:700;
+}
+
+/* ============ 用語ボックス ============ */
+.term{
+  background:var(--paper-deep);
+  border-left:4px solid var(--gold);
+  padding:18px 22px;
+  margin:20px 0;
+  font-size:16px;
+  line-height:1.8;
+}
+.term-label{
+  display:inline-block;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:13px;
+  letter-spacing:0.2em;
+  color:var(--wine);
+  background:var(--paper);
+  padding:2px 10px;
+  border:1px solid var(--wine);
+  margin-bottom:10px;
+  text-transform:uppercase;
+}
+.term-word{
+  font-weight:700;
+  font-size:18px;
+  color:var(--ink);
+  margin-right:8px;
+}
+.term-meaning{
+  display:block;
+  margin-top:8px;
+  padding-top:10px;
+  border-top:1px dashed var(--line);
+  color:var(--ink-soft);
+}
+.term-meaning::before{
+  content:"たとえるなら ▸ ";
+  font-weight:700;
+  color:var(--wine);
+  font-size:14px;
+  letter-spacing:0.05em;
+}
+
+/* ============ スクショリスト ============ */
+.shot-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:24px 0;
+}
+.shot{
+  border:1.5px solid var(--ink);
+  padding:18px 20px;
+  background:var(--paper);
+  position:relative;
+}
+.shot-num{
+  position:absolute;
+  top:-12px;left:16px;
+  background:var(--paper);
+  padding:0 8px;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:18px;
+  font-weight:600;
+  color:var(--wine);
+}
+.shot h5{
+  font-family:'Shippori Mincho',serif;
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:6px;
+  color:var(--ink);
+}
+.shot p{
+  font-size:14px;
+  color:var(--ink-soft);
+  line-height:1.65;
+}
+
+/* ============ プロンプト枠 ============ */
+.prompt-box{
+  background:var(--ink);
+  color:var(--paper);
+  padding:32px 30px;
+  margin:28px 0;
+  border:2px solid var(--gold);
+  position:relative;
+}
+.prompt-box::before{
+  content:"PROMPT";
+  position:absolute;
+  top:-12px;left:24px;
+  background:var(--ink);
+  color:var(--gold);
+  padding:0 12px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;
+  letter-spacing:0.3em;
+  font-weight:600;
+}
+.prompt-box .prompt-text{
+  font-family:'Shippori Mincho',serif;
+  font-size:18px;
+  line-height:1.9;
+  font-weight:500;
+}
+.prompt-box .prompt-text em{
+  color:var(--gold);
+  font-style:normal;
+  font-weight:700;
+  border-bottom:1px solid var(--gold);
+}
+
+/* ============ AI分析4本柱 ============ */
+.four-pillars{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:24px 0;
+}
+.pillar{
+  border:1.5px solid var(--ink);
+  padding:22px;
+  background:var(--paper);
+  position:relative;
+  overflow:hidden;
+}
+.pillar::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:5px;
+  background:var(--gold);
+}
+.pillar:nth-child(2)::before{background:var(--wine)}
+.pillar:nth-child(3)::before{background:var(--teal)}
+.pillar:nth-child(4)::before{background:var(--ink)}
+.pillar-icon{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:42px;
+  font-weight:600;
+  color:var(--gold);
+  line-height:1;
+  margin-bottom:12px;
+}
+.pillar:nth-child(2) .pillar-icon{color:var(--wine)}
+.pillar:nth-child(3) .pillar-icon{color:var(--teal)}
+.pillar:nth-child(4) .pillar-icon{color:var(--ink)}
+.pillar h4{
+  font-family:'Shippori Mincho',serif;
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+.pillar p{
+  font-size:14.5px;
+  color:var(--ink-soft);
+  line-height:1.7;
+}
+.pillar p strong{
+  color:var(--wine-deep);
+}
+
+/* ============ ロードマップ ============ */
+.roadmap{
+  position:relative;
+  padding-left:32px;
+  margin:32px 0;
+}
+.roadmap::before{
+  content:"";
+  position:absolute;
+  left:8px;top:8px;bottom:8px;
+  width:2px;
+  background:var(--gold);
+}
+.step{
+  position:relative;
+  margin-bottom:30px;
+  padding-left:28px;
+}
+.step::before{
+  content:"";
+  position:absolute;
+  left:-32px;top:6px;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--paper);
+  border:3px solid var(--wine);
+}
+.step h4{
+  font-family:'Shippori Mincho',serif;
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:6px;
+  color:var(--ink);
+}
+.step .when{
+  display:inline-block;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:14px;
+  color:var(--wine);
+  letter-spacing:0.15em;
+  margin-bottom:6px;
+}
+.step p{
+  font-size:15.5px;
+  color:var(--ink-soft);
+  line-height:1.75;
+}
+
+/* ============ ゴール ============ */
+.goal{
+  background:var(--ink);
+  color:var(--paper);
+  padding:48px 40px;
+  margin:60px 0 40px;
+  text-align:center;
+  position:relative;
+}
+.goal::before,.goal::after{
+  content:"";position:absolute;
+  width:32px;height:32px;
+  border:2px solid var(--gold);
+}
+.goal::before{top:12px;left:12px;border-right:none;border-bottom:none}
+.goal::after{bottom:12px;right:12px;border-left:none;border-top:none}
+.goal-eyebrow{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:16px;
+  letter-spacing:0.3em;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+.goal h3{
+  font-family:'Shippori Mincho',serif;
+  font-size:30px;
+  font-weight:700;
+  line-height:1.6;
+  margin-bottom:18px;
+  letter-spacing:0.05em;
+}
+.goal-arrow{
+  font-size:24px;
+  color:var(--gold);
+  margin:8px 0;
+}
+.goal-from{
+  font-size:17px;
+  color:rgba(246,241,230,0.7);
+}
+.goal-to{
+  font-size:22px;
+  font-weight:700;
+  color:var(--gold);
+  margin-top:6px;
+}
+
+/* ============ チェックリスト ============ */
+.checklist{
+  background:var(--paper-deep);
+  border:2px solid var(--ink);
+  padding:32px 36px;
+  margin:32px 0;
+}
+.checklist h3{
+  font-family:'Shippori Mincho',serif;
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+}
+.checklist ul{list-style:none}
+.checklist li{
+  font-size:16.5px;
+  line-height:1.85;
+  padding:10px 0 10px 36px;
+  position:relative;
+  border-bottom:1px dashed var(--line);
+}
+.checklist li:last-child{border-bottom:none}
+.checklist li::before{
+  content:"☐";
+  position:absolute;
+  left:0;top:8px;
+  font-size:22px;
+  color:var(--wine);
+  font-weight:700;
+}
+
+/* ============ フッター ============ */
+.foot{
+  text-align:center;
+  margin-top:80px;
+  padding-top:32px;
+  border-top:1px solid var(--line);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:15px;
+  color:var(--ink-soft);
+  letter-spacing:0.15em;
+}
+.foot strong{
+  display:block;
+  font-family:'Shippori Mincho',serif;
+  font-style:normal;
+  font-size:16px;
+  color:var(--ink);
+  margin-top:6px;
+  letter-spacing:0.08em;
+}
+
+/* スマホ対応 */
+@media (max-width:680px){
+  .wrap{padding:40px 20px 80px}
+  .cover{padding:48px 24px 40px}
+  .cover h1{font-size:30px}
+  .cover h1 .cross{display:block;margin:8px 0;font-size:22px}
+  .sec-num{font-size:48px}
+  .sec-title{font-size:22px}
+  .shot-list,.four-pillars{grid-template-columns:1fr}
+  .layer{grid-template-columns:1fr;text-align:center}
+  .layer-num{margin:0 auto}
+  .goal{padding:36px 24px}
+  .goal h3{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ========= 表紙 ========= -->
+<section class="cover">
+  <div class="cover-eyebrow">Strategy Brief — 2026</div>
+  <h1>離脱作戦<span class="cross">×</span>勝ち組派遣社員戦略</h1>
+  <div class="cover-rule"></div>
+  <div class="cover-sub">AI時代の派遣という働き方を、レバレッジに変える設計図</div>
+  <div class="cover-to">For <span>兼近様</span></div>
+</section>
+
+<!-- ========= 序文 ========= -->
+<section class="intro">
+  <p class="lead">この戦略の核は、「我慢して残る」のではなく、「次へ動くための踏み台として今の現場を使い切る」という発想の転換にあります。</p>
+  <p>受け作業はリウマチを悪化させる。だからこそ、辞めることを前向きに設計する。ただ辞めるのではなく、ここを<strong>AIを使いこなす練習場</strong>にしてから抜ける。次の派遣先で「2日で全部わかっている人」になって登場する。それが<strong>引っ張りだこ側に回るための地ならし</strong>です。</p>
+  <p>派遣は本来「替えがきく側」に置かれやすい働き方ですが、AIで業務理解の立ち上がりを圧縮できる人だけは、逆に<strong>どこの現場でも欲しがられる希少な存在</strong>に変わります。これがAI時代に生まれる、新しい派遣の格差です。兼近様はその勝ち組側に立てる方だと、私は思っています。</p>
+</section>
+
+<!-- ========= 戦略の三層構造 ========= -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">戦略の全体像<small>THREE LAYERS OF THE PLAN</small></div>
+  </div>
+
+  <p>この作戦は三つの層が重なってできています。下から順に積み上げていきます。</p>
+
+  <div class="three-layer">
+    <div class="layer">
+      <div class="layer-num">1</div>
+      <div class="layer-body">
+        <h4>離脱の正当化</h4>
+        <p>リウマチを悪化させる現場に居続けない。「辞めること」を罪悪感ではなく、計画的な次の一手として位置づけ直す。</p>
+      </div>
+    </div>
+    <div class="layer-arrow">▼</div>
+    <div class="layer">
+      <div class="layer-num">2</div>
+      <div class="layer-body">
+        <h4>AI習熟の実戦場として今の現場を使う</h4>
+        <p>業務フロー分析・ボトルネック特定・マニュアル化を、ノーリスクの今のうちに練習する。失敗しても派遣だから損が小さい。</p>
+      </div>
+    </div>
+    <div class="layer-arrow">▼</div>
+    <div class="layer">
+      <div class="layer-num">3</div>
+      <div class="layer-body">
+        <h4>派遣市場での非対称優位</h4>
+        <p>どんな現場でも2日で立ち上がれる人になる。派遣会社からも現場からも「次もあの人を」と指名される側に回る。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="term">
+    <span class="term-label">Key Term</span>
+    <div><span class="term-word">非対称優位</span>周りが持っていない武器を、自分だけが持っている状態。</div>
+    <div class="term-meaning">みんなが地図を見て歩いている街で、自分だけドローンの空撮を見ながら歩いているような感覚。同じ仕事をしているように見えて、見えている景色が違う。</div>
+  </div>
+</section>
+
+<!-- ========= スクショで何を撮るか ========= -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">スクショで何を撮るか<small>WHAT TO CAPTURE ON SITE</small></div>
+  </div>
+
+  <p>許可されている範囲のスクショ・手書きメモ・配置図で構いません。次の6種類が揃えば、AIが現場を「読み解く」のに十分な材料になります。</p>
+
+  <div class="shot-list">
+    <div class="shot">
+      <div class="shot-num">No.01</div>
+      <h5>業務マニュアル・手順書</h5>
+      <p>受け作業・ピッキングそれぞれの正式な手順。これがAIに渡す一次資料の中心になります。</p>
+    </div>
+    <div class="shot">
+      <div class="shot-num">No.02</div>
+      <h5>シフト表・人員配置図</h5>
+      <p>誰がどこに何人配置されているか。どこに人手が偏っているかが見えると、現場全体の弱点がわかります。</p>
+    </div>
+    <div class="shot">
+      <div class="shot-num">No.03</div>
+      <h5>商品の配置レイアウト</h5>
+      <p>棚の場所・動線・出荷口までの距離。動きの無駄がここに集中していることが多いです。</p>
+    </div>
+    <div class="shot">
+      <div class="shot-num">No.04</div>
+      <h5>1日のタイムスケジュール</h5>
+      <p>朝礼から終業までの流れ。どの時間帯に何が詰まっているかを把握する。</p>
+    </div>
+    <div class="shot">
+      <div class="shot-num">No.05</div>
+      <h5>よくあるミス・トラブル事例</h5>
+      <p>掲示物・注意書き・ヒヤリハットの記録。現場が何で困っているかの宝庫です。</p>
+    </div>
+    <div class="shot">
+      <div class="shot-num">No.06</div>
+      <h5>新人研修資料・チェックリスト</h5>
+      <p>「何ができれば一人前か」の基準。これが手に入れば立ち上がりの設計図がそのまま手に入ります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========= AIにやらせる4つの分析 ========= -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">AIにやらせる4つの分析<small>FOUR ANALYSES TO RUN</small></div>
+  </div>
+
+  <p>集めた資料をAIに渡して、次の4つを順番に作らせます。これが「現場を2日で読み解くテンプレ」の中身です。</p>
+
+  <div class="four-pillars">
+    <div class="pillar">
+      <div class="pillar-icon">i</div>
+      <h4>業務フロー図</h4>
+      <p>商品が入ってから出ていくまでの流れを一枚の図にしてもらう。<strong>工場の流れ図のようなもの</strong>。これで「全体のどこに自分がいるか」が見える。</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">ii</div>
+      <h4>ボトルネック特定</h4>
+      <p>流れの中で一番詰まっている場所をAIに見つけさせる。<strong>高速道路の渋滞ポイントを地図上で示してもらうイメージ</strong>。</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">iii</div>
+      <h4>属人化チェック</h4>
+      <p>「あの人にしかできない仕事」を洗い出す。<strong>秘伝のタレ状態</strong>になっている工程は、現場の弱点であり、同時に攻略点でもあります。</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">iv</div>
+      <h4>2日で立ち上がるミニマニュアル</h4>
+      <p>新人が最短で戦力化できる手順書をAIに作らせる。<strong>これがそのまま、次の派遣先でも使える兼近様専用のテンプレ</strong>になります。</p>
+    </div>
+  </div>
+
+  <div class="term">
+    <span class="term-label">Key Term</span>
+    <div><span class="term-word">業務フロー分析</span>仕事の流れを一本の線にして見える化する作業。</div>
+    <div class="term-meaning">毎日やっている作業を、上から見下ろして「水の流れ」みたいに眺めること。中にいると見えない詰まりが、上から見ると一発でわかる。</div>
+  </div>
+
+  <div class="term">
+    <span class="term-label">Key Term</span>
+    <div><span class="term-word">ボトルネック</span>全体の速度を決めてしまっている、一番細い部分のこと。</div>
+    <div class="term-meaning">ペットボトルの口みたいなもの。中身がどれだけたくさんあっても、口が細ければ出てくる速度はそこで決まる。現場の「ボトルネック」が見えると、全体の弱点が一発でわかる。</div>
+  </div>
+</section>
+
+<!-- ========= 最強のプロンプト ========= -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">最強の仕上げプロンプト<small>THE FINAL POLISH</small></div>
+  </div>
+
+  <p>AIにいろいろ分析してもらった後、最後に必ず一発入れていただきたい呪文があります。これを入れるか入れないかで、出てくる結果の精度がまるで変わります。</p>
+
+  <div class="prompt-box">
+    <div class="prompt-text">
+      ここまでの内容を、<em>エントロピーを下げる方向</em>で全体を見直し、<em>無駄・重複・あいまいさを削ぎ落として</em>、最も精度の高い形に整え直してください。
+    </div>
+  </div>
+
+  <div class="term">
+    <span class="term-label">Key Term</span>
+    <div><span class="term-word">エントロピーを下げる</span>散らかった情報を、整理整頓して、ノイズを取り除くこと。</div>
+    <div class="term-meaning"><strong>散らかった部屋を片付けるのと同じ</strong>。物の量は変わらないのに、整理されただけで一気に動きやすくなる。AIに「エントロピーを下げて」と頼むと、同じ情報なのに、ぐっと締まった、使える形になって戻ってくる。</div>
+  </div>
+
+  <p>この一手間を、<strong>すべての分析・すべての文章・すべての資料</strong>の最後に入れる。これが習慣になると、兼近様のアウトプットは他の人と一段違うものになっていきます。</p>
+</section>
+
+<!-- ========= ロードマップ ========= -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">これから何をするか<small>ROADMAP</small></div>
+  </div>
+
+  <div class="roadmap">
+    <div class="step">
+      <div class="when">WEEK 1</div>
+      <h4>素材集めの週</h4>
+      <p>許可される範囲で、6種類のスクショ・メモを少しずつ集める。一気にやらない。「観察する人」になる週。</p>
+    </div>
+    <div class="step">
+      <div class="when">WEEK 2</div>
+      <h4>AIに渡して4分析を回す週</h4>
+      <p>業務フロー図 → ボトルネック → 属人化 → ミニマニュアル、の順でAIに作らせる。最後に必ず「エントロピーを下げて」で締める。</p>
+    </div>
+    <div class="step">
+      <div class="when">WEEK 3</div>
+      <h4>テンプレを自分の言葉に直す週</h4>
+      <p>AIの出力を、兼近様自身が次の現場で使える「自分専用の問いかけリスト」に書き換える。これが一生モノの武器になります。</p>
+    </div>
+    <div class="step">
+      <div class="when">WEEK 4 →</div>
+      <h4>派遣会社に動きを伝える週</h4>
+      <p>手首の状態を理由に、別の派遣先を相談する。このとき「2日で立ち上がれます」という静かな自信を持って臨めるかどうかで、扱いが変わります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========= ゴール ========= -->
+<section class="section">
+  <div class="goal">
+    <div class="goal-eyebrow">THE FINAL DESTINATION</div>
+    <h3>労働集約から、認知集約へ。</h3>
+    <div class="goal-from">手首と体力で稼ぐ働き方から</div>
+    <div class="goal-arrow">▼</div>
+    <div class="goal-to">頭と段取りで稼ぐ働き方へ</div>
+  </div>
+
+  <div class="term">
+    <span class="term-label">Key Term</span>
+    <div><span class="term-word">労働集約 / 認知集約</span>体を使って稼ぐか、頭を使って稼ぐかの違い。</div>
+    <div class="term-meaning"><strong>労働集約</strong>は、働いた時間と稼ぎが比例する働き方(体が壊れたら終わる)。<strong>認知集約</strong>は、知識や段取りで稼ぐ働き方(同じ時間でも倍の価値が出せる)。AIは、認知集約側に乗り換えるためのエレベーターのようなもの。</div>
+  </div>
+</section>
+
+<!-- ========= チェックリスト ========= -->
+<section class="section">
+  <div class="checklist">
+    <h3>今週のチェックリスト</h3>
+    <ul>
+      <li>許可されている範囲を職場で確認する(スクショ・メモ)</li>
+      <li>業務マニュアル・配置図・シフト表のうち、撮れるものから1枚撮る</li>
+      <li>AIに業務フロー図を作らせてみる</li>
+      <li>最後に「エントロピーを下げて整え直して」を必ず入れる</li>
+      <li>手首の状態を毎日メモする(離脱判断の根拠になる)</li>
+      <li>派遣会社の担当者の連絡先を確認しておく</li>
+    </ul>
+  </div>
+</section>
+
+<div class="foot">
+  An invitation to the winning side of the new staffing era.
+  <strong>兼近様の次の一歩のために</strong>
+</div>
+
+</div>
+</body>
+</html>
