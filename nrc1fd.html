@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黒子の均衡｜装備マニュアル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Reggae+One&family=Hachi+Maru+Pop&family=Dela+Gothic+One&family=RocknRoll+One&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fdf6e3;
+    --paper-line: #b8d4dc;
+    --ink: #1a1a1a;
+    --green: #1b5e20;
+    --green-bright: #2e7d32;
+    --lime: #aeea00;
+    --yellow: #ffd600;
+    --yellow-soft: #fff9c4;
+    --red: #d32f2f;
+    --red-deep: #b71c1c;
+    --pink: #e91e63;
+    --pink-soft: #ffd1dc;
+    --orange: #ff6f00;
+    --sky: #29b6f6;
+    --tape: rgba(255, 214, 0, 0.55);
+    --tape-pink: rgba(233, 30, 99, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Yusei Magic', 'Noto Sans JP', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ノート罫線背景 */
+  body {
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0, transparent 31px, var(--paper-line) 31px, var(--paper-line) 32px);
+    background-attachment: fixed;
+  }
+
+  /* 紙テクスチャノイズ */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(233, 30, 99, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(41, 182, 246, 0.04) 0%, transparent 40%);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 18px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─────────── ヘッダー ─────────── */
+  .header {
+    text-align: center;
+    padding: 30px 16px 36px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  /* マスキングテープ装飾 */
+  .tape {
+    position: absolute;
+    background: var(--tape);
+    height: 22px;
+    transform: rotate(-3deg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    z-index: 2;
+  }
+  .tape::before, .tape::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 8px;
+    background-image: repeating-linear-gradient(45deg, transparent 0 3px, rgba(0,0,0,0.06) 3px 4px);
+  }
+  .tape::before { left: 0; }
+  .tape::after { right: 0; }
+
+  .header-eyebrow {
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 14px;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+  }
+
+  .header-title {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(36px, 9vw, 56px);
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    text-shadow: 4px 4px 0 var(--yellow), 4px 4px 0 var(--ink);
+    transform: rotate(-1deg);
+    display: inline-block;
+    margin: 8px 0;
+  }
+
+  .header-sub {
+    font-family: 'Reggae One', cursive;
+    font-size: 18px;
+    color: var(--ink);
+    margin-top: 14px;
+    background: var(--yellow);
+    display: inline-block;
+    padding: 4px 16px;
+    transform: rotate(1deg);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .header-note {
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    margin-top: 18px;
+    line-height: 1.7;
+  }
+
+  /* バーストスター */
+  .burst {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    background: var(--pink);
+    color: white;
+    font-family: 'Reggae One', cursive;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-12deg);
+    margin: 0 8px;
+    padding: 4px;
+  }
+
+  /* ─────────── マスターカウンター ─────────── */
+  .counter-wrap {
+    position: sticky;
+    top: 12px;
+    z-index: 50;
+    margin: 24px 0 32px;
+    text-align: center;
+  }
+
+  .counter {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--yellow);
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 18px;
+    padding: 10px 22px;
+    transform: rotate(-1deg);
+    box-shadow: 4px 4px 0 var(--red);
+    border: 2px solid var(--ink);
+    letter-spacing: 0.05em;
+  }
+
+  .counter-num {
+    color: white;
+    font-size: 28px;
+    margin: 0 4px;
+  }
+
+  .counter-num.full {
+    color: var(--lime);
+    animation: pulse 0.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.12); }
+  }
+
+  /* ─────────── セクション ─────────── */
+  .section {
+    margin: 50px 0;
+    position: relative;
+  }
+
+  .section-header {
+    position: relative;
+    padding: 18px 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .section-header-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .section-num-badge {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    background: white;
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    transform: rotate(-8deg);
+    margin-bottom: 8px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .section-label {
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(26px, 6vw, 36px);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-tagline {
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 14px;
+    margin-top: 8px;
+    color: var(--ink);
+  }
+
+  /* ───── セクション①:定型句（緑系） ───── */
+  .sec-1 .section-num-badge { color: var(--green); border-color: var(--green); box-shadow: 3px 3px 0 var(--green); }
+  .sec-1 .section-label { color: var(--green); }
+  .sec-1 .section-title {
+    color: white;
+    background: var(--green);
+    padding: 6px 18px;
+    transform: rotate(-1deg);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  /* ───── セクション②:NG言葉（警告黄黒） ───── */
+  .sec-2 .section-num-badge { color: var(--red); border-color: var(--red); box-shadow: 3px 3px 0 var(--red); }
+  .sec-2 .section-label { color: var(--red); }
+  .sec-2 .section-title {
+    color: var(--ink);
+    background: var(--yellow);
+    padding: 6px 18px;
+    transform: rotate(1deg);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  /* ───── セクション③:顔・態度（ピンク） ───── */
+  .sec-3 .section-num-badge { color: var(--pink); border-color: var(--pink); box-shadow: 3px 3px 0 var(--pink); }
+  .sec-3 .section-label { color: var(--pink); }
+  .sec-3 .section-title {
+    color: white;
+    background: var(--pink);
+    padding: 6px 18px;
+    transform: rotate(-1deg);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  /* ─────────── アイテムカード ─────────── */
+  .item-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .item {
+    background: white;
+    border: 2.5px solid var(--ink);
+    padding: 18px 18px 16px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .item:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+  .item:active { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--ink); }
+
+  .item:nth-child(odd) { transform: rotate(-0.4deg); }
+  .item:nth-child(even) { transform: rotate(0.4deg); }
+  .item:nth-child(odd):hover { transform: rotate(-0.4deg) translate(-2px, -2px); }
+  .item:nth-child(even):hover { transform: rotate(0.4deg) translate(-2px, -2px); }
+
+  .item-num {
+    position: absolute;
+    top: -16px;
+    left: -10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 20px;
+    color: white;
+    background: var(--ink);
+    border: 3px solid white;
+    box-shadow: 2px 2px 0 var(--ink);
+    transform: rotate(-8deg);
+    z-index: 2;
+  }
+
+  .sec-1 .item-num { background: var(--green); }
+  .sec-2 .item-num { background: var(--red); }
+  .sec-3 .item-num { background: var(--pink); }
+
+  .item-content {
+    margin-left: 38px;
+  }
+
+  .item-headline {
+    font-family: 'RocknRoll One', sans-serif;
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  /* セクション①で headline をハイライト */
+  .sec-1 .item-headline {
+    background: linear-gradient(transparent 60%, rgba(174, 234, 0, 0.65) 60%);
+    display: inline;
+    padding: 0 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .sec-2 .item-headline {
+    color: var(--red-deep);
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+    text-decoration-color: var(--red);
+  }
+
+  .item-context {
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.65;
+    border-left: 3px solid var(--ink);
+    padding: 4px 0 4px 12px;
+    margin-top: 10px;
+  }
+
+  .sec-1 .item-context { border-left-color: var(--green); }
+  .sec-2 .item-context { border-left-color: var(--red); }
+  .sec-3 .item-context { border-left-color: var(--pink); }
+
+  /* マスタースタンプ */
+  .master-stamp {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%) rotate(-15deg) scale(0.8);
+    width: 70px;
+    height: 70px;
+    border: 3px solid var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 14px;
+    color: var(--red);
+    background: rgba(255,255,255,0.9);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-align: center;
+    line-height: 1.1;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .item.mastered .master-stamp {
+    opacity: 1;
+    transform: translateY(-50%) rotate(-15deg) scale(1);
+  }
+
+  .item.mastered {
+    background: var(--paper);
+  }
+
+  .item.mastered .item-headline {
+    color: #888;
+  }
+
+  /* セクション②専用：警告ストライプ */
+  .sec-2-warning {
+    height: 16px;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--ink) 0 12px,
+      var(--yellow) 12px 24px
+    );
+    margin-bottom: 18px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* タグ風ラベル */
+  .item-tag {
+    display: inline-block;
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 11px;
+    padding: 2px 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    background: var(--yellow);
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    transform: rotate(-1deg);
+  }
+
+  .sec-2 .item-tag { background: var(--red); color: white; }
+  .sec-3 .item-tag { background: var(--pink-soft); }
+
+  /* ─────────── 装備完了パネル ─────────── */
+  .complete-panel {
+    margin: 60px 0 0;
+    padding: 40px 24px;
+    background: var(--ink);
+    color: white;
+    text-align: center;
+    position: relative;
+    border: 4px solid var(--ink);
+  }
+
+  .complete-panel::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 2px dashed var(--yellow);
+    pointer-events: none;
+  }
+
+  .complete-eyebrow {
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--yellow);
+    margin-bottom: 12px;
+    text-indent: 0.3em;
+  }
+
+  .complete-title {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: clamp(28px, 7vw, 40px);
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    text-shadow: 4px 4px 0 var(--red);
+  }
+
+  .complete-text {
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 16px;
+    color: white;
+    line-height: 1.85;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .complete-text strong {
+    color: var(--yellow);
+    font-weight: 900;
+  }
+
+  .complete-arrow {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 28px;
+    color: var(--yellow);
+    margin-top: 20px;
+    display: inline-block;
+    animation: bob 1.4s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ─────────── ロックモード ─────────── */
+  .complete-panel.locked {
+    background: #424242;
+    border-color: #424242;
+  }
+
+  .complete-panel.locked .complete-title {
+    color: #888;
+    text-shadow: 4px 4px 0 #1a1a1a;
+  }
+
+  .complete-panel.locked .complete-eyebrow {
+    color: #888;
+  }
+
+  .complete-panel.locked .complete-text {
+    color: #aaa;
+  }
+
+  /* リセットフッター */
+  .reset-row {
+    margin-top: 32px;
+    text-align: center;
+  }
+
+  .reset-btn {
+    background: white;
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 13px;
+    padding: 8px 18px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 0.2s ease;
+  }
+
+  .reset-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+  .reset-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+  /* トースト */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background: var(--ink);
+    color: var(--yellow);
+    padding: 14px 22px;
+    font-family: 'Reggae One', cursive;
+    font-size: 16px;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 2px solid var(--yellow);
+    box-shadow: 4px 4px 0 var(--red);
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* 装飾パーツ */
+  .deco-arrow {
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 22px;
+    color: var(--red);
+    display: inline-block;
+    transform: rotate(-15deg);
+  }
+
+  .deco-star {
+    color: var(--yellow);
+    font-size: 18px;
+    margin: 0 4px;
+  }
+
+  /* 部分マーカー */
+  .marker-pink {
+    background: linear-gradient(transparent 60%, var(--pink-soft) 60%);
+    padding: 0 2px;
+  }
+  .marker-yellow {
+    background: linear-gradient(transparent 60%, var(--yellow) 60%);
+    padding: 0 2px;
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 18px 14px 80px; }
+    .item { padding: 16px 14px 14px; }
+    .item-content { margin-left: 32px; }
+    .item-num { width: 38px; height: 38px; font-size: 17px; top: -14px; left: -8px; }
+    .item-headline { font-size: 19px; }
+    .master-stamp { width: 56px; height: 56px; font-size: 11px; right: 8px; }
+    .header-title { font-size: 38px; }
+    .counter { font-size: 15px; padding: 8px 16px; }
+    .counter-num { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="container">
+
+  <!-- ─────────── ヘッダー ─────────── -->
+  <header class="header">
+    <span class="tape" style="top: 8px; left: 30%; width: 40%; transform: rotate(-3deg);"></span>
+    <span class="header-eyebrow">▼ 葬式派遣 出陣前必読 ▼</span><br>
+    <span class="header-title">装備マニュアル</span><br>
+    <div class="header-sub">『黒子の均衡』ゲーム前の戦力チェック！</div>
+    <p class="header-note">
+      <span class="deco-star">★</span>
+      定型句・NG言葉・顔態度の<strong>15装備</strong>を<br>
+      タップして覚えたら出陣じゃ！
+      <span class="deco-star">★</span>
+    </p>
+  </header>
+
+  <!-- ─────────── マスターカウンター（sticky） ─────────── -->
+  <div class="counter-wrap">
+    <div class="counter">
+      装備マスター
+      <span class="counter-num" id="counterNum">0</span>
+      ／ 15
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════ -->
+  <!-- ① 定型句ベスト5 -->
+  <!-- ═════════════════════════════════════ -->
+  <section class="section sec-1">
+    <div class="section-header">
+      <div class="section-num-badge">①</div><br>
+      <span class="section-label">◎ 安全装備 ◎</span>
+      <h2 class="section-title">必ず言う定型句 ベスト5</h2>
+      <div class="section-tagline">迷ったらこれを言え！全部これで切り抜けろ！</div>
+    </div>
+
+    <ul class="item-list">
+      <li class="item" data-id="p1">
+        <div class="item-num">壱</div>
+        <div class="item-content">
+          <span class="item-tag">受付・参列者対応</span>
+          <div class="item-headline">この度はご愁傷様です</div>
+          <div class="item-context">最強の万能挨拶。参列者を迎える時、社員さんへの初っぱな、葬儀社スタッフ間でも全部これで成立する。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="p2">
+        <div class="item-num">弐</div>
+        <div class="item-content">
+          <span class="item-tag">遺族・親族対応</span>
+          <div class="item-headline">お悔やみ申し上げます</div>
+          <div class="item-context">壱とほぼ同義だが、より深い場面用。遺族や親族と向き合う時はこっち。声は小さめ、深く一礼。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="p3">
+        <div class="item-num">参</div>
+        <div class="item-content">
+          <span class="item-tag">判断保留</span>
+          <div class="item-headline">少々お待ちくださいませ</div>
+          <div class="item-context">分からない・迷う・即答できない、全部これで時間を稼ぐ。<span class="marker-yellow">困った瞬間にまずこれが出てくれば勝ち。</span></div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="p4">
+        <div class="item-num">肆</div>
+        <div class="item-content">
+          <span class="item-tag">越権防止</span>
+          <div class="item-headline">○○さんに確認して参ります</div>
+          <div class="item-context">参とセットで使う鉄板技。社員さんへ綺麗にバトンタッチできる魔法の呪文。派遣の本分を守る最大の盾。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="p5">
+        <div class="item-num">伍</div>
+        <div class="item-content">
+          <span class="item-tag">移動・通り抜け</span>
+          <div class="item-headline">失礼いたします</div>
+          <div class="item-context">入退室・通り抜け・割り込み・写真撮影・全部これで通る。<span class="marker-yellow">無言で動かない。一言挟むだけで印象が変わる。</span></div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ═════════════════════════════════════ -->
+  <!-- ② NG言葉ベスト5 -->
+  <!-- ═════════════════════════════════════ -->
+  <section class="section sec-2">
+    <div class="sec-2-warning"></div>
+
+    <div class="section-header">
+      <div class="section-num-badge">②</div><br>
+      <span class="section-label">⚠ 地雷ワード ⚠</span>
+      <h2 class="section-title">絶対NG言葉 ベスト5</h2>
+      <div class="section-tagline">うっかり言ったらゲームオーバー！</div>
+    </div>
+
+    <ul class="item-list">
+      <li class="item" data-id="n1">
+        <div class="item-num">壱</div>
+        <div class="item-content">
+          <span class="item-tag">最大地雷</span>
+          <div class="item-headline">頑張ってください</div>
+          <div class="item-context">葬式で「頑張れ」は <strong style="color:var(--red)">絶対NG中のNG</strong>。「お疲れが出ませんように」「ご自愛ください」が代替。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="n2">
+        <div class="item-num">弐</div>
+        <div class="item-content">
+          <span class="item-tag">再会示唆NG</span>
+          <div class="item-headline">お元気で／またお会いしましょう</div>
+          <div class="item-context">死別の場で「再会」を匂わせる言葉は地雷。立ち去る時は <strong>「失礼いたします」</strong> だけで十分。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="n3">
+        <div class="item-num">参</div>
+        <div class="item-content">
+          <span class="item-tag">直接表現NG</span>
+          <div class="item-headline">亡くなった／死んだ</div>
+          <div class="item-context">直接的な死の表現は使わない。<strong style="color:var(--red)">「ご逝去」「お眠りになられた」「お亡くなりに」</strong> に置き換える。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="n4">
+        <div class="item-num">肆</div>
+        <div class="item-content">
+          <span class="item-tag">忌み言葉</span>
+          <div class="item-headline">重ね言葉ぜんぶ</div>
+          <div class="item-context">ますます／たびたび／くれぐれも／重ね重ね／いよいよ／また／再び。<span class="marker-yellow">不幸が重なる連想でNG。</span>口癖にしている人は要注意。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="n5">
+        <div class="item-num">伍</div>
+        <div class="item-content">
+          <span class="item-tag">越権発言</span>
+          <div class="item-headline">お辛いですね／大変でしたね</div>
+          <div class="item-context">派遣が遺族に共感めいた発言をするのは越権。<strong>感想を述べる権利は社員さんのもの。</strong>定型句①②だけで対応。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ═════════════════════════════════════ -->
+  <!-- ③ 顔・態度ベスト5 -->
+  <!-- ═════════════════════════════════════ -->
+  <section class="section sec-3">
+    <div class="section-header">
+      <div class="section-num-badge">③</div><br>
+      <span class="section-label">♡ 佇まい装備 ♡</span>
+      <h2 class="section-title">顔・態度 ベスト5</h2>
+      <div class="section-tagline">言葉以前に勝負がついてる！</div>
+    </div>
+
+    <ul class="item-list">
+      <li class="item" data-id="f1">
+        <div class="item-num">壱</div>
+        <div class="item-content">
+          <span class="item-tag">表情</span>
+          <div class="item-headline">口角は引き締めた中立顔</div>
+          <div class="item-context">笑顔×・しかめっ面×・<strong>無表情◎</strong>。口を軽く閉じ、口角は上げず下げず。<span class="marker-pink">これだけで「分かってる人」感が出る。</span></div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="f2">
+        <div class="item-num">弐</div>
+        <div class="item-content">
+          <span class="item-tag">視線</span>
+          <div class="item-headline">相手の鼻〜胸元に置く</div>
+          <div class="item-context">凝視×・逸らしすぎ×。<strong>柔らかく中央に焦点。</strong>目を合わせ続けると圧になる、外し続けると不審になる。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="f3">
+        <div class="item-num">参</div>
+        <div class="item-content">
+          <span class="item-tag">姿勢</span>
+          <div class="item-headline">背筋立てて肩は落とす</div>
+          <div class="item-context">緊張感はあるが力みのない構え。<span class="marker-pink">骨で立って肉は脱力。</span>長時間立っていても疲れない、社員さんの邪魔にもならない。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="f4">
+        <div class="item-num">肆</div>
+        <div class="item-content">
+          <span class="item-tag">動作</span>
+          <div class="item-headline">通常の8割スピードで動く</div>
+          <div class="item-context">バタつかない・止まらない・流れる。<strong>急ぐ時こそゆっくり、暇な時もキビキビ。</strong>速度を一定に保つだけで「落ち着いた人」評価。</div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+
+      <li class="item" data-id="f5">
+        <div class="item-num">伍</div>
+        <div class="item-content">
+          <span class="item-tag">声</span>
+          <div class="item-headline">通常の7割音量、語尾は静かに</div>
+          <div class="item-context">はっきり、しかし張り上げない。<strong>語尾を「〜ます。」と静かに落とす。</strong><span class="marker-pink">この一癖だけで弔事の雰囲気に溶ける。</span></div>
+        </div>
+        <div class="master-stamp">マスター<br>済</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ─────────── 装備完了パネル ─────────── -->
+  <div class="complete-panel locked" id="completePanel">
+    <div class="complete-eyebrow" id="completeEyebrow">▼ ロック中 ▼</div>
+    <div class="complete-title" id="completeTitle">15装備全マスターで解放</div>
+    <p class="complete-text" id="completeText">
+      まずは <strong>定型句5＋NG5＋顔態度5＝15装備</strong> を<br>
+      タップして覚えてしまうこと。<br>
+      装備が揃ったら、<strong>『黒子の均衡』ゲーム本編</strong>で出陣！
+    </p>
+  </div>
+
+  <div class="reset-row">
+    <button class="reset-btn" id="resetBtn">装備をリセット</button>
+  </div>
+
+</div>
+
+<script>
+  let mastered = {};
+
+  async function loadState() {
+    try {
+      const r = await window.storage.get('soubishi_mastered');
+      if (r && r.value) mastered = JSON.parse(r.value);
+    } catch(e) {
+      mastered = {};
+    }
+    render();
+  }
+
+  async function saveState() {
+    try { await window.storage.set('soubishi_mastered', JSON.stringify(mastered)); }
+    catch(e) {}
+  }
+
+  function render() {
+    let count = 0;
+    document.querySelectorAll('.item').forEach(el => {
+      const id = el.dataset.id;
+      const m = !!mastered[id];
+      el.classList.toggle('mastered', m);
+      if (m) count++;
+    });
+
+    const num = document.getElementById('counterNum');
+    num.textContent = count;
+    num.classList.toggle('full', count === 15);
+
+    const panel = document.getElementById('completePanel');
+    const ey = document.getElementById('completeEyebrow');
+    const ti = document.getElementById('completeTitle');
+    const tx = document.getElementById('completeText');
+
+    if (count === 15) {
+      panel.classList.remove('locked');
+      ey.innerHTML = '★ 装備完了 ★';
+      ti.innerHTML = '出陣準備、整いました！';
+      tx.innerHTML = `
+        <strong>15装備すべてマスター達成！</strong><br>
+        これで葬式の場で減点される確率は激減。<br>
+        さあ、<strong>『黒子の均衡』ゲーム本編</strong>へ出陣！<br>
+        社員さんの再依頼を取りに行こう。
+      `;
+      if (!panel.querySelector('.complete-arrow')) {
+        const arrow = document.createElement('div');
+        arrow.className = 'complete-arrow';
+        arrow.innerHTML = '▼ 黒子の均衡 へ ▼';
+        panel.appendChild(arrow);
+      }
+    } else {
+      panel.classList.add('locked');
+      ey.innerHTML = '▼ ロック中 ▼';
+      ti.innerHTML = `あと <span style="color:var(--yellow)">${15 - count}</span> 装備で解放`;
+      tx.innerHTML = `
+        まずは <strong>定型句5＋NG5＋顔態度5＝15装備</strong> を<br>
+        タップして覚えてしまうこと。<br>
+        装備が揃ったら、<strong>『黒子の均衡』ゲーム本編</strong>で出陣！
+      `;
+      const a = panel.querySelector('.complete-arrow');
+      if (a) a.remove();
+    }
+  }
+
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  document.querySelectorAll('.item').forEach(el => {
+    el.addEventListener('click', async () => {
+      const id = el.dataset.id;
+      mastered[id] = !mastered[id];
+      await saveState();
+      const before = document.getElementById('counterNum').textContent;
+      render();
+      const after = document.getElementById('counterNum').textContent;
+      if (mastered[id]) {
+        if (parseInt(after) === 15) toast('装備完了！出陣じゃ！');
+        else toast(`装備${after}/15 マスター！`);
+      }
+    });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', async () => {
+    if (!confirm('装備マスターをすべてリセットしますか？')) return;
+    mastered = {};
+    await saveState();
+    render();
+    toast('リセットしました');
+  });
+
+  loadState();
+</script>
+
+</body>
+</html>
