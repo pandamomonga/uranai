@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不調終了 ─ 120の覚え書き｜三条健康堂接骨院</title>
+<meta name="description" content="高松発・一生動ける身体と人生の教養研究室。柔道整復師 谷弘誠による120の覚え書き。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Yusei+Magic&family=Hachi+Maru+Pop&family=DotGothic16&family=Shippori+Mincho:wght@500;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f5efe2;
+  --paper-dark: #ebe3cf;
+  --ink: #2a2418;
+  --ink-soft: #4a3f2a;
+  --accent: #c84b3a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Shippori Mincho", "Noto Serif JP", serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(200, 75, 58, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(58, 90, 140, 0.04) 0%, transparent 40%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.15 0 0 0 0 0.13 0 0 0 0 0.08 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ヘッダー */
+.intro {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 24px;
+  position: relative;
+  text-align: center;
+}
+
+.intro::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+  border: 2px solid var(--ink);
+  pointer-events: none;
+}
+
+.intro::after {
+  content: "";
+  position: absolute;
+  top: 38px;
+  left: 38px;
+  right: 38px;
+  bottom: 38px;
+  border: 1px solid var(--ink);
+  pointer-events: none;
+}
+
+.intro-stamp {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  width: 80px;
+  height: 80px;
+  border: 3px double var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Yusei Magic", sans-serif;
+  font-size: 11px;
+  color: var(--accent);
+  transform: rotate(-12deg);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.intro-eyebrow {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 28px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.intro-title {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: clamp(40px, 10vw, 72px);
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.intro-subtitle {
+  font-family: "Yusei Magic", sans-serif;
+  font-size: clamp(14px, 3.5vw, 18px);
+  color: var(--ink-soft);
+  margin-bottom: 32px;
+  letter-spacing: 0.1em;
+}
+
+.intro-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--ink);
+  margin: 24px auto;
+  position: relative;
+}
+.intro-divider::before, .intro-divider::after {
+  content: "•";
+  position: absolute;
+  top: -10px;
+  color: var(--ink);
+  font-size: 14px;
+}
+.intro-divider::before { left: -16px; }
+.intro-divider::after { right: -16px; }
+
+.intro-author {
+  font-family: "Hachi Maru Pop", sans-serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 16px;
+  line-height: 1.8;
+}
+
+.intro-author strong {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.intro-scroll {
+  margin-top: 40px;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 22px;
+  color: var(--accent);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* 章タイトル */
+.chapter {
+  padding: 80px 24px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.chapter-num {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 24px;
+  color: var(--accent);
+  letter-spacing: 4px;
+}
+
+.chapter-title {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: clamp(22px, 6vw, 30px);
+  margin-top: 8px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.chapter-line {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  margin: 16px auto;
+}
+
+/* カードグリッド */
+.cards {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  padding: 32px 28px 28px;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  overflow: hidden;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.card-num {
+  font-family: "DotGothic16", monospace;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.card-num-big {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+  display: block;
+}
+
+.card-body {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.95;
+  letter-spacing: 0.03em;
+}
+
+.card-body em {
+  font-style: normal;
+  font-weight: 700;
+  background: linear-gradient(transparent 60%, rgba(255, 230, 100, 0.5) 60%);
+  padding: 0 2px;
+}
+
+/* スタンプ風アクセント */
+.card-stamp {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 14px;
+  opacity: 0.5;
+  transform: rotate(8deg);
+  letter-spacing: 1px;
+}
+
+/* 12色のテーマ */
+.theme-1  { background: #f5efe2; color: #2a2418; }
+.theme-2  { background: #e8d5c0; color: #3a2818; }
+.theme-3  { background: #d4dcc8; color: #2a3a18; }
+.theme-4  { background: #c8d8e0; color: #1a3040; }
+.theme-5  { background: #e8d0d8; color: #4a1828; }
+.theme-6  { background: #f0e0a8; color: #4a3010; }
+.theme-7  { background: #d8c8e0; color: #381848; }
+.theme-8  { background: #c8e0d4; color: #103828; }
+.theme-9  { background: #f0d4b8; color: #4a2810; }
+.theme-10 { background: #d8d0e8; color: #28184a; }
+.theme-11 { background: #e8c8c0; color: #4a1810; }
+.theme-12 { background: #c0d8c8; color: #103828; }
+
+/* 章ごとの色味 */
+.chapter-1 .chapter-num,
+.chapter-1 .chapter-line { color: #c84b3a; background-color: #c84b3a; }
+.chapter-2 .chapter-num,
+.chapter-2 .chapter-line { color: #d4a017; background-color: #d4a017; }
+.chapter-3 .chapter-num,
+.chapter-3 .chapter-line { color: #6b8e5a; background-color: #6b8e5a; }
+.chapter-4 .chapter-num,
+.chapter-4 .chapter-line { color: #3a5a8c; background-color: #3a5a8c; }
+.chapter-5 .chapter-num,
+.chapter-5 .chapter-line { color: #8b4a8c; background-color: #8b4a8c; }
+.chapter-6 .chapter-num,
+.chapter-6 .chapter-line { color: #a83a4f; background-color: #a83a4f; }
+.chapter-7 .chapter-num,
+.chapter-7 .chapter-line { color: #5a8aa8; background-color: #5a8aa8; }
+.chapter-8 .chapter-num,
+.chapter-8 .chapter-line { color: #b8884a; background-color: #b8884a; }
+.chapter-9 .chapter-num,
+.chapter-9 .chapter-line { color: #4a7a5a; background-color: #4a7a5a; }
+.chapter-10 .chapter-num,
+.chapter-10 .chapter-line { color: #a85a8c; background-color: #a85a8c; }
+.chapter-11 .chapter-num,
+.chapter-11 .chapter-line { color: #c84b3a; background-color: #c84b3a; }
+
+/* フッター */
+.outro {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 32px;
+  text-align: center;
+  background: var(--paper-dark);
+  position: relative;
+  margin-top: 60px;
+}
+
+.outro-eyebrow {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 28px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.outro-title {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: clamp(24px, 6vw, 32px);
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+
+.outro-text {
+  font-family: "Shippori Mincho", serif;
+  font-size: 16px;
+  line-height: 2;
+  max-width: 480px;
+  margin: 0 auto 32px;
+  color: var(--ink-soft);
+}
+
+.outro-brand {
+  font-family: "Hachi Maru Pop", sans-serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--ink-soft);
+  padding-top: 24px;
+  margin-top: 24px;
+  max-width: 360px;
+  line-height: 1.8;
+}
+
+.outro-cta {
+  display: inline-block;
+  margin: 12px 8px;
+  padding: 14px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: "Yusei Magic", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+
+.outro-cta:hover { transform: translateY(-2px); }
+
+.outro-cta.line { background: #06c755; }
+.outro-cta.map { background: #c84b3a; }
+
+/* 進捗バー */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 100;
+  transition: width 0.1s;
+}
+
+/* 番号カウンター（右下フローティング） */
+.counter {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-family: "DotGothic16", monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.counter.visible { opacity: 0.85; }
+
+@media (max-width: 480px) {
+  .intro::before { top: 20px; left: 20px; right: 20px; bottom: 20px; }
+  .intro::after { top: 28px; left: 28px; right: 28px; bottom: 28px; }
+  .intro-stamp { top: 40px; right: 40px; width: 64px; height: 64px; font-size: 9px; }
+  .card { padding: 28px 24px 24px; }
+  .card-num-big { font-size: 48px; }
+  .card-body { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">001 / 120</div>
+
+<!-- イントロ -->
+<section class="intro">
+  <div class="intro-stamp">高松発<br>30年<br>覚え書き</div>
+  <div class="intro-eyebrow">120 notes on health</div>
+  <h1 class="intro-title">不調終了</h1>
+  <div class="intro-subtitle">— １２０の覚え書き —</div>
+  <div class="intro-divider"></div>
+  <p class="intro-author">
+    <strong>谷 弘誠</strong><br>
+    柔道整復師／三条健康堂接骨院<br>
+    高松発・一生動ける身体と人生の教養研究室
+  </p>
+  <div class="intro-scroll">↓ scroll ↓</div>
+</section>
+
+<!-- カード本体 -->
+<div class="cards" id="cards"></div>
+
+<!-- アウトロ -->
+<section class="outro">
+  <div class="outro-eyebrow">— end of notes —</div>
+  <h2 class="outro-title">最後まで、ありがとうございました。</h2>
+  <p class="outro-text">
+    不調は、終わる。<br>
+    あなたが、終わらせるのではない。<br>
+    あなたが、邪魔をやめれば、終わる。
+  </p>
+  <p class="outro-text" style="font-size: 15px;">
+    身体に、ありがとうと言って、<br>
+    このページを閉じてください。<br>
+    それだけで、もう始まっています。
+  </p>
+
+  <div style="margin-top: 24px;">
+    <a class="outro-cta line" href="https://lin.ee/dwRtwDv">LINEで相談・予約</a>
+    <a class="outro-cta map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップ</a>
+  </div>
+
+  <p class="outro-brand">
+    高松発・一生動ける身体と人生の教養研究室<br>
+    無借金・無車・自転車・圧力鍋生活を実践する治療家より
+  </p>
+</section>
+
+<script>
+// 120ブロックのデータ
+const data = [
+  // イントロ群（章なし、最初の5枚）
+  { ch: 1, n: 1,  body: "病院に行っても異常なし。<br>でも、調子は悪い。<br><em>この本は、その人のための本です。</em>" },
+  { ch: 1, n: 2,  body: "不調になる人は「治そう」とする。<br>不調にならない人は「邪魔をやめる」。<br><em>この差が、十年後の身体を分けます。</em>" },
+  { ch: 1, n: 3,  body: "医者は病気を見つける人。<br>治療家は健康を見出す人。<br><em>そして、あなたは健康そのものを持っている人。</em>" },
+  { ch: 1, n: 4,  body: "不調になる人は、サプリを足す。<br>不調にならない人は、何かをやめる。<br><em>身体は、引き算でしか戻らない。</em>" },
+  { ch: 1, n: 5,  body: "あなたの身体には、知性が宿っている。<br>それは脳の知性ではない。<br><em>細胞ひとつひとつの中に、宿っている。</em>" },
+
+  // 第一章
+  { chapterStart: true, chTitle: "第一章　不調はなぜ治らないのか", ch: 2 },
+  { ch: 2, n: 6,  body: "不調が治らない理由は、ひとつ。<br><em>あなたが治そうとしているから。</em>" },
+  { ch: 2, n: 7,  body: "不調になる人は、原因を外に探す。<br>不調にならない人は、邪魔を内に探す。" },
+  { ch: 2, n: 8,  body: "「治す」は、エゴの言葉。<br>「治る」は、身体の言葉。<br><em>身体は、エゴの命令を聞かない。</em>" },
+  { ch: 2, n: 9,  body: "頑張れば頑張るほど、不調は深くなる。<br>これは精神論ではない。<br><em>神経生理学の話です。</em>" },
+  { ch: 2, n: 10, body: "交感神経が立ち上がっている時、<br>身体は修復モードに入れない。<br><em>頑張る人ほど、治らないのは、ここ。</em>" },
+  { ch: 2, n: 11, body: "不調になる人は、自分を疑わない。<br>不調にならない人は、自分のやり方を疑う。<br><em>身体は、後者にだけ応える。</em>" },
+  { ch: 2, n: 12, body: "病院の検査で異常なし。<br>これは「健康」の証明ではなく、<br><em>「現代医療では拾えない」の証明。</em>" },
+  { ch: 2, n: 13, body: "不調は、構造の問題ではなく、<br>プログラムの問題であることが多い。<br><em>だから手術では届かない。</em>" },
+  { ch: 2, n: 14, body: "身体は機械ではない。<br>壊れた部品を交換しても、戻らない。<br><em>身体は、情報処理システム。</em>" },
+  { ch: 2, n: 15, body: "不調を「敵」と見るのをやめる。<br>不調は、身体からのメッセージ。<br><em>読み手がいないから、声が大きくなる。</em>" },
+
+  // 第二章
+  { chapterStart: true, chTitle: "第二章　病気を見つける医療と、健康を見出す医療", ch: 3 },
+  { ch: 3, n: 16, body: "百二十年前、ある医師が言った。<br>「病気を見つけるのは誰でもできる。<br><em>医師の仕事は、健康を見出すことだ」と。</em>" },
+  { ch: 3, n: 17, body: "不調になる人は、病名をほしがる。<br>不調にならない人は、健康を探す。<br><em>向いている方向が、逆。</em>" },
+  { ch: 3, n: 18, body: "病名がつくと、安心する。<br>それが落とし穴。<br><em>病名は、身体ではなく、書類のためのもの。</em>" },
+  { ch: 3, n: 19, body: "病院は、急性疾患には強い。<br>慢性不調には、構造的に弱い。<br><em>これは医師の能力ではなく、制度の問題。</em>" },
+  { ch: 3, n: 20, body: "不調になる人は、医療に任せる。<br>不調にならない人は、医療を使い分ける。<br><em>全部丸投げは、現代では危険。</em>" },
+  { ch: 3, n: 21, body: "健康とは「病気がない状態」ではない。<br>健康とは「能動的な働き」そのもの。<br><em>これが、本書の中心命題です。</em>" },
+  { ch: 3, n: 22, body: "あなたが眠っている間に、<br>身体は何百兆回もの修復をしている。<br><em>これが「健康」の正体。</em>" },
+  { ch: 3, n: 23, body: "不調になる人は、健康を「もらう」。<br>不調にならない人は、健康を「邪魔しない」。<br><em>健康は、すでにそこにある。</em>" },
+  { ch: 3, n: 24, body: "医療の進歩は、確かに偉大。<br>でも、進歩していない領域がある。<br><em>それが「身体の知性」への敬意。</em>" },
+  { ch: 3, n: 25, body: "あなたの身体は、毎瞬、自己最適化している。<br>意識せずに、勝手に。<br><em>この事実に気づくのが、最初の一歩。</em>" },
+
+  // 第三章
+  { chapterStart: true, chTitle: "第三章　身体には知性が宿っている", ch: 4 },
+  { ch: 4, n: 26, body: "不調になる人は、頭で身体を支配しようとする。<br>不調にならない人は、身体に頭を委ねる。<br><em>主従が、逆。</em>" },
+  { ch: 4, n: 27, body: "受精卵から、人間の形ができる。<br>誰も設計していない。<br><em>これを「知性」と呼ばずに、何と呼ぶ。</em>" },
+  { ch: 4, n: 28, body: "傷は、勝手に治る。<br>骨折は、勝手にくっつく。<br><em>これは奇跡ではなく、日常の知性。</em>" },
+  { ch: 4, n: 29, body: "不調になる人は、この知性を信じない。<br>不調にならない人は、この知性に任せる。<br><em>信頼の差が、結果の差。</em>" },
+  { ch: 4, n: 30, body: "身体の知性は、あなたより賢い。<br>これを認めるのに、勇気がいる。<br><em>エゴが邪魔をするから。</em>" },
+  { ch: 4, n: 31, body: "頭で考えた健康法は、長く続かない。<br>身体が選んだ習慣は、勝手に続く。<br><em>持続力の源は、身体側にある。</em>" },
+  { ch: 4, n: 32, body: "不調になる人は、最新情報を追いかける。<br>不調にならない人は、身体の声を聞く。<br><em>情報より、感覚。</em>" },
+  { ch: 4, n: 33, body: "内臓の動きを、あなたは制御していない。<br>心拍を、呼吸を、消化を。<br><em>全部、身体の知性がやっている。</em>" },
+  { ch: 4, n: 34, body: "意識は、身体のごく一部。<br>それなのに、意識が全部だと思い込んでいる。<br><em>これが、現代人の最大の錯覚。</em>" },
+  { ch: 4, n: 35, body: "身体に「お願いする」感覚を、取り戻す。<br>命令ではなく、お願い。<br><em>ここから、不調は終わり始める。</em>" },
+
+  // 第四章
+  { chapterStart: true, chTitle: "第四章　健康とはレジリエンスである", ch: 5 },
+  { ch: 5, n: 36, body: "不調になる人は、健康を「点」で見る。<br>不調にならない人は、健康を「動き」で見る。<br><em>健康は、状態ではなく運動。</em>" },
+  { ch: 5, n: 37, body: "レジリエンス。<br>日本語で言えば、「立ち直る力」。<br><em>これが、健康の本体。</em>" },
+  { ch: 5, n: 38, body: "ストレスがゼロの人生は、ない。<br>あるのは、立ち直りの早い人生か、立ち直れない人生か。<br><em>この差が、不調の有無を決める。</em>" },
+  { ch: 5, n: 39, body: "不調になる人は、ストレスを「避ける」。<br>不調にならない人は、ストレスから「戻る」。<br><em>逃げ続けると、戻る力が弱る。</em>" },
+  { ch: 5, n: 40, body: "レジリエンスは、筋肉と同じ。<br>使えば育ち、使わなければ衰える。<br><em>無菌室で育った人は、外で生きられない。</em>" },
+  { ch: 5, n: 41, body: "完璧な健康は、目指さない。<br>揺れて戻る健康を、目指す。<br><em>これが、現代医学の最先端の結論。</em>" },
+  { ch: 5, n: 42, body: "不調になる人は、ゼロを目指す。<br>不調にならない人は、戻る速度を上げる。<br><em>ゼロは、無理。</em>" },
+  { ch: 5, n: 43, body: "レジリエンスを邪魔するもの、それを取り除く。<br>これが治療家の仕事。<br><em>そしてあなた自身の仕事でもある。</em>" },
+  { ch: 5, n: 44, body: "睡眠不足、運動不足、栄養不足、情報過多。<br>これらは全部、レジリエンスの邪魔。<br><em>取り除けるものから、取り除く。</em>" },
+  { ch: 5, n: 45, body: "完璧でなくていい。<br>揺らぎながら、戻ればいい。<br><em>身体は、それを許してくれる。</em>" },
+
+  // 第五章
+  { chapterStart: true, chTitle: "第五章　治療家がやっているのは「書き換え」", ch: 6 },
+  { ch: 6, n: 46, body: "不調になる人は、何かを「取って」もらおうとする。<br>不調にならない人は、何かを「書き換えて」もらう。<br><em>この違いが、結果を分ける。</em>" },
+  { ch: 6, n: 47, body: "徒手療法でできることは、大きく二つ。<br>邪魔を取り除く。プログラムを書き換える。<br><em>本命は、後者。</em>" },
+  { ch: 6, n: 48, body: "身体の不調の七割は、構造ではなくプログラム。<br>だから手術では届かない。<br><em>プログラムは、刺激でしか書き換わらない。</em>" },
+  { ch: 6, n: 49, body: "治療家は、身体に「問い」を入れる。<br>身体が、自分で「答え」を書く。<br><em>治療家は、答えを知らなくていい。</em>" },
+  { ch: 6, n: 50, body: "不調になる人は、答えをほしがる。<br>不調にならない人は、問いを大事にする。<br><em>良い問いは、良い答えを呼ぶ。</em>" },
+  { ch: 6, n: 51, body: "反射、というメカニズム。<br>これは、身体が自分自身を書き換えるための仕組み。<br><em>治療家は、これを起動するだけ。</em>" },
+  { ch: 6, n: 52, body: "身体は、刺激に対して反応する。<br>反応の中に、自己最適化が含まれている。<br><em>これが、生命の不思議。</em>" },
+  { ch: 6, n: 53, body: "強い刺激が、効くわけではない。<br>正しい刺激が、効く。<br><em>量より、質。位置より、文脈。</em>" },
+  { ch: 6, n: 54, body: "あなたの身体は、AIのようなもの。<br>プロンプトを入れると、コードを書き換える。<br><em>治療家は、プロンプト設計者。</em>" },
+  { ch: 6, n: 55, body: "良いプロンプトは、答えを誘導しない。<br>身体が、自分で最適解を計算する。<br><em>任せる勇気が、治療家の本質。</em>" },
+
+  // 第六章
+  { chapterStart: true, chTitle: "第六章　祈るという技術", ch: 7 },
+  { ch: 7, n: 56, body: "不調になる人は、自分でなんとかしようとする。<br>不調にならない人は、身体にお願いする。<br><em>これが「祈る」という技術。</em>" },
+  { ch: 7, n: 57, body: "祈りは、宗教ではない。<br>祈りは、態度。<br><em>自分の限界を認めた者だけが、取れる態度。</em>" },
+  { ch: 7, n: 58, body: "エゴは、祈れない。<br>「自分が」と主語を立て続けるから。<br><em>主語を消した瞬間、祈りが立ち上がる。</em>" },
+  { ch: 7, n: 59, body: "不調になる人は、自分が主役。<br>不調にならない人は、身体が主役。<br><em>配役を、間違えている。</em>" },
+  { ch: 7, n: 60, body: "身体に問いを開く。<br>答えが返ってくるのを、待つ。<br><em>これだけで、半分は治る。</em>" },
+  { ch: 7, n: 61, body: "祈りは、受動ではない。<br>能動的に「待つ」という、高度な技術。<br><em>これは、修練が要る。</em>" },
+  { ch: 7, n: 62, body: "頭で考えた答えは、浅い。<br>身体が出した答えは、深い。<br><em>深さが、持続力を生む。</em>" },
+  { ch: 7, n: 63, body: "不調になる人は、考えすぎる。<br>不調にならない人は、感じすぎる。<br><em>頭から、感覚へ。</em>" },
+  { ch: 7, n: 64, body: "祈ることは、信じること。<br>信じる対象は、神ではなく、身体。<br><em>あなたの身体が、あなたの神。</em>" },
+  { ch: 7, n: 65, body: "エゴを手放した瞬間、身体が動き出す。<br>あなたが諦めた瞬間に、身体が始める。<br><em>逆説のように見えて、構造の話。</em>" },
+
+  // 第七章
+  { chapterStart: true, chTitle: "第七章　情報と教養もレジリエンスの一部", ch: 8 },
+  { ch: 8, n: 66, body: "不調になる人は、身体だけを見る。<br>不調にならない人は、認識まで含めて見る。<br><em>身体と頭は、地続き。</em>" },
+  { ch: 8, n: 67, body: "油の選び方を知らない人は、炎症を制御できない。<br>睡眠の仕組みを知らない人は、回復できない。<br><em>知識は、レジリエンスそのもの。</em>" },
+  { ch: 8, n: 68, body: "情弱は、健康弱者。<br>これは差別ではなく、構造の話。<br><em>知らないと、選べない。</em>" },
+  { ch: 8, n: 69, body: "不調になる人は、テレビとSNSで情報を取る。<br>不調にならない人は、本を読む。<br><em>情報源が、結果を分ける。</em>" },
+  { ch: 8, n: 70, body: "本は、編集されている。<br>SNSは、煽られている。<br><em>身体は、煽りに反応してしまう。</em>" },
+  { ch: 8, n: 71, body: "世界モデルの解像度が低い人は、慢性的に不安。<br>不安は、自律神経を疲弊させる。<br><em>教養は、自律神経の薬。</em>" },
+  { ch: 8, n: 72, body: "教養とは、雑学ではない。<br>教養とは、世界の見え方。<br><em>見え方が変わると、身体も変わる。</em>" },
+  { ch: 8, n: 73, body: "不調になる人は、情報を「集める」。<br>不調にならない人は、情報を「捨てる」。<br><em>情報も、引き算が要る。</em>" },
+  { ch: 8, n: 74, body: "良い本を一冊、繰り返し読む。<br>浅い情報を百本、追わない。<br><em>これが、認識のレジリエンス。</em>" },
+  { ch: 8, n: 75, body: "身体を整えたければ、頭も整える。<br>頭を整えたければ、身体も整える。<br><em>両方やる人だけが、戻ってくる。</em>" },
+
+  // 第八章
+  { chapterStart: true, chTitle: "第八章　動詞として生きる", ch: 9 },
+  { ch: 9, n: 76, body: "不調になる人は、自分を「名詞」だと思っている。<br>不調にならない人は、自分を「動詞」として生きる。<br><em>固定された自己は、外圧で割れる。</em>" },
+  { ch: 9, n: 77, body: "私は会社員、私は親、私は患者。<br>名詞は、肩書き。<br><em>肩書きが揺らぐと、自己が揺らぐ。</em>" },
+  { ch: 9, n: 78, body: "私は学び続けている、私は変わり続けている。<br>動詞は、運動。<br><em>運動は、外圧で止まらない。</em>" },
+  { ch: 9, n: 79, body: "オステオパスの世界には、こういう言葉がある。<br>「我々は、一生、生徒である」と。<br><em>到達しないことが、本道。</em>" },
+  { ch: 9, n: 80, body: "不調になる人は、ゴールをほしがる。<br>不調にならない人は、ゴールを持たない。<br><em>ゴールがないから、止まらない。</em>" },
+  { ch: 9, n: 81, body: "学び続けている人は、老けない。<br>これは精神論ではなく、神経科学。<br><em>脳の可塑性は、使い続ける限り維持される。</em>" },
+  { ch: 9, n: 82, body: "身体も、同じ。<br>動かし続ける身体は、衰えない。<br><em>止めた瞬間に、衰える。</em>" },
+  { ch: 9, n: 83, body: "完成を目指さない。<br>更新を続ける。<br><em>これが、生命のあり方。</em>" },
+  { ch: 9, n: 84, body: "不調になる人は、「もう年だから」と言う。<br>不調にならない人は、「まだ更新中」と言う。<br><em>言葉が、身体を作る。</em>" },
+  { ch: 9, n: 85, body: "動詞として生きる人に、不調は留まれない。<br>留まる場所がないから。<br><em>動き続ける川に、苔は生えない。</em>" },
+
+  // 第九章
+  { chapterStart: true, chTitle: "第九章　不調を終わらせる、日常の構造", ch: 10 },
+  { ch: 10, n: 86, body: "ここから、具体的な日常の話。<br>哲学だけでは、身体は変わらない。<br><em>構造を、生活に落とす。</em>" },
+  { ch: 10, n: 87, body: "不調になる人は、休む時にスマホを見る。<br>不調にならない人は、休む時に空を見る。<br><em>休息の質が、違う。</em>" },
+  { ch: 10, n: 88, body: "身体は、退屈を必要としている。<br>情報がない時間に、修復が起きる。<br><em>退屈は、最高の薬。</em>" },
+  { ch: 10, n: 89, body: "不調になる人は、毎日違うことをする。<br>不調にならない人は、毎日同じことをする。<br><em>ルーティンは、自由の土台。</em>" },
+  { ch: 10, n: 90, body: "低エントロピーな生活。<br>予測可能で、揺らぎの少ない毎日。<br><em>これが、レジリエンスを育てる土壌。</em>" },
+  { ch: 10, n: 91, body: "無借金で生きる。<br>無理な所有を、しない。<br><em>お金の不調が、身体の不調を呼ぶ。</em>" },
+  { ch: 10, n: 92, body: "不調になる人は、所有で安心しようとする。<br>不調にならない人は、手放しで自由を得る。<br><em>自由が、健康の前提。</em>" },
+  { ch: 10, n: 93, body: "歩く。自転車に乗る。階段を使う。<br>日常の運動だけで、身体は十分応える。<br><em>ジムは、必須ではない。</em>" },
+  { ch: 10, n: 94, body: "食事は、複雑にしない。<br>旬のものを、シンプルに。<br><em>身体が、自分で最適化する。</em>" },
+  { ch: 10, n: 95, body: "睡眠は、最強の治療。<br>これに勝るものは、何もない。<br><em>眠れる環境を、最優先で作る。</em>" },
+
+  // 第十章
+  { chapterStart: true, chTitle: "第十章　関係性も、レジリエンスの一部", ch: 11 },
+  { ch: 11, n: 96, body: "不調になる人は、濃い関係に依存する。<br>不調にならない人は、薄い関係を大事にする。<br><em>近すぎる関係は、疲れる。</em>" },
+  { ch: 11, n: 97, body: "良い関係には、距離が必要。<br>距離が、敬意を生む。<br><em>敬意が、関係の質を保つ。</em>" },
+  { ch: 11, n: 98, body: "ハーバード大学の長期研究の結論。<br>「人生の幸福を決めるのは、良い関係性である」。<br><em>ただし、良いとは、近いではない。</em>" },
+  { ch: 11, n: 99, body: "不調になる人は、孤独を恐れる。<br>不調にならない人は、孤独を味方にする。<br><em>孤独は、自己回復の時間。</em>" },
+  { ch: 11, n: 100, body: "温度のある薄い関係。<br>これを複数、持つ。<br><em>一つに依存しない。</em>" },
+  { ch: 11, n: 101, body: "SNSの「いいね」は、関係ではない。<br>関係は、顔と声と身体で起きる。<br><em>代替品では、足りない。</em>" },
+  { ch: 11, n: 102, body: "あなたが何かできる人になる。<br>それが、薄い良い関係を呼ぶ。<br><em>スキルが、関係の入口。</em>" },
+  { ch: 11, n: 103, body: "不調になる人は、与えられたがる。<br>不調にならない人は、与えるものを持っている。<br><em>贈与する側に、立つ。</em>" },
+  { ch: 11, n: 104, body: "ありがとう、と言われる回数。<br>これが、人生の質の指標。<br><em>スキルがないと、言われない。</em>" },
+  { ch: 11, n: 105, body: "だから、何かを修練する。<br>仕事でも、趣味でも、料理でも。<br><em>深く一つ、これが薄く広い関係を可能にする。</em>" },
+
+  // 終章
+  { chapterStart: true, chTitle: "終章　不調が終了するとき、何が始まるのか", ch: 1 },
+  { ch: 1, n: 106, body: "不調が終わると、何かが始まる。<br>それは「自分への納得」という感覚。<br><em>これだけは、外からは買えない。</em>" },
+  { ch: 1, n: 107, body: "不調になる人は、自分に納得していない。<br>不調にならない人は、自分に納得している。<br><em>納得は、結果ではなく、姿勢。</em>" },
+  { ch: 1, n: 108, body: "若い頃から逃げてきたパズルのピース。<br>これを埋めるには、時間がかかる。<br><em>でも、今日から始めれば、間に合う。</em>" },
+  { ch: 1, n: 109, body: "身体は、いつから始めても、応えてくれる。<br>身体には、年齢の言い訳がない。<br><em>今、ここから。</em>" },
+  { ch: 1, n: 110, body: "不調を、敵にしない。<br>不調は、あなたへの問いかけ。<br><em>答えは、あなたの中にある。</em>" },
+  { ch: 1, n: 111, body: "治療家は、ガイドにすぎない。<br>本当の治癒者は、あなた自身の身体。<br><em>これを忘れないでほしい。</em>" },
+  { ch: 1, n: 112, body: "病気を見つけるのは、誰でもできる。<br>健康を見出すのは、あなただけができる。<br><em>あなたの身体の専門家は、あなた。</em>" },
+  { ch: 1, n: 113, body: "祈る。任せる。待つ。<br>この三つが、あなたの新しい技術。<br><em>頑張る、よりずっと深い。</em>" },
+  { ch: 1, n: 114, body: "不調終了は、始まりにすぎない。<br>ここから、本当のあなたの人生が動き出す。<br><em>動詞として、生きる人生が。</em>" },
+  { ch: 1, n: 115, body: "最後に、もう一度。<br>身体は、勝手に最適化する。<br><em>あなたが、邪魔さえしなければ。</em>" },
+  { ch: 1, n: 116, body: "邪魔とは、エゴ。<br>邪魔とは、頑張りすぎ。<br><em>邪魔とは、外に答えを求めること。</em>" },
+  { ch: 1, n: 117, body: "全部、手放していい。<br>身体は、もう知っている。<br><em>あなたが知らないだけ。</em>" },
+  { ch: 1, n: 118, body: "今日から、祈る人になる。<br>今日から、任せる人になる。<br><em>今日から、待てる人になる。</em>" },
+  { ch: 1, n: 119, body: "不調は、終わる。<br>あなたが、終わらせるのではない。<br><em>あなたが、邪魔をやめれば、終わる。</em>" },
+  { ch: 1, n: 120, body: "身体に、ありがとうと言って、本を閉じてください。<br><em>それだけで、もう始まっています。</em>" },
+];
+
+// レンダリング
+const cardsContainer = document.getElementById("cards");
+const stamps = ["note", "memo", "voice", "echo", "trace", "spark", "seed", "drop", "flicker", "whisper", "ember", "tide"];
+
+let cardCount = 0;
+data.forEach((item, idx) => {
+  if (item.chapterStart) {
+    const chap = document.createElement("div");
+    chap.className = `chapter chapter-${item.ch}`;
+    chap.innerHTML = `
+      <div class="chapter-num">CHAPTER</div>
+      <div class="chapter-line"></div>
+      <h2 class="chapter-title">${item.chTitle}</h2>
+    `;
+    cardsContainer.appendChild(chap);
+  } else {
+    cardCount++;
+    const themeNum = ((cardCount - 1) % 12) + 1;
+    const stamp = stamps[(cardCount - 1) % stamps.length];
+    const card = document.createElement("article");
+    card.className = `card theme-${themeNum}`;
+    card.dataset.num = item.n;
+    card.innerHTML = `
+      <span class="card-stamp">${stamp}</span>
+      <span class="card-num">No.</span>
+      <span class="card-num-big">${String(item.n).padStart(3, "0")}</span>
+      <p class="card-body">${item.body}</p>
+    `;
+    cardsContainer.appendChild(card);
+  }
+});
+
+// IntersectionObserver でフェードイン
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".card").forEach(c => io.observe(c));
+
+// 進捗バー＆カウンター
+const progress = document.getElementById("progress");
+const counter = document.getElementById("counter");
+const allCards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll", () => {
+  const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  progress.style.width = scrolled + "%";
+
+  // 現在見えているカードの番号
+  let currentNum = 0;
+  allCards.forEach(c => {
+    const rect = c.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.5) {
+      currentNum = parseInt(c.dataset.num);
+    }
+  });
+
+  if (currentNum > 0) {
+    counter.textContent = `${String(currentNum).padStart(3, "0")} / 120`;
+    counter.classList.add("visible");
+  } else {
+    counter.classList.remove("visible");
+  }
+});
+</script>
+
+</body>
+</html>
