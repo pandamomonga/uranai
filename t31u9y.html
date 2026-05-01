@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黒子の均衡 — 葬式派遣ゲーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700;800&family=Noto+Serif+JP:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --washi: #f0e8d5;
+    --washi-deep: #e6dcc3;
+    --sumi: #161210;
+    --sumi-soft: #2b2420;
+    --shu: #8b2c1d;
+    --shu-bright: #a8351f;
+    --kin: #8a6f3a;
+    --gray-line: #b8a98a;
+    --paper-shadow: rgba(22, 18, 16, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--washi);
+    color: var(--sumi);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 和紙テクスチャ */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(139, 44, 29, 0.025) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(138, 111, 58, 0.03) 0%, transparent 50%);
+    opacity: 1;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(22, 18, 16, 0.012) 3px, rgba(22, 18, 16, 0.012) 4px),
+      repeating-linear-gradient(90deg, transparent 0, transparent 3px, rgba(22, 18, 16, 0.012) 3px, rgba(22, 18, 16, 0.012) 4px);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 22px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─────────── ヘッダー ─────────── */
+  .header {
+    text-align: center;
+    padding: 28px 0 36px;
+    border-bottom: 1px solid var(--sumi);
+    position: relative;
+  }
+
+  .header::before, .header::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    width: 8px;
+    height: 8px;
+    background: var(--sumi);
+    border-radius: 50%;
+  }
+  .header::before { left: 0; transform: translateY(50%); }
+  .header::after { right: 0; transform: translateY(50%); }
+
+  .eyebrow {
+    font-family: 'Klee One', 'Shippori Mincho B1', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--sumi-soft);
+    margin-bottom: 16px;
+    text-indent: 0.4em;
+  }
+
+  .title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: clamp(42px, 9vw, 64px);
+    letter-spacing: 0.12em;
+    line-height: 1.1;
+    color: var(--sumi);
+    text-indent: 0.12em;
+  }
+
+  .subtitle {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 14px;
+    color: var(--sumi-soft);
+    margin-top: 18px;
+    letter-spacing: 0.15em;
+    text-indent: 0.15em;
+  }
+
+  /* ─────────── ゲーム種別バッジ ─────────── */
+  .game-type {
+    margin: 32px auto 0;
+    padding: 18px 22px;
+    background: var(--washi-deep);
+    border-left: 3px solid var(--shu);
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 15px;
+    line-height: 1.85;
+    position: relative;
+  }
+
+  .game-type-label {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--shu);
+    margin-bottom: 6px;
+    font-weight: 700;
+    text-indent: 0.3em;
+  }
+
+  /* ─────────── スコア表示 ─────────── */
+  .score-panel {
+    margin: 44px 0 36px;
+    text-align: center;
+    position: relative;
+  }
+
+  .score-panel-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    color: var(--sumi-soft);
+    margin-bottom: 18px;
+    text-indent: 0.4em;
+  }
+
+  .score-display {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    position: relative;
+  }
+
+  .score-current {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: clamp(72px, 16vw, 120px);
+    line-height: 1;
+    color: var(--sumi);
+    letter-spacing: -0.02em;
+    transition: color 0.3s ease;
+  }
+
+  .score-current.high { color: var(--shu); }
+
+  .score-divider {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 32px;
+    color: var(--gray-line);
+    margin: 0 4px;
+  }
+
+  .score-max {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 28px;
+    color: var(--sumi-soft);
+  }
+
+  .score-rank {
+    margin-top: 18px;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 17px;
+    color: var(--shu);
+    letter-spacing: 0.2em;
+    min-height: 28px;
+    text-indent: 0.2em;
+  }
+
+  .score-bar {
+    margin: 24px auto 0;
+    width: 100%;
+    max-width: 420px;
+    height: 4px;
+    background: var(--washi-deep);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    position: absolute;
+    inset: 0 100% 0 0;
+    background: linear-gradient(90deg, var(--sumi) 0%, var(--shu) 100%);
+    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ─────────── セクション見出し ─────────── */
+  .section {
+    margin: 56px 0 0;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .section-num {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--shu);
+    line-height: 1;
+  }
+
+  .section-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--sumi);
+    text-indent: 0.08em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--sumi);
+  }
+
+  /* ─────────── 採点項目（10個） ─────────── */
+  .scorecard {
+    list-style: none;
+    border-top: 1px solid var(--sumi);
+  }
+
+  .score-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--gray-line);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    user-select: none;
+    position: relative;
+  }
+
+  .score-item:hover {
+    background: var(--washi-deep);
+  }
+
+  .score-item-num {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--sumi-soft);
+    min-width: 32px;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  .score-item-body {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--sumi);
+    padding-top: 1px;
+  }
+
+  .score-item-body strong {
+    font-weight: 700;
+    color: var(--sumi);
+    background: linear-gradient(transparent 60%, rgba(139, 44, 29, 0.18) 60%);
+    padding: 0 2px;
+  }
+
+  .score-item-points {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 13px;
+    color: var(--sumi-soft);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+
+  /* 朱印（ハンコ） */
+  .hanko {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border: 2.5px solid var(--shu);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--shu);
+    background: var(--washi);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: rotate(-4deg);
+    opacity: 0.15;
+  }
+
+  .score-item.checked .hanko {
+    opacity: 1;
+    background: var(--shu);
+    color: var(--washi);
+    transform: rotate(-8deg) scale(1.05);
+    box-shadow: 0 2px 8px rgba(139, 44, 29, 0.3);
+  }
+
+  .score-item.checked .score-item-body {
+    color: var(--sumi-soft);
+  }
+
+  /* ─────────── 隠しボーナス ─────────── */
+  .bonus-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .bonus-card {
+    padding: 18px 20px;
+    background: var(--sumi);
+    color: var(--washi);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-left: 4px solid var(--kin);
+  }
+
+  .bonus-card:hover {
+    background: var(--sumi-soft);
+  }
+
+  .bonus-card.triggered {
+    background: var(--shu);
+    border-left-color: var(--washi);
+  }
+
+  .bonus-label {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--kin);
+    margin-bottom: 6px;
+    text-indent: 0.35em;
+  }
+
+  .bonus-card.triggered .bonus-label {
+    color: var(--washi);
+  }
+
+  .bonus-text {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--washi);
+  }
+
+  .bonus-points {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--kin);
+  }
+
+  .bonus-card.triggered .bonus-points {
+    color: var(--washi);
+  }
+
+  /* ─────────── 戦略の核 ─────────── */
+  .strategy-box {
+    padding: 28px 26px;
+    background: var(--washi-deep);
+    position: relative;
+  }
+
+  .strategy-box::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 14px;
+    height: 14px;
+    border-top: 2px solid var(--sumi);
+    border-left: 2px solid var(--sumi);
+  }
+  .strategy-box::after {
+    content: "";
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 14px;
+    height: 14px;
+    border-bottom: 2px solid var(--sumi);
+    border-right: 2px solid var(--sumi);
+  }
+
+  .strategy-headline {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--shu);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .strategy-text {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .strategy-text strong {
+    background: linear-gradient(transparent 60%, rgba(139, 44, 29, 0.18) 60%);
+    padding: 0 2px;
+    font-weight: 700;
+  }
+
+  /* ─────────── エンドゲーム ─────────── */
+  .endgame-panel {
+    text-align: center;
+    padding: 32px 20px;
+    border: 1px solid var(--sumi);
+    background: var(--washi);
+    position: relative;
+  }
+
+  .endgame-label {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 12px;
+    letter-spacing: 0.45em;
+    color: var(--sumi-soft);
+    margin-bottom: 18px;
+    text-indent: 0.45em;
+  }
+
+  .endgame-text {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .streak-display {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 8px;
+  }
+
+  .streak-dot {
+    width: 56px;
+    height: 56px;
+    border: 2px solid var(--sumi);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--sumi);
+    background: var(--washi);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .streak-dot.filled {
+    background: var(--shu);
+    color: var(--washi);
+    border-color: var(--shu);
+    transform: rotate(-6deg);
+  }
+
+  .streak-status {
+    margin-top: 22px;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 14px;
+    color: var(--sumi-soft);
+    letter-spacing: 0.15em;
+    min-height: 22px;
+  }
+
+  /* ─────────── セッション保存 ─────────── */
+  .save-section {
+    margin-top: 48px;
+    padding: 28px 24px;
+    background: var(--sumi);
+    color: var(--washi);
+  }
+
+  .save-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 18px;
+    letter-spacing: 0.1em;
+    color: var(--washi);
+  }
+
+  .save-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .save-input {
+    flex: 1;
+    min-width: 160px;
+    padding: 12px 14px;
+    background: var(--sumi-soft);
+    border: 1px solid var(--gray-line);
+    color: var(--washi);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+  }
+
+  .save-input::placeholder {
+    color: var(--gray-line);
+  }
+
+  .save-input:focus {
+    outline: none;
+    border-color: var(--shu);
+  }
+
+  .btn {
+    padding: 12px 22px;
+    background: var(--shu);
+    color: var(--washi);
+    border: none;
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-indent: 0.15em;
+  }
+
+  .btn:hover { background: var(--shu-bright); }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--gray-line);
+    color: var(--washi);
+  }
+  .btn-ghost:hover { background: var(--sumi-soft); }
+
+  /* ─────────── 履歴 ─────────── */
+  .history-list {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .history-empty {
+    padding: 24px 0;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 14px;
+    color: var(--sumi-soft);
+    text-align: center;
+    border-top: 1px solid var(--gray-line);
+    border-bottom: 1px solid var(--gray-line);
+  }
+
+  .history-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 4px;
+    border-bottom: 1px solid var(--gray-line);
+  }
+
+  .history-date {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 13px;
+    color: var(--sumi-soft);
+    min-width: 92px;
+    flex-shrink: 0;
+  }
+
+  .history-employee {
+    flex: 1;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 15px;
+    color: var(--sumi);
+  }
+
+  .history-score {
+    font-family: 'Shippori Mincho B1', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--sumi);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  .history-score.high { color: var(--shu); }
+
+  .history-delete {
+    background: none;
+    border: none;
+    color: var(--gray-line);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-family: 'Shippori Mincho B1', serif;
+  }
+  .history-delete:hover { color: var(--shu); }
+
+  /* ─────────── フッター ─────────── */
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--sumi);
+    text-align: center;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 12px;
+    color: var(--sumi-soft);
+    letter-spacing: 0.2em;
+    line-height: 1.8;
+  }
+
+  .footer-mark {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--shu);
+    border-radius: 50%;
+    color: var(--shu);
+    line-height: 28px;
+    margin-bottom: 12px;
+    font-weight: 800;
+    transform: rotate(-6deg);
+  }
+
+  /* トースト */
+  .toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-120%);
+    background: var(--sumi);
+    color: var(--washi);
+    padding: 14px 24px;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-left: 3px solid var(--shu);
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* リセットボタン */
+  .reset-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+
+  .reset-btn {
+    background: none;
+    border: 1px solid var(--gray-line);
+    color: var(--sumi-soft);
+    padding: 8px 14px;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .reset-btn:hover {
+    border-color: var(--sumi);
+    color: var(--sumi);
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 22px 16px 60px; }
+    .score-item { padding: 16px 6px; gap: 12px; }
+    .hanko { width: 40px; height: 40px; font-size: 14px; }
+    .score-item-points { display: none; }
+    .streak-dot { width: 48px; height: 48px; font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="container">
+
+  <!-- ─────────── ヘッダー ─────────── -->
+  <header class="header">
+    <div class="eyebrow">繰り返しシグナリングゲーム</div>
+    <h1 class="title">黒子の均衡</h1>
+    <div class="subtitle">葬式派遣・社員さん再依頼最大化ゲーム</div>
+  </header>
+
+  <!-- ─────────── ゲーム種別 ─────────── -->
+  <div class="game-type">
+    <div class="game-type-label">勝利条件</div>
+    ナッシュ均衡を狙わない。<br>
+    <strong>社員さんの効用関数を最大化する側</strong>にだけ立ち続ける。<br>
+    あなたの利得 ＝ 再依頼確率。
+  </div>
+
+  <!-- ─────────── スコア ─────────── -->
+  <div class="score-panel">
+    <div class="score-panel-title">本日の点数</div>
+    <div class="score-display">
+      <span class="score-current" id="scoreCurrent">0</span>
+      <span class="score-divider">／</span>
+      <span class="score-max">100</span>
+    </div>
+    <div class="score-rank" id="scoreRank">　</div>
+    <div class="score-bar"><div class="score-bar-fill" id="scoreBar"></div></div>
+  </div>
+
+  <!-- ─────────── 採点項目 ─────────── -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">壱</span>
+      <h2 class="section-title">採点項目</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="reset-row">
+      <button class="reset-btn" id="resetBtn">本日分をリセット</button>
+    </div>
+
+    <ul class="scorecard" id="scorecard">
+      <li class="score-item" data-id="1">
+        <span class="score-item-num">一</span>
+        <div class="score-item-body">社員さんの<strong>半歩後ろ</strong>を維持できた</div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="2">
+        <span class="score-item-num">二</span>
+        <div class="score-item-body">自己判断で動かず<strong>確認を一回入れた</strong></div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="3">
+        <span class="score-item-num">三</span>
+        <div class="score-item-body">遺族案件を社員さんに<strong>綺麗にパスできた</strong></div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="4">
+        <span class="score-item-num">四</span>
+        <div class="score-item-body"><strong>先回り</strong>して動けた瞬間が一回以上あった</div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="5">
+        <span class="score-item-num">五</span>
+        <div class="score-item-body">NG言葉を<strong>ゼロ回</strong>で切り抜けた</div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="6">
+        <span class="score-item-num">六</span>
+        <div class="score-item-body">動線を<strong>十分以内</strong>に把握した</div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="7">
+        <span class="score-item-num">七</span>
+        <div class="score-item-body">手が空いた時間を<strong>ゼロ秒</strong>にできた</div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="8">
+        <span class="score-item-num">八</span>
+        <div class="score-item-body">控室でも<strong>気を抜かなかった</strong></div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="9">
+        <span class="score-item-num">九</span>
+        <div class="score-item-body">社員さんから<strong>「ありがとう」が一回出た</strong></div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+      <li class="score-item" data-id="10">
+        <span class="score-item-num">十</span>
+        <div class="score-item-body">社員さんの<strong>ミスを目立たせず処理</strong>した</div>
+        <span class="score-item-points">10点</span>
+        <span class="hanko">良</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ─────────── 隠しボーナス ─────────── -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">弐</span>
+      <h2 class="section-title">隠しボーナス</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="bonus-grid" id="bonusGrid">
+      <div class="bonus-card" data-id="b1" data-points="30">
+        <div class="bonus-label">レアイベント</div>
+        <div class="bonus-text">社員さんが「次もお願いします」と<br>その場で言った</div>
+        <div class="bonus-points">+30</div>
+      </div>
+      <div class="bonus-card" data-id="b2" data-points="20">
+        <div class="bonus-label">レアイベント</div>
+        <div class="bonus-text">葬儀社の他のスタッフが<br>あなたを名前で呼んだ</div>
+        <div class="bonus-points">+20</div>
+      </div>
+      <div class="bonus-card" data-id="b3" data-points="50">
+        <div class="bonus-label">伝説イベント</div>
+        <div class="bonus-text">遺族から「あの方は誰？」と<br>社員さんに聞かれた（良い意味で）</div>
+        <div class="bonus-points">+50</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 戦略の核 ─────────── -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">参</span>
+      <h2 class="section-title">戦略の核</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="strategy-box">
+      <div class="strategy-headline">『しっぺ返し戦略』の逆転版</div>
+      <p class="strategy-text">
+        通常のゲーム理論では「相手の出方を見て同じ手を返す」のが最適。<br>
+        <strong>この場では逆。</strong>社員さんがミスしても、雑でも、不機嫌でも、<br>
+        こちらは常に協調手を出し続ける。<br><br>
+        あなたは派遣プールの中で<strong>識別可能な存在</strong>になることが目的。<br>
+        「あの人はブレない」という固定評価を取りに行く。
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────── エンドゲーム ─────────── -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">肆</span>
+      <h2 class="section-title">エンドゲーム</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="endgame-panel">
+      <div class="endgame-label">勝利条件</div>
+      <p class="endgame-text">
+        三回連続で同じ社員さんから指名が来たら、<br>
+        ゲームクリア。<br>
+        『常連派遣NPC』の称号獲得。
+      </p>
+      <div class="streak-display" id="streakDisplay">
+        <div class="streak-dot" data-n="1">壱</div>
+        <div class="streak-dot" data-n="2">弐</div>
+        <div class="streak-dot" data-n="3">参</div>
+      </div>
+      <div class="streak-status" id="streakStatus">記録を開始してください</div>
+    </div>
+  </section>
+
+  <!-- ─────────── 記録保存 ─────────── -->
+  <section class="section">
+    <div class="save-section">
+      <div class="save-title">本日の記録を残す</div>
+      <div class="save-row">
+        <input type="text" class="save-input" id="employeeName" placeholder="社員さんの名前（例：田中さん）">
+      </div>
+      <div class="save-row">
+        <button class="btn" id="saveBtn">記録する</button>
+        <button class="btn btn-ghost" id="clearAllBtn">全履歴を消す</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 履歴 ─────────── -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">伍</span>
+      <h2 class="section-title">過去の戦績</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <ul class="history-list" id="historyList"></ul>
+  </section>
+
+  <!-- ─────────── フッター ─────────── -->
+  <footer class="footer">
+    <div class="footer-mark">黒</div>
+    <div>静謐に、識別可能に</div>
+  </footer>
+
+</div>
+
+<script>
+  // ─────────── State ───────────
+  let state = {
+    checks: {},        // {1: true, 2: false, ...}
+    bonuses: {},       // {b1: true, ...}
+    history: []        // [{date, employee, score}]
+  };
+
+  // ─────────── Storage ───────────
+  async function saveState() {
+    try {
+      await window.storage.set('kuroko_state', JSON.stringify(state));
+    } catch(e) { console.error(e); }
+  }
+
+  async function loadState() {
+    try {
+      const r = await window.storage.get('kuroko_state');
+      if (r && r.value) {
+        state = JSON.parse(r.value);
+        if (!state.checks) state.checks = {};
+        if (!state.bonuses) state.bonuses = {};
+        if (!state.history) state.history = [];
+      }
+    } catch(e) {
+      // No saved state yet
+      state = { checks: {}, bonuses: {}, history: [] };
+    }
+    render();
+  }
+
+  // ─────────── Score ───────────
+  function calcScore() {
+    let s = 0;
+    for (let i = 1; i <= 10; i++) if (state.checks[i]) s += 10;
+    if (state.bonuses.b1) s += 30;
+    if (state.bonuses.b2) s += 20;
+    if (state.bonuses.b3) s += 50;
+    return s;
+  }
+
+  function rankFor(score) {
+    if (score >= 150) return '◉ 伝説の黒子';
+    if (score >= 120) return '◉ 識別可能な存在';
+    if (score >= 100) return '◉ 完璧な黒子';
+    if (score >= 80)  return '○ 気が利く派遣さん';
+    if (score >= 60)  return '○ 標準';
+    if (score >= 40)  return '△ 要修正';
+    if (score > 0)    return '△ 様子見';
+    return '　';
+  }
+
+  // ─────────── Render ───────────
+  function render() {
+    // Checks
+    document.querySelectorAll('.score-item').forEach(el => {
+      const id = el.dataset.id;
+      el.classList.toggle('checked', !!state.checks[id]);
+    });
+
+    // Bonuses
+    document.querySelectorAll('.bonus-card').forEach(el => {
+      const id = el.dataset.id;
+      el.classList.toggle('triggered', !!state.bonuses[id]);
+    });
+
+    // Score
+    const s = calcScore();
+    const sc = document.getElementById('scoreCurrent');
+    sc.textContent = s;
+    sc.classList.toggle('high', s >= 100);
+    document.getElementById('scoreRank').textContent = rankFor(s);
+    const pct = Math.min(100, (s / 100) * 100);
+    document.getElementById('scoreBar').style.right = (100 - pct) + '%';
+
+    // History + streak
+    renderHistory();
+    renderStreak();
+  }
+
+  function renderHistory() {
+    const list = document.getElementById('historyList');
+    list.innerHTML = '';
+    if (state.history.length === 0) {
+      const li = document.createElement('li');
+      li.className = 'history-empty';
+      li.textContent = 'まだ記録がありません';
+      list.appendChild(li);
+      return;
+    }
+    // newest first
+    [...state.history].reverse().forEach((h, idx) => {
+      const realIdx = state.history.length - 1 - idx;
+      const li = document.createElement('li');
+      li.className = 'history-item';
+      const d = new Date(h.date);
+      const dateStr = (d.getMonth()+1) + '/' + d.getDate() + ' ' + ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+      li.innerHTML = `
+        <span class="history-date">${dateStr}</span>
+        <span class="history-employee">${escapeHtml(h.employee || '社員さん')}</span>
+        <span class="history-score ${h.score >= 100 ? 'high' : ''}">${h.score}</span>
+        <button class="history-delete" data-idx="${realIdx}">削</button>
+      `;
+      list.appendChild(li);
+    });
+
+    list.querySelectorAll('.history-delete').forEach(b => {
+      b.addEventListener('click', async (e) => {
+        const i = parseInt(e.target.dataset.idx);
+        if (confirm('この記録を消しますか？')) {
+          state.history.splice(i, 1);
+          await saveState();
+          render();
+        }
+      });
+    });
+  }
+
+  function renderStreak() {
+    // Find streak: consecutive same employee from end
+    const dots = document.querySelectorAll('.streak-dot');
+    let streakName = '';
+    let streakCount = 0;
+    if (state.history.length > 0) {
+      streakName = state.history[state.history.length - 1].employee || '';
+      for (let i = state.history.length - 1; i >= 0; i--) {
+        if ((state.history[i].employee || '') === streakName && streakName !== '') {
+          streakCount++;
+        } else break;
+      }
+    }
+    dots.forEach((d, i) => {
+      d.classList.toggle('filled', i < streakCount);
+    });
+    const status = document.getElementById('streakStatus');
+    if (streakCount === 0) {
+      status.textContent = '記録を開始してください';
+    } else if (streakCount >= 3) {
+      status.innerHTML = `🏆 <strong>${escapeHtml(streakName)}</strong> から${streakCount}回連続指名 — クリア！`;
+      status.style.color = 'var(--shu)';
+    } else {
+      status.innerHTML = `<strong>${escapeHtml(streakName)}</strong> から ${streakCount} 回連続指名中`;
+      status.style.color = 'var(--sumi-soft)';
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ─────────── Toast ───────────
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // ─────────── Events ───────────
+  document.querySelectorAll('.score-item').forEach(el => {
+    el.addEventListener('click', async () => {
+      const id = el.dataset.id;
+      state.checks[id] = !state.checks[id];
+      await saveState();
+      render();
+    });
+  });
+
+  document.querySelectorAll('.bonus-card').forEach(el => {
+    el.addEventListener('click', async () => {
+      const id = el.dataset.id;
+      state.bonuses[id] = !state.bonuses[id];
+      await saveState();
+      render();
+      if (state.bonuses[id]) {
+        const pts = el.dataset.points;
+        toast(`+${pts} 点 獲得`);
+      }
+    });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', async () => {
+    if (!confirm('本日分の採点をリセットしますか？（履歴は消えません）')) return;
+    state.checks = {};
+    state.bonuses = {};
+    await saveState();
+    render();
+    toast('リセットしました');
+  });
+
+  document.getElementById('saveBtn').addEventListener('click', async () => {
+    const name = document.getElementById('employeeName').value.trim();
+    if (!name) {
+      toast('社員さんの名前を入れてください');
+      return;
+    }
+    const score = calcScore();
+    state.history.push({
+      date: new Date().toISOString(),
+      employee: name,
+      score: score
+    });
+    state.checks = {};
+    state.bonuses = {};
+    document.getElementById('employeeName').value = '';
+    await saveState();
+    render();
+    toast(`${score}点で記録 ／ 採点をリセット`);
+  });
+
+  document.getElementById('clearAllBtn').addEventListener('click', async () => {
+    if (!confirm('全ての履歴を消しますか？この操作は元に戻せません。')) return;
+    state.history = [];
+    await saveState();
+    render();
+    toast('履歴を消しました');
+  });
+
+  // ─────────── Init ───────────
+  loadState();
+</script>
+
+</body>
+</html>
