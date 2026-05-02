@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田様 施術報告書 | 三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1a3d28;
+  --green-deep: #0f2818;
+  --green-light: #2a5d3e;
+  --gold: #c4a44d;
+  --gold-bright: #e8c468;
+  --ivory: #f5f0e4;
+  --neon: #ff3b8b;
+  --neon-cyan: #00e5ff;
+  --shadow: rgba(0,0,0,0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--green-deep);
+  color: var(--ivory);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--green);
+  position: relative;
+}
+
+/* ───── HERO ───── */
+.hero {
+  position: relative;
+  padding: 60px 28px 50px;
+  background: var(--green);
+  border-bottom: 3px solid var(--gold);
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px solid var(--gold);
+  pointer-events: none;
+}
+
+.hero-marquee {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 0.4em;
+  margin-bottom: 18px;
+}
+
+.hero-name {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 42px;
+  color: var(--ivory);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.hero-name .sama {
+  color: var(--gold);
+  font-size: 28px;
+  margin-left: 4px;
+}
+
+.hero-sub {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  color: var(--gold-bright);
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+}
+
+.hero-divider {
+  display: inline-block;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 14px 8px;
+  vertical-align: middle;
+}
+
+.hero-divider-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+}
+
+.hero-date {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: var(--ivory);
+  letter-spacing: 0.2em;
+  margin-top: 12px;
+  opacity: 0.85;
+}
+
+/* ───── HEADLINE BLOCK ───── */
+.headline {
+  padding: 44px 28px;
+  background: var(--green-deep);
+  text-align: center;
+  position: relative;
+}
+
+.headline-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--green-deep);
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  padding: 6px 18px;
+  margin-bottom: 22px;
+}
+
+.headline-main {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1.4;
+  color: var(--ivory);
+  margin-bottom: 14px;
+}
+
+.headline-main .accent {
+  color: var(--gold-bright);
+  display: inline-block;
+  position: relative;
+}
+
+.headline-main .accent::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 4px;
+  background: var(--neon);
+}
+
+.headline-lead {
+  font-size: 18px;
+  color: var(--ivory);
+  opacity: 0.9;
+  line-height: 1.9;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ───── DATA SECTION ───── */
+.data-section {
+  padding: 50px 24px;
+  background: var(--green);
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  justify-content: center;
+}
+
+.section-label-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.section-label-text {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--ivory);
+  letter-spacing: 0.1em;
+}
+
+.data-card {
+  background: var(--green-deep);
+  border: 1px solid var(--gold);
+  padding: 28px 22px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.data-card-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--gold-bright);
+}
+.data-card-corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.data-card-corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.data-card-corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.data-card-corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.ba-block {
+  text-align: center;
+}
+
+.ba-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.ba-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--ivory);
+  font-weight: 700;
+}
+
+.ba-value.after {
+  color: var(--gold-bright);
+}
+
+.ba-unit {
+  font-size: 13px;
+  color: var(--ivory);
+  opacity: 0.7;
+  margin-top: 4px;
+  letter-spacing: 0.1em;
+}
+
+.ba-arrow {
+  font-size: 32px;
+  color: var(--neon);
+  font-weight: 900;
+}
+
+.data-verdict {
+  background: var(--green-light);
+  padding: 18px 20px;
+  border-left: 4px solid var(--gold-bright);
+  margin-top: 18px;
+}
+
+.data-verdict-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: var(--gold-bright);
+  letter-spacing: 0.25em;
+  margin-bottom: 6px;
+}
+
+.data-verdict-text {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ivory);
+  line-height: 1.6;
+}
+
+/* metric grid */
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.metric {
+  background: rgba(0,0,0,0.25);
+  padding: 14px 14px;
+  border-left: 3px solid var(--gold);
+}
+
+.metric-name {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.metric-flow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.metric-before {
+  font-size: 18px;
+  color: var(--ivory);
+  opacity: 0.6;
+}
+
+.metric-arrow {
+  color: var(--neon);
+  font-size: 14px;
+}
+
+.metric-after {
+  font-size: 22px;
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+/* ───── FINDINGS ───── */
+.findings {
+  padding: 50px 28px;
+  background: var(--green-deep);
+}
+
+.finding-card {
+  background: var(--green);
+  padding: 24px 22px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(196,164,77,0.4);
+  position: relative;
+}
+
+.finding-num {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  background: var(--gold);
+  color: var(--green-deep);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.finding-title {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.finding-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ivory);
+}
+
+.finding-body strong {
+  color: var(--neon);
+  font-weight: 700;
+}
+
+/* ───── PRESCRIPTION (the heart) ───── */
+.prescription {
+  background: var(--green-deep);
+  padding: 80px 28px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-top: 3px solid var(--gold);
+  border-bottom: 3px solid var(--gold);
+}
+
+.prescription::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 24px,
+      rgba(255,59,139,0.04) 24px,
+      rgba(255,59,139,0.04) 48px
+    );
+  pointer-events: none;
+}
+
+.rx-stamp {
+  display: inline-block;
+  background: var(--neon);
+  color: var(--ivory);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  padding: 8px 22px;
+  margin-bottom: 28px;
+  transform: rotate(-2deg);
+  position: relative;
+  z-index: 2;
+  box-shadow: 4px 4px 0 var(--gold);
+}
+
+.rx-headline {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1.15;
+  color: var(--ivory);
+  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 2;
+}
+
+.rx-headline .kandou {
+  color: var(--gold-bright);
+  display: inline-block;
+  position: relative;
+}
+
+.rx-headline .kandou::before {
+  content: '';
+  position: absolute;
+  left: -8px; right: -8px; top: 50%;
+  height: 14px;
+  background: var(--neon);
+  z-index: -1;
+  transform: translateY(-50%) rotate(-1deg);
+}
+
+.rx-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--neon);
+  letter-spacing: 0.25em;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+}
+
+.rx-prescription-box {
+  background: var(--green);
+  border: 2px solid var(--gold);
+  padding: 30px 24px;
+  max-width: 480px;
+  margin: 0 auto 32px;
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+
+.rx-rx-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.rx-list {
+  list-style: none;
+}
+
+.rx-list li {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--ivory);
+  padding: 14px 0;
+  border-bottom: 1px dashed rgba(196,164,77,0.4);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.rx-list li:last-child { border-bottom: none; }
+
+.rx-list-num {
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--neon);
+  font-size: 24px;
+  min-width: 28px;
+}
+
+.rx-quota {
+  background: var(--gold);
+  color: var(--green-deep);
+  padding: 18px 24px;
+  display: inline-block;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 22px;
+  position: relative;
+  z-index: 2;
+  margin-top: 8px;
+  letter-spacing: 0.05em;
+}
+
+.rx-quota .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--neon);
+  margin: 0 4px;
+}
+
+/* ───── WHY ───── */
+.why {
+  padding: 60px 28px;
+  background: var(--green);
+}
+
+.why-quote {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.6;
+  color: var(--gold-bright);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 0.04em;
+}
+
+.why-quote .em {
+  color: var(--neon);
+  display: inline-block;
+  border-bottom: 3px solid var(--neon);
+  padding-bottom: 2px;
+}
+
+.why-body {
+  font-size: 17px;
+  line-height: 2;
+  color: var(--ivory);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.why-body p {
+  margin-bottom: 18px;
+}
+
+.why-body strong {
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+.alchemy-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 36px 0;
+  flex-wrap: wrap;
+}
+
+.alchemy-item {
+  background: var(--green-deep);
+  border: 1px solid var(--gold);
+  padding: 14px 18px;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ivory);
+  text-align: center;
+  min-width: 110px;
+}
+
+.alchemy-item.start { color: var(--ivory); opacity: 0.7; }
+.alchemy-item.transform {
+  background: var(--neon);
+  color: var(--ivory);
+  border-color: var(--neon);
+}
+.alchemy-item.end {
+  background: var(--gold);
+  color: var(--green-deep);
+  border-color: var(--gold-bright);
+}
+
+.alchemy-arrow {
+  color: var(--gold);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+}
+
+/* ───── HOMEWORK ───── */
+.homework {
+  padding: 50px 28px;
+  background: var(--green-deep);
+  text-align: center;
+}
+
+.hw-tag {
+  display: inline-block;
+  background: var(--neon);
+  color: var(--ivory);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  padding: 6px 18px;
+  margin-bottom: 18px;
+}
+
+.hw-title {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 30px;
+  color: var(--ivory);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.hw-title .deadline {
+  color: var(--gold-bright);
+  display: inline-block;
+  border-bottom: 4px solid var(--neon);
+}
+
+.hw-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.hw-option {
+  background: var(--green);
+  border: 1px solid var(--gold);
+  padding: 20px 8px;
+  text-align: center;
+}
+
+.hw-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.hw-label {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--gold-bright);
+  letter-spacing: 0.05em;
+}
+
+/* ───── RIB CONCERN ───── */
+.rib-section {
+  padding: 50px 28px;
+  background: var(--green);
+  border-top: 1px solid rgba(196,164,77,0.3);
+}
+
+.rib-card {
+  background: var(--green-deep);
+  border: 2px solid var(--neon);
+  padding: 28px 24px;
+  position: relative;
+}
+
+.rib-watch {
+  position: absolute;
+  top: -14px;
+  right: 20px;
+  background: var(--neon);
+  color: var(--ivory);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  padding: 4px 14px;
+}
+
+.rib-title {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--gold-bright);
+  margin-bottom: 14px;
+  margin-top: 6px;
+}
+
+.rib-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ivory);
+}
+
+.rib-numbers {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px 0;
+}
+
+.rib-num {
+  background: var(--neon);
+  color: var(--ivory);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 2px solid var(--gold);
+}
+
+/* ───── CLOSING ───── */
+.closing {
+  padding: 60px 28px 40px;
+  background: var(--green-deep);
+  text-align: center;
+  border-top: 3px solid var(--gold);
+}
+
+.closing-message {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.9;
+  color: var(--gold-bright);
+  margin-bottom: 32px;
+}
+
+.brand-divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 30px 0;
+}
+
+.brand-divider .line {
+  flex: 1;
+  height: 1px;
+  background: var(--gold);
+}
+
+.brand-divider .ornament {
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.clinic-name {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--ivory);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.clinic-doctor {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 24px;
+}
+
+.signature {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--ivory);
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+  max-width: 480px;
+  margin: 0 auto;
+  font-family: 'Noto Serif JP', serif;
+}
+
+/* mobile tweaks */
+@media (max-width: 600px) {
+  .hero-name { font-size: 36px; }
+  .hero-name .sama { font-size: 24px; }
+  .headline-main { font-size: 28px; }
+  .rx-headline { font-size: 48px; }
+  .ba-value { font-size: 44px; }
+  .why-quote { font-size: 22px; }
+  .hw-title { font-size: 24px; }
+  .hw-options { grid-template-columns: 1fr 1fr 1fr; }
+  .hw-option { padding: 14px 4px; }
+  .hw-label { font-size: 12px; }
+  .alchemy-flow { flex-direction: column; }
+  .alchemy-arrow { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-marquee">CLINIC RECORD &nbsp;/&nbsp; SANJO KENKODO</div>
+    <div class="hero-name">福田<span class="sama">様</span></div>
+    <div class="hero-sub">本日の施術結果</div>
+    <div>
+      <span class="hero-divider"></span>
+      <span class="hero-divider-text">REPORT</span>
+      <span class="hero-divider"></span>
+    </div>
+    <div class="hero-date">2026 / TREATMENT NOTE</div>
+  </section>
+
+  <!-- HEADLINE -->
+  <section class="headline">
+    <div class="headline-tag">本日の結論</div>
+    <h1 class="headline-main">
+      ぎっくり腰、<br>
+      <span class="accent">改善モード突入</span>。
+    </h1>
+    <p class="headline-lead">
+      体は「戦闘モード」から<br>「深い回復モード」へ完全移行しました。<br>
+      数値の低下は、リラックス成功のサインです。
+    </p>
+  </section>
+
+  <!-- DATA -->
+  <section class="data-section">
+    <div class="section-label">
+      <span class="section-label-num">01</span>
+      <span class="section-label-text">DATA / 体の声</span>
+    </div>
+
+    <div class="data-card">
+      <span class="data-card-corner tl"></span>
+      <span class="data-card-corner tr"></span>
+      <span class="data-card-corner bl"></span>
+      <span class="data-card-corner br"></span>
+
+      <div class="before-after">
+        <div class="ba-block">
+          <div class="ba-label">BEFORE</div>
+          <div class="ba-value">42.64</div>
+          <div class="ba-unit">AVERAGE</div>
+        </div>
+        <div class="ba-arrow">▶</div>
+        <div class="ba-block">
+          <div class="ba-label">AFTER</div>
+          <div class="ba-value after">27.74</div>
+          <div class="ba-unit">AVERAGE</div>
+        </div>
+      </div>
+
+      <div class="data-verdict">
+        <div class="data-verdict-tag">CLINICAL READING</div>
+        <div class="data-verdict-text">
+          交感神経優位 → 副交感神経優位へ。<br>
+          体が「休んでいい」と判断した証拠。
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-name">エネルギー</div>
+          <div class="metric-flow">
+            <span class="metric-before">42.64</span>
+            <span class="metric-arrow">▶</span>
+            <span class="metric-after">27.74</span>
+          </div>
+        </div>
+        <div class="metric">
+          <div class="metric-name">免疫</div>
+          <div class="metric-flow">
+            <span class="metric-before">38.99</span>
+            <span class="metric-arrow">▶</span>
+            <span class="metric-after">14.13</span>
+          </div>
+        </div>
+        <div class="metric">
+          <div class="metric-name">代謝</div>
+          <div class="metric-flow">
+            <span class="metric-before">1.03</span>
+            <span class="metric-arrow">▶</span>
+            <span class="metric-after">1.08</span>
+          </div>
+        </div>
+        <div class="metric">
+          <div class="metric-name">心の状態</div>
+          <div class="metric-flow">
+            <span class="metric-before">0.99</span>
+            <span class="metric-arrow">▶</span>
+            <span class="metric-after">0.71</span>
+          </div>
+        </div>
+        <div class="metric">
+          <div class="metric-name">筋骨格</div>
+          <div class="metric-flow">
+            <span class="metric-before">1.01</span>
+            <span class="metric-arrow">▶</span>
+            <span class="metric-after">1.12</span>
+          </div>
+        </div>
+        <div class="metric">
+          <div class="metric-name">φ値（生体電流）</div>
+          <div class="metric-flow">
+            <span class="metric-before">1023</span>
+            <span class="metric-arrow">▶</span>
+            <span class="metric-after">665</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDINGS -->
+  <section class="findings">
+    <div class="section-label">
+      <span class="section-label-num">02</span>
+      <span class="section-label-text">FINDINGS / 今日わかったこと</span>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-num">01</div>
+      <div class="finding-title">ぎっくり腰、改善し始めている</div>
+      <div class="finding-body">
+        最大のポイントです。<strong>体は確実に回復軌道</strong>に入っています。
+      </div>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-num">02</div>
+      <div class="finding-title">軸足のアンバランス</div>
+      <div class="finding-body">
+        <strong>右足の外反母趾</strong>が原因で、軸足が左に偏ってきています。<br>
+        この左右差が、全身のアンバランスを生んでいます。<br>
+        だから今日は、まず<strong>体をリラックス</strong>させ、凝りのポイントを一つずつ施術しました。
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESCRIPTION (CENTERPIECE) -->
+  <section class="prescription">
+    <div class="rx-stamp">★ Rx / 谷の処方箋 ★</div>
+    <h2 class="rx-headline">
+      <span class="kandou">感動</span>しろ。
+    </h2>
+    <div class="rx-sub">— THIS IS THE MEDICINE —</div>
+
+    <div class="rx-prescription-box">
+      <div class="rx-rx-label">— PRESCRIPTION —</div>
+      <ul class="rx-list">
+        <li><span class="rx-list-num">01</span>ライブ・コンサートに行く</li>
+        <li><span class="rx-list-num">02</span>野球観戦に行く</li>
+        <li><span class="rx-list-num">03</span>心がざわつく体験をする</li>
+      </ul>
+    </div>
+
+    <div class="rx-quota">
+      夏までに<span class="num">2〜3回</span>厳守
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="section-label">
+      <span class="section-label-num">03</span>
+      <span class="section-label-text">WHY / なぜ感動なのか</span>
+    </div>
+
+    <div class="why-quote">
+      ストレスは、<br>
+      <span class="em">感動</span>で錬金される。
+    </div>
+
+    <div class="alchemy-flow">
+      <div class="alchemy-item start">蓄積した<br>ストレス</div>
+      <div class="alchemy-arrow">▶</div>
+      <div class="alchemy-item transform">感動</div>
+      <div class="alchemy-arrow">▶</div>
+      <div class="alchemy-item end">体に<br>良いもの</div>
+    </div>
+
+    <div class="why-body">
+      <p>
+        福田様は今、<strong>大学院と仕事のマルチタスク</strong>で、無意識のうちにストレスが溢れ出している状態です。
+      </p>
+      <p>
+        これを解消するのは、<strong>感動すること</strong>。<br>
+        実はこれ、<strong>人間にしかできないこと</strong>です。
+      </p>
+      <p>
+        「生きる」とは何か、と問われたら——<br>
+        その大きな一部は、<strong>感動すること</strong>だと私は思うのです。
+      </p>
+      <p>
+        感動すれば、それまでのストレスは錬金術のように姿を変え、<br>
+        <strong>あなたの体に効くもの</strong>になります。
+      </p>
+      <p>
+        感動できるかどうか。<strong>これこそが、人生</strong>です。
+      </p>
+    </div>
+  </section>
+
+  <!-- HOMEWORK -->
+  <section class="homework">
+    <div class="hw-tag">★ HOMEWORK ★</div>
+    <h2 class="hw-title">
+      <span class="deadline">夏まで</span>に<br>
+      心を、もっと動かそう。
+    </h2>
+    <div class="hw-options">
+      <div class="hw-option">
+        <span class="hw-icon">🎤</span>
+        <div class="hw-label">LIVE</div>
+      </div>
+      <div class="hw-option">
+        <span class="hw-icon">⚾</span>
+        <div class="hw-label">野球観戦</div>
+      </div>
+      <div class="hw-option">
+        <span class="hw-icon">🎭</span>
+        <div class="hw-label">コンサート</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIB CONCERN -->
+  <section class="rib-section">
+    <div class="rib-card">
+      <div class="rib-watch">★ NEXT TIME ★</div>
+      <div class="rib-title">気になっているポイント</div>
+      <div class="rib-body">
+        <strong style="color:var(--gold-bright)">右の肋骨</strong>、最後まで硬さが残りました。
+      </div>
+      <div class="rib-numbers">
+        <div class="rib-num">7</div>
+        <div class="rib-num">8</div>
+        <div class="rib-num">9</div>
+      </div>
+      <div class="rib-body" style="text-align:center">
+        ほぼ施術は完了していますが、<br>
+        次回、優先的にケアします。
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="closing-message">
+      体は応えてくれています。<br>
+      あとは、<strong style="color:var(--neon)">心を動かす</strong>だけ。<br>
+      また、お会いできるのを楽しみにしています。
+    </div>
+
+    <div class="brand-divider">
+      <span class="line"></span>
+      <span class="ornament">◆ ◆ ◆</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="clinic-name">三条健康堂接骨院</div>
+    <div class="clinic-doctor">院長 ／ 谷 弘誠</div>
+
+    <div class="signature">
+      高松発・一生動ける身体と人生の教養研究室<br>
+      無借金・無車・自転車・圧力鍋生活を実践する治療家より
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
