@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兼近様 施術報告書 三部作 | 2026.05.04 | 三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1a3d28;
+  --green-2:#0f2818;
+  --green-3:#264c36;
+  --gold:#c4a44d;
+  --gold-2:#e8c878;
+  --ivory:#f5f0e4;
+  --ivory-2:rgba(245,240,228,0.7);
+  --ivory-3:rgba(245,240,228,0.4);
+  --warn:#d97a4a;
+  --good:#7ab06a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--green);
+  color:var(--ivory);
+  font-family:"Noto Sans JP",sans-serif;
+  font-size:17px;
+  line-height:1.85;
+  letter-spacing:0.02em;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Noto Serif JP",serif}
+.gold{color:var(--gold-2)}
+strong{color:var(--gold-2);font-weight:700}
+
+/* ===== 共通レイアウト ===== */
+.wrap{max-width:780px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+.divider{
+  display:flex;align-items:center;gap:16px;
+  margin:48px 0;color:var(--gold);
+}
+.divider::before,.divider::after{
+  content:"";flex:1;height:1px;background:var(--gold);opacity:0.5;
+}
+.divider-mark{font-size:14px;letter-spacing:0.4em}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 24px 40px;
+  position:relative;
+  background:
+    radial-gradient(ellipse at top, rgba(196,164,77,0.12) 0%, transparent 60%),
+    var(--green);
+  border-top:6px double var(--gold);
+  border-bottom:6px double var(--gold);
+}
+.hero-top{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--gold);letter-spacing:0.3em}
+.hero-mid{text-align:center;margin:auto 0}
+.hero-no{
+  font-family:"Noto Serif JP",serif;
+  font-size:14px;letter-spacing:0.6em;color:var(--gold);
+  margin-bottom:24px;
+}
+.hero-title{
+  font-family:"Noto Serif JP",serif;
+  font-weight:900;
+  font-size:clamp(40px,9vw,68px);
+  line-height:1.2;
+  color:var(--ivory);
+  margin-bottom:16px;
+}
+.hero-title .name{
+  display:block;font-size:0.72em;color:var(--gold-2);
+  margin-bottom:12px;letter-spacing:0.08em;
+}
+.hero-sub{
+  font-size:18px;color:var(--ivory-2);margin-top:32px;
+  font-family:"Noto Serif JP",serif;
+}
+.hero-tag{
+  display:inline-block;margin-top:24px;
+  padding:10px 24px;border:1px solid var(--gold);
+  font-size:13px;letter-spacing:0.2em;color:var(--gold-2);
+}
+.hero-bot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  font-size:12px;color:var(--ivory-2);letter-spacing:0.15em;
+  border-top:1px solid rgba(196,164,77,0.3);padding-top:20px;
+}
+.hero-bot strong{color:var(--gold-2)}
+
+/* ===== INDEX ===== */
+.index{background:var(--green-2);border-top:1px solid var(--gold)}
+.index-title{
+  font-family:"Noto Serif JP",serif;
+  font-size:14px;letter-spacing:0.6em;color:var(--gold);
+  text-align:center;margin-bottom:48px;
+}
+.index-list{display:grid;gap:24px}
+.index-item{
+  display:grid;grid-template-columns:80px 1fr;gap:24px;
+  padding:28px 24px;
+  border:1px solid rgba(196,164,77,0.4);
+  background:rgba(15,40,24,0.6);
+  align-items:center;
+}
+.index-num{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:48px;color:var(--gold-2);line-height:1;
+}
+.index-cat{
+  font-size:12px;letter-spacing:0.3em;color:var(--gold);margin-bottom:6px;
+}
+.index-h{
+  font-family:"Noto Serif JP",serif;font-weight:700;
+  font-size:22px;color:var(--ivory);margin-bottom:6px;
+}
+.index-d{font-size:14px;color:var(--ivory-2);line-height:1.6}
+
+/* ===== CHAPTER共通 ===== */
+.chapter-mark{
+  font-family:"Noto Serif JP",serif;
+  font-size:13px;letter-spacing:0.6em;color:var(--gold);
+  text-align:center;margin-bottom:16px;
+}
+.chapter-title{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:clamp(32px,7vw,52px);
+  text-align:center;line-height:1.2;color:var(--ivory);
+  margin-bottom:24px;
+}
+.chapter-lead{
+  text-align:center;
+  font-family:"Noto Serif JP",serif;
+  font-size:18px;color:var(--gold-2);
+  letter-spacing:0.05em;line-height:1.7;
+  margin-bottom:64px;
+  padding:0 16px;
+}
+.chapter-lead::before{content:"｜";margin-right:8px;color:var(--gold)}
+.chapter-lead::after{content:"｜";margin-left:8px;color:var(--gold)}
+
+/* ===== セクション小見出し ===== */
+.h3{
+  font-family:"Noto Serif JP",serif;font-weight:700;
+  font-size:24px;color:var(--gold-2);
+  border-left:4px solid var(--gold);
+  padding-left:16px;
+  margin:48px 0 24px;
+  line-height:1.4;
+}
+p.body{margin-bottom:20px;color:var(--ivory)}
+p.body strong{color:var(--gold-2)}
+
+/* ===== カード（5本柱用）===== */
+.pillar{
+  border:1px solid rgba(196,164,77,0.5);
+  background:rgba(15,40,24,0.7);
+  padding:32px 24px;
+  margin-bottom:24px;
+  position:relative;
+}
+.pillar-no{
+  position:absolute;top:-18px;left:24px;
+  background:var(--green);
+  padding:0 12px;
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:24px;color:var(--gold-2);
+}
+.pillar-cat{
+  font-size:11px;letter-spacing:0.4em;color:var(--gold);
+  margin-bottom:8px;margin-top:8px;
+}
+.pillar-h{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:26px;color:var(--ivory);margin-bottom:16px;
+  line-height:1.3;
+}
+.pillar-evi{
+  display:inline-block;
+  padding:6px 14px;
+  background:var(--gold);color:var(--green);
+  font-weight:700;font-size:13px;
+  letter-spacing:0.05em;
+  margin-bottom:16px;
+}
+.pillar-body{color:var(--ivory);font-size:16px;line-height:1.85}
+.pillar-body strong{color:var(--gold-2)}
+
+/* ===== 大数字ハイライト ===== */
+.bignum{
+  text-align:center;
+  margin:40px 0;
+  padding:32px 16px;
+  border-top:2px solid var(--gold);
+  border-bottom:2px solid var(--gold);
+}
+.bignum-label{font-size:12px;letter-spacing:0.4em;color:var(--gold);margin-bottom:12px}
+.bignum-val{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:clamp(56px,14vw,96px);
+  color:var(--gold-2);line-height:1;
+  margin-bottom:8px;
+  letter-spacing:-0.02em;
+}
+.bignum-unit{font-size:18px;color:var(--ivory-2);letter-spacing:0.1em}
+.bignum-note{margin-top:16px;font-size:14px;color:var(--ivory-2)}
+
+/* ===== プルクオート ===== */
+.quote{
+  margin:48px 0;
+  padding:32px 24px 32px 56px;
+  background:rgba(196,164,77,0.08);
+  border-left:4px solid var(--gold);
+  position:relative;
+}
+.quote::before{
+  content:"❝";
+  position:absolute;left:16px;top:16px;
+  font-size:48px;color:var(--gold);font-family:serif;
+  line-height:1;
+}
+.quote-text{
+  font-family:"Noto Serif JP",serif;
+  font-size:19px;line-height:1.8;color:var(--ivory);
+  font-weight:700;
+}
+
+/* ===== 5要因リスト ===== */
+.factor{
+  display:grid;grid-template-columns:60px 1fr;gap:20px;
+  padding:24px 0;
+  border-bottom:1px solid rgba(196,164,77,0.25);
+  align-items:start;
+}
+.factor:last-child{border-bottom:none}
+.factor-num{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:36px;color:var(--gold-2);line-height:1;
+}
+.factor-h{
+  font-family:"Noto Serif JP",serif;font-weight:700;
+  font-size:20px;color:var(--ivory);margin-bottom:8px;
+}
+.factor-evi{
+  display:inline-block;font-size:11px;letter-spacing:0.1em;
+  color:var(--green);background:var(--gold-2);
+  padding:3px 10px;margin-bottom:10px;font-weight:700;
+}
+.factor-body{font-size:15px;color:var(--ivory);line-height:1.75}
+
+/* ===== Brain SVG用フレーム ===== */
+.diagram{
+  margin:40px 0;padding:32px 16px;
+  background:var(--green-2);
+  border:1px solid var(--gold);
+  text-align:center;
+}
+.diagram-cap{
+  font-size:13px;color:var(--gold);
+  letter-spacing:0.2em;margin-top:16px;
+}
+
+/* ===== RaDoTechダッシュボード ===== */
+.dash{margin:48px 0}
+.dash-h{
+  font-family:"Noto Serif JP",serif;font-weight:700;
+  font-size:18px;color:var(--gold-2);
+  text-align:center;margin-bottom:8px;letter-spacing:0.1em;
+}
+.dash-arrow{
+  text-align:center;font-size:36px;color:var(--gold);
+  margin:8px 0;
+}
+.dash-block{
+  border:1px solid var(--gold);
+  padding:24px;margin-bottom:16px;
+  background:rgba(15,40,24,0.6);
+}
+.dash-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px dashed rgba(196,164,77,0.3);
+}
+.dash-row:last-child{border-bottom:none}
+.dash-key{font-size:14px;color:var(--ivory-2)}
+.dash-val{
+  font-family:"Noto Serif JP",serif;font-weight:700;
+  font-size:18px;color:var(--ivory);
+}
+.dash-status{
+  display:inline-block;font-size:11px;padding:2px 8px;margin-left:6px;
+  background:var(--green-3);color:var(--gold-2);letter-spacing:0.05em;
+}
+.dash-status.norm{background:var(--good);color:var(--green-2);font-weight:700}
+.dash-status.over{background:var(--warn);color:#fff;font-weight:700}
+.dash-summary{
+  text-align:center;
+  background:var(--gold);color:var(--green);
+  padding:20px 16px;margin-top:24px;
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:18px;line-height:1.6;
+}
+.dash-summary strong{color:var(--green-2)}
+
+/* ===== ループ図 ===== */
+.loop{
+  background:var(--green-2);
+  border:2px solid var(--gold);
+  padding:32px 20px;
+  margin:48px 0;
+}
+.loop-h{
+  text-align:center;
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:22px;color:var(--gold-2);
+  margin-bottom:24px;letter-spacing:0.05em;
+}
+.loop-step{
+  display:grid;grid-template-columns:40px 1fr;gap:16px;
+  padding:14px;
+  background:rgba(196,164,77,0.05);
+  border-left:3px solid var(--gold);
+  margin-bottom:8px;
+  align-items:center;
+}
+.loop-num{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:22px;color:var(--gold-2);text-align:center;
+}
+.loop-text{font-size:15px;color:var(--ivory);line-height:1.6}
+.loop-text strong{color:var(--gold-2)}
+.loop-arr{text-align:center;color:var(--gold);font-size:24px;margin:4px 0}
+
+/* ===== プロトコル（自己介入）===== */
+.proto{
+  border:2px dashed var(--gold);
+  padding:28px 24px;margin:32px 0;
+  background:rgba(196,164,77,0.05);
+}
+.proto-mark{
+  display:inline-block;
+  background:var(--gold-2);color:var(--green-2);
+  font-size:11px;letter-spacing:0.3em;font-weight:700;
+  padding:4px 14px;margin-bottom:16px;
+}
+.proto-h{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:24px;color:var(--ivory);margin-bottom:24px;
+  line-height:1.3;
+}
+.proto-item{
+  display:grid;grid-template-columns:50px 1fr;gap:16px;
+  padding:18px 0;border-bottom:1px solid rgba(196,164,77,0.3);
+  align-items:start;
+}
+.proto-item:last-child{border-bottom:none}
+.proto-num{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:28px;color:var(--gold-2);line-height:1;
+}
+.proto-name{
+  font-weight:700;color:var(--ivory);font-size:17px;margin-bottom:6px;
+}
+.proto-how{font-size:14px;color:var(--ivory-2);line-height:1.7}
+
+/* ===== カラム比較 ===== */
+.compare{
+  display:grid;grid-template-columns:1fr;gap:16px;margin:32px 0;
+}
+.compare-col{
+  padding:24px;border:1px solid var(--gold);
+  background:rgba(15,40,24,0.6);
+}
+.compare-col-h{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:20px;color:var(--gold-2);margin-bottom:8px;
+  border-bottom:1px solid var(--gold);padding-bottom:8px;
+}
+.compare-col-tag{font-size:12px;letter-spacing:0.2em;color:var(--gold);margin-bottom:12px}
+.compare-col-body{font-size:15px;line-height:1.75;color:var(--ivory)}
+
+/* ===== Footer ===== */
+.footer{
+  background:var(--green-2);
+  border-top:6px double var(--gold);
+  padding:60px 24px 40px;
+  text-align:center;
+}
+.footer-mark{
+  font-family:"Noto Serif JP",serif;font-weight:900;
+  font-size:24px;color:var(--gold-2);margin-bottom:8px;
+  letter-spacing:0.1em;
+}
+.footer-tag{
+  font-size:13px;color:var(--ivory-2);
+  margin-bottom:32px;line-height:1.7;
+}
+.footer-cta{
+  display:block;margin:12px auto;max-width:320px;
+  padding:14px;
+  background:var(--gold);color:var(--green-2);
+  font-weight:700;font-size:15px;
+  text-decoration:none;letter-spacing:0.05em;
+  text-align:center;
+}
+.footer-cta.line{background:#06c755;color:#fff}
+.footer-info{
+  margin-top:32px;
+  font-size:12px;color:var(--ivory-3);
+  letter-spacing:0.1em;line-height:2;
+}
+
+@media(min-width:720px){
+  .compare{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-top">
+    <span>三条健康堂接骨院</span>
+    <span>2026.05.04</span>
+  </div>
+
+  <div class="hero-mid">
+    <div class="hero-no">CLINICAL REPORT｜三部作</div>
+    <h1 class="hero-title">
+      <span class="name">兼近様</span>
+      本日の<br>施術報告書
+    </h1>
+    <div class="hero-sub serif">
+      ──「学習」「神経科学」「臨床」<br>
+      三つの章で読み解く、今日の身体と人生
+    </div>
+    <div class="hero-tag">EVIDENCE × CLINICAL × INTELLECT</div>
+  </div>
+
+  <div class="hero-bot">
+    <span>VOL.<strong>2026/05</strong></span>
+    <span>by <strong>谷先生</strong></span>
+  </div>
+</section>
+
+<!-- ============== INDEX ============== -->
+<section class="index">
+  <div class="wrap">
+    <div class="index-title serif">CONTENTS｜目次</div>
+    <div class="index-list">
+
+      <a href="#ch1" class="index-item">
+        <div class="index-num serif">01</div>
+        <div>
+          <div class="index-cat">学習編</div>
+          <div class="index-h">息子さんへの5本柱</div>
+          <div class="index-d">「努力」じゃなく「設計」で成績は上がる<br>──認知科学が出した5つの結論</div>
+        </div>
+      </a>
+
+      <a href="#ch2" class="index-item">
+        <div class="index-num serif">02</div>
+        <div>
+          <div class="index-cat">神経科学編</div>
+          <div class="index-h">扁桃体ループの正体</div>
+          <div class="index-d">なぜネガティブが頭から離れないのか<br>──腸・歯・睡眠・運動と脳の地図</div>
+        </div>
+      </a>
+
+      <a href="#ch3" class="index-item">
+        <div class="index-num serif">03</div>
+        <div>
+          <div class="index-cat">臨床編</div>
+          <div class="index-h">本日の施術と仮説</div>
+          <div class="index-d">右顎・側頭筋・右肋骨が語ったこと<br>──食いしばりは「結果」であり「燃料」だった</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== CHAPTER 01 ============== -->
+<section id="ch1" class="wrap">
+  <div class="divider"><span class="divider-mark">CHAPTER ONE</span></div>
+
+  <div class="chapter-mark">学習編</div>
+  <h2 class="chapter-title serif">
+    息子さんへの<br>5本柱
+  </h2>
+  <p class="chapter-lead serif">
+    高専3年・電気科。「点数を取るためにAIを使う」のではなく、<br>「自分の認知の穴を埋めるためにAIを使う」へ。
+  </p>
+
+  <p class="body">
+    今日お話した5つのアドバイス、すべて認知科学・教育心理学のメインストリームと<strong>完全に一致</strong>しています。一つずつ、エビデンスを並べます。エフェクトサイズ（効果量）の数値は、その介入が<strong>実際にどれくらい効くか</strong>の客観指標です。
+  </p>
+
+  <!-- Pillar 1 -->
+  <div class="pillar">
+    <div class="pillar-no serif">①</div>
+    <div class="pillar-cat">POMODORO TECHNIQUE</div>
+    <div class="pillar-h serif">25分集中→5分休憩、<br>これを繰り返す</div>
+    <div class="pillar-evi">成績 r=0.65｜集中力 r=0.72</div>
+    <div class="pillar-body">
+      6,499件の論文をスクリーニングしたメタ分析で、<strong>パフォーマンス・集中・時間管理・学習エンゲージメント</strong>すべてに正の相関。大きなタスクを小さく分割するため、<strong>先延ばしが減る</strong>のがメカニズム。研究では25分が標準ですが、集中持続力が育てば徐々に延ばしてOK。
+    </div>
+  </div>
+
+  <!-- Pillar 2 -->
+  <div class="pillar">
+    <div class="pillar-no serif">②</div>
+    <div class="pillar-cat">IMPLEMENTATION INTENTIONS</div>
+    <div class="pillar-h serif">「タイマーが鳴ったら<br>やめる」の科学</div>
+    <div class="pillar-evi">d=0.65（94研究のメタ分析）</div>
+    <div class="pillar-body">
+      Gollwitzer の <strong>if-then プランニング</strong>。「もし状況Yになったら、行動Zをする」と事前に決めておくと、目標達成率がmedium-largeで上がる。<br><br>
+      最大のポイントは <strong>「モチベーションを使わなくていい」</strong>こと。手がかり（音）に行動（中断）が自動連結されるので、毎回「やめようかな…」と意志力を消費しなくて済む。<strong>意志は弱るが、設計は弱らない</strong>。
+    </div>
+  </div>
+
+  <!-- Pillar 3 -->
+  <div class="pillar">
+    <div class="pillar-no serif">③</div>
+    <div class="pillar-cat">AI × ADAPTIVE LEARNING</div>
+    <div class="pillar-h serif">AIで「弱点」を<br>掘り起こさせる</div>
+    <div class="pillar-evi">g=0.70（45研究のメタ分析）</div>
+    <div class="pillar-body">
+      AI駆動の適応学習システムは、非適応学習との比較で<strong>medium-largeの効果（g=0.70）</strong>。教育介入としては相当大きい。<br><br>
+      ポイントは使い方。「答えを出させる」ではなく、<strong>過去のテスト結果を全部読み込ませて「自分の弱点」を言語化させる</strong>。点数を取るためでなく、<strong>自分の認知の穴を発見する</strong>ためのツールとして使う。これは現代教育研究の核心（adaptive difficulty + remediation）と一致。
+    </div>
+  </div>
+
+  <!-- Pillar 4 -->
+  <div class="pillar">
+    <div class="pillar-no serif">④</div>
+    <div class="pillar-cat">READING COMPREHENSION</div>
+    <div class="pillar-h serif">問題文を<br>正確に読む練習</div>
+    <div class="pillar-evi">読解力×解答力に強い相関</div>
+    <div class="pillar-body">
+      <strong>「うまくいかない解答者」</strong>の特徴：問題文の数字だけを反射的に拾って計算する <strong>直接翻訳ストラテジー</strong>。<br><br>
+      <strong>「成功する解答者」</strong>の特徴：問題のメンタルモデルを構築してから式を立てる <strong>問題モデルストラテジー</strong>。<br><br>
+      高専の電気回路や物理でも全く同じ。「与件の数値を反射式に入れる」 vs 「何を問われているか把握してから式を立てる」の差が、点数の差になる。
+    </div>
+  </div>
+
+  <!-- Pillar 5 -->
+  <div class="pillar">
+    <div class="pillar-no serif">⑤</div>
+    <div class="pillar-cat">SELF-EXPLANATION EFFECT</div>
+    <div class="pillar-h serif">自分の答案を全部<br>AIに見せて、言語化させる</div>
+    <div class="pillar-evi">ĝ=0.39（42研究のメタ分析）</div>
+    <div class="pillar-body">
+      <strong>自己説明効果（Self-Explanation Effect）</strong>として確立された認知科学の知見。問題解決の途中で自分のステップを説明すると、説明しない学生より<strong>深い理解で学習する</strong>。<br><br>
+      自分が「何を分かっていないか」を言語化するのは、高校生が普通やらない。これをAIに代行させるのは、認知科学的には<strong>「メタ認知の外化」</strong>。本人だけでは到達できない自己理解の解像度に届く。
+    </div>
+  </div>
+
+  <div class="quote">
+    <div class="quote-text serif">
+      点数を取るためにAIを使う者と、<br>
+      自分の認知の穴を埋めるためにAIを使う者。<br>
+      この差は、社会人になってから<br>
+      決定的な差になる。
+    </div>
+  </div>
+
+</section>
+
+<!-- ============== CHAPTER 02 ============== -->
+<section id="ch2" class="wrap">
+  <div class="divider"><span class="divider-mark">CHAPTER TWO</span></div>
+
+  <div class="chapter-mark">神経科学編</div>
+  <h2 class="chapter-title serif">
+    扁桃体ループの<br>正体
+  </h2>
+  <p class="chapter-lead serif">
+    なぜネガティブが頭から離れないのか。<br>
+    答えは「進化の遺産」と「現代の入力」のミスマッチ。
+  </p>
+
+  <h3 class="h3 serif">扁桃体は「壊れている」のではない</h3>
+  <p class="body">
+    脳の奥にある<strong>扁桃体（へんとうたい）</strong>は、危険を先回りで検知する装置です。かつてはこれが鋭くないと <strong>毒蛇・捕食者・敵対集団に殺されて遺伝子を残せなかった</strong>。だから「ネガティブを先に考える脳」が選択されてきた。
+  </p>
+  <p class="body">
+    つまり、ネガティブ思考が止まらない人は<strong>壊れているのではなく、進化的に「正しく」設計されている</strong>。問題は、現代の安全な環境でこの装置が <strong>ミスファイア</strong> しやすいこと。だから「燃料の供給」を絞ることが対策になる。
+  </p>
+
+  <!-- Brain diagram -->
+  <div class="diagram">
+    <svg viewBox="0 0 320 220" width="100%" style="max-width:320px" xmlns="http://www.w3.org/2000/svg">
+      <!-- 脳の輪郭 -->
+      <path d="M 50 120 Q 30 60 90 40 Q 160 10 230 40 Q 290 60 280 130 Q 270 180 200 185 Q 130 195 80 180 Q 45 165 50 120 Z"
+            fill="none" stroke="#c4a44d" stroke-width="2.5"/>
+      <!-- 前頭前野 -->
+      <path d="M 60 95 Q 75 60 130 55 Q 150 75 130 100 Q 95 110 60 95 Z"
+            fill="rgba(196,164,77,0.18)" stroke="#c4a44d" stroke-width="1.5"/>
+      <text x="93" y="82" font-family="Noto Sans JP" font-size="11" fill="#f5f0e4" text-anchor="middle">前頭前野</text>
+      <text x="93" y="95" font-family="Noto Sans JP" font-size="9" fill="#c4a44d" text-anchor="middle">ブレーキ</text>
+      <!-- 扁桃体 -->
+      <ellipse cx="195" cy="135" rx="22" ry="16" fill="#c4a44d" stroke="#e8c878" stroke-width="2"/>
+      <text x="195" y="138" font-family="Noto Serif JP" font-size="11" fill="#0f2818" text-anchor="middle" font-weight="900">扁桃体</text>
+      <!-- 矢印（前頭前野→扁桃体）-->
+      <path d="M 130 95 Q 165 110 180 128" fill="none" stroke="#c4a44d" stroke-width="2" marker-end="url(#arr)"/>
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#c4a44d"/>
+        </marker>
+      </defs>
+      <text x="160" y="105" font-family="Noto Sans JP" font-size="10" fill="#f5f0e4">抑制</text>
+      <!-- 入力（下部）-->
+      <line x1="195" y1="155" x2="195" y2="195" stroke="#c4a44d" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="195" y="212" font-family="Noto Sans JP" font-size="10" fill="#f5f0e4" text-anchor="middle">末梢入力（侵害刺激）</text>
+    </svg>
+    <div class="diagram-cap">前頭前野 ⇄ 扁桃体 ⇄ 末梢入力</div>
+  </div>
+
+  <h3 class="h3 serif">扁桃体を過敏にする5つの「燃料」</h3>
+
+  <div class="factor">
+    <div class="factor-num serif">①</div>
+    <div>
+      <div class="factor-h serif">睡眠不足</div>
+      <span class="factor-evi">扁桃体反応性 +60%</span>
+      <div class="factor-body">UC Berkeleyの古典研究で、一晩の睡眠遮断で否定的画像への扁桃体反応性が<strong>60%増加</strong>。さらに前頭前野（ブレーキ）との結合が失われ、<strong>アクセルとブレーキを同時に壊す</strong>。5要因の中で最強のエビデンス。</div>
+    </div>
+  </div>
+
+  <div class="factor">
+    <div class="factor-num serif">②</div>
+    <div>
+      <div class="factor-h serif">腸内細菌の乱れ</div>
+      <span class="factor-evi">EMBO 2024：扁桃体BLA直接調節</span>
+      <div class="factor-body">無菌マウスは不安行動が亢進。<strong>腸内細菌の代謝産物（インドール類）が扁桃体ニューロンの興奮性を直接調節する</strong>。腸が悪いと不安になるのは比喩ではなく、扁桃体の<strong>発火閾値そのものが下がる</strong>。</div>
+    </div>
+  </div>
+
+  <div class="factor">
+    <div class="factor-num serif">③</div>
+    <div>
+      <div class="factor-h serif">歯周病</div>
+      <span class="factor-evi">CRP・IL-6・TNF-α 上昇</span>
+      <div class="factor-body">歯周病原菌のLPS（リポ多糖）が血液脳関門を超えて<strong>神経炎症</strong>を起こし、セロトニン代謝を乱す。ラット実験でも実験的歯周病は<strong>不安様行動を増やし、認知を悪化させる</strong>。</div>
+    </div>
+  </div>
+
+  <div class="factor">
+    <div class="factor-num serif">④</div>
+    <div>
+      <div class="factor-h serif">慢性ストレス</div>
+      <span class="factor-evi">HPA軸を介した扁桃体肥大化</span>
+      <div class="factor-body">慢性ストレスはコルチゾール過剰を経て、<strong>扁桃体を物理的に肥大化・過敏化</strong>させる。早期生活ストレスを経験した人ほど扁桃体反応性が高いという研究も多数。</div>
+    </div>
+  </div>
+
+  <div class="factor">
+    <div class="factor-num serif">⑤</div>
+    <div>
+      <div class="factor-h serif">運動不足</div>
+      <span class="factor-evi">前頭前野–扁桃体回路の弱化</span>
+      <div class="factor-body">運動が <strong>前頭前野–扁桃体の機能的結合を強化する</strong>ことが動物・ヒト両方で確認。逆に運動不足は、ブレーキの劣化を意味する。次のセクションで詳述。</div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:32px">
+    補足：これに加えて<strong>慢性低度炎症（内臓脂肪・糖尿病）、社会的孤立、反芻思考の習慣</strong>も独立した因子。さらに遺伝（5-HTTLPR短型）も扁桃体反応性を高めるが、これは変えられない部分。<strong>変えられる5要因に注力する</strong>のが正解。
+  </p>
+
+  <h3 class="h3 serif">運動でストレスが消える「本当の理由」</h3>
+  <p class="body">
+    よく言われる「運動で血流が脳に行ってストレスが下がる」は、実は不正確。<strong>本当のメカニズムは「回路の上書き」</strong>です。次の3つが同時に起きる。
+  </p>
+
+  <div class="loop">
+    <div class="loop-h serif">運動が脳を変える3つの回路</div>
+    <div class="loop-step">
+      <div class="loop-num serif">1</div>
+      <div class="loop-text"><strong>扁桃体反応性そのものが下がる</strong>。fMRI研究で、運動後はネガティブよりポジティブ刺激への反応が強くなる（向きが変わる）。</div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">2</div>
+      <div class="loop-text"><strong>前頭前野のブレーキが物理的に強化される</strong>。14日のトレッドミル運動で、慢性ストレスで壊れたmPFC-扁桃体経路が選択的に修復される（マウス研究）。</div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">3</div>
+      <div class="loop-text"><strong>エンドカンナビノイドとBDNFが分泌される</strong>。中強度有酸素運動でAEA・2-AG（内因性カンナビノイド）が増加。これがランナーズハイの正体（エンドルフィンではなかった）。</div>
+    </div>
+  </div>
+
+  <h3 class="h3 serif">HIIT vs スロージョギング、使い分け</h3>
+
+  <div class="compare">
+    <div class="compare-col">
+      <div class="compare-col-tag">FOR ACUTE LOOP</div>
+      <div class="compare-col-h serif">HIIT・エアロバイク</div>
+      <div class="compare-col-body">
+        <strong>急性のネガティブループ中</strong>に。心拍を強制的に上げ、反芻思考を強制終了。エンドカンナビノイドの即時放出。<br><br>
+        家でハアハア言うレベルでOK。<strong>「考えるより身体を動かす」</strong>を意識的に選ぶ介入。
+      </div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-tag">FOR DAILY BASELINE</div>
+      <div class="compare-col-h serif">スロー<br>ジョギング</div>
+      <div class="compare-col-body">
+        <strong>日常のベースラインを下げる</strong>ために。前頭前野–扁桃体回路を物理的に強化、BDNF誘導。<br><br>
+        UK Biobank 16万人データでは、<strong>速度や距離より「続けること」</strong>が肝要。ウォーキングでも有意な不安・うつリスク低下。
+      </div>
+    </div>
+  </div>
+
+  <div class="quote">
+    <div class="quote-text serif">
+      運動は「ストレス解消」じゃない。<br>
+      運動は脳の <span class="gold">配線</span> を、<br>
+      物理的に <span class="gold">上書き</span> する行為。
+    </div>
+  </div>
+
+</section>
+
+<!-- ============== CHAPTER 03 ============== -->
+<section id="ch3" class="wrap">
+  <div class="divider"><span class="divider-mark">CHAPTER THREE</span></div>
+
+  <div class="chapter-mark">臨床編</div>
+  <h2 class="chapter-title serif">
+    本日の施術と<br>仮説
+  </h2>
+  <p class="chapter-lead serif">
+    右顎・側頭筋・右肋骨が語ったこと。<br>
+    食いしばりは「結果」であり「燃料」だった。
+  </p>
+
+  <h3 class="h3 serif">RaDoTechデータの読み</h3>
+  <p class="body">
+    施術前後の自律神経計測。最も重要な数字は、<strong>左右合計値（φL/φR）の200ポイント低下</strong>です。これが今日の施術の本当の成果。
+  </p>
+
+  <!-- ダッシュボード -->
+  <div class="dash">
+    <div class="dash-h">BEFORE｜施術前</div>
+    <div class="dash-block">
+      <div class="dash-row"><span class="dash-key">エネルギーレベル</span><span class="dash-val">23.10</span></div>
+      <div class="dash-row"><span class="dash-key">免疫系</span><span class="dash-val">10.96</span></div>
+      <div class="dash-row"><span class="dash-key">代謝</span><span class="dash-val">1.24<span class="dash-status over">過剰</span></span></div>
+      <div class="dash-row"><span class="dash-key">心理情動状態</span><span class="dash-val">0.76</span></div>
+      <div class="dash-row"><span class="dash-key">筋骨格系</span><span class="dash-val">0.77</span></div>
+      <div class="dash-row" style="border-top:1px solid var(--gold);margin-top:8px;padding-top:14px"><span class="dash-key" style="color:var(--gold-2);font-weight:700">φL/φR 合計</span><span class="dash-val gold">(+)554.33</span></div>
+    </div>
+
+    <div class="dash-arrow">▼</div>
+
+    <div class="dash-h">AFTER｜施術後</div>
+    <div class="dash-block">
+      <div class="dash-row"><span class="dash-key">エネルギーレベル</span><span class="dash-val">14.77</span></div>
+      <div class="dash-row"><span class="dash-key">免疫系</span><span class="dash-val">7.43</span></div>
+      <div class="dash-row"><span class="dash-key">代謝</span><span class="dash-val">1.13<span class="dash-status norm">正常</span></span></div>
+      <div class="dash-row"><span class="dash-key">心理情動状態</span><span class="dash-val">0.73</span></div>
+      <div class="dash-row"><span class="dash-key">筋骨格系</span><span class="dash-val">1.36<span class="dash-status over">活性化</span></span></div>
+      <div class="dash-row" style="border-top:1px solid var(--gold);margin-top:8px;padding-top:14px"><span class="dash-key" style="color:var(--gold-2);font-weight:700">φL/φR 合計</span><span class="dash-val gold">(+)354.50</span></div>
+    </div>
+
+    <div class="dash-summary">
+      自律神経バランス<br>
+      <strong>−200pt</strong>（交感神経の過剰興奮、沈静化）
+    </div>
+  </div>
+
+  <p class="body">
+    エネルギー値・免疫値が下がったのは「悪化」ではなく、<strong>身体全体がハイ・アウトプット状態（554.33の異常高値）から落ち着いた</strong>結果。代謝が「過剰→正常」に移行したのが何よりの証拠です。
+  </p>
+  <p class="body">
+    筋骨格系が「不足→過剰」に転じたのは、施術刺激で<strong>系が動き出した</strong>サイン。次回までに「正常」レンジに収束していくはずです。
+  </p>
+
+  <div class="bignum">
+    <div class="bignum-label">REMAINING ISSUE</div>
+    <div class="bignum-val serif">0.73</div>
+    <div class="bignum-unit">PSYCHO-EMOTIONAL</div>
+    <div class="bignum-note">
+      心理情動値だけが、ほとんど動いていない。<br>
+      これが今日の<strong>残課題</strong>。
+    </div>
+  </div>
+
+  <h3 class="h3 serif">右側優位パターンが意味すること</h3>
+  <p class="body">
+    今日の所見：<strong>右顎・右側頭筋・頭部筋・右肋骨</strong>がすべて硬く、首は緩んできている。これは典型的な<strong>三叉神経領域の右側優位パターン</strong>です。
+  </p>
+  <p class="body">
+    研究的にも、頸部痛患者では右側咬筋のオッズ比が<strong>8.1倍</strong>、右側側頭筋が<strong>5.7倍</strong>と有意に高い分布が確認されています。今日の所見は偶然ではなく、<strong>典型例</strong>。
+  </p>
+  <p class="body">
+    重要なのは、<strong>首と顎は別の神経経路</strong>だということ。首はC1-C3経路、顎・側頭筋は三叉神経経路。<strong>首が緩んでも顎が硬ければ、三叉神経核への砲撃は止まらない</strong>。
+  </p>
+
+  <h3 class="h3 serif">仮説：食いしばりは「ループの燃料」</h3>
+
+  <div class="quote">
+    <div class="quote-text serif">
+      定説は「リウマチ <span class="gold">が</span> 食いしばりを起こす」。<br>
+      しかし、その結果生まれた<br>
+      トリガーポイントの残骸が、<br>
+      今度は症状を <span class="gold">維持する側</span> に回っている。
+    </div>
+  </div>
+
+  <p class="body">
+    兼近様が今日提示された仮説は、単純な因果の話ではなく <strong>双方向フィードバックループ</strong> の話。「リウマチ→食いしばり」の一方通行ではなく、結果として生じた食いしばりが <strong>逆向きの矢印</strong> でリウマチ症状を増幅・維持している、という構造です。これは現代の<strong>中枢性感作モデル（Central Sensitization）</strong>と完全に一致します。
+  </p>
+
+  <div class="loop">
+    <div class="loop-h serif">リウマチ → 食いしばり → 症状維持の双方向ループ</div>
+    <div class="loop-step">
+      <div class="loop-num serif">0</div>
+      <div class="loop-text"><strong>リウマチによる関節痛・全身炎症・ストレス</strong>が、夜間ブラキシズム/日中の食いしばりを誘発（定説の経路）</div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">1</div>
+      <div class="loop-text">食いしばりが咬筋・側頭筋に<strong>トリガーポイント（TrPs）</strong>を作る</div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">2</div>
+      <div class="loop-text">TrPsは<strong>自発電気活動</strong>を持ち続け、原因が消えても発火し続ける（EMG実証済）</div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">3</div>
+      <div class="loop-text">三叉神経核への<strong>持続的な侵害受容入力（afferent barrage）</strong></div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">4</div>
+      <div class="loop-text">中枢性感作が成立。<strong>扁桃体・島皮質まで信号が届き</strong>、警報状態が固定化</div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">5</div>
+      <div class="loop-text">HPA軸活性化、コルチゾール上昇、<strong>全身の炎症閾値が下がる</strong></div>
+    </div>
+    <div class="loop-arr">↓</div>
+    <div class="loop-step">
+      <div class="loop-num serif">6</div>
+      <div class="loop-text">炎症閾値が下がると、<strong>リウマチ様症状そのものが増幅</strong>。①に戻り、ループが<strong>逆向き</strong>に成立</div>
+    </div>
+  </div>
+
+  <p class="body">
+    つまり、第2章の<strong>扁桃体ループ</strong>と、第3章の<strong>食いしばりループ</strong>は、<strong>三叉神経核という同じ場所で交わっている</strong>。咬筋・側頭筋のTrPsは、扁桃体ループの「燃料」として常時発火している。
+  </p>
+  <p class="body">
+    今日RaDoTech値は劇的に下がった（554→354）のに<strong>心理情動だけ動かなかった</strong>のは、施術中の物理的リリースで<strong>末梢の燃料供給は一時停止できたが、扁桃体側の感作はまだ残っている</strong>から、と説明がつきます。
+  </p>
+
+  <h3 class="h3 serif">右肋骨の意味</h3>
+  <p class="body">
+    右肋骨の硬さは、<strong>横隔膜のtension</strong>とセットで起きる可能性が高い。横隔膜は<strong>迷走神経の通り道</strong>で、ここの硬さが取れると<strong>副交感神経のトーンが上がる</strong>。今日の200ポイント低下には、この横隔膜リリースも寄与しているはずです。
+  </p>
+
+  <!-- プロトコル -->
+  <div class="proto">
+    <div class="proto-mark">SELF-CARE PROTOCOL</div>
+    <div class="proto-h serif">次回までの<br>「燃料供給を切る」3つ</div>
+
+    <div class="proto-item">
+      <div class="proto-num serif">1</div>
+      <div>
+        <div class="proto-name">舌のスポット意識</div>
+        <div class="proto-how">舌を上顎前歯の少し後ろに置き、上下歯を離す。これだけで咬筋トーンが下がる。<strong>日中30分に1回</strong>セルフチェック。</div>
+      </div>
+    </div>
+
+    <div class="proto-item">
+      <div class="proto-num serif">2</div>
+      <div>
+        <div class="proto-name">顎のフォース・オフ（if-then）</div>
+        <div class="proto-how"><strong>「歯を磨いた後 → 顎を5秒完全脱力」</strong>と if-then 設定。第1章②の Implementation Intentions をそのまま流用。</div>
+      </div>
+    </div>
+
+    <div class="proto-item">
+      <div class="proto-num serif">3</div>
+      <div>
+        <div class="proto-name">4-8呼吸（迷走神経活性化）</div>
+        <div class="proto-how"><strong>4秒吸って 8秒で吐く</strong>。呼気延長は迷走神経活性化のエビデンスあり。1日3セット×5呼吸でOK。</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="h3 serif">次回のマイルストーン</h3>
+  <p class="body">
+    次回の施術での目標は、<strong>心理情動値（0.73）を動かすこと</strong>。それには：
+  </p>
+  <p class="body">
+    ①施術中の物理的リリース（こちらの仕事）<br>
+    ②自己介入で日常の燃料供給を切る（兼近様の仕事）<br>
+    ③睡眠の質の確保（扁桃体反応性 +60% は最大要因）<br>
+  </p>
+  <p class="body">
+    この3つが噛み合えば、心理情動値も自律神経値と同じく<strong>正常レンジに収束</strong>するはずです。
+  </p>
+
+  <div class="quote">
+    <div class="quote-text serif">
+      身体は、ただの肉ではない。<br>
+      <span class="gold">食いしばり</span>と<span class="gold">扁桃体</span>と<span class="gold">人生</span>は、<br>
+      三叉神経核の中で<br>
+      ひとつの回路を作っている。
+    </div>
+  </div>
+
+</section>
+
+<!-- ============== FOOTER ============== -->
+<section class="footer">
+  <div class="footer-mark serif">三条健康堂接骨院</div>
+  <div class="footer-tag">
+    高松発・一生動ける身体と人生の教養研究室<br>
+    無借金・無車・自転車・圧力鍋生活を実践する治療家より
+  </div>
+
+  <a href="https://lin.ee/dwRtwDv" class="footer-cta line">📱 LINEでご相談・ご予約</a>
+  <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" class="footer-cta">📍 Googleマップで院の場所を見る</a>
+
+  <div class="footer-info">
+    柔道整復師 谷弘誠｜30年・延べ1万人以上の臨床<br>
+    年間200冊読む治療家｜noteメンバーシップ「50代からの教養ノート」主宰<br>
+    高松市由良町・真楽寺のそば<br>
+    <br>
+    REPORT 2026.05.04 ── for 兼近様
+  </div>
+</section>
+
+</body>
+</html>
