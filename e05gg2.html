@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三澤様 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Yusei+Magic&family=RocknRoll+One&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-deep:#0f2818;
+    --green-light:#2d5b3e;
+    --gold:#c4a44d;
+    --gold-bright:#e6c668;
+    --ivory:#f5f0e4;
+    --cream:#ede4cc;
+    --red:#c83c2a;
+    --shadow:rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html,body{
+    background:var(--green-deep);
+    color:var(--ivory);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* グレイン感の背景 */
+  body{
+    background:
+      radial-gradient(circle at 20% 10%, rgba(196,164,77,.08), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(196,164,77,.06), transparent 40%),
+      var(--green-deep);
+    background-attachment:fixed;
+    padding:20px 12px 60px;
+  }
+
+  .stage{
+    max-width:780px;
+    margin:0 auto;
+  }
+
+  /* ============= 共通パーツ ============= */
+  .page{
+    background:var(--green);
+    border:3px solid var(--gold);
+    border-radius:6px;
+    padding:32px 28px;
+    margin-bottom:24px;
+    position:relative;
+    box-shadow:0 12px 32px var(--shadow), inset 0 0 0 1px rgba(196,164,77,.3);
+  }
+  .page::before, .page::after{
+    content:"";
+    position:absolute;
+    width:24px;height:24px;
+    border:2px solid var(--gold);
+  }
+  .page::before{top:8px;left:8px;border-right:none;border-bottom:none;}
+  .page::after{bottom:8px;right:8px;border-left:none;border-top:none;}
+
+  .corner-tr,.corner-bl{
+    position:absolute;
+    width:24px;height:24px;
+    border:2px solid var(--gold);
+  }
+  .corner-tr{top:8px;right:8px;border-left:none;border-bottom:none;}
+  .corner-bl{bottom:8px;left:8px;border-right:none;border-top:none;}
+
+  .label-tag{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--green-deep);
+    font-family:'RocknRoll One', sans-serif;
+    font-size:14px;
+    font-weight:700;
+    padding:4px 14px;
+    border-radius:2px;
+    letter-spacing:.05em;
+  }
+
+  /* ============= COVER ============= */
+  .cover{
+    text-align:center;
+    padding:48px 28px;
+    background:
+      repeating-linear-gradient(45deg,
+        var(--green) 0, var(--green) 20px,
+        var(--green-light) 20px, var(--green-light) 21px),
+      var(--green);
+  }
+
+  .cover-mark{
+    font-family:'Yusei Magic', sans-serif;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.4em;
+    margin-bottom:18px;
+  }
+
+  .cover-mark::before, .cover-mark::after{
+    content:"✦";
+    margin:0 12px;
+  }
+
+  .cover-title{
+    font-family:'Noto Serif JP', serif;
+    font-weight:900;
+    color:var(--ivory);
+    font-size:54px;
+    line-height:1.15;
+    letter-spacing:.02em;
+    margin:8px 0 4px;
+    text-shadow:3px 3px 0 var(--gold);
+  }
+
+  .cover-sub{
+    font-family:'Noto Serif JP', serif;
+    color:var(--gold);
+    font-size:22px;
+    font-weight:600;
+    margin-top:14px;
+    border-top:1px solid var(--gold);
+    border-bottom:1px solid var(--gold);
+    padding:10px 0;
+    display:inline-block;
+    min-width:60%;
+  }
+
+  .cover-name{
+    font-family:'Noto Serif JP', serif;
+    font-size:42px;
+    font-weight:700;
+    color:var(--ivory);
+    margin-top:24px;
+    letter-spacing:.05em;
+  }
+  .cover-name span{
+    color:var(--gold);
+    font-size:32px;
+    margin-left:4px;
+  }
+
+  .cover-meta{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-top:24px;
+    font-family:'Yusei Magic', sans-serif;
+    font-size:16px;
+    color:var(--cream);
+  }
+  .cover-meta span{
+    background:var(--green-deep);
+    padding:6px 14px;
+    border:1px dashed var(--gold);
+    border-radius:2px;
+  }
+
+  .splash{
+    position:absolute;
+    top:18px;right:18px;
+    width:96px;height:96px;
+    background:var(--red);
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'RocknRoll One', sans-serif;
+    font-size:14px;
+    line-height:1.2;
+    transform:rotate(-12deg);
+    box-shadow:3px 3px 0 var(--gold);
+    border:3px solid var(--ivory);
+    z-index:2;
+  }
+
+  /* ============= セクション見出し ============= */
+  .h-block{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .h-num{
+    font-family:'Noto Serif JP', serif;
+    font-size:48px;
+    font-weight:900;
+    color:var(--gold);
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .h-text{
+    font-family:'Noto Serif JP', serif;
+    font-size:26px;
+    font-weight:700;
+    color:var(--ivory);
+    line-height:1.3;
+  }
+  .h-text small{
+    display:block;
+    font-family:'Yusei Magic', sans-serif;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:.2em;
+    margin-bottom:4px;
+    font-weight:500;
+  }
+  .h-divider{
+    flex:1;
+    height:0;
+    border-top:2px dashed var(--gold);
+    margin-left:8px;
+  }
+
+  /* ============= 主訴ボックス ============= */
+  .complaint-box{
+    background:var(--green-deep);
+    border:2px solid var(--gold);
+    border-radius:4px;
+    padding:22px 22px;
+    position:relative;
+  }
+  .complaint-box::before{
+    content:"今日の主訴";
+    position:absolute;
+    top:-14px;left:18px;
+    background:var(--gold);
+    color:var(--green-deep);
+    font-family:'RocknRoll One', sans-serif;
+    font-size:14px;
+    padding:3px 14px;
+    border-radius:2px;
+    letter-spacing:.1em;
+  }
+  .complaint-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:8px;
+  }
+  .complaint-item{
+    background:var(--green);
+    padding:14px 16px;
+    border-left:4px solid var(--gold);
+    font-size:17px;
+    font-weight:500;
+  }
+  .complaint-item strong{
+    display:block;
+    font-family:'Noto Serif JP', serif;
+    font-size:20px;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin-bottom:4px;
+    letter-spacing:.02em;
+  }
+
+  .danger-banner{
+    background:var(--red);
+    color:#fff;
+    text-align:center;
+    padding:14px;
+    margin-top:18px;
+    font-family:'Noto Serif JP', serif;
+    font-size:20px;
+    font-weight:700;
+    border:2px dashed #fff;
+    letter-spacing:.05em;
+    box-shadow:4px 4px 0 var(--gold);
+  }
+  .danger-banner small{
+    display:block;
+    font-family:'Yusei Magic', sans-serif;
+    font-size:13px;
+    margin-top:4px;
+    letter-spacing:.1em;
+    font-weight:400;
+  }
+
+  /* ============= 所見：身体図 ============= */
+  .findings-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    align-items:start;
+  }
+  .body-diagram{
+    background:var(--green-deep);
+    border:2px solid var(--gold);
+    border-radius:4px;
+    padding:14px;
+    text-align:center;
+  }
+  .body-diagram svg{
+    width:100%;
+    max-width:280px;
+    height:auto;
+  }
+  .body-diagram-cap{
+    font-family:'Yusei Magic', sans-serif;
+    color:var(--gold);
+    font-size:13px;
+    margin-top:8px;
+    letter-spacing:.15em;
+  }
+
+  .findings-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .finding-item{
+    background:var(--green-deep);
+    border:1.5px solid var(--gold);
+    padding:12px 14px;
+    position:relative;
+    padding-left:46px;
+  }
+  .finding-item .num{
+    position:absolute;
+    top:50%;left:8px;
+    transform:translateY(-50%);
+    width:32px;height:32px;
+    background:var(--gold);
+    color:var(--green-deep);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Noto Serif JP', serif;
+    font-weight:900;
+    font-size:18px;
+  }
+  .finding-item h4{
+    font-family:'Noto Serif JP', serif;
+    font-size:17px;
+    color:var(--gold-bright);
+    margin-bottom:2px;
+    font-weight:700;
+  }
+  .finding-item p{
+    font-size:14px;
+    line-height:1.5;
+    color:var(--cream);
+  }
+
+  /* ============= 数値比較 ============= */
+  .compare-wrap{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:14px;
+    align-items:center;
+    margin-top:8px;
+  }
+  .compare-card{
+    background:var(--green-deep);
+    border:2px solid var(--gold);
+    padding:18px 16px;
+    text-align:center;
+    position:relative;
+  }
+  .compare-card.before{
+    border-color:#7a7a7a;
+  }
+  .compare-card.after{
+    border-color:var(--gold-bright);
+    box-shadow:0 0 0 1px var(--gold-bright) inset, 4px 4px 0 var(--gold);
+  }
+  .compare-card .lbl{
+    font-family:'RocknRoll One', sans-serif;
+    font-size:14px;
+    letter-spacing:.2em;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .compare-card.before .lbl{color:#bbb;}
+  .compare-card .big-num{
+    font-family:'Noto Serif JP', serif;
+    font-size:54px;
+    font-weight:900;
+    line-height:1;
+    color:var(--ivory);
+  }
+  .compare-card.before .big-num{color:#bbb;}
+  .compare-card .unit{
+    font-size:13px;
+    color:var(--cream);
+    margin-top:6px;
+    font-family:'Yusei Magic', sans-serif;
+    letter-spacing:.1em;
+  }
+
+  .arrow{
+    font-family:'Noto Serif JP', serif;
+    font-size:48px;
+    color:var(--gold-bright);
+    text-align:center;
+    line-height:1;
+  }
+  .arrow small{
+    display:block;
+    font-family:'Yusei Magic', sans-serif;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:.15em;
+    margin-top:4px;
+  }
+
+  .compare-detail{
+    margin-top:18px;
+    background:var(--green-deep);
+    padding:16px;
+    border-left:4px solid var(--gold);
+  }
+  .compare-detail-title{
+    font-family:'Noto Serif JP', serif;
+    font-size:18px;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin-bottom:10px;
+  }
+  .compare-row{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:8px;
+    padding:8px 0;
+    border-bottom:1px dashed rgba(196,164,77,.4);
+    font-size:15px;
+  }
+  .compare-row:last-child{border-bottom:none;}
+  .compare-row.head{
+    font-family:'Yusei Magic', sans-serif;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:.1em;
+    border-bottom:2px solid var(--gold);
+  }
+  .compare-row .item-name{font-weight:600;}
+  .compare-row .v-before{color:#bbb;text-align:center;}
+  .compare-row .v-after{color:var(--gold-bright);text-align:center;font-weight:700;}
+
+  /* ============= 施術内容 ============= */
+  .treatment-result{
+    background:linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+    color:var(--green-deep);
+    padding:24px 22px;
+    text-align:center;
+    margin-bottom:18px;
+    position:relative;
+    border:3px solid var(--green-deep);
+    box-shadow:6px 6px 0 var(--green-deep);
+  }
+  .treatment-result-num{
+    font-family:'Noto Serif JP', serif;
+    font-size:72px;
+    font-weight:900;
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .treatment-result-num span{
+    font-size:36px;
+  }
+  .treatment-result-txt{
+    font-family:'Noto Serif JP', serif;
+    font-size:22px;
+    font-weight:700;
+    margin-top:6px;
+  }
+  .treatment-result-sub{
+    font-family:'Yusei Magic', sans-serif;
+    font-size:13px;
+    margin-top:6px;
+    letter-spacing:.15em;
+  }
+
+  .treatment-flow{
+    background:var(--green-deep);
+    padding:20px;
+    border:1.5px dashed var(--gold);
+  }
+  .treatment-flow h4{
+    font-family:'Noto Serif JP', serif;
+    font-size:18px;
+    color:var(--gold-bright);
+    margin-bottom:12px;
+    font-weight:700;
+  }
+  .treatment-flow p{
+    font-size:16px;
+    line-height:1.8;
+    color:var(--cream);
+  }
+  .treatment-flow .keyword{
+    background:var(--gold);
+    color:var(--green-deep);
+    padding:1px 8px;
+    font-weight:700;
+    margin:0 2px;
+  }
+
+  /* ============= 原因分析 ============= */
+  .cause-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .cause-card{
+    background:var(--green-deep);
+    border:2px solid var(--gold);
+    padding:18px;
+    position:relative;
+  }
+  .cause-card-icon{
+    font-family:'Noto Serif JP', serif;
+    font-size:36px;
+    color:var(--gold-bright);
+    line-height:1;
+    margin-bottom:10px;
+  }
+  .cause-card h4{
+    font-family:'Noto Serif JP', serif;
+    font-size:18px;
+    color:var(--gold-bright);
+    font-weight:700;
+    margin-bottom:8px;
+    border-bottom:1px solid var(--gold);
+    padding-bottom:6px;
+  }
+  .cause-card p{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--cream);
+  }
+
+  .cause-summary{
+    margin-top:18px;
+    background:var(--gold);
+    color:var(--green-deep);
+    padding:18px 20px;
+    text-align:center;
+    border:3px solid var(--green-deep);
+  }
+  .cause-summary-eq{
+    font-family:'Noto Serif JP', serif;
+    font-size:18px;
+    font-weight:700;
+    line-height:1.5;
+  }
+  .cause-summary-eq span{
+    background:var(--green-deep);
+    color:var(--gold-bright);
+    padding:2px 10px;
+    margin:0 4px;
+    border-radius:2px;
+    font-size:16px;
+  }
+
+  /* ============= アフターケア ============= */
+  .care-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .care-item{
+    background:var(--green-deep);
+    border-left:6px solid var(--gold);
+    padding:18px 20px;
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+  }
+  .care-item .icon-cir{
+    flex-shrink:0;
+    width:54px;height:54px;
+    background:var(--gold);
+    color:var(--green-deep);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Noto Serif JP', serif;
+    font-size:28px;
+    font-weight:900;
+  }
+  .care-item .body h4{
+    font-family:'Noto Serif JP', serif;
+    font-size:20px;
+    color:var(--gold-bright);
+    margin-bottom:6px;
+    font-weight:700;
+  }
+  .care-item .body p{
+    font-size:16px;
+    line-height:1.7;
+    color:var(--cream);
+  }
+
+  /* ============= 一言メッセージ ============= */
+  .message-box{
+    background:var(--green-deep);
+    border:3px double var(--gold);
+    padding:28px 24px;
+    margin-top:0;
+    text-align:center;
+    position:relative;
+  }
+  .message-box::before{
+    content:"先生からの一言";
+    position:absolute;
+    top:-14px;left:50%;
+    transform:translateX(-50%);
+    background:var(--green);
+    color:var(--gold);
+    font-family:'RocknRoll One', sans-serif;
+    font-size:14px;
+    padding:4px 18px;
+    letter-spacing:.2em;
+    border:1px solid var(--gold);
+  }
+  .message-box p{
+    font-family:'Noto Serif JP', serif;
+    font-size:19px;
+    line-height:1.9;
+    color:var(--ivory);
+    font-weight:500;
+  }
+  .message-box p strong{
+    color:var(--gold-bright);
+    font-weight:700;
+  }
+  .message-sign{
+    margin-top:18px;
+    font-family:'Yusei Magic', sans-serif;
+    font-size:15px;
+    color:var(--gold);
+    letter-spacing:.15em;
+  }
+
+  /* ============= フッター ============= */
+  .footer{
+    text-align:center;
+    padding:24px 16px;
+    margin-top:8px;
+  }
+  .footer-clinic{
+    font-family:'Noto Serif JP', serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--gold);
+    letter-spacing:.05em;
+  }
+  .footer-tag{
+    font-family:'Yusei Magic', sans-serif;
+    font-size:13px;
+    color:var(--cream);
+    margin-top:6px;
+    letter-spacing:.1em;
+  }
+  .footer-line{
+    width:80px;height:2px;
+    background:var(--gold);
+    margin:14px auto;
+  }
+  .footer-author{
+    font-size:14px;
+    color:var(--cream);
+    line-height:1.6;
+  }
+
+  /* ============= レスポンシブ ============= */
+  @media (max-width:640px){
+    .page{padding:24px 18px;}
+    .cover-title{font-size:38px;}
+    .cover-sub{font-size:18px;}
+    .cover-name{font-size:32px;}
+    .h-num{font-size:38px;}
+    .h-text{font-size:20px;}
+    .complaint-list{grid-template-columns:1fr;}
+    .findings-grid{grid-template-columns:1fr;}
+    .compare-wrap{grid-template-columns:1fr;gap:8px;}
+    .arrow{transform:rotate(90deg);font-size:36px;margin:0;}
+    .compare-card .big-num{font-size:42px;}
+    .treatment-result-num{font-size:54px;}
+    .cause-grid{grid-template-columns:1fr;}
+    .compare-row{font-size:13px;}
+    .splash{width:78px;height:78px;font-size:12px;top:12px;right:12px;}
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- ============= 表紙 ============= -->
+  <div class="page cover">
+    <div class="splash">本日の<br>施術報告</div>
+    <div class="cover-mark">SANJO HEALTH REPORT</div>
+    <h1 class="cover-title">施術報告書</h1>
+    <div class="cover-sub">気圧・気温・湿度ジェットコースター対応篇</div>
+    <div class="cover-name">三澤 様<span>へ</span></div>
+    <div class="cover-meta">
+      <span>2026.05.08</span>
+      <span>担当：谷先生</span>
+      <span>三条健康堂接骨院</span>
+    </div>
+  </div>
+
+  <!-- ============= 主訴 ============= -->
+  <div class="page">
+    <span class="corner-tr"></span><span class="corner-bl"></span>
+    <div class="h-block">
+      <div class="h-num">01</div>
+      <div class="h-text"><small>CHIEF COMPLAINT</small>本日のおからだ</div>
+      <div class="h-divider"></div>
+    </div>
+
+    <div class="complaint-box">
+      <div class="complaint-list">
+        <div class="complaint-item">
+          <strong>事務仕事の蓄積疲労</strong>
+          ディスプレイ前で固定姿勢が続いた状態
+        </div>
+        <div class="complaint-item">
+          <strong>首・肩のガチガチ</strong>
+          深部までこわばりが入っている
+        </div>
+        <div class="complaint-item">
+          <strong>扁桃腺の腫れ感</strong>
+          リンパ・自律神経の限界サイン
+        </div>
+        <div class="complaint-item">
+          <strong>嚥下の違和感の手前</strong>
+          飲み込みづらさが出る一歩前
+        </div>
+      </div>
+
+      <div class="danger-banner">
+        ⚠ かなり苦しい状態だったはずです<br>
+        <small>よく耐えてご来院くださいました</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= 所見 ============= -->
+  <div class="page">
+    <span class="corner-tr"></span><span class="corner-bl"></span>
+    <div class="h-block">
+      <div class="h-num">02</div>
+      <div class="h-text"><small>FINDINGS — 触診所見</small>4つの問題ポイント</div>
+      <div class="h-divider"></div>
+    </div>
+
+    <div class="findings-grid">
+      <!-- 身体図 -->
+      <div class="body-diagram">
+        <svg viewBox="0 0 200 360" xmlns="http://www.w3.org/2000/svg" aria-label="身体所見図">
+          <!-- 身体シルエット -->
+          <g fill="none" stroke="#c4a44d" stroke-width="2">
+            <!-- 頭 -->
+            <ellipse cx="100" cy="35" rx="22" ry="26"/>
+            <!-- 首 -->
+            <path d="M88 58 L88 72 L112 72 L112 58"/>
+            <!-- 胴体（少し湾曲） -->
+            <path d="M70 75 Q60 130 78 180 Q72 220 80 260" />
+            <path d="M130 75 Q142 130 122 180 Q128 220 120 260" />
+            <!-- 肩 -->
+            <path d="M70 75 L50 80"/>
+            <path d="M130 75 L150 80"/>
+            <!-- 腕 -->
+            <path d="M50 80 Q42 130 50 175"/>
+            <path d="M150 80 Q158 130 150 175"/>
+            <!-- 骨盤（右上に歪み） -->
+            <path d="M78 250 Q76 245 92 248 L108 252 Q126 256 124 264 L120 282 L80 280 Z" fill="rgba(196,164,77,.1)"/>
+            <!-- 脚 -->
+            <path d="M85 282 L80 350"/>
+            <path d="M115 285 L120 350"/>
+            <!-- 足 -->
+            <path d="M75 350 L92 350"/>
+            <path d="M115 350 L132 350"/>
+          </g>
+
+          <!-- ① 後頭骨左トリガーポイント -->
+          <circle cx="83" cy="48" r="10" fill="#c83c2a" stroke="#fff" stroke-width="2"/>
+          <text x="83" y="52" text-anchor="middle" fill="#fff" font-family="Noto Serif JP" font-size="13" font-weight="900">1</text>
+          <line x1="60" y1="35" x2="78" y2="45" stroke="#c4a44d" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="6" y="32" fill="#e6c668" font-family="Yusei Magic" font-size="10">左後頭骨</text>
+          <text x="6" y="44" fill="#e6c668" font-family="Yusei Magic" font-size="10">付け根TP</text>
+
+          <!-- ② 胸椎8番周辺・肋骨突出 -->
+          <circle cx="100" cy="135" r="11" fill="#c83c2a" stroke="#fff" stroke-width="2"/>
+          <text x="100" y="139" text-anchor="middle" fill="#fff" font-family="Noto Serif JP" font-size="13" font-weight="900">2</text>
+          <line x1="135" y1="125" x2="108" y2="132" stroke="#c4a44d" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="138" y="120" fill="#e6c668" font-family="Yusei Magic" font-size="10">胸椎8番</text>
+          <text x="138" y="132" fill="#e6c668" font-family="Yusei Magic" font-size="10">肋骨突出</text>
+
+          <!-- ③ 骨盤右上歪み -->
+          <circle cx="115" cy="258" r="10" fill="#c83c2a" stroke="#fff" stroke-width="2"/>
+          <text x="115" y="262" text-anchor="middle" fill="#fff" font-family="Noto Serif JP" font-size="13" font-weight="900">3</text>
+          <line x1="148" y1="248" x2="123" y2="255" stroke="#c4a44d" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="151" y="244" fill="#e6c668" font-family="Yusei Magic" font-size="10">骨盤</text>
+          <text x="151" y="256" fill="#e6c668" font-family="Yusei Magic" font-size="10">右上歪み</text>
+
+          <!-- ④ 右足首硬化 -->
+          <circle cx="120" cy="345" r="10" fill="#c83c2a" stroke="#fff" stroke-width="2"/>
+          <text x="120" y="349" text-anchor="middle" fill="#fff" font-family="Noto Serif JP" font-size="13" font-weight="900">4</text>
+          <line x1="155" y1="335" x2="128" y2="343" stroke="#c4a44d" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="158" y="331" fill="#e6c668" font-family="Yusei Magic" font-size="10">右足首</text>
+          <text x="158" y="343" fill="#e6c668" font-family="Yusei Magic" font-size="10">硬化</text>
+
+          <!-- 湾曲方向の矢印（補助） -->
+          <path d="M100 80 Q108 130 100 180" fill="none" stroke="#c83c2a" stroke-width="1.5" stroke-dasharray="4,3"/>
+        </svg>
+        <div class="body-diagram-cap">— 全身の歪みマップ —</div>
+      </div>
+
+      <!-- 所見リスト -->
+      <div class="findings-list">
+        <div class="finding-item">
+          <span class="num">1</span>
+          <h4>左後頭骨付け根</h4>
+          <p>大きなトリガーポイント。首・頭部・嚥下の不快感の発信源。</p>
+        </div>
+        <div class="finding-item">
+          <span class="num">2</span>
+          <h4>胸椎8番／肋骨突出</h4>
+          <p>肋骨が飛び出し、それを頂点に体幹が湾曲。歪みの主因。</p>
+        </div>
+        <div class="finding-item">
+          <span class="num">3</span>
+          <h4>骨盤の右上歪み</h4>
+          <p>土台のねじれ。胸椎の湾曲を下から支えてしまっている状態。</p>
+        </div>
+        <div class="finding-item">
+          <span class="num">4</span>
+          <h4>右足首の硬化</h4>
+          <p>地面からの衝撃吸収不全。骨盤の歪みを末端から固定していた。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= 数値の変化 ============= -->
+  <div class="page">
+    <span class="corner-tr"></span><span class="corner-bl"></span>
+    <div class="h-block">
+      <div class="h-num">03</div>
+      <div class="h-text"><small>BIO-ENERGETIC DATA</small>体の状態が動いた</div>
+      <div class="h-divider"></div>
+    </div>
+
+    <div class="compare-wrap">
+      <div class="compare-card before">
+        <div class="lbl">BEFORE</div>
+        <div class="big-num">380.58</div>
+        <div class="unit">施術前 φ値</div>
+      </div>
+      <div class="arrow">
+        ▶
+        <small>正常域へ</small>
+      </div>
+      <div class="compare-card after">
+        <div class="lbl">AFTER</div>
+        <div class="big-num">301.81</div>
+        <div class="unit">施術後 φ値</div>
+      </div>
+    </div>
+
+    <div class="compare-detail">
+      <div class="compare-detail-title">— 各システムの動き —</div>
+      <div class="compare-row head">
+        <div>項目</div>
+        <div>施術前</div>
+        <div>施術後</div>
+      </div>
+      <div class="compare-row">
+        <div class="item-name">エネルギーレベル</div>
+        <div class="v-before">15.86</div>
+        <div class="v-after">12.58</div>
+      </div>
+      <div class="compare-row">
+        <div class="item-name">免疫システム</div>
+        <div class="v-before">15.25</div>
+        <div class="v-after">9.16</div>
+      </div>
+      <div class="compare-row">
+        <div class="item-name">代謝</div>
+        <div class="v-before">0.99</div>
+        <div class="v-after">1.33</div>
+      </div>
+      <div class="compare-row">
+        <div class="item-name">心理・感情状態</div>
+        <div class="v-before">0.90</div>
+        <div class="v-after">0.76</div>
+      </div>
+      <div class="compare-row">
+        <div class="item-name">筋骨格系</div>
+        <div class="v-before">0.81</div>
+        <div class="v-after">0.80</div>
+      </div>
+      <div class="compare-row">
+        <div class="item-name" style="color:var(--gold-bright);font-weight:700;">平均値</div>
+        <div class="v-before">15.86</div>
+        <div class="v-after">12.58</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= 施術内容 ============= -->
+  <div class="page">
+    <span class="corner-tr"></span><span class="corner-bl"></span>
+    <div class="h-block">
+      <div class="h-num">04</div>
+      <div class="h-text"><small>TREATMENT — 本日の施術</small>体に何が起きたか</div>
+      <div class="h-divider"></div>
+    </div>
+
+    <div class="treatment-result">
+      <div class="treatment-result-num">ほぼ100<span>%</span></div>
+      <div class="treatment-result-txt">トリガーポイント・歪みを取り切りました</div>
+      <div class="treatment-result-sub">— ALL CLEARED —</div>
+    </div>
+
+    <div class="treatment-flow">
+      <h4>施術の流れ</h4>
+      <p>
+        最初は反応がやや少ない状態でしたが、
+        <span class="keyword">全身のトーン</span>を確実に
+        <span class="keyword">副交感神経優位</span>へ持っていき、
+        体がリラックスしたところで、
+        所見の <span class="keyword">4ポイント全て</span> を
+        丁寧にリリース。<br><br>
+        胸椎8番周辺の肋骨の突出を頂点とする湾曲、骨盤の右上歪み、右足首の硬化、左後頭骨付け根のトリガーポイント — それぞれが連動していたものを順序立てて解除しました。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============= 原因分析 ============= -->
+  <div class="page">
+    <span class="corner-tr"></span><span class="corner-bl"></span>
+    <div class="h-block">
+      <div class="h-num">05</div>
+      <div class="h-text"><small>WHY — なぜこうなったか</small>原因の正体</div>
+      <div class="h-divider"></div>
+    </div>
+
+    <div class="cause-grid">
+      <div class="cause-card">
+        <div class="cause-card-icon">🌪</div>
+        <h4>春一番＋ジェットコースター気象</h4>
+        <p>急に雨、急に晴れ、強風、湿度の乱高下、気温も日替わり。気圧と天候が休まずに変動し、<strong style="color:var(--gold-bright)">自律神経が追いつけない</strong>状態が続いていました。</p>
+      </div>
+      <div class="cause-card">
+        <div class="cause-card-icon">💻</div>
+        <h4>事務仕事の固定姿勢</h4>
+        <p>ディスプレイを見続ける姿勢で、首・肩・胸郭は<strong style="color:var(--gold-bright)">動かないまま長時間</strong>。気象のストレスを受け止める"逃げ場"が体になくなっていました。</p>
+      </div>
+    </div>
+
+    <div class="cause-summary">
+      <div class="cause-summary-eq">
+        <span>気象ストレス</span>＋<span>固定姿勢</span><br>
+        ＝ 自律神経の余力ゼロ
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= アフターケア ============= -->
+  <div class="page">
+    <span class="corner-tr"></span><span class="corner-bl"></span>
+    <div class="h-block">
+      <div class="h-num">06</div>
+      <div class="h-text"><small>AFTERCARE — 今日の過ごし方</small>これだけでOK</div>
+      <div class="h-divider"></div>
+    </div>
+
+    <div class="care-list">
+      <div class="care-item">
+        <div class="icon-cir">水</div>
+        <div class="body">
+          <h4>ゆっくりお水を飲む</h4>
+          <p>施術で動いた老廃物を流すために、いつもより意識的に水分を。ガブ飲みではなく、こまめに口にする感じで大丈夫です。</p>
+        </div>
+      </div>
+      <div class="care-item">
+        <div class="icon-cir">眠</div>
+        <div class="body">
+          <h4>今夜はゆっくり眠る</h4>
+          <p>副交感神経優位に切り替えた状態のまま、深く眠ってください。<strong style="color:var(--gold-bright)">寝ている間に体は反応していき、明日からどんどん良い方向へ変わっていきます。</strong></p>
+        </div>
+      </div>
+      <div class="care-item">
+        <div class="icon-cir">休</div>
+        <div class="body">
+          <h4>頑張らない</h4>
+          <p>気圧が落ち着くまでは、運動や根を詰めた仕事は最小限に。「リラックスのまま夜を過ごす」が今日のミッションです。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-box" style="margin-top:24px;">
+      <p>
+        本日は<strong>かなり苦しいところまで来てくださってありがとうございました。</strong><br>
+        体は確実に反応しています。<br>
+        ここからは、ゆっくり眠るだけで<br>
+        勝手に良くなっていきますよ。
+      </p>
+      <div class="message-sign">— 谷先生</div>
+    </div>
+  </div>
+
+  <!-- ============= フッター ============= -->
+  <div class="footer">
+    <div class="footer-clinic">三条健康堂接骨院</div>
+    <div class="footer-tag">高松市由良町・真楽寺のそば</div>
+    <div class="footer-line"></div>
+    <div class="footer-author">
+      高松発・一生動ける身体と人生の教養研究室<br>
+      無借金・無車・自転車・圧力鍋生活を実践する治療家より
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
