@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>三澤様 施術報告書｜2026.05.10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Yuji+Mai&family=RocknRoll+One&family=Bebas+Neue&family=Anton&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --green:#1a3d28;
+  --green-deep:#0f2818;
+  --gold:#c4a44d;
+  --gold-bright:#e6c870;
+  --ivory:#f5f0e4;
+  --coral:#c94d3a;
+  --coral-soft:#e07355;
+  --navy:#1f2e4a;
+  --navy-deep:#0e1a2f;
+  --cream:#e8c889;
+  --earth:#b8612e;
+  --terra:#d4763a;
+  --sky:#5fa8c7;
+  --plum:#5e3548;
+}
+body {
+  background: var(--green-deep);
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(196,164,77,0.06), transparent 40%),
+    radial-gradient(circle at 90% 100%, rgba(196,164,77,0.06), transparent 40%);
+  color: var(--ivory);
+  font-family: 'Noto Serif JP', serif;
+  line-height: 1.8;
+  padding: 20px 12px;
+  min-height: 100vh;
+}
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--green);
+  border: 4px double var(--gold);
+  padding: 0;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.wrap::before, .wrap::after,
+.wrap > .corner-tl, .wrap > .corner-tr {
+  content: ""; position: absolute;
+  width: 38px; height: 38px;
+  border: 3px solid var(--gold);
+  pointer-events: none;
+  z-index: 5;
+}
+.wrap::before { top:-4px; left:-4px; border-right:none; border-bottom:none; }
+.wrap::after  { bottom:-4px; right:-4px; border-left:none; border-top:none; }
+.corner-tr { top:-4px; right:-4px; border-left:none; border-bottom:none; }
+.corner-tl { bottom:-4px; left:-4px; border-right:none; border-top:none; }
+
+.panel {
+  padding: 28px 22px;
+  position: relative;
+}
+
+/* ============ HERO ============ */
+.hero {
+  background:
+    repeating-linear-gradient(135deg, transparent 0, transparent 22px, rgba(196,164,77,0.05) 22px, rgba(196,164,77,0.05) 24px),
+    var(--green);
+  text-align: center;
+  padding: 36px 22px 28px;
+  border-bottom: 1px dashed var(--gold);
+}
+.hero .stamp {
+  display: inline-block;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.35em;
+  font-size: 12px;
+  padding: 4px 14px;
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: 'Yuji Mai','Noto Serif JP',serif;
+  font-weight: 900;
+  font-size: 54px;
+  letter-spacing: 0.1em;
+  line-height: 1.15;
+  color: var(--ivory);
+  text-shadow: 4px 4px 0 var(--green-deep), 5px 5px 0 var(--coral);
+  margin: 0;
+}
+.hero h1 .gold { color: var(--gold-bright); text-shadow: 4px 4px 0 var(--green-deep), 5px 5px 0 var(--coral); }
+.hero .ribbon {
+  margin: 22px auto 0;
+  display: inline-block;
+  background: var(--gold);
+  color: var(--green-deep);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.4em;
+  padding: 6px 28px;
+  position: relative;
+}
+.hero .ribbon::before, .hero .ribbon::after {
+  content:""; position: absolute; top: 0; bottom: 0; width: 14px; background: var(--gold);
+}
+.hero .ribbon::before { left:-14px; clip-path: polygon(100% 0, 100% 100%, 0 50%); }
+.hero .ribbon::after  { right:-14px; clip-path: polygon(0 0, 0 100%, 100% 50%); }
+
+.patient-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  margin: 22px auto 0;
+  padding: 14px 18px;
+  background: var(--green-deep);
+  border: 2px solid var(--gold);
+  max-width: 520px;
+}
+.patient-card .lbl {
+  font-family: 'Bebas Neue',sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+.patient-card .name {
+  font-family: 'Yuji Mai','Noto Serif JP',serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ivory);
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+.patient-card .date {
+  font-family: 'Bebas Neue',sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+}
+
+/* ============ SECTION HEADER ============ */
+.sec {
+  margin: 8px 0 18px;
+  text-align: center;
+}
+.sec .pop-num {
+  display: inline-block;
+  font-family: 'Anton','Bebas Neue',sans-serif;
+  font-size: 64px;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-shadow: 4px 4px 0 var(--green-deep);
+  transform: rotate(-3deg);
+}
+.sec.alt-coral .pop-num { color: var(--coral-soft); text-shadow: 4px 4px 0 var(--green-deep); }
+.sec.alt-navy .pop-num  { color: var(--gold-bright); text-shadow: 4px 4px 0 var(--navy-deep); }
+.sec.alt-cream .pop-num { color: var(--green-deep); text-shadow: 4px 4px 0 var(--gold); }
+.sec .pop-slash {
+  font-family: 'Bebas Neue',sans-serif;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 0.4em;
+  display: block;
+  margin-top: -4px;
+}
+.sec.alt-cream .pop-slash { color: var(--earth); }
+.sec .pop-title {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  color: var(--ivory);
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+  line-height: 1.4;
+  display: inline-block;
+}
+.sec.alt-cream .pop-title { color: var(--green-deep); }
+.sec .pop-title::before, .sec .pop-title::after {
+  content:"❖"; color: var(--gold); font-size: 18px; vertical-align: middle; margin: 0 12px;
+}
+.sec.alt-cream .pop-title::before, .sec.alt-cream .pop-title::after { color: var(--earth); }
+
+/* ============ PANEL: GREEN (sec 01) ============ */
+.panel.p-green { background: var(--green); }
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: stretch;
+  margin: 16px 0 4px;
+}
+.compare-card {
+  border: 3px solid var(--gold);
+  padding: 14px 12px 18px;
+  text-align: center;
+  position: relative;
+  background: var(--green-deep);
+}
+.compare-card.before {
+  transform: rotate(-1.5deg);
+  background: linear-gradient(180deg, var(--green-deep), rgba(201,77,58,0.12));
+  border-color: var(--coral-soft);
+}
+.compare-card.after {
+  transform: rotate(1.5deg);
+  background: linear-gradient(180deg, var(--green-deep), rgba(196,164,77,0.18));
+}
+.compare-card .tag {
+  position: absolute;
+  top: -14px; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Bebas Neue',sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  padding: 4px 16px;
+  white-space: nowrap;
+}
+.compare-card.before .tag { background: var(--coral); color: var(--ivory); }
+.compare-card.after  .tag { background: var(--gold); color: var(--green-deep); }
+.compare-card .icon-area { margin: 6px 0 8px; }
+.compare-card .when-date {
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin: 4px 0 10px;
+  font-weight: 700;
+}
+.compare-card .body-status {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--ivory);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.compare-card.after .body-status { color: var(--gold-bright); }
+.compare-card .desc {
+  font-size: 13px;
+  color: var(--ivory);
+  line-height: 1.7;
+}
+.arrow-big {
+  align-self: center;
+  font-family: 'Anton',sans-serif;
+  font-size: 56px;
+  color: var(--gold);
+  font-weight: 900;
+  text-shadow: 3px 3px 0 var(--green-deep);
+  line-height: 1;
+}
+
+.banner-big {
+  margin: 28px 0 4px;
+  padding: 22px 18px;
+  border: 3px solid var(--gold);
+  text-align: center;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(196,164,77,0.12), rgba(201,77,58,0.08)),
+    repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(196,164,77,0.04) 12px, rgba(196,164,77,0.04) 24px);
+}
+.banner-big::before, .banner-big::after {
+  content:"★"; color: var(--gold); font-size: 24px;
+  position: absolute; top: 50%; transform: translateY(-50%);
+}
+.banner-big::before { left: 14px; }
+.banner-big::after  { right: 14px; }
+.banner-big .lead {
+  font-family: 'Bebas Neue',sans-serif;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.4em;
+  margin-bottom: 10px;
+}
+.banner-big .main {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--ivory);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+.banner-big .main .gold { color: var(--gold-bright); }
+.banner-big .reason {
+  font-size: 15px;
+  color: var(--ivory);
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 12px auto 0;
+}
+
+/* ============ PANEL: CORAL TINT (sec 02) ============ */
+.panel.p-coral {
+  background:
+    linear-gradient(180deg, rgba(201,77,58,0.10), rgba(94,53,72,0.08)),
+    var(--green);
+}
+
+.focus-list { list-style: none; margin: 18px 0 0; }
+.focus-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 14px;
+  border: 2px solid var(--gold);
+  padding: 14px 14px 16px;
+  margin-bottom: 14px;
+  background: var(--green-deep);
+  position: relative;
+  align-items: center;
+}
+.focus-item .badge {
+  position: absolute;
+  top: -12px; left: 14px;
+  background: var(--coral);
+  color: var(--ivory);
+  font-family: 'Anton',sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  padding: 3px 12px;
+}
+.focus-item .badge .num { font-size: 18px; margin-right: 4px; }
+
+.focus-item .illust {
+  background: linear-gradient(135deg, rgba(201,77,58,0.15), rgba(196,164,77,0.10));
+  border: 1px solid var(--gold);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+}
+.focus-item .illust svg { width: 100%; height: 100%; }
+
+.focus-item .text-area { padding-top: 4px; }
+.focus-item .part {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  font-weight: 700;
+  margin-bottom: 4px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--gold);
+}
+.focus-item .what {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 19px;
+  font-weight: 900;
+  color: var(--ivory);
+  margin: 6px 0 8px;
+  line-height: 1.5;
+}
+.focus-item .what .marker {
+  background: linear-gradient(transparent 60%, var(--coral) 60%);
+  padding: 0 2px;
+  color: var(--ivory);
+}
+.focus-item .detail {
+  font-size: 14px;
+  color: var(--ivory);
+  line-height: 1.7;
+}
+
+/* ============ STAMP RESULT ============ */
+.panel.p-stamp {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(230,200,112,0.18), transparent 70%),
+    linear-gradient(180deg, rgba(196,164,77,0.10), rgba(184,97,46,0.10)),
+    var(--green);
+  padding: 30px 22px;
+}
+.stamp-result {
+  text-align: center;
+  padding: 22px 18px;
+  border: 4px double var(--gold);
+  background: var(--green-deep);
+  position: relative;
+}
+.stamp-result::before {
+  content: "RESULT";
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--coral);
+  color: var(--ivory);
+  font-family: 'Bebas Neue',sans-serif;
+  letter-spacing: 0.4em;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 14px;
+}
+.stamp-result .pre {
+  font-family: 'Bebas Neue',sans-serif;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-size: 13px;
+  margin: 14px 0 12px;
+}
+.stamp-result .head-line {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 22px;
+  color: var(--ivory);
+  font-weight: 900;
+  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+}
+.stamp-result .percent {
+  font-family: 'Anton',sans-serif;
+  font-size: 92px;
+  color: var(--gold-bright);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-shadow: 4px 4px 0 var(--coral), 7px 7px 0 var(--green-deep);
+  display: block;
+  margin: 8px 0;
+}
+.stamp-result .percent .small { font-size: 36px; vertical-align: middle; }
+.stamp-result .closing {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 18px;
+  color: var(--ivory);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+}
+
+/* ============ PANEL: NAVY (sec 03 sleep) ============ */
+.panel.p-navy {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(230,200,112,0.10), transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(95,168,199,0.12), transparent 60%),
+    linear-gradient(180deg, var(--navy), var(--navy-deep));
+}
+.panel.p-navy .sec .pop-title { color: var(--ivory); }
+.panel.p-navy .sec .pop-title::before, .panel.p-navy .sec .pop-title::after { color: var(--gold-bright); }
+
+/* tiny stars on navy bg */
+.panel.p-navy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 80px 100px;
+  background-position: 10px 30px, 50px 80px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.sleep-box {
+  border: 3px solid var(--gold);
+  padding: 22px 20px 22px 110px;
+  margin: 18px 0 6px;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(31,46,74,0.6), rgba(14,26,47,0.8));
+  z-index: 2;
+}
+.sleep-box .moon-svg {
+  position: absolute;
+  top: 50%; left: 22px;
+  transform: translateY(-50%);
+  width: 72px; height: 72px;
+}
+.sleep-box .head-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-family: 'Anton','Bebas Neue',sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 5px 16px;
+  letter-spacing: 0.3em;
+  margin-bottom: 12px;
+}
+.sleep-box p {
+  font-size: 16px;
+  color: var(--ivory);
+  line-height: 1.95;
+}
+.sleep-box .hl {
+  background: linear-gradient(transparent 60%, rgba(230,200,112,0.45) 60%);
+  font-weight: 700;
+  color: var(--gold-bright);
+  padding: 0 3px;
+}
+
+/* ============ PANEL: CREAM (sec 04 food) ============ */
+.panel.p-cream {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(184,97,46,0.20), transparent 60%),
+    radial-gradient(circle at 0% 100%, rgba(196,164,77,0.15), transparent 50%),
+    linear-gradient(180deg, var(--cream), #c9a466);
+  color: var(--green-deep);
+}
+.panel.p-cream .sec .pop-title { color: var(--green-deep); }
+
+.flow-box {
+  border: 3px solid var(--green-deep);
+  padding: 18px 16px;
+  margin: 16px 0;
+  text-align: center;
+  background: var(--ivory);
+}
+.flow-box .step {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 22px;
+  color: var(--green-deep);
+  font-weight: 900;
+  padding: 6px 0;
+  letter-spacing: 0.05em;
+}
+.flow-box .step .gold { color: var(--earth); font-size: 26px; }
+.flow-box .arrow-down {
+  color: var(--earth);
+  font-size: 28px;
+  font-weight: 900;
+  padding: 0;
+  font-family: 'Anton',sans-serif;
+}
+
+.avoid-box {
+  border: 3px dashed var(--coral);
+  padding: 18px 16px;
+  margin: 18px 0;
+  text-align: center;
+  position: relative;
+  background: rgba(201,77,58,0.18);
+}
+.avoid-box .lbl {
+  display: inline-block;
+  background: var(--coral);
+  color: var(--ivory);
+  padding: 3px 14px;
+  font-family: 'Bebas Neue',sans-serif;
+  letter-spacing: 0.4em;
+  font-size: 13px;
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+}
+.avoid-box .item {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--coral);
+  letter-spacing: 0.06em;
+  display: inline-block;
+}
+.avoid-box .item::before {
+  content:"×";
+  color: var(--coral);
+  font-size: 32px;
+  margin-right: 12px;
+  vertical-align: middle;
+  font-family: 'Anton',sans-serif;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.food-card {
+  border: 2px solid var(--green-deep);
+  padding: 14px 10px;
+  text-align: center;
+  background: var(--ivory);
+  position: relative;
+}
+.food-card:nth-child(1) { transform: rotate(-1.5deg); }
+.food-card:nth-child(2) { transform: rotate(1.5deg); }
+.food-card:nth-child(3) { transform: rotate(1.5deg); }
+.food-card:nth-child(4) { transform: rotate(-1.5deg); }
+.food-card .num-tag {
+  position: absolute;
+  top: -10px; left: -8px;
+  background: var(--earth);
+  color: var(--ivory);
+  font-family: 'Anton',sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  padding: 2px 10px;
+  transform: rotate(-8deg);
+}
+.food-card .illust {
+  width: 70px; height: 70px;
+  margin: 6px auto 8px;
+}
+.food-card .name {
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--green-deep);
+  margin-bottom: 6px;
+  letter-spacing: 0.1em;
+}
+.food-card .desc {
+  font-size: 13px;
+  color: var(--green-deep);
+  line-height: 1.6;
+}
+
+.recipe {
+  background: var(--ivory);
+  border: 2px solid var(--green-deep);
+  padding: 16px 18px 16px 76px;
+  margin: 14px 0;
+  position: relative;
+}
+.recipe::before {
+  content: attr(data-tag);
+  position: absolute;
+  top: -10px; left: 14px;
+  background: var(--earth);
+  color: var(--ivory);
+  font-family: 'Bebas Neue',sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  padding: 2px 12px;
+  font-weight: 700;
+}
+.recipe .recipe-icon {
+  position: absolute;
+  top: 14px; left: 14px;
+  width: 50px; height: 50px;
+}
+.recipe p {
+  font-size: 16px;
+  color: var(--green-deep);
+  line-height: 1.9;
+}
+.recipe strong {
+  color: var(--earth);
+  font-family: 'RocknRoll One','Noto Sans JP',sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  padding: 0 2px;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  text-align: center;
+  padding: 26px 14px 24px;
+  background: var(--green-deep);
+  border-top: 4px double var(--gold);
+}
+.footer .seal {
+  display: inline-block;
+  width: 60px; height: 60px;
+  border: 2px solid var(--coral);
+  background: var(--coral);
+  color: var(--ivory);
+  font-family: 'Yuji Mai',serif;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 56px;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+  transform: rotate(-5deg);
+}
+.footer .clinic {
+  font-family: 'Yuji Mai','Noto Serif JP',serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  margin-bottom: 6px;
+}
+.footer .doctor {
+  font-size: 16px;
+  color: var(--ivory);
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+.footer .signature {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.45em;
+  margin-top: 14px;
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 38px; }
+  .hero .ribbon { font-size: 13px; padding: 6px 18px; letter-spacing: 0.25em; }
+  .sec .pop-num { font-size: 50px; }
+  .sec .pop-title { font-size: 22px; }
+  .compare { grid-template-columns: 1fr; gap: 28px; }
+  .arrow-big { transform: rotate(90deg); margin: -8px 0; }
+  .focus-item { grid-template-columns: 80px 1fr; gap: 10px; }
+  .focus-item .what { font-size: 17px; }
+  .food-grid { grid-template-columns: 1fr 1fr; }
+  .banner-big .main { font-size: 22px; }
+  .stamp-result .percent { font-size: 64px; }
+  .patient-card { grid-template-columns: 1fr; gap: 6px; text-align: center; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="corner-tl"></span>
+  <span class="corner-tr"></span>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="stamp">CLINICAL  REPORT  /  TAKAMATSU</div>
+    <h1>本日の<br><span class="gold">臨床報告書</span></h1>
+    <div class="ribbon">TREATMENT  RECORD</div>
+    <div class="patient-card">
+      <div>
+        <div class="lbl">PATIENT</div>
+        <div class="lbl" style="margin-top:6px;">患者様</div>
+      </div>
+      <div class="name">三澤 様</div>
+      <div class="date">2026<br>05.10</div>
+    </div>
+  </section>
+
+  <!-- ===== PANEL 01: GREEN ===== -->
+  <section class="panel p-green">
+    <div class="sec">
+      <div class="pop-num">01</div>
+      <div class="pop-slash">─ CHAPTER ONE ─</div>
+      <div class="pop-title">前回からの劇的変化</div>
+    </div>
+
+    <div class="compare">
+      <div class="compare-card before">
+        <div class="tag">BEFORE</div>
+        <div class="icon-area">
+          <!-- stress icon: tense person -->
+          <svg viewBox="0 0 100 100" width="64" height="64">
+            <circle cx="50" cy="28" r="14" fill="none" stroke="#c94d3a" stroke-width="3"/>
+            <line x1="38" y1="22" x2="44" y2="26" stroke="#c94d3a" stroke-width="3" stroke-linecap="round"/>
+            <line x1="56" y1="26" x2="62" y2="22" stroke="#c94d3a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 42 36 Q 50 30 58 36" fill="none" stroke="#c94d3a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 30 50 Q 50 44 70 50 L 70 80 L 30 80 Z" fill="rgba(201,77,58,0.2)" stroke="#c94d3a" stroke-width="3"/>
+            <path d="M 40 56 L 46 62 M 46 56 L 40 62" stroke="#c94d3a" stroke-width="2"/>
+            <path d="M 54 56 L 60 62 M 60 56 L 54 62" stroke="#c94d3a" stroke-width="2"/>
+            <path d="M 14 16 L 20 22 M 20 16 L 14 22" stroke="#c94d3a" stroke-width="2.5"/>
+            <path d="M 80 16 L 86 22 M 86 16 L 80 22" stroke="#c94d3a" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <div class="when-date">5.8 来院時</div>
+        <div class="body-status">背中カチカチ<br>交感神経 全開</div>
+        <div class="desc">気圧変動と<br>事務仕事疲労が<br>重なり全身ロック</div>
+      </div>
+      <div class="arrow-big">▶</div>
+      <div class="compare-card after">
+        <div class="tag">AFTER</div>
+        <div class="icon-area">
+          <!-- relaxed icon: calm person -->
+          <svg viewBox="0 0 100 100" width="64" height="64">
+            <circle cx="50" cy="28" r="14" fill="none" stroke="#e6c870" stroke-width="3"/>
+            <line x1="40" y1="26" x2="46" y2="26" stroke="#e6c870" stroke-width="3" stroke-linecap="round"/>
+            <line x1="54" y1="26" x2="60" y2="26" stroke="#e6c870" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 42 34 Q 50 38 58 34" fill="none" stroke="#e6c870" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 30 50 Q 50 46 70 50 L 70 80 L 30 80 Z" fill="rgba(230,200,112,0.2)" stroke="#e6c870" stroke-width="3"/>
+            <path d="M 12 18 Q 18 14 22 18" fill="none" stroke="#e6c870" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 78 18 Q 84 14 88 18" fill="none" stroke="#e6c870" stroke-width="2" stroke-linecap="round"/>
+            <text x="14" y="38" fill="#e6c870" font-size="12" font-weight="900">✦</text>
+            <text x="78" y="40" fill="#e6c870" font-size="12" font-weight="900">✦</text>
+          </svg>
+        </div>
+        <div class="when-date">本日 5.10</div>
+        <div class="body-status">症状が<br>劇的に改善！</div>
+        <div class="desc">前回の一気緩めで<br>自律神経が<br>大きく整いました</div>
+      </div>
+    </div>
+
+    <div class="banner-big">
+      <div class="lead">─ KEY  POINT ─</div>
+      <div class="main">改善のカギは<br><span class="gold">「自律神経のリセット」</span></div>
+      <div class="reason">前回ガチガチに固まっていた背中を一気に緩めたことで、交感神経の高ぶりが鎮まり、身体が本来の回復モードへ。</div>
+    </div>
+  </section>
+
+  <!-- ===== PANEL 02: CORAL TINT ===== -->
+  <section class="panel p-coral">
+    <div class="sec alt-coral">
+      <div class="pop-num">02</div>
+      <div class="pop-slash">─ CHAPTER TWO ─</div>
+      <div class="pop-title">今回の発見ポイント</div>
+    </div>
+
+    <ul class="focus-list">
+      <!-- POINT 1: 肩・腕 -->
+      <li class="focus-item">
+        <div class="badge"><span class="num">01</span>POINT</div>
+        <div class="illust">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- head -->
+            <circle cx="50" cy="20" r="9" fill="none" stroke="#c4a44d" stroke-width="2.5"/>
+            <!-- neck -->
+            <line x1="50" y1="29" x2="50" y2="36" stroke="#c4a44d" stroke-width="2.5"/>
+            <!-- shoulders/arms -->
+            <path d="M 22 42 Q 50 36 78 42" fill="none" stroke="#c4a44d" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="22" y1="42" x2="14" y2="78" stroke="#c4a44d" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="78" y1="42" x2="86" y2="78" stroke="#c4a44d" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- torso -->
+            <path d="M 32 44 L 32 80 L 68 80 L 68 44" fill="none" stroke="#c4a44d" stroke-width="2.5"/>
+            <!-- trigger points (X marks) right shoulder & left arm -->
+            <g stroke="#c94d3a" stroke-width="3" stroke-linecap="round">
+              <line x1="72" y1="40" x2="78" y2="46"/><line x1="78" y1="40" x2="72" y2="46"/>
+              <line x1="78" y1="56" x2="84" y2="62"/><line x1="84" y1="56" x2="78" y2="62"/>
+              <line x1="13" y1="58" x2="19" y2="64"/><line x1="19" y1="58" x2="13" y2="64"/>
+              <line x1="14" y1="72" x2="20" y2="78"/><line x1="20" y1="72" x2="14" y2="78"/>
+            </g>
+          </svg>
+        </div>
+        <div class="text-area">
+          <div class="part">▎肩・腕</div>
+          <div class="what">右肩・左腕に<br><span class="marker">トリガーポイント多数</span></div>
+          <div class="detail">デスクワーク蓄積疲労が肩から腕にかけて多数のトリガーポイントとして表れていました。本日すべて解放済み。</div>
+        </div>
+      </li>
+
+      <!-- POINT 2: 腰 -->
+      <li class="focus-item">
+        <div class="badge"><span class="num">02</span>POINT</div>
+        <div class="illust">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- spine vertebrae aligned, one protruding back -->
+            <ellipse cx="48" cy="14" rx="6" ry="4" fill="none" stroke="#c4a44d" stroke-width="2"/>
+            <ellipse cx="46" cy="26" rx="6" ry="4" fill="none" stroke="#c4a44d" stroke-width="2"/>
+            <ellipse cx="44" cy="38" rx="6" ry="4" fill="none" stroke="#c4a44d" stroke-width="2"/>
+            <ellipse cx="42" cy="50" rx="6" ry="4" fill="none" stroke="#c4a44d" stroke-width="2"/>
+            <!-- protruding vertebra -->
+            <ellipse cx="62" cy="62" rx="8" ry="5.5" fill="rgba(201,77,58,0.3)" stroke="#c94d3a" stroke-width="3"/>
+            <ellipse cx="46" cy="74" rx="6" ry="4" fill="none" stroke="#c4a44d" stroke-width="2"/>
+            <ellipse cx="48" cy="86" rx="6" ry="4" fill="none" stroke="#c4a44d" stroke-width="2"/>
+            <!-- arrow indicating protrusion -->
+            <path d="M 88 62 L 74 62" stroke="#c94d3a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 78 58 L 74 62 L 78 66" fill="none" stroke="#c94d3a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="text-area">
+          <div class="part">▎腰</div>
+          <div class="what">腰椎が<br><span class="marker">後方に飛び出す状態</span></div>
+          <div class="detail">疲労蓄積により、腰の骨が後ろに突き出るような「腰が曲がった状態」に近づいていました。</div>
+        </div>
+      </li>
+
+      <!-- POINT 3: 顎 -->
+      <li class="focus-item">
+        <div class="badge"><span class="num">03</span>POINT</div>
+        <div class="illust">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- side profile head -->
+            <path d="M 30 50 Q 28 22 56 22 Q 76 22 78 44 Q 78 52 74 56 Q 72 64 64 66 L 50 66 Q 38 66 32 60 Q 28 56 30 50 Z"
+                  fill="none" stroke="#c4a44d" stroke-width="2.5"/>
+            <!-- eye -->
+            <circle cx="58" cy="42" r="1.8" fill="#c4a44d"/>
+            <!-- mouth/teeth grit -->
+            <line x1="50" y1="56" x2="68" y2="56" stroke="#c4a44d" stroke-width="2"/>
+            <!-- jaw highlight -->
+            <ellipse cx="44" cy="62" rx="10" ry="6" fill="rgba(201,77,58,0.3)" stroke="#c94d3a" stroke-width="2.5"/>
+            <!-- tension stars near jaw -->
+            <text x="20" y="74" fill="#c94d3a" font-size="14" font-weight="900">✦</text>
+            <text x="76" y="74" fill="#c94d3a" font-size="14" font-weight="900">✦</text>
+            <!-- clench arrows -->
+            <path d="M 38 78 L 42 72" stroke="#c94d3a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 56 78 L 52 72" stroke="#c94d3a" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="text-area">
+          <div class="part">▎顎</div>
+          <div class="what">顎が<br><span class="marker">カチカチに凝っていた</span></div>
+          <div class="detail">無意識の食いしばりによる顎関節周囲の硬化。自律神経の緊張サインです。</div>
+        </div>
+      </li>
+
+      <!-- POINT 4: 後頭部 -->
+      <li class="focus-item">
+        <div class="badge"><span class="num">04</span>POINT</div>
+        <div class="illust">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- back-of-head shape -->
+            <path d="M 25 38 Q 22 16 50 16 Q 78 16 75 38 L 75 60 Q 75 72 60 76 L 40 76 Q 25 72 25 60 Z"
+                  fill="none" stroke="#c4a44d" stroke-width="2.5"/>
+            <!-- vertical center line (back of skull) -->
+            <line x1="50" y1="20" x2="50" y2="76" stroke="#c4a44d" stroke-width="1.5" stroke-dasharray="2,2"/>
+            <!-- occipital region highlight -->
+            <ellipse cx="50" cy="58" rx="22" ry="9" fill="rgba(201,77,58,0.35)" stroke="#c94d3a" stroke-width="2.5"/>
+            <!-- X marks -->
+            <g stroke="#c94d3a" stroke-width="2.5" stroke-linecap="round">
+              <line x1="35" y1="55" x2="41" y2="61"/><line x1="41" y1="55" x2="35" y2="61"/>
+              <line x1="59" y1="55" x2="65" y2="61"/><line x1="65" y1="55" x2="59" y2="61"/>
+            </g>
+            <!-- neck -->
+            <line x1="42" y1="76" x2="42" y2="86" stroke="#c4a44d" stroke-width="2.5"/>
+            <line x1="58" y1="76" x2="58" y2="86" stroke="#c4a44d" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <div class="text-area">
+          <div class="part">▎後頭部</div>
+          <div class="what">後頭骨が<br><span class="marker">かなり硬くなっていた</span></div>
+          <div class="detail">頭蓋と頚椎の境目（後頭下筋群）が硬化。深い眠りを妨げる重要ポイントでした。</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== STAMP RESULT ===== -->
+  <section class="panel p-stamp">
+    <div class="stamp-result">
+      <div class="pre">─ TODAY'S  RESULT ─</div>
+      <div class="head-line">腰・腕・顎・後頭部</div>
+      <div class="percent">100<span class="small">%</span></div>
+      <div class="closing">ほぼ元の状態へ戻しました</div>
+    </div>
+  </section>
+
+  <!-- ===== PANEL 03: NAVY (SLEEP) ===== -->
+  <section class="panel p-navy">
+    <div class="sec alt-navy">
+      <div class="pop-num">03</div>
+      <div class="pop-slash">─ CHAPTER THREE ─</div>
+      <div class="pop-title">今夜の睡眠予報</div>
+    </div>
+
+    <div class="sleep-box">
+      <svg class="moon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- glow -->
+        <circle cx="50" cy="50" r="42" fill="rgba(230,200,112,0.15)"/>
+        <circle cx="50" cy="50" r="34" fill="rgba(230,200,112,0.25)"/>
+        <!-- crescent moon -->
+        <circle cx="55" cy="48" r="28" fill="#e6c870"/>
+        <circle cx="64" cy="44" r="24" fill="#1f2e4a"/>
+        <!-- stars -->
+        <text x="6" y="22" fill="#e6c870" font-size="14" font-weight="900">✦</text>
+        <text x="82" y="86" fill="#e6c870" font-size="12" font-weight="900">✦</text>
+        <text x="14" y="78" fill="#e6c870" font-size="10" font-weight="900">✦</text>
+      </svg>
+      <div class="head-tag">SLEEP  FORECAST</div>
+      <p>顎と後頭骨の硬さも本日しっかりリリース。<br><span class="hl">かなり楽に眠れるはず</span>です。<br><br>明日の朝は <span class="hl">スッキリと目覚める</span> 状態になっています。深い睡眠で、自律神経の整いを身体に定着させてください。</p>
+    </div>
+  </section>
+
+  <!-- ===== PANEL 04: CREAM (FOOD) ===== -->
+  <section class="panel p-cream">
+    <div class="sec alt-cream">
+      <div class="pop-num">04</div>
+      <div class="pop-slash">─ CHAPTER FOUR ─</div>
+      <div class="pop-title">明日からの食養生</div>
+    </div>
+
+    <div class="flow-box">
+      <div class="step"><span class="gold">食物繊維</span> を摂る</div>
+      <div class="arrow-down">▼</div>
+      <div class="step"><span class="gold">腸内環境</span> が整う</div>
+      <div class="arrow-down">▼</div>
+      <div class="step"><span class="gold">自律神経</span> が整う</div>
+    </div>
+
+    <div class="avoid-box">
+      <span class="lbl">─ AVOID ─</span>
+      <div class="item">パン類はまず控える</div>
+    </div>
+
+    <div class="food-grid">
+      <!-- もち麦 -->
+      <div class="food-card">
+        <span class="num-tag">01</span>
+        <svg class="illust" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="22" cy="34" rx="9" ry="20" fill="#e8c889" stroke="#1a3d28" stroke-width="2.5" transform="rotate(-15 22 34)"/>
+          <line x1="14" y1="22" x2="28" y2="46" stroke="#b8612e" stroke-width="1.8"/>
+          <ellipse cx="40" cy="36" rx="9" ry="20" fill="#e8c889" stroke="#1a3d28" stroke-width="2.5" transform="rotate(15 40 36)"/>
+          <line x1="46" y1="24" x2="34" y2="48" stroke="#b8612e" stroke-width="1.8"/>
+        </svg>
+        <div class="name">もち麦</div>
+        <div class="desc">水溶性食物繊維が豊富。<br>腸を整える主役。</div>
+      </div>
+      <!-- 大麦 -->
+      <div class="food-card">
+        <span class="num-tag">02</span>
+        <svg class="illust" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <!-- awns -->
+          <line x1="30" y1="20" x2="22" y2="4" stroke="#b8612e" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="30" y1="20" x2="30" y2="2" stroke="#b8612e" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="30" y1="20" x2="38" y2="4" stroke="#b8612e" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="30" y1="20" x2="14" y2="10" stroke="#b8612e" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="30" y1="20" x2="46" y2="10" stroke="#b8612e" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- grain body -->
+          <ellipse cx="30" cy="36" rx="11" ry="18" fill="#e8c889" stroke="#1a3d28" stroke-width="2.5"/>
+          <line x1="22" y1="30" x2="38" y2="30" stroke="#b8612e" stroke-width="1.5"/>
+          <line x1="22" y1="38" x2="38" y2="38" stroke="#b8612e" stroke-width="1.5"/>
+          <line x1="22" y1="46" x2="38" y2="46" stroke="#b8612e" stroke-width="1.5"/>
+        </svg>
+        <div class="name">大麦</div>
+        <div class="desc">βグルカンで<br>善玉菌を育てる。</div>
+      </div>
+      <!-- 大豆 -->
+      <div class="food-card">
+        <span class="num-tag">03</span>
+        <svg class="illust" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="30" cy="32" rx="22" ry="18" fill="#e8c889" stroke="#1a3d28" stroke-width="2.5"/>
+          <ellipse cx="22" cy="32" rx="3" ry="6" fill="#1a3d28"/>
+          <path d="M 42 24 Q 48 26 50 30" fill="none" stroke="#fff" stroke-width="2" opacity="0.6"/>
+        </svg>
+        <div class="name">大豆</div>
+        <div class="desc">良質なタンパク質と<br>繊維を同時に。</div>
+      </div>
+      <!-- 小豆 -->
+      <div class="food-card">
+        <span class="num-tag">04</span>
+        <svg class="illust" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <!-- 3 azuki beans -->
+          <ellipse cx="20" cy="22" rx="12" ry="9" fill="#8b2424" stroke="#1a3d28" stroke-width="2" transform="rotate(-20 20 22)"/>
+          <line x1="11" y1="20" x2="29" y2="24" stroke="#f5f0e4" stroke-width="1.5" transform="rotate(-20 20 22)"/>
+          <ellipse cx="40" cy="32" rx="12" ry="9" fill="#a83232" stroke="#1a3d28" stroke-width="2" transform="rotate(20 40 32)"/>
+          <line x1="31" y1="30" x2="49" y2="34" stroke="#f5f0e4" stroke-width="1.5" transform="rotate(20 40 32)"/>
+          <ellipse cx="26" cy="44" rx="12" ry="9" fill="#8b2424" stroke="#1a3d28" stroke-width="2" transform="rotate(-10 26 44)"/>
+          <line x1="17" y1="42" x2="35" y2="46" stroke="#f5f0e4" stroke-width="1.5" transform="rotate(-10 26 44)"/>
+        </svg>
+        <div class="name">小豆</div>
+        <div class="desc">繊維とポリフェノールで<br>腸を浄化。</div>
+      </div>
+    </div>
+
+    <div class="recipe" data-tag="RECOMMEND">
+      <svg class="recipe-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <!-- onigiri -->
+        <path d="M 30 6 L 52 50 L 8 50 Z" fill="#f5f0e4" stroke="#1a3d28" stroke-width="2.5" stroke-linejoin="round"/>
+        <rect x="10" y="40" width="40" height="10" fill="#1a3d28" stroke="#1a3d28" stroke-width="2.5"/>
+        <!-- sesame dots -->
+        <circle cx="22" cy="30" r="1.5" fill="#1a3d28"/>
+        <circle cx="34" cy="34" r="1.5" fill="#1a3d28"/>
+        <circle cx="28" cy="22" r="1.5" fill="#1a3d28"/>
+      </svg>
+      <p>もち麦・大麦・豆類を入れた<br><strong>雑穀米のおにぎり</strong>を作って、<br>そこから食物繊維を摂り続けてください。</p>
+    </div>
+
+    <div class="recipe" data-tag="HYDRATION">
+      <svg class="recipe-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <!-- water drop -->
+        <path d="M 30 6 Q 14 28 14 40 Q 14 52 30 52 Q 46 52 46 40 Q 46 28 30 6 Z"
+              fill="#5fa8c7" stroke="#1a3d28" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M 22 36 Q 22 44 28 46" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <p>そして<strong>水分をたくさん摂ること</strong>。<br>整った身体に水と繊維が回ることで、<br>回復スピードがぐんと上がります。</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <div class="seal">三</div>
+    <div class="clinic">三 条 健 康 堂 接 骨 院</div>
+    <div class="doctor">院長　谷　弘 誠</div>
+    <div class="signature">SANJO   KENKODO   /   TAKAMATSU</div>
+  </div>
+
+</div>
+</body>
+</html>
