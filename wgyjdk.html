@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>福田様 身体報告書｜2026.05.17</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+  background: #0f1f17;
+  color: #f5f0e4;
+  line-height: 1.8;
+  font-size: 17px;
+  overflow-x: hidden;
+}
+.container { max-width: 620px; margin: 0 auto; background: #0f1f17; }
+
+/* ===== HERO ===== */
+.hero {
+  background: #1a3d28;
+  padding: 44px 22px 36px;
+  text-align: center;
+  position: relative;
+  border-bottom: 5px solid #c4a44d;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: repeating-linear-gradient(45deg, transparent 0, transparent 18px, rgba(196,164,77,0.06) 18px, rgba(196,164,77,0.06) 20px);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 2; }
+.hero-date {
+  display: inline-block;
+  background: #c4a44d;
+  color: #1a3d28;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 6px 18px;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+.hero-name {
+  display: inline-block;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 4px 14px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  transform: rotate(-2deg);
+}
+.hero-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #f5f0e4;
+  letter-spacing: 2px;
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+.hero-title em {
+  font-style: normal;
+  color: #ffd700;
+  display: block;
+  font-size: 22px;
+  margin-top: 4px;
+}
+.hero-sub {
+  font-size: 13px;
+  color: #c4a44d;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+.hero-stamp {
+  display: inline-block;
+  margin-top: 22px;
+  border: 3px solid #e63946;
+  color: #e63946;
+  padding: 8px 22px;
+  font-size: 16px;
+  font-weight: 900;
+  transform: rotate(-4deg);
+  letter-spacing: 3px;
+  background: rgba(255,255,255,0.04);
+}
+
+/* ===== SECTION ===== */
+section { padding: 50px 22px; position: relative; }
+.section-num {
+  display: inline-block;
+  background: #e63946;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 5px 12px;
+  margin-bottom: 14px;
+  letter-spacing: 3px;
+}
+.section-num.gold { background: #c4a44d; color: #1a3d28; }
+.section-num.green { background: #4ade80; color: #1a3d28; }
+.section-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffd700;
+  line-height: 1.4;
+  margin-bottom: 22px;
+  letter-spacing: 1px;
+}
+.section-title.ivory { color: #f5f0e4; }
+.section-title.green { color: #4ade80; }
+.section-lead {
+  font-size: 17px;
+  color: #f5f0e4;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+/* ===== MARKER ===== */
+.mk {
+  background: linear-gradient(transparent 58%, #ffd700 58%);
+  color: #f5f0e4;
+  font-weight: 900;
+  padding: 0 3px;
+}
+.mk-red {
+  background: linear-gradient(transparent 58%, #e63946 58%);
+  color: #f5f0e4;
+  font-weight: 900;
+  padding: 0 3px;
+}
+
+/* ===== OBSERVATION (今日の所見) ===== */
+.obs {
+  background: #2a1f0a;
+  border: 3px solid #c4a44d;
+  padding: 22px 18px;
+  margin: 20px 0;
+  position: relative;
+}
+.obs::before {
+  content: '本日所見';
+  position: absolute;
+  top: -14px; left: 14px;
+  background: #c4a44d;
+  color: #1a3d28;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 4px 12px;
+  letter-spacing: 3px;
+}
+.obs-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f5f0e4;
+  line-height: 1.85;
+  margin-top: 6px;
+}
+.obs-tags { margin-top: 14px; }
+.obs-tag {
+  display: inline-block;
+  background: #e63946;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 5px 12px;
+  margin: 4px 4px 0 0;
+  border-radius: 20px;
+}
+.obs-tag.gold { background: #c4a44d; color: #1a3d28; }
+
+/* ===== COMPARE CARDS (施術前後) ===== */
+.compare-title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: #c4a44d;
+  letter-spacing: 3px;
+  margin-bottom: 14px;
+}
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0 22px;
+}
+.compare-card {
+  background: #1a3d28;
+  border: 2px solid #c4a44d;
+  padding: 14px 10px;
+  text-align: center;
+}
+.compare-card.before { opacity: 0.85; }
+.compare-card.after {
+  background: linear-gradient(135deg, #c4a44d 0%, #e6c870 100%);
+  border-color: #ffd700;
+  position: relative;
+}
+.compare-card.after::after {
+  content: 'AFTER';
+  position: absolute;
+  top: -10px; right: -6px;
+  background: #e63946;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 3px 8px;
+  letter-spacing: 2px;
+  transform: rotate(8deg);
+}
+.compare-label {
+  font-size: 11px;
+  color: #c4a44d;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.compare-card.after .compare-label { color: #1a3d28; }
+.compare-value {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffd700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.compare-card.after .compare-value { color: #1a3d28; }
+.compare-status {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f5f0e4;
+}
+.compare-card.after .compare-status { color: #1a3d28; }
+
+/* ===== HIGHLIGHT ROW (筋骨格の劇的変化) ===== */
+.spotlight {
+  background: linear-gradient(135deg, #1a3d28 0%, #2d5f3f 100%);
+  border: 4px solid #ffd700;
+  padding: 24px 20px;
+  margin: 24px 0;
+  text-align: center;
+  position: relative;
+}
+.spotlight::before {
+  content: '★';
+  position: absolute;
+  top: -22px; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 40px;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 22px;
+  line-height: 40px;
+  border-radius: 50%;
+  border: 4px solid #0f1f17;
+}
+.spotlight-label {
+  font-size: 12px;
+  color: #ffd700;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+.spotlight-main {
+  font-size: 22px;
+  font-weight: 900;
+  color: #f5f0e4;
+  line-height: 1.5;
+}
+.spotlight-main em {
+  font-style: normal;
+  color: #ffd700;
+  font-size: 30px;
+  padding: 0 4px;
+}
+
+/* ===== PROGRESS (3ヶ月の歩み) ===== */
+.progress-row {
+  background: #1a3d28;
+  border-left: 5px solid #c4a44d;
+  padding: 16px 16px 14px;
+  margin-bottom: 12px;
+}
+.progress-name {
+  font-size: 16px;
+  font-weight: 900;
+  color: #f5f0e4;
+  margin-bottom: 8px;
+}
+.progress-data {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 16px;
+}
+.progress-before { color: #c4a44d; font-weight: 700; }
+.progress-arrow { color: #ffd700; font-weight: 900; font-size: 20px; }
+.progress-after { color: #4ade80; font-weight: 900; font-size: 19px; }
+.progress-delta {
+  display: inline-block;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+/* ===== BIG CALLOUT (心拍数の問題提起) ===== */
+.callout {
+  background: #ffd700;
+  color: #1a3d28;
+  padding: 32px 22px;
+  text-align: center;
+  margin: 32px 0;
+  border: 5px solid #1a3d28;
+  position: relative;
+}
+.callout::before, .callout::after {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  background: #e63946;
+  border: 4px solid #1a3d28;
+}
+.callout::before { top: -14px; left: -14px; }
+.callout::after { bottom: -14px; right: -14px; }
+.callout-label {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+.callout-main {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+.callout-main em {
+  font-style: normal;
+  background: #1a3d28;
+  color: #ffd700;
+  padding: 2px 8px;
+}
+
+/* ===== VS BLOCK (ウォーキング VS HIIT) ===== */
+.vs-header {
+  text-align: center;
+  margin: 28px 0 18px;
+}
+.vs-circle {
+  display: inline-block;
+  width: 64px; height: 64px;
+  border: 4px solid #e63946;
+  border-radius: 50%;
+  background: #1a3d28;
+  color: #e63946;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 56px;
+  text-align: center;
+  letter-spacing: 0;
+}
+.vs-card {
+  border: 3px solid;
+  padding: 22px 18px;
+  margin-bottom: 16px;
+  position: relative;
+}
+.vs-card.bad {
+  border-color: #6b7280;
+  background: #1a2a20;
+}
+.vs-card.good {
+  border-color: #4ade80;
+  background: #122e1c;
+  box-shadow: 0 0 0 3px rgba(74,222,128,0.15);
+}
+.vs-card-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+.vs-card.bad .vs-card-title { color: #9ca3af; text-decoration: line-through; text-decoration-color: #e63946; text-decoration-thickness: 3px; }
+.vs-card.good .vs-card-title { color: #4ade80; }
+.vs-card-points {
+  font-size: 15px;
+  color: #f5f0e4;
+  line-height: 1.85;
+}
+.vs-badge {
+  position: absolute;
+  top: -13px; right: 14px;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 4px 12px;
+  letter-spacing: 2px;
+}
+.vs-badge.bad { background: #6b7280; color: #fff; }
+.vs-badge.good { background: #4ade80; color: #1a3d28; }
+
+/* ===== BENEFIT LIST (VO2MAXのメリット) ===== */
+.benefit {
+  background: #1a3d28;
+  border: 2px solid #c4a44d;
+  padding: 18px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.benefit-num {
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 42px;
+  border-radius: 50%;
+  border: 3px solid #1a3d28;
+  box-shadow: 0 0 0 2px #ffd700;
+}
+.benefit-body { flex: 1; }
+.benefit-title {
+  font-size: 17px;
+  font-weight: 900;
+  color: #ffd700;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.benefit-text {
+  font-size: 15px;
+  color: #f5f0e4;
+  line-height: 1.7;
+}
+
+/* ===== HIIT PLAN ===== */
+.plan {
+  background: #2a1f0a;
+  border: 3px dashed #c4a44d;
+  padding: 26px 20px;
+  margin: 24px 0;
+}
+.plan-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffd700;
+  margin-bottom: 18px;
+  text-align: center;
+  line-height: 1.4;
+}
+.plan-step {
+  background: #1a3d28;
+  border-left: 5px solid #ffd700;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.plan-step-label {
+  display: inline-block;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 2px 10px;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.plan-step-text {
+  font-size: 16px;
+  color: #f5f0e4;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.plan-note {
+  text-align: center;
+  font-size: 14px;
+  color: #c4a44d;
+  font-weight: 700;
+  margin-top: 12px;
+  letter-spacing: 1px;
+}
+
+/* ===== AFTERBURN ===== */
+.afterburn {
+  background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+  color: #fff;
+  padding: 26px 20px;
+  margin: 24px 0;
+  border: 3px solid #ffd700;
+  position: relative;
+}
+.afterburn-label {
+  display: inline-block;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 4px 12px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+.afterburn-title {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.afterburn-text {
+  font-size: 16px;
+  line-height: 1.85;
+}
+.afterburn-text strong {
+  background: #ffd700;
+  color: #1a3d28;
+  padding: 1px 6px;
+  font-weight: 900;
+}
+
+/* ===== PREDICTION ===== */
+.prediction {
+  background: linear-gradient(135deg, #1a3d28 0%, #2d5f3f 100%);
+  border: 4px solid #ffd700;
+  padding: 30px 22px;
+  margin: 32px 0;
+  text-align: center;
+  position: relative;
+}
+.prediction-label {
+  display: inline-block;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 5px 14px;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+.prediction-main {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffd700;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+.prediction-main em {
+  font-style: normal;
+  color: #f5f0e4;
+  font-size: 22px;
+}
+.prediction-sub {
+  font-size: 15px;
+  color: #f5f0e4;
+  line-height: 1.8;
+}
+
+/* ===== TODAY'S ACTION ===== */
+.action {
+  background: #1a3d28;
+  border: 3px solid #c4a44d;
+  padding: 24px 20px;
+  margin: 24px 0;
+}
+.action-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffd700;
+  text-align: center;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(196,164,77,0.3);
+}
+.action-item:last-child { border-bottom: none; }
+.action-check {
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  background: #ffd700;
+  color: #1a3d28;
+  font-size: 16px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 26px;
+}
+.action-text {
+  font-size: 16px;
+  color: #f5f0e4;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* ===== MESSAGE ===== */
+.message {
+  background: #1a3d28;
+  padding: 44px 24px;
+  margin-top: 30px;
+  border-top: 4px solid #c4a44d;
+  border-bottom: 4px solid #c4a44d;
+  text-align: center;
+  position: relative;
+}
+.message::before {
+  content: '"';
+  font-family: Georgia, serif;
+  position: absolute;
+  top: 8px; left: 22px;
+  font-size: 80px;
+  color: rgba(196,164,77,0.25);
+  line-height: 1;
+}
+.message-label {
+  font-size: 13px;
+  color: #c4a44d;
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+.message-body {
+  font-size: 18px;
+  color: #f5f0e4;
+  line-height: 2;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+}
+.message-sign {
+  margin-top: 22px;
+  font-size: 14px;
+  color: #c4a44d;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== CTA ===== */
+.cta {
+  padding: 40px 22px;
+  background: #0f1f17;
+  text-align: center;
+}
+.cta-title {
+  font-size: 17px;
+  color: #c4a44d;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+.cta-button {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  border: 3px solid;
+  transition: transform 0.2s;
+}
+.cta-button:active { transform: scale(0.98); }
+.cta-button.line {
+  background: #06c755;
+  color: #fff;
+  border-color: #1a3d28;
+}
+.cta-button.maps {
+  background: #c4a44d;
+  color: #1a3d28;
+  border-color: #1a3d28;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #0a1612;
+  padding: 32px 22px;
+  text-align: center;
+  font-size: 13px;
+  color: #c4a44d;
+  line-height: 1.9;
+}
+.footer-brand {
+  font-size: 15px;
+  font-weight: 900;
+  color: #f5f0e4;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+.footer-tag {
+  display: inline-block;
+  border: 1px solid #c4a44d;
+  padding: 3px 10px;
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+@media (min-width: 600px) {
+  body { font-size: 18px; }
+  .hero-title { font-size: 36px; }
+  .section-title { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-date">2026.05.17 SUN</div><br>
+      <div class="hero-name">福田 様 専用レポート</div>
+      <h1 class="hero-title">
+        身体の再設計
+        <em>NEXT STEP</em>
+      </h1>
+      <div class="hero-sub">CLINICAL REPORT</div>
+      <div class="hero-stamp">劇的変化 確認</div>
+    </div>
+  </header>
+
+  <!-- ===== 01 本日の所見 ===== -->
+  <section>
+    <div class="section-num">SECTION 01</div>
+    <h2 class="section-title">本日の身体、率直に申し上げます。</h2>
+    <div class="obs">
+      <p class="obs-text">
+        全体的に<span class="mk-red">カチカチ</span>でした。<br>
+        特に<span class="mk">足の張りが強く</span>、腰・肩も連動して固まっていた状態です。
+      </p>
+      <div class="obs-tags">
+        <span class="obs-tag">足の張り 強</span>
+        <span class="obs-tag">腰 緊張</span>
+        <span class="obs-tag">肩 緊張</span>
+        <span class="obs-tag gold">全身硬化</span>
+      </div>
+    </div>
+    <p class="section-lead">
+      ただし、これは「悪い兆候」ではありません。<br>
+      <span class="mk">仕事と研究で身体を酷使している証拠</span>であり、施術で確実に解放できる状態でした。
+    </p>
+  </section>
+
+  <!-- ===== 02 施術前後 ===== -->
+  <section style="background:#0a1612;">
+    <div class="section-num gold">SECTION 02</div>
+    <h2 class="section-title green">施術前 → 施術後<br>身体は明確に変化しました。</h2>
+
+    <div class="compare-title">━ MUSCULOSKELETAL（筋骨格系）━</div>
+    <div class="compare">
+      <div class="compare-card before">
+        <div class="compare-label">BEFORE</div>
+        <div class="compare-value">1.40</div>
+        <div class="compare-status">⚠ Above norm<br>(過緊張)</div>
+      </div>
+      <div class="compare-card after">
+        <div class="compare-label">AFTER</div>
+        <div class="compare-value">1.09</div>
+        <div class="compare-status">✓ Normal<br>(正常化)</div>
+      </div>
+    </div>
+
+    <div class="spotlight">
+      <div class="spotlight-label">━ 本日の最大成果 ━</div>
+      <p class="spotlight-main">
+        過緊張ゾーンから<br>
+        <em>正常域</em>へ<br>
+        一回の施術で着地
+      </p>
+    </div>
+
+    <div class="compare-title" style="margin-top:30px;">━ PSYCHO-EMOTIONAL（自律神経）━</div>
+    <div class="compare">
+      <div class="compare-card before">
+        <div class="compare-label">BEFORE</div>
+        <div class="compare-value">0.79</div>
+        <div class="compare-status">⚠ Below norm</div>
+      </div>
+      <div class="compare-card after">
+        <div class="compare-label">AFTER</div>
+        <div class="compare-value">0.82</div>
+        <div class="compare-status">✓ Normal</div>
+      </div>
+    </div>
+    <p class="section-lead" style="margin-top:18px;">
+      <span class="mk">筋緊張が解け、自律神経も正常域へ。</span><br>
+      副交感神経が優位になり、回復モードへ入った状態です。
+    </p>
+  </section>
+
+  <!-- ===== 03 3ヶ月の歩み ===== -->
+  <section>
+    <div class="section-num">SECTION 03</div>
+    <h2 class="section-title">この3ヶ月の歩み<br>正直、見事です。</h2>
+
+    <div class="progress-row">
+      <div class="progress-name">⚖ 体重</div>
+      <div class="progress-data">
+        <span class="progress-before">77.1kg</span>
+        <span class="progress-arrow">→</span>
+        <span class="progress-after">72.9kg</span>
+        <span class="progress-delta">-4.2kg</span>
+      </div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-name">📊 体脂肪率</div>
+      <div class="progress-data">
+        <span class="progress-before">29.0%</span>
+        <span class="progress-arrow">→</span>
+        <span class="progress-after">27.0%</span>
+        <span class="progress-delta">-2.0pt</span>
+      </div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-name">🔥 内臓脂肪</div>
+      <div class="progress-data">
+        <span class="progress-before">14</span>
+        <span class="progress-arrow">→</span>
+        <span class="progress-after">12</span>
+        <span class="progress-delta">-2</span>
+      </div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-name">💧 体内水分率</div>
+      <div class="progress-data">
+        <span class="progress-before">52.1%</span>
+        <span class="progress-arrow">→</span>
+        <span class="progress-after">53.6%</span>
+        <span class="progress-delta">代謝UP</span>
+      </div>
+    </div>
+
+    <div class="spotlight" style="margin-top:24px;">
+      <div class="spotlight-label">━ 真に評価すべきは ━</div>
+      <p class="spotlight-main">
+        <span class="mk">脂肪を落としながら</span><br>
+        <span class="mk">筋肉を大きく崩していない</span><br>
+        ここが本物です
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 04 課題提起：心拍数 ===== -->
+  <section style="background:#0a1612;">
+    <div class="section-num">SECTION 04</div>
+    <h2 class="section-title ivory">ただし、一つだけ<br>気になるサインがあります。</h2>
+
+    <div class="callout">
+      <div class="callout-label">━ 着目ポイント ━</div>
+      <p class="callout-main">
+        安静時の心拍数が<br>
+        <em>90を超える日</em>がある
+      </p>
+    </div>
+
+    <p class="section-lead">
+      これは決して「悪い数字」ではありません。<br>
+      しかし、<span class="mk">53歳・経営者・研究者の身体としては</span><br>
+      「もう一段上のステージ」に行ける伸びしろのサインです。
+    </p>
+    <p class="section-lead">
+      ここを攻略すれば、<br>
+      内臓脂肪・疲労感・集中力・睡眠の質、<br>
+      すべてが<span class="mk-red">次の次元</span>に行きます。
+    </p>
+  </section>
+
+  <!-- ===== 05 解決策：プチHIIT ===== -->
+  <section>
+    <div class="section-num green">SECTION 05 ／ 処方箋</div>
+    <h2 class="section-title">そこで、ご提案。<br>「プチHIIT」始めませんか？</h2>
+
+    <div class="plan">
+      <p class="plan-title">━ 福田様専用プロトコル ━</p>
+
+      <div class="plan-step">
+        <span class="plan-step-label">頻度</span>
+        <p class="plan-step-text">週3回（月・水・金 など）</p>
+      </div>
+      <div class="plan-step">
+        <span class="plan-step-label">器具</span>
+        <p class="plan-step-text">エアロバイク（ジム or 自宅）</p>
+      </div>
+      <div class="plan-step">
+        <span class="plan-step-label">強度</span>
+        <p class="plan-step-text">心拍数 <span class="mk">140〜150</span> まで上げる</p>
+      </div>
+      <div class="plan-step">
+        <span class="plan-step-label">時間</span>
+        <p class="plan-step-text">1回 10〜15分でOK</p>
+      </div>
+      <div class="plan-step">
+        <span class="plan-step-label">構成</span>
+        <p class="plan-step-text">全力30秒 → ゆるく90秒 × 5〜8セット</p>
+      </div>
+
+      <p class="plan-note">★ 関節への負担なし／膝に優しい ★</p>
+    </div>
+  </section>
+
+  <!-- ===== 06 ウォーキング VS HIIT ===== -->
+  <section style="background:#0a1612;">
+    <div class="section-num">SECTION 06 ／ 重要な事実</div>
+    <h2 class="section-title ivory">ここで一つ<br>本当のことを申し上げます。</h2>
+
+    <div class="vs-header">
+      <div class="vs-circle">VS</div>
+    </div>
+
+    <div class="vs-card bad">
+      <span class="vs-badge bad">残念な事実</span>
+      <h3 class="vs-card-title">ウォーキング</h3>
+      <p class="vs-card-points">
+        ✗ VO2MAXは<span class="mk-red">ほぼ上がらない</span><br>
+        ✗ 心肺機能の改善効果は限定的<br>
+        ✗ アフターバーン効果は弱い<br>
+        ◯ 気分転換・関節維持には◎
+      </p>
+    </div>
+
+    <div class="vs-card good">
+      <span class="vs-badge good">本命</span>
+      <h3 class="vs-card-title">プチHIIT／スロージョギング</h3>
+      <p class="vs-card-points">
+        ◎ VO2MAXが<span class="mk">確実に上がる</span><br>
+        ◎ 安静時心拍数が下がる<br>
+        ◎ <span class="mk">アフターバーン効果</span>強力<br>
+        ◎ 短時間で完結（時短）
+      </p>
+    </div>
+
+    <p class="section-lead" style="margin-top:22px;">
+      もちろん、<span class="mk">ウォーキングはやめる必要はありません。</span><br>
+      ただ、「ウォーキングだけ」では身体の次のステージには行けない。<br>
+      これが運動生理学の事実です。
+    </p>
+  </section>
+
+  <!-- ===== 07 アフターバーン効果 ===== -->
+  <section>
+    <div class="section-num">SECTION 07</div>
+    <h2 class="section-title">アフターバーン効果<br>これが本当に強力です。</h2>
+
+    <div class="afterburn">
+      <div class="afterburn-label">━ AFTER-BURN EFFECT ━</div>
+      <h3 class="afterburn-title">HIIT後、身体は<br>最大48時間<br>脂肪を燃やし続けます</h3>
+      <p class="afterburn-text">
+        運動を「終えた後」も、<br>
+        <strong>代謝が高い状態</strong>が続く。<br><br>
+        つまり、寝ている時間も、<br>
+        デスクワーク中も、<br>
+        <strong>身体は脂肪を燃焼している</strong>状態。<br><br>
+        これがウォーキングには無い、<br>
+        HIIT最大の武器です。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 08 VO2MAXのメリット ===== -->
+  <section style="background:#0a1612;">
+    <div class="section-num gold">SECTION 08</div>
+    <h2 class="section-title green">VO2MAXを高く保つと<br>こんなに得をします。</h2>
+
+    <p class="section-lead">
+      VO2MAX（最大酸素摂取量）は、<br>
+      <span class="mk">医学的に「最強の健康指標」</span>と言われます。<br>
+      血圧・血糖値より、寿命との相関が強いのです。
+    </p>
+
+    <div class="benefit">
+      <div class="benefit-num">1</div>
+      <div class="benefit-body">
+        <p class="benefit-title">寿命が伸びる</p>
+        <p class="benefit-text">死亡率を最も強く予測する指標。喫煙・高血圧・糖尿病より影響大。</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-num">2</div>
+      <div class="benefit-body">
+        <p class="benefit-title">疲れにくい身体になる</p>
+        <p class="benefit-text">同じ仕事をしても、消耗が減る。一日の終わりの「余力」が変わります。</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-num">3</div>
+      <div class="benefit-body">
+        <p class="benefit-title">脂肪が勝手に燃える身体</p>
+        <p class="benefit-text">基礎代謝が上がり、同じ食事量でも太りにくくなる。</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-num">4</div>
+      <div class="benefit-body">
+        <p class="benefit-title">脳のパフォーマンスUP</p>
+        <p class="benefit-text">記憶力・判断力・集中力に直結。研究・経営判断の質が上がります。</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-num">5</div>
+      <div class="benefit-body">
+        <p class="benefit-title">心血管疾患リスク激減</p>
+        <p class="benefit-text">心筋梗塞・脳卒中のリスクが大きく下がる。50代以降の最重要項目。</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <div class="benefit-num">6</div>
+      <div class="benefit-body">
+        <p class="benefit-title">糖尿病・高血圧の予防</p>
+        <p class="benefit-text">インスリン感受性が改善。内臓脂肪が減れば、ここはほぼ確実に良くなります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 09 3ヶ月後の予測 ===== -->
+  <section>
+    <div class="section-num">SECTION 09</div>
+    <h2 class="section-title ivory">私の見立てを<br>お伝えします。</h2>
+
+    <div class="prediction">
+      <div class="prediction-label">━ 3ヶ月後の予測 ━</div>
+      <p class="prediction-main">
+        プチHIIT × 週3<br>
+        +<br>
+        現在の食生活継続<br>
+        <em>↓</em>
+      </p>
+      <p class="prediction-sub" style="font-size:18px;color:#ffd700;font-weight:900;">
+        内臓脂肪：12 → <span style="font-size:24px;">9〜10</span><br>
+        安静時心拍数：90 → <span style="font-size:24px;">70台</span><br>
+        体重：72.9kg → <span style="font-size:24px;">70kg前後</span>
+      </p>
+      <p class="prediction-sub" style="margin-top:16px;">
+        ※ あくまで臨床経験からの予測ですが、<br>
+        <span class="mk">福田様の現在のベースなら十分達成可能</span>です。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 10 今日からのアクション ===== -->
+  <section style="background:#0a1612;">
+    <div class="section-num green">SECTION 10</div>
+    <h2 class="section-title">今週から、これだけ。</h2>
+
+    <div class="action">
+      <p class="action-title">━ 福田様の今週アクション ━</p>
+
+      <div class="action-item">
+        <span class="action-check">✓</span>
+        <p class="action-text">エアロバイクの場所を確保（自宅 or ジム）</p>
+      </div>
+      <div class="action-item">
+        <span class="action-check">✓</span>
+        <p class="action-text">週3回、10分のプチHIITを1回試す</p>
+      </div>
+      <div class="action-item">
+        <span class="action-check">✓</span>
+        <p class="action-text">心拍数モニター（スマートウォッチ等）で140-150を狙う</p>
+      </div>
+      <div class="action-item">
+        <span class="action-check">✓</span>
+        <p class="action-text">ウォーキングはそのまま継続でOK</p>
+      </div>
+      <div class="action-item">
+        <span class="action-check">✓</span>
+        <p class="action-text">朝食にタンパク質（卵・ヨーグルト）を1品追加</p>
+      </div>
+      <div class="action-item">
+        <span class="action-check">✓</span>
+        <p class="action-text">1時間に1回、必ず立つ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MESSAGE ===== -->
+  <div class="message">
+    <div class="message-label">━ FROM 谷院長 ━</div>
+    <p class="message-body">
+      福田様。<br><br>
+      2月から3ヶ月、<br>
+      身体は明確に変わってきました。<br><br>
+      これはただの減量ではありません。<br>
+      <span class="mk">「53歳からの身体の再設計」</span>です。<br><br>
+      ここに「VO2MAX」という武器を加えれば、<br>
+      経営判断も、研究も、人生も、<br>
+      次のステージに上がります。<br><br>
+      焦らず、でも止まらず。<br>
+      次回の測定が、今から楽しみです。
+    </p>
+    <p class="message-sign">三条健康堂接骨院　院長　谷弘誠</p>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta">
+    <p class="cta-title">━ お問い合わせ・ご予約 ━</p>
+    <a href="https://lin.ee/dwRtwDv" class="cta-button line">▶ LINEで質問・予約する</a>
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" class="cta-button maps">▶ Google Mapsで見る</a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p class="footer-brand">三条健康堂接骨院</p>
+    <p>香川県高松市由良町<br>
+    柔道整復師 谷弘誠（30年の臨床）</p>
+    <p class="footer-tag">CLINICAL REPORT ／ 2026.05.17</p>
+  </footer>
+
+</div>
+</body>
+</html>
