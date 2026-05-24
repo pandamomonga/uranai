@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>兼近様｜本日の施術報告</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-text-size-adjust:100%; }
+body {
+  font-family: 'Hiragino Sans','Yu Gothic','Noto Sans CJK JP',sans-serif;
+  background:#f5f0e4; color:#1a1a1a; line-height:1.85; font-size:17px;
+  padding:20px 16px 80px; max-width:720px; margin:0 auto;
+}
+.header {
+  background:linear-gradient(135deg,#1a3d28 0%,#2a5a3a 100%);
+  color:#f5f0e4; padding:32px 24px; border-radius:12px; margin-bottom:24px;
+  border:3px solid #c4a44d; box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.header h1 { font-size:26px; font-weight:700; margin-bottom:8px; letter-spacing:0.02em; }
+.header .sub { font-size:16px; color:#c4a44d; font-weight:600; }
+.header .date { font-size:14px; margin-top:8px; opacity:0.9; }
+
+.section {
+  background:#fff; padding:24px 20px; margin-bottom:20px;
+  border-radius:10px; border-left:6px solid #1a3d28;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+.section h2 {
+  font-size:22px; color:#1a3d28; font-weight:700;
+  padding-bottom:10px; margin-bottom:16px; border-bottom:2px solid #c4a44d;
+  display:flex; align-items:center; gap:10px;
+}
+.section h2 .num {
+  background:#1a3d28; color:#c4a44d; width:34px; height:34px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:50%; font-size:18px; flex-shrink:0;
+}
+.section h3 {
+  font-size:19px; color:#1a3d28; font-weight:700;
+  margin:18px 0 10px; padding-left:12px; border-left:4px solid #c4a44d;
+}
+.section p { margin-bottom:12px; font-size:17px; }
+.section strong { color:#1a3d28; font-weight:700; background:#fff8d9; padding:0 4px; }
+
+/* 測定結果カード */
+.measure-grid { display:grid; gap:12px; margin:16px 0; }
+.measure-card {
+  padding:16px; border-radius:8px; display:flex; justify-content:space-between;
+  align-items:center; gap:12px;
+}
+.measure-card .label { font-weight:700; font-size:18px; color:#fff; }
+.measure-card .status { font-size:14px; color:#fff; opacity:0.95; display:block; margin-top:2px; }
+.measure-card .value { font-size:24px; font-weight:700; color:#fff; }
+.m-normal { background:#2d8a4e; }
+.m-low { background:#6b6dc4; }
+
+/* 重要ポイントボックス */
+.key-box {
+  background:#fff8d9; border:2px solid #c4a44d; padding:16px;
+  border-radius:8px; margin:14px 0;
+}
+.key-box .key-title {
+  font-weight:700; color:#1a3d28; font-size:17px; margin-bottom:8px;
+}
+
+/* AI プロンプトカード */
+.prompt-card {
+  background:#1a3d28; color:#f5f0e4; padding:18px; border-radius:8px;
+  margin:14px 0; border:2px solid #c4a44d;
+}
+.prompt-card .p-title {
+  font-size:18px; font-weight:700; color:#c4a44d; margin-bottom:8px;
+  display:flex; align-items:center; gap:8px;
+}
+.prompt-card .p-desc { font-size:15px; line-height:1.7; margin-bottom:12px; }
+.prompt-text {
+  background:#0f2818; padding:14px; border-radius:6px;
+  font-family:'SF Mono','Menlo',monospace; font-size:15px;
+  color:#f5f0e4; border-left:4px solid #c4a44d;
+  word-break:break-all; margin-bottom:10px;
+}
+.copy-btn {
+  background:#c4a44d; color:#1a3d28; border:none; padding:12px 20px;
+  border-radius:6px; font-size:16px; font-weight:700; cursor:pointer;
+  width:100%; touch-action:manipulation;
+  transition:background 0.2s;
+}
+.copy-btn:active { background:#a88a3a; }
+.copy-btn.done { background:#2d8a4e; color:#fff; }
+
+/* ポモドーロ手順 */
+.step-list {
+  background:#f5f0e4; padding:18px; border-radius:8px;
+  border:2px solid #1a3d28; margin:14px 0;
+}
+.step-item {
+  display:flex; gap:14px; margin-bottom:14px; align-items:flex-start;
+}
+.step-item:last-child { margin-bottom:0; }
+.step-num {
+  background:#1a3d28; color:#c4a44d; width:30px; height:30px;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:16px; flex-shrink:0;
+}
+.step-content { font-size:16px; line-height:1.7; }
+
+/* エビデンス */
+.evidence {
+  background:#eef4ef; border-left:5px solid #2d8a4e; padding:14px 16px;
+  border-radius:6px; margin:14px 0; font-size:15px;
+}
+.evidence .ev-title {
+  font-weight:700; color:#1a3d28; margin-bottom:6px; font-size:16px;
+}
+
+/* 締めくくり */
+.closing {
+  background:#1a3d28; color:#f5f0e4; padding:24px;
+  border-radius:10px; text-align:center; margin-top:24px;
+  border:2px solid #c4a44d;
+}
+.closing p { font-size:16px; margin-bottom:12px; line-height:1.8; }
+.closing .sign { color:#c4a44d; font-weight:700; font-size:18px; margin-top:14px; }
+
+/* リンク */
+.link-row {
+  display:flex; flex-direction:column; gap:10px; margin-top:14px;
+}
+.link-btn {
+  display:block; background:#c4a44d; color:#1a3d28; padding:14px;
+  text-align:center; border-radius:6px; text-decoration:none;
+  font-weight:700; font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>兼近様｜本日の施術報告書</h1>
+  <div class="sub">三条健康堂接骨院</div>
+  <div class="date">2026年5月24日｜30年・延べ1万人以上の臨床経験から</div>
+</div>
+
+<!-- ========== 1. 本日の施術所見 ========== -->
+<div class="section">
+  <h2><span class="num">1</span>本日の施術所見</h2>
+
+  <p>前回課題であった<strong>歯の食いしばり</strong>は、注射の効果もあり改善傾向が確認できました。これは良い兆候です。</p>
+
+  <p>一方で、土曜日の<strong>受けの作業</strong>により全身が硬直状態にあり、特に上半身の緊張が強く出ています。本日は腰のメインアプローチを行ったところ、<strong>右肩甲骨周辺に大きな氷塊様の硬結</strong>が顕在化しました。</p>
+
+  <div class="key-box">
+    <div class="key-title">📍 今回のキーポイント</div>
+    右肩甲骨周辺をメイン施術対象に切り替え。神経反射入力装置論の観点から、ここを緩めることで連動して頸部・側頭部の食いしばり系筋群（咬筋・側頭筋）への神経出力も低下が見込めます。本日の施術効果は、明日以降の<strong>朝の目覚めと首の可動域</strong>でご確認ください。
+  </div>
+</div>
+
+<!-- ========== 2. 測定結果 ========== -->
+<div class="section">
+  <h2><span class="num">2</span>RaDoTech 測定結果</h2>
+
+  <div class="measure-grid">
+    <div class="measure-card m-normal">
+      <div>
+        <div class="label">⚡ エネルギーレベル</div>
+        <span class="status">Normal</span>
+      </div>
+      <div class="value">29.45</div>
+    </div>
+    <div class="measure-card m-low">
+      <div>
+        <div class="label">🛡 免疫システム</div>
+        <span class="status">Below norm</span>
+      </div>
+      <div class="value">12.60</div>
+    </div>
+    <div class="measure-card m-normal">
+      <div>
+        <div class="label">♻ 代謝</div>
+        <span class="status">Normal</span>
+      </div>
+      <div class="value">1.17</div>
+    </div>
+    <div class="measure-card m-low">
+      <div>
+        <div class="label">🧠 心理・情動状態</div>
+        <span class="status">Below norm</span>
+      </div>
+      <div class="value">0.76</div>
+    </div>
+    <div class="measure-card m-normal">
+      <div>
+        <div class="label">💪 筋骨格系</div>
+        <span class="status">Normal</span>
+      </div>
+      <div class="value">0.93</div>
+    </div>
+  </div>
+
+  <h3>身体からの手紙</h3>
+  <p>エネルギーと代謝、そして筋骨格系は正常域にあります。これは「動ける土台」がしっかり残っているということ。十分稼働できる身体です。</p>
+
+  <p>気になるのは<strong>免疫（12.60）と心理・情動（0.76）の低下</strong>です。これは「身体は動けるが、内側が消耗している」状態を示しています。受けの作業の身体的負担と、テスト期間というお子様の状況などが重なり、自律神経系が交感神経優位に傾きすぎているサインと読み取れます。</p>
+
+  <p>左右差（L380.71／R326.14、L/R=0.93）も右側の処理負担を裏付けています。本日の右肩甲骨アプローチは、この数値とも一致した妥当な選択でした。</p>
+</div>
+
+<!-- ========== 3. お子様のAIプロンプト活用法 ========== -->
+<div class="section">
+  <h2><span class="num">3</span>お子様へ｜AI活用4つのプロンプト</h2>
+
+  <p>テスト期間中のお子様（Geminiユーザー）に、ぜひ試していただきたい使い方です。地味ですが、確実にアドバンテージになります。</p>
+
+  <!-- ゲーム自制 -->
+  <h3>🎮 まずはゲーム時間の自己評価から</h3>
+  <p>ゲーム自体を否定せず、<strong>AIに点数評価させることで自分の自制心を働かせる</strong>方法です。命令されるより、自分で気づく方が続きます。</p>
+
+  <div class="prompt-card">
+    <div class="p-title">📋 ゲーム評価プロンプト</div>
+    <div class="p-desc">タイトル・1日のプレイ時間・自分の年齢を入れて使う</div>
+    <div class="prompt-text" id="p0">私は今【ゲーム名】を1日【〇時間】プレイしています。年齢は【〇歳】、現在テスト期間中です。このゲームが私にもたらすポジティブな効果（集中力・反射神経・コミュニケーション等）とネガティブな効果（睡眠・学習・視力等）を箇条書きで挙げ、最後に総合的な「現状の付き合い方」を100点満点で採点し、改善案を3つください。</div>
+    <button class="copy-btn" data-target="p0">📋 このプロンプトをコピー</button>
+  </div>
+
+  <!-- ドローン視点 -->
+  <h3>🚁 学習プロンプト①｜ドローン視点</h3>
+  <p>俯瞰させることで、単元の全体構造が見えるようになります。木を見て森を見ずの逆をやる方法です。</p>
+
+  <div class="prompt-card">
+    <div class="p-title">📋 ドローン視点プロンプト</div>
+    <div class="p-desc">単元名や問題を一緒に貼り付ける</div>
+    <div class="prompt-text" id="p1">この【単元／問題】を、ドローンの視点から解説してください。つまり、細部に入る前に、この単元が教科書全体のどこに位置し、前後の単元とどう繋がっているか、何のためにあるのかを俯瞰的に説明してから、本題の解説に入ってください。</div>
+    <button class="copy-btn" data-target="p1">📋 このプロンプトをコピー</button>
+  </div>
+
+  <!-- エントロピー -->
+  <h3>🧊 学習プロンプト②｜エントロピーを低くして</h3>
+  <p>物理の世界の用語ですが、AIへの指示として非常に効きます。<strong>「余計な情報を省いて、要点だけ整理して」</strong>という意味になります。</p>
+
+  <div class="prompt-card">
+    <div class="p-title">📋 エントロピー低減プロンプト</div>
+    <div class="p-desc">説明が冗長すぎる時に有効</div>
+    <div class="prompt-text" id="p2">この【単元／問題】を、エントロピーを低くして解説してください。つまり、情報の散らばりや余計な装飾を最小化し、最も重要な原理・公式・パターンだけを抽出して、最短経路で理解できる形で提示してください。</div>
+    <button class="copy-btn" data-target="p2">📋 このプロンプトをコピー</button>
+  </div>
+
+  <!-- 出題者視点 -->
+  <h3>🎯 学習プロンプト③｜出題者の意図を読む</h3>
+  <p>これは大きなテストで圧倒的アドバンテージになります。<strong>「相手が何を問いかけてくるか」が分かる</strong>視点を持てます。</p>
+
+  <div class="prompt-card">
+    <div class="p-title">📋 出題者意図分析プロンプト</div>
+    <div class="p-desc">問題文をそのまま貼り付ける</div>
+    <div class="prompt-text" id="p3">以下の問題について、出題者の視点から分析してください。①この出題者はどのような意図でこの問題を作ったか ②生徒の何が分かっているか確認したいのか ③この問題でつまずく生徒は何を理解していない場合が多いか ④類題で問われやすいパターンは何か。
+
+【ここに問題文を貼り付け】</div>
+    <button class="copy-btn" data-target="p3">📋 このプロンプトをコピー</button>
+  </div>
+
+  <!-- クイズ化 -->
+  <h3>📝 学習プロンプト④｜今日の総まとめクイズ</h3>
+  <p>最後のシメに使います。今日のチャットの内容を全部クイズにしてもらい、自分の理解度を確認します。</p>
+
+  <div class="prompt-card">
+    <div class="p-title">📋 総復習クイズプロンプト</div>
+    <div class="p-desc">勉強セッションの最後に投げる</div>
+    <div class="prompt-text" id="p4">今までやり取りした本日勉強した内容のすべてを、私が完全に理解できているかチェックするためのクイズにしてください。○×問題5問、選択問題5問、記述問題3問を含めてください。私が答えたら採点と解説をお願いします。</div>
+    <button class="copy-btn" data-target="p4">📋 このプロンプトをコピー</button>
+  </div>
+
+  <!-- Claude併用 -->
+  <h3>🎨 もし Gemini で理解しきれなければ Claude を使う</h3>
+  <p>ビジュアル説明は Claude が得意です。Geminiで概念を学んだあと、こう投げると視覚的に腑に落ちます。</p>
+
+  <div class="prompt-card">
+    <div class="p-title">📋 ビジュアル理解プロンプト（Claude用）</div>
+    <div class="p-desc">理解が曖昧な単元を投げる</div>
+    <div class="prompt-text" id="p5">今勉強した【単元名・内容】を、分かりやすいビジュアル（図解・フローチャート・アニメーション）で説明してください。HTML/SVGで視覚的に表現し、私が直感的に理解できる形にしてください。</div>
+    <button class="copy-btn" data-target="p5">📋 このプロンプトをコピー</button>
+  </div>
+</div>
+
+<!-- ========== 4. お菓子コントロール法 ========== -->
+<div class="section">
+  <h2><span class="num">4</span>お菓子の暴飲暴食を止める「7分タイマー法」</h2>
+
+  <p>「お菓子をやめる」のではなく、「<strong>食べる前後に7分の隙間を作る</strong>」という方法です。意志力を消耗させずに、自然と量が減る心理学的設計です。</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">お菓子を食べ始める時、まず<strong>7分のタイマー</strong>をセット。気にせず食べ始めてOK。</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">タイマーが鳴ったら、<strong>一旦お菓子を置く</strong>。これが最重要ポイント。</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">完全に違う行動に切り替える。<strong>スクワット・ウォールシット・別ジャンルの音楽を1曲聴く</strong>など。アイソメトリック運動なら「疲れるまでやる」と決め切る。</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">再びお菓子を食べたくなったら、また<strong>7分タイマーをセットしてから食べる</strong>。これを繰り返す。</div>
+    </div>
+  </div>
+
+  <h3>なぜこれが効くのか｜エビデンス</h3>
+
+  <div class="evidence">
+    <div class="ev-title">① 衝動の波は平均15〜20分で減衰する（Urge Surfing理論）</div>
+    Marlattらの再発予防研究で示された原理で、食欲・喫煙欲求・アルコール欲求などの衝動は<strong>波のように発生し、ピークを越えれば自然に減衰</strong>します。我慢ではなく「波が通り過ぎるのを待つ」発想です。7分の中断は、この波のピークを跨ぐのに十分な時間です。
+  </div>
+
+  <div class="evidence">
+    <div class="ev-title">② 行動置換（Habit Reversal）の原理</div>
+    アメリカ心理学会も推奨する習慣修正法で、<strong>「やめる」より「別の行動に置き換える」</strong>方が成功率が高いことが繰り返し示されています。スクワット・ウォールシットは「お菓子の代替報酬」として筋肉刺激と達成感を提供します。
+  </div>
+
+  <div class="evidence">
+    <div class="ev-title">③ アイソメトリック運動と食欲抑制</div>
+    運動科学領域では、<strong>高強度の等尺性運動後にグレリン（食欲ホルモン）が一時的に低下</strong>することが知られています（Brouhardら、Appetite誌等）。ウォールシットを「疲れるまで」やることで、生理的に食欲のスイッチが切れます。
+  </div>
+
+  <div class="evidence">
+    <div class="ev-title">④ メタ認知の発動</div>
+    7分のタイマーは「自分が今お菓子を食べている」という<strong>意識を一度切る装置</strong>です。無意識の自動的な摂食を、意識的選択に切り替える。これだけで摂取量が平均20〜30%減るという研究もあります（Mindful Eating関連）。
+  </div>
+
+  <div class="key-box">
+    <div class="key-title">⚠ 兼近様への補足</div>
+    完全に止めようとせず、<strong>「食べてもいい、ただし7分の壁を入れる」</strong>とご自身に許可してください。意志力で抑えるのではなく、構造で減らす。これが続く秘訣です。3週間続けば習慣化されます。
+  </div>
+</div>
+
+<!-- ========== 5. 次回までの宿題 ========== -->
+<div class="section">
+  <h2><span class="num">5</span>次回までの3つの宿題</h2>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">①</div>
+      <div class="step-content"><strong>朝起きたら、右肩甲骨の動きを確認</strong>。腕を後ろに回す動作で、本日比でどう変わったか観察してください。</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">②</div>
+      <div class="step-content"><strong>お子様にAIプロンプト4種を共有</strong>。特に「ドローン視点」と「出題者意図」はテスト本番までに2回試させてください。</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">③</div>
+      <div class="step-content"><strong>7分タイマー法を1週間試す</strong>。回数を数える必要はありません。「タイマーをセットした回数」だけメモしておくと、次回ご様子をお聞きできます。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 締め ========== -->
+<div class="closing">
+  <p>本日もお越しいただきありがとうございました。</p>
+  <p>免疫と心理・情動の数値は気になりますが、エネルギー・代謝・筋骨格系の土台はしっかりしています。<br>今は内側を整える時期と捉え、無理せず7分の隙間を生活に作っていきましょう。</p>
+  <div class="link-row">
+    <a href="https://lin.ee/dwRtwDv" class="link-btn">💬 LINEでご相談・ご予約</a>
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" class="link-btn">📍 Googleマップで確認する</a>
+  </div>
+  <div class="sign">三条健康堂接骨院｜谷</div>
+  <p style="font-size:13px;margin-top:14px;opacity:0.85;">高松発・一生動ける身体と人生の教養研究室<br>無借金・無車・自転車・圧力鍋生活を実践する治療家より</p>
+</div>
+
+<script>
+// コピーボタン（Clipboard API優先・スクロール抑制）
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    const targetId = btn.getAttribute('data-target');
+    const text = document.getElementById(targetId).innerText;
+    const scrollX = window.scrollX, scrollY = window.scrollY;
+
+    let success = false;
+    // 第一手段：Clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        success = true;
+      } catch (err) {}
+    }
+    // フォールバック：画面内に1px配置したtextarea
+    if (!success) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { success = document.execCommand('copy'); } catch(err) {}
+      document.body.removeChild(ta);
+      window.scrollTo(scrollX, scrollY);
+    }
+
+    if (success) {
+      const orig = btn.innerText;
+      btn.innerText = '✓ コピー完了';
+      btn.classList.add('done');
+      setTimeout(() => {
+        btn.innerText = orig;
+        btn.classList.remove('done');
+      }, 1500);
+    } else {
+      alert('コピーに失敗しました。テキストを長押しして選択してください。');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
