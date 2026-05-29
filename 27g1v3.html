@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜兼近様</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0d0d;
+    --bg2:#141414;
+    --ink:#f5f0e4;
+    --ink-dim:#cbc6ba;
+    --gold:#c4a44d;
+    --teal:#4fd1c5;
+    /* 五行色 */
+    --moku:#5b8def; /* 木・肝 */
+    --ka:#e05757;   /* 火・心 */
+    --do:#d4a93a;   /* 土・脾 */
+    --kin:#e8e4d8;  /* 金・肺 */
+    --sui:#3a4252;  /* 水・腎（黒系＋縁取り） */
+    --sui-edge:#8fa3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:
+      radial-gradient(900px 500px at 80% -10%, rgba(79,209,197,.10), transparent 60%),
+      radial-gradient(700px 500px at -10% 30%, rgba(196,164,77,.08), transparent 55%),
+      linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:17px;
+    line-height:1.95;
+    letter-spacing:.02em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px 64px}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* グレイン */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.04;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;
+  }
+
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* 扉 */
+  .cover{padding:72px 0 30px;text-align:center;position:relative}
+  .badge{
+    display:inline-block;font-size:13px;letter-spacing:.42em;color:var(--gold);
+    border:1px solid rgba(196,164,77,.45);border-radius:2px;padding:7px 18px 7px 22px;margin-bottom:30px;
+  }
+  .cover h1{
+    font-family:"Noto Serif JP",serif;font-weight:900;font-size:40px;line-height:1.25;
+    letter-spacing:.06em;text-shadow:0 0 28px rgba(79,209,197,.18);
+  }
+  .meta{margin-top:18px;font-size:15px;color:var(--ink-dim);letter-spacing:.12em}
+  .meta b{color:var(--ink);font-weight:700}
+  .lead{
+    font-family:"Noto Serif JP",serif;font-weight:700;font-size:23px;line-height:1.7;
+    margin:34px auto 0;max-width:21em;color:var(--ink);
+  }
+  .lead .hl{color:var(--teal);text-shadow:0 0 18px rgba(79,209,197,.45)}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:46px 0;opacity:.6}
+
+  section{margin-top:44px}
+  .kicker{font-size:12.5px;letter-spacing:.4em;color:var(--gold);margin-bottom:12px}
+  h2{
+    font-family:"Noto Serif JP",serif;font-weight:700;font-size:25px;line-height:1.45;
+    letter-spacing:.04em;margin-bottom:16px;
+  }
+  h2 .em{color:var(--teal)}
+  p{margin-bottom:15px;color:var(--ink)}
+  p.dim{color:var(--ink-dim)}
+
+  /* 測定ビジュアル */
+  .meas{background:rgba(255,255,255,.025);border:1px solid rgba(245,240,228,.10);border-radius:14px;padding:22px 20px 18px}
+  .row{padding:15px 0;border-bottom:1px solid rgba(245,240,228,.07)}
+  .row:last-of-type{border-bottom:none}
+  .rowhead{display:flex;align-items:baseline;gap:10px;margin-bottom:11px;flex-wrap:wrap}
+  .rowhead .name{font-weight:700;font-size:17px}
+  .tag{font-size:12px;letter-spacing:.08em;padding:2px 9px;border-radius:20px;border:1px solid currentColor;white-space:nowrap}
+  .barline{display:flex;align-items:center;gap:11px;margin:7px 0}
+  .barlab{font-size:12px;color:var(--ink-dim);width:34px;flex:none;letter-spacing:.05em}
+  .track{position:relative;flex:1;height:13px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden}
+  .fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px}
+  .fill.before{background:rgba(245,240,228,.22)}
+  .barval{font-size:13.5px;font-weight:700;width:122px;flex:none;text-align:right;letter-spacing:.02em}
+  .barval .st{font-size:11px;font-weight:500;color:var(--ink-dim);letter-spacing:.04em;margin-left:4px}
+  .foot{font-size:12.5px;color:var(--ink-dim);line-height:1.7;margin-top:14px;padding-top:13px;border-top:1px solid rgba(245,240,228,.07)}
+
+  /* 主役カード */
+  .hero{
+    border:1px solid rgba(212,169,58,.5);border-radius:14px;padding:24px 22px;
+    background:linear-gradient(135deg,rgba(212,169,58,.10),rgba(212,169,58,.02));
+    box-shadow:0 0 40px rgba(212,169,58,.08) inset;
+  }
+  .hero .lbl{font-size:13px;letter-spacing:.3em;color:var(--do)}
+  .hero .big{font-family:"Noto Serif JP",serif;font-weight:900;font-size:30px;margin:8px 0 12px;letter-spacing:.04em}
+  .hero .big span{color:var(--do)}
+
+  /* 神経科学（主） */
+  .spine{position:relative;padding-left:20px}
+  .spine::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:3px;
+    background:linear-gradient(180deg,var(--teal),rgba(79,209,197,.15));box-shadow:0 0 16px rgba(79,209,197,.5)}
+  .arrowfacts{font-size:15px;color:var(--teal);font-weight:700;letter-spacing:.03em;margin:6px 0 4px}
+
+  /* 生活への橋 */
+  .bridge{list-style:none;display:grid;gap:13px}
+  .bridge li{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.025);
+    border:1px solid rgba(245,240,228,.10);border-radius:12px;padding:15px 16px}
+  .bridge .n{font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;color:var(--gold);line-height:1.2;flex:none;width:26px}
+  .bridge .t{font-size:16px;line-height:1.8}
+  .bridge .t b{color:var(--ink)}
+
+  .closing{font-family:"Noto Serif JP",serif;font-weight:700;font-size:22px;line-height:1.8;text-align:center;
+    color:var(--ink);margin:8px auto;max-width:20em}
+
+  /* コピー */
+  .copybtn{display:inline-flex;align-items:center;gap:8px;font-family:"Noto Sans JP",sans-serif;font-size:14px;font-weight:700;
+    color:var(--bg);background:var(--gold);border:none;border-radius:8px;padding:12px 20px;cursor:pointer;letter-spacing:.05em;
+    transition:transform .15s, box-shadow .15s}
+  .copybtn:hover{box-shadow:0 0 22px rgba(196,164,77,.45);transform:translateY(-1px)}
+
+  /* 署名 */
+  .sign{margin-top:50px;border-top:1px solid rgba(196,164,77,.35);padding-top:26px}
+  .sign .quote{font-family:"Noto Serif JP",serif;font-size:16px;line-height:1.85;color:var(--ink);
+    border-left:3px solid var(--gold);padding-left:16px;margin-bottom:18px}
+  .sign .profile{font-size:13.5px;line-height:1.85;color:var(--ink-dim)}
+  .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+  .links a{font-size:14px;font-weight:700;text-decoration:none;color:var(--ink);
+    border:1px solid rgba(245,240,228,.22);border-radius:8px;padding:11px 16px;letter-spacing:.04em;transition:.15s}
+  .links a:hover{border-color:var(--teal);color:var(--teal);box-shadow:0 0 16px rgba(79,209,197,.25)}
+  .place{font-size:13.5px;color:var(--ink-dim);margin-top:16px;letter-spacing:.04em}
+  .review{font-size:13px;color:var(--ink-dim);margin-top:26px;text-align:center}
+  .review a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(196,164,77,.4)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 扉 -->
+  <header class="cover reveal">
+    <span class="badge">施 術 報 告 書</span>
+    <h1 class="serif">冷えは、怒りより<br>静かに体を奪う</h1>
+    <div class="meta"><b>兼近様</b>　｜　2026年5月29日</div>
+    <p class="lead">やる気を奪ったのは、心の弱さではない。<br>体が、<span class="hl">熱を手放した</span>——ただ、それだけ。</p>
+  </header>
+
+  <div class="rule reveal" style="animation-delay:.08s"></div>
+
+  <!-- 共感 R1 -->
+  <section class="reveal" style="animation-delay:.12s">
+    <div class="kicker">今 日 の 身 体</div>
+    <h2>頑張れない一日の、正体</h2>
+    <p>今日の測定は、だるさの理由を静かに映していました。「もういいや」という感覚も、やる気の出なさも、気持ちの問題ではありません。体が熱を手放し、エネルギーを<b>節約する側</b>へ切り替わっていた——その表れです。</p>
+    <p class="dim">ストレスで熱が立ち上がるのではなく、内側からゆっくり冷えていくパターン。責める理由は、どこにもありません。</p>
+  </section>
+
+  <!-- 測定ビジュアル -->
+  <section class="reveal" style="animation-delay:.16s">
+    <div class="kicker">R a D o T e c h ・ 前 後 比 較</div>
+    <h2>5つの系を、施術前→施術後で</h2>
+    <div class="meas">
+
+      <!-- エネルギー -->
+      <div class="row">
+        <div class="rowhead">
+          <span class="name">エネルギー</span>
+          <span class="tag" style="color:var(--sui-edge)">腎・水</span>
+        </div>
+        <div class="barline">
+          <span class="barlab">前</span>
+          <div class="track"><div class="fill before" style="width:22%"></div></div>
+          <span class="barval">17.14<span class="st">基準以下</span></span>
+        </div>
+        <div class="barline">
+          <span class="barlab">後</span>
+          <div class="track"><div class="fill" style="width:78%;background:var(--sui);border:1px solid var(--sui-edge);box-shadow:0 0 14px rgba(143,163,192,.4)"></div></div>
+          <span class="barval">31.49<span class="st">正常</span></span>
+        </div>
+      </div>
+
+      <!-- 免疫 -->
+      <div class="row">
+        <div class="rowhead">
+          <span class="name">免疫</span>
+          <span class="tag" style="color:var(--kin)">肺・金</span>
+        </div>
+        <div class="barline">
+          <span class="barlab">前</span>
+          <div class="track"><div class="fill before" style="width:14%"></div></div>
+          <span class="barval">9.13<span class="st">基準以下</span></span>
+        </div>
+        <div class="barline">
+          <span class="barlab">後</span>
+          <div class="track"><div class="fill" style="width:76%;background:var(--kin);box-shadow:0 0 14px rgba(232,228,216,.35)"></div></div>
+          <span class="barval">21.07<span class="st">正常</span></span>
+        </div>
+      </div>
+
+      <!-- 代謝（主役） -->
+      <div class="row">
+        <div class="rowhead">
+          <span class="name">代謝</span>
+          <span class="tag" style="color:var(--do)">脾・土</span>
+          <span class="tag" style="color:var(--gold);border-color:var(--gold)">本日の主役</span>
+        </div>
+        <div class="barline">
+          <span class="barlab">前</span>
+          <div class="track"><div class="fill before" style="width:48%"></div></div>
+          <span class="barval">1.22<span class="st">基準超過</span></span>
+        </div>
+        <div class="barline">
+          <span class="barlab">後</span>
+          <div class="track"><div class="fill" style="width:88%;background:var(--do);box-shadow:0 0 16px rgba(212,169,58,.5)"></div></div>
+          <span class="barval">1.02<span class="st">正常</span></span>
+        </div>
+      </div>
+
+      <!-- 精神感情 -->
+      <div class="row">
+        <div class="rowhead">
+          <span class="name">精神感情</span>
+          <span class="tag" style="color:var(--ka)">心・火</span>
+        </div>
+        <div class="barline">
+          <span class="barlab">前</span>
+          <div class="track"><div class="fill before" style="width:30%"></div></div>
+          <span class="barval">0.76<span class="st">基準以下</span></span>
+        </div>
+        <div class="barline">
+          <span class="barlab">後</span>
+          <div class="track"><div class="fill" style="width:30%;background:var(--ka);box-shadow:0 0 14px rgba(224,87,87,.4)"></div></div>
+          <span class="barval">0.76<span class="st">基準以下</span></span>
+        </div>
+      </div>
+
+      <!-- 筋骨格 -->
+      <div class="row">
+        <div class="rowhead">
+          <span class="name">筋骨格</span>
+          <span class="tag" style="color:var(--moku)">肝・木</span>
+        </div>
+        <div class="barline">
+          <span class="barlab">前</span>
+          <div class="track"><div class="fill before" style="width:30%"></div></div>
+          <span class="barval">0.78<span class="st">基準以下</span></span>
+        </div>
+        <div class="barline">
+          <span class="barlab">後</span>
+          <div class="track"><div class="fill" style="width:80%;background:var(--moku);box-shadow:0 0 14px rgba(91,141,239,.45)"></div></div>
+          <span class="barval">1.19<span class="st">正常</span></span>
+        </div>
+      </div>
+
+      <p class="foot">棒の長さは状態を視覚化したもの。数値はRaDoTechの実測値です。エネルギー・免疫は指標値、代謝・精神感情・筋骨格は左右バランス比（基準 0.9〜1.1）。経絡所見では、はじめ脾の経絡が弱く冷え、施術後は三焦の経絡が落ち着き膀胱の経絡が温まりました。</p>
+    </div>
+  </section>
+
+  <!-- 本日の主役 -->
+  <section class="reveal" style="animation-delay:.2s">
+    <div class="hero">
+      <div class="lbl">本 日 の 主 役</div>
+      <div class="big serif">今日の身体は、<span>脾（土）</span>が主役だった</div>
+      <p>はじめに弱く冷えていたのが、脾の経絡でした。脾は<b>体の中央</b>にいて、ほかの四つの臓を支える「全身のエンジン」。ここが動けば、全体が動き出します。代謝の左右バランスは <b>1.22 → 1.02</b> と基準内へ戻りました。</p>
+    </div>
+  </section>
+
+  <!-- 物質比喩 R2 -->
+  <section class="reveal" style="animation-delay:.24s">
+    <div class="kicker">た と え る な ら</div>
+    <h2>火の落ちた、<span class="em">体の竈（かまど）</span></h2>
+    <p>脾は、体の真ん中にある竈のようなもの。今日はその火が落ちて、冷えた灰だけが残っていました。だから周りの湯も沸かず、全身が温まらない。竈に火が戻れば、家じゅうの湯がもう一度沸きはじめます。</p>
+  </section>
+
+  <!-- 神経科学の芯 R3（主） -->
+  <section class="reveal" style="animation-delay:.28s">
+    <div class="kicker">本 報 告 の 背 骨 ・ 神 経 科 学</div>
+    <h2>手技は、揉むのではなく<br><span class="em">反射を入力する</span></h2>
+    <div class="spine">
+      <p>谷の見立てでは、手技は組織を変える作業ではなく、<b>神経に特定の反射を入力し、体の出力を切り替える装置</b>として働きます。今日の体は反応が鈍く、熱が立ち上がる興奮型ではなく、出力を絞って閉じこもる側に振れていました。肩と頭の深いこりは、長く続いた防御の反射が抜けきらず固まった跡です。</p>
+      <p>これは気力の問題ではなく、自律神経の<b>調整出力が下がりきった状態</b>。施術は、その固まった反射のループに別の入力を差し込み、神経が「もう守らなくていい」と読み替えるきっかけを作ります。反射が入れ替われば、調整の出力が戻る。</p>
+      <p class="arrowfacts">エネルギー 17→31 ／ 免疫 9→21 ／ 筋骨格 基準内へ</p>
+      <p>——測定値は、神経の切り替えに<b>後から追いついてきた</b>結果です。だから、これからエネルギーは一気に戻ってきます。</p>
+    </div>
+  </section>
+
+  <!-- 五行の一段 R5 -->
+  <section class="reveal" style="animation-delay:.32s">
+    <div class="kicker">文 化 の 深 度 ・ 五 行</div>
+    <h2>土の気が、結んでいた</h2>
+    <p>東洋医学では、脾は<b>土</b>にあたり、中央から四つの臓を支えます。土の感情は「思」——考えすぎ、思い悩みで気が結び、流れが停滞する。今日の冷えと滞りは、まさに土の気が結んだ姿でした。土の味は<b>甘</b>、色は<b>黄</b>、季節は各季節の変わり目の<b>土用</b>です。</p>
+    <p class="dim">施術後、三焦の経絡が落ち着いていたのも見どころです。三焦は西洋医学の解剖図には載らない「機能としての臓器」で、血以外の体液（津液）が通る道筋を指します。その通り道が静まったのは、巡りが整い直そうとしている合図、と読めます。</p>
+  </section>
+
+  <!-- 生活への橋 R4 -->
+  <section class="reveal" style="animation-delay:.36s">
+    <div class="kicker">家 で で き る こ と</div>
+    <h2>土に火を、戻す三つ</h2>
+    <ul class="bridge">
+      <li><span class="n">一</span><span class="t"><b>よく噛んで、甘味をゆっくり。</b>米や芋など自然な甘みのものを、急がず。土（脾）は噛むほど力を取り戻します。黄色い食材を一つ添えると、なお土の気に寄り添えます。</span></li>
+      <li><span class="n">二</span><span class="t"><b>今夜は早めに温めて、休む。</b>熱を手放した体には、足し算より「蓄える」時間が効きます。温かい汁物と早寝で、エネルギーをためる側へ。</span></li>
+      <li><span class="n">三</span><span class="t"><b>一杯のお茶を、渋み（苦味）ごと。</b>苦味は東洋医学で心（火）を養う味。栄西が日本人にお茶をすすめた理由でもあります。気が下がりすぎた日の、静かな立て直しに。</span></li>
+    </ul>
+  </section>
+
+  <div class="rule reveal" style="animation-delay:.4s"></div>
+
+  <!-- 結び -->
+  <section class="reveal" style="animation-delay:.42s">
+    <p class="closing">火は、急がず戻る。<br>今日整えた道筋が、明日の体を少し軽くします。</p>
+    <div style="text-align:center;margin-top:22px">
+      <button class="copybtn" id="copyBtn" type="button">LINE用テキストをコピー</button>
+    </div>
+  </section>
+
+  <!-- 署名 -->
+  <footer class="sign reveal" style="animation-delay:.46s">
+    <div class="quote">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</div>
+    <div class="profile">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</div>
+    <div class="links">
+      <a href="https://lin.ee/dwRtwDv" target="_blank" rel="noopener">LINEで相談する</a>
+      <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" target="_blank" rel="noopener">地図・アクセス</a>
+    </div>
+    <div class="place">三条健康堂接骨院（香川県高松市・由良川東公園のそば）</div>
+    <div class="review">通われている方へ：もしよければ <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" target="_blank" rel="noopener">Googleクチコミ</a> もご覧いただけます。</div>
+  </footer>
+
+</div>
+
+<textarea id="copySrc" readonly>兼近様 本日の施術報告書です。
+今日の体は脾（土）が主役——内側から冷えて出力が下がっていた状態でした。施術で神経の反射を入れ替え、エネルギー（17→31）と免疫（9→21）、筋骨格が基準内まで戻りました。詳しくはこちらのページで。</textarea>
+
+<style>
+  #copySrc{position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
+</style>
+
+<script>
+  const btn = document.getElementById('copyBtn');
+  const src = document.getElementById('copySrc');
+  const done = () => { btn.textContent = '✓ 完了'; setTimeout(()=>{ btn.textContent = 'LINE用テキストをコピー'; }, 1500); };
+  btn.addEventListener('click', async () => {
+    const text = src.value;
+    try {
+      await navigator.clipboard.writeText(text);
+      done();
+    } catch (e) {
+      const x = window.scrollX, y = window.scrollY;
+      src.focus();
+      src.select();
+      try { document.execCommand('copy'); } catch (_) {}
+      window.scrollTo(x, y);
+      done();
+    }
+  });
+</script>
+</body>
+</html>
