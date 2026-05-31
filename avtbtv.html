@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三澤様 施術報告書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-soft:#2c6e49;
+    --gold:#c4a44d;
+    --ivory:#f5f0e4;
+    --ink:#1c2620;
+    --alert:#d9480f;
+    --paper:#fbf9f3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    line-height:1.85;
+    font-size:18px;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:620px;margin:0 auto;background:var(--paper);}
+
+  /* ---- ヘッダー ---- */
+  .head{
+    background:var(--green);
+    color:#fff;
+    padding:34px 26px 30px;
+    text-align:center;
+    border-bottom:5px solid var(--gold);
+  }
+  .head .clinic{font-size:15px;letter-spacing:2px;color:var(--gold);font-weight:700;}
+  .head h1{
+    font-family:'Noto Serif JP',serif;
+    font-size:30px;font-weight:700;
+    margin:10px 0 6px;letter-spacing:1px;
+  }
+  .head .date{font-size:16px;color:#dfe9e1;}
+
+  /* ---- 共通セクション ---- */
+  section{padding:30px 24px;border-bottom:1px solid #e6dfce;}
+  .label{
+    display:inline-block;
+    font-size:15px;font-weight:900;letter-spacing:1px;
+    color:#fff;background:var(--green-soft);
+    padding:6px 16px;border-radius:30px;margin-bottom:18px;
+  }
+  h2{
+    font-family:'Noto Serif JP',serif;
+    font-size:23px;font-weight:700;color:var(--green);
+    margin-bottom:14px;line-height:1.5;
+  }
+  p{font-size:18px;}
+
+  /* ---- 今日のまとめ ---- */
+  .summary{
+    background:var(--green);color:#fff;text-align:center;
+    border-bottom:5px solid var(--gold);
+  }
+  .summary h2{color:#fff;}
+  .summary .big{
+    font-family:'Noto Serif JP',serif;
+    font-size:27px;font-weight:700;color:var(--gold);
+    margin:6px 0 14px;
+  }
+  .summary p{font-size:18px;color:#eef4ef;}
+
+  /* ---- 身体図 ---- */
+  .bodybox{text-align:center;}
+  .bodybox svg{width:100%;max-width:340px;height:auto;}
+  .legend{
+    display:grid;grid-template-columns:1fr;gap:12px;margin-top:22px;text-align:left;
+  }
+  .legend .item{
+    display:flex;align-items:flex-start;gap:14px;
+    background:#fff;border:2px solid #e6dfce;border-left:7px solid var(--gold);
+    border-radius:12px;padding:14px 16px;
+  }
+  .legend .num{
+    flex:0 0 32px;width:32px;height:32px;border-radius:50%;
+    background:var(--green);color:#fff;font-weight:900;font-size:17px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .legend .item.warn{border-left-color:var(--alert);}
+  .legend .item.warn .num{background:var(--alert);}
+  .legend .t{font-weight:900;font-size:18px;color:var(--green);display:block;margin-bottom:2px;}
+  .legend .d{font-size:16px;color:#3a463f;}
+  .legend .item.warn .t{color:var(--alert);}
+
+  /* ---- 測定ポイント ---- */
+  .metric{
+    display:flex;align-items:center;gap:16px;
+    background:#fff;border:2px solid #e6dfce;border-radius:14px;
+    padding:16px 18px;margin-bottom:14px;
+  }
+  .metric .ic{flex:0 0 46px;width:46px;height:46px;}
+  .metric .body{flex:1;}
+  .metric .name{font-weight:900;font-size:18px;color:var(--green);}
+  .metric .desc{font-size:16px;color:#3a463f;margin-top:2px;}
+  .bar{height:14px;border-radius:8px;background:#e6dfce;margin-top:9px;overflow:hidden;}
+  .bar span{display:block;height:100%;border-radius:8px;}
+  .good span{background:var(--green-soft);}
+  .care span{background:var(--gold);}
+  .metric.alert{border-color:var(--alert);}
+  .metric.alert .name{color:var(--alert);}
+  .badge{
+    font-size:14px;font-weight:900;color:#fff;padding:4px 12px;border-radius:20px;white-space:nowrap;
+  }
+  .b-good{background:var(--green-soft);}
+  .b-care{background:var(--gold);color:#3a2e08;}
+  .b-alert{background:var(--alert);}
+
+  .note{
+    background:#fff5ec;border:2px solid #f4c39e;border-radius:14px;
+    padding:16px 18px;margin-top:6px;
+  }
+  .note .nt{font-weight:900;color:var(--alert);font-size:18px;margin-bottom:6px;}
+  .note p{font-size:17px;color:#5a3417;}
+
+  /* ---- 先生より ---- */
+  .doctor{background:#fff;}
+  .doctor .msg{
+    font-size:18px;color:var(--ink);
+  }
+  .doctor .msg strong{color:var(--green);font-weight:900;background:linear-gradient(transparent 62%,#e9dcab 62%);}
+  .sign{text-align:right;margin-top:18px;font-weight:900;color:var(--green);font-size:18px;}
+
+  /* ---- フッター ---- */
+  .foot{background:var(--green);color:#fff;padding:30px 24px;text-align:center;}
+  .foot .name{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+  .foot p{font-size:16px;color:#dfe9e1;margin-bottom:4px;}
+  .cta{
+    display:block;background:var(--gold);color:#1c2208;text-decoration:none;
+    font-weight:900;font-size:19px;padding:16px;border-radius:14px;margin-top:20px;
+  }
+  .cta.line{margin-top:12px;}
+  .map{
+    display:block;color:#fff;text-decoration:underline;font-size:16px;margin-top:16px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ヘッダー -->
+  <div class="head">
+    <div class="clinic">三条健康堂接骨院</div>
+    <h1>三澤様 施術報告書</h1>
+    <div class="date">2026年5月31日</div>
+  </div>
+
+  <!-- 今日のまとめ -->
+  <section class="summary">
+    <h2>今日の体の状態</h2>
+    <div class="big">全体的に、しっかり良くなっています</div>
+    <p>エネルギー・自律神経・メンタル面は落ち着いた良い範囲。<br>
+    残っていた「コリの芯」を今日リリースしました。<br>
+    施術後は体がスッと軽く感じられるはずです。</p>
+  </section>
+
+  <!-- 施術部位 身体図 -->
+  <section class="bodybox">
+    <span class="label">本日アプローチした部位</span>
+    <h2>ここをゆるめました（背面図）</h2>
+
+    <svg viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="背面から見た施術部位の図">
+      <!-- 体のシルエット -->
+      <g fill="#d7cdb4" stroke="#b6a986" stroke-width="2">
+        <!-- 頭 -->
+        <circle cx="150" cy="44" r="30"/>
+        <!-- 首 -->
+        <rect x="138" y="70" width="24" height="20" rx="6"/>
+        <!-- 胴体 -->
+        <path d="M95 96 Q150 84 205 96 L214 150 Q210 175 200 200 L196 250 Q150 262 104 250 L100 200 Q90 175 86 150 Z"/>
+        <!-- 左腕(向かって左=本人の右) -->
+        <path d="M97 100 Q72 120 66 175 L60 245 Q68 250 78 246 L84 180 Q92 135 104 116 Z"/>
+        <!-- 右腕(向かって右=本人の左) -->
+        <path d="M203 100 Q228 120 234 175 L240 245 Q232 250 222 246 L216 180 Q208 135 196 116 Z"/>
+        <!-- 左脚(向かって左=本人の右) -->
+        <path d="M108 252 Q116 320 118 360 L116 408 Q130 412 140 406 L142 350 Q148 300 148 256 Z"/>
+        <!-- 右脚(向かって右=本人の左) -->
+        <path d="M192 252 Q184 320 182 360 L184 408 Q170 412 160 406 L158 350 Q152 300 152 256 Z"/>
+      </g>
+
+      <!-- 施術ゾーン ハイライト -->
+      <!-- 1 首の付け根・後頭部 -->
+      <circle cx="150" cy="80" r="16" fill="#c4a44d" fill-opacity="0.85"/>
+      <!-- 2 両肩 -->
+      <circle cx="108" cy="106" r="17" fill="#c4a44d" fill-opacity="0.85"/>
+      <circle cx="192" cy="106" r="17" fill="#c4a44d" fill-opacity="0.85"/>
+      <!-- 3 肩甲骨 -->
+      <ellipse cx="124" cy="140" rx="16" ry="22" fill="#c4a44d" fill-opacity="0.7"/>
+      <ellipse cx="176" cy="140" rx="16" ry="22" fill="#c4a44d" fill-opacity="0.7"/>
+      <!-- 4 右ふくらはぎ(向かって左) -->
+      <ellipse cx="128" cy="330" rx="15" ry="26" fill="#d9480f" fill-opacity="0.8"/>
+
+      <!-- 番号ラベル -->
+      <g font-family="Noto Sans JP, sans-serif" font-weight="900" font-size="18" fill="#fff" text-anchor="middle">
+        <circle cx="150" cy="80" r="13" fill="#1a3d28"/><text x="150" y="86">1</text>
+        <circle cx="108" cy="106" r="13" fill="#1a3d28"/><text x="108" y="112">2</text>
+        <circle cx="192" cy="106" r="13" fill="#1a3d28"/><text x="192" y="112">2</text>
+        <circle cx="124" cy="140" r="13" fill="#1a3d28"/><text x="124" y="146">3</text>
+        <circle cx="176" cy="140" r="13" fill="#1a3d28"/><text x="176" y="146">3</text>
+        <circle cx="128" cy="330" r="13" fill="#d9480f"/><text x="128" y="336">4</text>
+      </g>
+    </svg>
+
+    <div class="legend">
+      <div class="item">
+        <div class="num">1</div>
+        <div><span class="t">後頭部・首の付け根</span>
+        <span class="d">全身の緊張を司る神経の「スイッチ」。ここをゆるめると体全体の力みが抜けます。</span></div>
+      </div>
+      <div class="item">
+        <div class="num">2</div>
+        <div><span class="t">両肩（カチカチでした）</span>
+        <span class="d">特に固まっていた部分。芯にあった硬さを丁寧に解放しました。</span></div>
+      </div>
+      <div class="item">
+        <div class="num">3</div>
+        <div><span class="t">肩甲骨まわり</span>
+        <span class="d">肩のコリと連動して動きが悪くなっていた箇所。可動性を取り戻しました。</span></div>
+      </div>
+      <div class="item warn">
+        <div class="num">4</div>
+        <div><span class="t">右のふくらはぎ</span>
+        <span class="d">今回あらたに見つかった張り。下半身の血流と姿勢に関わる重要ポイントです。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 測定ポイント -->
+  <section>
+    <span class="label">測定でわかったこと</span>
+    <h2>数値と、手で感じた状態がぴったり一致</h2>
+
+    <div class="metric good">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#2c6e49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      <div class="body">
+        <span class="name">エネルギー・元気度</span>
+        <div class="bar good"><span style="width:82%"></span></div>
+        <span class="desc">良い範囲です。体を回復させる力が保たれています。</span>
+      </div>
+      <span class="badge b-good">良好</span>
+    </div>
+
+    <div class="metric good">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#2c6e49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      <div class="body">
+        <span class="name">自律神経・メンタル面</span>
+        <div class="bar good"><span style="width:78%"></span></div>
+        <span class="desc">落ち着いており、バランスは安定しています。</span>
+      </div>
+      <span class="badge b-good">良好</span>
+    </div>
+
+    <div class="metric alert">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#d9480f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5a4 4 0 0 1 5 0M17.5 6.5a4 4 0 0 0-5 0M4 13c0-3 2-5 4-5M20 13c0-3-2-5-4-5M4 13l2 7M20 13l-2 7"></path></svg>
+      <div class="body">
+        <span class="name">筋骨格系（筋肉・関節）</span>
+        <div class="bar care"><span style="width:38%"></span></div>
+        <span class="desc">基準より低め。これが <b>肩・肩甲骨・ふくらはぎの張り</b> として体に出ていた部分です。今日はここを集中ケアしました。</span>
+      </div>
+      <span class="badge b-care">要ケア</span>
+    </div>
+
+    <div class="note">
+      <div class="nt">膵臓の「活発（Hyperactive）」表示について</div>
+      <p>これは体が不足分を補おうとしている <b>代償反応</b>で、基本的に心配いりません。観察の対象ですが、対処は不要なサインです。総合判定も <b>「You are ok!（問題なし）」</b>でした。</p>
+    </div>
+  </section>
+
+  <!-- 先生より -->
+  <section class="doctor">
+    <span class="label">谷先生より</span>
+    <h2>三澤様へ</h2>
+    <p class="msg">
+      施術を重ねるなかで、<strong>全体としてはかなり良い状態</strong>に戻ってきています。ただ、やはり<strong>肩がカチカチ</strong>で、それに肩甲骨の動きも巻き込まれていました。今回はさらに<strong>右のふくらはぎ</strong>の張りも見つかったので、そこも調整しています。<br><br>
+      仕上げに<strong>頭と首の付け根</strong>をリリースしました。ここは全身の緊張を切り替える神経のポイントなので、ゆるむと体全体がスッと軽くなるはずです。<br><br>
+      測定の「筋骨格系が低め」という数字は、まさに私が手で感じた硬さと同じ場所を指していました。数値と感覚が一致しているので、ケアの方向は間違っていません。このまま整えていきましょう。
+    </p>
+    <div class="sign">三条健康堂接骨院　谷</div>
+  </section>
+
+  <!-- フッター -->
+  <div class="foot">
+    <div class="name">三条健康堂接骨院</div>
+    <p>香川県高松市由良町</p>
+    <p>由良川東公園のそば</p>
+    <a class="cta line" href="https://lin.ee/dwRtwDv">💬 LINEでご予約・ご相談</a>
+    <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで場所を確認する</a>
+  </div>
+
+</div>
+</body>
+</html>
