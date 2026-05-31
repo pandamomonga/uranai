@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜福田様</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0d0d;
+    --panel:#141414;
+    --ink:#f5f0e4;
+    --gold:#c4a44d;
+    --teal:#4fd1c5;
+    --mu:#b9b2a0;
+    --wood:#5b8def;  /* 木 */
+    --fire:#e05757;  /* 火 */
+    --earth:#d4a93a; /* 土 */
+    --metal:#e8e4d8; /* 金 */
+    --water:#2b2b2b; /* 水 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:17px;
+    line-height:1.95;
+    letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px 80px}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* 扉 */
+  .cover{padding:64px 0 40px;border-bottom:1px solid #262626}
+  .kicker{
+    font-size:13px;letter-spacing:.42em;color:var(--gold);
+    font-weight:700;text-transform:none;margin-bottom:22px;
+  }
+  .title{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:40px;line-height:1.25;margin-bottom:18px;
+  }
+  .title .glow{color:var(--teal);text-shadow:0 0 18px rgba(79,209,197,.55)}
+  .meta{font-size:15px;color:var(--mu);margin-bottom:26px}
+  .meta b{color:var(--ink);font-weight:500}
+  .lead{
+    font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:21px;line-height:1.7;color:var(--ink);
+    border-left:3px solid var(--gold);padding-left:18px;
+  }
+
+  section{padding:42px 0;border-bottom:1px solid #1f1f1f}
+  .sec-label{
+    font-size:12px;letter-spacing:.34em;color:var(--gold);
+    font-weight:700;margin-bottom:14px;
+  }
+  h2{
+    font-family:"Noto Serif JP",serif;font-weight:700;
+    font-size:25px;line-height:1.4;margin-bottom:20px;
+  }
+  h2 .accent{color:var(--earth)}
+  h2 .accent-w{color:var(--teal)}
+  p{margin-bottom:18px}
+  p:last-child{margin-bottom:0}
+  .em{color:var(--gold);font-weight:500}
+  .emw{color:var(--teal);font-weight:500}
+
+  /* 測定ビジュアル */
+  .chart{background:var(--panel);border:1px solid #242424;border-radius:14px;padding:24px 20px}
+  .chart .note{font-size:13px;color:var(--mu);margin:-2px 0 22px;line-height:1.7}
+  .row{margin-bottom:22px}
+  .row:last-child{margin-bottom:0}
+  .row .name{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:16px;font-weight:700;margin-bottom:9px;
+  }
+  .row .name .organ{font-size:13px;color:var(--mu);font-weight:500}
+  .bars{display:flex;flex-direction:column;gap:7px}
+  .bar{position:relative;height:26px;border-radius:6px;background:#0a0a0a;overflow:hidden}
+  .bar .fill{height:100%;border-radius:6px;display:flex;align-items:center}
+  .bar.before .fill{background:#3a3a3a;opacity:.85}
+  .bar .tag{
+    font-size:12px;font-weight:700;padding:0 10px;white-space:nowrap;
+    line-height:26px;color:#0d0d0d;
+  }
+  .bar.before .tag{color:#cfc9bb}
+  .legend{display:flex;gap:20px;font-size:12px;color:var(--mu);margin-top:18px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:18px;height:10px;border-radius:3px;display:inline-block}
+
+  /* 主役カード */
+  .star{background:var(--panel);border:1px solid #2a2a2a;border-radius:14px;padding:26px 22px;border-top:3px solid var(--earth)}
+  .star .t{font-size:13px;letter-spacing:.2em;color:var(--earth);font-weight:700;margin-bottom:10px}
+  .star .big{font-family:"Noto Serif JP",serif;font-size:24px;font-weight:700;line-height:1.45;margin-bottom:14px}
+  .star .big b{color:var(--earth)}
+  .star .big .w{color:var(--teal)}
+
+  /* 神経科学 */
+  .neuro{background:linear-gradient(180deg,#101417,#0d0d0d);border:1px solid #1d2a2b;border-radius:14px;padding:26px 22px}
+  .neuro .spine{font-size:12px;letter-spacing:.28em;color:var(--teal);font-weight:700;margin-bottom:14px}
+
+  /* 生活の橋 */
+  .bridge{display:flex;flex-direction:column;gap:14px}
+  .card{background:var(--panel);border:1px solid #262626;border-radius:12px;padding:18px 18px 18px 20px;border-left:3px solid var(--gold)}
+  .card h3{font-family:"Noto Serif JP",serif;font-size:18px;font-weight:700;margin-bottom:7px}
+  .card h3 .num{color:var(--gold);margin-right:10px}
+  .card p{font-size:15.5px;color:#e6e0d2;margin:0}
+
+  /* ネタ */
+  .neta{font-size:14.5px;color:var(--mu);background:#111;border-radius:10px;padding:16px 18px;line-height:1.85;border:1px dashed #2c2c2c;margin-top:6px}
+  .neta b{color:var(--gold);font-weight:500}
+
+  /* 結び */
+  .closing{font-family:"Noto Serif JP",serif;font-size:20px;line-height:1.8;color:var(--ink);text-align:center;padding:8px 0}
+
+  /* 署名 */
+  .sign{padding-top:38px;font-size:14px;color:var(--mu);line-height:1.9}
+  .sign .name{font-family:"Noto Serif JP",serif;color:var(--ink);font-size:15px;font-weight:600;margin-bottom:14px;line-height:1.7}
+  .sign .prof{margin-bottom:20px}
+  .links{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+  .links a{color:var(--teal);text-decoration:none;font-size:14px;border-bottom:1px solid #244;padding-bottom:2px;width:fit-content}
+  .links a.review{color:var(--mu);border-color:#2a2a2a;margin-top:8px}
+
+  /* コピー */
+  .copybar{margin:30px 0 0}
+  #copyBtn{
+    width:100%;background:transparent;color:var(--gold);
+    border:1px solid var(--gold);border-radius:10px;
+    padding:14px;font-size:15px;font-weight:700;font-family:inherit;
+    cursor:pointer;transition:.2s;
+  }
+  #copyBtn:hover{background:rgba(196,164,77,.1)}
+  .hiddenta{position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
+
+  @media(max-width:480px){
+    .title{font-size:32px}
+    .lead{font-size:19px}
+    h2{font-size:22px}
+    body{font-size:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 1. 扉 -->
+  <header class="cover">
+    <div class="kicker">施 術 報 告 書</div>
+    <h1 class="title serif">緊張は力を生まない。<br>力を<span class="glow">地下</span>に押し込めるだけ。</h1>
+    <div class="meta"><b>福田 様</b>｜国際学会 登壇後のコンディション調整｜東洋医学測定（RaDoTech）による before → after</div>
+    <p class="lead">大舞台で気を張りつめた身体は、エネルギーを出していたのではなく、出し惜しんでいた。ほどいた先で、涸れていた泉が静かに戻ってきた。</p>
+  </header>
+
+  <!-- 2. 共感 -->
+  <section>
+    <div class="sec-label">いまの身体に寄り添う</div>
+    <p>学会発表という大きな舞台。頭で何度も筋道を組み立て、本番では張りつめる——身体はその全部を、正直に記録していました。施術前、最も冷えて沈んでいたのは<span class="em">脾（土）＝代謝の中心</span>。東洋医学では、考えすぎ・気の張り（<span class="em">思</span>）が真っ先に土を冷やし、みぞおちのあたりで気を結ばせると伝えます。</p>
+    <p>頭皮はカチカチに固まり、首と肋骨はねじれていた。これは弱さの証ではなく、<span class="em">大役を全力で背負った身体の当然の足跡</span>です。責める場所ではありません。読み解いて、ほどいていく場所でした。</p>
+  </section>
+
+  <!-- 3. 測定ビジュアル -->
+  <section>
+    <div class="sec-label">測定が映したもの</div>
+    <h2 class="serif">数字は、戻ってきた。</h2>
+    <div class="chart">
+      <p class="note">エネルギー・免疫は活性の指標値、代謝・精神感情・筋骨格は左右バランス比（基準 0.9–1.1）。淡い棒が施術前、濃い棒が施術後。</p>
+
+      <!-- エネルギー 腎/水 -->
+      <div class="row">
+        <div class="name"><span>エネルギー <span class="organ">腎・水</span></span></div>
+        <div class="bars">
+          <div class="bar before"><div class="fill" style="width:51%"><span class="tag">前 20.30 ／ 基準以下</span></div></div>
+          <div class="bar"><div class="fill" style="width:80%;background:linear-gradient(90deg,#1c1c1c,#3a3f4a);border:1px solid var(--teal)"><span class="tag" style="color:var(--teal)">後 32.17 ／ 正常</span></div></div>
+        </div>
+      </div>
+
+      <!-- 免疫 肺/金 -->
+      <div class="row">
+        <div class="name"><span>免疫 <span class="organ">肺・金</span></span></div>
+        <div class="bars">
+          <div class="bar before"><div class="fill" style="width:38%"><span class="tag">前 15.03</span></div></div>
+          <div class="bar"><div class="fill" style="width:77%;background:var(--metal)"><span class="tag">後 30.73 ／ 正常</span></div></div>
+        </div>
+      </div>
+
+      <!-- 代謝 脾/土 -->
+      <div class="row">
+        <div class="name"><span>代謝 <span class="organ">脾・土（本日の主役）</span></span></div>
+        <div class="bars">
+          <div class="bar before"><div class="fill" style="width:62%"><span class="tag">前 0.93 ／ 基準以下</span></div></div>
+          <div class="bar"><div class="fill" style="width:68%;background:var(--earth)"><span class="tag">後 1.02 ／ 改善</span></div></div>
+        </div>
+      </div>
+
+      <!-- 精神感情 心/火 -->
+      <div class="row">
+        <div class="name"><span>精神感情 <span class="organ">心・火</span></span></div>
+        <div class="bars">
+          <div class="bar before"><div class="fill" style="width:65%"><span class="tag">前 0.97</span></div></div>
+          <div class="bar"><div class="fill" style="width:71%;background:var(--fire)"><span class="tag">後 1.07 ／ 正常</span></div></div>
+        </div>
+      </div>
+
+      <!-- 筋骨格 肝/木 -->
+      <div class="row">
+        <div class="name"><span>筋骨格 <span class="organ">肝・木</span></span></div>
+        <div class="bars">
+          <div class="bar before"><div class="fill" style="width:73%"><span class="tag">前 1.09</span></div></div>
+          <div class="bar"><div class="fill" style="width:61%;background:var(--wood)"><span class="tag" style="color:#0d0d0d">後 0.91 ／ 正常</span></div></div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span><i class="swatch" style="background:#3a3a3a"></i>施術前</span>
+        <span><i class="swatch" style="background:var(--gold)"></i>施術後（各臓の五行色）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 本日の主役 -->
+  <section>
+    <div class="sec-label">本日の主役</div>
+    <div class="star">
+      <div class="t">今日の身体は ── これが軸だった</div>
+      <p class="big serif">中心の <b>脾（土）</b>が冷えていた。<br>ほどいた先で <span class="w">膀胱（水）</span>の流れが立ち上がった。</p>
+      <p style="margin:0;color:#d8d2c4;font-size:15.5px">土は五行の真ん中。火・水・木・金、ほかの四つを下から支える「全身のエンジン」です。中心が冷えると全体が回らない。だから今日は、まず中心を温め、ほどくことから始めました。</p>
+    </div>
+  </section>
+
+  <!-- 5. 物質比喩 -->
+  <section>
+    <div class="sec-label">たとえるなら</div>
+    <h2 class="serif">冷えた田んぼと、涸れかけた井戸。</h2>
+    <p><span class="em">脾（土）</span>は、よく耕された<span class="em">湿った田</span>のようなもの。温かく緩んでいれば作物を育て、地下へ水を通す。ところが学会の緊張で土がきゅっと締まり、冷えて固くなった。田が固まれば、その下の<span class="emw">水脈（腎・膀胱）</span>まで水が回らない。だからエネルギーの井戸が、涸れかけて見えていた。</p>
+    <p>施術でしたことは、固まった土をほぐし直すこと。土がふたたび緩むと、せき止められていた水が下へ流れ、井戸が満ちる。測定上のエネルギーが戻ったのは、その動きの現れです。</p>
+  </section>
+
+  <!-- 6. 神経科学の芯（必須・主） -->
+  <section>
+    <div class="sec-label">この報告書の背骨</div>
+    <h2 class="serif"><span class="accent-w">神経科学</span>で読む、本当の機序。</h2>
+    <div class="neuro">
+      <div class="spine">谷の「神経反射入力装置」論</div>
+      <p>手技は、固まった組織を物理的に揉みほぐして形を変えているのではありません。<span class="emw">手は、神経へ信号を入力する装置</span>です。学会の緊張で、福田様の身体は交感神経が長く優位になり、頭皮（帽状腱膜）・首（後頭下〜頚部）・肋骨（肋間と呼吸補助筋）が一斉に防御的に固まっていました。これが「カチカチの頭皮」「ねじれた首と肋骨」の正体です。</p>
+      <p>施術では、その固まった部位の<span class="emw">機械受容器（筋紡錘・腱紡錘・関節や皮膚のセンサー）</span>に的確な入力を送りました。入力された信号は中枢へ届き、張りつめていた自律神経のセットポイントを<span class="emw">交感優位から副交感側へ</span>調整し直す。すると出力（筋の緊張、血流、内臓へ向かう調節）が切り替わる。後頭下の調整はとくに迷走神経まわりへ届きやすく、全身の鎮まりを促します。</p>
+      <p>つまり、<span class="emw">脾の冷えがほどけ、膀胱の流れが立ち、エネルギー値が戻ったのは、書き換わった神経の出力</span>です。手が気を「足した」のではありません。身体が本来の設定に戻った、その結果が数字に出ました。</p>
+    </div>
+  </section>
+
+  <!-- 7. 五行の一段（文化深度・全開） -->
+  <section>
+    <div class="sec-label">五行で深く読む</div>
+    <h2 class="serif">土が冷え、<span class="accent">金</span>が芽吹き、<span class="accent-w">水</span>が満ちた。</h2>
+    <p><b>脾＝土＝信＝思。</b>季節でいえば四季のあいだに置かれる<span class="em">土用</span>、色は<span class="em">黄</span>、味は<span class="em">甘</span>。考えすぎ（思）が過ぎると気が結び、みぞおちがつかえ、土が冷える。学会前の福田様の身体は、まさにこの「思が結んだ土」でした。徳でいえば土は<span class="em">信</span>——どっしりと真ん中で全体を信じて支える力です。そこが冷えていた。</p>
+    <p>面白いのは、今日の施術後に<span class="em">免疫（肺・金）が大きく持ち上がった</span>こと。五行には<span class="em">土生金</span>——土が金を生むという相生の理があります。冷えていた中心の土が温まり緩んだことで、その子である金（肺・免疫）まで芽吹いた。教科書どおりの順番で、身体が立て直っていきました。</p>
+    <p>そして最後に立ち上がったのが<span class="emw">膀胱＝水。腎と対になる水の腑</span>です。水は<span class="emw">智</span>、感情は<span class="emw">恐・驚</span>、色は<span class="emw">黒</span>、味は<span class="emw">鹹（塩辛）</span>、季節は<span class="emw">冬</span>。大舞台の「驚き・緊張」はまさに水を消耗させる感情。その水の井戸が、施術後にふたたび満ちた。土を温め（脾）、金を芽吹かせ（肺）、水を満たす（腎・膀胱）——一日のなかに、五行のひとめぐりが起きていました。</p>
+    <div class="neta">小ネタ：<b>「黄色い財布は金運を呼ぶ」</b>と言われるのは、五行の<b>土生金</b>から。黄は土の色、金（かね＝金属）は土から生まれる、という理屈です。今日の福田様の身体も同じ順番で、土（脾）が温まってから金（免疫）が立ち上がりました。財布の中ではなく、身体のなかで土生金が起きた一日でした。</div>
+  </section>
+
+  <!-- 8. 生活への橋 -->
+  <section>
+    <div class="sec-label">家でできる、三つの橋</div>
+    <h2 class="serif">中心の土を、冷やさない。</h2>
+    <div class="bridge">
+      <div class="card">
+        <h3><span class="num serif">一</span>黄色と甘味で、土を温める</h3>
+        <p>米・芋・かぼちゃなど、自然な甘味のある黄色い食材を、よく噛んで。「よく噛む」こと自体が脾を助けます。早食いは土を冷やす近道です。</p>
+      </div>
+      <div class="card">
+        <h3><span class="num serif">二</span>黒い食材と早寝で、水を蓄える</h3>
+        <p>大豆・味噌・漬物といった鹹（塩辛）と黒の食材は、消耗した水（腎・膀胱）の助けに。そして大舞台で削った水は、<span class="em">早寝</span>でこそ静かに溜まります。夜更かしは井戸を浅くします。</p>
+      </div>
+      <div class="card">
+        <h3><span class="num serif">三</span>頭皮と首を、自分でゆるめる時間</h3>
+        <p>固まりやすい頭皮を指の腹でゆっくり動かし、首をゆっくり後ろへ預けて深く息を吐く。これも立派な「神経への入力」です。一日数分、緊張のスイッチを切る合図を身体に送ってください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 結び -->
+  <section style="border-bottom:none">
+    <p class="closing serif">大役を終えた身体は、休んでいい。<br>土が温まれば、水はおのずと満ちていく。</p>
+  </section>
+
+  <!-- コピー（LINE転記用） -->
+  <div class="copybar">
+    <button id="copyBtn">LINE転記用テキストをコピー</button>
+    <textarea id="copySrc" class="hiddenta" readonly>【施術報告書｜福田様】
+
+緊張は力を生まない。力を地下に押し込めるだけ——。
+国際学会の登壇後、頭で筋道を組み立て続け、本番で張りつめた身体は、その全部を正直に記録していました。
+
+■測定（RaDoTech）before → after
+・エネルギー(腎・水)：20.30 → 32.17（基準以下→正常）
+・免疫(肺・金)：15.03 → 30.73（正常）
+・代謝(脾・土)：0.93 → 1.02（改善）
+・精神感情(心・火)：0.97 → 1.07（正常）
+・筋骨格(肝・木)：1.09 → 0.91（正常）
+※エネルギー・免疫は活性指標、ほかは左右バランス比（基準0.9–1.1）
+
+■本日の主役：脾（土）
+来院時、最も冷えて沈んでいたのは中心の脾（土＝代謝のエンジン）。考えすぎ・気の張り（思）が真っ先に土を冷やしていました。頭皮はカチカチ、首と肋骨はねじれ——大役を全力で背負った足跡です。
+
+■神経科学の芯
+手技は組織を揉みほぐすのではなく、神経へ信号を入力する装置。固まった頭皮・首・肋骨の機械受容器へ的確に入力し、交感優位から副交感側へ自律神経を調整。出力が切り替わり、脾の冷えがほどけ、膀胱（水）の流れが立ち、エネルギー値が戻りました。
+
+■五行のひとめぐり
+土が温まる（脾）→ 金が芽吹く（肺・免疫が大きく上昇＝土生金）→ 水が満ちる（腎・膀胱）。一日のなかで五行が順番どおりに立て直りました。
+
+■家でできる三つ
+1. 黄色と甘味（米・芋）をよく噛んで、土を温める
+2. 黒い食材（味噌・漬物）と早寝で、消耗した水を蓄える
+3. 頭皮と首を自分でゆるめ、緊張のスイッチを切る
+
+大役を終えた身体は、休んでいい。土が温まれば、水はおのずと満ちていく。
+
+──────────
+高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より
+三条健康堂接骨院（由良川東公園のそば）
+LINE：https://lin.ee/dwRtwDv
+地図：https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6</textarea>
+  </div>
+
+  <!-- 10. 署名・リンク -->
+  <div class="sign">
+    <div class="name">高松発・一生動ける身体と人生の教養研究室｜<br>無車・自転車・圧力鍋生活を実践する治療家より</div>
+    <div class="prof">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</div>
+    <div class="links">
+      <a href="https://lin.ee/dwRtwDv">LINE 公式（ご予約・ご相談）</a>
+      <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Google マップ（由良川東公園のそば）</a>
+      <a class="review" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Google クチコミはこちら</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const btn=document.getElementById('copyBtn');
+  const src=document.getElementById('copySrc');
+  btn.addEventListener('click',async()=>{
+    const text=src.value;
+    let ok=false;
+    try{
+      await navigator.clipboard.writeText(text);
+      ok=true;
+    }catch(e){
+      const sx=window.scrollX, sy=window.scrollY;
+      src.focus();src.select();
+      try{ ok=document.execCommand('copy'); }catch(_){}
+      window.scrollTo(sx,sy);
+    }
+    if(ok){
+      const orig=btn.textContent;
+      btn.textContent='✓ 完了';
+      setTimeout(()=>{btn.textContent=orig;},1500);
+    }
+  });
+</script>
+</body>
+</html>
