@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大量資料をClaudeで分析する2つの方法</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#234e34;
+    --gold:#c4a44d;
+    --gold-bright:#e0c167;
+    --ivory:#f5f0e4;
+    --ivory-dim:#e3dcc9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--green);
+    color:var(--ivory);
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:500;
+    line-height:1.85;
+    font-size:18px;
+    padding:0 0 60px;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px;}
+
+  /* ---- header ---- */
+  header{
+    text-align:center;
+    padding:54px 22px 40px;
+    border-bottom:3px solid var(--gold);
+    position:relative;
+  }
+  .tag{
+    font-family:"Noto Serif JP",serif;
+    color:var(--gold-bright);
+    font-size:18px;
+    letter-spacing:.12em;
+    margin-bottom:18px;
+  }
+  header h1{
+    font-family:"Noto Serif JP",serif;
+    font-weight:900;
+    font-size:38px;
+    line-height:1.4;
+    color:var(--ivory);
+  }
+  header h1 b{color:var(--gold-bright);}
+  .sub{
+    margin-top:18px;
+    font-size:18px;
+    color:var(--ivory-dim);
+  }
+
+  /* ---- section ---- */
+  section{margin-top:56px;}
+  .axis-label{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--green);
+    font-family:"Noto Serif JP",serif;
+    font-weight:900;
+    font-size:20px;
+    padding:8px 22px;
+    border-radius:4px;
+    letter-spacing:.05em;
+  }
+  section h2{
+    font-family:"Noto Serif JP",serif;
+    font-weight:900;
+    font-size:30px;
+    line-height:1.45;
+    margin:18px 0 8px;
+    color:var(--ivory);
+  }
+  section h2 b{color:var(--gold-bright);}
+  .lead{
+    font-size:19px;
+    color:var(--ivory-dim);
+    margin-bottom:30px;
+  }
+
+  /* ---- flow ---- */
+  .flow{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    margin:24px 0 10px;
+  }
+  .step{
+    background:var(--green2);
+    border:2px solid var(--gold);
+    border-radius:10px;
+    padding:20px 22px;
+    position:relative;
+  }
+  .step .num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;height:38px;
+    background:var(--gold);
+    color:var(--green);
+    font-family:"Noto Serif JP",serif;
+    font-weight:900;
+    font-size:20px;
+    border-radius:50%;
+    margin-right:12px;
+    vertical-align:middle;
+  }
+  .step .st-title{
+    font-family:"Noto Serif JP",serif;
+    font-weight:700;
+    font-size:21px;
+    color:var(--gold-bright);
+    vertical-align:middle;
+  }
+  .step .st-body{
+    margin-top:10px;
+    font-size:17px;
+    color:var(--ivory);
+    padding-left:50px;
+  }
+  .arrow{
+    text-align:center;
+    color:var(--gold);
+    font-size:26px;
+    line-height:1;
+    padding:8px 0;
+  }
+
+  /* ---- callout / sample prompt ---- */
+  .prompt{
+    background:#102619;
+    border-left:6px solid var(--gold);
+    border-radius:6px;
+    padding:18px 20px;
+    margin:14px 0 0 50px;
+    font-size:17px;
+    color:var(--ivory);
+  }
+  .prompt .pl{
+    color:var(--gold-bright);
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.05em;
+    display:block;
+    margin-bottom:8px;
+  }
+  .prompt .q{
+    font-family:"Noto Serif JP",serif;
+    font-weight:600;
+  }
+
+  /* ---- merit cards ---- */
+  .merits{margin-top:26px;display:flex;flex-direction:column;gap:14px;}
+  .merit{
+    display:flex;
+    gap:16px;
+    background:var(--green2);
+    border:1px solid var(--gold);
+    border-radius:10px;
+    padding:18px 20px;
+    align-items:flex-start;
+  }
+  .merit .mk{
+    flex:0 0 auto;
+    width:44px;height:44px;
+    background:var(--gold);
+    color:var(--green);
+    border-radius:8px;
+    font-size:24px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .merit .mt{
+    font-family:"Noto Serif JP",serif;
+    font-weight:700;
+    font-size:20px;
+    color:var(--gold-bright);
+    margin-bottom:4px;
+  }
+  .merit .md{font-size:17px;color:var(--ivory);}
+
+  /* ---- key note ---- */
+  .keynote{
+    margin-top:30px;
+    background:var(--gold);
+    color:var(--green);
+    border-radius:12px;
+    padding:24px 26px;
+  }
+  .keynote .kh{
+    font-family:"Noto Serif JP",serif;
+    font-weight:900;
+    font-size:22px;
+    margin-bottom:8px;
+  }
+  .keynote .kb{font-size:18px;font-weight:700;line-height:1.8;}
+
+  /* ---- divider deco ---- */
+  .deco{
+    text-align:center;
+    color:var(--gold);
+    font-size:22px;
+    letter-spacing:.6em;
+    margin:50px 0 10px;
+  }
+  footer{
+    text-align:center;
+    margin-top:60px;
+    padding-top:26px;
+    border-top:2px solid var(--gold);
+    color:var(--ivory-dim);
+    font-size:16px;
+    font-family:"Noto Serif JP",serif;
+  }
+  @media(max-width:560px){
+    header h1{font-size:30px;}
+    section h2{font-size:25px;}
+    .step .st-body,.prompt{padding-left:0;margin-left:0;}
+    .prompt{margin-left:0;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">◆ 大量の資料を、ムダなく分析する ◆</div>
+  <h1>紙の資料・グラフを<br><b>Claudeで分析する</b>2つの方法</h1>
+  <div class="sub">「全部アップ」は仕組み上できない。<br>だから “小分け → テキスト化 → まとめて分析” が答えです。</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== AXIS 1 ===== -->
+  <section>
+    <span class="axis-label">軸 1</span>
+    <h2>Claude Codeで<br><b>「ファイル分割アプリ」を自作</b>する</h2>
+    <p class="lead">コードは一行も書きません。<b style="color:#e0c167">やりたいことを日本語で伝えるだけ</b>。Claudeがアプリを作って、その場で動かしてくれます。100ページ超のPDFも、上限内のサイズに小分けできます。</p>
+
+    <div class="flow">
+      <div class="step">
+        <span class="num">1</span><span class="st-title">Claude Codeを開く</span>
+        <div class="st-body">パソコンにClaude Codeを入れて、分割したいPDFが入ったフォルダで起動するだけ。最初の準備はこれで終わりです。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step">
+        <span class="num">2</span><span class="st-title">日本語でお願いする</span>
+        <div class="st-body">作りたいツールを言葉で説明します。下のように頼むだけでOKです。</div>
+        <div class="prompt">
+          <span class="pl">▼ そのまま使える頼み方の例</span>
+          <span class="q">「このフォルダのPDFを、30ページずつに分割するツールを作って。分割したファイルは別フォルダに保存して。」</span>
+        </div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step">
+        <span class="num">3</span><span class="st-title">Claudeが作って、実行する</span>
+        <div class="st-body">Claudeが分割プログラムを自動で書き、その場で動かします。出来上がったツールは何度でも再利用できます。次からは「分割して」と言うだけ。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step">
+        <span class="num">4</span><span class="st-title">小分けPDFが完成</span>
+        <div class="st-body">100ページ・200ページの資料が、Claudeに読み込める単位に分かれます。これで1ファイル30MB・100ページの上限に引っかかりません。</div>
+      </div>
+    </div>
+
+    <div class="keynote">
+      <div class="kh">◆ 初めてでも怖くない理由</div>
+      <div class="kb">「アプリを作る＝プログラミングする」ではありません。<br>Claude Codeでは “何をしたいか” を伝えるだけ。作業はClaudeがやります。一度作れば、自分専用の道具として残ります。</div>
+    </div>
+  </section>
+
+  <div class="deco">◇ ◆ ◇</div>
+
+  <!-- ===== AXIS 2 ===== -->
+  <section>
+    <span class="axis-label">軸 2</span>
+    <h2>眠っている紙資料を<br><b>「使える知識」に変える</b></h2>
+    <p class="lead">会社に眠る昔の資料や、手元の書籍。<b style="color:#e0c167">カメラスキャナで撮る環境がある</b>なら、それを丸ごとClaudeで分析できる資産に変えられます。</p>
+
+    <div class="flow">
+      <div class="step">
+        <span class="num">1</span><span class="st-title">紙の資料・書籍を撮影</span>
+        <div class="st-body">過去の社内資料、参考書、手元の本。カメラスキャナで撮るだけ。眠ったままの紙が出発点です。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step">
+        <span class="num">2</span><span class="st-title">PDFにまとめる</span>
+        <div class="st-body">撮影した画像を1冊分のPDFにまとめます。ここまでは “画像の束” で、まだ中身は検索も分析もできません。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step">
+        <span class="num">3</span><span class="st-title">読取革命でテキスト化</span>
+        <div class="st-body">PDFを読取革命でOCRし、編集・検索できるテキストに変換。500ページ・600ページの書籍でも、テキストになれば一気に扱えます。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step">
+        <span class="num">4</span><span class="st-title">Claudeで分析</span>
+        <div class="st-body">テキストは軽いので、大量でもまとめて要約・横断比較・検索ができます。「この資料群から〇〇の根拠を全部抜き出して」が一発で通ります。</div>
+      </div>
+    </div>
+
+    <div class="merits">
+      <div class="merit">
+        <div class="mk">★</div>
+        <div><div class="mt">死蔵していた資料が「資産」になる</div><div class="md">棚で眠っていた過去資料や書籍の中身が、検索・要約・分析できる生きた知識に変わります。</div></div>
+      </div>
+      <div class="merit">
+        <div class="mk">⚡</div>
+        <div><div class="mt">大量でも “まとめて” 分析できる</div><div class="md">テキストは軽い。何百ページ分でも、まとめてClaudeに渡して横断的に分析できます。画像のままでは不可能なことです。</div></div>
+      </div>
+      <div class="merit">
+        <div class="mk">◎</div>
+        <div><div class="mt">使い分けが分かれば万能</div><div class="md"><b style="color:#e0c167">文字が中心の資料＝読取革命でテキスト化</b>。<br><b style="color:#e0c167">グラフ・図が中心の資料＝画像のままClaudeの視覚で読む</b>。この2本立てで、どんな資料も分析できます。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="keynote" style="margin-top:46px;">
+    <div class="kh">◆ まとめ ── 2つの軸はつながっている</div>
+    <div class="kb">大量の資料は、まず<b>小分け</b>（軸1：Claude Codeで分割）。<br>そして<b>テキスト化</b>（軸2：読取革命）。<br>軽くなったテキストを、Claudeで<b>まとめて分析</b>する。<br>この流れが、大量資料を扱う唯一の現実解です。</div>
+  </div>
+
+  <footer>
+    高松発・一生動ける身体と人生の教養研究室<br>無車・自転車・圧力鍋生活を実践する治療家より
+  </footer>
+
+</div>
+</body>
+</html>
