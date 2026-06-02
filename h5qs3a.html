@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宮本様｜水分補給のお話</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#234d33;
+    --gold:#c4a44d;
+    --ivory:#f5f0e4;
+    --ink:#2a2620;
+    --good:#3f7d4f;
+    --warn:#b5732e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+    background:var(--green);
+    color:var(--ivory);
+    line-height:1.85;
+    -webkit-text-size-adjust:100%;
+    padding:0 0 40px;
+  }
+  .wrap{max-width:600px;margin:0 auto;padding:0 18px;}
+
+  /* ヘッダー */
+  header{text-align:center;padding:34px 18px 26px;}
+  .clinic{font-size:14px;letter-spacing:.12em;color:var(--gold);font-weight:700;}
+  .divider{width:64px;height:3px;background:var(--gold);margin:14px auto;border-radius:2px;}
+  h1{font-size:26px;font-weight:800;line-height:1.5;letter-spacing:.02em;}
+  .lead{font-size:17px;margin-top:14px;color:#e9e2cf;}
+
+  /* 結論カード */
+  .conclusion{
+    background:var(--ivory);color:var(--ink);
+    border-radius:18px;padding:24px 22px;margin:8px 0 26px;
+    border:3px solid var(--gold);
+  }
+  .conclusion .tag{display:inline-block;background:var(--green);color:var(--gold);
+    font-size:14px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:12px;}
+  .conclusion p{font-size:19px;font-weight:700;line-height:1.7;}
+  .conclusion .big{color:var(--good);font-size:22px;}
+
+  /* セクション */
+  section{margin-bottom:24px;}
+  h2{font-size:21px;font-weight:800;color:var(--gold);
+    display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  h2 .ic{font-size:26px;}
+
+  .card{
+    background:var(--ivory);color:var(--ink);
+    border-radius:16px;padding:20px 20px;margin-bottom:14px;
+  }
+  .card.warnline{border-left:8px solid var(--warn);}
+  .card.goodline{border-left:8px solid var(--good);}
+  .card h3{font-size:18px;font-weight:800;margin-bottom:10px;}
+  .card p{font-size:16px;}
+  .card ul{list-style:none;margin-top:10px;}
+  .card li{font-size:16px;padding:8px 0 8px 30px;position:relative;border-top:1px solid #e3dcc8;}
+  .card li:first-child{border-top:none;}
+  .card li::before{position:absolute;left:0;top:8px;font-size:18px;}
+  li.bad::before{content:"⚠️";}
+  li.ok::before{content:"✅";}
+
+  /* 砂糖ビジュアル */
+  .sugar-box{text-align:center;background:#fff;border-radius:14px;padding:18px 14px;margin-top:12px;}
+  .sugar-box .label{font-size:15px;color:var(--ink);font-weight:700;margin-bottom:10px;}
+  .cubes{font-size:24px;line-height:1.5;letter-spacing:2px;}
+  .sugar-box .amount{font-size:20px;font-weight:800;color:var(--warn);margin-top:8px;}
+  .sugar-box .note{font-size:14px;color:#5a544a;margin-top:6px;}
+
+  /* 比較 */
+  .compare{display:flex;flex-direction:column;gap:12px;}
+  .row{background:var(--ivory);color:var(--ink);border-radius:14px;padding:16px 18px;}
+  .row .when{font-size:15px;font-weight:800;color:var(--green);margin-bottom:4px;}
+  .row .ans{font-size:18px;font-weight:800;}
+  .row.daily{border:2px solid var(--good);}
+  .row.daily .ans{color:var(--good);}
+  .row.sweat{border:2px solid var(--gold);}
+
+  /* 塩のおすすめ */
+  .salt{
+    background:linear-gradient(180deg,var(--green2),var(--green));
+    border:2px solid var(--gold);border-radius:16px;padding:22px 20px;
+  }
+  .salt h3{color:var(--gold);font-size:19px;font-weight:800;margin-bottom:10px;}
+  .salt p{font-size:16px;color:#ece5d2;}
+  .salt .pick{display:inline-block;background:var(--gold);color:var(--green);
+    font-size:17px;font-weight:800;padding:8px 18px;border-radius:10px;margin-top:14px;}
+
+  /* CTA */
+  .cta{background:var(--ivory);color:var(--ink);border-radius:16px;padding:22px 20px;margin-top:8px;text-align:center;}
+  .cta p{font-size:16px;margin-bottom:14px;}
+  .btn{display:block;text-decoration:none;font-size:18px;font-weight:800;
+    padding:15px;border-radius:12px;margin:10px 0;}
+  .btn.line{background:#06c755;color:#fff;}
+  .btn.map{background:var(--green);color:var(--gold);}
+
+  footer{text-align:center;font-size:13px;color:#bdb497;margin-top:26px;line-height:1.8;padding:0 10px;}
+  .name{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="divider"></div>
+    <h1>宮本様へ<br>「水分」のお話</h1>
+    <p class="lead">炭酸水とポカリのご質問、<br>とても大事なポイントです。お答えします。</p>
+  </header>
+
+  <div class="conclusion">
+    <span class="tag">いちばんの結論</span>
+    <p>ふだんの水分補給は<br><span class="big">「塩ひとつまみのお水」</span><br>がいちばん体にやさしいです。</p>
+  </div>
+
+  <section>
+    <h2><span class="ic">🫧</span>① 炭酸水について</h2>
+    <div class="card warnline">
+      <h3>無糖の炭酸水なら、神経質にならなくてOK</h3>
+      <p>無糖（甘くない）炭酸水は、お水より少し酸性なだけ。日常的に飲んでも歯への影響は小さく、それほど心配いりません。</p>
+      <ul>
+        <li class="bad">飲みすぎると、胃が張る・ゲップ・おなかがゆるくなることがある</li>
+        <li class="bad">胃酸が逆流しやすくなり、胸やけ・逆流性食道炎の方は要注意</li>
+        <li class="bad">レモンなど<b>フレーバー・甘いタイプ</b>は酸が強く、歯がしみやすくなる</li>
+      </ul>
+      <p style="margin-top:12px;"><b>つまり：</b>無糖を適量ならOK。ただし“メインの水分補給”を炭酸水だけにするのは避けましょう。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ic">🧪</span>② ポカリで代用は？</h2>
+    <div class="card warnline">
+      <h3>ふだんの代用には、おすすめしません</h3>
+      <p>ポカリは「たくさん汗をかいたとき」「熱が出たとき」の一時的な補給には優秀です。でも——</p>
+      <div class="sugar-box">
+        <div class="label">ポカリ500ml 1本にふくまれる糖分</div>
+        <div class="cubes">🟫🟫🟫🟫🟫<br>🟫🟫🟫🟫🟫</div>
+        <div class="amount">角砂糖 約9〜10個分（約31g）</div>
+        <div class="note">WHOが示す大人1日の砂糖の目安（約25g）を、これ1本で超えます</div>
+      </div>
+      <ul style="margin-top:14px;">
+        <li class="bad">毎日ふだん飲みすると、血糖値が上がりやすい状態に</li>
+        <li class="bad">ヘモグロビンA1c（血糖の通信簿）が気になる方は特に注意</li>
+        <li class="ok">大量発汗・発熱・脱水のときの“一時的な補給”なら活躍します</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ic">💧</span>③ じゃあ、何を飲めば？</h2>
+    <div class="compare">
+      <div class="row daily">
+        <div class="when">ふだんの生活</div>
+        <div class="ans">お水（＋塩ひとつまみ）</div>
+      </div>
+      <div class="row sweat">
+        <div class="when">たくさん汗をかいたとき</div>
+        <div class="ans">お水＋塩を少し多めに</div>
+      </div>
+    </div>
+    <div class="card goodline" style="margin-top:14px;">
+      <p>糖分がなくても、<b>塩（ナトリウム）が水分を体にしっかり引き込んでくれます。</b>余分な糖をとらずに吸収できるので、副作用がなく、いちばん体にやさしい補給です。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ic">🧂</span>おすすめの塩</h2>
+    <div class="salt">
+      <h3>石川県「能登の塩」がおすすめです</h3>
+      <p>沖縄など各地の高級な塩をいろいろ試しましたが、いちばん味わいが良かったのが能登の塩でした。最高級グレードでなく、<b>中くらいのグレード</b>で十分。お水にひとつまみ入れるだけで、ぐっと飲みやすくなります。</p>
+      <span class="pick">中グレードの能登の塩 × お水</span>
+    </div>
+  </section>
+
+  <div class="cta">
+    <p>ご不明な点は、いつでもLINEでご相談ください。<br>次回の施術でもくわしくお伝えしますね。</p>
+    <a class="btn line" href="https://lin.ee/dwRtwDv">💬 LINEで相談・予約する</a>
+    <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+  </div>
+
+  <footer>
+    <div class="name">三条健康堂接骨院</div>
+    高松市由良町・由良川東公園のそば<br>
+    高松発・一生動ける身体と人生の教養研究室<br>
+    無車・自転車・圧力鍋生活を実践する治療家より
+  </footer>
+
+</div>
+</body>
+</html>
