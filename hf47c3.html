@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宮本様 施術報告書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#2e6b45;
+    --gold:#c4a44d;
+    --gold-soft:#e7d6a3;
+    --ivory:#f5f0e4;
+    --ink:#1d2520;
+    --paper:#fbf8f1;
+    --normal:#16a34a;   /* 正常 = 緑（アプリと同じ） */
+    --below:#5b6ef0;    /* 低下 = 青 */
+    --above:#f4502a;    /* 過剰 = 赤 */
+    --line:#e3dcca;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    padding:0 0 60px;
+  }
+  .wrap{max-width:680px;margin:0 auto;background:var(--paper);}
+  .serif{font-family:"Noto Serif JP","Yu Mincho",serif;}
+
+  /* ===== ヘッダー ===== */
+  header{
+    background:var(--green);
+    color:var(--ivory);
+    padding:34px 26px 30px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";position:absolute;left:26px;right:26px;bottom:18px;height:2px;
+    background:linear-gradient(90deg,var(--gold),transparent);
+  }
+  .clinic{font-size:14px;letter-spacing:.18em;color:var(--gold-soft);font-weight:500;}
+  header h1{
+    font-family:"Noto Serif JP",serif;font-weight:700;
+    font-size:30px;line-height:1.4;margin:14px 0 6px;
+  }
+  header h1 .name{color:var(--gold);}
+  .date{font-size:14px;color:#cdbf9d;letter-spacing:.05em;}
+
+  /* ===== セクション共通 ===== */
+  section{padding:30px 26px;border-bottom:10px solid var(--ivory);}
+  .sec-label{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:13px;font-weight:700;letter-spacing:.14em;
+    color:var(--green2);margin-bottom:6px;
+  }
+  .sec-label .num{
+    background:var(--green);color:var(--gold);
+    width:30px;height:30px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:15px;font-family:"Noto Serif JP",serif;
+  }
+  h2{
+    font-family:"Noto Serif JP",serif;font-weight:700;
+    font-size:24px;line-height:1.45;color:var(--green);margin:4px 0 18px;
+  }
+  p{margin-bottom:6px;}
+
+  /* ===== 主訴チップ ===== */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+  .chip{
+    background:#fff;border:2px solid var(--line);border-radius:14px;
+    padding:14px 16px;flex:1 1 45%;min-width:150px;
+    display:flex;align-items:center;gap:12px;font-weight:500;font-size:16px;
+  }
+  .chip .ic{font-size:26px;line-height:1;}
+
+  /* ===== わかったこと ===== */
+  .finding{
+    background:#fff;border-radius:16px;padding:20px 20px 18px;
+    border:2px solid var(--line);margin-bottom:14px;
+  }
+  .finding .tag{
+    display:inline-block;background:var(--above);color:#fff;
+    font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px;
+  }
+  .finding.fix .tag{background:var(--normal);}
+  .finding b{color:var(--green);}
+  .arrow-line{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    font-weight:700;font-size:17px;margin-top:8px;
+  }
+  .arrow-line .from{color:var(--above);}
+  .arrow-line .to{color:var(--normal);}
+  .arrow-line .ar{color:var(--gold);font-size:22px;}
+
+  /* ===== 数値変化 ===== */
+  .hero-num{
+    background:var(--green);border-radius:18px;color:var(--ivory);
+    padding:24px;text-align:center;margin-bottom:22px;
+  }
+  .hero-num .t{font-size:15px;color:var(--gold-soft);letter-spacing:.1em;margin-bottom:14px;}
+  .hero-flow{display:flex;align-items:center;justify-content:center;gap:18px;}
+  .hero-flow .v{font-family:"Noto Serif JP",serif;font-weight:700;}
+  .hero-flow .before{font-size:34px;color:#9fb3a4;}
+  .hero-flow .after{font-size:52px;color:var(--gold);}
+  .hero-flow .ar{font-size:34px;color:var(--ivory);}
+  .hero-num .up{
+    margin-top:12px;display:inline-block;background:var(--gold);color:var(--green);
+    font-weight:900;font-size:16px;padding:6px 18px;border-radius:30px;
+  }
+
+  .metric{
+    background:#fff;border:2px solid var(--line);border-radius:14px;
+    padding:14px 16px;margin-bottom:12px;
+  }
+  .metric .top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .metric .ic{font-size:22px;}
+  .metric .mname{font-weight:700;font-size:17px;color:var(--green);}
+  .ba{display:flex;align-items:stretch;gap:10px;}
+  .ba .cell{flex:1;text-align:center;border-radius:10px;padding:10px 6px;}
+  .ba .before{background:#eef0fb;}
+  .ba .after{background:#e8f6ec;}
+  .ba .lbl{font-size:12px;font-weight:700;letter-spacing:.08em;color:#7a7a7a;}
+  .ba .val{font-family:"Noto Serif JP",serif;font-weight:700;font-size:26px;line-height:1.3;}
+  .ba .before .val{color:#3a3a3a;}
+  .ba .after .val{color:var(--normal);}
+  .ba .st{font-size:12px;font-weight:700;margin-top:2px;}
+  .st.below{color:var(--below);}
+  .st.above{color:var(--above);}
+  .st.normal{color:var(--normal);}
+  .ba .mid{display:flex;align-items:center;color:var(--gold);font-size:24px;font-weight:900;}
+
+  /* ===== 施術ポイント（体の図） ===== */
+  .bodywrap{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;}
+  .bodyfig{flex:1 1 240px;min-width:240px;text-align:center;}
+  .bodyfig svg{width:100%;max-width:300px;height:auto;}
+  .bodyfig .cap{font-size:13px;color:#7a7a7a;margin-top:4px;font-weight:700;letter-spacing:.1em;}
+  .pointlist{flex:1 1 240px;min-width:240px;}
+  .pt{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:12px 0;border-bottom:1px solid var(--line);
+  }
+  .pt:last-child{border-bottom:none;}
+  .pt .code{
+    background:var(--green);color:var(--gold);font-weight:700;font-size:13px;
+    border-radius:8px;padding:6px 8px;min-width:62px;text-align:center;flex-shrink:0;
+    font-family:"Noto Serif JP",serif;
+  }
+  .pt .desc b{color:var(--green);display:block;font-size:16px;}
+  .pt .desc span{font-size:14px;color:#5a5a5a;}
+
+  /* ===== 宿題 ===== */
+  .hw{
+    border-radius:18px;overflow:hidden;margin-bottom:20px;border:2px solid var(--line);
+    background:#fff;
+  }
+  .hw .hd{
+    background:var(--green);color:var(--ivory);padding:18px 20px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .hw .hd .badge{
+    background:var(--gold);color:var(--green);width:42px;height:42px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;
+  }
+  .hw .hd .ttl{font-family:"Noto Serif JP",serif;font-weight:700;font-size:21px;line-height:1.3;}
+  .hw .body{padding:20px;}
+  .steps{counter-reset:step;list-style:none;}
+  .steps li{
+    counter-increment:step;position:relative;padding:8px 0 8px 44px;font-size:17px;font-weight:500;
+  }
+  .steps li::before{
+    content:counter(step);position:absolute;left:0;top:8px;
+    background:var(--gold-soft);color:var(--green);font-weight:900;
+    width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;
+  }
+  .why{
+    margin-top:14px;background:var(--ivory);border-left:5px solid var(--gold);
+    border-radius:0 12px 12px 0;padding:14px 16px;font-size:15px;line-height:1.8;
+  }
+  .why b{color:var(--green2);}
+
+  .recipe{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
+  .recipe .r{
+    flex:1 1 30%;min-width:120px;background:var(--ivory);border-radius:12px;
+    padding:14px 10px;text-align:center;
+  }
+  .recipe .r .big{font-family:"Noto Serif JP",serif;font-weight:700;font-size:24px;color:var(--green);}
+  .recipe .r .sm{font-size:13px;color:#6a6a6a;margin-top:2px;}
+
+  /* ===== 参考メモ ===== */
+  .memo{
+    background:#fff;border:2px dashed var(--line);border-radius:14px;padding:18px 18px;
+    font-size:15px;line-height:1.8;color:#4a4a4a;
+  }
+  .memo .mt{font-weight:700;color:var(--green2);margin-bottom:6px;font-size:16px;}
+  .memo .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);}
+  .memo .row:last-of-type{border-bottom:none;}
+  .memo .row .v{font-weight:700;}
+  .memo .row .v.low{color:var(--below);}
+  .memo .row .v.high{color:var(--above);}
+
+  /* ===== フッター ===== */
+  footer{
+    background:var(--green);color:var(--ivory);padding:30px 26px;text-align:center;
+  }
+  footer .brand{font-family:"Noto Serif JP",serif;font-size:14px;color:var(--gold-soft);line-height:1.9;}
+  footer h3{font-family:"Noto Serif JP",serif;font-size:22px;color:var(--gold);margin:10px 0 4px;}
+  footer .addr{font-size:14px;color:#cdbf9d;margin-bottom:18px;}
+  .btns{display:flex;flex-direction:column;gap:10px;max-width:320px;margin:0 auto;}
+  .btns a{
+    display:block;text-decoration:none;font-weight:700;font-size:17px;
+    padding:15px;border-radius:30px;
+  }
+  .btns .line{background:#06C755;color:#fff;}
+  .btns .map{background:var(--gold);color:var(--green);}
+  .closing{margin-top:22px;font-size:13px;color:#a9b6ac;line-height:1.9;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ヘッダー -->
+  <header>
+    <div class="clinic">三 条 健 康 堂 接 骨 院</div>
+    <h1><span class="name">宮本</span> 様<br>本日の施術報告書</h1>
+    <div class="date">2026年6月2日　担当：谷</div>
+  </header>
+
+  <!-- ① 主訴 -->
+  <section>
+    <span class="sec-label"><span class="num serif">1</span>今日お聞きした、お体のサイン</span>
+    <h2>「なんとなく不調」には、<br>ちゃんと理由がありました</h2>
+    <div class="chips">
+      <div class="chip"><span class="ic">🦴</span>体がギシギシいう感じ</div>
+      <div class="chip"><span class="ic">🚶</span>あまり動かない・重い感じ</div>
+      <div class="chip"><span class="ic">💢</span>首・肩・背中がカチカチ</div>
+      <div class="chip"><span class="ic">🧠</span>頭の付け根まで張っている</div>
+    </div>
+  </section>
+
+  <!-- ② わかったこと -->
+  <section>
+    <span class="sec-label"><span class="num serif">2</span>検査でわかったこと</span>
+    <h2>原因は「肋骨が動いていない」<br>ことにありました</h2>
+
+    <div class="finding">
+      <span class="tag">見つかった原因</span>
+      <p><b>肋骨がほとんど動いていませんでした。</b>呼吸のたびに広がるはずの肋骨が固まり、その負担が <b>肩甲骨 → 両肩・首 → 首と頭の付け根</b> へと連鎖して、全身がカチカチになっていました。</p>
+    </div>
+
+    <div class="finding">
+      <span class="tag">体からのサイン</span>
+      <p>首と頭の付け根の強い張りは、<b>エネルギーが頭の方へ上がりすぎている</b>サインです。考えごとや緊張が続くと、体は上半身・頭にばかり力が集まってしまいます。</p>
+    </div>
+
+    <div class="finding fix">
+      <span class="tag">本日の施術で</span>
+      <p>固まっていた肋骨・肩甲骨・肩首・頭の付け根を、すべて<b>解放</b>しました。上に上がりすぎていたエネルギーも整えています。</p>
+      <div class="arrow-line">
+        <span class="from">カチカチ・不動</span>
+        <span class="ar">→</span>
+        <span class="to">解放・動く状態へ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 数値の変化 -->
+  <section>
+    <span class="sec-label"><span class="num serif">3</span>測定データの変化（施術前 → 施術後）</span>
+    <h2>体が、しっかり<br>応えてくれました</h2>
+
+    <div class="hero-num">
+      <div class="t">総合活力スコア（平均値）</div>
+      <div class="hero-flow">
+        <span class="v before">8.63</span>
+        <span class="ar">→</span>
+        <span class="v after">12.89</span>
+      </div>
+      <span class="up">↑ ＋49％ アップ</span>
+    </div>
+
+    <!-- エネルギー -->
+    <div class="metric">
+      <div class="top"><span class="ic">⚡</span><span class="mname">エネルギー</span></div>
+      <div class="ba">
+        <div class="cell before"><div class="lbl">施術前</div><div class="val">8.63</div><div class="st below">低下</div></div>
+        <div class="mid">→</div>
+        <div class="cell after"><div class="lbl">施術後</div><div class="val">12.89</div><div class="st below">回復へ</div></div>
+      </div>
+    </div>
+
+    <!-- 免疫 -->
+    <div class="metric">
+      <div class="top"><span class="ic">🛡️</span><span class="mname">免疫力</span></div>
+      <div class="ba">
+        <div class="cell before"><div class="lbl">施術前</div><div class="val">5.90</div><div class="st normal">正常</div></div>
+        <div class="mid">→</div>
+        <div class="cell after"><div class="lbl">施術後</div><div class="val">10.12</div><div class="st normal">正常</div></div>
+      </div>
+    </div>
+
+    <!-- 代謝 -->
+    <div class="metric">
+      <div class="top"><span class="ic">♻️</span><span class="mname">代謝</span></div>
+      <div class="ba">
+        <div class="cell before"><div class="lbl">施術前</div><div class="val">1.01</div><div class="st below">低下</div></div>
+        <div class="mid">→</div>
+        <div class="cell after"><div class="lbl">施術後</div><div class="val">1.15</div><div class="st normal">正常</div></div>
+      </div>
+    </div>
+
+    <!-- 心 -->
+    <div class="metric">
+      <div class="top"><span class="ic">🧠</span><span class="mname">心の状態（自律神経）</span></div>
+      <div class="ba">
+        <div class="cell before"><div class="lbl">施術前</div><div class="val">1.27</div><div class="st above">過剰・緊張</div></div>
+        <div class="mid">→</div>
+        <div class="cell after"><div class="lbl">施術後</div><div class="val">1.07</div><div class="st normal">正常</div></div>
+      </div>
+    </div>
+
+    <!-- 筋骨格 -->
+    <div class="metric" style="border-color:var(--gold);">
+      <div class="top"><span class="ic">💪</span><span class="mname">筋肉・骨格（一番の変化）</span></div>
+      <div class="ba">
+        <div class="cell before"><div class="lbl">施術前</div><div class="val">0.19</div><div class="st below">大きく低下</div></div>
+        <div class="mid">→</div>
+        <div class="cell after"><div class="lbl">施術後</div><div class="val">1.05</div><div class="st normal">正常</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 施術ポイント -->
+  <section>
+    <span class="sec-label"><span class="num serif">4</span>本日アプローチした場所</span>
+    <h2>固まりの「中心」を<br>ピンポイントで解放</h2>
+
+    <div class="bodywrap">
+      <div class="bodyfig">
+        <svg viewBox="0 0 300 380" role="img" aria-label="背中側から見た施術ポイントの図">
+          <!-- 体のシルエット（背面） -->
+          <g fill="#dfe7e0" stroke="#bcccc0" stroke-width="2">
+            <!-- 頭 -->
+            <circle cx="150" cy="52" r="38"/>
+            <!-- 首 -->
+            <rect x="132" y="84" width="36" height="26" rx="8"/>
+            <!-- 胴体 -->
+            <path d="M70 122 Q150 104 230 122 L214 250 Q150 270 86 250 Z"/>
+          </g>
+          <!-- 背骨ガイド -->
+          <line x1="150" y1="118" x2="150" y2="248" stroke="#c7d3c9" stroke-width="3" stroke-dasharray="3 7"/>
+
+          <!-- ツボの点（金色のグロー） -->
+          <g>
+            <!-- GB12 耳の後ろ -->
+            <circle cx="120" cy="46" r="9" fill="#c4a44d" opacity="0.95"/>
+            <circle cx="180" cy="46" r="9" fill="#c4a44d" opacity="0.95"/>
+            <!-- GB20 後頭部の付け根 -->
+            <circle cx="135" cy="84" r="9" fill="#c4a44d" opacity="0.95"/>
+            <circle cx="165" cy="84" r="9" fill="#c4a44d" opacity="0.95"/>
+            <!-- TE16 首の横 -->
+            <circle cx="125" cy="100" r="8" fill="#c4a44d" opacity="0.9"/>
+            <circle cx="175" cy="100" r="8" fill="#c4a44d" opacity="0.9"/>
+            <!-- BL45/46 背中（肩甲骨内側） -->
+            <circle cx="128" cy="168" r="9" fill="#c4a44d" opacity="0.95"/>
+            <circle cx="172" cy="168" r="9" fill="#c4a44d" opacity="0.95"/>
+            <circle cx="130" cy="196" r="8" fill="#c4a44d" opacity="0.9"/>
+            <circle cx="170" cy="196" r="8" fill="#c4a44d" opacity="0.9"/>
+          </g>
+        </svg>
+        <div class="cap">背中側から見た主なポイント</div>
+      </div>
+
+      <div class="pointlist">
+        <div class="pt">
+          <span class="code">GB20</span>
+          <span class="desc"><b>風池（ふうち）</b><span>後頭部と首の境目／頭の付け根</span></span>
+        </div>
+        <div class="pt">
+          <span class="code">GB12</span>
+          <span class="desc"><b>完骨（かんこつ）</b><span>耳の後ろ・側頭部</span></span>
+        </div>
+        <div class="pt">
+          <span class="code">TE16</span>
+          <span class="desc"><b>天牖（てんゆう）</b><span>首の横すじ</span></span>
+        </div>
+        <div class="pt">
+          <span class="code">BL45</span>
+          <span class="desc"><b>譩譆（いき）</b><span>背中・肩甲骨の内側</span></span>
+        </div>
+        <div class="pt">
+          <span class="code">BL46</span>
+          <span class="desc"><b>膈関（かくかん）</b><span>背中・横隔膜（呼吸）の高さ</span></span>
+        </div>
+        <div class="pt">
+          <span class="code">SP17</span>
+          <span class="desc"><b>食竇（しょくとく）</b><span>胸の横・肋骨まわり（前側）</span></span>
+        </div>
+        <div class="pt">
+          <span class="code">GB27</span>
+          <span class="desc"><b>五枢（ごすう）</b><span>骨盤の横・腰のバランス点</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 宿題 -->
+  <section>
+    <span class="sec-label"><span class="num serif">5</span>おうちでやってほしいこと</span>
+    <h2>この2つで、<br>効果がぐっと長持ちします</h2>
+
+    <!-- 宿題① 呼吸 -->
+    <div class="hw">
+      <div class="hd">
+        <span class="badge">🌙</span>
+        <span class="ttl">宿題① 寝る前のリラックス呼吸</span>
+      </div>
+      <div class="body">
+        <ol class="steps">
+          <li>鼻から <b>深く2回</b> 息を吸い込む</li>
+          <li>口から <b>細く・長く</b> ゆ〜っくり吐き出す</li>
+          <li>電気を消して、<b>眠くなるまで</b> くり返す</li>
+        </ol>
+        <div class="why">
+          <b>なぜ効くの？</b><br>
+          息を「細く長く吐いている時間」に、リラックスの神経（副交感神経）が働きます。これは医学的にも証明されている、いちばん手軽なリラックス法です。日中、体をゆるめたい時にもどうぞ。
+        </div>
+      </div>
+    </div>
+
+    <!-- 宿題② 水分＋塩 -->
+    <div class="hw">
+      <div class="hd">
+        <span class="badge">💧</span>
+        <span class="ttl">宿題② 朝の「水分＋ひとつまみの塩」</span>
+      </div>
+      <div class="body">
+        <div class="recipe">
+          <div class="r"><div class="big">1〜1.5L</div><div class="sm">マイボトルに水</div></div>
+          <div class="r"><div class="big">＋</div><div class="sm">塩を入れて</div></div>
+          <div class="r"><div class="big">0.2〜0.3g</div><div class="sm">0.1g計量スプーン2杯</div></div>
+        </div>
+        <p style="margin-top:14px;">朝につくって、1日かけてゆっくり飲んでください。</p>
+        <div class="why">
+          <b>なぜ効くの？</b><br>
+          今は水分がうまく体にとどまっていない（軽い脱水）状態かもしれません。ほんの少しの塩を一緒にとることで水分が体に保たれやすくなり、<b>体が動きやすく</b>なります。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 参考メモ -->
+  <section>
+    <span class="sec-label"><span class="num serif">6</span>参考メモ（内臓バランス）</span>
+    <div class="memo">
+      <div class="mt">本日の測定値（1回分の目安です）</div>
+      <div class="row"><span>大腸（左）</span><span class="v low">11％ ・ 低下ぎみ</span></div>
+      <div class="row"><span>小腸（右）</span><span class="v high">228％ ・ がんばり中</span></div>
+      <div class="row"><span>胆のう（右）</span><span class="v low">54％ ・ 低下ぎみ</span></div>
+      <p style="margin-top:12px;">活発（がんばり）側は、どこかを補おうとしている状態で、ほとんどの場合そのまま様子見で大丈夫です。低下側のうち、特に大腸は数値が低めでした。宿題②の水分ケアが腸の助けにもなります。もし同じような数値が<b>数日続く</b>ようでしたら、念のため医療機関でのご相談をおすすめします。</p>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <div class="brand">年間200冊読む治療家より</div>
+    <h3>三条健康堂接骨院</h3>
+    <div class="addr">香川県高松市由良町　由良川東公園のそば</div>
+    <div class="btns">
+      <a class="line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="closing">
+      高松発・一生動ける身体と人生の教養研究室<br>
+      無車・自転車・圧力鍋生活を実践する治療家より
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
