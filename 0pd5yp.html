@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜藤村様</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#14301f;
+    --green:#1a3d28;
+    --green-panel:#21492f;
+    --green-dark:#102619;
+    --gold:#c4a44d;
+    --gold-soft:#d9bd6e;
+    --ivory:#f5f0e4;
+    --ivory-dim:#e3dcc8;
+    --alert:#e0a73a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--green-deep);
+    color:var(--ivory);
+    line-height:1.85;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px;margin:0 auto;background:linear-gradient(180deg,#14301f 0%,#1a3d28 100%);}
+  .serif{font-family:'Noto Serif JP',serif;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:linear-gradient(135deg,#102619 0%,#21492f 100%);
+    padding:42px 26px 38px;
+    text-align:center;
+    border-bottom:4px solid var(--gold);
+  }
+  header .clinic{font-size:15px;letter-spacing:.18em;color:var(--gold-soft);font-weight:700;}
+  header .divider{width:64px;height:3px;background:var(--gold);margin:16px auto;border-radius:2px;}
+  header h1{font-family:'Noto Serif JP',serif;font-size:34px;font-weight:900;color:var(--ivory);letter-spacing:.06em;}
+  header .sub{font-size:16px;color:var(--ivory-dim);margin-top:8px;}
+  .patient{
+    margin-top:24px;display:inline-block;
+    background:rgba(196,164,77,.16);
+    border:2px solid var(--gold);
+    border-radius:14px;
+    padding:14px 30px;
+  }
+  .patient .name{font-family:'Noto Serif JP',serif;font-size:30px;font-weight:900;color:var(--gold-soft);}
+  .patient .date{font-size:14px;color:var(--ivory-dim);margin-top:2px;}
+
+  /* ---------- SECTION ---------- */
+  section{padding:36px 24px;border-bottom:1px solid rgba(196,164,77,.22);}
+  .sec-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:14px;font-weight:700;color:var(--green-deep);
+    background:var(--gold);padding:7px 16px;border-radius:30px;
+    letter-spacing:.08em;margin-bottom:18px;
+  }
+  .sec-num{font-family:'Noto Serif JP',serif;font-weight:900;}
+  h2{font-family:'Noto Serif JP',serif;font-size:25px;font-weight:900;color:var(--ivory);line-height:1.5;margin-bottom:14px;}
+  h2 em{color:var(--gold-soft);font-style:normal;}
+  p{font-size:17px;color:var(--ivory);margin-bottom:14px;}
+  p.lead{font-size:18px;}
+  strong{color:var(--gold-soft);font-weight:700;}
+
+  /* ---------- STRESS ICONS ---------- */
+  .stress-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0 8px;}
+  .stress-item{
+    background:var(--green-panel);border:1.5px solid rgba(196,164,77,.4);
+    border-radius:14px;padding:16px 14px;text-align:center;
+  }
+  .stress-item .ico{font-size:30px;line-height:1;display:block;margin-bottom:8px;}
+  .stress-item .txt{font-size:15px;font-weight:700;color:var(--ivory);}
+
+  /* ---------- FINDING CALLOUT ---------- */
+  .finding{
+    background:var(--green-dark);border-left:6px solid var(--gold);
+    border-radius:0 14px 14px 0;padding:20px 22px;margin:18px 0;
+  }
+  .finding .ttl{font-family:'Noto Serif JP',serif;font-size:19px;font-weight:900;color:var(--gold-soft);margin-bottom:8px;}
+  .finding p{margin-bottom:0;font-size:16.5px;}
+
+  /* before / after silhouettes */
+  .ba-row{display:flex;gap:14px;margin:22px 0 6px;}
+  .ba-card{flex:1;background:var(--green-panel);border:1.5px solid rgba(196,164,77,.4);border-radius:16px;padding:16px 12px;text-align:center;}
+  .ba-card.after{border-color:var(--gold);background:linear-gradient(160deg,#21492f,#102619);}
+  .ba-label{font-size:13px;font-weight:700;letter-spacing:.1em;padding:5px 0;border-radius:8px;margin-bottom:12px;}
+  .ba-before .ba-label{background:rgba(224,167,58,.22);color:var(--gold-soft);}
+  .ba-after  .ba-label{background:var(--gold);color:var(--green-deep);}
+  .ba-card .cap{font-size:14px;color:var(--ivory-dim);margin-top:10px;line-height:1.6;}
+
+  /* ---------- RADOTECH ---------- */
+  .meter{margin:8px 0 6px;}
+  .meter-row{
+    display:flex;align-items:center;gap:14px;
+    background:var(--green-panel);border-radius:14px;
+    padding:14px 16px;margin-bottom:12px;border:1.5px solid rgba(196,164,77,.3);
+  }
+  .meter-row .m-ico{font-size:26px;width:34px;text-align:center;flex-shrink:0;}
+  .meter-row .m-body{flex:1;min-width:0;}
+  .meter-row .m-name{font-size:17px;font-weight:700;color:var(--ivory);}
+  .meter-row .m-stat{font-size:13.5px;font-weight:700;margin-top:2px;}
+  .meter-row .m-val{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:900;flex-shrink:0;}
+  .st-low .m-stat{color:var(--alert);}
+  .st-low .m-val{color:var(--gold-soft);}
+  .st-ok  .m-stat{color:#7fd49a;}
+  .st-ok  .m-val{color:#9fe0b3;}
+
+  .balance{
+    background:var(--green-dark);border:2px solid var(--gold);border-radius:16px;
+    padding:20px;margin-top:18px;
+  }
+  .balance .b-ttl{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:900;color:var(--gold-soft);margin-bottom:14px;}
+  .bar-wrap{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .bar-side{font-size:14px;font-weight:700;width:74px;flex-shrink:0;color:var(--ivory-dim);}
+  .bar-track{flex:1;height:22px;background:rgba(245,240,228,.12);border-radius:11px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:13px;font-weight:700;color:var(--green-deep);}
+  .bar-l .bar-fill{width:84%;background:linear-gradient(90deg,#8aa595,#bcd0c2);}
+  .bar-r .bar-fill{width:100%;background:linear-gradient(90deg,var(--gold-soft),var(--gold));}
+  .balance .b-note{font-size:15px;color:var(--ivory);margin-top:12px;line-height:1.7;}
+
+  /* ---------- BODY MAP / POINTS ---------- */
+  .zone{margin-bottom:30px;}
+  .zone:last-child{margin-bottom:0;}
+  .zone-head{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .zone-badge{
+    font-family:'Noto Serif JP',serif;font-weight:900;font-size:17px;
+    background:var(--gold);color:var(--green-deep);
+    width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .zone-title{font-family:'Noto Serif JP',serif;font-size:21px;font-weight:900;color:var(--ivory);}
+  .zone-sub{font-size:14.5px;color:var(--ivory-dim);margin:2px 0 14px 52px;}
+  .fig{
+    background:var(--green-dark);border:1.5px solid rgba(196,164,77,.35);
+    border-radius:18px;padding:14px;margin-bottom:14px;
+  }
+  .fig svg{width:100%;height:auto;display:block;}
+  .legend{display:grid;grid-template-columns:1fr;gap:8px;}
+  .leg-item{
+    display:flex;align-items:flex-start;gap:12px;
+    background:var(--green-panel);border-radius:11px;padding:12px 14px;
+    border:1px solid rgba(196,164,77,.25);
+  }
+  .leg-no{
+    font-family:'Noto Serif JP',serif;font-weight:900;font-size:15px;
+    background:var(--gold);color:var(--green-deep);
+    width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+  }
+  .leg-txt{font-size:15.5px;line-height:1.5;display:flex;flex-direction:column;gap:5px;}
+  .leg-txt .line1 .code{font-weight:900;color:var(--gold-soft);}
+  .leg-txt .line1 .jp{font-weight:700;color:var(--ivory);}
+  .leg-txt .line1 .yomi{font-size:13px;color:var(--ivory-dim);}
+  .leg-txt .eff{
+    font-size:14px;line-height:1.55;color:var(--ivory);font-weight:500;
+    background:rgba(196,164,77,.13);border-left:3px solid var(--gold);
+    border-radius:0 8px 8px 0;padding:6px 10px;
+  }
+  .leg-txt .eff::before{content:"✦ ";color:var(--gold-soft);font-weight:900;}
+
+  /* ---------- MECHANISM FLOW ---------- */
+  .flow{margin-top:8px;}
+  .flow-intro{
+    background:var(--green-dark);border:2px solid var(--gold);border-radius:16px;
+    padding:20px;margin-bottom:24px;
+  }
+  .flow-intro .fi-ttl{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:900;color:var(--gold-soft);margin-bottom:8px;}
+  .flow-intro p{margin-bottom:0;font-size:16.5px;}
+  .step{
+    position:relative;
+    background:var(--green-panel);border-radius:16px;
+    padding:18px 18px 18px 64px;margin-bottom:8px;
+    border:1.5px solid rgba(196,164,77,.3);
+  }
+  .step .s-no{
+    position:absolute;left:16px;top:18px;
+    font-family:'Noto Serif JP',serif;font-weight:900;font-size:18px;
+    background:var(--gold);color:var(--green-deep);
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  }
+  .step .s-ttl{font-size:17px;font-weight:900;color:var(--ivory);margin-bottom:4px;}
+  .step .s-txt{font-size:15px;color:var(--ivory-dim);line-height:1.65;}
+  .arrow{text-align:center;color:var(--gold);font-size:22px;line-height:1;margin:2px 0 8px;}
+  .step.final{background:linear-gradient(160deg,#21492f,#102619);border-color:var(--gold);}
+  .step.final .s-ttl{color:var(--gold-soft);font-family:'Noto Serif JP',serif;}
+
+  /* ---------- AFTERCARE ---------- */
+  .care-list{list-style:none;}
+  .care-list li{
+    background:var(--green-panel);border-radius:13px;padding:14px 16px 14px 50px;
+    margin-bottom:11px;position:relative;font-size:16px;border:1px solid rgba(196,164,77,.25);
+  }
+  .care-list li::before{
+    content:"✓";position:absolute;left:15px;top:13px;
+    color:var(--green-deep);background:var(--gold);
+    width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:15px;
+  }
+  .care-list li strong{display:block;margin-bottom:2px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--green-dark);padding:34px 24px 40px;text-align:center;border-top:4px solid var(--gold);}
+  footer .f-clinic{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:900;color:var(--gold-soft);}
+  footer .f-loc{font-size:15px;color:var(--ivory-dim);margin:8px 0 20px;}
+  footer .f-btns{display:flex;flex-direction:column;gap:12px;max-width:340px;margin:0 auto;}
+  footer a.btn{
+    display:block;text-decoration:none;font-size:17px;font-weight:700;
+    padding:15px;border-radius:13px;
+  }
+  footer a.line{background:var(--gold);color:var(--green-deep);}
+  footer a.map{background:transparent;border:2px solid var(--gold);color:var(--gold-soft);}
+  footer .f-prof{font-size:13px;color:var(--ivory-dim);margin-top:24px;line-height:1.8;}
+  footer .f-brand{font-size:13px;color:var(--gold-soft);margin-top:14px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="clinic">三 条 健 康 堂 接 骨 院</div>
+    <div class="divider"></div>
+    <h1>施術報告書</h1>
+    <div class="sub">藤村様の身体に起きていたこと／施したこと／これから</div>
+    <div class="patient">
+      <div class="name">藤村 様</div>
+      <div class="date">施術日：2026年6月3日</div>
+    </div>
+  </header>
+
+  <!-- ============ 1. 状況 ============ -->
+  <section>
+    <span class="sec-tag"><span class="sec-num">01</span>　藤村様の身体に起きていたこと</span>
+    <h2>重なった<em>負担</em>が、身体に溜まっていました</h2>
+    <p class="lead">引っ越し・アルバイト・セミナーへの参加と、<strong>スーツケースを引いて移動する日々</strong>。この数週間、身体にも心にも、かなりのストレスが積み重なっていた状態でした。</p>
+    <div class="stress-grid">
+      <div class="stress-item"><span class="ico">📦</span><span class="txt">自宅の引っ越し</span></div>
+      <div class="stress-item"><span class="ico">💼</span><span class="txt">アルバイト</span></div>
+      <div class="stress-item"><span class="ico">🎓</span><span class="txt">セミナー参加</span></div>
+      <div class="stress-item"><span class="ico">🧳</span><span class="txt">スーツケース移動</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 2. 触診所見 ============ -->
+  <section>
+    <span class="sec-tag"><span class="sec-num">02</span>　触診でわかったこと</span>
+    <h2>背中が<em>「カブトムシの背中」</em>のようでした</h2>
+    <p>背中が硬く盛り上がり、まるでカブトムシの甲羅のようになっていました。これは<strong>緊張がほどけきっていないサイン</strong>です。頭はカチカチに固まり、首が思うように動かない状態でした。</p>
+
+    <div class="finding">
+      <div class="ttl">緊張が集中していた3か所</div>
+      <p>① 頭部・首すじ　／　② 右の肩・右の肩甲骨　／　③ 膝<br>
+      特に右肩まわりはガチガチで、エネルギーの巡りも滞っていました。</p>
+    </div>
+
+    <div class="ba-row">
+      <div class="ba-card ba-before before">
+        <div class="ba-label">施 術 前</div>
+        <svg viewBox="0 0 120 150" aria-label="緊張した背中">
+          <path d="M60 18 a14 14 0 1 1 -0.1 0 Z" fill="none" stroke="#bcd0c2" stroke-width="3"/>
+          <path d="M38 50 Q60 38 82 50 Q96 70 80 132 Q60 142 40 132 Q24 70 38 50 Z"
+                fill="rgba(224,167,58,.18)" stroke="#e0a73a" stroke-width="3"/>
+          <path d="M44 58 Q60 50 76 58" fill="none" stroke="#e0a73a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M42 70 Q60 60 78 70" fill="none" stroke="#e0a73a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="cap">盛り上がり<br>硬く緊張</div>
+      </div>
+      <div class="ba-card ba-after after">
+        <div class="ba-label">施 術 後</div>
+        <svg viewBox="0 0 120 150" aria-label="ゆるんだ背中">
+          <path d="M60 18 a14 14 0 1 1 -0.1 0 Z" fill="none" stroke="#9fe0b3" stroke-width="3"/>
+          <path d="M40 52 Q60 46 80 52 Q90 90 78 132 Q60 140 42 132 Q30 90 40 52 Z"
+                fill="rgba(196,164,77,.20)" stroke="#c4a44d" stroke-width="3"/>
+          <path d="M46 72 Q60 76 74 72" fill="none" stroke="#9fe0b3" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="cap">ゆるんで<br>なだらかに</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. 測定データ ============ -->
+  <section>
+    <span class="sec-tag"><span class="sec-num">03</span>　測定でわかったこと（RaDoTech）</span>
+    <h2>数値にも、<em>身体への負担</em>が表れていました</h2>
+
+    <div class="meter">
+      <div class="meter-row st-low">
+        <span class="m-ico">⚡</span>
+        <span class="m-body"><span class="m-name">エネルギーレベル</span><br><span class="m-stat">基準値以下</span></span>
+        <span class="m-val">19.02</span>
+      </div>
+      <div class="meter-row st-low">
+        <span class="m-ico">💪</span>
+        <span class="m-body"><span class="m-name">筋骨格系</span><br><span class="m-stat">基準値以下・右に偏り</span></span>
+        <span class="m-val">0.84</span>
+      </div>
+      <div class="meter-row st-low">
+        <span class="m-ico">♻️</span>
+        <span class="m-body"><span class="m-name">代謝</span><br><span class="m-stat">基準値以下</span></span>
+        <span class="m-val">0.97</span>
+      </div>
+      <div class="meter-row st-ok">
+        <span class="m-ico">🛡️</span>
+        <span class="m-body"><span class="m-name">免疫</span><br><span class="m-stat">正常域</span></span>
+        <span class="m-val">15.59</span>
+      </div>
+      <div class="meter-row st-ok">
+        <span class="m-ico">🧠</span>
+        <span class="m-body"><span class="m-name">精神状態</span><br><span class="m-stat">正常域</span></span>
+        <span class="m-val">0.92</span>
+      </div>
+    </div>
+
+    <div class="balance">
+      <div class="b-ttl">左右バランス：右側に負担が偏っていました</div>
+      <div class="bar-wrap bar-l"><span class="bar-side">左 (Left)</span><div class="bar-track"><div class="bar-fill">208.77</div></div></div>
+      <div class="bar-wrap bar-r"><span class="bar-side">右 (Right)</span><div class="bar-track"><div class="bar-fill">247.62</div></div></div>
+      <p class="b-note">L/R＝<strong>0.84</strong>（基準 0.9〜1.2）。右側に緊張と負担が集中していたことが、数値にもはっきり出ています。これは触診で見つけた<strong>右肩・右肩甲骨のガチガチ</strong>と一致します。</p>
+    </div>
+
+    <div class="finding" style="margin-top:18px;">
+      <div class="ttl">今日の身体の"読み解き"</div>
+      <p>精神状態の数値は正常域。つまり<strong>心はまだ持ちこたえていた</strong>一方で、その負担が<strong>身体（頭・首・右肩・背中）に肩代わりされていた</strong>——これが今日の状態でした。だからこそ、身体側の緊張をきちんと解くことが大切でした。</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. 施術したツボ ============ -->
+  <section>
+    <span class="sec-tag"><span class="sec-num">04</span>　施術したツボ</span>
+    <h2>緊張の<em>核</em>になっていたツボを、すべて解放しました</h2>
+    <p>当院では、硬いところを力ずくで押すのではなく、<strong>緊張の引き金になっているツボ</strong>を選んで的確に刺激します。今日は次の3エリア・全19か所に施術しました。</p>
+
+    <!-- ZONE A : 頭部・首 -->
+    <div class="zone">
+      <div class="zone-head"><span class="zone-badge">A</span><span class="zone-title">頭部・首すじ</span></div>
+      <div class="zone-sub">ここが集中的に硬くなり、首が動かなくなっていました</div>
+      <div class="fig">
+        <svg viewBox="0 0 400 360" aria-label="頭部・首のツボ図">
+          <text x="20" y="40" fill="#e3dcc8" font-size="17" font-family="'Noto Serif JP',serif" font-weight="700">前（顔）</text>
+          <text x="330" y="40" fill="#e3dcc8" font-size="17" font-family="'Noto Serif JP',serif" font-weight="700">後ろ</text>
+          <!-- head -->
+          <ellipse cx="200" cy="170" rx="110" ry="120" fill="rgba(245,240,228,.06)" stroke="#f5f0e4" stroke-width="3"/>
+          <!-- nose -->
+          <path d="M90 168 l-16 12 l16 10 Z" fill="none" stroke="#f5f0e4" stroke-width="3" stroke-linejoin="round"/>
+          <!-- ear -->
+          <path d="M250 168 q22 4 18 28 q-4 18 -22 14" fill="none" stroke="#f5f0e4" stroke-width="3"/>
+          <!-- points -->
+          <g font-family="'Noto Serif JP',serif" font-weight="900" font-size="17" text-anchor="middle">
+            <circle cx="122" cy="85"  r="15" fill="#c4a44d"/><text x="122" y="91" fill="#14301f">1</text>
+            <circle cx="181" cy="52"  r="15" fill="#c4a44d"/><text x="181" y="58" fill="#14301f">2</text>
+            <circle cx="308" cy="149" r="15" fill="#c4a44d"/><text x="308" y="155" fill="#14301f">3</text>
+            <circle cx="90"  cy="180" r="15" fill="#c4a44d"/><text x="90"  y="186" fill="#14301f">4</text>
+            <circle cx="94"  cy="206" r="15" fill="#c4a44d"/><text x="94"  y="212" fill="#14301f">5</text>
+            <circle cx="300" cy="206" r="15" fill="#c4a44d"/><text x="300" y="212" fill="#14301f">6</text>
+            <circle cx="100" cy="129" r="15" fill="#c4a44d"/><text x="100" y="135" fill="#14301f">7</text>
+            <circle cx="95"  cy="152" r="15" fill="#c4a44d"/><text x="95"  y="158" fill="#14301f">8</text>
+            <circle cx="298" cy="118" r="15" fill="#c4a44d"/><text x="298" y="124" fill="#14301f">9</text>
+            <circle cx="138" cy="108" r="15" fill="#c4a44d"/><text x="138" y="114" fill="#14301f">10</text>
+          </g>
+        </svg>
+      </div>
+      <div class="legend">
+        <div class="leg-item"><span class="leg-no">1</span><div class="leg-txt"><span class="line1"><span class="code">BL3</span> <span class="jp">眉衝</span> <span class="yomi">びしょう</span></span><span class="eff">目の疲れ＆おでこの重ダルさに。スマホ見すぎ現代人の救世主！</span></div></div>
+        <div class="leg-item"><span class="leg-no">2</span><div class="leg-txt"><span class="line1"><span class="code">BL5</span> <span class="jp">五処</span> <span class="yomi">ごしょ</span></span><span class="eff">頭のてっぺんのモヤモヤ担当。考えすぎてパンクした脳をリセット！</span></div></div>
+        <div class="leg-item"><span class="leg-no">3</span><div class="leg-txt"><span class="line1"><span class="code">BL9</span> <span class="jp">玉枕</span> <span class="yomi">ぎょくちん</span></span><span class="eff">後頭部のズーンを撃退。"枕"の名のとおり、頭スッキリ快眠系。</span></div></div>
+        <div class="leg-item"><span class="leg-no">4</span><div class="leg-txt"><span class="line1"><span class="code">GB4</span> <span class="jp">頷厭</span> <span class="yomi">がんえん</span></span><span class="eff">こめかみズキズキの常連さん。偏頭痛タイプはまずココ！</span></div></div>
+        <div class="leg-item"><span class="leg-no">5</span><div class="leg-txt"><span class="line1"><span class="code">GB5</span> <span class="jp">懸顱</span> <span class="yomi">けんろ</span></span><span class="eff">横アタマのハリをゆるめる。歯を食いしばりがちな人も要チェック。</span></div></div>
+        <div class="leg-item"><span class="leg-no">6</span><div class="leg-txt"><span class="line1"><span class="code">GB11</span> <span class="jp">頭竅陰</span> <span class="yomi">あたまきょういん</span></span><span class="eff">耳の後ろのこわばりを解放。首がギチギチで回らん人へ。</span></div></div>
+        <div class="leg-item"><span class="leg-no">7</span><div class="leg-txt"><span class="line1"><span class="code">GB13</span> <span class="jp">本神</span> <span class="yomi">ほんじん</span></span><span class="eff">名前のとおり"心を鎮める"係。過熱した頭をクールダウン。</span></div></div>
+        <div class="leg-item"><span class="leg-no">8</span><div class="leg-txt"><span class="line1"><span class="code">GB15</span> <span class="jp">頭臨泣</span> <span class="yomi">あたまりんきゅう</span></span><span class="eff">目の上のどんより感を流す。"泣"だけど目元はスッキリ。</span></div></div>
+        <div class="leg-item"><span class="leg-no">9</span><div class="leg-txt"><span class="line1"><span class="code">GB19</span> <span class="jp">脳空</span> <span class="yomi">のうくう</span></span><span class="eff">詰まった頭に"すき間"を作るツボ。思考に余白を。</span></div></div>
+        <div class="leg-item"><span class="leg-no">10</span><div class="leg-txt"><span class="line1"><span class="code">ST8</span> <span class="jp">頭維</span> <span class="yomi">ずい</span></span><span class="eff">おでこの角の張り担当。前頭部の重さをパッと軽く！</span></div></div>
+      </div>
+    </div>
+
+    <!-- ZONE B : 右肩・肩甲骨 -->
+    <div class="zone">
+      <div class="zone-head"><span class="zone-badge">B</span><span class="zone-title">右の肩・右の肩甲骨</span></div>
+      <div class="zone-sub">エネルギーの循環が滞っていたエリアです</div>
+      <div class="fig">
+        <svg viewBox="0 0 400 320" aria-label="右肩・肩甲骨のツボ図（背面）">
+          <text x="20" y="34" fill="#e3dcc8" font-size="16" font-family="'Noto Serif JP',serif" font-weight="700">背中（後ろから見た図）</text>
+          <text x="92" y="300" fill="#c4a44d" font-size="17" font-family="'Noto Serif JP',serif" font-weight="900">← 右</text>
+          <text x="280" y="300" fill="#e3dcc8" font-size="16" font-family="'Noto Serif JP',serif" font-weight="700">左 →</text>
+          <!-- neck/head -->
+          <circle cx="200" cy="62" r="30" fill="rgba(245,240,228,.06)" stroke="#f5f0e4" stroke-width="3"/>
+          <path d="M180 88 q20 16 40 0" fill="none" stroke="#f5f0e4" stroke-width="3"/>
+          <!-- shoulders / torso -->
+          <path d="M60 130 Q200 90 340 130 L320 270 Q200 250 80 270 Z"
+                fill="rgba(245,240,228,.05)" stroke="#f5f0e4" stroke-width="3"/>
+          <!-- spine -->
+          <line x1="200" y1="110" x2="200" y2="262" stroke="#f5f0e4" stroke-width="2.5" stroke-dasharray="6 7"/>
+          <!-- right scapula (image left) -->
+          <path d="M105 150 L168 160 L150 230 Z" fill="rgba(196,164,77,.14)" stroke="#c4a44d" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- points (right side = image left) -->
+          <g font-family="'Noto Serif JP',serif" font-weight="900" font-size="17" text-anchor="middle">
+            <circle cx="118" cy="118" r="16" fill="#c4a44d"/><text x="118" y="124" fill="#14301f">1</text>
+            <circle cx="138" cy="158" r="16" fill="#c4a44d"/><text x="138" y="164" fill="#14301f">2</text>
+            <circle cx="168" cy="172" r="16" fill="#c4a44d"/><text x="168" y="178" fill="#14301f">3</text>
+            <circle cx="120" cy="190" r="16" fill="#c4a44d"/><text x="120" y="196" fill="#14301f">4</text>
+          </g>
+        </svg>
+      </div>
+      <div class="legend">
+        <div class="leg-item"><span class="leg-no">1</span><div class="leg-txt"><span class="line1"><span class="code">GB21</span> <span class="jp">肩井</span> <span class="yomi">けんせい</span></span><span class="eff">肩こりの大ボス。"そこ効くー!"って声が出る最強ツボ。</span></div></div>
+        <div class="leg-item"><span class="leg-no">2</span><div class="leg-txt"><span class="line1"><span class="code">TE15</span> <span class="jp">天髎</span> <span class="yomi">てんりょう</span></span><span class="eff">肩甲骨の上のガチ凝りに。デスクワークの蓄積をリセット。</span></div></div>
+        <div class="leg-item"><span class="leg-no">3</span><div class="leg-txt"><span class="line1"><span class="code">SI14</span> <span class="jp">肩外兪</span> <span class="yomi">けんがいゆ</span></span><span class="eff">肩甲骨と背骨のスキマのゴリゴリへ。猫背さん要注目！</span></div></div>
+        <div class="leg-item"><span class="leg-no">4</span><div class="leg-txt"><span class="line1"><span class="code">SI12</span> <span class="jp">秉風</span> <span class="yomi">へいふう</span></span><span class="eff">肩甲骨ど真ん中のこわばりに。腕が上げづらい時の隠れ名所。</span></div></div>
+      </div>
+    </div>
+
+    <!-- ZONE C : 膝 -->
+    <div class="zone">
+      <div class="zone-head"><span class="zone-badge">C</span><span class="zone-title">膝</span></div>
+      <div class="zone-sub">下半身からの巡りを整えるために施術しました</div>
+      <div class="fig">
+        <svg viewBox="0 0 320 380" aria-label="膝のツボ図（右脚・内側）">
+          <text x="18" y="30" fill="#e3dcc8" font-size="16" font-family="'Noto Serif JP',serif" font-weight="700">右脚（内側）</text>
+          <!-- leg outline -->
+          <path d="M110 30 Q160 22 210 30 L206 175 Q214 200 206 235 L196 365 Q160 375 124 365 L116 235 Q108 200 114 175 Z"
+                fill="rgba(245,240,228,.05)" stroke="#f5f0e4" stroke-width="3" stroke-linejoin="round"/>
+          <!-- knee crease -->
+          <path d="M116 210 Q160 222 206 210" fill="none" stroke="#f5f0e4" stroke-width="2.5" stroke-dasharray="6 7"/>
+          <text x="232" y="216" fill="#e3dcc8" font-size="14">膝</text>
+          <!-- points : medial = left side -->
+          <g font-family="'Noto Serif JP',serif" font-weight="900" font-size="17" text-anchor="middle">
+            <circle cx="118" cy="278" r="16" fill="#c4a44d"/><text x="118" y="284" fill="#14301f">1</text>
+            <circle cx="112" cy="246" r="16" fill="#c4a44d"/><text x="112" y="252" fill="#14301f">2</text>
+            <circle cx="112" cy="214" r="16" fill="#c4a44d"/><text x="112" y="220" fill="#14301f">3</text>
+            <circle cx="160" cy="214" r="16" fill="#c4a44d"/><text x="160" y="220" fill="#14301f">4</text>
+            <circle cx="128" cy="206" r="16" fill="#c4a44d"/><text x="128" y="212" fill="#14301f">5</text>
+          </g>
+          <text x="160" y="250" fill="#c4a44d" font-size="13" text-anchor="middle">膝裏中央＝4</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <div class="leg-item"><span class="leg-no">1</span><div class="leg-txt"><span class="line1"><span class="code">SP9</span> <span class="jp">陰陵泉</span> <span class="yomi">いんりょうせん</span></span><span class="eff">ひざ下のむくみ＆だるさ担当。水はけアップの定番ツボ。</span></div></div>
+        <div class="leg-item"><span class="leg-no">2</span><div class="leg-txt"><span class="line1"><span class="code">LR7</span> <span class="jp">膝関</span> <span class="yomi">しつかん</span></span><span class="eff">ひざ内側の痛みにダイレクト。曲げ伸ばしをなめらかに。</span></div></div>
+        <div class="leg-item"><span class="leg-no">3</span><div class="leg-txt"><span class="line1"><span class="code">LR8</span> <span class="jp">曲泉</span> <span class="yomi">きょくせん</span></span><span class="eff">ひざ内側の詰まりを流す。"泉"の名のとおり巡らせ系。</span></div></div>
+        <div class="leg-item"><span class="leg-no">4</span><div class="leg-txt"><span class="line1"><span class="code">BL40</span> <span class="jp">委中</span> <span class="yomi">いちゅう（膝裏）</span></span><span class="eff">膝裏のスーパースター。腰にもひざにも効く万能ポジション！</span></div></div>
+        <div class="leg-item"><span class="leg-no">5</span><div class="leg-txt"><span class="line1"><span class="code">KI10</span> <span class="jp">陰谷</span> <span class="yomi">いんこく</span></span><span class="eff">ひざ裏内側のこわばりに。下半身の巡りスイッチON！</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. 変化のメカニズム ============ -->
+  <section>
+    <span class="sec-tag"><span class="sec-num">05</span>　ツボ刺激で、身体はこう変わります</span>
+    <h2>ツボは、身体をゆるめる<em>「神経のスイッチ」</em>です</h2>
+
+    <div class="flow-intro">
+      <div class="fi-ttl">力ずくでほぐすのではありません</div>
+      <p>当院の施術は、ツボという<strong>神経の入り口</strong>に的確な刺激（入力）を入れることで、脳と自律神経に「もう守らなくて大丈夫」という信号を届けます。すると、過剰な緊張のスイッチが切れ、身体が自分からゆるんでいきます。</p>
+    </div>
+
+    <div class="flow">
+      <div class="step"><span class="s-no">1</span>
+        <div class="s-ttl">ツボを刺激する（神経への入力）</div>
+        <div class="s-txt">選んだツボに刺激を入れ、神経を通じて脳へ信号を送ります。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step"><span class="s-no">2</span>
+        <div class="s-ttl">脳が"警戒モード"をゆるめる</div>
+        <div class="s-txt">張りつめていた交感神経が落ち着き、休息側（副交感神経）へ切り替わります。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step"><span class="s-no">3</span>
+        <div class="s-ttl">過剰な筋緊張が解ける</div>
+        <div class="s-txt">カブトムシのようだった背中、カチカチの頭、ガチガチの右肩がゆるみます。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step"><span class="s-no">4</span>
+        <div class="s-ttl">血流とエネルギーが巡り出す</div>
+        <div class="s-txt">滞っていた循環が回復し、測定数値も整う方向へ動いていきます。</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="step final"><span class="s-no">5</span>
+        <div class="s-ttl">首・肩・膝が軽くなり、全身がスッキリ</div>
+        <div class="s-txt">動かしやすさが戻り、左右のバランスも整っていきます。今日の施術後は、かなりスッキリ感じていただけるはずです。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. アフターケア ============ -->
+  <section style="border-bottom:none;">
+    <span class="sec-tag"><span class="sec-num">06</span>　これから・おうちでのケア</span>
+    <h2>ゆるんだ状態を、身体に<em>覚えさせる</em>数日に</h2>
+    <p>施術で整った状態は、その後の数日間でさらに馴染んで軽くなっていくことが多いです。次のことを意識してみてください。</p>
+    <ul class="care-list">
+      <li><strong>水分をしっかり</strong>巡りが良くなった分、こまめに水分をとってください。</li>
+      <li><strong>ぬるめの入浴＋早めの就寝</strong>「ゆるんだ状態」を脳に定着させる時間になります。</li>
+      <li><strong>スーツケースは左右交互に</strong>同じ側ばかりで引くと、また右に負担が偏ります。</li>
+      <li><strong>同じ姿勢を続けない</strong>こまめに肩を回す・首をゆっくり動かすだけでも違います。</li>
+    </ul>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="f-clinic">三条健康堂接骨院</div>
+    <div class="f-loc">香川県高松市由良町・由良川東公園のそば</div>
+    <div class="f-btns">
+      <a class="btn line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="f-prof">柔道整復師。三条健康堂接骨院 院長。<br>香川県高松市にて30年間、延べ1万人以上の施術を行う。<br>年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</div>
+    <div class="f-brand">高松発・一生動ける身体と人生の教養研究室<br>無車・自転車・圧力鍋生活を実践する治療家より</div>
+  </footer>
+
+</div>
+</body>
+</html>
