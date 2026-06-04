@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>アイソメトリック・タイマー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{ --green:#1a3d28; --green-deep:#122b1c; --gold:#c4a44d; --ivory:#f5f0e4; --force:#e0b84a; --relax:#6fae8a; }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:'Zen Kaku Gothic New',-apple-system,'Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
+    background:radial-gradient(circle at 50% 28%, #224d33 0%, var(--green) 45%, var(--green-deep) 100%);
+    color:var(--ivory); display:flex;flex-direction:column;align-items:center;
+    min-height:100%; padding:env(safe-area-inset-top) 18px calc(env(safe-area-inset-bottom) + 16px);
+    overflow-y:auto;user-select:none;
+  }
+  header{width:100%;text-align:center;padding:16px 0 4px;}
+  header .title{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.08em;}
+  header .sub{font-size:14px;color:rgba(245,240,228,.7);margin-top:5px;}
+  .ring-wrap{display:flex;align-items:center;justify-content:center;width:100%;max-width:420px;margin:6px 0;}
+  .ring{width:min(64vw,260px);height:min(64vw,260px);position:relative;}
+  svg{width:100%;height:100%;transform:rotate(-90deg);display:block;}
+  .track{fill:none;stroke:rgba(245,240,228,.10);stroke-width:14;}
+  .prog{fill:none;stroke:var(--gold);stroke-width:14;stroke-linecap:round;transition:stroke .35s ease;}
+  .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .phase{font-size:32px;font-weight:900;line-height:1.15;color:var(--ivory);transition:color .35s ease;}
+  .count{font-size:74px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;margin-top:4px;color:var(--gold);transition:color .35s ease;}
+  .hint{font-size:13px;color:rgba(245,240,228,.55);margin-top:8px;}
+  body.force .prog{stroke:var(--force);} body.force .phase{color:var(--force);} body.force .count{color:var(--force);}
+  body.relax .prog{stroke:var(--relax);} body.relax .phase{color:var(--relax);} body.relax .count{color:var(--relax);}
+  .settings{width:100%;max-width:420px;background:rgba(245,240,228,.05);border:1px solid rgba(196,164,77,.30);border-radius:16px;padding:12px 14px;margin:4px 0 12px;}
+  .settings.locked{opacity:.45;pointer-events:none;}
+  .srow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;}
+  .srow + .srow{border-top:1px solid rgba(245,240,228,.10);}
+  .slabel{font-size:17px;font-weight:700;color:var(--ivory);}
+  .stepper{display:flex;align-items:center;gap:14px;}
+  .stepper button{width:46px;height:46px;border-radius:12px;border:none;background:var(--gold);color:var(--green-deep);font-size:28px;font-weight:900;line-height:1;cursor:pointer;}
+  .stepper button:active{transform:scale(.92);}
+  .sval{min-width:62px;text-align:center;font-size:26px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--gold);}
+  .sunit{font-size:14px;color:rgba(245,240,228,.6);margin-left:-8px;}
+  .presets{display:flex;gap:8px;margin-top:10px;}
+  .presets button{flex:1;padding:10px 0;border-radius:10px;border:1px solid rgba(245,240,228,.25);background:rgba(245,240,228,.06);color:var(--ivory);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .presets button:active{transform:scale(.96);}
+  .meta{display:flex;gap:12px;width:100%;max-width:420px;margin-bottom:12px;}
+  .meta .box{flex:1;background:rgba(245,240,228,.06);border:1px solid rgba(196,164,77,.30);border-radius:14px;padding:10px 6px;text-align:center;}
+  .meta .label{font-size:12px;color:rgba(245,240,228,.6);}
+  .meta .val{font-size:24px;font-weight:900;color:var(--ivory);margin-top:3px;font-variant-numeric:tabular-nums;}
+  .controls{display:flex;gap:12px;width:100%;max-width:420px;}
+  button.ctrl{font-family:inherit;cursor:pointer;border:none;border-radius:16px;font-weight:700;letter-spacing:.05em;}
+  button.ctrl:active{transform:scale(.97);}
+  .btn-main{flex:2;padding:20px 0;font-size:23px;background:var(--gold);color:var(--green-deep);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .btn-sub{flex:1;padding:20px 0;font-size:17px;background:rgba(245,240,228,.10);color:var(--ivory);border:1px solid rgba(245,240,228,.25);}
+  .sound{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:15px;color:rgba(245,240,228,.7);cursor:pointer;}
+  .sound .dot{width:14px;height:14px;border-radius:50%;background:var(--relax);box-shadow:0 0 0 3px rgba(111,174,138,.25);}
+  .sound.off .dot{background:rgba(245,240,228,.3);box-shadow:none;}
+</style>
+</head>
+<body>
+  <header>
+    <div class="title">アイソメトリック・タイマー</div>
+    <div class="sub" id="sub">力 6秒 → ゆるめる 8秒 ／ 10分</div>
+  </header>
+
+  <div class="ring-wrap">
+    <div class="ring">
+      <svg viewBox="0 0 120 120">
+        <circle class="track" cx="60" cy="60" r="52"></circle>
+        <circle class="prog" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0"></circle>
+      </svg>
+      <div class="center">
+        <div class="phase" id="phase">準備</div>
+        <div class="count" id="count">--</div>
+        <div class="hint" id="hint">設定して スタート</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings" id="settings">
+    <div class="srow">
+      <div class="slabel">力を入れる</div>
+      <div class="stepper">
+        <button data-k="force" data-d="-1">−</button>
+        <span class="sval"><span id="vForce">6</span><span class="sunit"> 秒</span></span>
+        <button data-k="force" data-d="1">＋</button>
+      </div>
+    </div>
+    <div class="srow">
+      <div class="slabel">ゆるめる</div>
+      <div class="stepper">
+        <button data-k="relax" data-d="-1">−</button>
+        <span class="sval"><span id="vRelax">8</span><span class="sunit"> 秒</span></span>
+        <button data-k="relax" data-d="1">＋</button>
+      </div>
+    </div>
+    <div class="srow">
+      <div class="slabel">合計時間</div>
+      <div class="stepper">
+        <button data-k="total" data-d="-1">−</button>
+        <span class="sval"><span id="vTotal">10</span><span class="sunit"> 分</span></span>
+        <button data-k="total" data-d="1">＋</button>
+      </div>
+    </div>
+    <div class="presets">
+      <button data-f="6" data-r="8" data-t="10">6 / 8 ・10分</button>
+      <button data-f="10" data-r="10" data-t="5">10 / 10 ・5分</button>
+      <button data-f="6" data-r="8" data-t="5">6 / 8 ・5分</button>
+    </div>
+  </div>
+
+  <div class="meta">
+    <div class="box"><div class="label">残り時間</div><div class="val" id="remain">10:00</div></div>
+    <div class="box"><div class="label">サイクル</div><div class="val" id="cycle">0</div></div>
+  </div>
+
+  <div class="controls">
+    <button class="ctrl btn-main" id="startBtn">スタート</button>
+    <button class="ctrl btn-sub" id="resetBtn">リセット</button>
+  </div>
+
+  <div class="sound" id="soundToggle"><span class="dot"></span><span id="soundLabel">音 オン</span></div>
+
+<script>
+(function(){
+  let forceSec=6, relaxSec=8, totalMin=10;
+  const LIMIT={force:[1,60], relax:[1,120], total:[1,60]};
+  const CIRC=2*Math.PI*52;
+
+  const body=document.body;
+  const elPhase=document.getElementById('phase'), elCount=document.getElementById('count'), elHint=document.getElementById('hint');
+  const elProg=document.querySelector('.prog'), elRemain=document.getElementById('remain'), elCycle=document.getElementById('cycle'), elSub=document.getElementById('sub');
+  const settings=document.getElementById('settings'), startBtn=document.getElementById('startBtn'), resetBtn=document.getElementById('resetBtn');
+  const soundToggle=document.getElementById('soundToggle'), soundLabel=document.getElementById('soundLabel');
+  const vForce=document.getElementById('vForce'), vRelax=document.getElementById('vRelax'), vTotal=document.getElementById('vTotal');
+
+  let running=false, raf=null, startAt=0, pausedElapsed=0, soundOn=true, lastPhase='', lastTick=-1, finished=false;
+
+  /* ===== 音声経路（Pixel/Chrome 対策）=====
+     - latencyHint:'playback'（interactive/低遅延は使わない）
+     - sampleRate:48000 → 例外時は playback のみ → 引数なし の順でフォールバック
+     - タップの瞬間に生成＆resume
+     - 停止/一時停止/終了の鳴り終わり後に close() して null に戻し、次回作り直す
+     - sine のみ／attack0.018・release0.09／ピーク0.16以下／重ねる時は150ms以上ずらす
+     - 音声ファイル埋め込みなし・読み上げ（speechSynthesis）なし */
+  let actx=null, master=null, closeTimer=null;
+
+  function createCtx(){
+    if(closeTimer){ clearTimeout(closeTimer); closeTimer=null; }
+    if(actx && actx.state!=='closed'){
+      if(actx.state==='suspended'){ try{ actx.resume(); }catch(e){} }
+      return;
+    }
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC){ actx=null; return; }
+    try{ actx=new AC({latencyHint:'playback', sampleRate:48000}); }
+    catch(e1){
+      try{ actx=new AC({latencyHint:'playback'}); }
+      catch(e2){ try{ actx=new AC(); }catch(e3){ actx=null; return; } }
+    }
+    master=actx.createGain(); master.gain.value=1.0;
+    master.connect(actx.destination);
+    if(actx.state==='suspended'){ try{ actx.resume(); }catch(e){} }
+  }
+
+  function scheduleClose(){
+    if(closeTimer){ clearTimeout(closeTimer); }
+    const ref=actx;
+    closeTimer=setTimeout(function(){
+      closeTimer=null;
+      if(ref && ref===actx && ref.state!=='closed'){
+        try{ ref.close(); }catch(e){}
+        actx=null; master=null;
+      }
+    }, 1200); // 鳴り終わり（最大1.2秒）を待ってから閉じる
+  }
+
+  // 単音（sine・なめらかなエンベロープ・ピーク0.16以下）
+  function tone(freq, offset, dur, peak){
+    if(!soundOn || !actx || actx.state==='closed' || !master) return;
+    const t0=actx.currentTime+(offset||0);
+    const o=actx.createOscillator(), g=actx.createGain();
+    o.type='sine';
+    o.frequency.setValueAtTime(freq, t0);
+    const p=Math.min(0.16, peak||0.14), atk=0.018, rel=0.09;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.linearRampToValueAtTime(p, t0+atk);
+    g.gain.setValueAtTime(p, t0+Math.max(atk, dur-rel));
+    g.gain.linearRampToValueAtTime(0.0001, t0+dur);
+    o.connect(g); g.connect(master);
+    o.start(t0); o.stop(t0+dur+0.05);
+  }
+  function cueForce(){ tone(784, 0, 0.30, 0.16); }  // 力＝高い単音
+  function cueRelax(){ tone(392, 0, 0.55, 0.14); }  // ゆるめる＝低い単音
+
+  function fmt(sec){ sec=Math.max(0,Math.ceil(sec)); const m=Math.floor(sec/60), s=sec%60; return m+':'+(s<10?'0':'')+s; }
+  function clamp(v,r){ return Math.min(r[1],Math.max(r[0],v)); }
+
+  function compute(elapsed){
+    const cyc=forceSec+relaxSec, inCycle=elapsed%cyc, cycleNo=Math.floor(elapsed/cyc)+1;
+    if(inCycle<forceSec) return {phase:'force', remainPhase:forceSec-inCycle, cycleNo:cycleNo};
+    return {phase:'relax', remainPhase:cyc-inCycle, cycleNo:cycleNo};
+  }
+
+  function render(){
+    const elapsed=pausedElapsed+(running?(performance.now()-startAt)/1000:0);
+    const TOTAL=totalMin*60;
+    if(elapsed>=TOTAL){ complete(); return; }
+    const r=compute(elapsed);
+
+    if(r.phase!==lastPhase){
+      lastPhase=r.phase; lastTick=-1;
+      if(r.phase==='force'){
+        body.classList.remove('relax'); body.classList.add('force');
+        elPhase.textContent='力を入れる'; elHint.textContent='ぐっと '+forceSec+'秒'; cueForce();
+      }else{
+        body.classList.remove('force'); body.classList.add('relax');
+        elPhase.textContent='ゆるめる'; elHint.textContent='ゆっくり '+relaxSec+'秒'; cueRelax();
+      }
+    }
+
+    const shown=Math.ceil(r.remainPhase);
+    elCount.textContent=shown;
+    if(shown<=3 && shown!==lastTick && shown>0){
+      lastTick=shown;
+      tone(r.phase==='force'?784:392, 0, 0.12, 0.10); // カウント音も同経路
+    }
+
+    elRemain.textContent=fmt(TOTAL-elapsed);
+    elCycle.textContent=r.cycleNo;
+    const phaseLen=(r.phase==='force')?forceSec:relaxSec;
+    elProg.style.strokeDashoffset=CIRC*(1-(r.remainPhase/phaseLen));
+    raf=requestAnimationFrame(render);
+  }
+
+  function complete(){
+    running=false; finished=true;
+    if(raf) cancelAnimationFrame(raf);
+    body.classList.remove('force','relax');
+    elPhase.textContent='お疲れさま'; elCount.textContent='✓'; elHint.textContent='完了しました';
+    elRemain.textContent='0:00'; elProg.style.strokeDashoffset=0; startBtn.textContent='もう一度';
+    settings.classList.remove('locked');
+    // 完了音：150ms以上ずらして3音
+    tone(523, 0.00, 0.25, 0.14);
+    tone(659, 0.18, 0.25, 0.14);
+    tone(784, 0.36, 0.40, 0.15);
+    scheduleClose();
+  }
+
+  function start(){
+    createCtx();          // ★タップの瞬間に生成＆resume
+    if(finished) reset();
+    running=true; finished=false;
+    startAt=performance.now(); lastPhase=''; lastTick=-1;
+    startBtn.textContent='一時停止'; settings.classList.add('locked');
+    render();
+  }
+  function pause(){
+    running=false;
+    pausedElapsed+=(performance.now()-startAt)/1000;
+    if(raf) cancelAnimationFrame(raf);
+    startBtn.textContent='再開'; elHint.textContent='一時停止中';
+    scheduleClose();       // ★鳴り終わり後に close
+  }
+  function reset(){
+    running=false; finished=false;
+    if(raf) cancelAnimationFrame(raf);
+    pausedElapsed=0; startAt=0; lastPhase=''; lastTick=-1;
+    body.classList.remove('force','relax');
+    elPhase.textContent='準備'; elCount.textContent='--'; elHint.textContent='設定して スタート';
+    elRemain.textContent=fmt(totalMin*60); elCycle.textContent='0'; elProg.style.strokeDashoffset=0;
+    startBtn.textContent='スタート'; settings.classList.remove('locked');
+    scheduleClose();       // ★鳴り終わり後に close
+  }
+
+  function refreshLabels(){
+    vForce.textContent=forceSec; vRelax.textContent=relaxSec; vTotal.textContent=totalMin;
+    elSub.textContent='力 '+forceSec+'秒 → ゆるめる '+relaxSec+'秒 ／ '+totalMin+'分';
+    if(!running && !finished) elRemain.textContent=fmt(totalMin*60);
+  }
+
+  settings.querySelectorAll('.stepper button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(running) return;
+      const k=btn.dataset.k, d=parseInt(btn.dataset.d,10);
+      if(k==='force') forceSec=clamp(forceSec+d,LIMIT.force);
+      else if(k==='relax') relaxSec=clamp(relaxSec+d,LIMIT.relax);
+      else if(k==='total') totalMin=clamp(totalMin+d,LIMIT.total);
+      finished=false; refreshLabels();
+    });
+  });
+  settings.querySelectorAll('.presets button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(running) return;
+      forceSec=parseInt(btn.dataset.f,10); relaxSec=parseInt(btn.dataset.r,10); totalMin=parseInt(btn.dataset.t,10);
+      finished=false; refreshLabels();
+    });
+  });
+
+  startBtn.addEventListener('click',function(){ if(running) pause(); else start(); });
+  resetBtn.addEventListener('click',reset);
+  soundToggle.addEventListener('click',function(){
+    soundOn=!soundOn;
+    if(soundOn){ soundToggle.classList.remove('off'); soundLabel.textContent='音 オン'; if(running) createCtx(); }
+    else{ soundToggle.classList.add('off'); soundLabel.textContent='音 オフ'; }
+  });
+
+  function keepAwake(){ try{ if('wakeLock' in navigator) navigator.wakeLock.request('screen'); }catch(e){} }
+  startBtn.addEventListener('click',keepAwake);
+
+  refreshLabels(); reset();
+})();
+</script>
+</body>
+</html>
