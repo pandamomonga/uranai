@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="アイソタイマー">
+<meta name="theme-color" content="#1a3d28">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>アイソメトリック・タイマー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-deep:#122b1c;
+    --gold:#c4a44d;
+    --ivory:#f5f0e4;
+    --force:#e0b84a;   /* 力を入れる：金〜琥珀 */
+    --relax:#6fae8a;   /* リラックス：やわらかい緑 */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:'Zen Kaku Gothic New',-apple-system,'Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
+    background:radial-gradient(circle at 50% 30%, #224d33 0%, var(--green) 45%, var(--green-deep) 100%);
+    color:var(--ivory);
+    display:flex;flex-direction:column;align-items:center;
+    min-height:100%;
+    padding:env(safe-area-inset-top) 20px calc(env(safe-area-inset-bottom) + 16px);
+    overflow:hidden;
+    user-select:none;
+  }
+
+  header{
+    width:100%;text-align:center;
+    padding:18px 0 6px;
+  }
+  header .title{
+    font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.08em;
+  }
+  header .sub{
+    font-size:13px;color:rgba(245,240,228,.6);margin-top:4px;letter-spacing:.05em;
+  }
+
+  /* リング */
+  .ring-wrap{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    width:100%;max-width:420px;position:relative;
+  }
+  .ring{
+    width:min(78vw,330px);height:min(78vw,330px);
+    position:relative;
+  }
+  svg{width:100%;height:100%;transform:rotate(-90deg);display:block;}
+  .track{fill:none;stroke:rgba(245,240,228,.10);stroke-width:14;}
+  .prog{
+    fill:none;stroke:var(--gold);stroke-width:14;stroke-linecap:round;
+    transition:stroke .35s ease;
+  }
+  .center{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+  }
+  .phase{
+    font-size:34px;font-weight:900;line-height:1.15;
+    letter-spacing:.04em;color:var(--ivory);
+    transition:color .35s ease;
+  }
+  .count{
+    font-size:84px;font-weight:900;line-height:1;
+    font-variant-numeric:tabular-nums;margin-top:6px;
+    color:var(--gold);transition:color .35s ease;
+  }
+  .hint{
+    font-size:14px;color:rgba(245,240,228,.55);margin-top:10px;letter-spacing:.05em;
+  }
+
+  /* 状態の色分け */
+  body.force .prog{stroke:var(--force);}
+  body.force .phase{color:var(--force);}
+  body.force .count{color:var(--force);}
+  body.relax .prog{stroke:var(--relax);}
+  body.relax .phase{color:var(--relax);}
+  body.relax .count{color:var(--relax);}
+
+  /* メーター（合計） */
+  .meta{
+    display:flex;gap:14px;width:100%;max-width:420px;margin:6px 0 14px;
+  }
+  .meta .box{
+    flex:1;background:rgba(245,240,228,.06);border:1px solid rgba(196,164,77,.35);
+    border-radius:14px;padding:12px 8px;text-align:center;
+  }
+  .meta .label{font-size:12px;color:rgba(245,240,228,.6);letter-spacing:.06em;}
+  .meta .val{font-size:26px;font-weight:900;color:var(--ivory);margin-top:4px;font-variant-numeric:tabular-nums;}
+
+  /* ボタン */
+  .controls{display:flex;gap:14px;width:100%;max-width:420px;}
+  button{
+    font-family:inherit;cursor:pointer;border:none;border-radius:16px;
+    font-weight:700;letter-spacing:.05em;transition:transform .08s ease,opacity .2s;
+  }
+  button:active{transform:scale(.96);}
+  .btn-main{
+    flex:2;padding:22px 0;font-size:24px;
+    background:var(--gold);color:var(--green-deep);
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  .btn-sub{
+    flex:1;padding:22px 0;font-size:18px;
+    background:rgba(245,240,228,.10);color:var(--ivory);
+    border:1px solid rgba(245,240,228,.25);
+  }
+
+  /* 音声トグル */
+  .sound{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    margin-top:14px;font-size:15px;color:rgba(245,240,228,.7);cursor:pointer;
+  }
+  .sound .dot{
+    width:14px;height:14px;border-radius:50%;background:var(--relax);
+    box-shadow:0 0 0 3px rgba(111,174,138,.25);
+  }
+  .sound.off .dot{background:rgba(245,240,228,.3);box-shadow:none;}
+
+  .done .phase{font-size:30px;}
+</style>
+</head>
+<body>
+  <header>
+    <div class="title">アイソメトリック・タイマー</div>
+    <div class="sub">力 6秒 → ゆるめる 8秒 ／ 10分</div>
+  </header>
+
+  <div class="ring-wrap">
+    <div class="ring">
+      <svg viewBox="0 0 120 120">
+        <circle class="track" cx="60" cy="60" r="52"></circle>
+        <circle class="prog" cx="60" cy="60" r="52"
+                stroke-dasharray="326.7" stroke-dashoffset="0"></circle>
+      </svg>
+      <div class="center">
+        <div class="phase" id="phase">準備</div>
+        <div class="count" id="count">--</div>
+        <div class="hint" id="hint">スタートを押してください</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="meta">
+    <div class="box">
+      <div class="label">残り時間</div>
+      <div class="val" id="remain">10:00</div>
+    </div>
+    <div class="box">
+      <div class="label">サイクル</div>
+      <div class="val" id="cycle">0</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn-main" id="startBtn">スタート</button>
+    <button class="btn-sub" id="resetBtn">リセット</button>
+  </div>
+
+  <div class="sound" id="soundToggle">
+    <span class="dot"></span><span id="soundLabel">音声ガイド オン</span>
+  </div>
+
+<script>
+(function(){
+  // ===== 設定 =====
+  const FORCE = 6;          // 力を入れる秒数
+  const RELAX = 8;          // リラックス秒数
+  const TOTAL = 10 * 60;    // 合計（秒）
+  const CIRC  = 2 * Math.PI * 52; // リング周長
+
+  // ===== 要素 =====
+  const body   = document.body;
+  const elPhase= document.getElementById('phase');
+  const elCount= document.getElementById('count');
+  const elHint = document.getElementById('hint');
+  const elProg = document.querySelector('.prog');
+  const elRemain=document.getElementById('remain');
+  const elCycle= document.getElementById('cycle');
+  const startBtn=document.getElementById('startBtn');
+  const resetBtn=document.getElementById('resetBtn');
+  const soundToggle=document.getElementById('soundToggle');
+  const soundLabel=document.getElementById('soundLabel');
+
+  // ===== 状態 =====
+  let running=false;
+  let raf=null;
+  let startAt=0;        // 計測開始のタイムスタンプ
+  let pausedElapsed=0;  // 一時停止までの累計秒
+  let soundOn=true;
+  let lastPhase='';     // 'force'/'relax' フェーズ切替検知
+  let lastTick=-1;      // カウントダウンの「ピッ」検知
+  let finished=false;
+
+  // ===== 音声（Web Audio） =====
+  let actx=null;
+  function ensureAudio(){
+    if(!actx){
+      try{ actx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+    }
+    if(actx && actx.state==='suspended'){ actx.resume(); }
+  }
+  function beep(freq,dur,vol){
+    if(!soundOn||!actx) return;
+    const o=actx.createOscillator();
+    const g=actx.createGain();
+    o.type='sine';o.frequency.value=freq;
+    g.gain.setValueAtTime(0,actx.currentTime);
+    g.gain.linearRampToValueAtTime(vol||0.25,actx.currentTime+0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001,actx.currentTime+(dur||0.15));
+    o.connect(g);g.connect(actx.destination);
+    o.start();o.stop(actx.currentTime+(dur||0.15)+0.02);
+  }
+  // 1音を指定タイミングで鳴らす（合図音の部品）
+  function tone(freq,offset,dur,vol,type,attack){
+    if(!soundOn||!actx) return;
+    const t0=actx.currentTime+(offset||0);
+    const o=actx.createOscillator();
+    const g=actx.createGain();
+    o.type=type||'sine';
+    o.frequency.setValueAtTime(freq,t0);
+    const a=attack||0.012;
+    g.gain.setValueAtTime(0.0001,t0);
+    g.gain.linearRampToValueAtTime(vol,t0+a);
+    g.gain.exponentialRampToValueAtTime(0.0001,t0+dur);
+    o.connect(g);g.connect(actx.destination);
+    o.start(t0);o.stop(t0+dur+0.04);
+  }
+  // 【力を入れる】合図：上がっていく・明るい・キリッと鋭い ピロリンッ↑
+  function cueForce(){
+    if(!soundOn||!actx) return;
+    tone(587, 0.00, 0.13, 0.30, 'triangle'); // レ
+    tone(740, 0.10, 0.13, 0.32, 'triangle'); // ファ#
+    tone(988, 0.20, 0.26, 0.36, 'triangle'); // シ（高く張る＝さあ入れるぞ）
+  }
+  // 【ゆるめる】合図：下がっていく・柔らかい・ゆったり ポ〜ン↓
+  function cueRelax(){
+    if(!soundOn||!actx) return;
+    tone(784, 0.00, 0.50, 0.26, 'sine');     // ソ
+    tone(587, 0.24, 0.62, 0.24, 'sine');     // レ
+    tone(392, 0.52, 1.00, 0.22, 'sine');     // ソ（低く長く溶ける＝力を抜く）
+  }
+  // 音声読み上げ
+  function speak(text){
+    if(!soundOn) return;
+    try{
+      window.speechSynthesis.cancel();
+      const u=new SpeechSynthesisUtterance(text);
+      u.lang='ja-JP';u.rate=1.05;u.pitch=1;u.volume=1;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  // ===== 表示更新 =====
+  function fmt(sec){
+    sec=Math.max(0,Math.ceil(sec));
+    const m=Math.floor(sec/60), s=sec%60;
+    return m+':'+(s<10?'0':'')+s;
+  }
+
+  // 経過秒からフェーズと残りを計算
+  function compute(elapsed){
+    const cyc=FORCE+RELAX;            // 14秒
+    const inCycle=elapsed % cyc;
+    const cycleNo=Math.floor(elapsed/cyc)+1;
+    let phase,remainPhase;
+    if(inCycle < FORCE){
+      phase='force';
+      remainPhase=FORCE-inCycle;
+    }else{
+      phase='relax';
+      remainPhase=cyc-inCycle;
+    }
+    return {phase,remainPhase,cycleNo};
+  }
+
+  function render(){
+    const now=performance.now();
+    const elapsed=pausedElapsed + (running?(now-startAt)/1000:0);
+
+    if(elapsed>=TOTAL){ complete(); return; }
+
+    const {phase,remainPhase,cycleNo}=compute(elapsed);
+
+    // フェーズ切替時：音声＋ビープ
+    if(phase!==lastPhase){
+      lastPhase=phase;
+      lastTick=-1;
+      if(phase==='force'){
+        body.classList.remove('relax');body.classList.add('force');
+        elPhase.textContent='力を入れる';
+        elHint.textContent='ぐっと '+FORCE+'秒';
+        cueForce();
+        speak('力を入れて');
+      }else{
+        body.classList.remove('force');body.classList.add('relax');
+        elPhase.textContent='ゆるめる';
+        elHint.textContent='ゆっくり '+RELAX+'秒';
+        cueRelax();
+        speak('リラックス');
+      }
+    }
+
+    // カウント表示
+    const shown=Math.ceil(remainPhase);
+    elCount.textContent=shown;
+
+    // 残り3秒のカウント音（力＝高め／ゆるめ＝低め で雰囲気を合わせる）
+    if(shown<=3 && shown!==lastTick && shown>0){
+      lastTick=shown;
+      if(phase==='force') beep(784,0.07,0.16);
+      else                beep(392,0.10,0.13);
+    }
+
+    // 合計の残り・サイクル
+    elRemain.textContent=fmt(TOTAL-elapsed);
+    elCycle.textContent=cycleNo;
+
+    // リング（フェーズ内の進捗）
+    const phaseLen=(phase==='force')?FORCE:RELAX;
+    const ratio=remainPhase/phaseLen;
+    elProg.style.strokeDashoffset = CIRC*(1-ratio);
+
+    raf=requestAnimationFrame(render);
+  }
+
+  function complete(){
+    running=false;finished=true;
+    if(raf) cancelAnimationFrame(raf);
+    body.classList.remove('force','relax');
+    body.classList.add('done');
+    elPhase.textContent='お疲れさま';
+    elCount.textContent='✓';
+    elHint.textContent='10分 完了しました';
+    elRemain.textContent='0:00';
+    elProg.style.strokeDashoffset=0;
+    startBtn.textContent='もう一度';
+    beep(523,0.2,0.3);
+    setTimeout(()=>beep(659,0.2,0.3),200);
+    setTimeout(()=>beep(784,0.35,0.3),400);
+    speak('お疲れさまでした');
+  }
+
+  // ===== 操作 =====
+  function start(){
+    ensureAudio();
+    if(finished){ reset(); }
+    running=true;finished=false;
+    body.classList.remove('done');
+    startAt=performance.now();
+    lastPhase='';lastTick=-1;
+    startBtn.textContent='一時停止';
+    render();
+  }
+  function pause(){
+    running=false;
+    pausedElapsed += (performance.now()-startAt)/1000;
+    if(raf) cancelAnimationFrame(raf);
+    window.speechSynthesis && window.speechSynthesis.cancel();
+    startBtn.textContent='再開';
+    elHint.textContent='一時停止中';
+  }
+  function reset(){
+    running=false;finished=false;
+    if(raf) cancelAnimationFrame(raf);
+    window.speechSynthesis && window.speechSynthesis.cancel();
+    pausedElapsed=0;startAt=0;lastPhase='';lastTick=-1;
+    body.classList.remove('force','relax','done');
+    elPhase.textContent='準備';
+    elCount.textContent='--';
+    elHint.textContent='スタートを押してください';
+    elRemain.textContent=fmt(TOTAL);
+    elCycle.textContent='0';
+    elProg.style.strokeDashoffset=0;
+    startBtn.textContent='スタート';
+  }
+
+  startBtn.addEventListener('click',()=>{
+    if(running) pause();
+    else start();
+  });
+  resetBtn.addEventListener('click',reset);
+
+  soundToggle.addEventListener('click',()=>{
+    soundOn=!soundOn;
+    if(soundOn){
+      soundToggle.classList.remove('off');
+      soundLabel.textContent='音声ガイド オン';
+      ensureAudio();
+    }else{
+      soundToggle.classList.add('off');
+      soundLabel.textContent='音声ガイド オフ';
+      window.speechSynthesis && window.speechSynthesis.cancel();
+    }
+  });
+
+  // 画面スリープ防止（対応端末のみ）
+  let wakeLock=null;
+  async function keepAwake(){
+    try{ if('wakeLock' in navigator){ wakeLock=await navigator.wakeLock.request('screen'); } }catch(e){}
+  }
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && running) keepAwake(); });
+  startBtn.addEventListener('click',keepAwake);
+
+  // 初期表示
+  reset();
+})();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
+</script>
+</body>
+</html>
