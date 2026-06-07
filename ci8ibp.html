@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三澤さま 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#27563a;
+    --gold:#c4a44d;
+    --ivory:#f5f0e4;
+    --ink:#1f1f1f;
+    --paper:#f7f3ec;
+    --jaw:#d9690f;     /* あご */
+    --neck:#2563b8;    /* 首 */
+    --back:#2f8f6b;    /* 肩・背中・胸 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.85;
+    font-size:18px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 0 60px;background:#fff;}
+
+  /* ===== HEADER ===== */
+  header{
+    background:var(--green);
+    color:var(--ivory);
+    padding:40px 28px 34px;
+    position:relative;
+    border-bottom:5px solid var(--gold);
+  }
+  header .badge{
+    display:inline-block;
+    font-size:14px;letter-spacing:.18em;
+    color:var(--gold);font-weight:700;margin-bottom:14px;
+  }
+  header h1{
+    font-family:'Noto Serif JP',serif;
+    font-size:30px;font-weight:700;line-height:1.4;
+  }
+  header h1 .name{color:var(--gold);}
+  header .date{margin-top:14px;font-size:16px;color:#e8e2d2;font-weight:500;}
+
+  section{padding:30px 24px;}
+  h2{
+    font-family:'Noto Serif JP',serif;
+    font-size:24px;font-weight:700;color:var(--green);
+    margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  h2 .em{font-size:28px;}
+  p{font-size:18px;}
+
+  /* ===== 今日の状態 ===== */
+  .today{
+    background:var(--green);color:var(--ivory);
+    border-radius:18px;padding:26px 24px;
+  }
+  .today h2{color:var(--gold);}
+  .today p{color:var(--ivory);font-size:18px;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .chip{
+    background:rgba(255,255,255,.14);
+    border:2px solid var(--gold);
+    color:var(--ivory);
+    border-radius:30px;padding:8px 16px;font-size:16px;font-weight:700;
+  }
+
+  /* ===== 体の図 ===== */
+  .map-card{
+    background:#fbf8f1;border:2px solid #e4dcca;border-radius:18px;
+    padding:22px 14px 14px;text-align:center;
+  }
+  .legend{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:6px;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:7px;font-size:16px;font-weight:700;}
+  .dot{width:16px;height:16px;border-radius:50%;display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px #999;}
+
+  /* ===== ゾーンブロック ===== */
+  .zone{border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 3px 10px rgba(0,0,0,.08);}
+  .zone-head{padding:18px 22px;color:#fff;display:flex;align-items:center;gap:14px;}
+  .zone-head .ic{font-size:32px;}
+  .zone-head .t{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;}
+  .zone-head .s{font-size:15px;font-weight:500;opacity:1;}
+  .zone-body{background:#fff;padding:8px 18px 18px;}
+
+  .point{
+    border-bottom:1px solid #ececec;padding:16px 4px;
+  }
+  .point:last-child{border-bottom:none;}
+  .point .code{
+    display:inline-block;font-weight:900;font-size:15px;color:#fff;
+    padding:4px 10px;border-radius:8px;margin-right:8px;letter-spacing:.02em;
+  }
+  .point .jp{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:var(--ink);}
+  .point .read{font-size:14px;color:#5a5a5a;font-weight:500;margin-left:4px;}
+  .point .where{
+    display:block;margin-top:8px;font-size:15px;color:#444;font-weight:700;
+  }
+  .point .where::before{content:"📍 ";}
+  .point .eff{display:block;margin-top:6px;font-size:17px;color:var(--ink);}
+
+  .c-jaw{background:var(--jaw);}
+  .c-neck{background:var(--neck);}
+  .c-back{background:var(--back);}
+
+  /* ===== 数値 ===== */
+  .result{background:#fbf8f1;border:2px solid #e4dcca;border-radius:18px;padding:8px 18px 18px;}
+  .res-row{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:16px 4px;border-bottom:1px solid #e7dfcd;
+  }
+  .res-row:last-child{border-bottom:none;}
+  .res-name{font-size:17px;font-weight:700;color:var(--green);flex:1;}
+  .ba{display:flex;align-items:center;gap:8px;font-weight:900;}
+  .before{color:#9a4b2e;font-size:18px;}
+  .arrow{color:var(--gold);font-size:20px;}
+  .after{color:var(--back);font-size:22px;}
+  .tag{
+    display:inline-block;background:var(--back);color:#fff;
+    font-size:13px;font-weight:700;padding:3px 10px;border-radius:20px;margin-left:6px;
+  }
+
+  /* ===== ケア ===== */
+  .care{background:var(--green);color:var(--ivory);border-radius:18px;padding:26px 24px;}
+  .care h2{color:var(--gold);}
+  .care ul{list-style:none;margin-top:8px;}
+  .care li{font-size:18px;padding:10px 0 10px 34px;position:relative;border-bottom:1px solid rgba(255,255,255,.18);}
+  .care li:last-child{border-bottom:none;}
+  .care li::before{content:"🌿";position:absolute;left:0;top:9px;font-size:20px;}
+
+  footer{padding:28px 24px;text-align:center;border-top:5px solid var(--gold);background:var(--green);color:var(--ivory);}
+  footer .cn{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:var(--gold);}
+  footer .ad{font-size:15px;margin-top:8px;color:#e8e2d2;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="badge">東洋医学測定にもとづく</span>
+    <h1>施術報告書<br><span class="name">三澤さま</span> へ</h1>
+    <div class="date">2026年6月7日（日）</div>
+  </header>
+
+  <!-- 今日の状態 -->
+  <section>
+    <div class="today">
+      <h2><span class="em">🪞</span>今日の体は</h2>
+      <p>お仕事の緊張がそのまま体に出ていました。<br>
+      <strong>歯の食いしばり</strong>で<strong>あご</strong>がこわばり、<strong>首すじ</strong>と<strong>肩</strong>がガチガチに固まった状態。
+      頭から肩までが「ずっと力みっぱなし」のスイッチが入ったままでした。</p>
+      <div class="chip-row">
+        <span class="chip">あごの食いしばり</span>
+        <span class="chip">首のこわばり</span>
+        <span class="chip">肩のガチガチ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 体の図 -->
+  <section>
+    <h2><span class="em">🗺️</span>今日ゆるめた場所</h2>
+    <div class="map-card">
+      <svg viewBox="0 0 760 470" width="100%" style="max-width:520px" role="img" aria-label="施術したツボの位置図">
+        <!-- ラベル -->
+        <text x="190" y="26" text-anchor="middle" font-size="19" font-weight="700" fill="#1f1f1f" font-family="Noto Sans JP">前から</text>
+        <text x="570" y="26" text-anchor="middle" font-size="19" font-weight="700" fill="#1f1f1f" font-family="Noto Sans JP">後ろから</text>
+
+        <!-- ===== 前（左の人） center x=190 ===== -->
+        <ellipse cx="190" cy="105" rx="54" ry="64" fill="#ece5d6" stroke="#1a3d28" stroke-width="3"/>
+        <path d="M190 168 C228 168 238 178 276 202 C290 210 286 226 270 228 C260 229 252 224 248 218 L248 388 C248 400 240 406 230 406 L150 406 C140 406 132 400 132 388 L132 218 C128 224 120 229 110 228 C94 226 90 210 104 202 C142 178 152 168 190 168 Z"
+              fill="#ece5d6" stroke="#1a3d28" stroke-width="3"/>
+        <!-- あご ST7/6/5 左右 -->
+        <circle cx="222" cy="118" r="8" fill="#d9690f" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="226" cy="138" r="8" fill="#d9690f" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="219" cy="155" r="8" fill="#d9690f" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="158" cy="118" r="8" fill="#d9690f" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="154" cy="138" r="8" fill="#d9690f" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="161" cy="155" r="8" fill="#d9690f" stroke="#fff" stroke-width="2.5"/>
+        <!-- 胸 CV21 中央 -->
+        <circle cx="190" cy="212" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+        <!-- GB22 わき上 -->
+        <circle cx="244" cy="232" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="136" cy="232" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+        <!-- SP21 わき腹 -->
+        <circle cx="246" cy="270" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="134" cy="270" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+
+        <!-- ===== 後ろ（右の人） center x=570 ===== -->
+        <ellipse cx="570" cy="105" rx="54" ry="64" fill="#ece5d6" stroke="#1a3d28" stroke-width="3"/>
+        <path d="M570 168 C608 168 618 178 656 202 C670 210 666 226 650 228 C640 229 632 224 628 218 L628 388 C628 400 620 406 610 406 L530 406 C520 406 512 400 512 388 L512 218 C508 224 500 229 490 228 C474 226 470 210 484 202 C522 178 532 168 570 168 Z"
+              fill="#ece5d6" stroke="#1a3d28" stroke-width="3"/>
+        <!-- 首 GV16 中央 -->
+        <circle cx="570" cy="160" r="8" fill="#2563b8" stroke="#fff" stroke-width="2.5"/>
+        <!-- GB20 左右 -->
+        <circle cx="550" cy="150" r="8" fill="#2563b8" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="590" cy="150" r="8" fill="#2563b8" stroke="#fff" stroke-width="2.5"/>
+        <!-- BL10 うなじ -->
+        <circle cx="558" cy="176" r="8" fill="#2563b8" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="582" cy="176" r="8" fill="#2563b8" stroke="#fff" stroke-width="2.5"/>
+        <!-- 背中 BL45/46 肩甲骨の間 -->
+        <circle cx="552" cy="240" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="588" cy="240" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="552" cy="264" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="588" cy="264" r="8" fill="#2f8f6b" stroke="#fff" stroke-width="2.5"/>
+      </svg>
+      <div class="legend">
+        <span><i class="dot" style="background:#d9690f"></i>あご（食いしばり）</span>
+        <span><i class="dot" style="background:#2563b8"></i>首</span>
+        <span><i class="dot" style="background:#2f8f6b"></i>肩・背中・胸</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ゾーン1 あご -->
+  <section style="padding-top:6px;">
+    <h2><span class="em">🦷</span>① あご ― 食いしばりをゆるめる</h2>
+    <div class="zone">
+      <div class="zone-head c-jaw">
+        <span class="ic">😬→😌</span>
+        <div><div class="t">あごの力みスイッチを切る</div><div class="s">咬む筋肉とあごの関節をリセット</div></div>
+      </div>
+      <div class="zone-body">
+        <div class="point">
+          <span class="code c-jaw">ST 6</span><span class="jp">頬車</span><span class="read">きょうしゃ</span>
+          <span class="where">ほおの、噛むとふくらむ筋肉（咬筋）の真上</span>
+          <span class="eff">食いしばりでカチカチに固まる筋肉を直接ゆるめる、あごの「力み解除ボタン」。</span>
+        </div>
+        <div class="point">
+          <span class="code c-jaw">ST 7</span><span class="jp">下関</span><span class="read">げかん</span>
+          <span class="where">耳の前、あごの関節（顎関節）の上</span>
+          <span class="eff">あごの開け閉めをなめらかにし、こめかみ〜耳まわりの重だるさを軽くする。</span>
+        </div>
+        <div class="point">
+          <span class="code c-jaw">ST 5</span><span class="jp">大迎</span><span class="read">だいげい</span>
+          <span class="where">あごのエラの少し前</span>
+          <span class="eff">顔まわりの血のめぐりを促し、食いしばりで疲れた顔の筋肉をすっきりリセット。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ゾーン2 首 -->
+  <section style="padding-top:0;">
+    <h2><span class="em">🧣</span>② 首 ― 頭の重さを抜く</h2>
+    <div class="zone">
+      <div class="zone-head c-neck">
+        <span class="ic">🌀</span>
+        <div><div class="t">こもった緊張の「出口」を開ける</div><div class="s">首の付け根のこわばりを流す</div></div>
+      </div>
+      <div class="zone-body">
+        <div class="point">
+          <span class="code c-neck">GB 20</span><span class="jp">風池</span><span class="read">ふうち</span>
+          <span class="where">後頭部の生えぎわ、左右のくぼみ</span>
+          <span class="eff">首こり・頭の重さ・目の疲れの特効ツボ。頭にこもった熱と緊張を逃がす「換気口」。</span>
+        </div>
+        <div class="point">
+          <span class="code c-neck">BL 10</span><span class="jp">天柱</span><span class="read">てんちゅう</span>
+          <span class="where">首の後ろ、背骨の両わきの太い筋肉の上</span>
+          <span class="eff">首から肩のこわばりをゆるめ、頭をスッと軽くする。長時間うつむき姿勢の味方。</span>
+        </div>
+        <div class="point">
+          <span class="code c-neck">GV 16</span><span class="jp">風府</span><span class="read">ふうふ</span>
+          <span class="where">後頭部のまん中、首の付け根のくぼみ</span>
+          <span class="eff">首の付け根の張りをほどき、頭をクリアに。気持ちを落ち着けるスイッチでもある。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ゾーン3 肩・背中・胸 -->
+  <section style="padding-top:0;">
+    <h2><span class="em">🫁</span>③ 肩・背中・胸 ― 呼吸を深くする</h2>
+    <div class="zone">
+      <div class="zone-head c-back">
+        <span class="ic">🌬️</span>
+        <div><div class="t">上半身の「力みっぱなし」を解く</div><div class="s">背中をひろげ、息を深く通す</div></div>
+      </div>
+      <div class="zone-body">
+        <div class="point">
+          <span class="code c-back">BL 46</span><span class="jp">膈関</span><span class="read">かくかん</span>
+          <span class="where">肩甲骨の間、横隔膜の高さあたりの背中</span>
+          <span class="eff">浅くなった呼吸を深くしやすくし、背中のはりをゆるめる。</span>
+        </div>
+        <div class="point">
+          <span class="code c-back">BL 45</span><span class="jp">譩譆</span><span class="read">いき</span>
+          <span class="where">肩甲骨と肩甲骨の間</span>
+          <span class="eff">肩から背中のこわばりをほどき、上半身にたまった緊張を流す。</span>
+        </div>
+        <div class="point">
+          <span class="code c-back">GB 22</span><span class="jp">淵腋</span><span class="read">えんえき</span>
+          <span class="where">わきの下〜わき腹の側面</span>
+          <span class="eff">肋骨まわりをゆるめて呼吸を楽にし、わき・肩の張りを軽くする。</span>
+        </div>
+        <div class="point">
+          <span class="code c-back">SP 21</span><span class="jp">大包</span><span class="read">だいほう</span>
+          <span class="where">わき腹の側面（みぞおちの横あたり）</span>
+          <span class="eff">全身の「網の目（からだのつながり）」をまとめる大切なツボ。体ぜんたいのだるさ・こわばりをやわらげる。</span>
+        </div>
+        <div class="point">
+          <span class="code c-back">CV 21</span><span class="jp">璇璣</span><span class="read">せんき</span>
+          <span class="where">胸のまん中、のどの少し下</span>
+          <span class="eff">胸のつかえ・息の浅さをゆるめ、気持ちをふっと落ち着かせる。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数値の変化 -->
+  <section>
+    <h2><span class="em">📊</span>施術後、体は整いました</h2>
+    <div class="result">
+      <div class="res-row">
+        <span class="res-name">心の状態<br><span style="font-size:14px;font-weight:500;color:#666;">（自律神経のバランス）</span></span>
+        <span class="ba"><span class="before">1.38</span><span class="arrow">→</span><span class="after">1.03</span></span>
+      </div>
+      <div class="res-row">
+        <span class="res-name">筋肉・骨格の状態<br><span style="font-size:14px;font-weight:500;color:#666;">（こわばりの度合い）</span></span>
+        <span class="ba"><span class="before">0.82</span><span class="arrow">→</span><span class="after">0.92</span></span>
+      </div>
+      <div class="res-row">
+        <span class="res-name">体全体の高ぶり<br><span style="font-size:14px;font-weight:500;color:#666;">（力みの総量）</span></span>
+        <span class="ba"><span class="before">537</span><span class="arrow">→</span><span class="after">361</span></span>
+      </div>
+      <p style="margin-top:16px;font-size:17px;color:var(--green);font-weight:700;text-align:center;line-height:1.7;">
+        どれも「基準の内側」へ戻りました。<span class="tag">バランス回復</span><br>
+        力みっぱなしだった体が、ゆるんで落ち着いた状態です。
+      </p>
+    </div>
+  </section>
+
+  <!-- ケア -->
+  <section>
+    <div class="care">
+      <h2><span class="em">🌿</span>今日の体へのお願い</h2>
+      <ul>
+        <li>今夜は<strong>白湯やお水</strong>をいつもより一杯多めに。ゆるんだ筋肉に水分を届けてあげてください。</li>
+        <li>気づいたとき、<strong>あごの力をふっと抜く</strong>習慣を。上下の歯は本来、軽く離れているのが自然です。</li>
+        <li>寝る前に<strong>鼻からゆっくり長い呼吸</strong>を数回。今日ゆるめた胸と背中が、もっと深く休めます。</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="cn">三条健康堂接骨院</div>
+    <div class="ad">香川県高松市由良町・由良川東公園のそば<br>本日もありがとうございました。</div>
+  </footer>
+
+</div>
+</body>
+</html>
