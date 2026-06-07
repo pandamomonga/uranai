@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兼近様 施術報告書 三部作 ｜ 2026.06.07 ｜ 三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1a3d28; --green-2:#0f2818; --green-3:#264c36;
+  --gold:#c4a44d; --gold-2:#e8c878; --ivory:#f5f0e4; --ivory-d:rgba(245,240,228,0.82);
+  --warn:#e08a4f; --good:#8ec47c; --red:#d75c4d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--green-2);color:var(--ivory);font-family:"Noto Sans JP",sans-serif;
+  font-size:18px;line-height:1.95;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Noto Serif JP",serif}
+.gold{color:var(--gold-2)}
+strong{color:var(--gold-2);font-weight:700}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+
+/* HERO */
+.hero{min-height:96vh;display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 24px 44px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 70% 0%, rgba(196,164,77,.14) 0%, transparent 55%),linear-gradient(160deg,#1a3d28 0%,#0f2818 100%)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start}
+.brandmark{display:flex;align-items:center;gap:12px}
+.brandmark .name{font-family:"Noto Serif JP";font-weight:700;font-size:16px;color:var(--gold-2);letter-spacing:.08em}
+.datechip{border:1.5px solid var(--gold);color:var(--gold-2);font-size:14px;padding:6px 14px;border-radius:30px;letter-spacing:.1em}
+.hero-center{text-align:center}
+.hero-kicker{color:var(--gold-2);letter-spacing:.5em;font-size:15px;margin-bottom:24px}
+.hero-title{font-family:"Noto Serif JP";font-weight:900;font-size:60px;line-height:1.25;color:var(--ivory);text-shadow:0 4px 24px rgba(0,0,0,.4)}
+.hero-title em{font-style:normal;color:var(--gold-2)}
+.hero-sub{margin-top:30px;font-size:19px;color:var(--ivory-d)}
+.hero-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.tag{background:rgba(196,164,77,.16);border:1px solid var(--gold);color:var(--gold-2);font-size:15px;font-weight:700;padding:8px 16px;border-radius:8px}
+.hero-foot{text-align:center;color:var(--ivory-d);font-size:14px;letter-spacing:.06em}
+
+/* PART HEADER */
+.partlabel{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.partnum{font-family:"Noto Serif JP";font-weight:900;font-size:64px;color:var(--gold);line-height:1;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.partnum small{display:block;font-size:14px;letter-spacing:.4em;color:var(--gold-2);font-weight:700;margin-bottom:4px}
+.parttitle{font-family:"Noto Serif JP";font-weight:900;font-size:34px;line-height:1.4;color:var(--ivory)}
+.partlead{margin:24px 0 52px;font-size:19px;color:var(--ivory-d);border-left:4px solid var(--gold);padding-left:18px}
+
+/* CARDS */
+.block{background:linear-gradient(160deg,#234a33,#1a3d28);border:1px solid rgba(196,164,77,.4);
+  border-radius:18px;padding:34px 28px;margin:34px 0;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+.block h3{font-family:"Noto Serif JP";font-weight:700;font-size:24px;color:var(--gold-2);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.block p{font-size:18px;color:var(--ivory-d)}
+.divider{display:flex;align-items:center;gap:14px;margin:60px 0;color:var(--gold)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.5}
+.divider span{font-size:13px;letter-spacing:.4em}
+
+/* POINT CARDS */
+.pointgrid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px}
+.pcard{background:linear-gradient(160deg,#234a33,#16331f);border:1px solid rgba(196,164,77,.4);border-radius:16px;
+  padding:22px 24px;display:flex;gap:18px;align-items:center}
+.pcard .badge{flex:0 0 auto;width:64px;height:64px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;color:var(--green-2)}
+.bl{background:linear-gradient(145deg,#8ec47c,#5e9b50)}
+.gb{background:linear-gradient(145deg,#e8c878,#c4a44d)}
+.ht{background:linear-gradient(145deg,#e69a86,#d75c4d)}
+.gv{background:linear-gradient(145deg,#bcd0e0,#7d9bb0)}
+.pcard .badge .code{font-size:19px;line-height:1}
+.pcard .badge .ch{font-size:13px;margin-top:3px}
+.pcard .pbody{flex:1}
+.pcard .pname{font-family:"Noto Serif JP";font-weight:700;font-size:21px;color:var(--ivory)}
+.pcard .pname .yomi{font-family:"Noto Sans JP";font-weight:400;font-size:14px;color:var(--gold-2);margin-left:8px}
+.pcard .pmeridian{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin:7px 0;color:var(--green-2)}
+.pcard .paim{font-size:16px;color:var(--ivory-d);line-height:1.75}
+.pcard .paim b{color:var(--gold-2)}
+
+.evi{background:rgba(15,40,24,.6);border:1px dashed var(--gold);border-radius:12px;padding:20px 22px;margin:24px 0;font-size:16px;color:var(--ivory-d)}
+.evi b{color:var(--gold-2)}
+.evi .tg{display:inline-block;font-size:13px;font-weight:700;color:var(--green-2);background:var(--gold-2);padding:2px 10px;border-radius:6px;margin-right:8px}
+
+/* steps */
+.steprow{display:flex;flex-direction:column;gap:0;margin:22px 0 6px}
+.step{display:flex;gap:18px;align-items:flex-start;padding:16px 0}
+.step .sn{flex:0 0 auto;width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#e8c878,#c4a44d);
+  color:var(--green-2);font-family:"Noto Serif JP";font-weight:900;font-size:26px;display:flex;align-items:center;justify-content:center}
+.step .stext{flex:1}
+.step .sttl{font-family:"Noto Serif JP";font-weight:700;font-size:22px;color:var(--ivory)}
+.step .sdesc{font-size:17px;color:var(--ivory-d);margin-top:4px}
+
+.callout{background:linear-gradient(135deg,rgba(196,164,77,.2),rgba(196,164,77,.06));
+  border:1.5px solid var(--gold);border-radius:18px;padding:36px 28px;margin:40px 0 0;text-align:center}
+.callout .big{font-family:"Noto Serif JP";font-weight:900;font-size:30px;color:var(--gold-2);line-height:1.5}
+.callout .small{font-size:17px;color:var(--ivory-d);margin-top:14px}
+
+svg{display:block;max-width:100%;height:auto;margin:0 auto}
+
+.foot{background:var(--green-2);padding:64px 24px 84px;text-align:center;border-top:1px solid rgba(196,164,77,.3)}
+.foot .sig{font-family:"Noto Serif JP";font-weight:700;font-size:17px;color:var(--gold-2);line-height:1.95}
+.foot .brand{font-size:14px;color:var(--ivory-d);margin-top:26px;line-height:1.85}
+
+@media(max-width:560px){
+  .hero-title{font-size:44px}.parttitle{font-size:27px}.partnum{font-size:52px}
+  body{font-size:17px}section{padding:72px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="brandmark">
+      <svg width="38" height="38" viewBox="0 0 48 48" fill="none">
+        <path d="M26 4 L10 28 H22 L20 44 L38 18 H26 Z" fill="none" stroke="#e8c878" stroke-width="2.4" stroke-linejoin="round"/>
+      </svg>
+      <span class="name">三条健康堂接骨院</span>
+    </div>
+    <div class="datechip">2026.06.07</div>
+  </div>
+  <div class="hero-center">
+    <div class="hero-kicker">本日の施術報告書</div>
+    <div class="hero-title serif">兼近様<br>専用<em>三部作</em></div>
+    <div class="hero-sub">読むより、<strong>見て</strong>わかる。<br>そして、ちょっと賢くなって帰る。</div>
+    <div class="hero-tags">
+      <span class="tag">① 手首と歯｜7つの経絡</span>
+      <span class="tag">② 6〜7割の法則</span>
+      <span class="tag">③ 暴飲暴食タイマー術</span>
+    </div>
+  </div>
+  <div class="hero-foot">院長 谷 ｜ 年間200冊読む治療家より</div>
+</div>
+
+<!-- PART 1 -->
+<section>
+<div class="wrap">
+
+  <div class="partlabel">
+    <div class="partnum serif"><small>PART</small>1</div>
+    <div class="parttitle">左手首と左の歯<br>──7点が「軽さ」を作った</div>
+  </div>
+  <div class="partlead">
+    今日のテーマは <strong>左手首の痛み</strong> と <strong>左の歯の痛み</strong>。
+    後頭部〜肩〜腕の<strong>7点</strong>でひとつの流れに束ねました。施術後の軽さは、偶然ではなく設計どおりです。
+  </div>
+
+  <div class="block">
+    <h3>🗺️ 今日触った7点の地図</h3>
+    <svg viewBox="0 0 520 460" width="520" role="img" aria-label="後頭部から背中の7点">
+      <g stroke="#e8c878" stroke-width="2" fill="none" opacity="0.55">
+        <ellipse cx="260" cy="92" rx="78" ry="86"/>
+        <path d="M214 168 Q260 200 306 168 L306 196 Q260 214 214 196 Z" fill="rgba(196,164,77,0.06)"/>
+        <path d="M150 232 Q260 196 370 232 L388 410 Q260 432 132 410 Z" fill="rgba(196,164,77,0.05)"/>
+        <line x1="260" y1="214" x2="260" y2="408"/>
+        <path d="M150 234 Q104 270 96 360"/>
+        <path d="M370 234 Q416 270 424 360"/>
+      </g>
+      <g stroke="#8ec47c" stroke-width="2.4" fill="none" opacity="0.7" stroke-dasharray="2 7" stroke-linecap="round">
+        <path d="M96 360 Q120 300 150 234"/>
+      </g>
+      <g font-family="Noto Sans JP" font-weight="900" font-size="13" text-anchor="middle">
+        <circle cx="260" cy="158" r="13" fill="#bcd0e0" stroke="#0f2818" stroke-width="2"/><text x="260" y="163" fill="#0f2818">GV17</text>
+        <circle cx="224" cy="152" r="12" fill="#8ec47c" stroke="#0f2818" stroke-width="2"/><text x="224" y="156" fill="#0f2818" font-size="11">BL9</text>
+        <circle cx="296" cy="152" r="12" fill="#8ec47c" stroke="#0f2818" stroke-width="2"/><text x="296" y="156" fill="#0f2818" font-size="11">BL9</text>
+        <circle cx="232" cy="120" r="12" fill="#e8c878" stroke="#0f2818" stroke-width="2"/><text x="232" y="124" fill="#0f2818" font-size="10">GB19</text>
+        <circle cx="288" cy="120" r="12" fill="#e8c878" stroke="#0f2818" stroke-width="2"/><text x="288" y="124" fill="#0f2818" font-size="10">GB19</text>
+        <circle cx="196" cy="108" r="12" fill="#e8c878" stroke="#0f2818" stroke-width="2"/><text x="196" y="112" fill="#0f2818" font-size="10">GB11</text>
+        <circle cx="324" cy="108" r="12" fill="#e8c878" stroke="#0f2818" stroke-width="2"/><text x="324" y="112" fill="#0f2818" font-size="10">GB11</text>
+        <circle cx="186" cy="226" r="13" fill="#e8c878" stroke="#0f2818" stroke-width="2"/><text x="186" y="230" fill="#0f2818" font-size="11">GB21</text>
+        <circle cx="334" cy="226" r="13" fill="#e8c878" stroke="#0f2818" stroke-width="2"/><text x="334" y="230" fill="#0f2818" font-size="11">GB21</text>
+        <circle cx="150" cy="252" r="13" fill="#e69a86" stroke="#0f2818" stroke-width="2"/><text x="150" y="256" fill="#0f2818" font-size="11">HT1</text>
+        <circle cx="228" cy="320" r="13" fill="#8ec47c" stroke="#0f2818" stroke-width="2"/><text x="228" y="324" fill="#0f2818" font-size="10">BL46</text>
+        <circle cx="292" cy="320" r="13" fill="#8ec47c" stroke="#0f2818" stroke-width="2"/><text x="292" y="324" fill="#0f2818" font-size="10">BL46</text>
+      </g>
+      <g font-family="Noto Serif JP" font-weight="700" font-size="15" fill="#e8c878">
+        <text x="430" y="118" text-anchor="start">頭・後頭部</text>
+        <text x="430" y="140" text-anchor="start" font-family="Noto Sans JP" font-size="13" fill="#f5f0e4">歯のゲート</text>
+        <text x="430" y="232" text-anchor="start">肩・脇</text>
+        <text x="430" y="254" text-anchor="start" font-family="Noto Sans JP" font-size="13" fill="#f5f0e4">手首へ流れる</text>
+        <text x="430" y="324" text-anchor="start">背中</text>
+        <text x="430" y="346" text-anchor="start" font-family="Noto Sans JP" font-size="13" fill="#f5f0e4">呼吸・自律神経</text>
+      </g>
+    </svg>
+    <p style="text-align:center;margin-top:8px;font-size:15px;">後頭部で歯、肩と脇から腕で手首、背中で呼吸。</p>
+  </div>
+
+  <div class="pointgrid">
+    <div class="pcard">
+      <div class="badge bl"><span class="code">BL46</span><span class="ch">膈関</span></div>
+      <div class="pbody">
+        <div class="pname serif">膈関 <span class="yomi">かくかん</span></div>
+        <span class="pmeridian" style="background:#8ec47c">足の太陽 膀胱経</span>
+        <div class="paim">背中の<b>横隔膜の高さ</b>。呼吸が深く入り、<b>副交感神経</b>が立つ。軽さの土台。</div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="badge gb"><span class="code">GB21</span><span class="ch">肩井</span></div>
+      <div class="pbody">
+        <div class="pname serif">肩井 <span class="yomi">けんせい</span></div>
+        <span class="pmeridian" style="background:#e8c878">足の少陽 胆経</span>
+        <div class="paim">肩の頂点＝凝りの王様。上半身の緊張を<b>下へ流す排水口</b>。</div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="badge ht"><span class="code">HT1</span><span class="ch">極泉</span></div>
+      <div class="pbody">
+        <div class="pname serif">極泉 <span class="yomi">きょくせん</span></div>
+        <span class="pmeridian" style="background:#e69a86">手の少陰 心経</span>
+        <div class="paim">脇の中心。心経が腕の内側を通って<b>左手首へ直結</b>。心も鎮める。</div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="badge bl"><span class="code">BL9</span><span class="ch">玉枕</span></div>
+      <div class="pbody">
+        <div class="pname serif">玉枕 <span class="yomi">ぎょくちん</span></div>
+        <span class="pmeridian" style="background:#8ec47c">足の太陽 膀胱経</span>
+        <div class="paim">後頭部の出っぱりの両脇。<b>目と頭の重さ</b>を抜く。</div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="badge gb"><span class="code">GB19</span><span class="ch">脳空</span></div>
+      <div class="pbody">
+        <div class="pname serif">脳空 <span class="yomi">のうくう</span></div>
+        <span class="pmeridian" style="background:#e8c878">足の少陽 胆経</span>
+        <div class="paim">後頭部の上。頭を<b>「空っぽ」に軽く</b>し、こめかみの圧を抜く。</div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="badge gv"><span class="code">GV17</span><span class="ch">脳戸</span></div>
+      <div class="pbody">
+        <div class="pname serif">脳戸 <span class="yomi">のうこ</span></div>
+        <span class="pmeridian" style="background:#bcd0e0">督脈（背骨の正中）</span>
+        <div class="paim">後頭部の<b>ど真ん中</b>。頭と背骨をつなぐ「戸」。姿勢の軸が立つ。</div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="badge gb"><span class="code">GB11</span><span class="ch">頭竅陰</span></div>
+      <div class="pbody">
+        <div class="pname serif">頭竅陰 <span class="yomi">あたまきょういん</span></div>
+        <span class="pmeridian" style="background:#e8c878">足の少陽 胆経</span>
+        <div class="paim"><b>耳の後ろ</b>。胆経があご・歯へ向かう、<b>左の歯</b>の要。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>なぜ、この7点なのか</span></div>
+
+  <div class="block">
+    <h3>🧠 「軽くなった」の正体</h3>
+    <p style="margin-bottom:18px">筋肉をほぐすのではなく、<strong>神経への入力スイッチ</strong>として選んだ7点です（<b>神経反射入力装置論</b>）。</p>
+    <svg viewBox="0 0 520 300" width="520" role="img" aria-label="後頭部入力が三叉神経核を鎮め、心経が手首へ流れる図">
+      <circle cx="120" cy="70" r="46" fill="#234a33" stroke="#e8c878" stroke-width="2.5"/>
+      <text x="120" y="64" text-anchor="middle" font-family="Noto Serif JP" font-weight="700" font-size="16" fill="#e8c878">後頭部</text>
+      <text x="120" y="86" text-anchor="middle" font-family="Noto Sans JP" font-size="13" fill="#f5f0e4">4点入力</text>
+      <line x1="166" y1="80" x2="266" y2="110" stroke="#e8c878" stroke-width="2.5" marker-end="url(#ar)"/>
+      <rect x="266" y="74" width="170" height="74" rx="14" fill="#234a33" stroke="#e69a86" stroke-width="2.5"/>
+      <text x="351" y="104" text-anchor="middle" font-family="Noto Serif JP" font-weight="700" font-size="16" fill="#e69a86">三叉神経の中枢</text>
+      <text x="351" y="128" text-anchor="middle" font-family="Noto Sans JP" font-size="13" fill="#f5f0e4">＝歯の痛みの司令塔</text>
+      <circle cx="120" cy="210" r="46" fill="#234a33" stroke="#e69a86" stroke-width="2.5"/>
+      <text x="120" y="204" text-anchor="middle" font-family="Noto Serif JP" font-weight="700" font-size="16" fill="#e69a86">脇 HT1</text>
+      <text x="120" y="226" text-anchor="middle" font-family="Noto Sans JP" font-size="13" fill="#f5f0e4">心経の入口</text>
+      <line x1="166" y1="222" x2="266" y2="246" stroke="#8ec47c" stroke-width="2.5" marker-end="url(#ar2)"/>
+      <rect x="266" y="214" width="170" height="64" rx="14" fill="#234a33" stroke="#8ec47c" stroke-width="2.5"/>
+      <text x="351" y="240" text-anchor="middle" font-family="Noto Serif JP" font-weight="700" font-size="16" fill="#8ec47c">左 手首</text>
+      <text x="351" y="262" text-anchor="middle" font-family="Noto Sans JP" font-size="13" fill="#f5f0e4">経絡が直通</text>
+      <defs>
+        <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#e8c878"/></marker>
+        <marker id="ar2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#8ec47c"/></marker>
+      </defs>
+    </svg>
+    <p style="margin-top:18px">後頭部4点が<strong>歯の司令塔（三叉神経の中枢）</strong>を静め、HT1が<strong>心経で左手首へ直通</strong>。肩井と膈関が呼吸を深くする。だから2か所の痛みで<strong>同時に</strong>「軽い・柔らかい」が起きました。</p>
+    <div class="evi">
+      <span class="tg">本日の測定</span>RaDoTechの<b>エネルギーレベルが基準値以下（12.32）</b>。体は今、回復モードに入りやすい。この軽さを長持ちさせるカギは、次の第2部です。
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- PART 2 -->
+<section style="background:linear-gradient(180deg,#0f2818,#16331f)">
+<div class="wrap">
+
+  <div class="partlabel">
+    <div class="partnum serif"><small>PART</small>2</div>
+    <div class="parttitle">100の力で<br>うまくいかない理由</div>
+  </div>
+  <div class="partlead">
+    アルバイトで<strong>100の力を出せる</strong>のは才能。でもチームでつまずく──理由は<strong>身体のしくみ</strong>にあります。結論は、<strong>一番うまくいくのは「6〜7割」</strong>。
+  </div>
+
+  <div class="block">
+    <h3>🚗 全力＝「渋滞」が起きる</h3>
+    <p style="margin-bottom:16px">筋肉を<strong>100%</strong>で締めると血管がつぶれ、<strong>血が流れず詰まる</strong>。これがまさに<strong>「渋滞学」</strong>──詰め込みすぎると流れが止まる。<strong>余白があるほど、全体はよく流れる</strong>。</p>
+    <svg viewBox="0 0 520 200" width="520" role="img" aria-label="100%は渋滞、67%は流れる">
+      <text x="120" y="28" text-anchor="middle" font-family="Noto Serif JP" font-weight="900" font-size="22" fill="#d75c4d">100%</text>
+      <rect x="40" y="48" width="160" height="40" rx="20" fill="none" stroke="#d75c4d" stroke-width="3"/>
+      <g fill="#d75c4d"><circle cx="62" cy="68" r="9"/><circle cx="84" cy="68" r="9"/><circle cx="106" cy="68" r="9"/><circle cx="128" cy="68" r="9"/><circle cx="150" cy="68" r="9"/><circle cx="172" cy="68" r="9"/></g>
+      <text x="120" y="118" text-anchor="middle" font-family="Noto Sans JP" font-size="15" fill="#f5f0e4">詰まる＝渋滞</text>
+      <text x="400" y="28" text-anchor="middle" font-family="Noto Serif JP" font-weight="900" font-size="22" fill="#8ec47c">60〜70%</text>
+      <rect x="320" y="48" width="160" height="40" rx="20" fill="none" stroke="#8ec47c" stroke-width="3"/>
+      <g fill="#8ec47c"><circle cx="342" cy="68" r="7"/><circle cx="378" cy="68" r="7"/><circle cx="414" cy="68" r="7"/><circle cx="450" cy="68" r="7"/></g>
+      <path d="M334 68 L466 68" stroke="#8ec47c" stroke-width="2" stroke-dasharray="3 6"/>
+      <text x="400" y="118" text-anchor="middle" font-family="Noto Sans JP" font-size="15" fill="#f5f0e4">流れる＝循環</text>
+      <text x="260" y="170" text-anchor="middle" font-family="Noto Serif JP" font-weight="700" font-size="17" fill="#e8c878">力を抜くほど、よく流れる</text>
+    </svg>
+    <p style="margin-top:16px"><strong>人間関係</strong>も同じ。100%で全部背負うと、周りが入る<strong>すき間</strong>が消える。6〜7割に落とすと余白が生まれ、チーム全体がよく回ります。</p>
+  </div>
+
+  <div class="block">
+    <h3>📈 力と成果は「逆U字」</h3>
+    <p style="margin-bottom:12px">力みは<strong>ほどほど</strong>が最高で、上げすぎると逆に落ちる（ヤーキーズ・ドッドソンの法則）。</p>
+    <svg viewBox="0 0 520 240" width="520" role="img" aria-label="逆U字カーブ 頂点は6〜7割">
+      <line x1="60" y1="200" x2="490" y2="200" stroke="#e8c878" stroke-width="2"/>
+      <line x1="60" y1="200" x2="60" y2="30" stroke="#e8c878" stroke-width="2"/>
+      <text x="275" y="232" text-anchor="middle" font-size="14" fill="#f5f0e4" font-family="Noto Sans JP">出す力 →</text>
+      <text x="26" y="120" text-anchor="middle" font-size="14" fill="#f5f0e4" font-family="Noto Sans JP" transform="rotate(-90 26 120)">成果 →</text>
+      <path d="M60 195 Q250 -20 490 195" fill="none" stroke="#8ec47c" stroke-width="4"/>
+      <line x1="312" y1="62" x2="312" y2="200" stroke="#e8c878" stroke-width="2" stroke-dasharray="4 5"/>
+      <circle cx="312" cy="58" r="9" fill="#e8c878" stroke="#0f2818" stroke-width="2"/>
+      <text x="312" y="44" text-anchor="middle" font-family="Noto Serif JP" font-weight="900" font-size="18" fill="#e8c878">頂点</text>
+      <text x="312" y="220" text-anchor="middle" font-size="15" fill="#8ec47c" font-weight="700" font-family="Noto Sans JP">6〜7割</text>
+      <circle cx="478" cy="188" r="8" fill="#d75c4d"/>
+      <text x="470" y="172" text-anchor="end" font-size="14" fill="#d75c4d" font-weight="700" font-family="Noto Sans JP">100%は下り坂</text>
+    </svg>
+    <p style="margin-top:14px"><strong>ボブスレー</strong>のスタートも、トップ選手ほど<strong>力みません</strong>。100%で押すと足が空回りし、かえって遅い。短距離走でも<strong>「95%が一番速い」</strong>。<strong>余白が、スピードを作る</strong>のです。</p>
+  </div>
+
+  <div class="callout">
+    <div class="big">100を出せる人ほど、<br>あえて6〜7で。</div>
+    <div class="small">残した3割が、チームの人が入る場所になります。</div>
+  </div>
+
+</div>
+</section>
+
+<!-- PART 3 -->
+<section>
+<div class="wrap">
+
+  <div class="partlabel">
+    <div class="partnum serif"><small>PART</small>3</div>
+    <div class="parttitle">暴飲暴食は<br>「食べながら」止める</div>
+  </div>
+  <div class="partlead">
+    我慢はしません。<strong>食べてOK</strong>。ただ<strong>3分ごとに区切る</strong>だけで、<strong>満腹のサイン</strong>と<strong>血糖の処理</strong>が追いつき、自然に「もういいか」になります。
+  </div>
+
+  <div class="block">
+    <h3>🔁 やり方（このループを回すだけ）</h3>
+    <svg viewBox="0 0 520 250" width="520" role="img" aria-label="3分タイマー→食べる→鳴る→空気椅子→また食べる のループ">
+      <g font-family="Noto Sans JP">
+        <circle cx="64" cy="74" r="36" fill="#234a33" stroke="#e8c878" stroke-width="2.5"/>
+        <text x="64" y="68" text-anchor="middle" font-family="Noto Serif JP" font-weight="900" font-size="26" fill="#e8c878">1</text>
+        <text x="64" y="92" text-anchor="middle" font-size="13" fill="#f5f0e4">タイマー</text>
+        <text x="64" y="138" text-anchor="middle" font-size="14" fill="#f5f0e4" font-weight="700">3分セット</text>
+        <circle cx="200" cy="74" r="36" fill="#234a33" stroke="#8ec47c" stroke-width="2.5"/>
+        <text x="200" y="68" text-anchor="middle" font-family="Noto Serif JP" font-weight="900" font-size="26" fill="#8ec47c">2</text>
+        <text x="200" y="92" text-anchor="middle" font-size="13" fill="#f5f0e4">そのまま</text>
+        <text x="200" y="138" text-anchor="middle" font-size="14" fill="#8ec47c" font-weight="700">食べる</text>
+        <circle cx="336" cy="74" r="36" fill="#234a33" stroke="#e69a86" stroke-width="2.5"/>
+        <text x="336" y="74" text-anchor="middle" font-size="26" fill="#e69a86">🔔</text>
+        <text x="336" y="138" text-anchor="middle" font-size="14" fill="#f5f0e4" font-weight="700">3分後に鳴る</text>
+        <circle cx="472" cy="74" r="36" fill="#234a33" stroke="#e8c878" stroke-width="2.5"/>
+        <text x="472" y="68" text-anchor="middle" font-family="Noto Serif JP" font-weight="900" font-size="26" fill="#e8c878">4</text>
+        <text x="472" y="92" text-anchor="middle" font-size="13" fill="#f5f0e4">空気椅子</text>
+        <text x="472" y="138" text-anchor="middle" font-size="14" fill="#e8c878" font-weight="700">30秒キープ</text>
+      </g>
+      <g stroke="#e8c878" stroke-width="3">
+        <line x1="104" y1="74" x2="160" y2="74" marker-end="url(#a3)"/>
+        <line x1="240" y1="74" x2="296" y2="74" marker-end="url(#a3)"/>
+        <line x1="376" y1="74" x2="432" y2="74" marker-end="url(#a3)"/>
+      </g>
+      <path d="M472 110 L472 200 L64 200 L64 114" fill="none" stroke="#8ec47c" stroke-width="3" stroke-dasharray="2 8" marker-end="url(#a4)"/>
+      <text x="268" y="226" text-anchor="middle" font-family="Noto Sans JP" font-size="15" fill="#8ec47c" font-weight="700">まだ食べたければ → また3分セットして、もう一周</text>
+      <defs>
+        <marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#e8c878"/></marker>
+        <marker id="a4" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#8ec47c"/></marker>
+      </defs>
+    </svg>
+    <p style="margin-top:6px">止めるのは意志ではなく、<strong>下で起きる体の反応</strong>が勝手にやってくれます。</p>
+  </div>
+
+  <div class="divider"><span>体の中で、何が起きているか</span></div>
+
+  <div class="block">
+    <h3>🧠 満腹のサインは「約20分」遅れて届く</h3>
+    <p style="margin-bottom:14px">満腹の信号（レプチン）が脳に届くまで<strong>約20分</strong>。早食いは届く前に食べすぎる。区切れば、食べ終わる前に<strong>満腹が追いつく</strong>。</p>
+    <svg viewBox="0 0 520 240" width="520" role="img" aria-label="早食いは食べすぎ、区切り食べはちょうどで止まる">
+      <line x1="56" y1="190" x2="496" y2="190" stroke="#e8c878" stroke-width="2"/>
+      <line x1="56" y1="190" x2="56" y2="28" stroke="#e8c878" stroke-width="2"/>
+      <text x="276" y="222" text-anchor="middle" font-size="14" fill="#f5f0e4" font-family="Noto Sans JP">時間（分）→</text>
+      <text x="26" y="110" text-anchor="middle" font-size="14" fill="#f5f0e4" font-family="Noto Sans JP" transform="rotate(-90 26 110)">食べた量 →</text>
+      <line x1="56" y1="92" x2="496" y2="92" stroke="#bcd0e0" stroke-width="2" stroke-dasharray="5 6"/>
+      <text x="492" y="84" text-anchor="end" font-size="13" fill="#bcd0e0" font-family="Noto Sans JP">必要な量</text>
+      <line x1="330" y1="28" x2="330" y2="190" stroke="#e8c878" stroke-width="2" stroke-dasharray="4 5"/>
+      <text x="330" y="210" text-anchor="middle" font-size="14" fill="#e8c878" font-weight="700" font-family="Noto Sans JP">約20分＝満腹が届く</text>
+      <path d="M56 190 Q150 60 220 40" fill="none" stroke="#d75c4d" stroke-width="4"/>
+      <circle cx="220" cy="40" r="7" fill="#d75c4d"/>
+      <text x="232" y="38" text-anchor="start" font-size="14" fill="#d75c4d" font-weight="700" font-family="Noto Sans JP">早食い＝食べすぎ</text>
+      <path d="M56 190 Q220 150 330 92" fill="none" stroke="#8ec47c" stroke-width="4"/>
+      <circle cx="330" cy="92" r="7" fill="#8ec47c"/>
+      <text x="408" y="120" text-anchor="middle" font-size="14" fill="#8ec47c" font-weight="700" font-family="Noto Sans JP">3分区切り＝ちょうど</text>
+    </svg>
+    <p style="margin-top:6px">3分ごとの空気椅子が<strong>自然なブレーキ</strong>に。<strong>ゆっくり食べる人ほど量が少ない</strong>のは研究でも一致しています。</p>
+  </div>
+
+  <div class="block">
+    <h3>🦵 空気椅子＝筋肉が「血糖」を吸い込む</h3>
+    <p style="margin-bottom:14px">食後に太ももの大筋群を使うと、筋肉が<strong>血中の糖を取り込み</strong>（運動で開く糖の入口＝GLUT4）、<strong>血糖の急上昇がゆるむ</strong>。「もっと食べたい」のリバウンドも減ります。</p>
+    <svg viewBox="0 0 520 230" width="520" role="img" aria-label="食後の空気椅子で血糖スパイクがゆるむ">
+      <line x1="56" y1="180" x2="496" y2="180" stroke="#e8c878" stroke-width="2"/>
+      <line x1="56" y1="180" x2="56" y2="24" stroke="#e8c878" stroke-width="2"/>
+      <text x="276" y="212" text-anchor="middle" font-size="14" fill="#f5f0e4" font-family="Noto Sans JP">食べたあとの時間 →</text>
+      <text x="26" y="104" text-anchor="middle" font-size="14" fill="#f5f0e4" font-family="Noto Sans JP" transform="rotate(-90 26 104)">血糖 →</text>
+      <path d="M56 150 Q150 30 230 44 Q320 60 496 150" fill="none" stroke="#d75c4d" stroke-width="4"/>
+      <text x="232" y="34" text-anchor="middle" font-size="14" fill="#d75c4d" font-weight="700" font-family="Noto Sans JP">座ったまま＝急上昇</text>
+      <path d="M56 150 Q160 96 250 100 Q340 104 496 150" fill="none" stroke="#8ec47c" stroke-width="4"/>
+      <text x="250" y="128" text-anchor="middle" font-size="14" fill="#8ec47c" font-weight="700" font-family="Noto Sans JP">空気椅子＝ゆるやか</text>
+      <line x1="250" y1="100" x2="232" y2="48" stroke="#bcd0e0" stroke-width="2" stroke-dasharray="3 4" marker-end="url(#a5)"/>
+      <text x="300" y="74" text-anchor="middle" font-size="13" fill="#bcd0e0" font-family="Noto Sans JP">筋肉が糖を吸う</text>
+      <defs><marker id="a5" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 Z" fill="#bcd0e0"/></marker></defs>
+    </svg>
+    <p style="margin-top:6px">あの<strong>室伏式アイソメトリック</strong>と同じ「ジワッと止まる」動き。手首を守る習慣が、ここでは血糖に効く。しかも短時間動くと<strong>空腹ホルモン（グレリン）も静まる</strong>──だから「もういいか」が増えます。</p>
+  </div>
+
+  <div class="callout">
+    <div class="big">止めるのは、意志じゃない。<br>体が、勝手に止める。</div>
+    <div class="small"><strong>食べたい → 3分 → 食べる → 鳴ったら空気椅子 → まだ食べたければもう一周。</strong></div>
+  </div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<div class="foot">
+  <div class="sig">
+    本日もありがとうございました。<br>
+    手首と歯の「軽さ」を、6〜7割の余白で長持ちさせていきましょう。<br>
+    院長 谷
+  </div>
+  <div class="brand">
+    高松発・一生動ける身体と人生の教養研究室<br>無車・自転車・圧力鍋生活を実践する治療家より<br><br>
+    三条健康堂接骨院 ｜ 香川県高松市由良町・由良川東公園のそば
+  </div>
+</div>
+
+</body>
+</html>
