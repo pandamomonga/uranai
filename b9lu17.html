@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田様 本日の施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@700;900&family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28; --green2:#2e5e3a; --gold:#a67c00;
+    --ivory:#f7f3e8; --paper:#fffdf7; --ink:#1c1c18; --line:#d8cfb6;
+    --bl:#1b3a6b; --ki:#0d5c5c; --sp:#8a5316; --lr:#2e5e2e; --gb:#6b540a;
+    --alert:#b3301c; --pop:#ffe14d;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ivory);color:var(--ink);
+    font-family:"Noto Sans JP",sans-serif;font-weight:500;font-size:18px;line-height:1.85;
+    -webkit-text-size-adjust:100%;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 18px 60px;}
+
+  /* POP（手書きポップ） */
+  .pop{font-family:"Yusei Magic",sans-serif;font-weight:400;font-size:22px;line-height:1.55;
+    color:#1c1c18;display:inline;
+    background:linear-gradient(transparent 56%, var(--pop) 56%);padding:0 .12em;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+  .pop.red{background:linear-gradient(transparent 56%, #ffd0c4 56%);}
+
+  header{background:var(--green);color:var(--paper);border-radius:0 0 22px 22px;
+    padding:30px 26px 26px;box-shadow:0 6px 22px rgba(26,61,40,.28);position:relative;overflow:hidden;}
+  header::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+    border:3px solid rgba(166,124,0,.35);border-radius:50%;}
+  .clinic{font-size:15px;letter-spacing:.12em;color:var(--gold);font-weight:700;}
+  header h1{font-family:"Noto Serif JP",serif;font-weight:900;font-size:34px;margin:8px 0 4px;line-height:1.3;}
+  .meta{font-size:17px;margin-top:10px;opacity:.95;}
+  .meta b{font-size:22px;color:#ffe9a8;}
+
+  section{margin-top:30px;}
+  h2{font-family:"Noto Serif JP",serif;font-weight:900;font-size:25px;color:var(--green);
+    margin:0 0 6px;padding-left:14px;border-left:8px solid var(--gold);line-height:1.4;}
+  .h2sub{font-family:"Yusei Magic",sans-serif;font-size:18px;color:var(--alert);margin:0 0 16px 16px;}
+  .card{background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:22px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);}
+
+  .today{background:var(--green);color:var(--paper);border:none;}
+  .today .lead{font-size:16px;color:#ffe9a8;font-weight:700;letter-spacing:.08em;}
+  .today .big{font-family:"Yusei Magic",sans-serif;font-size:34px;margin:8px 0 4px;line-height:1.4;color:#fff;}
+  .today .big em{font-style:normal;background:var(--pop);color:#1c1c18;padding:0 .15em;border-radius:4px;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .mcard{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:16px 18px;}
+  .mcard.warn{border-color:var(--alert);background:#fff4f1;}
+  .mcard .t{font-weight:900;font-size:19px;color:var(--green);}
+  .mcard.warn .t{color:var(--alert);}
+  .mcard .v{font-size:16px;margin-top:4px;}
+  .badge{display:inline-block;font-size:14px;font-weight:900;padding:3px 12px;border-radius:20px;color:#fff;margin-top:8px;}
+  .badge.norm{background:var(--green2);}
+  .badge.over{background:var(--alert);}
+
+  .flow{display:flex;flex-direction:column;}
+  .step{display:flex;align-items:flex-start;gap:16px;}
+  .num{flex:none;width:42px;height:42px;border-radius:50%;background:var(--green);color:#ffe9a8;
+    font-family:"Noto Serif JP",serif;font-weight:900;font-size:21px;display:flex;align-items:center;
+    justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.18);}
+  .step .txt{padding-top:4px;}
+  .step .txt b{color:var(--green);font-size:19px;}
+  .step .txt .casual{font-family:"Yusei Magic",sans-serif;font-size:17px;color:#5a5341;display:block;}
+  .arrow{width:42px;text-align:center;color:var(--gold);font-size:26px;line-height:1;margin:2px 0;font-weight:900;}
+
+  .maps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  .mapbox{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:12px 6px 14px;text-align:center;}
+  .mapbox h3{margin:0 0 4px;font-size:18px;color:var(--green);font-weight:900;}
+  .mapbox .sub{font-size:13px;color:#5a5341;font-weight:700;}
+  svg{width:100%;height:auto;display:block;}
+  .leg{fill:#efe7d2;stroke:#b9ad8c;stroke-width:3;}
+  .crease{stroke:#b9ad8c;stroke-width:2.5;fill:none;stroke-dasharray:5 5;}
+  .dotlbl{font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:17px;fill:#fff;}
+
+  .pt{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-top:2px solid var(--line);}
+  .pt:first-child{border-top:none;}
+  .pt .no{flex:none;width:40px;height:40px;border-radius:50%;color:#fff;font-weight:900;font-size:20px;
+    display:flex;align-items:center;justify-content:center;}
+  .pt .body{flex:1;}
+  .pt .name{font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;color:var(--ink);line-height:1.3;}
+  .pt .name .en{font-size:15px;color:#5a5341;font-weight:700;font-family:"Noto Sans JP";}
+  .mtag{display:inline-block;font-size:13px;font-weight:900;color:#fff;padding:2px 11px;border-radius:18px;margin-left:6px;vertical-align:middle;}
+  .pt .loc{font-size:14px;color:#5a5341;font-weight:700;margin:2px 0 10px;}
+  .pt .popline{margin:0 0 10px;}
+  .pt .eff{font-size:17px;margin:0;}
+  .pt .state{font-size:16px;background:var(--ivory);border-left:5px solid var(--gold);
+    padding:9px 14px;border-radius:0 10px 10px 0;margin-top:10px;}
+  .pt .state b{color:var(--green);font-family:"Yusei Magic",sans-serif;}
+
+  .sum{background:var(--green);color:var(--paper);border:none;}
+  .sum h2{color:#ffe9a8;border-left-color:var(--gold);}
+  .sum p{font-size:18px;}
+  .sum .key{color:#ffe9a8;font-weight:900;}
+  .sum .popw{font-family:"Yusei Magic",sans-serif;font-size:23px;color:#1c1c18;
+    background:var(--pop);padding:2px 10px;border-radius:6px;display:inline-block;margin-top:6px;}
+
+  .self li{margin-bottom:10px;}
+
+  footer{margin-top:34px;text-align:center;border-top:3px solid var(--gold);padding-top:22px;}
+  footer .cn{font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;color:var(--green);}
+  footer .ad{font-size:15px;color:#5a5341;font-weight:700;margin:6px 0 14px;}
+  .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn{display:inline-block;text-decoration:none;font-weight:900;font-size:17px;padding:12px 26px;border-radius:30px;}
+  .btn.line{background:#06c755;color:#fff;}
+  .btn.map{background:var(--green);color:#fff;}
+
+  @media(max-width:560px){
+    body{font-size:17px;}
+    .grid{grid-template-columns:1fr;}
+    .maps{grid-template-columns:1fr 1fr;}
+    header h1{font-size:28px;}
+    h2{font-size:22px;} .pop{font-size:20px;} .today .big{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="clinic">三条健康堂接骨院</div>
+    <h1>本日の施術報告書</h1>
+    <div class="meta"><b>福田様</b>　／　2026年6月7日（日）</div>
+  </header>
+
+  <!-- 本日の状態 -->
+  <section>
+    <div class="card today">
+      <div class="lead">本日のお身体のテーマ</div>
+      <p class="big">脚が<em>「おもだる…」</em><em>「パンパン…」</em></p>
+      <p style="margin:8px 0 0;font-size:17px;">
+        そのモヤッとした感じ、ちゃんと“正体”があります。測定＆触診でたどって、ライン別にゆるめました。
+        今日やったこと、ぜんぶ「見える化」します！
+      </p>
+    </div>
+  </section>
+
+  <!-- 測定 -->
+  <section>
+    <h2>① 測定でみえたこと</h2>
+    <p class="h2sub">数字は正直。今日の体、こう言ってます👇</p>
+    <div class="grid">
+      <div class="mcard"><div class="t">エネルギー量</div><div class="v">26.93</div><span class="badge norm">正常</span></div>
+      <div class="mcard"><div class="t">代謝バランス</div><div class="v">1.14</div><span class="badge norm">正常</span></div>
+      <div class="mcard warn"><div class="t">精神・感情の状態</div><div class="v">1.50</div><span class="badge over">やや高め</span></div>
+      <div class="mcard warn"><div class="t">肺（呼吸器）</div><div class="v">右162％・左110％</div><span class="badge over">過活動</span></div>
+    </div>
+    <div class="card" style="margin-top:14px;font-size:17px;">
+      <p class="pop red" style="font-size:21px;">土台は元気。でも“気持ちの緊張”が高め！</p>
+      <p style="margin:12px 0 0;">
+        エネルギー・代謝の<b style="color:var(--green);">土台はバッチリ正常</b>。
+        ただ<b style="color:var(--alert);">精神・感情がやや高め＝こころが緊張モード</b>、
+        <b style="color:var(--alert);">肺が過活動＝そのぶん体が頑張ってる代償反応</b>。
+        この“上半身のこわばり”が、ぐるっと回って<b style="color:var(--alert);">脚の張り</b>になって出ています。
+      </p>
+    </div>
+  </section>
+
+  <!-- 見立て -->
+  <section>
+    <h2>② なぜ脚が張る？（犯人さがし）</h2>
+    <p class="h2sub">ドミノ倒し、いきます。</p>
+    <div class="card">
+      <div class="flow">
+        <div class="step"><div class="num">1</div><div class="txt">
+          <b>ストレスで「肝」が渋滞</b>
+          <span class="casual">→ 気の流れが詰まってイライラ・つっぱり気味に</span></div></div>
+        <div class="arrow">▼</div>
+        <div class="step"><div class="num">2</div><div class="txt">
+          <b>肝は“筋肉の司令塔”。だから全身ガチッ</b>
+          <span class="casual">→ 「肝は筋を主る」＝スジが固まる大もとがコレ</span></div></div>
+        <div class="arrow">▼</div>
+        <div class="step"><div class="num">3</div><div class="txt">
+          <b>「脾」もバテて、脚に“水”がたまる</b>
+          <span class="casual">→ 余分な水分＝湿が下半身に停滞して重だるく</span></div></div>
+        <div class="arrow">▼</div>
+        <div class="step"><div class="num">4</div><div class="txt">
+          <b>裏側（膀胱経）と外側（胆経）にスジが浮く</b>
+          <span class="casual">→ これが今日の「パンパン・おもだる」の正体！</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 図解 -->
+  <section>
+    <h2>③ 本日ととのえたポイント（図解）</h2>
+    <p class="h2sub">番号は下のツボ解説とリンク！色は経絡別。</p>
+    <div class="maps">
+      <div class="mapbox">
+        <h3>裏側（後面）</h3><div class="sub">膀胱経・腎経</div>
+        <svg viewBox="0 0 160 430" role="img" aria-label="脚の裏側の施術ポイント">
+          <rect class="leg" x="48" y="20" width="64" height="200" rx="32"/>
+          <circle class="leg" cx="80" cy="232" r="30"/>
+          <rect class="leg" x="54" y="250" width="52" height="150" rx="26"/>
+          <ellipse class="leg" cx="80" cy="305" rx="34" ry="50"/>
+          <ellipse class="leg" cx="80" cy="412" rx="26" ry="14"/>
+          <line class="crease" x1="56" y1="232" x2="104" y2="232"/>
+          <circle cx="80" cy="125" r="15" fill="var(--bl)"/><text class="dotlbl" x="80" y="131" text-anchor="middle">1</text>
+          <circle cx="80" cy="232" r="15" fill="var(--bl)"/><text class="dotlbl" x="80" y="238" text-anchor="middle">2</text>
+          <circle cx="56" cy="248" r="15" fill="var(--ki)"/><text class="dotlbl" x="56" y="254" text-anchor="middle">3</text>
+          <circle cx="80" cy="288" r="15" fill="var(--bl)"/><text class="dotlbl" x="80" y="294" text-anchor="middle">4</text>
+          <circle cx="80" cy="328" r="15" fill="var(--bl)"/><text class="dotlbl" x="80" y="334" text-anchor="middle">5</text>
+          <circle cx="104" cy="360" r="15" fill="var(--bl)"/><text class="dotlbl" x="104" y="366" text-anchor="middle">6</text>
+        </svg>
+      </div>
+      <div class="mapbox">
+        <h3>外側（側面）</h3><div class="sub">胆経</div>
+        <svg viewBox="0 0 160 430" role="img" aria-label="太もも外側の施術ポイント">
+          <rect class="leg" x="48" y="20" width="64" height="200" rx="32"/>
+          <circle class="leg" cx="80" cy="232" r="30"/>
+          <rect class="leg" x="54" y="250" width="52" height="150" rx="26"/>
+          <ellipse class="leg" cx="80" cy="412" rx="26" ry="14"/>
+          <line class="crease" x1="56" y1="232" x2="104" y2="232"/>
+          <circle cx="80" cy="135" r="15" fill="var(--gb)"/><text class="dotlbl" x="80" y="141" text-anchor="middle">7</text>
+          <circle cx="80" cy="185" r="15" fill="var(--gb)"/><text class="dotlbl" x="80" y="191" text-anchor="middle">8</text>
+        </svg>
+      </div>
+      <div class="mapbox">
+        <h3>内側（すね）</h3><div class="sub">脾経・肝経</div>
+        <svg viewBox="0 0 160 430" role="img" aria-label="すね内側の施術ポイント">
+          <rect class="leg" x="48" y="20" width="64" height="200" rx="32"/>
+          <circle class="leg" cx="80" cy="232" r="30"/>
+          <rect class="leg" x="54" y="250" width="52" height="150" rx="26"/>
+          <ellipse class="leg" cx="80" cy="412" rx="26" ry="14"/>
+          <line class="crease" x1="56" y1="232" x2="104" y2="232"/>
+          <circle cx="80" cy="288" r="15" fill="var(--sp)"/><text class="dotlbl" x="80" y="294" text-anchor="middle">9</text>
+          <circle cx="80" cy="332" r="15" fill="var(--lr)"/><text class="dotlbl" x="80" y="338" text-anchor="middle">10</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ツボ解説（ビレバンPOP） -->
+  <section>
+    <h2>④ ツボの効能、ぜんぶ“絵”にしました</h2>
+    <p class="h2sub">「で、結局どうなるの？」に一言で答えます！</p>
+    <div class="card">
+
+      <div class="pt">
+        <div class="no" style="background:var(--bl);">1</div>
+        <div class="body">
+          <div class="name">殷門 <span class="en">いんもん／BL37</span><span class="mtag" style="background:var(--bl);">膀胱経</span></div>
+          <div class="loc">太もも裏の中央（ハムストリングス）</div>
+          <p class="popline"><span class="pop">🔓 もも裏のガチガチ、ここで“解除”！</span></p>
+          <p class="eff">脚の付け根からズーンと重い…の出口。突っぱり棒を一本スポッと抜くイメージで、裏ももがフッと伸びます。</p>
+          <div class="state"><b>体の中では：</b>後面ラインの入口を開いて、流れのスタートを切ります。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--bl);">2</div>
+        <div class="body">
+          <div class="name">委中 <span class="en">いちゅう／BL40</span><span class="mtag" style="background:var(--bl);">膀胱経</span></div>
+          <div class="loc">膝の裏の中央</div>
+          <p class="popline"><span class="pop">🛣 脚の裏側ぜんぶ、ここが“大元締め”。</span></p>
+          <p class="eff">昔から「腰と脚はまずココ」と言われる超有名スポット。渋滞した高速のインターを開通させる感じで、裏側全体が一気に流れ出します。</p>
+          <div class="state"><b>体の中では：</b>膀胱経のメインルートを“開通”させる中心点。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--ki);">3</div>
+        <div class="body">
+          <div class="name">陰谷 <span class="en">いんこく／KI10</span><span class="mtag" style="background:var(--ki);">腎経</span></div>
+          <div class="loc">膝裏の内側</div>
+          <p class="popline"><span class="pop">⛽ 脚のスタミナ、ここで“給油”。</span></p>
+          <p class="eff">「最近すぐ脚が疲れる…」の燃料タンクを補給。腎＝脚のスタミナ貯金箱を、内側からチャージします。</p>
+          <div class="state"><b>体の中では：</b>疲れの“土台”を底上げ。根本のエネルギーを支えます。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--bl);">4</div>
+        <div class="body">
+          <div class="name">承筋 <span class="en">しょうきん／BL56</span><span class="mtag" style="background:var(--bl);">膀胱経</span></div>
+          <div class="loc">ふくらはぎ上部</div>
+          <p class="popline"><span class="pop">🪢 “つる”一歩手前のふくらはぎに。</span></p>
+          <p class="eff">名前からして「筋肉を受け止める」担当。パンパンに張ったゴムをゆるめる感じで、ふくらはぎ上のこわばりを直撃します。</p>
+          <div class="state"><b>体の中では：</b>ふくらはぎ上部の張りをダイレクトに緩めます。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--bl);">5</div>
+        <div class="body">
+          <div class="name">承山 <span class="en">しょうざん／BL57</span><span class="mtag" style="background:var(--bl);">膀胱経</span></div>
+          <div class="loc">ふくらはぎ中央（筋肉の谷）</div>
+          <p class="popline"><span class="pop">⭐ 本日いちばんの“効いた〜！”ポイント。</span></p>
+          <p class="eff">こむら返り・脚の張りの超定番。“山（筋肉の盛り上がり）を支える”名前どおり、ふくらはぎの芯がジワッとほどけます。</p>
+          <div class="state"><b>体の中では：</b>今日いちばん反応があった一帯。後面の張りの“要”をリセット。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--bl);">6</div>
+        <div class="body">
+          <div class="name">飛揚 <span class="en">ひよう／BL58</span><span class="mtag" style="background:var(--bl);">膀胱経・絡穴</span></div>
+          <div class="loc">ふくらはぎ外側の下部</div>
+          <p class="popline"><span class="pop">🚰 脚の“重だるい”を下に流す排水口。</span></p>
+          <p class="eff">膀胱経と腎経をつなぐ連絡係。たまった疲労感が、足首からスーッと抜けていくイメージです。</p>
+          <div class="state"><b>体の中では：</b>膀胱と腎を橋渡しし、だるさを下へ排出します。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--gb);">7</div>
+        <div class="body">
+          <div class="name">風市 <span class="en">ふうし／GB31</span><span class="mtag" style="background:var(--gb);">胆経</span></div>
+          <div class="loc">太もも外側の中央</div>
+          <p class="popline"><span class="pop">💨 太もも外側のパツパツ、リセット。</span></p>
+          <p class="eff">立ちっぱ・歩きすぎで外側がパンパン…そこに“市場”が開いて、滞りがどんどん流れ出す名前のツボです。</p>
+          <div class="state"><b>体の中では：</b>外側ライン（腸脛靭帯）の張りをゆるめます。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--gb);">8</div>
+        <div class="body">
+          <div class="name">中瀆 <span class="en">ちゅうとく／GB32</span><span class="mtag" style="background:var(--gb);">胆経</span></div>
+          <div class="loc">太もも外側（風市の少し下）</div>
+          <p class="popline"><span class="pop">⬇ 外側の張り、太ももから下へスーッ。</span></p>
+          <p class="eff">外側ラインの通り道を確保するツボ。風市とセットで、外側のこわばりを下方向へ送り出します。</p>
+          <div class="state"><b>体の中では：</b>外側の緊張を太ももから下へ抜けやすく。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--sp);">9</div>
+        <div class="body">
+          <div class="name">地機 <span class="en">ちき／SP8</span><span class="mtag" style="background:var(--sp);">脾経・郄穴</span></div>
+          <div class="loc">すね内側の上部</div>
+          <p class="popline"><span class="pop">🧽 脚の“むくみ・重い”の水抜き栓。</span></p>
+          <p class="eff">脾の“急所”。水を吸ったスポンジをギュッと絞るイメージで、脚にたまった余分な水分（湿）をさばきます。</p>
+          <div class="state"><b>体の中では：</b>見立て③の“湿（重だるさ）”を抜く要のポイント。</div>
+        </div>
+      </div>
+
+      <div class="pt">
+        <div class="no" style="background:var(--lr);">10</div>
+        <div class="body">
+          <div class="name">中都 <span class="en">ちゅうと／LR6</span><span class="mtag" style="background:var(--lr);">肝経・郄穴</span></div>
+          <div class="loc">すね内側の中央</div>
+          <p class="popline"><span class="pop">🔧 “ストレスで固まった筋肉”の大もとスイッチ。</span></p>
+          <p class="eff">肝の“急所”。「肝は筋を主る」——全身のスジを固めていた元栓を、根っこからゆるめにいきます。今日の見立ての出発点。</p>
+          <div class="state"><b>体の中では：</b>ストレス由来の筋緊張の“おおもと”に効かせます。</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class="card sum">
+      <h2>⑤ 今日の施術、ひとことで言うと</h2>
+      <p class="popw">流して・絞って・ゆるめる！</p>
+      <p style="margin-top:14px;">
+        裏側（<span class="key">委中→承筋→承山→飛揚＋陰谷</span>）で後面を開通、
+        内側（<span class="key">地機・中都</span>）で“水”を絞って肝のスイッチON、
+        外側（<span class="key">風市・中瀆</span>）と裏もも（<span class="key">殷門</span>）で側面・後面の張りオフ。
+      </p>
+      <p style="margin-top:14px;">
+        ツボは“押す場所”じゃなく<span class="key">神経のスイッチ</span>。
+        的確に押すと脳へ「もう緩めてOK」のサインが届き、固まった脚が反射でストンとゆるみます。
+      </p>
+    </div>
+  </section>
+
+  <!-- セルフケア -->
+  <section>
+    <h2>⑥ おうちでできること</h2>
+    <p class="h2sub">むずかしいこと、しなくてOK！</p>
+    <div class="card">
+      <ul class="self" style="margin:0;padding-left:1.2em;font-size:17px;">
+        <li>湯船でふくらはぎ〜裏ももを温める（血が巡る＝張りが減る）。</li>
+        <li>寝る前、ふくらはぎを下から上へ“さする”だけ。強揉み不要。</li>
+        <li>今日は気持ちが緊張気味。<b>息を吐く時間を長く</b>した深呼吸を数回。それだけで全身がほどけます。</li>
+        <li>強い張り・痛みが続くときは、ガマンせずご連絡を。</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="cn">三条健康堂接骨院</div>
+    <div class="ad">香川県高松市由良町・由良川東公園のそば</div>
+    <div class="btns">
+      <a class="btn line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップ</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
