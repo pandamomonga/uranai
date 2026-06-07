@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>思考の整理 — 福田さんへ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --ink:#000000;
+    --red:#e60012;
+    --red-deep:#1c0204;
+    --white:#ffffff;
+    --paper:#f4f1ea;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Noto Sans JP',sans-serif;
+    font-weight:700;
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:860px;margin:0 auto;}
+
+  /* ===== HEADER ===== */
+  .hero{
+    position:relative;
+    padding:64px 30px 54px;
+    background:var(--ink);
+    border-bottom:10px solid var(--red);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"2026";
+    position:absolute;
+    top:-30px;right:-10px;
+    font-family:'Anton',sans-serif;
+    font-size:200px;
+    color:var(--red-deep);
+    line-height:1;
+    letter-spacing:-6px;
+    z-index:0;
+  }
+  .hero-label{
+    position:relative;z-index:2;
+    display:inline-block;
+    background:var(--red);
+    color:var(--white);
+    font-size:15px;font-weight:900;
+    letter-spacing:3px;
+    padding:7px 16px;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    position:relative;z-index:2;
+    font-family:'Noto Sans JP',sans-serif;
+    font-weight:900;
+    font-size:clamp(40px,9vw,72px);
+    line-height:1.12;
+    letter-spacing:-1px;
+  }
+  .hero h1 .acc{color:var(--red);}
+  .hero-sub{
+    position:relative;z-index:2;
+    margin-top:22px;
+    font-size:19px;font-weight:700;
+    color:var(--white);
+    border-left:6px solid var(--red);
+    padding-left:16px;
+  }
+
+  /* ===== SECTION ===== */
+  .sec{
+    position:relative;
+    padding:56px 30px 50px;
+    border-bottom:2px solid #1a1a1a;
+    opacity:0;transform:translateY(30px);
+    animation:rise .7s forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+  .sec:nth-of-type(1){animation-delay:.15s;}
+  .sec:nth-of-type(2){animation-delay:.3s;}
+  .sec:nth-of-type(3){animation-delay:.45s;}
+  .sec:nth-of-type(4){animation-delay:.6s;}
+  .sec:nth-of-type(5){animation-delay:.75s;}
+
+  .num{
+    font-family:'Anton',sans-serif;
+    font-size:80px;
+    color:var(--red);
+    line-height:.8;
+    display:block;
+    margin-bottom:10px;
+  }
+  .sec h2{
+    font-weight:900;
+    font-size:clamp(28px,6.4vw,44px);
+    line-height:1.2;
+    letter-spacing:-1px;
+    margin-bottom:6px;
+  }
+  .sec h2 .acc{color:var(--red);}
+  .kicker{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    font-size:14px;font-weight:900;
+    letter-spacing:2px;
+    padding:5px 12px;
+    margin-bottom:22px;
+  }
+
+  /* speech / script card */
+  .script{
+    background:var(--paper);
+    color:var(--ink);
+    font-weight:700;
+    font-size:20px;
+    line-height:2;
+    padding:30px 28px;
+    border-left:12px solid var(--red);
+    margin:8px 0 24px;
+  }
+  .script .lead{color:var(--red);font-weight:900;}
+  .script .key{
+    display:block;
+    margin-top:14px;
+    background:var(--ink);
+    color:#fff;
+    font-weight:900;
+    padding:12px 16px;
+    font-size:20px;
+  }
+
+  /* punch list */
+  .punch{list-style:none;margin-top:6px;}
+  .punch li{
+    position:relative;
+    font-size:21px;font-weight:700;
+    line-height:1.7;
+    padding:16px 0 16px 40px;
+    border-bottom:1px solid #222;
+  }
+  .punch li::before{
+    content:"";
+    position:absolute;left:0;top:24px;
+    width:20px;height:6px;
+    background:var(--red);
+  }
+  .punch li b{color:var(--red);font-weight:900;}
+  .punch li .big{font-size:25px;font-weight:900;}
+
+  /* note strip */
+  .note{
+    margin-top:18px;
+    background:#161616;
+    border:2px solid var(--red);
+    padding:18px 20px;
+    font-size:18px;font-weight:700;
+    line-height:1.85;
+  }
+  .note .t{color:var(--red);font-weight:900;font-size:16px;letter-spacing:1px;display:block;margin-bottom:6px;}
+
+  /* big statement block */
+  .statement{
+    background:var(--red);
+    color:#fff;
+    padding:40px 30px;
+    text-align:center;
+  }
+  .statement .small{font-size:17px;font-weight:900;letter-spacing:3px;margin-bottom:12px;}
+  .statement .big{
+    font-weight:900;
+    font-size:clamp(30px,7.5vw,52px);
+    line-height:1.25;
+    letter-spacing:-1px;
+  }
+
+  /* footer */
+  .end{
+    padding:60px 30px 70px;
+    text-align:center;
+    background:var(--ink);
+    border-top:10px solid var(--red);
+  }
+  .end .line{
+    font-weight:900;
+    font-size:clamp(26px,6vw,40px);
+    line-height:1.4;
+    letter-spacing:-1px;
+  }
+  .end .line .acc{color:var(--red);}
+  .end .sig{
+    margin-top:26px;font-size:15px;font-weight:700;
+    color:#cfcfcf;letter-spacing:1px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="hero">
+    <span class="hero-label">思考の整理 ／ FOR FUKUDA</span>
+    <h1>明日、<br><span class="acc">すべて</span>が決まる。</h1>
+    <p class="hero-sub">2026年、最も重要な一日のために。<br>社長への報告と態度が、全ての鍵。</p>
+  </header>
+
+  <!-- 01 -->
+  <section class="sec">
+    <span class="num">01</span>
+    <span class="kicker">まず、これを言え</span>
+    <h2>明日の<span class="acc">第一声</span>は、これだ。</h2>
+    <div class="script">
+      <span class="lead">「社長、大学院の件でご報告です。</span><br>
+      今回の論文は通りませんでした。ただ、教授から継続の道を3つ——別の学会、英語論文、同じ学会に1年後——示していただいていて、会社の状況に合わせて選べる形になっています。<br>
+      私としては、社長のお考えと会社の必要を最優先にしたいです。続ける意味があるなら続けますし、今は業務をということでしたら、ここで区切ります。
+      <span class="key">この判断は、社長にお任せしたいと思っています。</span>
+      どちらになっても、私が社長と一緒に走ることは変わりません。」
+    </div>
+    <div class="note">
+      <span class="t">／ 鉄則</span>
+      「失敗の報告」にするな。<b style="color:var(--red)">「3つの選択肢の報告」</b>にしろ。<br>
+      判断は委ねる。行動は主導する。正論と感情は、一言も出すな。
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="sec">
+    <span class="num">02</span>
+    <span class="kicker">忘れるな</span>
+    <h2>あなたは、<span class="acc">こういう人間</span>だ。</h2>
+    <ul class="punch">
+      <li><span class="big">一本の道</span>を歩いてきた、<b>一貫性</b>の人間。</li>
+      <li>縦割りの組織を<b>横串</b>でつなげる、数少ない人間。</li>
+      <li>聞き、受け取り、<b>お膳立て</b>をする側の人間。</li>
+      <li>求められる前に動く——<b>先回り</b>できる人間。</li>
+    </ul>
+    <div class="note">
+      <span class="t">／ 警告</span>
+      マルチタスクで、今これを忘れかけている。<br>
+      明日、慌てた瞬間に出る言葉が、この自分から外れる。だから先に思い出せ。
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="sec">
+    <span class="num">03</span>
+    <span class="kicker">2027年まで</span>
+    <h2>何のために、<span class="acc">お膳立て</span>をするのか。</h2>
+    <ul class="punch">
+      <li>お膳立ては、<b>目的じゃない。手段</b>だ。</li>
+      <li>社長を最も分かりやすく支え、亀裂を<b>一切</b>入れない。</li>
+      <li>これは「演じる時期」じゃない。<b>「仕込む時期」</b>だ。</li>
+      <li>なぜやるのかを忘れた瞬間、積み上げが<b>崩壊</b>する。</li>
+    </ul>
+    <div class="note">
+      <span class="t">／ 一行で</span>
+      2027年にリリースされる、その一日のために、今すべてを仕込んでいる。
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="sec" style="padding:0;border:none;">
+    <div class="statement">
+      <div class="small">04 ／ あなたの本音</div>
+      <div class="big">本当にやりたいのは、<br>会社の<u>声</u>を、<br>取り戻すこと。</div>
+    </div>
+    <div style="padding:40px 30px 10px;">
+      <ul class="punch">
+        <li>押さえ込まれて声を失った社内の力を、<b>もう一度循環</b>させる。</li>
+        <li>みんなが自由に発揮できる<b>空気</b>を、取り戻す。</li>
+        <li>出世でも、数字でもない。<span class="big">これが本音だ。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="sec">
+    <span class="num">05</span>
+    <span class="kicker">だから</span>
+    <h2>あなたは、<span class="acc">出世</span>する。</h2>
+    <ul class="punch">
+      <li>出世は、<b>ゴールじゃない。</b></li>
+      <li>この会社を<b>開く</b>ための、手段だ。</li>
+      <li>2027年、リリースされた時に、<span class="big">一気に。</span></li>
+      <li>そのために——<b>明日がある。</b></li>
+    </ul>
+  </section>
+
+  <!-- END -->
+  <footer class="end">
+    <div class="line">明日。慌てるな。<br>この<span class="acc">自分</span>のまま、報告しろ。</div>
+    <div class="sig">思考の整理 ／ 三条健康堂接骨院</div>
+  </footer>
+
+</div>
+</body>
+</html>
