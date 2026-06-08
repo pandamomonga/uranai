@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三澤様 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-deep:#12291b;
+    --gold:#c4a44d;
+    --gold-soft:#d8bd6e;
+    --cream:#f5f0e4;
+    --paper:#fbf8f0;
+    --ink:#22281f;
+    --red:#e8472b;
+    --blue:#5b6ee8;
+    --ok:#2fa563;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--green-deep);
+    color:var(--ink);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:520px;margin:0 auto;background:var(--paper);}
+
+  /* ===== HEADER ===== */
+  .hero{
+    position:relative;
+    background:var(--green);
+    color:var(--cream);
+    padding:42px 26px 38px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:14px;
+    border:2px solid var(--gold);
+    border-radius:4px;pointer-events:none;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:20px;
+    border:1px solid rgba(196,164,77,.45);
+    border-radius:2px;pointer-events:none;
+  }
+  .corner{position:absolute;width:26px;height:26px;border:2px solid var(--gold);z-index:2;}
+  .c-tl{top:22px;left:22px;border-right:0;border-bottom:0;}
+  .c-tr{top:22px;right:22px;border-left:0;border-bottom:0;}
+  .c-bl{bottom:22px;left:22px;border-right:0;border-top:0;}
+  .c-br{bottom:22px;right:22px;border-left:0;border-top:0;}
+  .hero .kicker{
+    font-size:13px;letter-spacing:.5em;color:var(--gold-soft);
+    font-weight:700;margin-bottom:14px;padding-left:.5em;position:relative;z-index:3;
+  }
+  .hero h1{
+    font-family:'Noto Serif JP',serif;font-weight:900;
+    font-size:30px;letter-spacing:.08em;position:relative;z-index:3;
+  }
+  .hero .patient{
+    font-family:'Noto Serif JP',serif;font-size:23px;font-weight:700;
+    margin-top:10px;color:#fff;position:relative;z-index:3;
+  }
+  .hero .meta{
+    margin-top:16px;font-size:14px;color:var(--gold-soft);
+    position:relative;z-index:3;font-weight:500;
+  }
+  .hero .clinic{
+    margin-top:6px;font-size:14px;color:rgba(245,240,228,.8);
+    position:relative;z-index:3;
+  }
+
+  /* ===== SECTION ===== */
+  section{padding:34px 24px;}
+  .label{
+    display:inline-block;background:var(--green);color:var(--gold-soft);
+    font-size:13px;font-weight:700;letter-spacing:.25em;
+    padding:7px 16px;border-radius:3px;margin-bottom:18px;
+  }
+  h2{
+    font-family:'Noto Serif JP',serif;font-weight:900;
+    font-size:24px;color:var(--green);line-height:1.45;
+    margin-bottom:18px;letter-spacing:.02em;
+  }
+  h2 .em{color:var(--gold);}
+  p{font-size:17px;font-weight:500;}
+  p + p{margin-top:14px;}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 24px;}
+
+  /* ===== FLOW ===== */
+  .flow{background:var(--cream);}
+  .flow .step{
+    display:flex;gap:16px;align-items:flex-start;
+    padding:16px 0;border-bottom:1px dashed rgba(26,61,40,.25);
+  }
+  .flow .step:last-child{border-bottom:0;}
+  .flow .num{
+    flex:0 0 38px;height:38px;border-radius:50%;
+    background:var(--green);color:var(--gold-soft);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:18px;font-family:'Noto Serif JP',serif;
+  }
+  .flow .txt{font-size:17px;font-weight:500;padding-top:4px;}
+  .flow .txt b{color:var(--green);font-weight:900;}
+
+  /* ===== KEY FINDING / BODY MAP ===== */
+  .finding{background:var(--green);color:var(--cream);}
+  .finding .label{background:var(--gold);color:var(--green-deep);}
+  .finding h2{color:#fff;}
+  .finding h2 .em{color:var(--gold-soft);}
+  .finding p{color:rgba(245,240,228,.92);font-size:17px;}
+
+  .bodymap{
+    margin:24px auto 8px;display:block;max-width:300px;width:100%;
+  }
+  .side-flag{
+    text-align:center;margin-top:6px;
+    font-family:'Noto Serif JP',serif;font-weight:900;
+    font-size:20px;color:var(--gold-soft);letter-spacing:.1em;
+  }
+
+  .points{margin-top:26px;display:grid;gap:12px;}
+  .pt{
+    display:flex;align-items:center;gap:14px;
+    background:rgba(245,240,228,.07);
+    border:1px solid rgba(196,164,77,.4);
+    border-radius:8px;padding:14px 16px;
+  }
+  .pt .code{
+    flex:0 0 64px;text-align:center;
+    font-family:'Noto Serif JP',serif;font-weight:900;font-size:18px;
+    color:var(--green-deep);background:var(--gold);
+    border-radius:6px;padding:8px 4px;line-height:1.1;
+  }
+  .pt .name{font-size:19px;font-weight:700;color:#fff;}
+  .pt .region{font-size:14px;color:var(--gold-soft);font-weight:500;margin-top:2px;}
+
+  .insight{
+    margin-top:24px;background:var(--gold);color:var(--green-deep);
+    border-radius:10px;padding:20px 22px;
+  }
+  .insight .t{font-family:'Noto Serif JP',serif;font-weight:900;font-size:18px;margin-bottom:8px;}
+  .insight p{color:var(--green-deep);font-size:16px;font-weight:600;}
+
+  /* ===== RADOTECH ORGAN ===== */
+  .organ-card{
+    border-radius:10px;padding:20px 22px;margin-top:16px;
+    border:2px solid;
+  }
+  .organ-card .head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .organ-card .dot{width:14px;height:14px;border-radius:50%;flex:0 0 14px;}
+  .organ-card .nm{font-family:'Noto Serif JP',serif;font-weight:900;font-size:20px;}
+  .organ-card .val{margin-left:auto;font-weight:900;font-size:22px;font-family:'Noto Serif JP',serif;}
+  .organ-card .desc{font-size:16px;font-weight:500;line-height:1.8;}
+
+  .o-hyper{background:#fff4f1;border-color:var(--red);}
+  .o-hyper .dot{background:var(--red);}
+  .o-hyper .nm,.o-hyper .val{color:var(--red);}
+  .o-low{background:#f3f5ff;border-color:var(--blue);}
+  .o-low .dot{background:var(--blue);}
+  .o-low .nm,.o-low .val{color:var(--blue);}
+
+  .reassure{
+    margin-top:18px;background:var(--ok);color:#fff;
+    border-radius:10px;padding:16px 20px;text-align:center;
+  }
+  .reassure .big{font-family:'Noto Serif JP',serif;font-weight:900;font-size:21px;}
+  .reassure .sub{font-size:15px;font-weight:500;margin-top:4px;opacity:.95;}
+
+  /* ===== BEFORE / AFTER ===== */
+  .ba{background:var(--cream);}
+  .ba-legend{
+    display:flex;justify-content:center;gap:22px;margin-bottom:22px;font-size:14px;font-weight:700;
+  }
+  .ba-legend span{display:inline-flex;align-items:center;gap:7px;}
+  .swatch{width:16px;height:16px;border-radius:4px;display:inline-block;}
+  .sw-before{background:#b9b09a;}
+  .sw-after{background:var(--green);}
+
+  .metric{margin-bottom:24px;}
+  .metric .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+  .metric .mname{font-weight:900;font-size:18px;color:var(--green);}
+  .metric .mtag{font-size:13px;font-weight:700;}
+  .tag-fixed{color:var(--ok);}
+
+  .track{
+    position:relative;height:46px;background:#e8e2d2;border-radius:8px;
+    overflow:hidden;
+  }
+  .normband{
+    position:absolute;top:0;bottom:0;background:rgba(47,165,99,.18);
+    border-left:2px dashed var(--ok);border-right:2px dashed var(--ok);
+  }
+  .normband .lbl{
+    position:absolute;top:3px;left:50%;transform:translateX(-50%);
+    font-size:11px;font-weight:700;color:#1c7a48;white-space:nowrap;
+  }
+  .marker{
+    position:absolute;top:50%;transform:translate(-50%,-50%);
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .marker .pin{
+    width:22px;height:22px;border-radius:50%;border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(0,0,0,.3);
+  }
+  .marker .pv{
+    position:absolute;font-size:13px;font-weight:900;white-space:nowrap;
+    background:#fff;padding:1px 6px;border-radius:4px;
+    box-shadow:0 1px 3px rgba(0,0,0,.2);
+  }
+  .m-before .pin{background:#b9b09a;}
+  .m-before .pv{top:-22px;color:#6b6450;}
+  .m-after .pin{background:var(--green);}
+  .m-after .pv{bottom:-22px;color:var(--green);}
+  .scale{display:flex;justify-content:space-between;font-size:12px;color:#8a8268;margin-top:24px;font-weight:600;}
+
+  .ba-note{
+    margin-top:8px;background:var(--green);color:var(--cream);
+    border-radius:10px;padding:18px 20px;
+  }
+  .ba-note .t{font-family:'Noto Serif JP',serif;color:var(--gold-soft);font-weight:900;font-size:18px;margin-bottom:6px;}
+  .ba-note p{color:var(--cream);font-size:16px;}
+
+  /* ===== CLOSING ===== */
+  .closing{background:var(--green);color:var(--cream);text-align:center;padding:38px 26px 30px;}
+  .closing .crest{font-size:30px;color:var(--gold);margin-bottom:12px;}
+  .closing h2{color:#fff;font-size:23px;margin-bottom:14px;}
+  .closing p{color:rgba(245,240,228,.9);font-size:16px;}
+  .tagline{
+    margin-top:24px;font-size:13px;line-height:1.9;color:var(--gold-soft);
+    border-top:1px solid rgba(196,164,77,.4);padding-top:20px;
+  }
+  .links{margin-top:22px;display:grid;gap:12px;}
+  .btn{
+    display:block;text-decoration:none;font-weight:700;font-size:17px;
+    padding:16px;border-radius:10px;
+  }
+  .btn-line{background:#06c755;color:#fff;}
+  .btn-map{background:var(--gold);color:var(--green-deep);}
+  .foot{
+    background:var(--green-deep);color:rgba(245,240,228,.65);
+    text-align:center;font-size:13px;padding:20px;line-height:1.8;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="hero">
+    <span class="corner c-tl"></span><span class="corner c-tr"></span>
+    <span class="corner c-bl"></span><span class="corner c-br"></span>
+    <div class="kicker">施 術 報 告 書</div>
+    <h1>本日の施術記録</h1>
+    <div class="patient">三澤様</div>
+    <div class="meta">2026年6月8日（月）施術分</div>
+    <div class="clinic">三条健康堂接骨院</div>
+  </header>
+
+  <!-- 経過 -->
+  <section class="flow">
+    <div class="label">これまでの経過</div>
+    <div class="step">
+      <div class="num">1</div>
+      <div class="txt">昨日の施術後、<b>首まわり・顎まわりが随分と楽になった</b>とご報告をいただきました。</div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div class="txt">手応えがあったため、本日<b>続けての施術</b>を行いました。</div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div class="txt">そして本日、首・顎の違和感の<b>本当の引き金</b>がどこにあったのかが見えてきました。</div>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- 本日の発見 -->
+  <section class="finding">
+    <div class="label">本日の発見</div>
+    <h2>引き金は<span class="em">右の肩・肩甲まわり</span>にありました。</h2>
+    <p>顎や首に出ていた違和感。その大もとは、実は<b>右側の肩関節〜肩甲骨まわり</b>に潜んでいた、大きなエネルギーの滞りとトリガーポイントでした。ここが連鎖して、最終的に首・顎の症状として表に出ていたと考えられます。</p>
+
+    <!-- BODY MAP -->
+    <svg class="bodymap" viewBox="0 0 300 240" role="img" aria-label="右肩・肩甲まわりの施術ポイント図">
+      <!-- 上半身シルエット（背面） -->
+      <path d="M150 24 c-15 0 -26 11 -26 25 c0 9 4 16 10 21 c-22 6 -40 18 -50 36 c-7 13 -11 30 -13 50 l28 6 c2 -20 6 -34 12 -44 l0 78 l78 0 l0 -78 c6 10 10 24 12 44 l28 -6 c-2 -20 -6 -37 -13 -50 c-10 -18 -28 -30 -50 -36 c6 -5 10 -12 10 -21 c0 -14 -11 -25 -26 -25 z"
+            fill="rgba(245,240,228,.10)" stroke="rgba(196,164,77,.55)" stroke-width="2"/>
+      <!-- 右側ハイライト -->
+      <circle cx="98" cy="118" r="48" fill="rgba(196,164,77,.16)"/>
+      <!-- ポイント -->
+      <g font-family="'Noto Serif JP',serif" font-weight="900">
+        <circle cx="92" cy="92" r="8" fill="#c4a44d" stroke="#fff" stroke-width="2"/>
+        <text x="92" y="78" fill="#f5f0e4" font-size="12" text-anchor="middle">LI15</text>
+        <circle cx="74" cy="108" r="8" fill="#c4a44d" stroke="#fff" stroke-width="2"/>
+        <text x="48" y="106" fill="#f5f0e4" font-size="12" text-anchor="middle">TE14</text>
+        <circle cx="100" cy="120" r="8" fill="#c4a44d" stroke="#fff" stroke-width="2"/>
+        <text x="128" y="124" fill="#f5f0e4" font-size="12" text-anchor="middle">SI10</text>
+        <circle cx="78" cy="138" r="8" fill="#c4a44d" stroke="#fff" stroke-width="2"/>
+        <text x="50" y="146" fill="#f5f0e4" font-size="12" text-anchor="middle">LY14</text>
+        <circle cx="88" cy="158" r="8" fill="#c4a44d" stroke="#fff" stroke-width="2"/>
+        <text x="92" y="180" fill="#f5f0e4" font-size="12" text-anchor="middle">LU3</text>
+      </g>
+    </svg>
+    <div class="side-flag">▲ 右 側（R）</div>
+
+    <!-- POINTS LIST -->
+    <div class="points">
+      <div class="pt"><div class="code">LI15</div><div><div class="name">肩髃（けんぐう）</div><div class="region">肩関節の前面</div></div></div>
+      <div class="pt"><div class="code">TE14</div><div><div class="name">肩髎（けんりょう）</div><div class="region">肩関節の後面</div></div></div>
+      <div class="pt"><div class="code">SI10</div><div><div class="name">臑兪（じゅゆ）</div><div class="region">肩甲骨まわり</div></div></div>
+      <div class="pt"><div class="code">LY14</div><div><div class="name">右肩甲ライン</div><div class="region">肩甲〜上腕の反応点</div></div></div>
+      <div class="pt"><div class="code">LU3</div><div><div class="name">天府（てんぷ）</div><div class="region">上腕の前面</div></div></div>
+    </div>
+
+    <div class="insight">
+      <div class="t">本日の施術</div>
+      <p>これらの反応点をすべて刺激し、頭まわり・身体全体まで含めて整えました。引き金そのものに届いたので、<b>相当軽くなる</b>はずです。</p>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- RADOTECH 所見 -->
+  <section>
+    <div class="label">測定からの所見</div>
+    <h2>身体の声を<span class="em">測定</span>で確認</h2>
+
+    <div class="organ-card o-hyper">
+      <div class="head">
+        <span class="dot"></span>
+        <span class="nm">小腸</span>
+        <span class="val">167%</span>
+      </div>
+      <div class="desc">活動が高まっている状態（ハイペラクティブ）。これは<b>からだを守るための代償的な反応</b>で、原則として観察で問題ありません。本日刺激した右肩のSI10は、ちょうどこの小腸ラインの反応点。所見と施術がきれいに一致しています。</div>
+    </div>
+
+    <div class="organ-card o-low">
+      <div class="head">
+        <span class="dot"></span>
+        <span class="nm">膀胱</span>
+        <span class="val">23 / 46%</span>
+      </div>
+      <div class="desc">やや控えめな数値。あわてて対処する必要はなく、<b>数日にわたって続く場合のみ気にかける</b>ところです。今は経過観察で大丈夫です。</div>
+    </div>
+
+    <div class="reassure">
+      <div class="big">You are OK ── 心配いりません</div>
+      <div class="sub">15%を下回る数値が数日続いた時だけ、医療機関へご相談を。</div>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- BEFORE / AFTER -->
+  <section class="ba">
+    <div class="label">施術前 → 施術後</div>
+    <h2>左右のバランスが<span class="em" style="color:var(--gold)">整いました</span></h2>
+    <p style="margin-bottom:24px;">からだの左右差（L/R比）は、緑の帯（0.9〜1.1）に収まるのが理想です。施術前にはみ出していた数値が、<b>施術後にはすべて理想ゾーンへ</b>戻りました。</p>
+
+    <div class="ba-legend">
+      <span><span class="swatch sw-before"></span>施術前</span>
+      <span><span class="swatch sw-after"></span>施術後</span>
+    </div>
+
+    <!-- Psycho-emotional -->
+    <div class="metric">
+      <div class="top">
+        <span class="mname">心の状態</span>
+        <span class="mtag tag-fixed">高ぶり → 落ち着き</span>
+      </div>
+      <div class="track">
+        <div class="normband" style="left:30%;width:13.3%;"><span class="lbl">理想 0.9–1.1</span></div>
+        <div class="marker m-before" style="left:90%;"><span class="pin"></span><span class="pv">2.62</span></div>
+        <div class="marker m-after" style="left:37.7%;"><span class="pin"></span><span class="pv">1.13</span></div>
+      </div>
+      <div class="scale"><span>0.5</span><span>理想帯</span><span>3.0</span></div>
+    </div>
+
+    <!-- Musculoskeletal -->
+    <div class="metric">
+      <div class="top">
+        <span class="mname">筋骨格</span>
+        <span class="mtag tag-fixed">不足 → 充実</span>
+      </div>
+      <div class="track">
+        <div class="normband" style="left:30%;width:13.3%;"><span class="lbl">理想 0.9–1.1</span></div>
+        <div class="marker m-before" style="left:9.6%;"><span class="pin"></span><span class="pv">0.74</span></div>
+        <div class="marker m-after" style="left:34%;"><span class="pin"></span><span class="pv">1.01</span></div>
+      </div>
+      <div class="scale"><span>0.5</span><span>理想帯</span><span>3.0</span></div>
+    </div>
+
+    <!-- Metabolism -->
+    <div class="metric">
+      <div class="top">
+        <span class="mname">代謝</span>
+        <span class="mtag tag-fixed">境目 → 安定</span>
+      </div>
+      <div class="track">
+        <div class="normband" style="left:30%;width:13.3%;"><span class="lbl">理想 0.9–1.1</span></div>
+        <div class="marker m-before" style="left:31.6%;"><span class="pin"></span><span class="pv">0.99</span></div>
+        <div class="marker m-after" style="left:34%;"><span class="pin"></span><span class="pv">1.10</span></div>
+      </div>
+      <div class="scale"><span>0.5</span><span>理想帯</span><span>3.0</span></div>
+    </div>
+
+    <div class="ba-note">
+      <div class="t">いちばんの変化</div>
+      <p>「心の状態」が <b>2.62 → 1.13</b> へ。高ぶっていた左右差が、施術後にはすっかり穏やかなバランスへ戻りました。からだの緊張が取れたサインです。</p>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="crest">❖</div>
+    <h2>本日もありがとうございました</h2>
+    <p>引き金だった右肩まわりに届いたので、しばらくは身体が軽い状態が続くはずです。無理のない範囲で、いつも通りお過ごしください。気になる変化があれば、いつでもご相談くださいね。</p>
+    <div class="links">
+      <a class="btn btn-line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="btn btn-map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="tagline">高松発・一生動ける身体と人生の教養研究室<br>｜無車・自転車・圧力鍋生活を実践する治療家より</div>
+  </section>
+
+  <div class="foot">
+    三条健康堂接骨院｜香川県高松市由良町（由良川東公園のそば）<br>
+    柔道整復師・30年・延べたくさんの臨床経験から
+  </div>
+
+</div>
+</body>
+</html>
