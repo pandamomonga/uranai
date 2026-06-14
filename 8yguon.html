@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本当に効くやつTOP20</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: #0a0a0a;
+    color: #f5f0e4;
+    font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+    font-weight: 900;
+    line-height: 1.5;
+    padding: 18px 14px 60px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  /* ===== ヘッダー ===== */
+  .hero {
+    background: #ffe600;
+    color: #0a0a0a;
+    border: 6px solid #0a0a0a;
+    box-shadow: 10px 10px 0 #ff0055;
+    padding: 22px 18px;
+    transform: rotate(-1.2deg);
+    margin: 10px 6px 40px;
+  }
+  .hero .kicker {
+    background:#ff0055; color:#fff; display:inline-block;
+    font-size:15px; padding:4px 12px; transform:rotate(1deg);
+    margin-bottom:10px; letter-spacing:1px;
+  }
+  .hero h1 { font-size: 36px; line-height:1.15; letter-spacing:-1px; }
+  .hero h1 .big { font-size: 52px; color:#ff0055; -webkit-text-stroke:1px #0a0a0a; }
+  .hero .sub { font-size: 16px; margin-top:12px; font-weight:700; }
+  .hero .scorenote {
+    margin-top:14px; font-size:14px; font-weight:700;
+    background:#0a0a0a; color:#ffe600; padding:8px 12px; display:inline-block;
+    transform:rotate(-0.6deg);
+  }
+
+  /* ===== 帯 ===== */
+  .tier {
+    font-size: 24px; padding: 10px 16px; margin: 38px 0 18px;
+    border-left: 12px solid;
+    background: #161616;
+    transform: rotate(-0.4deg);
+  }
+  .tier small { display:block; font-size:13px; font-weight:700; color:#bbb; margin-top:3px; }
+  .tier.t1 { border-color:#ffe600; color:#ffe600; }
+  .tier.t2 { border-color:#00e5ff; color:#00e5ff; }
+  .tier.t3 { border-color:#ff0055; color:#ff7aa8; }
+
+  /* ===== カード ===== */
+  .card {
+    background:#161616; border:3px solid #2a2a2a;
+    padding:14px 14px 16px; margin-bottom:14px;
+    position:relative; display:flex; gap:14px; align-items:flex-start;
+  }
+  .card.core { border-color:#ffe600; box-shadow:5px 5px 0 rgba(255,230,0,.18); }
+  .rank {
+    flex:0 0 auto; min-width:56px; text-align:center;
+    font-size:44px; line-height:1; color:#ff0055;
+    -webkit-text-stroke:1px #fff;
+  }
+  .card.core .rank { color:#ffe600; }
+  .body { flex:1 1 auto; min-width:0; }
+  .ttl { font-size:21px; letter-spacing:-0.5px; }
+  .ttl .tag {
+    font-size:12px; font-weight:700; padding:2px 8px; margin-left:8px;
+    vertical-align:middle; border-radius:2px; white-space:nowrap;
+  }
+  .tag.shujutsu { background:#ff0055; color:#fff; }
+  .tag.drug { background:#7a5cff; color:#fff; }
+  .tag.you { background:#00e5ff; color:#0a0a0a; }
+  .pop {
+    color:#ffe600; font-size:16px; font-weight:900; margin:6px 0 9px;
+    font-style:italic;
+  }
+  .ev {
+    font-size:14px; font-weight:700; color:#d8d2c4;
+    background:#0a0a0a; padding:8px 10px; border-left:3px solid #444;
+    line-height:1.55;
+  }
+  .ev b { color:#fff; }
+  .num {
+    color:#00e5ff; font-weight:900;
+    background:rgba(0,229,255,.12); padding:0 4px; border-radius:3px;
+  }
+  .dom { font-size:13px; font-weight:700; color:#999; margin-top:7px; }
+
+  /* スコアバー */
+  .bar { margin-top:9px; }
+  .bar .lab { font-size:12px; font-weight:700; color:#888; margin-bottom:3px; }
+  .track { background:#0a0a0a; height:22px; border:2px solid #2a2a2a; position:relative; }
+  .fill { height:100%; display:flex; align-items:center; justify-content:flex-end; padding-right:7px; }
+  .fill span { font-size:14px; font-weight:900; color:#0a0a0a; }
+  .f-gold { background:#ffe600; }
+  .f-cyan { background:#00e5ff; }
+  .f-pink { background:#ff5d8f; }
+
+  /* ===== 注意POP ===== */
+  .warn {
+    background:#ff0055; color:#fff; border:5px solid #0a0a0a;
+    box-shadow:8px 8px 0 #ffe600; padding:18px; margin:42px 6px 30px;
+    transform:rotate(0.8deg);
+  }
+  .warn h2 { font-size:26px; margin-bottom:12px; }
+  .warn ul { list-style:none; }
+  .warn li { font-size:15px; font-weight:700; padding:7px 0; border-bottom:2px dashed rgba(255,255,255,.4); }
+  .warn li:last-child { border:none; }
+  .warn li b { background:#0a0a0a; color:#ffe600; padding:1px 6px; }
+
+  /* ===== 締め ===== */
+  .closer {
+    background:#ffe600; color:#0a0a0a; border:6px solid #0a0a0a;
+    box-shadow:10px 10px 0 #00e5ff; padding:22px 18px; margin:30px 6px 0;
+    transform:rotate(-0.8deg);
+  }
+  .closer h2 { font-size:26px; margin-bottom:10px; }
+  .closer p { font-size:16px; font-weight:700; line-height:1.7; margin-bottom:10px; }
+  .closer .punch { font-size:22px; color:#ff0055; -webkit-text-stroke:.5px #0a0a0a; }
+
+  .foot { font-size:12px; font-weight:700; color:#777; margin-top:26px; text-align:center; line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="kicker">店長が全部読んで選んだ</span>
+    <h1>結局<span class="big">コレ</span>が<br>本当に効くやつ<br>TOP20!!</h1>
+    <div class="sub">エビデンスの「確実性」×「効果のデカさ」で殴り合い。数字はぜんぶホンモノ持ってきた。</div>
+    <div class="scorenote">★スコア＝確実性×効果量を10点満点で換算（高いほど"ガチ"）</div>
+  </div>
+
+  <!-- TIER 1 -->
+  <div class="tier t1">殿堂入り｜コレだけはガチ（コア6）<small>メタ解析・大規模RCT・巨大コホートが全力で支える別格ゾーン</small></div>
+
+  <div class="card core">
+    <div class="rank">1</div>
+    <div class="body">
+      <div class="ttl">禁煙</div>
+      <div class="pop">寿命がまるごと約10年返ってくる、反則級の一手。</div>
+      <div class="ev"><b>Jha, NEJM 2013</b>：現喫煙者の全死亡は非喫煙者の約<span class="num">3.0倍</span>（女）/<span class="num">2.8倍</span>（男）。<b>40歳前にやめれば寿命ロスはほぼ帳消し。</b></div>
+      <div class="dom">▶ 効く領域：全死亡率・代謝・血管 ＝ 全部</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-gold" style="width:98%"><span>9.8</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card core">
+    <div class="rank">2</div>
+    <div class="body">
+      <div class="ttl">有酸素運動・身体活動 <span class="tag you">自転車通勤＝コレ</span></div>
+      <div class="pop">4領域ぜんぶに効く。コスパも守備範囲もチート性能。</div>
+      <div class="ev"><b>Ekelund, BMJ 2019</b>（実測36,383人）：よく動く群は死亡リスク<span class="num">−73%</span>（HR <span class="num">0.27</span>）。歩数は60歳以上で<span class="num">6,000〜8,000歩</span>で頭打ち。</div>
+      <div class="dom">▶ 効く領域：長寿・運動器・認知・代謝（全部）</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-gold" style="width:97%"><span>9.7</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card core">
+    <div class="rank">3</div>
+    <div class="body">
+      <div class="ttl">筋力トレーニング</div>
+      <div class="pop">先生に一番足りてないのコレ。握力は寿命の予言者。</div>
+      <div class="ev"><b>Momma, BJSM 2022</b>：筋トレで死亡・心血管・がん・糖尿病<span class="num">−10〜17%</span>、最大効果は<span class="num">週30〜60分</span>。<b>握力 Leong, Lancet 2015</b>：5kg低下ごとに死亡 HR <span class="num">1.16</span>（血圧より強い予測因子）。</div>
+      <div class="dom">▶ 効く領域：長寿・運動器・代謝</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-gold" style="width:92%"><span>9.2</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card core">
+    <div class="rank">4</div>
+    <div class="body">
+      <div class="ttl">睡眠（量・質）</div>
+      <div class="pop">7時間が底。トラッカーは"道具"であって治療じゃない。</div>
+      <div class="ev"><b>Cappuccio, Sleep 2010</b>：短すぎ・長すぎ両方で全死亡↑のU字。最適は<span class="num">約7時間</span>。改善の本命はCBT-I（→9位）。</div>
+      <div class="dom">▶ 効く領域：長寿・認知・代謝</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-gold" style="width:90%"><span>9.0</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card core">
+    <div class="rank">5</div>
+    <div class="body">
+      <div class="ttl">食事の質（地中海食）</div>
+      <div class="pop">"パターン"で食う。圧力鍋の豆・全粒がそのまま武器に。</div>
+      <div class="ev"><b>PREDIMED（Estruch, NEJM 2018再解析・7,447人RCT）</b>：心血管イベント HR <span class="num">0.69</span>、糖尿病新規発症 HR <span class="num">0.60</span>。※全死亡そのものの有意差は出ていない（正直に）。</div>
+      <div class="dom">▶ 効く領域：長寿（心血管）・代謝</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-gold" style="width:88%"><span>8.8</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card core">
+    <div class="rank">6</div>
+    <div class="body">
+      <div class="ttl">社会的つながり</div>
+      <div class="pop">孤独は喫煙級のリスク。人付き合いは"健康法"です。</div>
+      <div class="ev"><b>Holt-Lunstad, PLoS Med 2010</b>（148研究・308,849人）：強い社会的関係で生存可能性 OR <span class="num">1.50</span>。効果は喫煙等の確立リスクに匹敵。</div>
+      <div class="dom">▶ 効く領域：長寿・メンタル/認知</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-gold" style="width:85%"><span>8.5</span></div></div></div>
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="tier t2">主力組｜入れときゃ間違いない<small>RCT・ガイドラインで裏が取れた実力派。施術者の本丸もココ。</small></div>
+
+  <div class="card">
+    <div class="rank">7</div>
+    <div class="body">
+      <div class="ttl">食物繊維・全粒穀物</div>
+      <div class="pop">単一栄養素で一番タフな死亡率データ。腸活の"本体"。</div>
+      <div class="ev"><b>Reynolds &amp; Mann, Lancet 2019</b>：高摂取群で全死亡・心血管死<span class="num">−15〜30%</span>。最大効果は<span class="num">1日25〜29g</span>。</div>
+      <div class="dom">▶ 効く領域：長寿・代謝</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-cyan" style="width:83%"><span>8.3</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">8</div>
+    <div class="body">
+      <div class="ttl">運動療法（変形性関節症・慢性痛） <span class="tag shujutsu">施術の本丸</span></div>
+      <div class="pop">先生が出せる最強の"施術"はコレ。徒手より格上。</div>
+      <div class="ev"><b>Goh, Ann Phys Rehabil Med 2019</b>（77RCT・6,472人）：疼痛ES <span class="num">0.56</span>、機能ES <span class="num">0.50</span>（8週）。OARSI/NICEで<b>第一選択</b>。※効果は短期中心、続けてナンボ。</div>
+      <div class="dom">▶ 効く領域：慢性痛・運動器</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-cyan" style="width:80%"><span>8.0</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">9</div>
+    <div class="body">
+      <div class="ttl">CBT／CBT-I（認知行動療法）</div>
+      <div class="pop">不眠の第一選択は"薬"より"考え方の訓練"。</div>
+      <div class="ev"><b>Hertenstein, Sleep Med Rev 2022</b>：併存うつ d<span class="num">0.5</span>／PTSD d<span class="num">1.3</span>、不眠重症度はPTSDで d<span class="num">1.5</span>。効果は1年以上持続、薬と同等以上。</div>
+      <div class="dom">▶ 効く領域：メンタル/認知・慢性痛・睡眠</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-cyan" style="width:78%"><span>7.8</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">10</div>
+    <div class="body">
+      <div class="ttl">アルコール削減</div>
+      <div class="pop">「適量は体にいい」は終了。最適量はゼロ。</div>
+      <div class="ev"><b>GBD Alcohol, Lancet 2018</b>：健康影響を最小化する飲酒量は<span class="num">0</span>。少量の心保護は交絡の疑い濃厚。</div>
+      <div class="dom">▶ 効く領域：長寿・代謝</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-cyan" style="width:75%"><span>7.5</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">11</div>
+    <div class="body">
+      <div class="ttl">GLP-1受容体作動薬 <span class="tag drug">薬・参考枠</span></div>
+      <div class="pop">行動を超える代謝の破壊力。知識としての"基準点"。</div>
+      <div class="ev"><b>SELECT（Lincoff, NEJM 2023・17,604人）</b>：心血管イベント HR <span class="num">0.80</span>、全死亡 HR <span class="num">0.81</span>、4年で体重<span class="num">約−10%</span>。※施術範囲外・副作用とコスト注意。</div>
+      <div class="dom">▶ 効く領域：代謝（体重・血糖）・心血管</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-cyan" style="width:75%"><span>7.5</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">12</div>
+    <div class="body">
+      <div class="ttl">座位時間の削減／NEAT</div>
+      <div class="pop">座りっぱなしは効く。でも30分動けば概ねチャラ。</div>
+      <div class="ev"><b>Ekelund, BMJ 2019</b>：座位最多群は全死亡 HR <span class="num">2.63</span>。ただし<span class="num">1日30〜40分</span>の中強度活動でその害はほぼ相殺。</div>
+      <div class="dom">▶ 効く領域：長寿・代謝</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-cyan" style="width:70%"><span>7.0</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">13</div>
+    <div class="body">
+      <div class="ttl">HIIT</div>
+      <div class="pop">心肺はHIITが有利。でも痩せ・血糖は"やり方"より"やること"。</div>
+      <div class="ev"><b>Zhang 2021（肥満児RCTメタ解析）</b>：VO2max改善はMICTより優位 SMD <span class="num">0.87</span>。だが<b>体重・BMI・体脂肪・血糖脂質はMICTと差なし</b>。</div>
+      <div class="dom">▶ 効く領域：代謝・心肺フィットネス</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-cyan" style="width:68%"><span>6.8</span></div></div></div>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="tier t3">補助組｜害ナシ・上乗せで効く<small>効果は小〜中。でもタダ同然で副作用ほぼゼロ。続けば勝ち。</small></div>
+
+  <div class="card">
+    <div class="rank">14</div>
+    <div class="body">
+      <div class="ttl">太極拳</div>
+      <div class="pop">転倒予防のエース。本書出版後に一番伸びた分野。</div>
+      <div class="ev"><b>転倒リスク RR <span class="num">0.76</span></b>（Chen 2023・24RCT）／転倒発生 IRR <span class="num">0.69</span>（Huang, BJSM 2017）。線維筋痛症では有酸素運動より優位（Wang, BMJ 2018）。</div>
+      <div class="dom">▶ 効く領域：運動器（バランス）・メンタル</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-pink" style="width:65%"><span>6.5</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">15</div>
+    <div class="body">
+      <div class="ttl">瞑想・マインドフルネス</div>
+      <div class="pop">"万病に効く"はウソ。でも不安・うつ・痛みに地味に効く。</div>
+      <div class="ev"><b>Goyal, JAMA Intern Med 2014</b>（47RCT・3,515人）：不安 ES <span class="num">0.38</span>／うつ <span class="num">0.30</span>／痛み <span class="num">0.33</span>。薬や運動の代替ではない。</div>
+      <div class="dom">▶ 効く領域：メンタル/認知</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-pink" style="width:63%"><span>6.3</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">16</div>
+    <div class="body">
+      <div class="ttl">サウナ入浴</div>
+      <div class="pop">数字はデカい。が、観察研究のみ＝割り引いて読め。</div>
+      <div class="ev"><b>Laukkanen, KIHDコホート</b>：週4〜7回群は心血管死亡が<span class="num">10.1→2.7</span>/1000人年。※RCTなし・逆因果の余地大。</div>
+      <div class="dom">▶ 効く領域：長寿（心血管）・メンタル</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-pink" style="width:60%"><span>6.0</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">17</div>
+    <div class="body">
+      <div class="ttl">鍼治療（慢性痛） <span class="tag shujutsu">施術</span></div>
+      <div class="pop">本物。ただし"偽鍼との差は小さい"＝大半は文脈効果。</div>
+      <div class="ev"><b>Vickers, J Pain 2018</b>（IPDメタ解析・29RCT・17,922人）：偽鍼・無治療の両方に有意。だが<b>偽鍼との差は小</b>。経絡・気の理論はエビデンス超過。</div>
+      <div class="dom">▶ 効く領域：慢性痛（限定）</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-pink" style="width:58%"><span>5.8</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">18</div>
+    <div class="body">
+      <div class="ttl">読書・知的活動／教養 <span class="tag you">年200冊＝コレ</span></div>
+      <div class="pop">本を読む人は長生き。先生の習慣、数字でも勝ってる。</div>
+      <div class="ev"><b>Bavishi, Soc Sci Med 2016</b>（Yale・3,635人・12年）：書籍読者は死亡リスク<span class="num">−20%</span>（HR <span class="num">0.80</span>）、生存優位 <span class="num">約+23ヶ月</span>。新聞より書籍が上。</div>
+      <div class="dom">▶ 効く領域：メンタル/認知・長寿</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-pink" style="width:55%"><span>5.5</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">19</div>
+    <div class="body">
+      <div class="ttl">脊椎マニピュレーション／徒手療法 <span class="tag shujutsu">施術</span></div>
+      <div class="pop">効くが"NSAIDsと同程度・短期だけ"。単独で過大評価しない。</div>
+      <div class="ev"><b>Paige/Shekelle, JAMA 2017</b>：急性腰痛で疼痛 <span class="num">−9.95mm</span>（NSAIDsと同程度）。慢性は <b>Cochrane CD008112（2024）</b>で機能に中等度・<b>臨床的意義は限定的</b>。他療法と同等。</div>
+      <div class="dom">▶ 効く領域：慢性痛・運動器（限定）</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-pink" style="width:50%"><span>5.0</span></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rank">20</div>
+    <div class="body">
+      <div class="ttl">呼吸法（スロー／ボックス呼吸）</div>
+      <div class="pop">手軽・害なし。効果は小だがエビデンスは育成中。</div>
+      <div class="ev"><b>Fincham, Sci Rep 2023</b>（RCTメタ解析）：ストレス g<span class="num">−0.35</span>／不安 <span class="num">−0.32</span>／うつ <span class="num">−0.40</span>（小〜中）。著者自身が"誇大広告と区別を"と注意喚起。</div>
+      <div class="dom">▶ 効く領域：メンタル/認知</div>
+      <div class="bar"><div class="lab">複合スコア</div><div class="track"><div class="fill f-pink" style="width:48%"><span>4.8</span></div></div></div>
+    </div>
+  </div>
+
+  <!-- 注意POP -->
+  <div class="warn">
+    <h2>⚠ ダマされんな!! 過大評価ゾーン</h2>
+    <ul>
+      <li><b>腸内細菌サプリ</b>：菌株サプリで死亡率や慢性病が改善する確証ナシ。やるなら"食物繊維（7位）"に集約しろ。</li>
+      <li><b>冷水・アイスバス</b>：流行ってるがRCT弱め、ハードな結果は未証明。</li>
+      <li><b>ビタミンDサプリ</b>：VITAL試験（NEJM 2019・25,871人）で心血管 HR 0.97／がん 0.96＝有意差ナシ。日光と食事で足りる。</li>
+      <li><b>ヨガ／森林浴／コーヒー</b>：害なし・小効果。"中核"ではなく"おまけ"。</li>
+    </ul>
+  </div>
+
+  <!-- 締め -->
+  <div class="closer">
+    <h2>で、結論。</h2>
+    <p><span class="punch">最強は「コア6」</span>（禁煙・有酸素・筋トレ・睡眠・地中海食・人付き合い）。施術者が出せる最良の一手は<b>"運動療法（8位）"</b>。徒手・鍼は"本物だが痛み限定・中等度"——入口に使って、運動と教育へ橋渡しするのが本当の価値。</p>
+    <p>そして全ランキングを貫く真理がコレ👇</p>
+    <p class="punch">続かない最適 ＜ 続くそこそこ。</p>
+    <p>先生の「車なし・自転車通勤・圧力鍋・年200冊」は、もうコアの大半を体現済み。<b>残る最大の上乗せは"週2回の筋トレ"だけ。</b></p>
+  </div>
+
+  <div class="foot">
+    ※スコアは「エビデンスの確実性×効果量」を10点満点に換算した相対指標。集団平均であり個人の反応を保証するものではない。<br>
+    観察研究主体の項目（社会的つながり・読書・サウナ・睡眠）は逆因果・交絡の余地が大きく、確実性で一段劣る。
+  </div>
+
+</div>
+</body>
+</html>
