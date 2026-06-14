@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三澤様 本日の施術レポート｜三条健康堂接骨院</title>
+<style>
+  :root{
+    --bg:#0a0b0e;
+    --panel:#14161d;
+    --panel2:#1b1e27;
+    --ink:#f5f2e9;
+    --sub:#9aa0ad;
+    --cyan:#00f0ff;
+    --pink:#ff2e88;
+    --lime:#c6ff3a;
+    --gold:#ffd24a;
+    --red:#ff4d3d;
+    --green:#28c46e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px 80px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:54px 22px 40px;
+    margin:0 -18px 26px;
+    background:
+      radial-gradient(120% 90% at 20% 0%, rgba(255,46,136,.30), transparent 55%),
+      radial-gradient(120% 90% at 90% 10%, rgba(0,240,255,.28), transparent 55%),
+      #0a0b0e;
+    border-bottom:2px solid rgba(255,210,74,.4);
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:100% 7px;opacity:.5;pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.28em;font-weight:800;
+    color:#0a0b0e;background:var(--lime);padding:5px 12px;border-radius:3px;
+    transform:rotate(-2deg);
+  }
+  .hero h1{
+    font-size:42px;font-weight:900;line-height:1.12;margin:16px 0 6px;
+    letter-spacing:.01em;
+    text-shadow:0 0 22px rgba(0,240,255,.35);
+  }
+  .hero h1 .name{
+    background:linear-gradient(90deg,var(--cyan),var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .date{color:var(--sub);font-size:14px;font-weight:700;letter-spacing:.05em;}
+  .hero .clinic{margin-top:14px;font-size:13px;color:var(--gold);font-weight:800;}
+
+  /* SECTION TITLE */
+  .sec{margin:38px 0 16px;display:flex;align-items:center;gap:10px;}
+  .sec .num{
+    font-size:13px;font-weight:900;color:#0a0b0e;background:var(--gold);
+    width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;
+  }
+  .sec h2{font-size:21px;font-weight:900;letter-spacing:.02em;}
+
+  /* SUMMARY HEADLINE CARD */
+  .verdict{
+    background:linear-gradient(135deg,rgba(40,196,110,.16),rgba(0,240,255,.10));
+    border:1.5px solid rgba(40,196,110,.45);
+    border-radius:16px;padding:20px;margin-bottom:8px;
+  }
+  .verdict .big{font-size:17px;font-weight:900;line-height:1.5;}
+  .verdict .big em{color:var(--lime);font-style:normal;}
+  .verdict p{color:var(--sub);font-size:13.5px;margin-top:8px;}
+
+  /* METRICS GRID */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  .m{
+    background:var(--panel);border-radius:14px;padding:15px 14px;
+    border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;
+  }
+  .m .lbl{font-size:13px;color:var(--sub);font-weight:700;}
+  .m .val{font-size:30px;font-weight:900;margin-top:2px;letter-spacing:.01em;}
+  .m .tag{
+    display:inline-block;margin-top:4px;font-size:11px;font-weight:800;
+    padding:2px 9px;border-radius:20px;
+  }
+  .t-norm{background:rgba(40,196,110,.18);color:var(--green);}
+  .t-over{background:rgba(255,77,61,.18);color:var(--red);}
+  .m.span2{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;}
+  .m.span2 .val{font-size:38px;}
+  .m .bar{position:absolute;left:0;top:0;bottom:0;width:5px;}
+  .b-green{background:var(--green);}
+  .b-red{background:var(--red);}
+  .b-gold{background:var(--gold);}
+
+  /* FOCUS BLADDER */
+  .focus{
+    background:var(--panel);border:1.5px solid rgba(0,240,255,.4);
+    border-radius:16px;padding:20px;margin-top:6px;
+  }
+  .focus .top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .focus .top .ic{
+    width:46px;height:46px;border-radius:12px;flex:none;
+    background:rgba(0,240,255,.14);display:grid;place-items:center;font-size:24px;
+  }
+  .focus .top h3{font-size:18px;font-weight:900;}
+  .focus .top .st{font-size:12px;font-weight:800;color:var(--cyan);letter-spacing:.05em;}
+  .lr{display:flex;gap:10px;margin:6px 0 14px;}
+  .lr .c{flex:1;background:var(--panel2);border-radius:12px;padding:12px;text-align:center;}
+  .lr .c .p{font-size:30px;font-weight:900;color:var(--cyan);}
+  .lr .c .s{font-size:12px;color:var(--sub);font-weight:700;}
+  .lr .c.low .p{color:var(--pink);}
+  .focus p{font-size:13.5px;color:#cfd3db;}
+
+  /* CAUSE */
+  .cause{
+    background:linear-gradient(135deg,rgba(255,46,136,.14),rgba(255,210,74,.08));
+    border:1.5px solid rgba(255,46,136,.4);border-radius:16px;padding:20px;
+  }
+  .cause h3{font-size:16px;font-weight:900;margin-bottom:8px;color:var(--pink);}
+  .cause p{font-size:14px;color:#e7e3da;}
+  .cause .chips{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .chip{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;padding:6px 14px;font-size:13px;font-weight:800;
+  }
+  .chip em{font-style:normal;color:var(--gold);}
+
+  /* TREATMENT MAP */
+  .zone{background:var(--panel);border-radius:16px;padding:18px;margin-bottom:13px;border:1px solid rgba(255,255,255,.06);}
+  .zone .zh{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .zone .zh .badge{
+    font-size:11px;font-weight:900;letter-spacing:.1em;padding:4px 10px;border-radius:4px;color:#0a0b0e;
+  }
+  .zh .zt{font-size:16px;font-weight:900;}
+  .z1 .badge{background:var(--cyan);}
+  .z2 .badge{background:var(--lime);}
+  .z3 .badge{background:var(--gold);}
+  .pt{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-top:1px dashed rgba(255,255,255,.1);}
+  .pt:first-of-type{border-top:none;}
+  .pt .code{
+    font-size:13px;font-weight:900;flex:none;min-width:62px;text-align:center;
+    background:rgba(255,255,255,.07);border-radius:8px;padding:6px 4px;
+    border:1px solid rgba(255,255,255,.12);
+  }
+  .pt .info .jp{font-size:14.5px;font-weight:800;}
+  .pt .info .jp span{font-size:12px;color:var(--sub);font-weight:600;margin-left:6px;}
+  .pt .info .d{font-size:12.5px;color:#b6bac4;margin-top:2px;}
+  .z1 .code{color:var(--cyan);}
+  .z2 .code{color:var(--lime);}
+  .z3 .code{color:var(--gold);}
+
+  /* DOCTOR NOTE */
+  .note{
+    background:var(--panel2);border-radius:16px;padding:20px;margin-top:8px;
+    border-left:4px solid var(--gold);
+  }
+  .note .h{font-size:13px;font-weight:900;color:var(--gold);letter-spacing:.1em;margin-bottom:10px;}
+  .note p{font-size:14px;color:#e7e3da;}
+  .note p + p{margin-top:10px;}
+
+  /* CTA */
+  .cta{margin-top:30px;text-align:center;}
+  .cta .l{
+    display:block;text-decoration:none;font-weight:900;font-size:16px;
+    padding:16px;border-radius:14px;margin-bottom:11px;
+  }
+  .cta .line{background:#06c755;color:#fff;}
+  .cta .map{background:transparent;color:var(--ink);border:1.5px solid rgba(255,255,255,.2);}
+  .foot{margin-top:28px;text-align:center;color:var(--sub);font-size:12px;line-height:1.9;}
+  .foot b{color:var(--ink);}
+  .disc{margin-top:14px;font-size:10.5px;color:#5d626c;line-height:1.7;}
+
+  /* BODY MAP ILLUSTRATION */
+  .bodymap{background:var(--panel);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:10px 6px 6px;margin-bottom:14px;}
+  .bodymap svg{width:100%;height:auto;display:block;}
+  .mapcap{text-align:center;font-size:12px;color:var(--sub);font-weight:700;margin:2px 4px 4px;}
+
+  /* IMPACT 改善 */
+  .impact{
+    margin-top:34px;border-radius:20px;padding:20px 16px 24px;
+    background:
+      radial-gradient(130% 80% at 50% 0%, rgba(255,46,136,.20), transparent 60%),
+      radial-gradient(130% 80% at 50% 100%, rgba(0,240,255,.16), transparent 60%),
+      var(--panel);
+    border:1.5px solid rgba(255,210,74,.45);
+    position:relative;overflow:hidden;
+  }
+  .impact .badge-top{
+    display:inline-block;font-size:11px;letter-spacing:.22em;font-weight:900;
+    color:#0a0b0e;background:var(--gold);padding:5px 12px;border-radius:3px;transform:rotate(-1.5deg);margin-bottom:4px;
+  }
+  .impact .em{display:block;width:100%;max-width:340px;height:auto;margin:2px auto 4px;}
+  .impact .sub{text-align:center;font-size:14.5px;font-weight:800;color:var(--ink);margin:6px 6px 18px;line-height:1.6;}
+  .impact .sub em{color:var(--gold);font-style:normal;}
+  .istats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:12px;}
+  .istats .s{background:var(--panel2);border-radius:13px;padding:14px 4px;text-align:center;border:1px solid rgba(255,255,255,.06);}
+  .istats .s b{display:block;font-size:30px;font-weight:900;line-height:1;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .istats .s b i{font-style:normal;font-size:16px;}
+  .istats .s span{display:block;font-size:11px;color:var(--sub);font-weight:800;margin-top:7px;}
+  .ba{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--panel2);border-radius:13px;padding:14px 10px;border:1px solid rgba(255,255,255,.06);flex-wrap:wrap;}
+  .ba .k{font-size:12px;color:var(--sub);font-weight:800;}
+  .ba .v{font-size:22px;font-weight:900;color:var(--pink);}
+  .ba .ar{font-size:24px;font-weight:900;color:var(--lime);}
+  .ba .res{font-size:16px;font-weight:900;color:var(--lime);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="eyebrow">TODAY'S CARE REPORT</span>
+    <h1><span class="name">三澤</span>様<br>本日の施術レポート</h1>
+    <div class="date">2026.06.14 sat / 三条健康堂接骨院</div>
+    <div class="clinic">⚡ 年間200冊読む治療家・谷より</div>
+  </div>
+
+  <!-- 総合 -->
+  <div class="sec"><span class="num">1</span><h2>本日の総合コンディション</h2></div>
+  <div class="verdict">
+    <div class="big">継続施術の成果で、<em>全体は非常に良好な状態</em>です。</div>
+    <p>各指標はおおむね正常域。ただし最初の測定で「膀胱経の弱さ」と、足・股関節まわりの負担サインが出ていました。本日はそこに集中してアプローチしています。</p>
+  </div>
+
+  <div class="grid" style="margin-top:14px;">
+    <div class="m span2">
+      <div><div class="lbl">平均値 / Average</div><span class="tag t-norm">良好</span></div>
+      <div class="val">28.61</div>
+    </div>
+    <div class="m"><span class="bar b-green"></span><div class="lbl">エネルギー</div><div class="val">28.61</div><span class="tag t-norm">正常</span></div>
+    <div class="m"><span class="bar b-green"></span><div class="lbl">免疫</div><div class="val">21.67</div><span class="tag t-norm">正常</span></div>
+    <div class="m"><span class="bar b-red"></span><div class="lbl">代謝</div><div class="val">1.29</div><span class="tag t-over">やや高め</span></div>
+    <div class="m"><span class="bar b-green"></span><div class="lbl">心理・感情</div><div class="val">1.11</div><span class="tag t-norm">正常</span></div>
+    <div class="m"><span class="bar b-green"></span><div class="lbl">筋骨格</div><div class="val">0.93</div><span class="tag t-norm">正常</span></div>
+    <div class="m"><span class="bar b-gold"></span><div class="lbl">左右バランス L/R</div><div class="val">0.93</div><span class="tag t-norm">基準内</span></div>
+  </div>
+
+  <!-- 注目 膀胱 -->
+  <div class="sec"><span class="num">2</span><h2>注目ポイント:膀胱経</h2></div>
+  <div class="focus">
+    <div class="top">
+      <div class="ic">💧</div>
+      <div><h3>膀胱(Bladder)</h3><div class="st">INSUFFICIENCY / 働きが弱め</div></div>
+    </div>
+    <div class="lr">
+      <div class="c low"><div class="p">52%</div><div class="s">左 Left</div></div>
+      <div class="c"><div class="p">69%</div><div class="s">右 Right</div></div>
+    </div>
+    <p>膀胱の経絡は、足の裏から背中・腰を通る「身体の後ろ側の大きな通り道」です。歩く負担がたまると真っ先に反応が出る場所。今日はこの流れを下半身からしっかり通していきます。</p>
+  </div>
+
+  <!-- 原因 -->
+  <div class="sec"><span class="num">3</span><h2>本日の負担の原因</h2></div>
+  <div class="cause">
+    <h3>🥾 歩行による足・股関節の張り</h3>
+    <p>山道歩きと日常のウォーキング。これ自体はとても良い習慣ですが、その分だけ足と股関節に負担が集中していました。今日はここが最大のテーマです。</p>
+    <div class="chips">
+      <span class="chip">📍 <em>足</em></span>
+      <span class="chip">📍 <em>股関節</em></span>
+      <span class="chip">📍 <em>腰・骨盤</em></span>
+    </div>
+  </div>
+
+  <!-- 施術マップ -->
+  <div class="sec"><span class="num">4</span><h2>本日の施術マップ</h2></div>
+
+  <div class="bodymap">
+    <svg viewBox="0 0 360 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="本日アプローチしたツボの位置図">
+      <defs>
+        <filter id="blurA" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="14"/></filter>
+        <filter id="dotg" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3.2"/></filter>
+      </defs>
+
+      <!-- zone glows -->
+      <ellipse cx="180" cy="262" rx="76" ry="58" fill="#00f0ff" opacity="0.16" filter="url(#blurA)"/>
+      <ellipse cx="158" cy="442" rx="30" ry="80" fill="#c6ff3a" opacity="0.15" filter="url(#blurA)"/>
+      <ellipse cx="202" cy="442" rx="30" ry="80" fill="#c6ff3a" opacity="0.15" filter="url(#blurA)"/>
+
+      <!-- body (back view, illustration) -->
+      <g fill="#2a3243">
+        <rect x="100" y="106" width="24" height="178" rx="12"/>
+        <rect x="236" y="106" width="24" height="178" rx="12"/>
+        <circle cx="180" cy="50" r="30"/>
+        <rect x="168" y="76" width="24" height="16"/>
+        <rect x="120" y="90" width="120" height="52" rx="24"/>
+        <path d="M132,134 C128,172 140,210 150,246 L210,246 C220,210 232,172 228,134 Z"/>
+        <rect x="134" y="236" width="92" height="66" rx="30"/>
+        <rect x="140" y="292" width="36" height="252" rx="18"/>
+        <rect x="184" y="292" width="36" height="252" rx="18"/>
+        <ellipse cx="158" cy="550" rx="22" ry="10"/>
+        <ellipse cx="202" cy="550" rx="22" ry="10"/>
+      </g>
+      <line x1="180" y1="98" x2="180" y2="236" stroke="#3c4660" stroke-width="2" stroke-dasharray="3 5"/>
+
+      <!-- ZONE A dots (cyan) -->
+      <g fill="#00f0ff">
+        <g filter="url(#dotg)" opacity="0.55"><circle cx="160" cy="250" r="7"/><circle cx="200" cy="250" r="7"/><circle cx="150" cy="274" r="7"/><circle cx="210" cy="274" r="7"/><circle cx="180" cy="292" r="7"/></g>
+        <circle cx="160" cy="250" r="5"/><circle cx="200" cy="250" r="5"/><circle cx="150" cy="274" r="5"/><circle cx="210" cy="274" r="5"/><circle cx="180" cy="292" r="5"/>
+      </g>
+      <!-- ZONE B dots (lime) -->
+      <g fill="#c6ff3a">
+        <g filter="url(#dotg)" opacity="0.55"><circle cx="200" cy="424" r="7"/><circle cx="208" cy="462" r="7"/></g>
+        <circle cx="200" cy="424" r="5"/><circle cx="208" cy="462" r="5"/>
+      </g>
+
+      <!-- face inset (head points, gold) -->
+      <g>
+        <circle cx="306" cy="74" r="46" fill="#2a3243" stroke="#ffd24a" stroke-width="1.6"/>
+        <circle cx="292" cy="68" r="3" fill="#8590a3"/><circle cx="320" cy="68" r="3" fill="#8590a3"/>
+        <path d="M298,92 Q306,98 314,92" stroke="#8590a3" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g fill="#ffd24a">
+          <g filter="url(#dotg)" opacity="0.6"><circle cx="288" cy="46" r="6"/><circle cx="268" cy="70" r="6"/><circle cx="296" cy="94" r="6"/></g>
+          <circle cx="288" cy="46" r="4"/><circle cx="268" cy="70" r="4"/><circle cx="296" cy="94" r="4"/>
+        </g>
+        <text x="288" y="36" text-anchor="middle" font-size="10" font-weight="800" fill="#ffd24a" paint-order="stroke" stroke="#0a0b0e" stroke-width="3">ST8</text>
+        <text x="250" y="73" text-anchor="end" font-size="10" font-weight="800" fill="#ffd24a" paint-order="stroke" stroke="#0a0b0e" stroke-width="3">GB6</text>
+        <text x="306" y="110" text-anchor="middle" font-size="10" font-weight="800" fill="#ffd24a" paint-order="stroke" stroke="#0a0b0e" stroke-width="3">ST4</text>
+        <text x="306" y="134" text-anchor="middle" font-size="11" font-weight="800" fill="#ffd24a">頭部・正面</text>
+      </g>
+
+      <!-- zone labels + leaders -->
+      <g stroke-width="1.4" fill="none" opacity="0.55">
+        <line x1="112" y1="258" x2="146" y2="262" stroke="#00f0ff"/>
+        <line x1="120" y1="436" x2="176" y2="438" stroke="#c6ff3a"/>
+      </g>
+      <g font-weight="900" paint-order="stroke" stroke="#0a0b0e" stroke-width="4">
+        <text x="20" y="256" font-size="14" fill="#00f0ff">A｜腰・骨盤</text>
+        <text x="20" y="274" font-size="10" fill="#9aa0ad" stroke="none">5ツボ刺激</text>
+        <text x="20" y="434" font-size="14" fill="#c6ff3a">B｜ふくらはぎ</text>
+        <text x="20" y="452" font-size="10" fill="#9aa0ad" stroke="none">2ツボ刺激</text>
+        <text x="232" y="160" font-size="13" fill="#ffd24a">KEY｜頭部</text>
+        <text x="232" y="177" font-size="10" fill="#9aa0ad" stroke="none">3ツボ・最重要</text>
+      </g>
+    </svg>
+    <div class="mapcap">▼ 本日アプローチした全10ツボの位置（背面＋頭部正面）</div>
+  </div>
+
+  <div class="zone z1">
+    <div class="zh"><span class="badge">ZONE A</span><span class="zt">腰・骨盤 ― 土台をゆるめる</span></div>
+    <div class="pt"><div class="code">BL 53</div><div class="info"><div class="jp">胞肓<span>ほうこう</span></div><div class="d">仙骨の外側。股関節とお尻の深部をゆるめる起点。</div></div></div>
+    <div class="pt"><div class="code">BL 28</div><div class="info"><div class="jp">膀胱兪<span>ぼうこうゆ</span></div><div class="d">膀胱経の働きに直接アプローチ。今日の弱さの要。</div></div></div>
+    <div class="pt"><div class="code">GB 28</div><div class="info"><div class="jp">維道<span>いどう</span></div><div class="d">骨盤の前外側。股関節の動きと連動する部分。</div></div></div>
+    <div class="pt"><div class="code">GB 27</div><div class="info"><div class="jp">五枢<span>ごすう</span></div><div class="d">骨盤の側面。腰の安定感を整える。</div></div></div>
+    <div class="pt"><div class="code">GB 30</div><div class="info"><div class="jp">環跳<span>かんちょう</span></div><div class="d">お尻の深部にある股関節の大ツボ。歩行の要。</div></div></div>
+  </div>
+
+  <div class="zone z2">
+    <div class="zh"><span class="badge">ZONE B</span><span class="zt">ふくらはぎ ― 歩きの疲れを抜く</span></div>
+    <div class="pt"><div class="code">BL 57</div><div class="info"><div class="jp">承山<span>しょうざん</span></div><div class="d">ふくらはぎ中央。歩行で張る筋肉の中心ポイント。</div></div></div>
+    <div class="pt"><div class="code">BL 58</div><div class="info"><div class="jp">飛揚<span>ひよう</span></div><div class="d">ふくらはぎ外側。足の疲れ・重だるさを軽くする。</div></div></div>
+  </div>
+
+  <div class="zone z3">
+    <div class="zh"><span class="badge">KEY</span><span class="zt">頭・顔 ― 全身を連動させる要所</span></div>
+    <div class="pt"><div class="code">GB 6</div><div class="info"><div class="jp">懸釐<span>けんり</span></div><div class="d">こめかみ周辺。胆経の流れを通し、下半身まで連動。</div></div></div>
+    <div class="pt"><div class="code">ST 4</div><div class="info"><div class="jp">地倉<span>ちそう</span></div><div class="d">口角まわり。胃経のラインで全身の緊張を整える。</div></div></div>
+    <div class="pt"><div class="code">ST 8</div><div class="info"><div class="jp">頭維<span>ずい</span></div><div class="d">額の角。今日いちばん大きく反応していた重要ポイント。</div></div></div>
+  </div>
+
+  <!-- 院長コメント -->
+  <div class="note">
+    <div class="h">院長より ― 三澤様へ</div>
+    <p>足と股関節は、腰・骨盤・ふくらはぎと一本につながっています。今日はその土台(腰・骨盤)からふくらはぎまで順に通し、最後に頭の重要点で全身を整えました。</p>
+    <p>歩く習慣はぜひ続けてください。そのうえで、歩いた日はふくらはぎを軽く伸ばす・湯船でしっかり温める。これだけで膀胱経の流れがぐっと保ちやすくなります。次回も最初の測定で変化を一緒に確認しましょう。</p>
+  </div>
+
+  <!-- IMPACT 改善 -->
+  <div class="impact">
+    <span class="badge-top">RESULT ／ 本日の手応え</span>
+    <svg class="em" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="改善">
+      <defs>
+        <linearGradient id="kt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00f0ff"/><stop offset="1" stop-color="#ff2e88"/></linearGradient>
+        <filter id="kg" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+      <!-- rays -->
+      <g stroke="url(#kt)" stroke-width="3" opacity="0.35" stroke-linecap="round">
+        <line x1="266" y1="118" x2="288" y2="118"/>
+        <line x1="254.5" y1="161" x2="273.5" y2="172"/>
+        <line x1="223" y1="192.5" x2="234" y2="211.5"/>
+        <line x1="180" y1="204" x2="180" y2="226"/>
+        <line x1="137" y1="192.5" x2="126" y2="211.5"/>
+        <line x1="105.5" y1="161" x2="86.5" y2="172"/>
+        <line x1="94" y1="118" x2="72" y2="118"/>
+        <line x1="105.5" y1="75" x2="86.5" y2="64"/>
+        <line x1="137" y1="43.5" x2="126" y2="24.5"/>
+        <line x1="180" y1="32" x2="180" y2="10"/>
+        <line x1="223" y1="43.5" x2="234" y2="24.5"/>
+        <line x1="254.5" y1="75" x2="273.5" y2="64"/>
+      </g>
+      <!-- emblem -->
+      <circle cx="180" cy="118" r="80" fill="#14161d" stroke="url(#kt)" stroke-width="3"/>
+      <text x="180" y="140" text-anchor="middle" font-size="72" font-weight="900" fill="url(#kt)" filter="url(#kg)" opacity="0.65" font-family="'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif">改善</text>
+      <text x="180" y="140" text-anchor="middle" font-size="72" font-weight="900" fill="url(#kt)" font-family="'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif">改善</text>
+      <!-- check badge -->
+      <circle cx="244" cy="58" r="20" fill="#28c46e"/>
+      <path d="M235,58 l6,7 l12,-15" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- symbols -->
+      <text x="84" y="76" font-size="28" font-weight="900" fill="#ffd24a">⚡</text>
+      <text x="250" y="190" font-size="30" font-weight="900" fill="#c6ff3a">↑</text>
+      <text x="92" y="184" font-size="26" font-weight="900" fill="#00f0ff">＋</text>
+    </svg>
+
+    <div class="sub">ねらったポイントを<em>すべて施術完了</em>。<br>弱っていた流れは、回復へ動き出しました。</div>
+
+    <div class="istats">
+      <div class="s"><b>10</b><span>ツボ完全施術</span></div>
+      <div class="s"><b>3</b><span>集中エリア</span></div>
+      <div class="s"><b>100<i>%</i></b><span>本日のプラン完了</span></div>
+    </div>
+
+    <div class="ba">
+      <span class="k">膀胱の流れ</span>
+      <span class="v">52% / 69%</span>
+      <span class="ar">➜</span>
+      <span class="res">↑ 回復へ</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <a class="l line" href="https://lin.ee/dwRtwDv">LINEでご相談・ご予約</a>
+    <a class="l map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップで確認する</a>
+  </div>
+
+  <div class="foot">
+    <b>三条健康堂接骨院</b><br>
+    香川県高松市由良町・由良川東公園のそば<br>
+    高松発・一生動ける身体と人生の教養研究室
+    <div class="disc">
+      ※本レポートは経絡測定機器(RaDoTech)による生体エネルギー測定の参考値と、施術記録をわかりやすくまとめたものです。医学的な診断・検査結果ではありません。気になる症状がある場合は医療機関へご相談ください。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
