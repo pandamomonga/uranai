@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田ゼミ 提案</title>
+<style>
+  :root{
+    --dg:#14281C; --dg2:#1E3D2A; --gold:#C9A84C; --goldl:#DCC074;
+    --iv:#F4EFE2; --ivdim:#B9B7A4; --card:#FBF8F0; --tx:#17301F; --sage:#86A18C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-text-size-adjust:100%;}
+  body{background:var(--dg);color:var(--iv);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:560px;margin:0 auto;}
+  section{padding:34px 22px;}
+  .dark{background:var(--dg);}
+  .dark2{background:var(--dg2);}
+  .light{background:var(--iv);color:var(--tx);}
+  .eyebrow{font-size:12px;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:12px;}
+  .light .eyebrow{color:#3B5C42;}
+  h1{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-size:44px;font-weight:700;line-height:1.18;letter-spacing:1px;}
+  h2{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-size:26px;font-weight:700;line-height:1.35;}
+  .light h2{color:var(--tx);}
+  .lead{font-size:16px;color:var(--ivdim);margin-top:14px;}
+  .light .lead{color:#5E6B5E;}
+  .gold{color:var(--goldl);}
+  .light .gold{color:#9A7B22;}
+  .rule{width:54px;height:5px;background:var(--gold);border-radius:3px;margin:18px 0;}
+  /* cover */
+  .cover{min-height:78vh;display:flex;flex-direction:column;justify-content:center;}
+  .cover .sub{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-size:30px;color:var(--goldl);font-weight:700;margin-top:6px;}
+  .cover .meta{margin-top:40px;font-size:14px;color:var(--ivdim);}
+  .cover .meta b{color:var(--iv);}
+  /* numbered step rows */
+  .row{display:flex;gap:14px;align-items:flex-start;margin-top:22px;}
+  .badge{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--dg);
+    font-family:"Hiragino Mincho ProN",serif;font-weight:700;font-size:19px;display:flex;align-items:center;justify-content:center;}
+  .row .rh{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-size:19px;font-weight:700;color:var(--goldl);}
+  .light .row .rh{color:#3B5C42;}
+  .row .rb{font-size:15px;color:var(--iv);margin-top:2px;}
+  .light .row .rb{color:var(--tx);}
+  /* generic card */
+  .card{background:var(--dg2);border-radius:14px;padding:20px;margin-top:16px;}
+  .light .card{background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,.06);}
+  .card .ch{font-size:13px;font-weight:700;letter-spacing:1px;color:var(--gold);margin-bottom:6px;}
+  .light .card .ch{color:#3B5C42;}
+  .card .ct{font-size:15.5px;color:var(--iv);}
+  .light .card .ct{color:var(--tx);}
+  .card .ct b{color:var(--goldl);}
+  .light .card .ct b{color:#9A7B22;}
+  /* arc phases */
+  .phase{background:var(--dg2);border-radius:14px;padding:18px 20px;margin-top:14px;}
+  .phase .pn{font-size:12px;letter-spacing:2px;color:var(--gold);font-weight:700;}
+  .phase .ph{font-family:"Hiragino Mincho ProN",serif;font-size:23px;font-weight:700;color:var(--goldl);margin:2px 0 4px;}
+  .phase .pb{font-size:14.5px;color:var(--iv);}
+  .arrow{text-align:center;color:var(--gold);font-size:20px;margin:6px 0;}
+  /* lecture title block */
+  .lec{border-bottom:1px solid rgba(201,168,76,.22);padding:24px 0;}
+  .lec:last-child{border-bottom:none;}
+  .lec .ln{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;}
+  .lec .lno{font-family:"Hiragino Mincho ProN",serif;font-size:22px;font-weight:700;color:var(--goldl);}
+  .lec .lth{font-size:13px;color:var(--sage);}
+  .lec .main{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-size:23px;font-weight:700;line-height:1.4;color:var(--iv);margin:6px 0 14px;}
+  .alts{display:flex;flex-direction:column;gap:8px;}
+  .alt{font-size:15px;color:var(--ivdim);padding-left:14px;border-left:2px solid rgba(201,168,76,.4);}
+  /* lineup */
+  .lu{background:var(--dg2);border-radius:12px;padding:16px 18px;margin-top:12px;}
+  .lu .lun{font-family:"Hiragino Mincho ProN",serif;font-size:16px;font-weight:700;color:var(--goldl);}
+  .lu .lut{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-size:18px;font-weight:700;color:var(--iv);margin-top:4px;line-height:1.45;}
+  /* effects */
+  .eff{background:var(--card);color:var(--tx);border-radius:14px;padding:18px 20px;margin-top:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+  .eff .eh{font-family:"Hiragino Mincho ProN",serif;font-size:18px;font-weight:700;color:#3B5C42;}
+  .eff .eb{font-size:14.5px;margin-top:5px;}
+  .note{font-size:13px;font-style:italic;color:var(--sage);margin-top:20px;line-height:1.6;}
+  .light .note{color:#7A8A7E;}
+  .foot{padding:30px 22px 50px;text-align:center;color:var(--ivdim);font-size:13px;}
+  .foot .fr{width:40px;height:4px;background:var(--gold);border-radius:2px;margin:0 auto 18px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- COVER -->
+  <section class="dark cover">
+    <div class="eyebrow">AI × 組織マネジメント 提案</div>
+    <h1>福田ゼミ</h1>
+    <div class="rule"></div>
+    <div class="sub">30分で、会社が見える。</div>
+    <div class="lead">AIで作る アウトライン勉強会 ／ 全6回シリーズ</div>
+    <div class="meta"><b>提案：谷 弘誠</b><br>宛：福田様</div>
+  </section>
+
+  <!-- 結論先出し -->
+  <section class="dark2">
+    <div class="eyebrow">結論</div>
+    <h2>やることは一つ。<br>社員に「現在地」を渡す。</h2>
+    <div class="card"><div class="ch">事実</div><div class="ct">成果は一部に集中する（パレート的に偏る）。全員に「もっと頑張れ」はリターンが薄い。</div></div>
+    <div class="card"><div class="ch">転換</div><div class="ct">生産性を鞭打つのではなく、各社員に<b>組織内の現在地と役割</b>を渡す。</div></div>
+    <div class="card"><div class="ch">手段</div><div class="ct">AIで作る30分・A4一枚の勉強会。<b>組織のカーナビ</b>。</div></div>
+    <div class="card"><div class="ch">効果</div><div class="ct">位置が見えると、今の仕事に意味が宿る。納得が生まれ、モチベーションが安定する。</div></div>
+  </section>
+
+  <!-- エビデンス -->
+  <section class="light">
+    <div class="eyebrow">経営判断の根拠</div>
+    <h2>成果は正規分布しない。<br>一部に集中する。</h2>
+    <div class="card"><div class="ch">研究の裏づけ</div><div class="ct">O'Boyle &amp; Aguinis（約63万人）— 個人業績はしばしば正規分布せず、<b>パレート的に偏る</b>ことが示されている。</div></div>
+    <div class="card"><div class="ch">だから</div><div class="ct">大多数に「もっと頑張れ」と競争を強いても、リターンはほぼ生まれない。</div></div>
+    <div class="card" style="background:var(--dg);box-shadow:none;">
+      <div class="ch" style="color:var(--goldl);">⚠ 取り扱い注意</div>
+      <div class="ct" style="color:var(--iv);">このデータは<b>福田様だけのもの</b>。社員には絶対に見せない（後述）。</div>
+    </div>
+  </section>
+
+  <!-- 転換 -->
+  <section class="dark">
+    <div class="eyebrow">投資先を変える</div>
+    <h2>「生産性の鞭打ち」から<br>「意味の付与」へ。</h2>
+    <div class="card"><div class="ch">従来の発想</div><div class="ct">全員を生産性競争へ。動機だけ煽り、方向を与えない。→ 消耗だけが残る。</div></div>
+    <div class="arrow">▼</div>
+    <div class="card" style="background:#24472F;"><div class="ch" style="color:var(--goldl);">本提案</div><div class="ct">一人ひとりに現在地を渡す。<b>動機に“方向”を与える</b>。→ 今の仕事に意味が宿る。</div></div>
+  </section>
+
+  <!-- カーナビ核心 -->
+  <section class="dark2">
+    <div class="eyebrow">提案の核</div>
+    <h2>アウトライン勉強会＝<br>組織のカーナビ。</h2>
+    <div class="lead">大きな組織ほど、社員は「自分がどこにいるか」を見失う。福田様は全体を俯瞰できる。この非対称を埋める。</div>
+    <div class="card"><div class="ch">① 現在地を示す</div><div class="ct">「あなたは今ここ」。組織の中の自分の位置を名指しで可視化する。</div></div>
+    <div class="card"><div class="ch">② 接続を見せる</div><div class="ct">その仕事が全体のどこに繋がり、誰の役に立っているかを描く。</div></div>
+    <div class="card"><div class="ch">③ AIが個別化</div><div class="ct">部署・職務ごとの組織内マップをAIが自動生成。説明工数を圧縮。</div></div>
+    <div class="note">30分 / A4一枚 / 押しつけない。── 軽さがそのまま出席率になる。</div>
+  </section>
+
+  <!-- 二層構造 -->
+  <section class="light">
+    <div class="eyebrow">事故を防ぐ鉄則</div>
+    <h2>二層を、絶対に混ぜない。</h2>
+    <div class="lead">これが企画の成否を分ける唯一の条件。</div>
+    <div class="card" style="background:var(--dg);">
+      <div class="ch" style="color:var(--gold);">🔒 第1層｜経営判断の根拠（非開示）</div>
+      <div class="ct" style="color:var(--iv);">パレート分布のエビデンスは<b>“なぜ意味の研修をやるのか”の裏づけ</b>。福田様だけが持つ。社員には開示しない。</div>
+    </div>
+    <div class="card">
+      <div class="ch">👥 第2層｜社員向けアウトプット</div>
+      <div class="ct">届けるのは「あなたの現在地と接続」だけ。分布のデータを当人に見せれば、それは満足ではなく<b style="color:#9A4A3E;">“侮辱”</b>になる。社員にはカーナビのみ。</div>
+    </div>
+  </section>
+
+  <!-- 全6回アーク -->
+  <section class="dark">
+    <div class="eyebrow">全6回の設計</div>
+    <h2>不安で引き込み、物語で運び、<br>現在地で着地する。</h2>
+    <div class="phase"><div class="pn">第1回 – 第2回</div><div class="ph">不安</div><div class="pb">未来予測。消える仕事・AIで引き込む。</div></div>
+    <div class="arrow">▼</div>
+    <div class="phase"><div class="pn">第3回 – 第4回</div><div class="ph">物語</div><div class="pb">潰れた会社／100年企業。他社の物語で運ぶ。</div></div>
+    <div class="arrow">▼</div>
+    <div class="phase"><div class="pn">第5回 – 第6回</div><div class="ph">現在地</div><div class="pb">カーナビ着地。「で、あなたはここにいる」。</div></div>
+  </section>
+
+  <!-- 各回タイトル -->
+  <section class="dark2">
+    <div class="eyebrow">講義タイトル案</div>
+    <h2>各回のタイトル。<br><span class="gold">太字＝推し。</span>下は代案。</h2>
+
+    <div class="lec">
+      <div class="ln"><span class="lno">第1回</span><span class="lth">未来の不安 ── 消える仕事</span></div>
+      <div class="main">あなたの仕事は、5年後も残っていますか？</div>
+      <div class="alts">
+        <div class="alt">5年後、その席ありますか。</div>
+        <div class="alt">なくなる仕事の話、自分は含まれてないと思ってますよね。</div>
+      </div>
+    </div>
+
+    <div class="lec">
+      <div class="ln"><span class="lno">第2回</span><span class="lth">AIと自分</span></div>
+      <div class="main">AIに、勝たなくていい。</div>
+      <div class="alts">
+        <div class="alt">AIが来て、あなたの何が変わりますか？</div>
+        <div class="alt">AIにできない仕事、もう毎日やってます。</div>
+      </div>
+    </div>
+
+    <div class="lec">
+      <div class="ln"><span class="lno">第3回</span><span class="lth">潰れた会社／生き残った会社</span></div>
+      <div class="main">生き残る会社は、地味。</div>
+      <div class="alts">
+        <div class="alt">分かれ目は、たった一つ。何だと思う？</div>
+        <div class="alt">潰れる会社、なぜか全部おなじ間違いをする。</div>
+      </div>
+    </div>
+
+    <div class="lec">
+      <div class="ln"><span class="lno">第4回</span><span class="lth">100年企業の共通点</span></div>
+      <div class="main">100年続く会社、すごいことは何もしてない。</div>
+      <div class="alts">
+        <div class="alt">100年続いた会社は、何を続けたのか？</div>
+        <div class="alt">老舗、実はいちばん攻めてる。</div>
+      </div>
+    </div>
+
+    <div class="lec">
+      <div class="ln"><span class="lno">第5回</span><span class="lth">自分の現在地（カーナビ核心）</span></div>
+      <div class="main">あなたは今、会社のどこにいますか？</div>
+      <div class="alts">
+        <div class="alt">会社の地図に、自分を置く。</div>
+        <div class="alt">自分の仕事が誰のためか、意外と言えない。</div>
+      </div>
+    </div>
+
+    <div class="lec">
+      <div class="ln"><span class="lno">第6回</span><span class="lth">方向確認 ── 経営目線を少し</span></div>
+      <div class="main">そのがんばり、向きは合っていますか？</div>
+      <div class="alts">
+        <div class="alt">上から見ると、会社はこう見える。</div>
+        <div class="alt">がんばる方向、合ってる前提で動いてますよね。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推奨ラインナップ -->
+  <section class="dark">
+    <div class="eyebrow">採用候補 一覧</div>
+    <h2>初回はこれで行く。</h2>
+    <div class="lu"><div class="lun">第1回</div><div class="lut">あなたの仕事は、5年後も残っていますか？</div></div>
+    <div class="lu"><div class="lun">第2回</div><div class="lut">AIに、勝たなくていい。</div></div>
+    <div class="lu"><div class="lun">第3回</div><div class="lut">生き残る会社は、地味。</div></div>
+    <div class="lu"><div class="lun">第4回</div><div class="lut">100年続く会社、すごいことは何もしてない。</div></div>
+    <div class="lu"><div class="lun">第5回</div><div class="lut">あなたは今、会社のどこにいますか？</div></div>
+    <div class="lu"><div class="lun">第6回</div><div class="lut">そのがんばり、向きは合っていますか？</div></div>
+  </section>
+
+  <!-- 期待効果 -->
+  <section class="light">
+    <div class="eyebrow">期待される効果</div>
+    <h2>位置が見えると、<br>今の仕事が意味を持つ。</h2>
+    <div class="eff"><div class="eh">現在地の納得</div><div class="eb">自分の位置が見え、役割の輪郭が明確になる。</div></div>
+    <div class="eff"><div class="eh">モチベーション安定</div><div class="eb">今やっている仕事への納得が、動機を安定させる。</div></div>
+    <div class="eff"><div class="eh">正しい方向づけ</div><div class="eb">“やる気のある無能”を防ぐ。動機に方向を与える。</div></div>
+    <div class="eff"><div class="eh">自律的な成長</div><div class="eb">異動希望や貢献意欲は、副産物として後からついてくる。</div></div>
+    <div class="note">異動・貢献は目的にも売り文句にもしない。狙いは「現在地が見えれば、今の仕事が意味を持つ」の一点。</div>
+  </section>
+
+  <!-- 次のアクション -->
+  <section class="dark2">
+    <div class="eyebrow">次の一手</div>
+    <h2>まず1チームで、試す。</h2>
+    <div class="row"><div class="badge">1</div><div><div class="rh">試行範囲を決める</div><div class="rb">1部署 or 1チームに絞って小さく始める。</div></div></div>
+    <div class="row"><div class="badge">2</div><div><div class="rh">全体図 → 個別マップ</div><div class="rb">福田様が全体を提示し、AIが個別マップに展開する。</div></div></div>
+    <div class="row"><div class="badge">3</div><div><div class="rh">ゴールを置く</div><div class="rb">「今、自分がどこにいるか」を各社員が言語化できる状態。</div></div></div>
+    <div class="row"><div class="badge">4</div><div><div class="rh">効果を見て横展開</div><div class="rb">手応えを確認してから、タイミングを見て広げる。</div></div></div>
+  </section>
+
+  <div class="foot">
+    <div class="fr"></div>
+    福田ゼミ ／ AIで作る アウトライン勉強会<br>提案：谷 弘誠
+  </div>
+
+</div>
+</body>
+</html>
