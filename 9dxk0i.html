@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田様 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-d:#122b1d;
+    --green-l:#244f35;
+    --gold:#c4a44d;
+    --gold-l:#e3cd86;
+    --ivory:#f5f0e4;
+    --ivory-dim:#d9d2c0;
+    --red:#e8593a;
+    --norm:#5bbd80;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--green-d);
+    font-family:"Noto Sans JP",sans-serif;
+    color:var(--ivory);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    padding:0 0 48px;
+  }
+  .sheet{
+    max-width:540px;
+    margin:0 auto;
+    background:var(--green);
+  }
+  .serif{font-family:"Noto Serif JP",serif;}
+
+  /* ===== COVER ===== */
+  .cover{
+    position:relative;
+    padding:48px 28px 44px;
+    background:
+      radial-gradient(circle at 80% -10%, rgba(196,164,77,.18), transparent 55%),
+      var(--green);
+    border-bottom:1px solid rgba(196,164,77,.35);
+  }
+  .frame{
+    position:absolute;inset:14px;
+    border:1px solid rgba(196,164,77,.45);
+    pointer-events:none;
+  }
+  .corner{position:absolute;width:20px;height:20px;border:2px solid var(--gold);}
+  .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0;}
+  .corner.tr{top:14px;right:14px;border-left:0;border-bottom:0;}
+  .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0;}
+  .corner.br{bottom:14px;right:14px;border-left:0;border-top:0;}
+  .eyebrow{
+    font-size:13px;letter-spacing:.42em;color:var(--gold-l);
+    font-weight:700;text-align:center;margin-bottom:18px;
+  }
+  .doc-title{
+    font-size:34px;font-weight:900;text-align:center;color:var(--ivory);
+    letter-spacing:.16em;
+  }
+  .goldbar{width:54px;height:3px;background:var(--gold);margin:18px auto 22px;}
+  .meta{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;font-size:15px;color:var(--ivory-dim);}
+  .meta b{color:var(--ivory);font-weight:700;font-size:18px;}
+  .lead{
+    margin-top:30px;
+    background:rgba(0,0,0,.18);
+    border-left:3px solid var(--gold);
+    padding:20px 22px;
+    border-radius:0 10px 10px 0;
+  }
+  .lead .small{font-size:14px;color:var(--gold-l);font-weight:700;margin-bottom:8px;letter-spacing:.06em;}
+  .lead .big{font-size:23px;font-weight:900;line-height:1.6;color:var(--ivory);}
+  .lead .big em{color:var(--gold-l);font-style:normal;}
+
+  /* ===== SECTION ===== */
+  section{padding:38px 26px 8px;}
+  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+  .sec-no{
+    flex:none;width:40px;height:40px;border-radius:50%;
+    border:2px solid var(--gold);color:var(--gold-l);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:18px;font-family:"Noto Serif JP",serif;
+  }
+  .sec-label{font-size:13px;color:var(--gold-l);letter-spacing:.14em;font-weight:700;}
+  .sec-title{font-size:22px;font-weight:900;color:var(--ivory);}
+
+  .card{
+    background:var(--green-l);
+    border-radius:14px;
+    padding:22px 22px;
+    margin-bottom:16px;
+  }
+  .metaphor{font-size:21px;font-weight:900;color:var(--gold-l);margin-bottom:10px;line-height:1.5;}
+  .body-txt{font-size:16px;color:var(--ivory);}
+  .body-txt strong{color:var(--gold-l);font-weight:700;}
+
+  .evidence{
+    margin-top:14px;background:rgba(0,0,0,.2);border-radius:10px;
+    padding:14px 16px;font-size:15px;color:var(--ivory-dim);
+  }
+  .evidence b{color:var(--red);font-weight:700;}
+
+  /* ===== RADOTECH ===== */
+  .legend{display:flex;gap:18px;justify-content:flex-end;font-size:13px;color:var(--ivory-dim);margin-bottom:14px;}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+  .row{
+    display:grid;grid-template-columns:1fr auto;align-items:center;
+    gap:6px 12px;padding:13px 0;border-bottom:1px solid rgba(245,240,228,.12);
+  }
+  .row:last-child{border-bottom:0;}
+  .row .name{font-size:17px;font-weight:700;color:var(--ivory);}
+  .row .stat{font-size:13px;color:var(--ivory-dim);}
+  .val{font-size:22px;font-weight:900;font-family:"Noto Serif JP",serif;text-align:right;}
+  .val.ok{color:var(--norm);}
+  .val.hi{color:var(--red);}
+
+  .focus{
+    margin-top:22px;background:rgba(0,0,0,.22);border:1px solid rgba(196,164,77,.35);
+    border-radius:14px;padding:20px;
+  }
+  .focus h4{font-size:16px;color:var(--gold-l);margin-bottom:16px;font-weight:700;letter-spacing:.04em;}
+  .ba{margin-bottom:18px;}
+  .ba:last-child{margin-bottom:0;}
+  .ba .pname{font-size:16px;font-weight:700;margin-bottom:8px;}
+  .ba .track{position:relative;height:34px;border-radius:8px;background:linear-gradient(90deg,rgba(91,189,128,.28) 0 50%,rgba(232,89,58,.30) 50% 100%);overflow:hidden;}
+  .ba .normzone{position:absolute;left:0;top:0;bottom:0;width:50%;border-right:2px dashed rgba(245,240,228,.45);}
+  .ba .normzone span{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--ivory);font-weight:700;}
+  .ba .pin{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;border:2px solid #fff;}
+  .ba .pin.before{background:var(--red);}
+  .ba .pin.after{background:var(--norm);}
+  .ba .arrow{position:absolute;top:50%;transform:translateY(-50%);height:2px;background:var(--ivory);}
+  .ba .arrow:after{content:"";position:absolute;right:-1px;top:-3px;border-left:7px solid var(--ivory);border-top:4px solid transparent;border-bottom:4px solid transparent;}
+  .ba .tags{display:flex;justify-content:space-between;margin-top:7px;font-size:13px;}
+  .ba .tags .b{color:var(--red);font-weight:700;}
+  .ba .tags .a{color:var(--norm);font-weight:700;}
+  .note{font-size:13px;color:var(--ivory-dim);margin-top:14px;line-height:1.7;}
+
+  /* ===== BODY MAP ===== */
+  .map-wrap{display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:center;background:var(--green-l);border-radius:16px;padding:24px 16px;margin-bottom:18px;}
+  svg .zone{fill:var(--gold);opacity:.18;}
+  svg .zonering{fill:none;stroke:var(--gold);stroke-width:2.5;}
+  @keyframes pulse{0%,100%{opacity:.16;}50%{opacity:.34;}}
+  svg .zone{animation:pulse 2.8s ease-in-out infinite;}
+  .badge{fill:var(--green-d);stroke:var(--gold);stroke-width:2;}
+  .badge-t{fill:var(--gold-l);font-family:"Noto Serif JP",serif;font-weight:900;font-size:17px;}
+  .loc{display:flex;gap:14px;align-items:flex-start;}
+  .loc .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--green-d);display:flex;align-items:center;justify-content:center;font-weight:900;font-family:"Noto Serif JP",serif;font-size:16px;}
+  .loc .meta-h{font-size:18px;font-weight:900;color:var(--gold-l);margin-bottom:4px;}
+  .loc .meta-b{font-size:15px;color:var(--ivory);}
+
+  /* ===== OUTLOOK ===== */
+  .outlook{background:linear-gradient(135deg,var(--green-l),var(--green-d));border-radius:16px;padding:24px;border:1px solid rgba(196,164,77,.3);}
+  .outlook p{font-size:16px;}
+  .outlook p+p{margin-top:12px;}
+  .reassure{margin-top:16px;font-size:18px;font-weight:900;color:var(--gold-l);text-align:center;line-height:1.6;}
+
+  /* ===== SIGNATURE ===== */
+  .sig{margin-top:32px;background:var(--green-d);padding:30px 26px 36px;border-top:1px solid rgba(196,164,77,.35);text-align:center;}
+  .sig .theory{font-size:13px;color:var(--gold-l);letter-spacing:.08em;margin-bottom:14px;font-weight:700;}
+  .sig .clinic{font-size:22px;font-weight:900;color:var(--ivory);margin-bottom:6px;}
+  .sig .addr{font-size:14px;color:var(--ivory-dim);margin-bottom:22px;}
+  .btns{display:flex;flex-direction:column;gap:12px;max-width:320px;margin:0 auto;}
+  .btn{display:block;padding:15px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;}
+  .btn.line{background:#06c755;color:#fff;}
+  .btn.map{background:transparent;border:1.5px solid var(--gold);color:var(--gold-l);}
+  .sign-by{margin-top:24px;font-size:12px;color:var(--ivory-dim);line-height:1.8;}
+
+  @media (prefers-reduced-motion:reduce){
+    svg .zone{animation:none;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ① COVER -->
+  <div class="cover">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1 class="doc-title serif">施術報告書</h1>
+    <div class="goldbar"></div>
+    <div class="meta">
+      <div>患者様　<b>福田様</b></div>
+      <div>施術日　<b>2026.6.27</b><span style="font-size:13px;">（土）</span></div>
+    </div>
+    <div class="lead">
+      <div class="small">本日のいちばん大事な結論</div>
+      <div class="big serif">"疲れていた"のは、<br>福田様ではなく<em>「肋骨」</em>でした。</div>
+    </div>
+  </div>
+
+  <!-- ② 一次情報（根本原因を最初に） -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no serif">1</div>
+      <div>
+        <div class="sec-label">PRIMARY — 本日の核心</div>
+        <div class="sec-title">なぜ、ずっと休めなかったのか</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="metaphor">硬くなった肋骨が、"鎧"になっていた。</div>
+      <div class="body-txt">
+        オーバーワークと積み重なったストレスで、<strong>肋骨がかなり硬く</strong>なっていました。肋骨が締まると体は<strong>交感神経（オンのスイッチ）優位</strong>のまま固定され、エネルギーが頭の方へ昇りっぱなしに。これが「全身カチカチ」「いくら休んでも抜けない疲れ」の正体です。
+      </div>
+      <div class="evidence">
+        測定でも裏づけ：<b>心理-感情 1.26</b>・<b>筋骨格 1.35</b> がいずれも基準オーバー（赤）。＝ <b>頭にエネルギーが昇り、体が常に緊張モード</b>だったサインです。
+      </div>
+    </div>
+    <div class="card">
+      <div class="metaphor">"オフ"のスイッチを、手で入れ直した。</div>
+      <div class="body-txt">
+        本日は <strong>肋骨 → 背中 → お尻の裏</strong> の順に、ひとつずつ丁寧にゆるめました。鎧がほどけると交感神経の高ぶりがスッと鎮まり、体が自分から<strong>"オフ"へ切り替わって</strong>いくのが確認できました。
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 体のサイン（RaDoTech before→after） -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no serif">2</div>
+      <div>
+        <div class="sec-label">BODY SIGNALS — 測定データ</div>
+        <div class="sec-title">体が出していたサイン</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="legend">
+        <span><span class="dot" style="background:var(--norm)"></span>正常</span>
+        <span><span class="dot" style="background:var(--red)"></span>基準オーバー</span>
+      </div>
+      <div class="row"><div><span class="name">エネルギー量</span><br><span class="stat">Normal</span></div><div class="val ok">36.23</div></div>
+      <div class="row"><div><span class="name">免疫システム</span><br><span class="stat">Normal</span></div><div class="val ok">35.22</div></div>
+      <div class="row"><div><span class="name">代謝</span><br><span class="stat">Normal</span></div><div class="val ok">1.16</div></div>
+      <div class="row"><div><span class="name">心理-感情の状態</span><br><span class="stat">Above norm</span></div><div class="val hi">1.26</div></div>
+      <div class="row"><div><span class="name">筋骨格システム</span><br><span class="stat">Above norm</span></div><div class="val hi">1.35</div></div>
+    </div>
+
+    <div class="focus">
+      <h4>▶ 赤かった2つが、向かった方向</h4>
+
+      <div class="ba">
+        <div class="pname">心理-感情の状態</div>
+        <div class="track">
+          <div class="normzone"><span>正常</span></div>
+          <div class="arrow" style="left:30%;width:42%;"></div>
+          <div class="pin before" style="left:80%;"></div>
+          <div class="pin after" style="left:32%;"></div>
+        </div>
+        <div class="tags"><span class="a">施術後 ● 落ち着いた</span><span class="b">施術前 ● 1.26（頭に昇る）</span></div>
+      </div>
+
+      <div class="ba">
+        <div class="pname">筋骨格システム</div>
+        <div class="track">
+          <div class="normzone"><span>正常</span></div>
+          <div class="arrow" style="left:28%;width:48%;"></div>
+          <div class="pin before" style="left:86%;"></div>
+          <div class="pin after" style="left:30%;"></div>
+        </div>
+        <div class="tags"><span class="a">施術後 ● ゆるんで軽く</span><span class="b">施術前 ● 1.35（カチカチ）</span></div>
+      </div>
+
+      <div class="note">※ 数値は施術前の測定値です。施術後の●（緑）は、本日の所見と体の反応から確認できた「ゆるみ・落ち着き」の方向を示しています。緊張モードから、リラックスモードへ戻りつつあるのがポイントです。</div>
+    </div>
+  </section>
+
+  <!-- ④ 施術部位（SVGボディマップ） -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no serif">3</div>
+      <div>
+        <div class="sec-label">TREATED AREAS — 施術した場所</div>
+        <div class="sec-title">どこを、ゆるめたか</div>
+      </div>
+    </div>
+
+    <div class="map-wrap">
+      <svg viewBox="0 0 300 560" width="180" aria-label="背中側のボディマップ">
+        <!-- head -->
+        <circle cx="150" cy="50" r="30" fill="none" stroke="#f5f0e4" stroke-width="3"/>
+        <line x1="150" y1="80" x2="150" y2="104" stroke="#f5f0e4" stroke-width="3"/>
+        <!-- torso outline (back view) -->
+        <path d="M150 104 Q108 108 95 124 Q78 152 96 214 Q104 252 120 272 L180 272 Q196 252 204 214 Q222 152 205 124 Q192 108 150 104 Z"
+              fill="rgba(245,240,228,.05)" stroke="#f5f0e4" stroke-width="3"/>
+        <!-- spine -->
+        <line x1="150" y1="104" x2="150" y2="270" stroke="#f5f0e4" stroke-width="2" stroke-dasharray="4 6"/>
+        <!-- rib hints -->
+        <path d="M150 150 Q124 156 106 172" fill="none" stroke="rgba(245,240,228,.5)" stroke-width="2"/>
+        <path d="M150 150 Q176 156 194 172" fill="none" stroke="rgba(245,240,228,.5)" stroke-width="2"/>
+        <path d="M150 168 Q126 174 108 190" fill="none" stroke="rgba(245,240,228,.5)" stroke-width="2"/>
+        <path d="M150 168 Q174 174 192 190" fill="none" stroke="rgba(245,240,228,.5)" stroke-width="2"/>
+        <!-- arms -->
+        <path d="M96 128 Q74 168 70 220" fill="none" stroke="#f5f0e4" stroke-width="3"/>
+        <path d="M204 128 Q226 168 230 220" fill="none" stroke="#f5f0e4" stroke-width="3"/>
+        <!-- glutes -->
+        <path d="M120 272 Q112 300 132 312 Q148 318 150 296" fill="rgba(245,240,228,.05)" stroke="#f5f0e4" stroke-width="3"/>
+        <path d="M180 272 Q188 300 168 312 Q152 318 150 296" fill="rgba(245,240,228,.05)" stroke="#f5f0e4" stroke-width="3"/>
+        <!-- legs -->
+        <line x1="132" y1="312" x2="126" y2="430" stroke="#f5f0e4" stroke-width="3"/>
+        <line x1="168" y1="312" x2="174" y2="430" stroke="#f5f0e4" stroke-width="3"/>
+
+        <!-- ZONE 1: ribs (両側) -->
+        <ellipse class="zone" cx="118" cy="180" rx="26" ry="34"/>
+        <ellipse class="zonering" cx="118" cy="180" rx="26" ry="34"/>
+        <ellipse class="zone" cx="182" cy="180" rx="26" ry="34"/>
+        <ellipse class="zonering" cx="182" cy="180" rx="26" ry="34"/>
+        <!-- ZONE 2: back/spine -->
+        <ellipse class="zone" cx="150" cy="222" rx="40" ry="30"/>
+        <ellipse class="zonering" cx="150" cy="222" rx="40" ry="30"/>
+        <!-- ZONE 3: glutes -->
+        <ellipse class="zone" cx="150" cy="294" rx="40" ry="24"/>
+        <ellipse class="zonering" cx="150" cy="294" rx="40" ry="24"/>
+
+        <!-- badges -->
+        <circle class="badge" cx="76" cy="180" r="15"/><text class="badge-t" x="76" y="186" text-anchor="middle">1</text>
+        <circle class="badge" cx="224" cy="222" r="15"/><text class="badge-t" x="224" y="228" text-anchor="middle">2</text>
+        <circle class="badge" cx="224" cy="300" r="15"/><text class="badge-t" x="224" y="306" text-anchor="middle">3</text>
+      </svg>
+    </div>
+
+    <div class="card">
+      <div class="loc" style="margin-bottom:18px;">
+        <div class="n serif">1</div>
+        <div><div class="meta-h">肋骨 ― 呼吸を取り戻すスイッチ</div>
+        <div class="meta-b">いちばん硬かった本丸。ここを開くと、止まっていた深い呼吸が戻り、緊張モードの大もとがゆるみます。</div></div>
+      </div>
+      <div class="loc" style="margin-bottom:18px;">
+        <div class="n serif">2</div>
+        <div><div class="meta-h">背中 ― 張りつめた帆をほどく</div>
+        <div class="meta-b">肋骨と連動してパンと張っていた背中。帆を下ろすように緩め、上半身全体の力みを抜きました。</div></div>
+      </div>
+      <div class="loc">
+        <div class="n serif">3</div>
+        <div><div class="meta-h">お尻の裏 ― 土台のロックを外す</div>
+        <div class="meta-b">姿勢を支える土台。ここのロックを外すことで、背中・肋骨のゆるみが体全体に行き渡ります。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 次回の見通し -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no serif">4</div>
+      <div>
+        <div class="sec-label">NEXT — これから</div>
+        <div class="sec-title">次回までの見通し</div>
+      </div>
+    </div>
+    <div class="outlook">
+      <p>本日でほぼ楽になっていると思います。次のテーマは、この<strong style="color:var(--gold-l)">"オフに切り替わった状態"を体に覚えさせること</strong>。</p>
+      <p>オーバーワークが続くと肋骨はまた鎧のように硬くなりやすいので、「無理が重なってきたな」というタイミングで早めにメンテナンスへ来ていただくのが、いちばん戻りにくいパターンです。</p>
+      <div class="reassure">頭に昇っていた力みも、<br>体のカチカチも、ほぼ抜けました。<br>安心してお過ごしください。</div>
+    </div>
+  </section>
+
+  <!-- ⑥ 署名 -->
+  <div class="sig">
+    <div class="theory">― 神経反射入力装置論にもとづく施術 ―</div>
+    <div class="clinic serif">三条健康堂接骨院</div>
+    <div class="addr">香川県高松市由良町／由良川東公園のそば</div>
+    <div class="btns">
+      <a class="btn line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="sign-by">高松発・一生動ける身体と人生の教養研究室<br>無車・自転車・圧力鍋生活を実践する治療家より</div>
+  </div>
+
+</div>
+</body>
+</html>
