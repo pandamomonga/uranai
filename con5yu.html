@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富野様 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f2e8;
+    --card:#ffffff;
+    --ink:#1c1c1a;
+    --ink-soft:#46453f;
+    --green:#14512f;
+    --green-line:#1d6b41;
+    --up:#1f8f55;
+    --gold:#c4a44d;
+    --gold-deep:#9c7d2c;
+    --clay:#bb422a;
+    --slate:#566070;
+    --rule:#e3dccb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans JP",system-ui,sans-serif;
+    line-height:1.85;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;background:var(--paper);}
+  .pad{padding:0 22px;}
+
+  /* ===== ① COVER ===== */
+  .cover{
+    background:var(--green);
+    color:#fff;
+    padding:38px 24px 44px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cover::after{
+    content:"";position:absolute;right:-60px;top:-60px;
+    width:220px;height:220px;border-radius:50%;
+    border:2px solid rgba(196,164,77,.35);
+  }
+  .eyebrow{
+    font-size:13px;letter-spacing:.32em;font-weight:700;
+    color:var(--gold);text-transform:uppercase;
+  }
+  .cover .doc{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:15px;letter-spacing:.18em;color:#e9e3cf;margin-top:6px;
+  }
+  .cover .who{
+    margin-top:26px;font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:34px;line-height:1.3;
+  }
+  .cover .who small{font-size:18px;font-weight:700;color:#cfe3d6;letter-spacing:.04em;}
+  .cover .date{margin-top:8px;font-size:14px;color:#bcd2c4;font-weight:500;letter-spacing:.06em;}
+  .lead{
+    margin-top:28px;padding-top:24px;
+    border-top:1px solid rgba(196,164,77,.4);
+  }
+  .lead .pop{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:27px;line-height:1.5;color:#fff;
+  }
+  .lead .pop em{font-style:normal;color:var(--gold);}
+  .lead .sub{margin-top:14px;font-size:16px;color:#d8e4dc;font-weight:500;}
+
+  /* ===== Section frame ===== */
+  .section{padding:40px 0 8px;}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;}
+  .sec-no{
+    font-family:"Noto Serif JP",serif;font-weight:900;font-size:15px;
+    color:#fff;background:var(--green);
+    width:34px;height:34px;flex:0 0 34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;line-height:1;
+  }
+  .sec-kicker{font-size:12.5px;letter-spacing:.18em;font-weight:700;color:var(--gold-deep);}
+  .sec-title{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:23px;line-height:1.4;color:var(--ink);margin-top:2px;
+  }
+
+  /* ===== ② ROOT CAUSE ===== */
+  .first-flag{
+    display:inline-block;background:var(--clay);color:#fff;
+    font-weight:900;font-size:13px;letter-spacing:.14em;
+    padding:5px 14px;border-radius:4px;margin-bottom:14px;
+  }
+  .twist-card{
+    background:var(--card);border:1px solid var(--rule);border-radius:14px;
+    padding:22px 18px 18px;margin-top:18px;
+    box-shadow:0 6px 20px rgba(20,81,47,.07);
+  }
+  .twist-card svg{display:block;width:100%;height:auto;}
+  .twist-cap{
+    text-align:center;font-size:13px;color:var(--ink-soft);
+    font-weight:700;margin-top:10px;letter-spacing:.02em;
+  }
+  .why{
+    font-size:17px;color:var(--ink);margin-top:22px;
+  }
+  .why b{color:var(--clay);}
+  .meta-h{
+    font-family:"Noto Serif JP",serif;font-weight:900;font-size:20px;
+    color:var(--green);margin:26px 0 10px;line-height:1.5;
+    padding-left:14px;border-left:5px solid var(--gold);
+  }
+  .protocol{
+    background:#fffaf0;border:1px solid #ecdcb6;border-radius:12px;
+    padding:18px 16px 8px;margin-top:8px;
+  }
+  .protocol .ph{font-weight:900;color:var(--gold-deep);font-size:14px;letter-spacing:.1em;margin-bottom:10px;}
+  .protocol ul{list-style:none;}
+  .protocol li{
+    position:relative;padding:9px 0 9px 30px;font-size:16.5px;
+    border-bottom:1px dashed #e7d6ad;color:var(--ink);
+  }
+  .protocol li:last-child{border-bottom:none;}
+  .protocol li::before{
+    content:"✓";position:absolute;left:2px;top:9px;
+    color:#fff;background:var(--up);width:20px;height:20px;border-radius:50%;
+    font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;
+  }
+  .protocol li b{color:var(--clay);}
+
+  /* ===== ③ SIGNALS ===== */
+  .avg-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--green);color:#fff;border-radius:12px;
+    padding:16px 20px;margin:18px 0 20px;
+  }
+  .avg-bar .lab{font-weight:700;font-size:15px;letter-spacing:.08em;}
+  .avg-bar .nums{font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;display:flex;align-items:center;gap:10px;}
+  .avg-bar .b4{color:#a9c6b6;font-size:18px;}
+  .avg-bar .ar{color:var(--gold);font-size:20px;}
+  .row{
+    display:flex;align-items:center;gap:12px;
+    padding:13px 14px;border:1px solid var(--rule);border-radius:11px;
+    background:var(--card);margin-bottom:9px;
+  }
+  .row .ico{font-size:20px;flex:0 0 26px;text-align:center;}
+  .row .nm{flex:1;min-width:0;}
+  .row .nm b{display:block;font-weight:900;font-size:16px;color:var(--ink);line-height:1.3;}
+  .row .nm span{font-size:12.5px;color:var(--slate);font-weight:700;}
+  .vals{display:flex;align-items:center;gap:8px;flex:0 0 auto;}
+  .v-b4{color:var(--slate);font-weight:700;font-size:15px;}
+  .v-ar{font-size:15px;font-weight:900;}
+  .v-af{font-family:"Noto Serif JP",serif;font-weight:900;font-size:19px;}
+  .up .v-ar,.up .v-af{color:var(--up);}
+  .flat .v-ar,.flat .v-af{color:var(--slate);}
+  .pill{
+    display:inline-block;font-size:11px;font-weight:900;letter-spacing:.04em;
+    padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle;
+  }
+  .pill.ok{background:#e3f4ea;color:#176b3e;}
+  .pill.lo{background:#eceef6;color:#475067;}
+  .liver-note{
+    margin-top:16px;background:#fdeeea;border:1px solid #f0c9bd;border-radius:12px;
+    padding:16px 16px;display:flex;gap:13px;align-items:flex-start;
+  }
+  .liver-note .lt{flex:0 0 auto;font-size:24px;}
+  .liver-note p{font-size:15.5px;color:#7c2d1a;font-weight:600;line-height:1.7;}
+  .liver-note p b{color:var(--clay);}
+
+  /* ===== ④ BODY MAP ===== */
+  .map-card{
+    background:var(--card);border:1px solid var(--rule);border-radius:14px;
+    padding:20px 16px;margin-top:16px;display:flex;gap:8px;align-items:center;
+  }
+  .map-card svg{flex:0 0 132px;width:132px;height:auto;}
+  .map-list{flex:1;}
+  .map-item{padding:10px 0;border-bottom:1px solid var(--rule);}
+  .map-item:last-child{border-bottom:none;}
+  .map-item .tag{
+    font-family:"Noto Serif JP",serif;font-weight:900;font-size:17px;color:var(--green);
+  }
+  .map-item .dsc{font-size:14.5px;color:var(--ink-soft);font-weight:600;margin-top:3px;}
+  .map-item .done{color:var(--up);font-weight:900;font-size:13px;}
+
+  /* ===== ⑤ OUTLOOK ===== */
+  .outlook{
+    background:var(--green);color:#fff;border-radius:14px;
+    padding:24px 20px;margin-top:16px;
+  }
+  .outlook h4{font-family:"Noto Serif JP",serif;font-weight:900;font-size:20px;margin-bottom:12px;color:#fff;}
+  .outlook p{font-size:16px;color:#e4eee8;font-weight:500;}
+  .outlook .hi{color:var(--gold);font-weight:900;}
+  .watch{margin-top:18px;padding-top:16px;border-top:1px solid rgba(196,164,77,.4);}
+  .watch .wl{font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--gold);margin-bottom:10px;}
+  .watch ul{list-style:none;}
+  .watch li{font-size:15.5px;color:#eef4ef;padding:6px 0 6px 22px;position:relative;font-weight:500;}
+  .watch li::before{content:"›";position:absolute;left:4px;color:var(--gold);font-weight:900;}
+
+  /* ===== ⑥ SIGN ===== */
+  .sign{
+    margin-top:40px;background:#101f17;color:#fff;
+    padding:32px 24px 36px;text-align:center;
+  }
+  .sign .theory{
+    font-size:12.5px;letter-spacing:.18em;color:var(--gold);font-weight:700;margin-bottom:16px;
+  }
+  .sign .nm{font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;}
+  .sign .nm small{display:block;font-size:13px;color:#b9c8bf;font-weight:500;margin-top:6px;letter-spacing:.04em;}
+  .sign .loc{font-size:13.5px;color:#9fb2a7;margin-top:14px;line-height:1.7;}
+  .btns{margin-top:22px;display:flex;flex-direction:column;gap:11px;}
+  .btn{
+    display:block;text-decoration:none;font-weight:900;font-size:16px;
+    padding:15px;border-radius:11px;letter-spacing:.04em;
+  }
+  .btn.line{background:#06c755;color:#fff;}
+  .btn.map{background:transparent;color:#fff;border:1.5px solid var(--gold);}
+  .foot{font-size:11.5px;color:#7d8e84;margin-top:20px;line-height:1.7;}
+
+  @media (max-width:420px){
+    body{font-size:16px;}
+    .cover .who{font-size:29px;}
+    .lead .pop{font-size:23px;}
+    .map-card{flex-direction:column;}
+    .map-card svg{flex:none;width:120px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ① COVER -->
+  <header class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="doc">施 術 報 告 書</div>
+    <div class="who">富野 様<small>へ</small></div>
+    <div class="date">2026年6月30日（火）施術</div>
+    <div class="lead">
+      <div class="pop">「まだ痛くない」が、<br><em>いちばん危ない。</em></div>
+      <div class="sub">ぎっくり腰は、ある日突然きません。必ず“手前”があります。<br>富野様の今日は、その手前の――いちばん奥でした。</div>
+    </div>
+  </header>
+
+  <!-- ② ROOT CAUSE -->
+  <section class="section pad">
+    <div class="sec-head">
+      <div class="sec-no">1</div>
+      <div>
+        <div class="sec-kicker">今日のいちばん大事なこと</div>
+        <div class="sec-title">固かったのは腰じゃない。<br>“土台”がねじれていた。</div>
+      </div>
+    </div>
+
+    <span class="first-flag">★ 根本はここ</span>
+
+    <div class="twist-card">
+      <svg viewBox="0 0 300 230" role="img" aria-label="骨盤が右にねじれ、腰の筋肉が引っ張られる図">
+        <!-- spine -->
+        <path d="M150 18 L150 96" stroke="#14512f" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="150" cy="18" r="11" fill="#14512f"/>
+        <!-- lumbar pulled (tense side) -->
+        <path d="M150 96 C176 110 188 132 184 158" stroke="#bb422a" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <text x="232" y="132" font-family="Noto Sans JP" font-size="13" font-weight="900" fill="#bb422a">張って</text>
+        <text x="232" y="150" font-family="Noto Sans JP" font-size="13" font-weight="900" fill="#bb422a">カチカチ</text>
+        <!-- pelvis group, rotated right -->
+        <g transform="rotate(13 150 168)">
+          <!-- sacrum -->
+          <path d="M138 150 L162 150 L156 186 L144 186 Z" fill="#1d6b41"/>
+          <!-- left ilium -->
+          <path d="M138 150 C100 146 78 162 80 190 C82 212 116 210 134 192 C140 180 140 162 138 150 Z" fill="#2f7d4f"/>
+          <!-- right ilium (raised) -->
+          <path d="M162 150 C200 146 222 162 220 190 C218 212 184 210 166 192 C160 180 160 162 162 150 Z" fill="#2f7d4f"/>
+        </g>
+        <!-- rotation arrow -->
+        <path d="M214 88 A70 70 0 0 1 250 138" stroke="#c4a44d" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M250 138 l-9 -3 l4 11 z" fill="#c4a44d"/>
+        <text x="196" y="78" font-family="Noto Sans JP" font-size="13" font-weight="900" fill="#9c7d2c">右へねじれ</text>
+        <!-- level line -->
+        <line x1="60" y1="216" x2="240" y2="216" stroke="#e3dccb" stroke-width="2" stroke-dasharray="5 5"/>
+      </svg>
+      <div class="twist-cap">骨盤全体が右へ回旋 → 腰の後ろが引っ張られて固結</div>
+    </div>
+
+    <p class="why">
+      骨盤は、からだ全体の<b>土台</b>です。ここが右にねじれると、その上に乗る腰の筋肉は、傾いた家を支える“つっかえ棒”のように、片側だけが休まず踏ん張り続けます。踏ん張り続けた筋肉はやがて<b>カチカチに固結</b>し、これが――いつ崩れてもおかしくない、ぎっくり腰の<b>“手前”</b>。富野様の腰は、まさにその張りつめた一歩手前でした。
+    </p>
+
+    <div class="meta-h">今日やったこと：ねじれそのものを、100%戻した。</div>
+    <p class="why">
+      固まった腰を直接ほぐすのではなく、原因である<b>骨盤の右回旋</b>を戻しました。土台が水平に戻れば、引っ張られていた腰は“踏ん張る理由”を失い、自然とゆるみ始めます。腰を追わず、土台を正す――これが神経反射入力装置論の考え方です。
+    </p>
+
+    <div class="protocol">
+      <div class="ph">▼ おうちでの3日間（クセが戻る前に固定する）</div>
+      <ul>
+        <li><b>長く座らない。</b>30分に一度は立つ。同じ姿勢の固定が、ねじれを呼び戻します。</li>
+        <li><b>温める。</b>湯船・カイロで腰の後ろをゆるめる。冷やすのは厳禁です。</li>
+        <li><b>“瞬間”に注意。</b>靴下・洗顔・くしゃみ――急な前かがみとひねりが一番あぶない。</li>
+        <li><b>寝るときは横向き</b>で、膝の間にクッション。土台を水平に保って眠ります。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ③ SIGNALS -->
+  <section class="section pad">
+    <div class="sec-head">
+      <div class="sec-no">2</div>
+      <div>
+        <div class="sec-kicker">からだのシグナル（施術前 → 後）</div>
+        <div class="sec-title">数字も、ちゃんと動きました。</div>
+      </div>
+    </div>
+
+    <div class="avg-bar">
+      <span class="lab">総合エネルギー（平均値）</span>
+      <span class="nums"><span class="b4">33.17</span><span class="ar">→</span>37.24</span>
+    </div>
+
+    <div class="row up">
+      <span class="ico">⚡</span>
+      <span class="nm"><b>エネルギー</b><span>Energy level</span></span>
+      <span class="vals"><span class="v-b4">33.17</span><span class="v-ar">→</span><span class="v-af">37.24</span></span>
+    </div>
+
+    <div class="row up">
+      <span class="ico">🛡</span>
+      <span class="nm"><b>免疫システム<span class="pill ok">正常へ</span></b><span>Immune system</span></span>
+      <span class="vals"><span class="v-b4">14.84</span><span class="v-ar">→</span><span class="v-af">29.96</span></span>
+    </div>
+
+    <div class="row up">
+      <span class="ico">🦴</span>
+      <span class="nm"><b>運動器（腰・骨盤）<span class="pill ok">正常へ</span></b><span>Musculoskeletal</span></span>
+      <span class="vals"><span class="v-b4">0.76</span><span class="v-ar">→</span><span class="v-af">0.94</span></span>
+    </div>
+
+    <div class="row up">
+      <span class="ico">🧠</span>
+      <span class="nm"><b>心の状態</b><span>Psycho-emotional</span></span>
+      <span class="vals"><span class="v-b4">0.69</span><span class="v-ar">→</span><span class="v-af">0.73</span></span>
+    </div>
+
+    <div class="row flat">
+      <span class="ico">♻️</span>
+      <span class="nm"><b>代謝<span class="pill lo">経過観察</span></b><span>Metabolism</span></span>
+      <span class="vals"><span class="v-b4">1.16</span><span class="v-ar">→</span><span class="v-af">1.01</span></span>
+    </div>
+
+    <div class="liver-note">
+      <span class="lt">🔥</span>
+      <p><b>肝臓が「過活動」のサインでした。</b>これは異常ではなく、土台のねじれを肝臓が<b>代償的にカバー</b>して帳尻を合わせていた状態。土台が整えば、肝臓も本来の仕事に戻っていきます。今は“観察”でOKのサインです。</p>
+    </div>
+  </section>
+
+  <!-- ④ BODY MAP -->
+  <section class="section pad">
+    <div class="sec-head">
+      <div class="sec-no">3</div>
+      <div>
+        <div class="sec-kicker">今日アプローチした場所</div>
+        <div class="sec-title">原因の“2点”に絞りました。</div>
+      </div>
+    </div>
+
+    <div class="map-card">
+      <svg viewBox="0 0 130 230" role="img" aria-label="背面から見た腰と骨盤の施術部位">
+        <!-- body back silhouette -->
+        <path d="M65 8 c12 0 18 9 18 19 c0 8 -4 13 -4 13 c10 4 16 12 17 24 l4 40 c1 8 -8 10 -10 2 l-5 -22 l-2 60 c-1 10 1 26 4 50 c1 8 -11 9 -13 1 l-9 -54 l-9 54 c-2 8 -14 7 -13 -1 c3 -24 5 -40 4 -50 l-2 -60 l-5 22 c-2 8 -11 6 -10 -2 l4 -40 c1 -12 7 -20 17 -24 c0 0 -4 -5 -4 -13 c0 -10 6 -19 18 -19 z"
+          fill="#eef0e9" stroke="#cdd3c5" stroke-width="2"/>
+        <!-- lumbar zone (tense) -->
+        <ellipse cx="65" cy="118" rx="26" ry="15" fill="#bb422a"/>
+        <text x="65" y="123" text-anchor="middle" font-family="Noto Sans JP" font-size="11" font-weight="900" fill="#fff">腰</text>
+        <!-- pelvis zone (twist) -->
+        <ellipse cx="65" cy="150" rx="30" ry="14" fill="#14512f"/>
+        <text x="65" y="155" text-anchor="middle" font-family="Noto Sans JP" font-size="11" font-weight="900" fill="#fff">骨盤</text>
+      </svg>
+      <div class="map-list">
+        <div class="map-item">
+          <div class="tag">① 骨盤の右ねじれ</div>
+          <div class="dsc">右回旋した土台を水平に戻し、左右差をリセット。</div>
+          <div class="done">→ 100%リセット完了</div>
+        </div>
+        <div class="map-item">
+          <div class="tag">② 腰の後ろの“張り”</div>
+          <div class="dsc">引っ張られて固結した筋肉の踏ん張りを解除。</div>
+          <div class="done">→ ゆるみ始め</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ OUTLOOK -->
+  <section class="section pad">
+    <div class="sec-head">
+      <div class="sec-no">4</div>
+      <div>
+        <div class="sec-kicker">これからの見通し</div>
+        <div class="sec-title">あとは、からだ任せでいい。</div>
+      </div>
+    </div>
+
+    <div class="outlook">
+      <h4>ねじれは戻した。あとは、からだが落ち着いていく。</h4>
+      <p>今日、ねじれは100%戻しました。からだは“ねじれていた形”を一度おぼえているので、数日は元に戻ろうとする<span class="hi">クセ</span>が残ります。でも、上の3日間のケアを続けていれば、からだ自身が新しい（正しい）形に<span class="hi">自然と落ち着いて</span>いきます。手前から抜けられるかどうかは、薬でも器具でもなく、この数日の過ごし方しだいです。</p>
+      <div class="watch">
+        <div class="wl">▼ 自分のからだを見る目安に</div>
+        <ul>
+          <li>朝起きたときの、腰の張り感</li>
+          <li>靴下を履くときの、一瞬のズキッ</li>
+          <li>左右で、座り心地が違う感じ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ SIGN -->
+  <footer class="sign">
+    <div class="theory">神 経 反 射 入 力 装 置 論</div>
+    <div class="nm">谷 弘誠<small>柔道整復師／三条健康堂接骨院 院長</small></div>
+    <div class="loc">香川県高松市由良町・由良川東公園のそば</div>
+    <div class="btns">
+      <a class="btn line" href="https://lin.ee/dwRtwDv">💬 何かあればLINEへ</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="foot">本報告書はRaDoTech測定値および施術所見にもとづく経過共有です。<br>診断・治療方針の決定は医療機関の判断によります。</div>
+  </footer>
+
+</div>
+</body>
+</html>
