@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布団屋の評価制度大改革！お客の奪い合いデスゲーム終了のお知らせ</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            color: #ffffff;
+            padding: 10px;
+            display: block;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #222222;
+            border: 4px solid #000000;
+            padding: 15px;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.8);
+        }
+
+        .pop-card {
+            background-color: #ffff00;
+            color: #000000;
+            border: 4px solid #000000;
+            padding: 20px;
+            margin-bottom: 35px;
+            box-shadow: 8px 8px 0px #000000;
+            position: relative;
+            transform: rotate(-1deg);
+        }
+        .pop-card:nth-child(even) {
+            transform: rotate(1deg);
+            background-color: #ff0055;
+            color: #ffffff;
+        }
+        .pop-card:nth-child(even) .pop-badge {
+            background-color: #ffff00;
+            color: #000000;
+        }
+
+        .pop-title {
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            color: #000000;
+            border-bottom: 3px dashed #000000;
+            padding-bottom: 5px;
+        }
+        .pop-card:nth-child(even) .pop-title {
+            color: #ffffff;
+            border-bottom: 3px dashed #ffffff;
+        }
+
+        .pop-badge {
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            background-color: #000000;
+            color: #ffff00;
+            padding: 3px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            transform: rotate(-3deg);
+            border: 2px solid #ffffff;
+        }
+
+        .pop-text {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .accent-text {
+            color: #000000;
+            font-size: 18px;
+            font-weight: 900;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 2px 6px;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .header-box {
+            text-align: center;
+            background-color: #ff0055;
+            padding: 20px 10px;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            margin-bottom: 30px;
+            transform: rotate(-0.5deg);
+        }
+        .header-box h1 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        .header-box p {
+            font-size: 12px;
+            color: #ffffff;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .status-box {
+            background-color: #00ccff;
+            color: #000000;
+            border: 3px solid #000000;
+            padding: 15px;
+            margin-bottom: 35px;
+            box-shadow: 5px 5px 0px #000000;
+        }
+        .status-box h2 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            background: #000;
+            color: #fff;
+            display: inline-block;
+            padding: 2px 8px;
+        }
+
+        .math-box {
+            background-color: #ffffff;
+            color: #333333;
+            border: 2px solid #000000;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+        .math-title {
+            font-weight: bold;
+            color: #000000;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 3px;
+            margin-bottom: 5px;
+        }
+
+        .footer-note {
+            background-color: #00cc66;
+            color: #000000;
+            border: 4px solid #000000;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 5px 5px 0px #000000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .footer-note h3 {
+            background: #000;
+            color: #fff;
+            padding: 3px 5px;
+            display: inline-block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .ranking-icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-box">
+        <h1>客の奪い合い<br>デスゲーム終了のお知らせ</h1>
+        <p>〜布団屋のギクシャク人間関係をぶっ壊す近未来評価ポスター〜</p>
+    </div>
+
+    <div class="status-box">
+        <h2>緊急事態の現状分析</h2>
+        <p style="font-weight: bold; font-size: 13px; line-height: 1.5;">
+            【女性5名・シフト常時3名・来店型営業】<br>
+            来客数が決まっているのに<span style="color:#ff0055; font-weight:900;">「個人ノルマ」</span>にするから、「私の客取られた！」のドロ沼バトルが発生中！これは彼女たちの性格のせいじゃない！<span style="background:#fff; padding:0 2px;">「数学的に絶対に揉める仕組み」</span>のせいだッ！！
+        </p>
+    </div>
+
+    <div class="pop-card">
+        <div class="pop-badge">第 3 位</div>
+        <span class="ranking-icon">🥉</span>
+        <h2 class="pop-title">役割分担制 ＋<br>プロセスポイント評価</h2>
+        <div class="pop-text">
+            レジを打った人だけが偉いと思うなよ！<br>
+            最初のお声がけ、商品説明、最後のクロージングまで、<span class="accent-text">接客の裏方仕事もすべてポイント化</span>して全員の貢献度を拾い上げるやり方！<br><br>
+            「あの子が説明した方が売れるからパスするね！」というアシストプレイが生まれる！携帯ショップや美容業界で大活躍中のシステム！
+
+            <div class="math-box">
+                <div class="math-title">📊 評価の計算式</div>
+                1つの売上ポイントを分解！<br>
+                ・最初のアプローチ：20%分<br>
+                ・中盤の商品説明：40%分<br>
+                ・最後の会計・決済：40%分
+            </div>
+        </div>
+    </div>
+
+    <div class="pop-card">
+        <div class="pop-badge">第 2 位</div>
+        <span class="ranking-icon">🥈</span>
+        <h2 class="pop-title">完全接客輪番制<br>（ラウンドロビン）</h2>
+        <div class="pop-text">
+            「次、私の番ね！」ルールをガチガチに固定！<br>
+            入店があったら、あらかじめ決めた順番（Aさん→Bさん→Cさん）で自動的に接客へGO！<br><br>
+            評価の基準は売上額じゃなくて<span class="accent-text">「成約率（％）」</span>にするから、客の奪い合いは完全に消失！<br>
+            「回ってきた1回のチャンスをいかに丁寧に接客するか」に全エネルギーを注げる！高級外車ディーラーもやってるガチ王道。
+
+            <div class="math-box">
+                <div class="math-title">📊 評価の計算式</div>
+                成約率 ＝ 買ってくれた客数 ÷ 接客した回数<br>
+                客単価 ＝ 個人の売上高 ÷ 買ってくれた客数
+            </div>
+        </div>
+    </div>
+
+    <div class="pop-card">
+        <div class="pop-badge">第 1 位 ★ 圧倒的おすすめ</div>
+        <span class="ranking-icon">👑</span>
+        <h2 class="pop-title">店舗全体のチーム目標 ＋<br>シフト時間比例配分</h2>
+        <div class="pop-text">
+            個人ノルマをゴミ箱へポイ捨て！<br>
+            目指すは<span class="accent-text">「お店全員で月間目標○百万円！」</span>のみ。<br><br>
+            達成したボーナスは、売った人じゃなくて<span class="accent-text">「お店のために働いた時間」</span>でキレイに山分け！<br>
+            手が空いた人が他の人のレジを手伝ったり、お茶を出したり、全員が「お店全体の売上」のために動き出す！アパレルやコスメ店で人間関係が光速で改善した最強の現代版！
+
+            <div class="math-box">
+                <div class="math-title">📊 評価の計算式</div>
+                個人のボーナス ＝<br>
+                全体のボーナス原資 × (あなたのシフト時間 ÷ 全員の総シフト時間)
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <h3>店長（男性マネージャー）の新しい仕事</h3>
+        <p style="line-height: 1.5; font-size: 13px;">
+            これからのマネージャーは「売上を厳しく管理する鬼軍曹」ではない！<br>
+            スタッフがルール通り順番を守れているか、裏方でサポートした人が損をしていないかを見守る<span style="color:#ff0055; font-weight:900;">「絶対公平なレフェリー（審判）」</span>になるのだ！<br><br>
+            社長！仕組みが変われば、明日からお店の空気がガラリと変わります！！
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
