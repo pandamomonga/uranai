@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三澤様 施術報告書｜三条健康堂接骨院</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#2b5a3d;
+    --gold:#b8923a;
+    --gold-soft:#c4a44d;
+    --ink:#22201c;
+    --paper:#f6f2ea;
+    --card:#ffffff;
+    --line:#e2dbcc;
+    --win:#1f7a4d;
+    --win-bg:#e6f4ec;
+    --watch:#c25a1e;
+    --watch-bg:#fbeadd;
+    --flat:#5a6b60;
+    --flat-bg:#eef0ec;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:18px;
+    line-height:1.85;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 0 60px;}
+  section{padding:0 22px;}
+
+  /* ===== COVER ===== */
+  .cover{
+    background:var(--green);
+    color:#fff;
+    padding:44px 24px 40px;
+    text-align:center;
+    border-bottom:6px solid var(--gold-soft);
+  }
+  .eyebrow{
+    font-size:13px;letter-spacing:.32em;color:var(--gold-soft);
+    font-weight:700;margin-bottom:20px;
+  }
+  .cover .doc{font-size:15px;letter-spacing:.28em;color:#cfe3d6;margin-bottom:14px;}
+  .cover .name{font-size:40px;font-weight:800;letter-spacing:.04em;}
+  .cover .name small{font-size:22px;font-weight:600;margin-left:4px;}
+  .cover .date{font-size:15px;color:#bcd4c4;margin-top:10px;letter-spacing:.06em;}
+  .paradox{
+    margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.22);
+  }
+  .paradox .lead{font-size:27px;font-weight:800;line-height:1.6;color:#fff;}
+  .paradox .lead b{color:var(--gold-soft);}
+  .paradox .sub{font-size:16px;color:#d8e6dd;margin-top:14px;line-height:1.8;}
+
+  /* ===== SECTION LABEL ===== */
+  .sec-label{
+    display:flex;align-items:center;gap:12px;
+    margin:40px 0 18px;
+  }
+  .sec-label .no{
+    background:var(--green);color:#fff;font-size:15px;font-weight:800;
+    width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  }
+  .sec-label .txt{font-size:14px;letter-spacing:.14em;color:var(--gold);font-weight:800;}
+
+  /* ===== CARD / HEADINGS ===== */
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:24px 22px;box-shadow:0 2px 10px rgba(26,61,40,.05);
+  }
+  h2.metaphor{
+    font-size:26px;font-weight:800;color:var(--green);line-height:1.5;
+    margin-bottom:16px;
+  }
+  h3{font-size:20px;font-weight:800;color:var(--green2);margin:22px 0 10px;}
+  p{font-size:18px;margin-bottom:14px;}
+  .hi{background:linear-gradient(transparent 62%,#f3e6bf 62%);font-weight:800;}
+  .accent{color:var(--gold);font-weight:800;}
+
+  /* three folds */
+  .folds{display:flex;flex-direction:column;gap:12px;margin:18px 0 4px;}
+  .fold{
+    display:flex;align-items:center;gap:14px;
+    background:#f4f7f2;border-left:6px solid var(--green2);
+    border-radius:10px;padding:14px 16px;
+  }
+  .fold .ico{font-size:26px;flex:0 0 auto;width:34px;text-align:center;}
+  .fold .body b{font-size:19px;color:var(--green);display:block;}
+  .fold .body span{font-size:16px;color:#4a463f;}
+
+  /* pressure note */
+  .pressure{
+    margin-top:18px;background:var(--green);color:#fff;border-radius:14px;
+    padding:20px;
+  }
+  .pressure .t{font-size:19px;font-weight:800;color:var(--gold-soft);margin-bottom:8px;}
+  .pressure p{color:#eaf2ec;font-size:17px;margin-bottom:0;}
+  .wave{margin:14px 0 4px;}
+
+  .protocol{
+    margin-top:18px;text-align:center;background:var(--win-bg);
+    border:2px solid var(--win);border-radius:14px;padding:20px;
+  }
+  .protocol .big{font-size:34px;font-weight:900;color:var(--win);line-height:1.2;}
+  .protocol .cap{font-size:17px;color:#1f5a3b;font-weight:700;margin-top:4px;}
+
+  /* ===== RADOTECH ===== */
+  .signal{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:16px 16px;margin-bottom:12px;
+  }
+  .signal .name{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:12px;}
+  .ba{display:flex;align-items:center;gap:10px;}
+  .chip{flex:1;text-align:center;border-radius:10px;padding:10px 6px;}
+  .chip .lab{font-size:12px;letter-spacing:.1em;font-weight:700;opacity:.9;}
+  .chip .val{font-size:28px;font-weight:900;line-height:1.1;}
+  .chip .st{font-size:13px;font-weight:700;margin-top:2px;}
+  .chip.before{background:#eef0ec;color:#4a463f;}
+  .chip.after-win{background:var(--win-bg);color:var(--win);border:2px solid var(--win);}
+  .chip.after-watch{background:var(--watch-bg);color:var(--watch);border:2px solid var(--watch);}
+  .chip.after-flat{background:#eef2f6;color:#3a4a5a;border:2px solid #7d93a8;}
+  .arrow{font-size:24px;font-weight:900;color:var(--gold);flex:0 0 auto;}
+  .tag{
+    display:inline-block;font-size:13px;font-weight:800;border-radius:20px;
+    padding:3px 12px;margin-top:12px;
+  }
+  .tag.win{background:var(--win);color:#fff;}
+  .tag.watch{background:var(--watch);color:#fff;}
+  .tag.flat{background:#7d93a8;color:#fff;}
+  .signal .note{font-size:15px;color:#4a463f;margin-top:10px;line-height:1.75;}
+
+  /* ===== BODY MAP ===== */
+  .map-wrap{text-align:center;}
+  .zone-list{display:flex;flex-direction:column;gap:14px;margin-top:20px;}
+  .zone{
+    display:flex;gap:14px;align-items:flex-start;
+    background:#f4f7f2;border-radius:12px;padding:16px;
+  }
+  .zone .num{
+    background:var(--gold);color:#fff;font-weight:900;font-size:16px;
+    width:30px;height:30px;border-radius:50%;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .zone .z-body b{font-size:19px;color:var(--green);display:block;margin-bottom:2px;}
+  .zone .z-body span{font-size:16px;color:#4a463f;}
+
+  /* ===== NEXT ===== */
+  .next li{
+    list-style:none;font-size:18px;padding:12px 0 12px 34px;position:relative;
+    border-bottom:1px dashed var(--line);
+  }
+  .next li:last-child{border-bottom:none;}
+  .next li::before{content:"✓";position:absolute;left:4px;color:var(--win);font-weight:900;font-size:20px;}
+
+  /* ===== SIGNATURE ===== */
+  .sign{
+    background:var(--green);color:#fff;border-radius:18px;padding:30px 24px;
+    margin:44px 22px 0;text-align:center;
+  }
+  .sign .theory{
+    font-size:14px;letter-spacing:.14em;color:var(--gold-soft);font-weight:800;
+    margin-bottom:14px;
+  }
+  .sign .prof{font-size:16px;color:#dbe8df;line-height:1.9;margin-bottom:22px;}
+  .btns{display:flex;flex-direction:column;gap:12px;max-width:360px;margin:0 auto;}
+  .btn{
+    display:block;text-decoration:none;font-size:19px;font-weight:800;
+    padding:16px;border-radius:12px;
+  }
+  .btn.line{background:#06c755;color:#fff;}
+  .btn.map{background:var(--gold-soft);color:#1a1a1a;}
+  .sign .loc{font-size:15px;color:#bcd4c4;margin-top:20px;}
+  .brand{
+    text-align:center;font-size:13px;color:#7a7466;line-height:1.9;
+    margin:26px 22px 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== 1. COVER ===== -->
+  <div class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="doc">施 術 報 告 書</div>
+    <div class="name">三澤 様</div>
+    <div class="date">令和8年7月1日（水）</div>
+    <div class="paradox">
+      <div class="lead">動いていないのに、<br><b>いちばん固まっていた。</b></div>
+      <div class="sub">「座って集中する」時間は、身体にとって<br>静かな“重労働”でした。</div>
+    </div>
+  </div>
+
+  <!-- ===== 2. FIRST（今日の一次情報） ===== -->
+  <section>
+    <div class="sec-label"><div class="no">1</div><div class="txt">今日の一次情報 ─ 根っこ</div></div>
+    <div class="card">
+      <h2 class="metaphor">「集中する」とは、<br>身体を“折りたたむ”ことでした。</h2>
+      <p>デスクに向かって集中している間、三澤様の身体では <span class="hi">3つの折り目</span> がずっと閉じたままになっていました。折りたたみ傘を、開かないままギュッと握り続けているような状態です。</p>
+
+      <div class="folds">
+        <div class="fold"><div class="ico">🦵</div><div class="body"><b>右の足の付け根（鼠径部）</b><span>座る＝股関節を折り続ける。右側が特に硬化。</span></div></div>
+        <div class="fold"><div class="ico">🦢</div><div class="body"><b>首の前・鎖骨まわり</b><span>画面へ頭が前に落ち、喉元と鎖骨下が縮む。</span></div></div>
+        <div class="fold"><div class="ico">🧍</div><div class="body"><b>首すじ</b><span>前が縮んだぶん、後ろが引っぱられ続ける。</span></div></div>
+      </div>
+
+      <div class="pressure">
+        <div class="t">◎ なぜ “カチカチ” まで進んだのか</div>
+        <div class="wave">
+          <svg width="100%" height="46" viewBox="0 0 320 46" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,30 40,12 80,34 120,10 160,36 200,14 240,32 280,12 320,28"
+              fill="none" stroke="#c4a44d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p>ここ数日、<b style="color:#fff">気圧が乱高下</b>しています。気圧の変化は身体の“圧センサー”を揺さぶり、筋肉が<b style="color:#fff">反射的に緊張しっぱなし</b>になります。折りたたまれた3か所が、自力ではほどけなくなっていました。</p>
+      </div>
+
+      <h3>今日やったこと</h3>
+      <p>その反射のスイッチが入った深部まで、しっかり手を入れて<span class="hi">「入力」をやり直しました</span>。表面ではなく、固さの芯まで。</p>
+
+      <div class="protocol">
+        <div class="big">ほぼ 100%</div>
+        <div class="cap">3つの折り目を、ほぐし切りました</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. BODY SIGNALS（RaDoTech） ===== -->
+  <section>
+    <div class="sec-label"><div class="no">2</div><div class="txt">身体のサイン ─ 施術前 → 施術後</div></div>
+
+    <div class="signal">
+      <div class="name">🦴 筋骨格系（いちばんの変化）</div>
+      <div class="ba">
+        <div class="chip before"><div class="lab">BEFORE</div><div class="val">0.64</div><div class="st">Below norm</div></div>
+        <div class="arrow">▶</div>
+        <div class="chip after-win"><div class="lab">AFTER</div><div class="val">1.03</div><div class="st">Normal</div></div>
+      </div>
+      <span class="tag win">★ 正常域へ回復</span>
+      <div class="note">硬く動きの鈍かった組織が、しなやかな反応を取り戻しました。手で触れた実感と、数値がぴたりと一致しています。</div>
+    </div>
+
+    <div class="signal">
+      <div class="name">♻️ 代謝・左右バランス（φL/φR）</div>
+      <div class="ba">
+        <div class="chip before"><div class="lab">BEFORE</div><div class="val">1.32</div><div class="st">Above norm</div></div>
+        <div class="arrow">▶</div>
+        <div class="chip after-win"><div class="lab">AFTER</div><div class="val">1.19</div><div class="st">Normal</div></div>
+      </div>
+      <span class="tag win">★ 左右差が縮小</span>
+      <div class="note">右に偏っていた負担が中央へ。左右のバランスが基準域（0.9〜1.1）に近づきました。</div>
+    </div>
+
+    <div class="signal">
+      <div class="name">⚡ エネルギー水準</div>
+      <div class="ba">
+        <div class="chip before"><div class="lab">BEFORE</div><div class="val">14.96</div><div class="st">Below norm</div></div>
+        <div class="arrow">▶</div>
+        <div class="chip after-flat"><div class="lab">AFTER</div><div class="val">9.99</div><div class="st">Below norm</div></div>
+      </div>
+      <span class="tag flat">◎ 全体が鎮まった</span>
+      <div class="note">身体全体の“警戒モード”が下がったサイン。緊張して張り詰めていた状態から、休息・回復モードへ切り替わっています。</div>
+    </div>
+
+    <div class="signal">
+      <div class="name">🧠 精神・感情の状態（要観察）</div>
+      <div class="ba">
+        <div class="chip before"><div class="lab">BEFORE</div><div class="val">1.30</div><div class="st">Above norm</div></div>
+        <div class="arrow">▶</div>
+        <div class="chip after-watch"><div class="lab">AFTER</div><div class="val">1.53</div><div class="st">Above norm</div></div>
+      </div>
+      <span class="tag watch">△ ここは要観察</span>
+      <div class="note">ここだけ少し上がっています。気圧の乱高下が続いているぶん、神経がまだ張っている印。今夜はしっかり休んでいただくのが最優先です。</div>
+    </div>
+  </section>
+
+  <!-- ===== 4. TREATED AREAS（身体マップ） ===== -->
+  <section>
+    <div class="sec-label"><div class="no">3</div><div class="txt">ほぐした場所 ─ 身体マップ</div></div>
+    <div class="card map-wrap">
+      <svg width="240" height="330" viewBox="0 0 240 330" role="img" aria-label="施術部位マップ">
+        <!-- head -->
+        <circle cx="120" cy="42" r="26" fill="#dfe8e0" stroke="#1a3d28" stroke-width="3"/>
+        <!-- neck -->
+        <rect x="110" y="66" width="20" height="20" fill="#dfe8e0" stroke="#1a3d28" stroke-width="3"/>
+        <!-- torso -->
+        <path d="M78,92 Q120,80 162,92 L156,196 Q120,206 84,196 Z" fill="#dfe8e0" stroke="#1a3d28" stroke-width="3"/>
+        <!-- arms -->
+        <path d="M80,96 L58,180 L70,184 L92,110 Z" fill="#dfe8e0" stroke="#1a3d28" stroke-width="3"/>
+        <path d="M160,96 L182,180 L170,184 L148,110 Z" fill="#dfe8e0" stroke="#1a3d28" stroke-width="3"/>
+        <!-- legs -->
+        <path d="M86,196 L80,308 L98,308 L112,204 Z" fill="#dfe8e0" stroke="#1a3d28" stroke-width="3"/>
+        <path d="M154,196 L160,308 L142,308 L128,204 Z" fill="#dfe8e0" stroke="#1a3d28" stroke-width="3"/>
+
+        <!-- markers -->
+        <!-- 1: right groin (viewer's left) -->
+        <circle cx="98" cy="196" r="15" fill="#b8923a" stroke="#fff" stroke-width="3"/>
+        <text x="98" y="202" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">1</text>
+        <!-- 2: front neck / clavicle -->
+        <circle cx="120" cy="94" r="15" fill="#b8923a" stroke="#fff" stroke-width="3"/>
+        <text x="120" y="100" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+        <!-- 3: neck -->
+        <circle cx="120" cy="72" r="13" fill="#2b5a3d" stroke="#fff" stroke-width="3"/>
+        <text x="120" y="77" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">3</text>
+      </svg>
+
+      <div class="zone-list">
+        <div class="zone"><div class="num">1</div><div class="z-body"><b>右の足の付け根（鼠径部）</b><span>「折りたたみの蝶番」。座る負担が最も集まる要。</span></div></div>
+        <div class="zone"><div class="num">2</div><div class="z-body"><b>首の前・鎖骨まわり</b><span>頭が前に落ちて縮んだ喉元を、奥から解放。</span></div></div>
+        <div class="zone"><div class="num" style="background:#2b5a3d">3</div><div class="z-body"><b>首すじ</b><span>前が緩んで、後ろの引っぱりもリセット。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. NEXT ===== -->
+  <section>
+    <div class="sec-label"><div class="no">4</div><div class="txt">次回までの見通し</div></div>
+    <div class="card">
+      <p><span class="accent">3つの折り目がほどけたので、相当ラクに動けるはずです。</span>ただ、気圧はまだしばらく不安定。せっかくの状態を守るために、この3つだけ意識してみてください。</p>
+      <ul class="next">
+        <li><b>今夜はしっかり休む。</b>神経がまだ張っています。無理に頑張らず、回復に回してください。</li>
+        <li><b>首の前を“畳まない”。</b>集中作業のあいだ、1時間に一度は胸を開いて上を向く。折りたたみを一瞬ひらくイメージで。</li>
+        <li><b>身体を温める・水分をとる。</b>気圧の乱れに強くなります。冷えると折り目が戻りやすくなります。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 6. SIGNATURE ===== -->
+  <div class="sign">
+    <div class="theory">神 経 反 射 入 力 装 置 論　ー　三条健康堂接骨院</div>
+    <div class="prof">柔道整復師。三条健康堂接骨院 院長。<br>香川県高松市にて30年間、たくさんの施術を行う。<br>年間約200冊の読書を続け、noteメンバーシップ<br>「50代からの教養ノート」を主宰。</div>
+    <div class="btns">
+      <a class="btn line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="loc">高松市由良町・由良川東公園のそば</div>
+  </div>
+
+  <div class="brand">高松発・一生動ける身体と人生の教養研究室<br>無車・自転車・圧力鍋生活を実践する治療家より</div>
+
+</div>
+</body>
+</html>
