@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>問題文は、日本語で書かれた回路図だ。｜高専電気科のためのテスト読解術</title>
+<style>
+  :root{ --bk:#111; --yl:#ffd400; --rd:#e60023; --wt:#fff; --gy:#1e1e1e; --bl:#2f81f7; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bk);color:var(--wt);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;font-weight:700;line-height:1.75;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px;}
+
+  .hero{padding:44px 0 56px;position:relative;}
+  .banner{background:var(--yl);color:var(--bk);display:inline-block;padding:10px 26px;font-size:21px;font-weight:900;letter-spacing:3px;transform:rotate(-2deg);margin-bottom:34px;}
+  .h-sub{font-size:clamp(21px,4.6vw,32px);font-weight:900;}
+  .h-main{font-size:clamp(42px,10vw,88px);font-weight:900;color:var(--yl);line-height:1.1;text-shadow:5px 5px 0 var(--rd);margin:8px 0 22px;}
+  .h-catch{display:inline-block;background:var(--rd);color:var(--wt);font-size:clamp(17px,3.8vw,24px);font-weight:900;padding:8px 18px;transform:rotate(-1deg);}
+  .badge{position:absolute;top:24px;right:0;width:126px;height:126px;background:var(--rd);border-radius:50%;transform:rotate(12deg);display:flex;align-items:center;justify-content:center;text-align:center;font-size:24px;font-weight:900;line-height:1.25;}
+  .badge span{color:var(--yl);}
+
+  section{padding:52px 0;border-top:4px dashed #333;}
+  .step{display:inline-block;background:var(--rd);color:var(--wt);font-size:19px;font-weight:900;padding:5px 20px;border-radius:999px;margin-bottom:14px;letter-spacing:2px;}
+  h2{font-size:clamp(28px,6.4vw,44px);font-weight:900;line-height:1.28;margin-bottom:10px;}
+  h2 .mk{background:var(--yl);color:var(--bk);padding:0 8px;}
+  .lead{font-size:18px;color:#ccc;margin-bottom:28px;}
+  .lead b{color:var(--yl);}
+
+  .rule{background:var(--gy);border-left:10px solid var(--yl);padding:20px 24px;margin-bottom:14px;position:relative;}
+  .rule.red{border-left-color:var(--rd);}
+  .rule h3{font-size:clamp(19px,4.4vw,25px);font-weight:900;color:var(--yl);margin-bottom:6px;}
+  .rule.red h3{color:#ff6b81;}
+  .rule p{font-size:17px;color:#e8e8e8;}
+  .rule p b{color:var(--yl);}
+  .use{margin-top:10px;background:#000;border:2px solid #444;border-radius:6px;padding:10px 14px;font-size:15.5px;color:#bbb;}
+  .use b{color:#ff6b81;}
+  .tag{position:absolute;top:-12px;right:14px;background:var(--rd);color:#fff;font-size:14px;font-weight:900;padding:2px 12px;transform:rotate(3deg);}
+
+  /* 実演 */
+  .demo{background:#f7f3e8;color:#222;padding:28px 26px;border-radius:4px;font-size:18px;line-height:2.3;font-weight:500;box-shadow:8px 8px 0 var(--rd);font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;}
+  .demo .gv{border:2.5px solid #e60023;border-radius:50px;padding:0 5px;font-weight:700;}
+  .demo .fd{background:linear-gradient(transparent 55%, #ffd400 55%);font-weight:900;}
+  .demo .cd{color:#e60023;font-weight:900;border-bottom:3px double #e60023;}
+  .legend{margin-top:20px;background:#000;padding:16px 22px;font-size:16px;line-height:2.1;}
+  .legend .l-gv{border:2px solid var(--rd);border-radius:50px;padding:0 8px;}
+  .legend .l-fd{background:linear-gradient(transparent 55%, var(--yl) 55%);}
+  .legend .l-cd{color:#ff6b81;font-weight:900;}
+
+  /* 与求但テーブル */
+  .gft{margin-top:24px;}
+  .gft-row{display:flex;gap:0;margin-bottom:10px;background:var(--gy);}
+  .gft-h{flex:0 0 92px;background:var(--yl);color:var(--bk);font-size:26px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .gft-h.r{background:var(--rd);color:#fff;}
+  .gft-h.b{background:var(--bl);color:#fff;}
+  .gft-b{flex:1;padding:14px 18px;font-size:16.5px;color:#eee;}
+  .gft-b b{color:var(--yl);}
+  .gft-b .warn{color:#ff6b81;font-weight:900;}
+
+  .solve{background:var(--gy);border-left:10px solid var(--bl);padding:20px 24px;margin-top:22px;font-size:17px;color:#eee;}
+  .solve b{color:var(--yl);}
+  .solve .trap{color:#ff6b81;font-weight:900;}
+
+  /* 4択 */
+  .choice{background:var(--gy);margin-bottom:12px;padding:16px 22px;display:flex;gap:16px;align-items:flex-start;font-size:17px;}
+  .choice .mark{font-size:28px;font-weight:900;flex-shrink:0;line-height:1.3;}
+  .choice.ok .mark{color:#2ecc71;}
+  .choice.ng .mark{color:var(--rd);}
+  .choice p b{color:var(--yl);}
+  .choice p span.why{display:block;font-size:15px;color:#999;margin-top:2px;}
+
+  .kill{background:var(--gy);margin-bottom:12px;padding:18px 22px;display:flex;gap:16px;align-items:flex-start;}
+  .kill .x{font-size:36px;font-weight:900;color:var(--rd);line-height:1;flex-shrink:0;}
+  .kill h3{font-size:19px;font-weight:900;margin-bottom:2px;}
+  .kill h3 b{color:var(--yl);}
+  .kill p{font-size:15.5px;color:#bbb;}
+
+  .prompt-box{background:#000;border:3px solid var(--yl);padding:22px;font-size:15px;line-height:1.9;color:#ddd;white-space:pre-wrap;margin-bottom:14px;border-radius:4px;}
+  .copybtn{display:block;width:100%;background:var(--yl);color:var(--bk);border:none;font-size:20px;font-weight:900;padding:18px;cursor:pointer;font-family:inherit;letter-spacing:2px;border-radius:4px;}
+  .copybtn.done{background:#2ecc71;color:#fff;}
+
+  footer{padding:56px 0 76px;text-align:center;border-top:4px solid var(--yl);margin-top:36px;}
+  .f-big{font-size:clamp(24px,5.6vw,40px);font-weight:900;color:var(--yl);margin-bottom:12px;}
+  .f-small{font-size:15px;color:#888;}
+  .arrow{text-align:center;font-size:40px;color:var(--yl);padding:8px 0 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="banner">高専電気科のためのテスト読解術</div>
+    <div class="badge">読解力<br><span>不要！</span></div>
+    <div class="h-sub">問題文は、</div>
+    <div class="h-main">日本語で書かれた<br>回路図だ。</div>
+    <div class="h-catch">読むな。分解しろ。</div>
+    <p style="margin-top:28px;font-size:17px;color:#ccc;">
+      長い問題文で失点するのは国語力のせいじゃない。<b style="color:var(--yl);">文章を回路図に変換する手順を知らないだけ</b>だ。回路図なら読めるだろ？なら勝てる。手順は3つ。
+    </p>
+  </div>
+
+  <!-- STEP 1 -->
+  <section>
+    <div class="step">STEP 1</div>
+    <h2>全ての問題文は<span class="mk">【与・求・但】</span>の3部品でできている。</h2>
+    <p class="lead">どんなに長い文章題も、部品はこの3つだけ。<b>読解するな、仕分けしろ。</b></p>
+
+    <div class="rule">
+      <h3>【与】＝ 与えられたデータ → 数値＋単位に○</h3>
+      <p>問題文に出てくる<b>数値と単位のペアを全部○で囲む</b>。10[m]、1500[W]、100[V]…。これが回路図の部品リストだ。○の数＝使うべきデータの数。1個でも余ったら読み落としを疑え。</p>
+      <div class="use">活用例：「直径3.2[mm]の銅線」→ ○で囲んだ瞬間に「<b>半径に直すのは1.6mmだぞ</b>」と自分に注意できる。囲まないから直径のまま計算して死ぬ。</div>
+    </div>
+
+    <div class="rule">
+      <h3>【求】＝ 求めるもの → 文末「〜は。」「求めよ」に黄マーカー</h3>
+      <p>技術系の問題文は<b>最後の一文に必ず求解がある</b>。「電圧降下[V]は。」の <b>[V]</b> まで含めてマーカー。何を・どの単位で答えるかが確定する。</p>
+      <div class="use">活用例：問題が[mA]で聞いてるのに[A]で答えて失点、[kJ]で聞いてるのに[J]で答えて失点——<b>単位までマーカーしてれば起きない事故</b>。</div>
+    </div>
+
+    <div class="rule red">
+      <div class="tag">失点原因 No.1</div>
+      <h3>【但】＝「ただし」以下 → △をつけて2回読め</h3>
+      <p>「ただし、電線の電気抵抗は1000[m]当たり3.0[Ω]とする」「ただし、電流減少係数は0.70とする」——<b>ただし書きは飾りじゃない。解くのに必須の隠し部品</b>。出題者はここを読み飛ばす奴を落とすために書いている。</p>
+      <div class="use">活用例：「その他の抵抗は無視する」→ 内部抵抗を考えなくていいという<b>回路の簡略化指示</b>。「〜のとき」「〜した場合」も同類で、回路の状態（スイッチON/OFF等）を指定している。</div>
+    </div>
+  </section>
+
+  <!-- STEP 2 実演 -->
+  <section>
+    <div class="step">STEP 2</div>
+    <h2>実演。<span class="mk">電気科の実際の出題形式</span>でやる。</h2>
+    <p class="lead">電気工事士・電験・定期テストで頻出の「電圧降下」タイプ。<b>印をつけながら読むとこうなる：</b></p>
+
+    <div class="demo">
+      　図のように、こう長<span class="gv">10[m]</span>の配線により、消費電力<span class="gv">1500[W]</span>の抵抗負荷に電力を供給したところ、負荷の両端の電圧は<span class="gv">100[V]</span>であった。<span class="fd">この配線における電圧降下[V]は。</span><span class="cd">ただし</span>、電線の電気抵抗は長さ<span class="gv">1000[m]当たり3.0[Ω]</span>とし、その他の抵抗は無視する。
+    </div>
+
+    <div class="legend">
+      <b style="color:var(--yl);">■ 印の凡例</b><br>
+      <span class="l-gv">数値＋単位</span>＝【与】部品リスト（4個ある）<br>
+      <span class="l-fd">文末の問い</span>＝【求】単位[V]まで含めてマーカー<br>
+      <span class="l-cd">ただし</span>＝【但】隠し部品。△をつけて2回読む
+    </div>
+
+    <div class="arrow">▼ 仕分けると、こうなる</div>
+
+    <div class="gft">
+      <div class="gft-row"><div class="gft-h">与</div><div class="gft-b">こう長 <b>10m</b>／消費電力 <b>P=1500W</b>／負荷電圧 <b>V=100V</b>／電線抵抗 <b>3.0Ω per 1000m</b><br><span class="warn">※「こう長10m」＝電線は行きと帰りで2本。往復20m分の抵抗。ここが最大の罠。</span></div></div>
+      <div class="gft-row"><div class="gft-h r">求</div><div class="gft-b">配線の電圧降下 <b>e [V]</b>（単位はボルト。mVでもkVでもない）</div></div>
+      <div class="gft-row"><div class="gft-h b">但</div><div class="gft-b">電線抵抗の与え方は「1000mあたり」→ <b>÷1000して×こう長</b> の変換が必要／その他の抵抗は無視＝回路を単純化してよい</div></div>
+    </div>
+
+    <div class="solve">
+      <b>配線（解く手順）：</b>ここまで来たら、もう国語は終わり。あとは電気だ。<br>
+      ① 負荷電流 I = P/V = 1500/100 = <b>15A</b><br>
+      ② 電線1本の抵抗 r = 3.0/1000 × 10 = <b>0.03Ω</b><br>
+      ③ 電圧降下 e = <span class="trap">2</span>rI = 2 × 0.03 × 15 = <b>0.9V</b><br>
+      <span class="trap">→ この「2」（往復）を落とすと0.45V。出題者は必ず0.45Vを選択肢に置いてくる。</span>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section>
+    <div class="step">STEP 3</div>
+    <h2>4択のダミーは、<span class="mk">君の計算ミスから逆算</span>して作られている。</h2>
+    <p class="lead">上の問題が4択ならこうなる。<b>間違い選択肢は全部「ありがちなミスの答え」</b>だ：</p>
+
+    <div class="choice ng"><div class="mark">イ</div><p><b>0.45V</b><span class="why">→ 往復の「2」を忘れた奴が選ぶ。片道だけ計算した値。</span></p></div>
+    <div class="choice ok"><div class="mark">ロ</div><p><b>0.9V</b><span class="why">→ 正解。</span></p></div>
+    <div class="choice ng"><div class="mark">ハ</div><p><b>9V</b><span class="why">→ 桁ミス（÷10忘れ）を狙った値。</span></p></div>
+    <div class="choice ng"><div class="mark">ニ</div><p><b>15V</b><span class="why">→ 途中計算の値（電流15A）をそのまま置いた罠。「見覚えある数字」に飛びつく奴が選ぶ。</span></p></div>
+
+    <p class="lead" style="margin-top:30px;">つまり、技術系4択の消去チェックはこの4つ：</p>
+
+    <div class="kill"><div class="x">✕</div><div><h3>途中計算と同じ数字は<b>むしろ疑え</b></h3><p>「さっき計算で出た数字だ！」は罠のサイン。それは部品であって完成品じゃない。最後まで組み立てたか確認。</p></div></div>
+    <div class="kill"><div class="x">✕</div><div><h3><b>桁だけ違う</b>選択肢が並んでたら単位変換を再確認</h3><p>0.9 / 9 / 90 が並ぶ＝出題者が「mm↔m、mA↔A、kJ↔Jのどこかで割り忘れるだろ」と待ち構えている。</p></div></div>
+    <div class="kill"><div class="x">✕</div><div><h3>知識問題の<b>断定ワード</b>「関係なく」「必ず」「〜だけ」</h3><p>「抵抗の大きさに関係なく〜」型の選択肢は、反例を1つ思いつけば消せる。全称命題は反例1つで崩れる——数学と同じ。</p></div></div>
+    <div class="kill"><div class="x">✕</div><div><h3><b>条件すり替え</b>：直列↔並列、直径↔半径、1本↔往復</h3><p>本文と選択肢を部品単位で照合。文章の雰囲気で選ぶな、○をつけた【与】と突き合わせろ。</p></div></div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section>
+    <div class="step">STEP 4</div>
+    <h2>返却テストは、<span class="mk">エラーログだ。</span></h2>
+    <p class="lead">間違えた問題は「読み落としか、式選択か、計算か」の<b>3分類でバグの場所が特定できる</b>。テストを撮影してAI（Gemini等）に貼り、これを一緒に送れ：</p>
+
+    <div class="prompt-box" id="prompt-text">返却された電気系科目（回路・電磁気・電気基礎など）のテスト画像を貼ります。私の解答と正誤も写っています。高専電気科の学生です。以下の順で分析してください。
+
+STEP1【設問の分解】
+各設問の問題文を【与：与えられた数値と条件】【求：求めるものと単位】【但：ただし書き・隠れ条件】の3つに仕分けして表にしてください。
+
+STEP2【誤答のバグ分類】
+私が間違えた問題を、次の3タイプに分類してください。
+ A：読み落としバグ（与件の見落とし／ただし書き無視／往復や直径半径の条件ミス／答える単位のミス）
+ B：式選択バグ（使う公式・法則の選び間違い）
+ C：計算バグ（式は正しいが計算・桁・単位変換でミス）
+
+STEP3【バグの言語化】
+分類結果から「私が実はできていなかったこと」を一文で言葉にしてください。
+（例：「あなたは『ただし』以下の条件を計算に反映し忘れる傾向がある」「電流を求めた時点で満足し、最後の求解まで組み立てていない」）
+
+STEP4【類題でデバッグ】
+最も多かったバグタイプだけを狙った類題を1問、数値を変えて作ってください。私が解いたら採点してください。</div>
+
+    <button class="copybtn" onclick="copyPrompt(this)">▶ 電気科テスト用エラーログ・プロンプトをコピー</button>
+
+    <p style="margin-top:22px;font-size:16px;color:#bbb;background:var(--gy);padding:16px 20px;border-left:8px solid var(--yl);">
+      <b style="color:var(--yl);">これを3回分のテストでやると、自分のバグは大体1〜2種類に集中している</b>ことがわかる。全部を勉強し直す必要はない。そのバグだけ潰せば点は跳ねる。
+    </p>
+  </section>
+
+  <footer>
+    <div class="f-big">読解力の問題じゃない。<br>手順の問題だ。</div>
+    <p style="font-size:17px;color:#ccc;margin-bottom:22px;">○をつけて【与】を拾い、マーカーで【求】を固定し、△で【但】を回収する。<br>あとは配線して電流を流すだけ。<b style="color:var(--yl);">それ、君が一番得意なやつだ。</b></p>
+    <div class="f-small">SANJO KENKO-DO｜高専電気科のためのテスト読解術</div>
+  </footer>
+
+</div>
+
+<script>
+async function copyPrompt(btn){
+  const text = document.getElementById('prompt-text').innerText;
+  const done = () => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ 完了';
+    btn.classList.add('done');
+    setTimeout(()=>{ btn.textContent = orig; btn.classList.remove('done'); }, 1500);
+  };
+  try {
+    await navigator.clipboard.writeText(text);
+    done();
+  } catch(e) {
+    const sx = window.scrollX, sy = window.scrollY;
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    window.scrollTo(sx, sy);
+    done();
+  }
+}
+</script>
+</body>
+</html>
