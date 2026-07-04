@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平尾様 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#22513a;
+    --gold:#c4a44d;
+    --gold-soft:#e3cf94;
+    --ivory:#f5f0e4;
+    --ink:#20261f;
+    --paper:#faf8f2;
+    --alert:#c0492e;
+    --line:#e4ddca;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Noto Sans JP",sans-serif;
+    background:var(--green);
+    color:var(--ink);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:640px;margin:0 auto;background:var(--paper);}
+  .serif{font-family:"Noto Serif JP",serif;}
+
+  /* ===== COVER ===== */
+  .cover{
+    background:var(--green);
+    color:var(--ivory);
+    padding:44px 30px 40px;
+    position:relative;
+    border-bottom:5px solid var(--gold);
+  }
+  .eyebrow{
+    font-size:13px;letter-spacing:.34em;font-weight:700;
+    color:var(--gold);margin-bottom:26px;
+  }
+  .cover .patient{
+    font-size:15px;letter-spacing:.1em;color:var(--gold-soft);
+    font-weight:700;margin-bottom:8px;
+  }
+  .cover h1{
+    font-family:"Noto Serif JP",serif;
+    font-size:34px;font-weight:900;line-height:1.35;
+    color:#fff;margin-bottom:22px;
+  }
+  .cover h1 .u{
+    color:var(--gold);
+    border-bottom:3px solid var(--gold);
+    padding-bottom:2px;
+  }
+  .cover .lead{
+    font-size:16px;color:#e9e4d6;font-weight:500;
+    border-left:3px solid var(--gold);padding-left:14px;
+  }
+  .meta{
+    margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 22px;
+    font-size:14px;color:var(--gold-soft);font-weight:500;
+  }
+  .meta b{color:#fff;font-weight:700;}
+
+  /* ===== SECTION HEAD ===== */
+  .sec{padding:34px 26px 8px;}
+  .sec-tag{
+    display:inline-block;font-size:12px;font-weight:900;letter-spacing:.2em;
+    color:#fff;background:var(--green2);padding:5px 13px;border-radius:20px;
+    margin-bottom:14px;
+  }
+  .sec h2{
+    font-family:"Noto Serif JP",serif;
+    font-size:23px;font-weight:900;color:var(--green);line-height:1.4;
+    margin-bottom:6px;
+  }
+  .sec .real{
+    font-size:15px;color:#5f6a58;font-weight:500;margin-bottom:6px;
+  }
+
+  /* ===== ACTION CARDS ===== */
+  .action{
+    margin:16px 26px;border-radius:16px;overflow:hidden;
+    border:2px solid var(--line);background:#fff;
+  }
+  .action.priority{border-color:var(--alert);}
+  .a-head{
+    display:flex;align-items:center;gap:12px;
+    padding:16px 18px;
+  }
+  .action.priority .a-head{background:#fbeee9;}
+  .action.step .a-head{background:var(--ivory);}
+  .a-num{
+    flex:0 0 auto;width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Noto Serif JP",serif;font-size:22px;font-weight:900;color:#fff;
+  }
+  .priority .a-num{background:var(--alert);}
+  .step .a-num{background:var(--gold);}
+  .a-title{font-size:19px;font-weight:900;color:var(--ink);line-height:1.4;}
+  .priority .a-title{color:var(--alert);}
+  .a-body{padding:4px 18px 18px;font-size:16px;color:var(--ink);}
+  .badge{
+    display:inline-block;font-size:13px;font-weight:900;letter-spacing:.06em;
+    padding:4px 12px;border-radius:6px;margin-right:8px;
+  }
+  .badge.now{background:var(--alert);color:#fff;}
+  .badge.tmr{background:var(--green2);color:#fff;}
+  .big-timer{
+    display:flex;align-items:baseline;gap:8px;margin:12px 0 6px;
+    padding:14px 18px;background:#eef3ec;border-radius:12px;
+  }
+  .big-timer .n{font-family:"Noto Serif JP",serif;font-size:48px;font-weight:900;color:var(--green);line-height:1;}
+  .big-timer .unit{font-size:17px;font-weight:700;color:var(--green2);}
+  .big-timer .what{margin-left:auto;font-size:15px;font-weight:700;color:#5f6a58;text-align:right;}
+  .warnline{
+    margin-top:12px;padding:12px 14px;background:#fbeee9;border-radius:10px;
+    font-size:15px;font-weight:700;color:var(--alert);
+  }
+
+  /* ===== BODY MAP ===== */
+  .map-wrap{
+    margin:16px 26px;padding:22px;background:var(--ivory);border-radius:16px;
+    display:flex;gap:18px;align-items:center;flex-wrap:wrap;
+  }
+  .map-wrap svg{flex:0 0 auto;}
+  .map-legend{flex:1;min-width:200px;}
+  .lg-item{margin-bottom:16px;}
+  .lg-item h4{
+    font-size:16px;font-weight:900;color:var(--green);
+    display:flex;align-items:center;gap:8px;margin-bottom:3px;
+  }
+  .dot{width:14px;height:14px;border-radius:50%;flex:0 0 auto;}
+  .lg-item p{font-size:14px;color:#4c5648;font-weight:500;}
+  .depth-tag{
+    display:inline-block;font-size:12px;font-weight:900;color:#fff;
+    background:var(--green);padding:3px 9px;border-radius:5px;margin-top:5px;
+  }
+
+  /* ===== RADO ===== */
+  .rado{padding:8px 26px 4px;}
+  .rado-note{
+    font-size:14px;color:#5f6a58;margin:0 0 14px;font-weight:500;
+  }
+  .metric{
+    display:flex;align-items:center;gap:12px;
+    padding:13px 16px;border-radius:12px;margin-bottom:10px;
+    border:1.5px solid var(--line);background:#fff;
+  }
+  .metric.focus{border-color:var(--gold);background:#fdfbf4;}
+  .m-icon{
+    flex:0 0 auto;width:40px;height:40px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;font-size:20px;
+  }
+  .m-mid{flex:1;min-width:0;}
+  .m-name{font-size:16px;font-weight:900;color:var(--ink);}
+  .m-state{font-size:13px;font-weight:700;}
+  .m-state.low{color:var(--alert);}
+  .m-state.ok{color:#2f7d4f;}
+  .m-val{font-family:"Noto Serif JP",serif;font-size:26px;font-weight:900;color:var(--green);}
+  .focus-flag{
+    font-size:11px;font-weight:900;color:#fff;background:var(--gold);
+    padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle;
+  }
+
+  /* ===== OUTLOOK ===== */
+  .outlook{
+    margin:20px 26px;padding:22px;border-radius:16px;
+    background:var(--green);color:var(--ivory);
+  }
+  .outlook h3{
+    font-family:"Noto Serif JP",serif;font-size:20px;font-weight:900;
+    color:var(--gold);margin-bottom:10px;
+  }
+  .outlook p{font-size:16px;color:#ece7d9;}
+
+  /* ===== SIGN ===== */
+  .sign{
+    background:var(--green2);color:var(--ivory);
+    padding:30px 26px 34px;border-top:4px solid var(--gold);
+  }
+  .sign .theory{
+    font-size:13px;letter-spacing:.05em;color:var(--gold-soft);
+    font-weight:700;margin-bottom:16px;line-height:1.7;
+  }
+  .sign .clinic{font-family:"Noto Serif JP",serif;font-size:20px;font-weight:900;color:#fff;}
+  .sign .who{font-size:14px;color:var(--gold-soft);margin:4px 0 4px;font-weight:500;}
+  .sign .loc{font-size:14px;color:#ded9c9;margin-bottom:18px;}
+  .cta{
+    display:flex;gap:12px;flex-wrap:wrap;
+  }
+  .cta a{
+    flex:1;min-width:140px;text-align:center;text-decoration:none;
+    padding:14px;border-radius:12px;font-weight:900;font-size:16px;
+  }
+  .cta .line{background:#06c755;color:#fff;}
+  .cta .map{background:var(--gold);color:var(--green);}
+  .brand-foot{
+    margin-top:20px;font-size:12px;color:#b9c4b0;line-height:1.7;text-align:center;
+  }
+  @media(max-width:430px){
+    .cover h1{font-size:28px;}
+    .sec h2{font-size:20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- COVER -->
+  <header class="cover">
+    <div class="eyebrow">SANJO KENKO-DO ・ 施術報告書</div>
+    <div class="patient">平尾 様 へ</div>
+    <h1>「よくほぐれた日」ほど、<br><span class="u">冷やす日</span>です。</h1>
+    <p class="lead">バスケの審判で痛くなる足。その正体は、いちばん深いところに隠れていました。本日、そこを100%ほぐしました。だからこそ、今夜は"鎮める"ことが最優先です。</p>
+    <div class="meta">
+      <span>主訴：<b>足の痛み（審判で悪化）</b></span>
+      <span>施術日：<b>2026年7月4日</b></span>
+    </div>
+  </header>
+
+  <!-- 1. 根本原因・本日の施術 -->
+  <section class="sec">
+    <span class="sec-tag">本日の一次情報 ─ 根本原因</span>
+    <h2>奥の奥に、"根っこ"がありました。</h2>
+    <p class="real">（アキレス腱の深部 ＋ ふくらはぎ上部の深層に、かなり深いコリを発見）</p>
+  </section>
+
+  <div class="action">
+    <div class="a-body" style="padding-top:16px;">
+      審判の足は、走るより「止まる・切り返す」で削れていきます。表面ではなく<b>いちばん深い層</b>に凝りが溜まり、これが痛みの発信源になっていました。本日、この深層を<b>100%ほぐしきりました</b>。深く入った分だけ、この後のケアが効いてきます。
+    </div>
+  </div>
+
+  <!-- ACTION 1 -->
+  <div class="action priority">
+    <div class="a-head">
+      <div class="a-num">1</div>
+      <div class="a-title">今夜、必ずアイシング</div>
+    </div>
+    <div class="a-body">
+      <span class="badge now">今日中に</span>深く掘った畑を、水で落ち着かせるイメージ。ここを飛ばすと、明日ぶり返します。
+      <div class="big-timer">
+        <span class="n">7</span><span class="unit">分間</span>
+        <span class="what">氷水で<br>患部を冷やす</span>
+      </div>
+      <div class="warnline">⚠ これをやらないと、明日痛みが出ます。最優先でお願いします。</div>
+    </div>
+  </div>
+
+  <!-- ACTION 2 -->
+  <div class="action step">
+    <div class="a-head">
+      <div class="a-num">2</div>
+      <div class="a-title">明日走る前に、二重の"外づけ腱"</div>
+    </div>
+    <div class="a-body">
+      <span class="badge tmr">明日の試合・審判で</span>足に外づけの支えを足すイメージです。順番が大事です。
+      <div style="margin-top:10px;font-size:16px;">
+        ① <b>テーピング</b> を先に貼る<br>
+        ② その上から <b>サポーター</b> を装着
+      </div>
+      <div style="margin-top:12px;padding:12px 14px;background:#eef3ec;border-radius:10px;font-weight:700;color:var(--green);font-size:15px;">
+        👟 これで、かなり走れるようになります。
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. BODY MAP -->
+  <section class="sec">
+    <span class="sec-tag">施術した場所</span>
+    <h2>痛みの発信源は、ここでした。</h2>
+  </section>
+  <div class="map-wrap">
+    <svg width="150" height="230" viewBox="0 0 150 230" aria-label="下腿の施術部位マップ">
+      <!-- lower leg posterior silhouette -->
+      <path d="M55 8 C50 40 46 70 48 100 C49 130 44 160 46 185 C47 200 44 210 40 222 L64 222 C66 210 66 200 68 186 C72 158 80 130 82 100 C86 70 90 40 92 8 C82 2 64 2 55 8 Z"
+            fill="#e6ddc4" stroke="#1a3d28" stroke-width="2.5"/>
+      <!-- calf upper (gastrocnemius) zone -->
+      <ellipse cx="70" cy="70" rx="20" ry="26" fill="#c4a44d" opacity="0.9"/>
+      <text x="70" y="74" font-size="11" font-weight="900" fill="#1a3d28" text-anchor="middle" font-family="Noto Sans JP">深層</text>
+      <!-- achilles deep zone -->
+      <ellipse cx="54" cy="188" rx="13" ry="17" fill="#1a3d28"/>
+      <text x="54" y="192" font-size="9" font-weight="900" fill="#c4a44d" text-anchor="middle" font-family="Noto Sans JP">最深</text>
+      <!-- pointer lines -->
+      <circle cx="70" cy="70" r="3" fill="#1a3d28"/>
+      <circle cx="54" cy="188" r="3" fill="#c4a44d"/>
+    </svg>
+    <div class="map-legend">
+      <div class="lg-item">
+        <h4><span class="dot" style="background:#c4a44d;"></span>ふくらはぎ 上部（深層）</h4>
+        <p>ジャンプ・急停止で最も張り込む場所。表面下の深い層にコリが集中していました。</p>
+        <span class="depth-tag">深く到達 → 要アイシング</span>
+      </div>
+      <div class="lg-item">
+        <h4><span class="dot" style="background:#1a3d28;"></span>アキレス腱 深部</h4>
+        <p>腱のさらに奥。切り返し動作の負担が蓄積する、痛みの本丸でした。</p>
+        <span class="depth-tag">100%リリース済み</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RADOTECH -->
+  <section class="rado">
+    <div class="sec" style="padding-left:0;padding-right:0;">
+      <span class="sec-tag">からだのサイン ─ RaDoTech計測</span>
+      <h2>数値も「運動器の疲れ」を示していました。</h2>
+    </div>
+    <p class="rado-note">今回の主訴に直結する<b>運動器系</b>から順に表示しています。</p>
+
+    <div class="metric focus">
+      <div class="m-icon" style="background:#eef3ec;">💪</div>
+      <div class="m-mid">
+        <div class="m-name">運動器系（筋・関節）<span class="focus-flag">注目</span></div>
+        <div class="m-state low">基準値より低下</div>
+      </div>
+      <div class="m-val">0.90</div>
+    </div>
+
+    <div class="metric">
+      <div class="m-icon" style="background:#eceafa;">🛡️</div>
+      <div class="m-mid">
+        <div class="m-name">免疫系</div>
+        <div class="m-state low">基準値より低下</div>
+      </div>
+      <div class="m-val">7.59</div>
+    </div>
+
+    <div class="metric">
+      <div class="m-icon" style="background:#eceafa;">🧠</div>
+      <div class="m-mid">
+        <div class="m-name">心理・感情状態</div>
+        <div class="m-state low">基準値より低下</div>
+      </div>
+      <div class="m-val">0.68</div>
+    </div>
+
+    <div class="metric">
+      <div class="m-icon" style="background:#e9f6ee;">⚡</div>
+      <div class="m-mid">
+        <div class="m-name">エネルギー水準</div>
+        <div class="m-state ok">正常範囲</div>
+      </div>
+      <div class="m-val">25.12</div>
+    </div>
+
+    <div class="metric">
+      <div class="m-icon" style="background:#e9f6ee;">♻️</div>
+      <div class="m-mid">
+        <div class="m-name">代謝</div>
+        <div class="m-state ok">正常範囲</div>
+      </div>
+      <div class="m-val">1.17</div>
+    </div>
+  </section>
+
+  <!-- OUTLOOK -->
+  <div class="outlook">
+    <h3>次回に向けて</h3>
+    <p>今夜のアイシングと、明日のテーピング＋サポーターで、まずは痛みなく動ける状態をつくります。深部を一度リセットできたので、次回は「疲れが再び深くたまる前」に整えるのが理想です。審判の予定に合わせて、ベストなタイミングでご来院ください。</p>
+  </div>
+
+  <!-- SIGNATURE -->
+  <footer class="sign">
+    <div class="theory">臨床フレーム：神経反射入力装置論<br>― からだを"入力に応じて反応する装置"として捉え、深層から整えます ―</div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="who">柔道整復師｜年間200冊読む治療家</div>
+    <div class="loc">📍 高松市由良町・由良川東公園のそば</div>
+    <div class="cta">
+      <a class="line" href="https://lin.ee/dwRtwDv">💬 LINEで相談・予約</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップ</a>
+    </div>
+    <div class="brand-foot">高松発・一生動ける身体と人生の教養研究室<br>｜無車・自転車・圧力鍋生活を実践する治療家より</div>
+  </footer>
+
+</div>
+</body>
+</html>
