@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>音叉催眠プロトコル｜三条健康堂接骨院</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-mid:#22513a;
+    --gold:#c4a44d;
+    --gold-deep:#9a7c2e;
+    --ivory:#f5f0e4;
+    --paper:#fdfbf4;
+    --ink:#22301f;
+    --fact:#2e6b45;
+    --fact-bg:#e8f1e9;
+    --seed-bg:#f7edd2;
+    --ng:#8c3b2e;
+    --ng-bg:#f6e6e1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.9;
+  }
+  .serif{font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 60px;}
+
+  /* ===== ヘッダー ===== */
+  header{
+    background:var(--green);
+    color:var(--ivory);
+    padding:44px 20px 38px;
+    border-bottom:6px solid var(--gold);
+  }
+  .head-inner{max-width:860px;margin:0 auto;}
+  .eyebrow{
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.35em;
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:"Noto Serif JP",serif;
+    font-size:40px;
+    line-height:1.35;
+    color:#fdfaf0;
+    letter-spacing:.04em;
+  }
+  h1 .gold{color:var(--gold);}
+  .lead{
+    margin-top:16px;
+    font-size:18px;
+    color:#e9e2cd;
+    font-weight:500;
+  }
+  .lead strong{color:var(--gold);font-weight:700;}
+
+  /* ===== 大原則 ===== */
+  .principle{
+    background:var(--paper);
+    border:2px solid var(--green);
+    border-radius:14px;
+    margin-top:36px;
+    padding:28px 26px;
+  }
+  .principle h2{
+    font-family:"Noto Serif JP",serif;
+    font-size:26px;
+    color:var(--green);
+    margin-bottom:6px;
+  }
+  .principle .sub{font-size:16px;color:#4c5a48;font-weight:600;margin-bottom:18px;}
+  .ratio{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    background:var(--ivory);
+    border-radius:10px;
+    padding:18px 16px;
+    margin-bottom:18px;
+  }
+  .dot{
+    width:44px;height:44px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:15px;color:#fff;
+  }
+  .dot.f{background:var(--fact);}
+  .dot.s{background:var(--gold-deep);}
+  .ratio-label{
+    font-size:16px;font-weight:700;color:var(--green);
+    width:100%;margin-top:4px;
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px;}
+  .legend div{
+    display:flex;align-items:center;gap:8px;
+    font-size:16px;font-weight:700;
+  }
+  .chip{width:22px;height:22px;border-radius:6px;flex:none;}
+  .chip.f{background:var(--fact);}
+  .chip.s{background:var(--gold-deep);}
+  .rule3{margin-top:16px;}
+  .rule3 p{
+    padding:10px 0 10px 0;
+    border-top:1px dashed #b9b09a;
+    font-size:17px;
+  }
+  .rule3 p:first-child{border-top:none;}
+  .rule3 b{color:var(--green);}
+
+  /* ===== フェーズ ===== */
+  .phase{
+    background:var(--paper);
+    border-radius:14px;
+    border:1px solid #d8cfb6;
+    margin-top:30px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(26,61,40,.08);
+  }
+  .phase-head{
+    background:var(--green);
+    color:#fdfaf0;
+    padding:16px 22px;
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .phase-no{
+    font-family:"Noto Serif JP",serif;
+    color:var(--gold);
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:.05em;
+    flex:none;
+  }
+  .phase-title{
+    font-family:"Noto Serif JP",serif;
+    font-size:23px;
+    font-weight:700;
+  }
+  .phase-goal{
+    width:100%;
+    font-size:15px;
+    color:#dfd6bd;
+    font-weight:500;
+  }
+  .phase-body{padding:22px;}
+  .do-label{
+    display:inline-block;
+    background:var(--green-mid);
+    color:#fff;
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.12em;
+    border-radius:6px;
+    padding:3px 12px;
+    margin-bottom:10px;
+  }
+  .action{font-size:17px;font-weight:600;margin-bottom:16px;}
+
+  /* セリフ吹き出し */
+  .say{
+    background:var(--ivory);
+    border:2px solid var(--green-mid);
+    border-radius:14px;
+    padding:18px 20px 16px;
+    position:relative;
+    margin-bottom:14px;
+  }
+  .say::before{
+    content:"そのまま声に出す";
+    position:absolute;
+    top:-13px;left:16px;
+    background:var(--gold);
+    color:var(--green);
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.08em;
+    padding:2px 12px;
+    border-radius:20px;
+  }
+  .say p{
+    font-family:"Noto Serif JP",serif;
+    font-size:19px;
+    line-height:2.1;
+    color:var(--ink);
+  }
+  .fact{
+    background:var(--fact-bg);
+    border-bottom:3px solid var(--fact);
+    padding:1px 3px;
+    border-radius:3px;
+  }
+  .seed{
+    background:var(--seed-bg);
+    border-bottom:3px solid var(--gold-deep);
+    padding:1px 3px;
+    border-radius:3px;
+    font-weight:700;
+  }
+  .point{
+    background:#eef2ea;
+    border-left:5px solid var(--green-mid);
+    border-radius:0 8px 8px 0;
+    padding:12px 16px;
+    font-size:16px;
+  }
+  .point b{color:var(--green);}
+
+  /* ===== セクション見出し ===== */
+  .sec-title{
+    font-family:"Noto Serif JP",serif;
+    font-size:30px;
+    color:var(--green);
+    margin:52px 0 6px;
+    padding-bottom:8px;
+    border-bottom:3px solid var(--gold);
+  }
+  .sec-sub{font-size:16px;color:#4c5a48;font-weight:600;margin-bottom:8px;}
+
+  /* ===== ケース別カード ===== */
+  .case{
+    background:var(--paper);
+    border:1px solid #d8cfb6;
+    border-radius:12px;
+    margin-top:20px;
+    padding:20px 22px;
+  }
+  .case h3{
+    font-family:"Noto Serif JP",serif;
+    font-size:21px;
+    color:var(--green);
+    margin-bottom:4px;
+  }
+  .case .strategy{
+    font-size:15px;
+    font-weight:800;
+    color:var(--gold-deep);
+    letter-spacing:.05em;
+    margin-bottom:10px;
+  }
+  .case .why{font-size:16px;margin-top:10px;color:#3c4a39;}
+
+  /* ===== 禁句表 ===== */
+  .ngok{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    background:var(--paper);
+    border:1px solid #d8cfb6;
+    border-radius:12px;
+    overflow:hidden;
+    margin-top:20px;
+  }
+  .ngok .cell{padding:16px 18px;font-size:16px;line-height:1.8;}
+  .ngok .h{
+    font-weight:900;font-size:17px;letter-spacing:.15em;
+    text-align:center;color:#fff;padding:10px;
+  }
+  .ngok .h.ng{background:var(--ng);}
+  .ngok .h.ok{background:var(--fact);}
+  .ngok .cell.ngc{background:var(--ng-bg);border-bottom:1px solid #e3cfc8;}
+  .ngok .cell.okc{background:var(--fact-bg);border-bottom:1px solid #cfe0d2;}
+  .ngok .cell b{display:block;font-size:17px;margin-bottom:2px;}
+  .ngok .cell.ngc b{color:var(--ng);}
+  .ngok .cell.okc b{color:var(--fact);}
+
+  /* ===== フッター ===== */
+  footer{
+    margin-top:56px;
+    background:var(--green);
+    color:#e9e2cd;
+    border-top:6px solid var(--gold);
+    padding:34px 20px;
+    text-align:center;
+    font-size:16px;
+    line-height:2;
+  }
+  footer .clinic{
+    font-family:"Noto Serif JP",serif;
+    color:var(--gold);
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.15em;
+    margin-bottom:6px;
+  }
+  @media(max-width:640px){
+    h1{font-size:30px;}
+    .say p{font-size:18px;}
+    .ngok{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="eyebrow">SANJO KENKO-DO ｜ CLINICAL LANGUAGE PROTOCOL</div>
+    <h1>音叉催眠プロトコル<br><span class="gold serif" style="font-size:24px;">── 外さない実況が、信頼をつくる ──</span></h1>
+    <p class="lead">音叉は<strong>「絶対に外れない感覚入力」</strong>の装置。鳴る・響く・消える。すべて患者さんが今この瞬間に確認できる<strong>事実</strong>です。事実を声にして積み上げ、最後に<strong>変化の一粒</strong>を混ぜる。話し方はそれだけです。</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 大原則 -->
+  <section class="principle">
+    <h2 class="serif">大原則：8対1の法則</h2>
+    <p class="sub">事実を8つ言ってから、種をひとつ蒔く。</p>
+    <div class="ratio">
+      <div class="dot f">事実</div><div class="dot f">事実</div><div class="dot f">事実</div><div class="dot f">事実</div><div class="dot f">事実</div><div class="dot f">事実</div><div class="dot f">事実</div><div class="dot f">事実</div><div class="dot s">種</div>
+      <div class="ratio-label">緑＝患者さんが「たしかに」と確認できる文　／　金＝変化の方向を示す文</div>
+    </div>
+    <div class="legend">
+      <div><span class="chip f"></span>事実（イエスを積む）</div>
+      <div><span class="chip s"></span>種（一粒だけ蒔く）</div>
+    </div>
+    <div class="rule3">
+      <p><b>① 外さない。</b>「楽になりましたね」は当てもの。「呼吸が深くなりましたね」は事実。事実だけを言う。一度外すと、積んだ信頼は全額崩れます。</p>
+      <p><b>② 文は「そして」「〜しながら」でつなぐ。</b>事実と種を切れ目なくつなぐと、種も事実の顔をして届きます。</p>
+      <p><b>③ 手柄は患者さんに返す。</b>変化はいつも「あなたの身体がやったこと」。施術者の勝利宣言は禁止。</p>
+    </div>
+  </section>
+
+  <!-- フェーズ 0 -->
+  <h2 class="sec-title">施術のながれ ── 5つの相</h2>
+  <p class="sec-sub">上から順に。各相の吹き出しは、そのまま声に出して使えます。</p>
+
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-no">第0相</span>
+      <span class="phase-title">問診 ＝ もう調律は始まっている</span>
+      <span class="phase-goal">目的：見えている事実を2〜3個返して、最初のイエスを積む（2〜3分）</span>
+    </div>
+    <div class="phase-body">
+      <div class="do-label">やること</div>
+      <p class="action">主訴を聞きながら、<b>誰が見ても分かる観察</b>だけを言葉にして返す。診断の当てっこはしない。</p>
+      <div class="say">
+        <p><span class="fact">今日は右肩をかばって歩いて入ってこられましたね。</span>そして<span class="fact">その話をされるとき、少し呼吸が浅くなりますね。</span></p>
+      </div>
+      <div class="point"><b>ポイント：</b>患者さんが心の中で「たしかに」とうなずける文だけ。この時点で信頼の積立が始まります。</div>
+    </div>
+  </section>
+
+  <!-- フェーズ 1 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-no">第1相</span>
+      <span class="phase-title">音の導入 ── まず空中で一度だけ鳴らす</span>
+      <span class="phase-goal">目的：全員が必ず体験する「消え際の曖昧さ」で、注意を内側へ向ける（1〜2分）</span>
+    </div>
+    <div class="phase-body">
+      <div class="do-label">やること</div>
+      <p class="action">音叉を身体に当てる前に、空中で一度だけ鳴らして聴かせる。</p>
+      <div class="say">
+        <p><span class="fact">音が聞こえます。</span>……<span class="fact">だんだん小さくなっていきます。</span>……<span class="seed">どこで消えたか、正確には分からなくなりますね。</span></p>
+      </div>
+      <div class="point"><b>ポイント：</b>「消え際が分からない」は100人中100人に起こる事実。しかも「境界が曖昧になる」体験の入口を兼ねます。ここでの反応の速さで、以降の言葉の量を調整。</div>
+    </div>
+  </section>
+
+  <!-- フェーズ 2 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-no">第2相</span>
+      <span class="phase-title">実況中継 ── 施術の主部</span>
+      <span class="phase-goal">目的：事実8対種1で語り続け、音声を「信頼できる予測」に育てる</span>
+    </div>
+    <div class="phase-body">
+      <div class="do-label">やること</div>
+      <p class="action">音叉を骨・腱・経絡点に当てながら、起きていることを実況する。</p>
+      <div class="say">
+        <p><span class="fact">仙骨に当てました。</span><span class="fact">振動が届いています。</span><span class="fact">骨は音をよく伝えますから、思ったより遠くで感じるかもしれません。</span><span class="seed">足のほうで感じるか、腰のほうで感じるかは、人によって違います。</span></p>
+      </div>
+      <div class="say">
+        <p>そして<span class="fact">振動が減っていくとき、</span><span class="seed">筋肉は締めているより、緩めているほうが、響きを長く聴けます。</span></p>
+      </div>
+      <div class="point"><b>ポイント：</b>金色の文をよく見てください。「足か腰か」──どちらを選んでも<b>「感じる」は決定済み</b>。「緩めるほうが長く聴ける」──<b>緩む理由を身体に渡した</b>だけ。命令はひとつもありません。</div>
+    </div>
+  </section>
+
+  <!-- フェーズ 3 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-no">第3相</span>
+      <span class="phase-title">一粒の暗示 ── 音の減衰に載せる</span>
+      <span class="phase-goal">目的：事実の洪水の底に、変化の文をひとつだけ縫い込む</span>
+    </div>
+    <div class="phase-body">
+      <div class="do-label">やること</div>
+      <p class="action">音叉ならではの3つの型。どれか<b>ひとつだけ</b>使う。</p>
+      <div class="say">
+        <p>【減衰の型】<span class="fact">音が小さくなるにつれて、</span><span class="seed">追いかける必要も、小さくなっていきます。</span></p>
+      </div>
+      <div class="say">
+        <p>【余韻の型】<span class="fact">音叉が止まっても、骨の中の響きは少し遅れて消えます。</span><span class="seed">身体が覚えたものは、いつも道具より長持ちします。</span></p>
+      </div>
+      <div class="say">
+        <p>【調律の型】<span class="seed">弦は切れていたわけではなくて、張りすぎていただけです。張りすぎた弦は、緩める方向にしか調律できません。</span></p>
+      </div>
+      <div class="point"><b>ポイント：</b>3つ全部言いたくなったら負け。欲張ると全部ただの「お説教」になります。ひと粒だから届く。</div>
+    </div>
+  </section>
+
+  <!-- フェーズ 4 -->
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-no">第4相</span>
+      <span class="phase-title">追認 ── 変化を本人の口から言わせる</span>
+      <span class="phase-goal">目的：改善の証拠を患者さん自身に発見させる（施術後2〜3分）</span>
+    </div>
+    <div class="phase-body">
+      <div class="do-label">やること</div>
+      <p class="action">起き上がった患者さんに、「違いがある」を前提にした質問をする。</p>
+      <div class="say">
+        <p><span class="fact">立ち上がり方が、来られたときと違いましたね。</span><span class="seed">どこが一番違いますか？</span></p>
+      </div>
+      <div class="say">
+        <p>【次回への橋】<span class="fact">今日はここまで変わりました。</span><span class="seed">ほかにも、変えられそうなところはあると思いますか？</span></p>
+      </div>
+      <div class="point"><b>ポイント：</b>「どこが」は「違いがある」を既成事実にする聞き方。最後の質問には、患者さんが自分から次の治療目標を答えてくれます。芝を刈った人に「生け垣も刈れますか？」と聞くのと同じ──「できるに決まってる」が内側から出ます。</div>
+    </div>
+  </section>
+
+  <!-- ケース別 -->
+  <h2 class="sec-title">ケース別 早見表</h2>
+  <p class="sec-sub">相手のタイプで、金の一粒の蒔き方を変える。</p>
+
+  <section class="case">
+    <h3>① 痛みが主訴の人</h3>
+    <p class="strategy">戦略：除去を約束せず、「観察者」にする</p>
+    <div class="say">
+      <p><span class="fact">その痛み、10のうち今いくつですか。</span><span class="seed">施術のあいだに8になるか、7で止まるか、観察していてください。</span></p>
+    </div>
+    <p class="why">「下がる」前提の中の選択肢しか渡していない。音叉は痛む場所の<b>隣</b>から当て、痛みと「響きを聴く仕事」で注意の綱引きをさせる。</p>
+  </section>
+
+  <section class="case">
+    <h3>② 不安が強い・力が抜けない人</h3>
+    <p class="strategy">戦略：抑制の得意技に「持ち場」を与える</p>
+    <div class="say">
+      <p><span class="fact">今日は全部緩めなくて結構です。</span><span class="seed">緩めない場所をひとつ、ご自分で決めておいてください。</span></p>
+    </div>
+    <p class="why">「守る」が得意な人から特技を取り上げない。ひとつ守らせれば、残りは緩む。実況の速度は患者さんの呼吸に合わせ、<b>吐く息で文を終える</b>。</p>
+  </section>
+
+  <section class="case">
+    <h3>③ 疑っている人（音叉？と思っている）</h3>
+    <p class="strategy">戦略：疑いを潰さず、検証係に任命する</p>
+    <div class="say">
+      <p><span class="fact">効くかどうかは分かりません。ただ、骨伝導で振動が踵まで届くかどうかは物理の問題なので、確認できます。</span><span class="seed">届いたら教えてください。</span></p>
+    </div>
+    <p class="why">懐疑心はエネルギー。方向だけ変えれば<b>観察力</b>に転職する。子牛は尻尾を引けば納屋に入る。</p>
+  </section>
+
+  <section class="case">
+    <h3>④ 喋り続ける人</h3>
+    <p class="strategy">戦略：沈黙を命じず、代わりの仕事を渡す</p>
+    <div class="say">
+      <p><span class="fact">今から鳴らします。</span><span class="seed">この音が消えるまでのあいだだけ、聴くことに使ってください。</span></p>
+    </div>
+    <p class="why">「黙って」は対立を生む。「聴く仕事」は喜んで引き受けてもらえる。音が消えるたびに静けさが1本ずつ長くなる。</p>
+  </section>
+
+  <section class="case">
+    <h3>⑤ 自律神経系の不定愁訴の人</h3>
+    <p class="strategy">戦略：測定→音叉→再測定の三段構え</p>
+    <div class="say">
+      <p><span class="fact">測定ではこの項目が一番動いていました。</span><span class="fact">今からその関連部位に音を入れます。</span><span class="seed">終わったらもう一度測って、数字がどう答えるか見てみましょう。</span></p>
+    </div>
+    <p class="why">機械の数字は「否定できない実況」。<b>数字→音→数字</b>は、イエス積立→介入→追認の構造そのもの。</p>
+  </section>
+
+  <!-- 禁句 -->
+  <h2 class="sec-title">禁句と言い換え</h2>
+  <p class="sec-sub">左を言いそうになったら、右に変換する。</p>
+
+  <div class="ngok">
+    <div class="h ng">✕ 禁句</div>
+    <div class="h ok">◯ 言い換え</div>
+
+    <div class="cell ngc"><b>「エネルギーが流れ出しました」</b>検証できない断定。外れたら信頼が全額崩れる。</div>
+    <div class="cell okc"><b>「振動が骨を伝わっています」</b>本人が今たしかめられる事実。</div>
+
+    <div class="cell ngc"><b>「楽になったでしょう？」</b>効果の先回り。「いいえ」と言われたら終わり。</div>
+    <div class="cell okc"><b>「来たときと、どこが一番違いますか？」</b>違いの存在を前提にして、中身は本人に言わせる。</div>
+
+    <div class="cell ngc"><b>「痛みを気にしないでください」</b>否定形は逆効果。「気にする対象」を強調してしまう。</div>
+    <div class="cell okc"><b>「響きがどこまで届くか、聴いていてください」</b>注意の行き先を、別の仕事へ。</div>
+
+    <div class="cell ngc"><b>「私の施術で良くなりました」</b>手柄の横取り。次回から患者さんは受け身になる。</div>
+    <div class="cell okc"><b>「あなたの身体が、緩め方を思い出したんです」</b>変化はいつも本人に返す。次も本人の力で良くなれる。</div>
+  </div>
+
+  <!-- まとめ -->
+  <section class="principle" style="margin-top:52px;">
+    <h2 class="serif">一枚まとめ</h2>
+    <div class="rule3">
+      <p><b>見えたことを言う</b>（第0相）→ <b>鳴らして消え際を聴かせる</b>（第1相）→ <b>事実8つ実況する</b>（第2相）→ <b>種をひと粒</b>（第3相）→ <b>違いを本人に言わせる</b>（第4相）。</p>
+      <p>迷ったら、金の言葉を全部やめて、緑の実況だけに戻る。<b>実況だけでも施術は成立します。</b>外れる一言より、当たり続ける百言。</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="clinic">三条健康堂接骨院</div>
+  <p>神経反射入力装置論 ── 外れない入力の設計が、身体の予測を書き換える。<br>高松発・一生動ける身体と人生の教養研究室</p>
+</footer>
+
+</body>
+</html>
