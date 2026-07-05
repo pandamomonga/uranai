@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>河原町5階・音叉サロン 出店戦略</title>
+<style>
+  :root{
+    --navy:#141b2e;
+    --navy2:#1e2a47;
+    --gold:#c9a44a;
+    --gold-deep:#a07f2c;
+    --white:#faf7ef;
+    --ink:#1c2233;
+    --gray:#5a6172;
+    --ok:#1f6b46;
+    --ok-bg:#e4f0e8;
+    --ng:#9c3a2c;
+    --ng-bg:#f5e5e1;
+    --card:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    background:var(--white);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.9;
+  }
+  .serif{font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px 70px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);
+    color:var(--white);
+    padding:52px 20px 46px;
+  }
+  .hero-in{max-width:880px;margin:0 auto;}
+  .eyebrow{
+    color:var(--gold);
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.3em;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:"Noto Serif JP",serif;
+    font-size:38px;
+    line-height:1.4;
+    letter-spacing:.03em;
+  }
+  .hero h1 .g{color:var(--gold);}
+  .hero .conclusion{
+    margin-top:26px;
+    background:rgba(201,164,74,.12);
+    border:2px solid var(--gold);
+    border-radius:12px;
+    padding:20px 24px;
+  }
+  .hero .conclusion .label{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--navy);
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:.2em;
+    padding:2px 14px;
+    border-radius:20px;
+    margin-bottom:10px;
+  }
+  .hero .conclusion p{
+    font-family:"Noto Serif JP",serif;
+    font-size:23px;
+    font-weight:700;
+    line-height:1.8;
+    color:#fdfaf0;
+  }
+
+  /* ===== 共通見出し ===== */
+  .sec{margin-top:60px;}
+  .sec-no{
+    font-family:"Noto Serif JP",serif;
+    color:var(--gold-deep);
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:.25em;
+  }
+  .sec h2{
+    font-family:"Noto Serif JP",serif;
+    font-size:30px;
+    color:var(--navy);
+    line-height:1.5;
+    margin:4px 0 8px;
+  }
+  .sec .lead{font-size:17px;color:var(--gray);font-weight:600;margin-bottom:22px;}
+
+  /* ===== ターゲット3択 ===== */
+  .targets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .tg{
+    border-radius:14px;
+    padding:22px 18px;
+    text-align:center;
+    border:2px solid #d9d2c0;
+    background:var(--card);
+  }
+  .tg .mark{font-size:42px;font-weight:900;line-height:1;}
+  .tg h3{font-size:20px;margin:10px 0 8px;font-weight:800;}
+  .tg p{font-size:15px;line-height:1.8;text-align:left;color:#3c4252;}
+  .tg.no{background:var(--ng-bg);border-color:#d9b8b0;}
+  .tg.no .mark{color:var(--ng);}
+  .tg.no h3{color:var(--ng);}
+  .tg.yes{
+    background:var(--navy);
+    border-color:var(--gold);
+    box-shadow:0 6px 18px rgba(20,27,46,.25);
+  }
+  .tg.yes .mark{color:var(--gold);}
+  .tg.yes h3{color:#fdfaf0;}
+  .tg.yes p{color:#e8e3d3;}
+  .tg .badge{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--navy);
+    font-size:13px;
+    font-weight:900;
+    border-radius:20px;
+    padding:2px 12px;
+    margin-bottom:8px;
+    letter-spacing:.1em;
+  }
+
+  /* ===== 階段 ===== */
+  .stairs-box{
+    background:var(--navy);
+    border-radius:16px;
+    padding:34px 26px 30px;
+    color:var(--white);
+  }
+  .stairs-box h3{
+    font-family:"Noto Serif JP",serif;
+    font-size:26px;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+  .stairs-box .sub{font-size:16px;color:#cfc8b4;font-weight:600;margin-bottom:24px;}
+  .stairs{
+    display:flex;
+    align-items:flex-end;
+    gap:6px;
+    margin-bottom:24px;
+  }
+  .step{
+    flex:1;
+    background:var(--navy2);
+    border:1px solid #35426b;
+    border-top:4px solid var(--gold);
+    border-radius:8px 8px 0 0;
+    padding:10px 8px;
+    text-align:center;
+    font-size:14px;
+    font-weight:800;
+    color:#e9e3d2;
+    line-height:1.5;
+  }
+  .step b{display:block;color:var(--gold);font-size:17px;}
+  .step:nth-child(1){height:84px;}
+  .step:nth-child(2){height:116px;}
+  .step:nth-child(3){height:148px;}
+  .step:nth-child(4){height:180px;}
+  .step:nth-child(5){height:212px;background:var(--gold);color:var(--navy);border-color:var(--gold);}
+  .step:nth-child(5) b{color:var(--navy);font-size:18px;}
+  .stairs-copy{
+    font-family:"Noto Serif JP",serif;
+    font-size:26px;
+    font-weight:700;
+    color:#fdfaf0;
+    text-align:center;
+    line-height:1.7;
+  }
+  .stairs-copy span{color:var(--gold);}
+  .stairs-logic{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+  }
+  .sl{
+    background:rgba(255,255,255,.06);
+    border:1px solid #35426b;
+    border-radius:10px;
+    padding:14px;
+    font-size:15px;
+    color:#e8e3d3;
+    line-height:1.8;
+  }
+  .sl b{color:var(--gold);display:block;font-size:16px;margin-bottom:4px;}
+
+  /* ===== ポジションマップ ===== */
+  .pos{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:12px;
+    align-items:stretch;
+  }
+  .pos .side{
+    background:#eceef2;
+    border-radius:12px;
+    padding:20px 16px;
+    text-align:center;
+    color:var(--gray);
+  }
+  .pos .side h4{font-size:19px;color:#3c4252;margin-bottom:6px;}
+  .pos .side p{font-size:15px;line-height:1.8;}
+  .pos .center{
+    background:var(--gold);
+    color:var(--navy);
+    border-radius:12px;
+    padding:20px 22px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    box-shadow:0 6px 18px rgba(160,127,44,.3);
+  }
+  .pos .center h4{font-family:"Noto Serif JP",serif;font-size:22px;font-weight:900;margin-bottom:6px;}
+  .pos .center p{font-size:16px;font-weight:700;line-height:1.9;}
+  .pain{
+    margin-top:18px;
+    background:var(--card);
+    border:2px solid #d9d2c0;
+    border-radius:12px;
+    padding:18px 22px;
+    font-size:17px;
+  }
+  .pain b{color:var(--navy);}
+
+  /* ===== タイトル3案 ===== */
+  .titles .t{
+    background:var(--card);
+    border:2px solid #d9d2c0;
+    border-radius:14px;
+    padding:22px 24px;
+    margin-top:16px;
+    position:relative;
+  }
+  .titles .t h3{
+    font-family:"Noto Serif JP",serif;
+    font-size:27px;
+    color:var(--navy);
+    margin-bottom:4px;
+  }
+  .titles .t .type{
+    font-size:14px;
+    font-weight:900;
+    color:var(--gold-deep);
+    letter-spacing:.15em;
+    margin-bottom:8px;
+  }
+  .titles .t p{font-size:16px;color:#3c4252;}
+  .titles .t.reco{
+    border-color:var(--gold);
+    border-width:3px;
+    background:#fdf8ea;
+  }
+  .reco-badge{
+    position:absolute;
+    top:-14px;
+    right:18px;
+    background:var(--ng);
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:.15em;
+    border-radius:20px;
+    padding:4px 16px;
+  }
+  .frame-note{
+    margin-top:16px;
+    background:var(--navy);
+    color:#fdfaf0;
+    border-radius:12px;
+    padding:16px 22px;
+    font-size:17px;
+    font-weight:700;
+    text-align:center;
+  }
+  .frame-note span{color:var(--gold);}
+
+  /* ===== やること3つ ===== */
+  .acts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .act{
+    background:var(--card);
+    border:2px solid #d9d2c0;
+    border-top:6px solid var(--gold);
+    border-radius:12px;
+    padding:20px 18px;
+  }
+  .act .n{
+    font-family:"Noto Serif JP",serif;
+    font-size:15px;
+    font-weight:900;
+    color:var(--gold-deep);
+    letter-spacing:.2em;
+  }
+  .act h3{font-size:20px;color:var(--navy);margin:4px 0 8px;}
+  .act p{font-size:15px;line-height:1.8;color:#3c4252;}
+
+  /* ===== 価格 ===== */
+  .price{
+    background:var(--navy);
+    border-radius:16px;
+    color:var(--white);
+    padding:30px 26px;
+    text-align:center;
+  }
+  .price .num{
+    font-family:"Noto Serif JP",serif;
+    font-size:40px;
+    font-weight:900;
+    color:var(--gold);
+    line-height:1.4;
+  }
+  .price .num small{font-size:20px;color:#e8e3d3;font-weight:700;}
+  .price p{font-size:17px;color:#e8e3d3;margin-top:10px;font-weight:600;}
+  .price b{color:var(--gold);}
+
+  /* ===== 注意 ===== */
+  .caution{
+    margin-top:18px;
+    background:var(--ng-bg);
+    border:2px solid #d9b8b0;
+    border-radius:12px;
+    padding:18px 22px;
+    font-size:16px;
+  }
+  .caution b{color:var(--ng);}
+
+  /* ===== まとめ ===== */
+  .final{
+    margin-top:64px;
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);
+    border-radius:18px;
+    border:2px solid var(--gold);
+    padding:40px 28px;
+    text-align:center;
+  }
+  .final .label{
+    color:var(--gold);
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:.3em;
+    margin-bottom:14px;
+  }
+  .final p{
+    font-family:"Noto Serif JP",serif;
+    font-size:29px;
+    font-weight:700;
+    color:#fdfaf0;
+    line-height:1.9;
+  }
+  .final p span{color:var(--gold);}
+
+  footer{
+    margin-top:50px;
+    text-align:center;
+    font-size:15px;
+    color:var(--gray);
+    line-height:2;
+    padding:0 20px 40px;
+  }
+
+  @media(max-width:680px){
+    .hero h1{font-size:29px;}
+    .hero .conclusion p{font-size:19px;}
+    .targets{grid-template-columns:1fr;}
+    .stairs-logic{grid-template-columns:1fr;}
+    .pos{grid-template-columns:1fr;}
+    .acts{grid-template-columns:1fr;}
+    .stairs-copy{font-size:21px;}
+    .step{font-size:12px;}
+    .sec h2{font-size:25px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">KAWARAMACHI 5F ｜ 音叉サロン出店戦略</div>
+    <h1 class="serif">エレベーターのない5階は、<br><span class="g">ハンデではなく、フィルターだ。</span></h1>
+    <div class="conclusion">
+      <span class="label">結論</span>
+      <p>高齢者は捨てる。観光客は二軍。<br>狙いは「京都で働く30〜50代女性」<span style="color:var(--gold);">×</span> 完全予約制、一本。</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 01 ターゲット -->
+  <section class="sec">
+    <div class="sec-no">01 ── WHO</div>
+    <h2>誰に売るか。物件がもう決めている。</h2>
+    <p class="lead">階段5階＝来られる人が最初から絞られる。だから「来られる人の中で、一番困っている人」を選ぶ。</p>
+    <div class="targets">
+      <div class="tg no">
+        <div class="mark">✕</div>
+        <h3>高齢者</h3>
+        <p>階段5階が物理的に排除。膝腰の悪い人ほど来られない。立地と戦う企画は必ず負ける。</p>
+      </div>
+      <div class="tg no">
+        <div class="mark">△</div>
+        <h3>観光客</h3>
+        <p>単発で終わり、リピートしない。主軸にせず、体験予約サイト1本だけ載せて空き枠埋めの二軍に。</p>
+      </div>
+      <div class="tg yes">
+        <div class="badge">本命</div>
+        <div class="mark">◎</div>
+        <h3>京都で働く<br>30〜50代女性</h3>
+        <p>販売員・美容師・看護師・保育士・ホテル飲食スタッフ・デスクワーカー。河原町なら徒歩圏に数万人。仕事帰りに通える＝リピートする。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 階段 -->
+  <section class="sec">
+    <div class="sec-no">02 ── 弱点の反転</div>
+    <h2>階段を、謝らない。看板にする。</h2>
+    <p class="lead">人は労力を払った体験ほど「価値があった」と自分で意味づける。5階分の階段は、施術前の演出装置。</p>
+    <div class="stairs-box">
+      <h3>キャッチコピー</h3>
+      <p class="sub">広告・看板・Instagramのプロフィール、すべてこの一行から始める。</p>
+      <div class="stairs">
+        <div class="step"><b>1F</b>雑踏を離れる</div>
+        <div class="step"><b>2F</b>スマホをしまう</div>
+        <div class="step"><b>3F</b>呼吸が深くなる</div>
+        <div class="step"><b>4F</b>音だけになる</div>
+        <div class="step"><b>5F</b>調律室</div>
+      </div>
+      <p class="stairs-copy">「5階分の階段が、<span>最初の施術です。</span>」</p>
+      <div class="stairs-logic">
+        <div class="sl"><b>① 選別装置</b>冷やかし・飛び込みが来ない。予約客だけの静かな空間が保てる。</div>
+        <div class="sl"><b>② 物語装置</b>労力を払った体験は、本人が勝手に価値づけする。「わざわざのぼる隠れ家」。</div>
+        <div class="sl"><b>③ 生理学装置</b>階段で心拍が上がる → 音叉で鎮まる。落差が大きいほど「変わった」を身体が実感する。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 困りごとポジション -->
+  <section class="sec">
+    <div class="sec-no">03 ── 困りごと</div>
+    <h2>「整体は痛そう、相談は重い」の、あいだを取る。</h2>
+    <p class="lead">働く女性の悩みは共通している。眠りが浅い・頭が休まらない・肩首の緊張・自律神経の乱れ。</p>
+    <div class="pos">
+      <div class="side">
+        <h4>整体・マッサージ</h4>
+        <p>痛そう。揉み返しが不安。着替えが面倒。</p>
+      </div>
+      <div class="center">
+        <h4>音叉サロン</h4>
+        <p>服のまま。痛くない。<br>喋らなくていい。<br>ただ、音を聴くだけ。</p>
+      </div>
+      <div class="side">
+        <h4>カウンセリング</h4>
+        <p>重い。話すのが疲れる。ハードルが高い。</p>
+      </div>
+    </div>
+    <div class="pain">売る言葉は症状名ではなく<b>「眠り」と「休息」</b>。「肩こり改善」より「今夜、深く眠るための60分」。働く女性が財布を開くのは、痛みの治療ではなく<b>回復の予約</b>。</div>
+  </section>
+
+  <!-- 04 タイトル -->
+  <section class="sec">
+    <div class="sec-no">04 ── NAMING</div>
+    <h2>サロン名・3案。</h2>
+    <p class="lead">どの名前でも、下の「枠の見せ方」とセットで初めて機能する。</p>
+    <div class="titles">
+      <div class="t reco">
+        <span class="reco-badge">推し</span>
+        <div class="type">隠れ家型 ── 場所と階段を最初から名乗る</div>
+        <h3>河原町、5階の調律室</h3>
+        <p>弱点(5階)を名前に入れてしまえば、二度と弱点にならない。「調律」は治療を約束しない安全な言葉で、音叉の世界観そのもの。</p>
+      </div>
+      <div class="t">
+        <div class="type">悩み直球型 ── 検索と広告に強い</div>
+        <h3>眠りの音叉 KYOTO</h3>
+        <p>「眠り」は働く女性の検索語。インスタ広告のクリエイティブが作りやすい。</p>
+      </div>
+      <div class="t">
+        <div class="type">希少性型 ── 月1回をそのまま売る</div>
+        <h3>月に一度の、音の休診日</h3>
+        <p>香川から月1で来る事実を隠さず武器化。「その日しか受けられない」が予約の理由になる。</p>
+      </div>
+    </div>
+    <div class="frame-note">名前より効くのはこの一行 ──「<span>月◯日のみ・1日8枠・完全予約制</span>」。少なさは、毎日営業する京都のサロンには真似できない資産。</div>
+  </section>
+
+  <!-- 05 やること3つ -->
+  <section class="sec">
+    <div class="sec-no">05 ── ACTION</div>
+    <h2>やることは、3つだけ。</h2>
+    <p class="lead">導線を増やさない。細く、深く。</p>
+    <div class="acts">
+      <div class="act">
+        <div class="n">ACT 1</div>
+        <h3>LINE予約一本化</h3>
+        <p>既存のLINE公式をそのまま使う。予約・前日リマインド・施術後のフォローまで全部LINEで完結。導線は1本が最強。</p>
+      </div>
+      <div class="act">
+        <div class="n">ACT 2</div>
+        <h3>Instagramは世界観</h3>
+        <p>施術写真より「階段・扉・音叉・窓の光」。ビフォーアフターではなく、のぼった先にある静けさを見せる。保存される投稿＝行きたい場所の写真。</p>
+      </div>
+      <div class="act">
+        <div class="n">ACT 3</div>
+        <h3>強気の価格</h3>
+        <p>月8枠しかないものを安売りすると、枠の価値ごと崩れる。希少なものは高いから信じられる。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 価格 -->
+  <section class="sec">
+    <div class="sec-no">06 ── PRICE</div>
+    <h2>値段が、ポジションを語る。</h2>
+    <div class="price">
+      <div class="num">60分 8,000〜12,000<small>円</small></div>
+      <p>比較対象はマッサージ(60分6,000円)ではなく、<b>ご褒美・回復への投資</b>(ヘッドスパ、エステ)。<br>初回体験の値引きはせず、<b>「初回は測定と説明込みで90分」</b>と時間で価値を足す。</p>
+    </div>
+    <div class="caution"><b>表現の注意：</b>広告・SNS・メニュー表はすべて「治る/改善/効く」ではなく<b>「調律・休息・整える」</b>の語彙で統一。ヒーリング業態は効能を断定した瞬間に法的リスクを背負う。世界観の言葉で通すことが、そのまま防御になる。</div>
+  </section>
+
+  <!-- まとめ -->
+  <div class="final">
+    <div class="label">STRATEGY IN ONE LINE</div>
+    <p>階段を謝らず、<span>看板</span>にする。<br>少なさを隠さず、<span>値段</span>にする。</p>
+  </div>
+
+</div>
+
+<footer>
+  出店戦略メモ ── 河原町5F 音叉サロン ｜ 監修：三条健康堂接骨院<br>
+  高松発・一生動ける身体と人生の教養研究室
+</footer>
+
+</body>
+</html>
