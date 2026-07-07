@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犯人は、腰じゃない。｜三条健康堂接骨院</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Noto Sans JP', sans-serif;
+  font-weight:700;              /* 本文からすべて太字 */
+  background:#f7f2e6;
+  color:#14301f;                /* より濃い緑：コントラスト比 約12:1 */
+  font-size:19px;
+  line-height:2.0;
+  max-width:560px;
+  margin:0 auto;
+  letter-spacing:0.03em;
+}
+
+/* ===== 表紙 ===== */
+.cover {
+  background:#14301f;
+  color:#f7f2e6;
+  padding:52px 24px 44px;
+  text-align:center;
+}
+.eyebrow {
+  font-size:14px;
+  letter-spacing:0.35em;
+  color:#d4b45d;
+  font-weight:900;
+  margin-bottom:24px;
+}
+.patient {
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.date {
+  font-size:17px;
+  color:#e2d9c6;
+  margin-bottom:40px;
+  font-weight:700;
+}
+.title {
+  font-size:44px;
+  font-weight:900;
+  line-height:1.45;
+  margin-bottom:24px;
+}
+.title .gold { color:#d4b45d; }
+.subtitle {
+  font-size:20px;
+  font-weight:900;
+  line-height:2;
+}
+.subtitle .gold { color:#d4b45d; }
+
+/* ===== 共通 ===== */
+.section { padding:48px 22px; }
+.section-dark { background:#14301f; color:#f7f2e6; }
+.label {
+  display:inline-block;
+  background:#d4b45d;
+  color:#14301f;
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:0.15em;
+  padding:8px 20px;
+  border-radius:6px;
+  margin-bottom:20px;
+}
+h2 {
+  font-size:30px;
+  font-weight:900;
+  line-height:1.55;
+  margin-bottom:20px;
+}
+.lead {
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:28px;
+}
+.gold-text { color:#d4b45d; }
+
+/* ===== 安心の宣言 ===== */
+.promise {
+  background:#fff;
+  border:4px solid #d4b45d;
+  border-radius:18px;
+  padding:32px 20px;
+  text-align:center;
+}
+.promise .big {
+  font-size:30px;
+  font-weight:900;
+  color:#14301f;
+  line-height:1.6;
+}
+.promise .note {
+  font-size:18px;
+  margin-top:14px;
+  font-weight:900;
+}
+
+/* ===== 回復の4カード ===== */
+.care-card {
+  background:#fff;
+  border-radius:18px;
+  padding:28px 22px;
+  margin-bottom:22px;
+  box-shadow:0 3px 10px rgba(20,48,31,0.15);
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.care-num {
+  flex-shrink:0;
+  width:58px;
+  height:58px;
+  background:#14301f;
+  color:#d4b45d;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:900;
+}
+.care-title {
+  font-size:23px;
+  font-weight:900;
+  margin-bottom:4px;
+}
+.care-desc {
+  font-size:17px;
+  font-weight:700;
+  line-height:1.8;
+}
+.care-icon { flex-shrink:0; width:70px; height:70px; }
+
+/* ===== 身体マップ ===== */
+.map-wrap {
+  background:#fff;
+  border-radius:18px;
+  padding:28px 12px;
+  text-align:center;
+}
+.map-caption {
+  font-size:19px;
+  font-weight:900;
+  color:#14301f;
+  margin-top:12px;
+  line-height:1.9;
+}
+
+/* ===== 施術リスト ===== */
+.treat-item {
+  background:#fff;
+  border-left:8px solid #d4b45d;
+  border-radius:0 14px 14px 0;
+  padding:22px 20px;
+  margin-bottom:16px;
+  color:#14301f;
+}
+.treat-item .t-head {
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:4px;
+}
+.treat-item .t-body {
+  font-size:17px;
+  font-weight:700;
+  line-height:1.8;
+}
+
+/* ===== 署名 ===== */
+.footer {
+  background:#14301f;
+  color:#f7f2e6;
+  padding:44px 24px 52px;
+  text-align:center;
+}
+.footer .clinic {
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:28px;
+}
+.footer a {
+  display:block;
+  background:#d4b45d;
+  color:#14301f;
+  font-size:20px;
+  font-weight:900;
+  text-decoration:none;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:16px;
+}
+.footer a.map-link {
+  background:transparent;
+  border:3px solid #d4b45d;
+  color:#d4b45d;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 表紙 ===== -->
+<div class="cover">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <div class="patient">中野様　施術レポート</div>
+  <div class="date">2026年7月7日</div>
+  <div class="title">犯人は、<br><span class="gold">腰じゃない。</span></div>
+  <div class="subtitle">黒幕は <span class="gold">左肩</span> と <span class="gold">左足の指</span>。</div>
+</div>
+
+<!-- ===== まず安心 ===== -->
+<div class="section">
+  <span class="label">まず、これだけ</span>
+  <h2>必ず、回復します。</h2>
+  <p class="lead">原因は、ストレスと気圧の変化。<br>身体はもう整っています。<br>あとは、この4つだけ。</p>
+</div>
+
+<!-- ===== 回復の4ステップ ===== -->
+<div class="section" style="padding-top:0;">
+
+  <div class="care-card">
+    <div class="care-num">1</div>
+    <div class="care-body">
+      <div class="care-title">丸まって眠る</div>
+      <div class="care-desc">横向きで、胎児のポーズ。</div>
+    </div>
+    <svg class="care-icon" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#14301f"/>
+      <circle cx="24" cy="24" r="6" fill="#d4b45d"/>
+      <path d="M28 28 Q42 30 42 40 Q42 48 32 48 Q24 48 22 42" stroke="#d4b45d" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M30 44 Q24 46 22 40" stroke="#f7f2e6" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="care-card">
+    <div class="care-num">2</div>
+    <div class="care-body">
+      <div class="care-title">カイロで温める</div>
+      <div class="care-desc">腰に貼って、じんわりと。</div>
+    </div>
+    <svg class="care-icon" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#14301f"/>
+      <rect x="20" y="26" width="24" height="18" rx="5" fill="#d4b45d"/>
+      <path d="M26 22 Q24 18 27 15 M32 22 Q30 18 33 15 M38 22 Q36 18 39 15" stroke="#f7f2e6" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="care-card">
+    <div class="care-num">3</div>
+    <div class="care-body">
+      <div class="care-title">お水を飲む</div>
+      <div class="care-desc">こまめに、常温で。</div>
+    </div>
+    <svg class="care-icon" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#14301f"/>
+      <path d="M24 16 h16 l-2 32 a4 4 0 0 1 -4 4 h-4 a4 4 0 0 1 -4 -4 z" fill="none" stroke="#d4b45d" stroke-width="3"/>
+      <path d="M25.5 30 h13 l-1 18 a3 3 0 0 1 -3 3 h-5 a3 3 0 0 1 -3 -3 z" fill="#d4b45d"/>
+    </svg>
+  </div>
+
+  <div class="care-card">
+    <div class="care-num">4</div>
+    <div class="care-body">
+      <div class="care-title">骨盤ベルト</div>
+      <div class="care-desc">腰の土台を、支える。</div>
+    </div>
+    <svg class="care-icon" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#14301f"/>
+      <path d="M16 30 Q32 22 48 30 L48 38 Q32 30 16 38 Z" fill="#d4b45d"/>
+      <rect x="27" y="28" width="10" height="9" rx="2" fill="#14301f" stroke="#f7f2e6" stroke-width="2"/>
+    </svg>
+  </div>
+
+</div>
+
+<!-- ===== 本当の原因 ===== -->
+<div class="section section-dark">
+  <span class="label">今日の発見</span>
+  <h2>黒幕は、<br>左半身にいた。</h2>
+
+  <div class="map-wrap">
+    <svg viewBox="0 0 300 420" width="100%" style="max-width:280px;">
+      <circle cx="150" cy="45" r="28" fill="#14301f"/>
+      <path d="M110 85 Q150 72 190 85 L196 200 Q150 215 104 200 Z" fill="#14301f"/>
+      <path d="M110 88 Q88 100 84 160 Q83 175 90 178 Q98 180 100 165 Q104 120 118 100" fill="#14301f"/>
+      <path d="M190 88 Q212 100 216 160 Q217 175 210 178 Q202 180 200 165 Q196 120 182 100" fill="#14301f"/>
+      <path d="M112 200 L118 340 Q119 355 130 355 Q140 355 140 340 L145 215" fill="#14301f"/>
+      <path d="M188 200 L182 340 Q181 355 170 355 Q160 355 160 340 L155 215" fill="#14301f"/>
+      <path d="M118 355 Q112 372 122 376 L140 376 Q144 370 140 358" fill="#14301f"/>
+      <path d="M182 355 Q188 372 178 376 L160 376 Q156 370 160 358" fill="#14301f"/>
+
+      <!-- 左肩 -->
+      <circle cx="192" cy="92" r="16" fill="#d4b45d">
+        <animate attributeName="r" values="14;18;14" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="216" y="88" font-size="20" font-weight="900" fill="#14301f" font-family="Noto Sans JP">左肩</text>
+      <!-- 左肩甲骨 -->
+      <circle cx="178" cy="128" r="14" fill="#d4b45d">
+        <animate attributeName="r" values="12;16;12" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+      </circle>
+      <text x="198" y="140" font-size="20" font-weight="900" fill="#14301f" font-family="Noto Sans JP">左肩甲骨</text>
+      <!-- 腰 -->
+      <circle cx="150" cy="185" r="17" fill="#b0483a">
+        <animate attributeName="r" values="15;19;15" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      </circle>
+      <text x="178" y="195" font-size="20" font-weight="900" fill="#b0483a" font-family="Noto Sans JP">腰</text>
+      <!-- 左足指 -->
+      <circle cx="172" cy="374" r="12" fill="#d4b45d">
+        <animate attributeName="r" values="10;14;10" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+      </circle>
+      <text x="190" y="382" font-size="20" font-weight="900" fill="#14301f" font-family="Noto Sans JP">左足の指</text>
+
+      <path d="M172 362 Q210 260 178 140 Q170 110 190 100" stroke="#d4b45d" stroke-width="3" stroke-dasharray="7 7" fill="none"/>
+    </svg>
+    <div class="map-caption">足の指 → 肩 → 腰。<br>身体は一本でつながっています。</div>
+  </div>
+</div>
+
+<!-- ===== 本日の施術 ===== -->
+<div class="section">
+  <span class="label">本日行ったこと</span>
+  <h2>全身、リセット済み。</h2>
+
+  <div class="treat-item">
+    <div class="t-head">全身の筋肉をほぐす</div>
+    <div class="t-body">左肩・左肩甲骨を中心に。</div>
+  </div>
+
+  <div class="treat-item">
+    <div class="t-head">左足の指を調整</div>
+    <div class="t-body">足元の歪みは、腰に直結。</div>
+  </div>
+
+  <div class="treat-item">
+    <div class="t-head">頭のマッサージ</div>
+    <div class="t-body">溜まったストレスを、すべて解放。</div>
+  </div>
+
+  <div class="promise" style="margin-top:32px;">
+    <div class="big">いま、身体は<br><span class="gold-text">100%リラックス。</span></div>
+    <div class="note">ご安心ください。</div>
+  </div>
+</div>
+
+<!-- ===== 署名 ===== -->
+<div class="footer">
+  <div class="clinic">三条健康堂接骨院</div>
+  <a href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+  <a class="map-link" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+</div>
+
+</body>
+</html>
