@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>薬より、豆ごはん。｜三条健康堂接骨院</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Noto Sans JP', sans-serif;
+  font-weight:700;
+  background:#f7f2e6;
+  color:#14301f;
+  font-size:19px;
+  line-height:2.0;
+  max-width:560px;
+  margin:0 auto;
+  letter-spacing:0.03em;
+}
+
+/* ===== 表紙 ===== */
+.cover {
+  background:#14301f;
+  color:#f7f2e6;
+  padding:52px 24px 44px;
+  text-align:center;
+}
+.eyebrow {
+  font-size:14px;
+  letter-spacing:0.35em;
+  color:#d4b45d;
+  font-weight:900;
+  margin-bottom:24px;
+}
+.patient {
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+.date {
+  font-size:17px;
+  color:#e2d9c6;
+  margin-bottom:40px;
+  font-weight:700;
+}
+.title {
+  font-size:44px;
+  font-weight:900;
+  line-height:1.45;
+  margin-bottom:24px;
+}
+.title .gold { color:#d4b45d; }
+.subtitle {
+  font-size:20px;
+  font-weight:900;
+  line-height:2;
+}
+.subtitle .gold { color:#d4b45d; }
+
+/* ===== 共通 ===== */
+.section { padding:48px 22px; }
+.section-dark { background:#14301f; color:#f7f2e6; }
+.label {
+  display:inline-block;
+  background:#d4b45d;
+  color:#14301f;
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:0.15em;
+  padding:8px 20px;
+  border-radius:6px;
+  margin-bottom:20px;
+}
+h2 {
+  font-size:30px;
+  font-weight:900;
+  line-height:1.55;
+  margin-bottom:20px;
+}
+.lead {
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:28px;
+}
+.gold-text { color:#d4b45d; }
+
+/* ===== ミッションカード ===== */
+.mission {
+  background:#fff;
+  border:4px solid #d4b45d;
+  border-radius:18px;
+  padding:32px 20px;
+  text-align:center;
+}
+.mission .big {
+  font-size:32px;
+  font-weight:900;
+  line-height:1.6;
+}
+.mission .note {
+  font-size:18px;
+  margin-top:12px;
+  font-weight:900;
+}
+
+/* ===== ランキングカード ===== */
+.rank-card {
+  background:#fff;
+  border-radius:18px;
+  padding:26px 22px;
+  margin-bottom:24px;
+  box-shadow:0 3px 10px rgba(20,48,31,0.15);
+}
+.rank-head {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:12px;
+}
+.rank-num {
+  flex-shrink:0;
+  width:64px;
+  height:64px;
+  background:#14301f;
+  color:#d4b45d;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  line-height:1.1;
+}
+.rank-num .no { font-size:13px; font-weight:900; }
+.rank-num .n { font-size:30px; font-weight:900; }
+.rank-title {
+  font-size:26px;
+  font-weight:900;
+  flex:1;
+}
+.rank-icon { flex-shrink:0; width:70px; height:70px; }
+.rank-why {
+  font-size:18px;
+  font-weight:900;
+  color:#8a6d1f;
+  margin-bottom:6px;
+}
+.rank-how {
+  font-size:18px;
+  font-weight:700;
+  line-height:1.9;
+}
+
+/* 第1位 特別カード */
+.rank-card.first {
+  border:4px solid #d4b45d;
+  background:#fffdf5;
+}
+.mix-box {
+  background:#f0e9d5;
+  border-radius:14px;
+  padding:18px 16px;
+  margin-top:16px;
+  text-align:center;
+}
+.mix-box .mix-title {
+  font-size:17px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.mix-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+.mix-tags span {
+  background:#14301f;
+  color:#f7f2e6;
+  font-size:17px;
+  font-weight:900;
+  padding:8px 16px;
+  border-radius:999px;
+}
+.mix-tags span.less {
+  background:transparent;
+  border:3px dashed #8a6d1f;
+  color:#8a6d1f;
+}
+.shop-tip {
+  margin-top:14px;
+  font-size:17px;
+  font-weight:900;
+  color:#14301f;
+}
+
+/* ===== 締めの約束 ===== */
+.promise {
+  background:#fff;
+  border:4px solid #d4b45d;
+  border-radius:18px;
+  padding:32px 20px;
+  text-align:center;
+}
+.promise .big {
+  font-size:30px;
+  font-weight:900;
+  line-height:1.6;
+}
+.promise .note {
+  font-size:18px;
+  margin-top:14px;
+  font-weight:900;
+}
+
+/* ===== 署名 ===== */
+.footer {
+  background:#14301f;
+  color:#f7f2e6;
+  padding:44px 24px 52px;
+  text-align:center;
+}
+.footer .clinic {
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:28px;
+}
+.footer a {
+  display:block;
+  background:#d4b45d;
+  color:#14301f;
+  font-size:20px;
+  font-weight:900;
+  text-decoration:none;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:16px;
+}
+.footer a.map-link {
+  background:transparent;
+  border:3px solid #d4b45d;
+  color:#d4b45d;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 表紙 ===== -->
+<div class="cover">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <div class="patient">中野様　生活指導レポート</div>
+  <div class="date">2026年7月7日</div>
+  <div class="title">薬より、<br><span class="gold">豆ごはん。</span></div>
+  <div class="subtitle">若返る食べ物、<span class="gold">ベスト6</span>。<br>そして、階段。</div>
+</div>
+
+<!-- ===== まず運動 ===== -->
+<div class="section">
+  <span class="label">毎日の運動</span>
+  <h2>階段で、7階まで。<br>1日2回。</h2>
+
+  <div class="mission">
+    <svg viewBox="0 0 200 130" width="100%" style="max-width:260px;">
+      <!-- 階段 -->
+      <path d="M20 120 h30 v-15 h30 v-15 h30 v-15 h30 v-15 h30 v-15 h20" stroke="#14301f" stroke-width="8" fill="none"/>
+      <!-- のぼる人 -->
+      <circle cx="70" cy="72" r="10" fill="#d4b45d"/>
+      <path d="M70 82 L70 100 M70 88 L58 96 M70 88 L82 92 M70 100 L60 115 M70 100 L82 108" stroke="#d4b45d" stroke-width="6" stroke-linecap="round"/>
+      <!-- 7F -->
+      <text x="168" y="35" font-size="28" font-weight="900" fill="#d4b45d" font-family="Noto Sans JP">7F</text>
+    </svg>
+    <div class="big">朝 1回<br>夕 1回</div>
+    <div class="note">脳も足腰も、これで鍛わります。</div>
+  </div>
+</div>
+
+<!-- ===== ランキング ===== -->
+<div class="section section-dark" style="padding-bottom:20px;">
+  <span class="label">若返る食べ物</span>
+  <h2>ベスト6、発表。</h2>
+</div>
+
+<div class="section" style="padding-top:28px;">
+
+  <!-- 第1位 -->
+  <div class="rank-card first">
+    <div class="rank-head">
+      <div class="rank-num"><span class="no">第</span><span class="n">1</span></div>
+      <div class="rank-title">豆と麦の<br>炊き込みごはん</div>
+      <svg class="rank-icon" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="#14301f"/>
+        <path d="M14 34 Q14 50 32 50 Q50 50 50 34 Z" fill="#f7f2e6"/>
+        <ellipse cx="24" cy="30" rx="5" ry="3.5" fill="#d4b45d"/>
+        <ellipse cx="34" cy="27" rx="5" ry="3.5" fill="#8a6d1f"/>
+        <ellipse cx="42" cy="31" rx="5" ry="3.5" fill="#d4b45d"/>
+        <ellipse cx="29" cy="33" rx="4" ry="3" fill="#b0483a"/>
+      </svg>
+    </div>
+    <div class="rank-why">白ごはんは少しだけ。主役は豆と麦。</div>
+    <div class="mix-box">
+      <div class="mix-title">この5つを、混ぜて炊く</div>
+      <div class="mix-tags">
+        <span>玄米</span>
+        <span>もち麦</span>
+        <span>押し麦</span>
+        <span>豆いろいろ</span>
+        <span>雑穀</span>
+        <span class="less">白米は少し</span>
+      </div>
+      <div class="shop-tip">🛒 冷凍の「サラダ豆」が便利。<br>業務スーパー・エブリィにあります。</div>
+    </div>
+  </div>
+
+  <!-- 第2位 -->
+  <div class="rank-card">
+    <div class="rank-head">
+      <div class="rank-num"><span class="no">第</span><span class="n">2</span></div>
+      <div class="rank-title">サバ缶</div>
+      <svg class="rank-icon" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="#14301f"/>
+        <ellipse cx="32" cy="34" rx="18" ry="11" fill="#d4b45d"/>
+        <ellipse cx="32" cy="30" rx="18" ry="11" fill="none" stroke="#f7f2e6" stroke-width="3"/>
+        <path d="M24 30 Q32 26 40 30" stroke="#14301f" stroke-width="2.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="rank-why">タンパク質 ＋ EPA・DHAの良い油。</div>
+    <div class="rank-how">お汁は捨てて、塩分カット。<br>水で洗ってもOK。あとは好きに美味しく。</div>
+  </div>
+
+  <!-- 第3位 -->
+  <div class="rank-card">
+    <div class="rank-head">
+      <div class="rank-num"><span class="no">第</span><span class="n">3</span></div>
+      <div class="rank-title">高野豆腐</div>
+      <svg class="rank-icon" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="#14301f"/>
+        <rect x="16" y="22" width="22" height="16" rx="3" fill="#f7f2e6"/>
+        <rect x="28" y="30" width="22" height="16" rx="3" fill="#d4b45d"/>
+      </svg>
+    </div>
+    <div class="rank-why">タンパク質のかたまり。</div>
+    <div class="rank-how">絶対に、食べてください。</div>
+  </div>
+
+  <!-- 第4位 -->
+  <div class="rank-card">
+    <div class="rank-head">
+      <div class="rank-num"><span class="no">第</span><span class="n">4</span></div>
+      <div class="rank-title">卵</div>
+      <svg class="rank-icon" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="#14301f"/>
+        <path d="M32 14 Q46 30 46 40 a14 14 0 0 1 -28 0 Q18 30 32 14" fill="#f7f2e6"/>
+        <circle cx="32" cy="38" r="7" fill="#d4b45d"/>
+      </svg>
+    </div>
+    <div class="rank-why">栄養バランスの優等生。</div>
+    <div class="rank-how">毎日、食べる。</div>
+  </div>
+
+  <!-- 第5位 -->
+  <div class="rank-card">
+    <div class="rank-head">
+      <div class="rank-num"><span class="no">第</span><span class="n">5</span></div>
+      <div class="rank-title">鶏むね肉</div>
+      <svg class="rank-icon" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="#14301f"/>
+        <path d="M20 40 Q16 26 30 20 Q46 14 48 26 Q50 36 40 42 Q30 48 20 40" fill="#d4b45d"/>
+        <path d="M44 24 L52 18" stroke="#f7f2e6" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="rank-why">タンパク質 ＋ イミダペプチド。</div>
+    <div class="rank-how">脳の疲れを、回復させる肉です。</div>
+  </div>
+
+  <!-- 第6位 -->
+  <div class="rank-card">
+    <div class="rank-head">
+      <div class="rank-num"><span class="no">第</span><span class="n">6</span></div>
+      <div class="rank-title">納豆</div>
+      <svg class="rank-icon" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="#14301f"/>
+        <ellipse cx="26" cy="30" rx="5" ry="4" fill="#d4b45d"/>
+        <ellipse cx="36" cy="26" rx="5" ry="4" fill="#d4b45d"/>
+        <ellipse cx="40" cy="35" rx="5" ry="4" fill="#d4b45d"/>
+        <ellipse cx="29" cy="38" rx="5" ry="4" fill="#d4b45d"/>
+        <path d="M22 44 Q32 40 44 44" stroke="#f7f2e6" stroke-width="2.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="rank-why">大豆のタンパク質 ＋ 良い菌。</div>
+    <div class="rank-how">腸から、強くなる。</div>
+  </div>
+
+</div>
+
+<!-- ===== 締め ===== -->
+<div class="section section-dark">
+  <span class="label">この作戦の意味</span>
+  <h2>燃料を入れて、<br>階段をのぼる。</h2>
+  <div class="promise" style="background:#fffdf5;">
+    <div class="big" style="color:#14301f;">食べ物で筋肉の燃料をつくり、<br>階段で脳と体を鍛える。</div>
+    <div class="note" style="color:#14301f;">認知症を遠ざけ、<br>体はどんどん強くなります。</div>
+  </div>
+</div>
+
+<!-- ===== 署名 ===== -->
+<div class="footer">
+  <div class="clinic">三条健康堂接骨院</div>
+  <a href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+  <a class="map-link" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+</div>
+
+</body>
+</html>
