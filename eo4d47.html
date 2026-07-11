@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>藤原様｜あなたの数字は、45。｜三条健康堂接骨院</title>
+<style>
+  :root{
+    --green:#1a3d28; --green2:#255239;
+    --gold:#c4a44d; --gold-dark:#8f7328; --gold-lite:#f3e6bd;
+    --red:#e8452c; --red-dark:#b82e19; --red-lite:#fadbd4;
+    --ok:#1f9d55; --ok-dark:#147a40;
+    --cream:#f6f2e8; --ink:#1c2620; --paper:#ffffff; --line:#e2dcc9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    background:var(--cream);color:var(--ink);font-size:17px;line-height:1.85;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+  .sec{padding:46px 24px;}
+  .eyebrow{font-size:13px;letter-spacing:0.3em;font-weight:800;color:var(--gold-dark);margin-bottom:18px;}
+
+  /* ============ COVER ============ */
+  .cover{
+    background:var(--green);color:#fff;padding:52px 24px 46px;position:relative;overflow:hidden;
+    border-bottom:6px solid var(--gold);
+  }
+  .cover .eyebrow{color:var(--gold);}
+  .cover .kicker{font-size:20px;font-weight:800;color:#eef3ee;line-height:1.6;text-align:center;margin-bottom:2px;}
+  .hero-num{display:flex;align-items:flex-start;justify-content:center;gap:6px;margin:6px 0 2px;line-height:0.9;}
+  .hero-num .n{
+    font-size:180px;font-weight:900;color:var(--gold);letter-spacing:-0.04em;
+    text-shadow:0 6px 30px rgba(0,0,0,0.28);
+  }
+  .hero-num .p{font-size:64px;font-weight:900;color:var(--gold);margin-top:26px;}
+  .cover .title{font-size:36px;font-weight:900;text-align:center;line-height:1.4;margin-top:2px;}
+  .cover .title em{font-style:normal;color:var(--gold);}
+  .cover .madefor{display:flex;justify-content:center;margin-top:28px;}
+  .madefor .plate{border:2px solid var(--gold);border-radius:14px;padding:12px 22px;text-align:center;background:rgba(255,255,255,0.06);}
+  .madefor .lbl{font-size:12px;letter-spacing:0.3em;font-weight:800;color:var(--gold);}
+  .madefor .nm{font-size:22px;font-weight:900;color:#fff;margin-top:2px;}
+  .madefor .nm span{color:var(--gold-lite);font-size:16px;}
+
+  /* ============ ORDER MADE ============ */
+  .om-lead{font-size:26px;font-weight:900;color:var(--green);line-height:1.5;margin-bottom:8px;}
+  .om-lead .hl{background:linear-gradient(transparent 58%,#ffe08a 58%);padding:0 3px;}
+  .om-sub{font-size:16px;font-weight:700;color:#33403a;line-height:1.85;margin-bottom:26px;}
+
+  .pipe{display:flex;flex-direction:column;gap:0;align-items:stretch;}
+  .node{background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:18px 20px;text-align:center;}
+  .node .nlbl{font-size:14px;font-weight:800;color:var(--gold-dark);letter-spacing:0.08em;margin-bottom:6px;}
+  .node .nval{font-size:24px;font-weight:900;color:var(--green);line-height:1.5;}
+  .node .nval .arrow{color:var(--ok-dark);}
+  .node .nnote{font-size:14px;font-weight:700;color:#33403a;margin-top:4px;}
+  .pipe .down{text-align:center;color:var(--gold-dark);font-size:26px;font-weight:900;line-height:1;padding:8px 0;}
+  .node.final{background:var(--gold);border-color:var(--gold);}
+  .node.final .nlbl{color:var(--green);}
+  .node.final .big45{font-size:76px;font-weight:900;color:var(--green);line-height:1;}
+  .node.final .big45 .u{font-size:34px;}
+  .node.final .fnote{font-size:16px;font-weight:900;color:var(--green);margin-top:4px;}
+
+  .om-stamp{margin-top:24px;background:var(--green);color:#fff;border-radius:14px;padding:18px 20px;text-align:center;border-left:6px solid var(--gold);}
+  .om-stamp b{color:var(--gold);}
+  .om-stamp p{font-size:16px;font-weight:700;line-height:1.85;}
+
+  h2.title{font-size:25px;font-weight:900;color:var(--green);line-height:1.5;display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+  h2.title .num{flex:none;width:44px;height:44px;border-radius:11px;background:var(--green);color:var(--gold);font-size:21px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .sub{font-size:16px;font-weight:700;color:#33403a;line-height:1.85;margin-bottom:24px;}
+
+  .gcard{background:var(--paper);border:2px solid var(--gold);border-radius:18px;padding:20px 14px 14px;margin-bottom:18px;}
+  .gcard h3{font-size:18px;font-weight:900;color:var(--green);text-align:center;margin-bottom:4px;}
+  .gcard .cap{font-size:14px;font-weight:700;color:#33403a;text-align:center;margin-bottom:10px;}
+  svg{display:block;width:100%;height:auto;}
+  .legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px;}
+  .legend span{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px;color:var(--green);}
+  .legend .sw{width:14px;height:14px;border-radius:4px;flex:none;}
+
+  .now100{background:var(--red);color:#fff;border-radius:14px;padding:18px 20px;text-align:center;margin-bottom:20px;border:3px solid var(--red-dark);}
+  .now100 .l1{font-size:16px;font-weight:800;}
+  .now100 .l2{font-size:30px;font-weight:900;margin:2px 0;}
+  .now100 .l3{font-size:15px;font-weight:700;line-height:1.7;}
+
+  .calc3{display:flex;flex-direction:column;gap:12px;margin-bottom:8px;}
+  .cc{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:center;}
+  .cc .badge{flex:none;width:46px;height:46px;border-radius:10px;background:var(--green);color:var(--gold);font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .cc .txt h4{font-size:17px;font-weight:900;color:var(--green);line-height:1.5;}
+  .cc .txt p{font-size:15px;font-weight:600;color:#2a352e;line-height:1.7;}
+  .cc .txt p b{color:var(--red-dark);}
+  .converge{background:var(--gold);color:var(--green);border-radius:14px;padding:18px;text-align:center;margin-top:14px;}
+  .converge .l1{font-size:15px;font-weight:800;}
+  .converge .l2{font-size:28px;font-weight:900;margin-top:2px;}
+
+  .rise-band{background:var(--green);}
+  .rise-band .eyebrow{color:var(--gold);}
+  .rise-band h2.title{color:#fff;}
+  .rise-band h2.title .num{background:var(--gold);color:var(--green);}
+  .rise-band .sub{color:#e7eee8;}
+  .rise-card{background:var(--paper);border-radius:18px;padding:22px 16px 16px;border:2px solid var(--gold);}
+  .rise-card h3{font-size:19px;font-weight:900;color:var(--green);text-align:center;margin-bottom:12px;}
+  .rise-tags{display:flex;justify-content:space-between;margin-top:10px;padding:0 4px;}
+  .rise-tags .t{text-align:center;flex:1;}
+  .rise-tags .t .st{font-size:14px;font-weight:800;}
+  .rise-tags .t.now .st{color:var(--red-dark);}
+  .rise-tags .t.opt .st{color:var(--ok-dark);}
+  .rise-tags .t .big{font-size:26px;font-weight:900;line-height:1.2;}
+  .rise-tags .t.now .big{color:var(--red-dark);}
+  .rise-tags .t.opt .big{color:var(--ok-dark);}
+  .rise-punch{background:var(--gold);color:var(--green);border-radius:14px;padding:18px 20px;text-align:center;margin-top:16px;}
+  .rise-punch .l1{font-size:17px;font-weight:800;line-height:1.7;}
+  .rise-punch .l2{font-size:22px;font-weight:900;margin-top:4px;line-height:1.5;}
+
+  .cta{background:var(--paper);border:3px solid var(--gold);border-radius:18px;padding:26px 22px;text-align:center;margin-top:8px;}
+  .cta .ct{font-size:14px;font-weight:900;color:var(--gold-dark);letter-spacing:0.14em;margin-bottom:8px;}
+  .cta h3{font-size:22px;font-weight:900;color:var(--green);line-height:1.55;margin-bottom:12px;}
+  .cta h3 em{font-style:normal;color:var(--red-dark);}
+  .cta p{font-size:16px;font-weight:600;color:#2a352e;line-height:1.85;margin-bottom:16px;}
+  .btn{display:block;text-decoration:none;font-size:19px;font-weight:900;padding:16px;border-radius:12px;margin:10px 0;}
+  .btn.line{background:#06c755;color:#fff;}
+  .btn.map{background:var(--green);color:#fff;border:2px solid var(--gold);}
+
+  .sign{background:var(--green);color:#eef3ee;padding:30px 24px;border-top:5px solid var(--gold);}
+  .sign .theory{background:rgba(255,255,255,0.08);border-left:4px solid var(--gold);padding:14px 16px;border-radius:10px;margin-bottom:18px;}
+  .sign .theory b{color:var(--gold);font-size:16px;}
+  .sign .theory p{font-size:15px;font-weight:600;line-height:1.85;margin-top:4px;color:#e7eee8;}
+  .sign .who{font-size:15px;font-weight:700;line-height:1.9;}
+  .sign .brand{font-size:13px;color:#c9d4cc;margin-top:14px;line-height:1.7;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ COVER ============ -->
+  <div class="cover">
+    <div class="eyebrow">SANJO KENKO-DO ／ 攻略の法則</div>
+    <div class="kicker">あなたの最適アクセルは</div>
+    <div class="hero-num"><span class="n">45</span><span class="p">%</span></div>
+    <div class="title">45で、<em>覚醒する。</em></div>
+    <div class="madefor">
+      <div class="plate">
+        <div class="lbl">ORDER MADE FOR</div>
+        <div class="nm">藤原様 <span>専用の数字</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ORDER MADE ============ -->
+  <div class="sec">
+    <div class="eyebrow">YOUR NUMBER</div>
+    <div class="om-lead">この「45」は、<br><span class="hl">世間の平均値じゃない。</span></div>
+    <div class="om-sub">藤原様の身体データから割り出した、世界にひとつのオーダーメイドの数字です。どう出したか、見せます。</div>
+
+    <div class="pipe">
+      <div class="node">
+        <div class="nlbl">① あなたの測定値</div>
+        <div class="nval">施術前 <span style="color:var(--red-dark);">1.21</span> <span class="arrow">→</span> 施術後 <span style="color:var(--ok-dark);">0.83</span></div>
+        <div class="nnote">精神・感情の高ぶり（過活動の物差し）</div>
+      </div>
+      <div class="down">▼ 計算</div>
+      <div class="node">
+        <div class="nlbl">② ちょうど良い「ど真ん中」を解く</div>
+        <div class="nval">1.00 に戻る点は？</div>
+        <div class="nnote">過活動でも不足でもない、バランス点</div>
+      </div>
+      <div class="down">▼ 答え</div>
+      <div class="node final">
+        <div class="nlbl">③ 藤原様のスイートスポット</div>
+        <div class="big45">45<span class="u">%</span></div>
+        <div class="fnote">＝ あなただけの最適アクセル</div>
+      </div>
+    </div>
+
+    <div class="om-stamp">
+      <p><b>だから効く。</b>他人の45%ではなく、藤原様の神経が「ここが一番ラク」と示した数字だからです。</p>
+    </div>
+  </div>
+
+  <!-- ============ STAGE 1 ============ -->
+  <div class="sec" style="background:#eef1e9;">
+    <div class="eyebrow">STAGE 1｜今、何が起きているか</div>
+    <h2 class="title"><span class="num">1</span>100%踏むほど、<br>止まっていく。</h2>
+    <p class="sub">根性論ではなく物理法則です。「渋滞学」——道路に車を詰めるほど、ある点を超えると流れが止まる。脳もまったく同じでした。</p>
+
+    <div class="now100">
+      <div class="l1">今のあなたのアクセルは</div>
+      <div class="l2">100% 全開 ＝ 渋滞</div>
+      <div class="l3">踏んでいるのに、進んでいない状態です。</div>
+    </div>
+
+    <div class="gcard">
+      <h3>踏み込みと、仕事の“流量”</h3>
+      <div class="cap">（渋滞学の基本図：流量 ＝ 密度 × 速度）</div>
+      <svg viewBox="0 0 400 300" role="img" aria-label="アクセルの踏み込みと仕事量の関係を示す放物線。45%が頂点、100%で流量ゼロ。">
+        <rect x="284" y="30" width="96" height="220" fill="#fadbd4"/>
+        <text x="332" y="150" fill="#b82e19" font-size="15" font-weight="900" text-anchor="middle" transform="rotate(90 332 150)">渋滞ゾーン</text>
+        <line x1="60" y1="250" x2="380" y2="250" stroke="#1a3d28" stroke-width="2.5"/>
+        <line x1="60" y1="250" x2="60" y2="24" stroke="#1a3d28" stroke-width="2.5"/>
+        <path d="M60 250 Q220 -190 380 250" fill="none" stroke="#1a3d28" stroke-width="4"/>
+        <line x1="204" y1="32" x2="204" y2="250" stroke="#c4a44d" stroke-width="2.5" stroke-dasharray="5 4"/>
+        <circle cx="204" cy="32" r="11" fill="#c4a44d" stroke="#1a3d28" stroke-width="3"/>
+        <text x="204" y="19" fill="#8f7328" font-size="17" font-weight="900" text-anchor="middle">45% 最適</text>
+        <circle cx="380" cy="250" r="11" fill="#e8452c" stroke="#b82e19" stroke-width="3"/>
+        <text x="352" y="242" fill="#b82e19" font-size="15" font-weight="900" text-anchor="middle">今ここ</text>
+        <text x="60" y="270" fill="#1c2620" font-size="14" font-weight="800" text-anchor="middle">0%</text>
+        <text x="204" y="270" fill="#8f7328" font-size="14" font-weight="900" text-anchor="middle">45%</text>
+        <text x="380" y="270" fill="#b82e19" font-size="14" font-weight="900" text-anchor="middle">100%</text>
+        <text x="220" y="292" fill="#1c2620" font-size="15" font-weight="800" text-anchor="middle">アクセルの踏み込み →</text>
+        <text x="22" y="140" fill="#1c2620" font-size="15" font-weight="800" text-anchor="middle" transform="rotate(-90 22 140)">仕事の量 →</text>
+      </svg>
+      <div class="legend">
+        <span><span class="sw" style="background:#c4a44d;"></span>45%＝流量が最大</span>
+        <span><span class="sw" style="background:#e8452c;"></span>100%＝流れが止まる</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STAGE 2 ============ -->
+  <div class="sec">
+    <div class="eyebrow">STAGE 2｜なぜ45なのか</div>
+    <h2 class="title"><span class="num">2</span>3つの計算が、<br>同じ答えに着地。</h2>
+    <p class="sub">まったく違う3つの計算法が、示し合わせたように「45」へ収束しました。</p>
+
+    <div class="calc3">
+      <div class="cc">
+        <div class="badge">①</div>
+        <div class="txt">
+          <h4>あなたの実測データ（本命）</h4>
+          <p>1.21→0.83 の直線から、ど真ん中1.00の点を解く → <b>約45%</b></p>
+        </div>
+      </div>
+      <div class="cc">
+        <div class="badge">②</div>
+        <div class="txt">
+          <h4>渋滞学の基本式</h4>
+          <p>流量＝密度×速度。頂点は50%、全開100%で流量ゼロ → <b>45〜50%</b></p>
+        </div>
+      </div>
+      <div class="cc">
+        <div class="badge">③</div>
+        <div class="txt">
+          <h4>ヤーキーズ・ドットソンの法則</h4>
+          <p>難しい新しい仕事ほど最適は低い方へ → <b>45%を後押し</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="converge">
+      <div class="l1">3つとも収束</div>
+      <div class="l2">答え ＝ 45%</div>
+    </div>
+  </div>
+
+  <!-- ============ FINAL : 上昇イメージグラフ ============ -->
+  <div class="sec rise-band">
+    <div class="eyebrow">RESULT｜45にすると、こうなる</div>
+    <h2 class="title"><span class="num">3</span>ゆるめるほど、<br>パフォーマンスは上がる。</h2>
+    <p class="sub">アクセルを100%→45%へ。踏むのをやめた分だけ、仕事の量はこう跳ね上がります。</p>
+
+    <div class="rise-card">
+      <h3>45%にした時のパフォーマンス上昇</h3>
+      <svg viewBox="0 0 400 260" role="img" aria-label="アクセルを100%から45%に下げるとパフォーマンスが大きく上昇することを示す上昇グラフ">
+        <line x1="52" y1="220" x2="372" y2="220" stroke="#1a3d28" stroke-width="2.5"/>
+        <line x1="52" y1="220" x2="52" y2="26" stroke="#1a3d28" stroke-width="2.5"/>
+        <path d="M70 208 C 170 202, 250 96, 340 44 L340 220 L70 220 Z" fill="#c9e8d5"/>
+        <path d="M70 208 C 170 202, 250 96, 340 44" fill="none" stroke="#1f9d55" stroke-width="5"/>
+        <circle cx="70" cy="208" r="10" fill="#e8452c" stroke="#b82e19" stroke-width="3"/>
+        <circle cx="340" cy="44" r="12" fill="#c4a44d" stroke="#1a3d28" stroke-width="3"/>
+        <line x1="366" y1="62" x2="366" y2="34" stroke="#1a3d28" stroke-width="3"/>
+        <path d="M366 30 l-6 10 l12 0 Z" fill="#1a3d28"/>
+        <text x="70" y="240" fill="#b82e19" font-size="14" font-weight="900" text-anchor="middle">今 100%</text>
+        <text x="340" y="240" fill="#8f7328" font-size="14" font-weight="900" text-anchor="middle">45%</text>
+        <text x="70" y="196" fill="#b82e19" font-size="14" font-weight="900" text-anchor="middle">わずか</text>
+        <text x="338" y="28" fill="#147a40" font-size="16" font-weight="900" text-anchor="middle">ほぼ最大</text>
+        <text x="26" y="130" fill="#1c2620" font-size="15" font-weight="800" text-anchor="middle" transform="rotate(-90 26 130)">パフォーマンス →</text>
+      </svg>
+      <div class="rise-tags">
+        <div class="t now"><div class="st">今（100%踏み込み）</div><div class="big">わずか</div></div>
+        <div class="t opt"><div class="st">45%にゆるめると</div><div class="big">ほぼ最大</div></div>
+      </div>
+    </div>
+
+    <div class="rise-punch">
+      <div class="l1">渋滞で消えていた力が、まるごと仕事に変わる。</div>
+      <div class="l2">同じ一日で、覚える量もスピードも段違い。</div>
+    </div>
+  </div>
+
+  <!-- ============ CTA ============ -->
+  <div class="sec">
+    <div class="cta">
+      <div class="ct">HOW TO 45%</div>
+      <h3>でも、意志で45%に下げるのは難しい。<br><em>体をゆるめれば、勝手に下がる。</em></h3>
+      <p>コリをほぐすと、緊張を司る神経が落ち着き、アクセルが自動でゆるみます。本日、過活動が正常へ戻ったのがその証拠。<b style="color:var(--gold-dark);">努力ゼロで45%</b>に入る、いちばん確実な方法です。</p>
+      <a class="btn line" href="https://lin.ee/dwRtwDv">▶ LINEで予約する</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 地図・アクセスを見る</a>
+    </div>
+  </div>
+
+  <!-- signature -->
+  <div class="sign">
+    <div class="theory">
+      <b>神経反射入力装置論</b>
+      <p>体は「入力（刺激）」に応じて自動で反応を返す装置。正しい入力＝施術を入れれば、アクセルは意志を使わず最適点へ戻る。だから「努力なしでなじむ」が成立します。</p>
+    </div>
+    <p class="who">
+      柔道整復師／三条健康堂接骨院 院長。<br>
+      香川県高松市にて30年間、たくさんの施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。
+    </p>
+    <p class="brand">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+  </div>
+
+</div>
+</body>
+</html>
