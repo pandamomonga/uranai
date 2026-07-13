@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宮本様へ 第2弾｜天気と腰痛の話</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-mid:#24513a;
+    --gold:#c4a44d;
+    --gold-br:#e0c574;
+    --cream:#f5f0e4;
+    --ink:#16281d;
+    --ice:#2f9dc9;
+    --danger:#d64a3f;
+    --danger-bg:#fbe6e3;
+    --ok:#2f8a52;
+    --ok-bg:#e6f3ea;
+    --warn:#e08a2b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    background:var(--green);color:var(--cream);line-height:1.7;
+    padding:0 0 40px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:600px;margin:0 auto;}
+
+  /* HERO */
+  .hero{padding:32px 24px 28px;text-align:center;border-bottom:3px solid var(--gold);}
+  .eyebrow{font-size:13px;letter-spacing:.2em;color:var(--gold);font-weight:700;margin-bottom:8px;}
+  .part{font-size:14px;font-weight:800;color:var(--cream);background:var(--green-mid);
+        display:inline-block;padding:4px 16px;border-radius:20px;margin-bottom:18px;}
+  .hero h1{font-size:32px;line-height:1.4;font-weight:900;color:var(--gold-br);margin-bottom:14px;}
+  .hero h1 .u{border-bottom:5px solid var(--gold);padding-bottom:2px;}
+  .hero .sub{font-size:16px;color:#d7e2d5;text-align:left;background:rgba(0,0,0,.18);
+             border-left:4px solid var(--gold);padding:14px 16px;border-radius:6px;}
+  .hero .sub b{color:var(--gold-br);}
+
+  /* CARD */
+  .card{background:var(--cream);color:var(--ink);margin:16px 16px 0;border-radius:16px;
+        overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.28);}
+  .card-head{display:flex;align-items:center;gap:14px;padding:18px 20px;background:var(--green-mid);}
+  .num{flex:0 0 auto;width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--green);
+       font-size:26px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .card-head h2{font-size:22px;font-weight:900;color:#fff;line-height:1.3;}
+  .card-body{padding:20px 20px 22px;}
+
+  .figbox{display:flex;justify-content:center;margin:2px 0 16px;}
+  .figbox svg{width:100%;max-width:360px;height:auto;}
+
+  .lead-txt{font-size:18px;font-weight:800;line-height:1.6;margin-bottom:14px;}
+  .why{font-size:16px;background:#fff;border:2px solid var(--gold);border-radius:10px;
+       padding:13px 15px;line-height:1.65;}
+  .why .tag{display:inline-block;font-size:13px;font-weight:800;color:var(--green);
+            background:var(--gold);padding:2px 10px;border-radius:20px;margin-bottom:6px;}
+  .why b{color:#a5762b;}
+
+  .flow{display:flex;flex-direction:column;gap:0;margin:4px 0 4px;}
+  .flow .step{background:#fff;border:2px solid var(--gold);border-radius:12px;
+              padding:12px 14px;font-size:16px;font-weight:800;line-height:1.5;text-align:center;}
+  .flow .step .s{display:block;font-size:13px;color:var(--gold);font-weight:800;margin-bottom:2px;}
+  .flow .step b{color:var(--danger);}
+  .flow .arrow{text-align:center;font-size:22px;color:var(--gold);line-height:1.1;padding:3px 0;}
+
+  .steps{list-style:none;counter-reset:s;margin:6px 0 0;}
+  .steps li{counter-increment:s;position:relative;padding:12px 12px 12px 48px;font-size:16px;
+            font-weight:700;line-height:1.55;background:#fff;border:2px solid #e5d9b6;border-radius:10px;margin-bottom:8px;}
+  .steps li::before{content:counter(s);position:absolute;left:10px;top:11px;width:28px;height:28px;
+                    background:var(--gold);color:var(--green);border-radius:50%;font-weight:900;
+                    display:flex;align-items:center;justify-content:center;font-size:15px;}
+
+  .note{margin-top:14px;font-size:15px;font-weight:700;color:#7a5a12;background:#fbf3dc;
+        border-radius:10px;padding:12px 14px;line-height:1.6;}
+  .note .lbl{color:var(--danger);}
+  .note.timing{color:#1a3d28;background:var(--ok-bg);border:2px solid #a9d6b8;}
+  .note.timing .lbl{color:var(--ok);}
+
+  /* legend for chart */
+  .legend{display:flex;gap:16px;justify-content:center;margin-top:6px;font-size:13px;font-weight:800;}
+  .legend span{display:flex;align-items:center;gap:5px;}
+  .legend .dot{width:14px;height:14px;border-radius:3px;display:inline-block;}
+
+  /* CLOSING */
+  .close{margin:26px 16px 0;background:var(--gold);color:var(--green);border-radius:16px;
+         padding:24px 22px;text-align:center;}
+  .close .t{font-size:24px;font-weight:900;line-height:1.4;margin-bottom:10px;}
+  .close p{font-size:16px;font-weight:800;line-height:1.65;}
+  .close .row{display:flex;gap:10px;margin-top:16px;}
+  .close .row .b{flex:1;background:rgba(26,61,40,.12);border-radius:10px;padding:12px;font-size:15px;font-weight:800;line-height:1.5;}
+
+  .midcall{margin:16px 16px 0;background:#06c755;color:#fff;border-radius:16px;padding:22px 20px;
+           text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.28);}
+  .midcall .label{font-size:14px;font-weight:800;letter-spacing:.1em;margin-bottom:8px;opacity:.95;}
+  .midcall .day{font-size:34px;font-weight:900;line-height:1.3;}
+  .midcall .day u{text-decoration:none;border-bottom:5px solid rgba(255,255,255,.7);padding-bottom:2px;}
+  .midcall .msg{font-size:19px;font-weight:900;margin-top:8px;}
+
+  /* SIGN */
+  .sign{margin:24px 20px 0;padding-top:22px;border-top:1px solid rgba(196,164,77,.5);text-align:center;}
+  .sign .theory{font-size:14px;color:#c9d4c6;line-height:1.7;margin-bottom:16px;}
+  .sign .theory b{color:var(--gold-br);}
+  .sign .clinic{font-size:17px;font-weight:800;color:var(--gold-br);}
+  .sign .addr{font-size:14px;color:#c9d4c6;margin:6px 0 18px;}
+  .btns{display:flex;flex-direction:column;gap:10px;}
+  .btns a{display:block;text-decoration:none;font-size:16px;font-weight:800;padding:14px;border-radius:10px;}
+  .btns .line{background:#06c755;color:#fff;}
+  .btns .map{background:transparent;color:var(--gold-br);border:2px solid var(--gold);}
+
+  @media(max-width:380px){ .hero h1{font-size:27px;} .close .row{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">SANJO KENKO-DO ｜ 宮本様へ</div>
+    <div class="part">第2弾 ・ 天気と腰痛</div>
+    <h1>腰痛と<span class="u">"天気"</span>の、<br>意外な関係。</h1>
+    <div class="sub">
+      今日はカラッと猛暑（34℃）。<b>今日の腰の主役は"暑さと脱水"</b>なので、まずは第1弾の<b>水分</b>を。<br>
+      ただ、<b>木曜あたりから天気は下り坂</b>。ここで腰が疼く人がいます。今日はその<b>備え方</b>を覚えてください。
+    </div>
+  </div>
+
+  <!-- PART 1: PRESSURE -->
+  <div class="card">
+    <div class="card-head"><div class="num">1</div><h2>今週の気圧の流れ</h2></div>
+    <div class="card-body">
+      <div class="figbox">
+        <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="今週の気圧の流れ。月〜水は高く安定、木〜土に下がる">
+          <!-- danger shade Thu-Sat -->
+          <rect x="205" y="24" width="120" height="118" fill="#fbe6e3"/>
+          <!-- axis labels -->
+          <text x="12" y="34" font-size="13" font-weight="800" fill="#2f8a52">高い</text>
+          <text x="12" y="52" font-size="11" fill="#6b7a6f">(晴れ)</text>
+          <text x="12" y="132" font-size="13" font-weight="800" fill="#d64a3f">低い</text>
+          <text x="12" y="146" font-size="11" fill="#6b7a6f">(雨)</text>
+          <!-- baseline -->
+          <line x1="46" y1="142" x2="325" y2="142" stroke="#c9bd9a" stroke-width="2"/>
+          <!-- pressure line: Mon high -> Sat low -->
+          <polyline points="60,46 105,50 150,58 205,92 255,118 300,112"
+                    fill="none" stroke="#2f9dc9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- points -->
+          <circle cx="60" cy="46" r="6" fill="#1a3d28"/>
+          <circle cx="105" cy="50" r="5" fill="#2f9dc9"/>
+          <circle cx="150" cy="58" r="5" fill="#2f9dc9"/>
+          <circle cx="205" cy="92" r="6" fill="#d64a3f"/>
+          <circle cx="255" cy="118" r="6" fill="#d64a3f"/>
+          <circle cx="300" cy="112" r="6" fill="#d64a3f"/>
+          <!-- today marker -->
+          <text x="60" y="34" font-size="13" font-weight="900" fill="#1a3d28" text-anchor="middle">今日</text>
+          <!-- day labels -->
+          <text x="60" y="162" font-size="14" font-weight="800" fill="#16281d" text-anchor="middle">月</text>
+          <text x="105" y="162" font-size="14" font-weight="700" fill="#16281d" text-anchor="middle">火</text>
+          <text x="150" y="162" font-size="14" font-weight="700" fill="#16281d" text-anchor="middle">水</text>
+          <text x="205" y="162" font-size="14" font-weight="800" fill="#d64a3f" text-anchor="middle">木</text>
+          <text x="255" y="162" font-size="14" font-weight="800" fill="#d64a3f" text-anchor="middle">金</text>
+          <text x="300" y="162" font-size="14" font-weight="800" fill="#d64a3f" text-anchor="middle">土</text>
+          <!-- caution label -->
+          <text x="265" y="182" font-size="14" font-weight="900" fill="#d64a3f" text-anchor="middle">天気痛 注意ゾーン</text>
+        </svg>
+      </div>
+      <div class="lead-txt">月〜水は気圧が高く安定。でも<b style="color:#d64a3f">木曜から下り坂</b>で、雨と一緒に気圧が下がります。</div>
+      <div class="why">
+        <span class="tag">なぜ大事？</span><br>
+        <b>気圧がグッと下がる時に、腰や古傷が疼く人がいます。</b>宮本様は今まさに腰を痛めている最中。ここに気圧の下がりが重なると、痛みがぶり返しやすいんです。
+      </div>
+      <div class="note timing">
+        <span class="lbl">ポイント：</span>天気痛の対策は<b>「痛くなる前」が鉄則</b>。だから晴れている<b>今のうち</b>に、次の耳ケアを覚えておくのが一番効きます。
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 2: WHY -->
+  <div class="card">
+    <div class="card-head"><div class="num">2</div><h2>なぜ気圧で腰が痛む？</h2></div>
+    <div class="card-body">
+      <div class="figbox">
+        <svg viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="気圧低下を耳の内耳が察知し、自律神経が乱れて腰の痛みが増幅する流れ">
+          <!-- pressure down -->
+          <text x="34" y="40" font-size="30" font-weight="900" fill="#2f9dc9" text-anchor="middle">気圧</text>
+          <path d="M34 48 v22" stroke="#2f9dc9" stroke-width="5"/>
+          <path d="M34 74 l-9 -12 h18 z" fill="#2f9dc9"/>
+          <text x="34" y="98" font-size="13" font-weight="800" fill="#2f9dc9" text-anchor="middle">下がる</text>
+          <!-- arrow -->
+          <text x="78" y="55" font-size="22" fill="#c4a44d">▶</text>
+          <!-- ear sensor -->
+          <circle cx="128" cy="52" r="30" fill="#f0d9b8" stroke="#1a3d28" stroke-width="3"/>
+          <path d="M128 38 q12 0 12 14 q0 10 -8 14 q-6 2 -8 -2" fill="none" stroke="#1a3d28" stroke-width="3"/>
+          <text x="128" y="98" font-size="13" font-weight="800" fill="#16281d" text-anchor="middle">耳(内耳)が察知</text>
+          <!-- arrow -->
+          <text x="172" y="55" font-size="22" fill="#c4a44d">▶</text>
+          <!-- autonomic -->
+          <circle cx="222" cy="52" r="30" fill="#fbe6e3" stroke="#d64a3f" stroke-width="3"/>
+          <path d="M208 52 q7 -12 14 0 q7 12 14 0" fill="none" stroke="#d64a3f" stroke-width="4"/>
+          <text x="222" y="98" font-size="13" font-weight="800" fill="#d64a3f" text-anchor="middle">自律神経が乱れる</text>
+          <!-- arrow -->
+          <text x="266" y="55" font-size="22" fill="#c4a44d">▶</text>
+          <!-- back pain -->
+          <circle cx="312" cy="52" r="24" fill="#d64a3f"/>
+          <text x="312" y="58" font-size="22" font-weight="900" fill="#fff" text-anchor="middle">腰</text>
+          <text x="312" y="98" font-size="13" font-weight="800" fill="#d64a3f" text-anchor="middle">痛みが増幅</text>
+        </svg>
+      </div>
+      <div class="lead-txt">耳の奥の<b>「内耳」</b>が、気圧を感じるセンサーだからです。</div>
+      <div class="why">
+        <span class="tag">仕組み</span><br>
+        気圧が下がると内耳のセンサーが察知し、それが<b>ストレス</b>として脳に伝わって<b>自律神経が乱れます</b>。この乱れが、腰の痛みを増幅させる。<br>
+        だから頭痛・関節痛・古傷の痛み・神経痛は、天気で悪化しやすいんです。耳と腰は、<b>神経で一本につながっています。</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 3: EAR CARE -->
+  <div class="card">
+    <div class="card-head"><div class="num">3</div><h2>なぜ耳を温めると腰が楽？</h2></div>
+    <div class="card-body">
+      <div class="figbox">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="蒸しタオルで耳を温めると副交感神経が働き痛みが下がる">
+          <!-- face -->
+          <circle cx="90" cy="65" r="42" fill="#f0d9b8" stroke="#1a3d28" stroke-width="3"/>
+          <circle cx="78" cy="60" r="3" fill="#1a3d28"/>
+          <circle cx="102" cy="60" r="3" fill="#1a3d28"/>
+          <path d="M80 80 q10 8 20 0" stroke="#1a3d28" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- warm towel on ear -->
+          <rect x="118" y="48" width="34" height="34" rx="8" fill="#e08a2b" transform="rotate(12 135 65)"/>
+          <path d="M126 42 q4 -8 8 0 M136 42 q4 -8 8 0" stroke="#e08a2b" stroke-width="3" fill="none"/>
+          <text x="112" y="120" font-size="13" font-weight="800" fill="#e08a2b" text-anchor="middle">蒸しタオルで温める</text>
+          <!-- flow to right -->
+          <text x="182" y="45" font-size="15" font-weight="800" fill="#2f8a52">副交感神経ON</text>
+          <path d="M188 52 v14" stroke="#2f8a52" stroke-width="4"/><path d="M188 70 l-7 -10 h14 z" fill="#2f8a52"/>
+          <text x="176" y="88" font-size="15" font-weight="800" fill="#d64a3f">痛みの緊張OFF</text>
+          <path d="M188 95 v12" stroke="#d64a3f" stroke-width="4"/><path d="M188 111 l-7 -10 h14 z" fill="#d64a3f"/>
+          <text x="188" y="126" font-size="15" font-weight="900" fill="#1a3d28" text-anchor="middle">腰がゆるむ</text>
+        </svg>
+      </div>
+      <div class="lead-txt">耳は<b>「副交感神経」のスイッチ</b>だからです。</div>
+      <div class="why">
+        <span class="tag">仕組み</span><br>
+        耳には副交感神経がたくさん通っています。<b>耳を温めて刺激すると、体が"リラックスモード"に切り替わり</b>、痛みを強めていた緊張（交感神経）が下がる。結果、腰までゆるみます。
+      </div>
+      <p style="font-size:16px;font-weight:800;margin:16px 0 8px;color:#16281d;">やり方（30秒）</p>
+      <ol class="steps">
+        <li>レンジで温めた<b>蒸しタオルを耳に当てて温める</b>（気持ちいい温かさで）。</li>
+        <li>両耳を指で軽くつまみ、<b>上・下・横に5秒ずつ引っぱる</b>。</li>
+        <li>耳を軽く引っぱりながら、<b>後ろに5回ゆっくり回す</b>。</li>
+        <li>耳を包むように<b>折り曲げて5秒キープ</b>。</li>
+      </ol>
+      <div class="note timing">
+        <span class="lbl">いつやる？</span>天気が崩れる<b>前（水〜木）</b>に。痛くなってからより、<b>出る前</b>が何倍も効きます。1日3回（朝昼晩）が目安。
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="close">
+    <div class="t">今日と、これから。</div>
+    <p>やることは、体の外と内の両方から。</p>
+    <div class="row">
+      <div class="b">☀️ 今日（暑い日）<br>水＋塩でしっかり水分</div>
+      <div class="b">🌧️ 木曜の前に<br>耳を温めて備える</div>
+    </div>
+  </div>
+
+  <!-- MID REPORT -->
+  <div class="midcall">
+    <div class="label">＼ 忘れずに ／</div>
+    <div class="day"><u>水曜日</u>に</div>
+    <div class="msg">中間報告をLINEでください</div>
+  </div>
+
+  <!-- SIGN -->
+  <div class="sign">
+    <div class="theory">
+      耳は、<b>自律神経へつながる反射の入力装置</b>。そこに「温める」という穏やかな入力を入れると、痛みを増幅する緊張がゆるみます。腰を触らずに、腰の痛みの"増幅器"を下げにいく。<br>― 神経反射入力装置論 ―
+    </div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="addr">高松市由良町・由良川東公園のそば</div>
+    <div class="btns">
+      <a class="line" href="https://lin.ee/dwRtwDv">💬 LINEで相談・報告する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで見る</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
