@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宮本様へ｜3日間のセルフケア</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-mid:#24513a;
+    --gold:#c4a44d;
+    --gold-br:#e0c574;
+    --cream:#f5f0e4;
+    --ink:#16281d;
+    --ice:#2f9dc9;
+    --ice-bg:#e2f2f8;
+    --danger:#d64a3f;
+    --danger-bg:#fbe6e3;
+    --ok:#2f8a52;
+    --ok-bg:#e6f3ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    background:var(--green);
+    color:var(--cream);
+    line-height:1.7;
+    padding:0 0 40px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:600px;margin:0 auto;}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:34px 24px 30px;
+    text-align:center;
+    border-bottom:3px solid var(--gold);
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:.22em;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:20px;
+  }
+  .hero .lead{
+    font-size:19px;
+    color:var(--cream);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:38px;
+    line-height:1.35;
+    font-weight:900;
+    color:var(--gold-br);
+    letter-spacing:.01em;
+    margin-bottom:4px;
+  }
+  .hero h1 .big{
+    font-size:52px;
+    color:#fff;
+    display:inline-block;
+  }
+  .hero .sub{
+    font-size:16px;
+    color:#d7e2d5;
+    margin-top:18px;
+    text-align:left;
+    background:rgba(0,0,0,.18);
+    border-left:4px solid var(--gold);
+    padding:14px 16px;
+    border-radius:6px;
+  }
+  .hero .sub b{color:var(--gold-br);}
+
+  .count{
+    text-align:center;
+    font-size:16px;
+    font-weight:700;
+    color:var(--gold-br);
+    padding:22px 24px 6px;
+    letter-spacing:.05em;
+  }
+
+  /* ===== UNIT CARD ===== */
+  .card{
+    background:var(--cream);
+    color:var(--ink);
+    margin:16px 16px 0;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,.28);
+  }
+  .card-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:18px 20px;
+    background:var(--green-mid);
+  }
+  .num{
+    flex:0 0 auto;
+    width:52px;height:52px;
+    border-radius:50%;
+    background:var(--gold);
+    color:var(--green);
+    font-size:28px;font-weight:900;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-head h2{
+    font-size:23px;
+    font-weight:900;
+    color:#fff;
+    line-height:1.3;
+  }
+  .card-body{padding:20px 20px 22px;}
+
+  .figbox{
+    display:flex;justify-content:center;
+    margin:2px 0 16px;
+  }
+  .figbox svg{width:100%;max-width:340px;height:auto;}
+
+  .what{
+    font-size:18px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:14px;
+  }
+  .why{
+    font-size:16px;
+    background:#fff;
+    border:2px solid var(--gold);
+    border-radius:10px;
+    padding:13px 15px;
+    line-height:1.65;
+  }
+  .why .tag{
+    display:inline-block;
+    font-size:13px;font-weight:800;
+    color:var(--green);
+    background:var(--gold);
+    padding:2px 10px;border-radius:20px;
+    margin-bottom:6px;
+  }
+  .why b{color:#a5762b;}
+
+  .rules{display:flex;gap:10px;margin-top:14px;}
+  .rule{
+    flex:1;
+    border-radius:10px;
+    padding:12px 12px;
+    font-size:15px;font-weight:800;
+    line-height:1.5;
+  }
+  .rule.ok{background:var(--ok-bg);color:var(--ok);border:2px solid #a9d6b8;}
+  .rule.ng{background:var(--danger-bg);color:var(--danger);border:2px solid #edb7b1;}
+  .rule .mark{font-size:22px;display:block;margin-bottom:2px;}
+
+  .note{
+    margin-top:14px;
+    font-size:15px;
+    font-weight:700;
+    color:#7a5a12;
+    background:#fbf3dc;
+    border-radius:10px;
+    padding:12px 14px;
+    line-height:1.6;
+  }
+  .note .lbl{color:var(--danger);}
+
+  /* ===== CLOSING ===== */
+  .close{
+    margin:26px 16px 0;
+    background:var(--gold);
+    color:var(--green);
+    border-radius:16px;
+    padding:24px 22px;
+    text-align:center;
+  }
+  .close .big3{font-size:30px;font-weight:900;line-height:1.4;margin-bottom:8px;}
+  .close p{font-size:17px;font-weight:800;line-height:1.6;}
+  .close .after{
+    margin-top:16px;
+    background:rgba(26,61,40,.12);
+    border-radius:10px;
+    padding:13px 14px;
+    font-size:16px;font-weight:800;
+  }
+
+  /* ===== MID REPORT CALLOUT ===== */
+  .midcall{
+    margin:16px 16px 0;
+    background:#06c755;
+    color:#fff;
+    border-radius:16px;
+    padding:26px 20px;
+    text-align:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.28);
+  }
+  .midcall .label{
+    font-size:15px;font-weight:800;letter-spacing:.1em;
+    margin-bottom:10px;opacity:.95;
+  }
+  .midcall .day{
+    font-size:46px;font-weight:900;line-height:1.25;
+  }
+  .midcall .day u{text-decoration:none;border-bottom:5px solid rgba(255,255,255,.7);padding-bottom:2px;}
+  .midcall .msg{font-size:22px;font-weight:900;margin-top:12px;line-height:1.5;}
+
+  @media(max-width:380px){ .midcall .day{font-size:38px;} .midcall .msg{font-size:19px;} }
+
+  /* ===== SIGN ===== */
+  .sign{
+    margin:24px 20px 0;
+    padding-top:22px;
+    border-top:1px solid rgba(196,164,77,.5);
+    text-align:center;
+  }
+  .sign .theory{
+    font-size:14px;color:#c9d4c6;line-height:1.7;margin-bottom:16px;
+  }
+  .sign .theory b{color:var(--gold-br);}
+  .sign .clinic{font-size:17px;font-weight:800;color:var(--gold-br);}
+  .sign .addr{font-size:14px;color:#c9d4c6;margin:6px 0 18px;}
+  .btns{display:flex;flex-direction:column;gap:10px;}
+  .btns a{
+    display:block;text-decoration:none;
+    font-size:16px;font-weight:800;
+    padding:14px;border-radius:10px;
+  }
+  .btns .line{background:#06c755;color:#fff;}
+  .btns .map{background:transparent;color:var(--gold-br);border:2px solid var(--gold);}
+
+  @media(max-width:380px){
+    .hero h1{font-size:32px;}
+    .hero h1 .big{font-size:44px;}
+    .rules{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">SANJO KENKO-DO ｜ 宮本様へ</div>
+    <div class="lead">安心してください。</div>
+    <h1><span class="big">3日</span>で、<br>ラクになります。</h1>
+    <div class="sub">
+      今の痛みは、腰が<b>「これ以上動くな」</b>と全力でブレーキをかけている音です。<br>
+      壊れる痛みではありません。やることは、<b>たった3つ</b>だけ。
+    </div>
+  </div>
+
+  <div class="count">— この3つを、3日間 —</div>
+
+  <!-- UNIT 1 : ICING -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">1</div>
+      <h2>氷水で冷やす</h2>
+    </div>
+    <div class="card-body">
+      <div class="figbox">
+        <svg viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="氷水で神経の痛み信号を止める図">
+          <!-- ice cup -->
+          <rect x="16" y="40" width="70" height="80" rx="8" fill="#e2f2f8" stroke="#2f9dc9" stroke-width="3"/>
+          <circle cx="34" cy="60" r="8" fill="#bfe4f2"/>
+          <circle cx="56" cy="72" r="9" fill="#bfe4f2"/>
+          <circle cx="40" cy="88" r="7" fill="#bfe4f2"/>
+          <circle cx="64" cy="96" r="8" fill="#bfe4f2"/>
+          <text x="51" y="138" font-size="15" font-weight="800" fill="#2f9dc9" text-anchor="middle">氷水</text>
+          <!-- arrow -->
+          <path d="M96 80 H150" stroke="#16281d" stroke-width="4" fill="none"/>
+          <path d="M150 80 l-12 -7 v14 z" fill="#16281d"/>
+          <!-- nerve line -->
+          <path d="M162 80 q20 -26 40 0 q20 26 40 0" stroke="#d64a3f" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- block X -->
+          <circle cx="242" cy="80" r="26" fill="#fff" stroke="#d64a3f" stroke-width="4"/>
+          <path d="M230 68 L254 92 M254 68 L230 92" stroke="#d64a3f" stroke-width="5" stroke-linecap="round"/>
+          <text x="242" y="138" font-size="14" font-weight="800" fill="#d64a3f" text-anchor="middle">痛み信号ストップ</text>
+        </svg>
+      </div>
+      <div class="what">氷水でキンキンに。<br>感覚がなくなるまで（約7分）冷やして、すぐ外す。</div>
+      <div class="why">
+        <span class="tag">なぜ効く？</span><br>
+        鋭い「ズキッ！」という痛みは、<b>氷水で神経の信号そのものを止められます。</b>感覚が消えれば、痛みも消えます。
+      </div>
+      <div class="rules">
+        <div class="rule ok"><span class="mark">◯</span>氷水（袋＋薄い布1枚）</div>
+        <div class="rule ng"><span class="mark">✕</span>湿布は絶対ダメ</div>
+      </div>
+      <div class="note">
+        <span class="lbl">湿布がダメな理由：</span>湿布は「冷たい気がするだけ」で、実際は冷えていません。だから痛みの信号は止まりません。<br>
+        <span class="lbl">痩せ型の宮本様へ：</span>感覚が消えたら時間に関係なくすぐ外す／寝ながらはNG／再開は皮膚が戻る60分後に。
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT 2 : POSITIONAL RELEASE -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">2</div>
+      <h2>一番ラクな姿勢でいる</h2>
+    </div>
+    <div class="card-body">
+      <div class="figbox">
+        <svg viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="クッションで丸まった楽な姿勢の図">
+          <!-- floor -->
+          <rect x="10" y="120" width="320" height="10" rx="5" fill="#d8cdb2"/>
+          <!-- cushion -->
+          <ellipse cx="230" cy="112" rx="70" ry="20" fill="#c4a44d"/>
+          <!-- body curled (fetal) -->
+          <path d="M60 112
+                   q-8 -34 24 -44
+                   q30 -10 44 12
+                   q8 14 -4 26
+                   q26 -4 34 14
+                   q6 16 -14 22
+                   q-40 8 -84 4
+                   q-24 -4 -30 -26 z"
+                fill="#2f6b47" stroke="#1a3d28" stroke-width="3"/>
+          <!-- head -->
+          <circle cx="72" cy="78" r="20" fill="#f0d9b8" stroke="#1a3d28" stroke-width="3"/>
+          <!-- calm face -->
+          <path d="M64 76 q4 4 8 0" stroke="#1a3d28" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="66" cy="72" r="1.8" fill="#1a3d28"/>
+          <circle cx="78" cy="72" r="1.8" fill="#1a3d28"/>
+          <text x="180" y="145" font-size="14" font-weight="800" fill="#1a3d28" text-anchor="middle">クッションで丸まる・胎児の姿勢</text>
+        </svg>
+      </div>
+      <div class="what">クッションで丸まる・横向きで膝を抱える。<br>自分が「一番ラク」と感じる姿勢を探して、そこに居る。</div>
+      <div class="why">
+        <span class="tag">なぜ効く？</span><br>
+        <b>ラクな姿勢に居ること自体が、腰のブレーキ（身構え）を解く治療</b>です。楽な姿勢＝腰が休める姿勢。休めば、過敏がおさまります。
+      </div>
+      <div class="rules">
+        <div class="rule ok"><span class="mark">◯</span>背もたれのある椅子</div>
+        <div class="rule ng"><span class="mark">✕</span>地べたに直座り</div>
+      </div>
+      <div class="note">
+        <span class="lbl">2〜3日目からは：</span>ラクな姿勢を"基地"にして、<b>痛くない範囲でほんの少しだけ</b>動かしてみてください。固めきらない方が、早く戻ります。
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT 3 : HYDRATION -->
+  <div class="card">
+    <div class="card-head">
+      <div class="num">3</div>
+      <h2>水＋塩を飲む</h2>
+    </div>
+    <div class="card-body">
+      <div class="figbox">
+        <svg viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1日2リットル、1時間300ミリリットル、塩を入れる図">
+          <!-- bottle -->
+          <rect x="30" y="30" width="46" height="14" rx="3" fill="#2f9dc9"/>
+          <rect x="24" y="44" width="58" height="86" rx="12" fill="#e2f2f8" stroke="#2f9dc9" stroke-width="3"/>
+          <rect x="24" y="86" width="58" height="44" rx="0" fill="#7fc6e0"/>
+          <rect x="24" y="120" width="58" height="10" rx="0" fill="#7fc6e0"/>
+          <text x="53" y="112" font-size="17" font-weight="900" fill="#0e5b78" text-anchor="middle">2L</text>
+          <!-- plus -->
+          <text x="104" y="92" font-size="30" font-weight="900" fill="#16281d" text-anchor="middle">＋</text>
+          <!-- salt -->
+          <path d="M128 60 h34 l-4 20 h-26 z" fill="#fff" stroke="#16281d" stroke-width="2.5"/>
+          <rect x="134" y="52" width="22" height="10" rx="3" fill="#c4a44d"/>
+          <circle cx="140" cy="94" r="2" fill="#16281d"/>
+          <circle cx="150" cy="100" r="2" fill="#16281d"/>
+          <circle cx="146" cy="108" r="2" fill="#16281d"/>
+          <text x="145" y="128" font-size="13" font-weight="800" fill="#16281d" text-anchor="middle">塩ひとつまみ</text>
+          <!-- clock 300ml/hr -->
+          <circle cx="258" cy="82" r="40" fill="#fff" stroke="#c4a44d" stroke-width="4"/>
+          <text x="258" y="76" font-size="20" font-weight="900" fill="#1a3d28" text-anchor="middle">300</text>
+          <text x="258" y="96" font-size="13" font-weight="800" fill="#1a3d28" text-anchor="middle">mL/1時間</text>
+        </svg>
+      </div>
+      <div class="what">1日<b>2L</b>は絶対。1時間に<b>約300mL</b>ずつ。<br>水には<b>必ず塩をひとつまみ</b>入れる。</div>
+      <div class="why">
+        <span class="tag">じつは、これが最大の原因</span><br>
+        今回の痛み、<b>「脱水」が大きな引き金</b>です。水が足りないと、腰の筋肉はカラカラに乾いてこわばります。氷でもマッサージでも、ここは直せません。
+      </div>
+      <div class="note">
+        <span class="lbl">痩せ型の宮本様へ：</span>宮本様は水分の蓄えが少ないタイプ。しかも今日は33℃。<b>水＋塩がないと、治りません。</b>ここだけは、必ず。
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="close">
+    <div class="big3">3日間、この3つだけ。</div>
+    <p>難しいことは、何もしなくて大丈夫です。</p>
+    <div class="after">3日後に「痛みがどのくらい残ったか」を、<br>LINEで教えてください。</div>
+  </div>
+
+  <!-- MID REPORT -->
+  <div class="midcall">
+    <div class="label">＼ お願いです ／</div>
+    <div class="day"><u>水曜日</u>に</div>
+    <div class="msg">中間報告をLINEでください</div>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="sign">
+    <div class="theory">
+      腰は、<b>神経の反射を入力する装置</b>です。正しい入力（冷却・楽な姿勢・水分）を3日続ければ、身体は自分で答えを出します。<br>― 神経反射入力装置論 ―
+    </div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="addr">高松市由良町・由良川東公園のそば</div>
+    <div class="btns">
+      <a class="line" href="https://lin.ee/dwRtwDv">💬 LINEで相談・報告する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで見る</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
