@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜藤原愛美様｜三条健康堂接骨院</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-deep:#12291b;
+    --gold:#c4a44d;
+    --gold-light:#e0c87e;
+    --paper:#f7f3ea;
+    --ink:#22281f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.9;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+
+  /* ===== COVER ===== */
+  .cover{
+    background:linear-gradient(160deg,var(--green) 0%,var(--green-deep) 100%);
+    color:#fff;
+    padding:70px 28px 60px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-size:14px;letter-spacing:.42em;color:var(--gold);
+    font-weight:700;margin-bottom:26px;
+  }
+  .doc-type{
+    font-family:'Noto Serif JP',serif;font-size:15px;letter-spacing:.5em;
+    color:rgba(255,255,255,.75);margin-bottom:14px;
+  }
+  .patient-name{
+    font-family:'Noto Serif JP',serif;font-size:38px;font-weight:900;
+    letter-spacing:.06em;margin-bottom:8px;
+  }
+  .visit-date{font-size:15px;color:rgba(255,255,255,.7);letter-spacing:.2em;margin-bottom:44px;}
+  .lead{
+    font-family:'Noto Serif JP',serif;font-size:27px;font-weight:700;
+    line-height:1.7;color:var(--gold-light);
+  }
+  .lead small{
+    display:block;font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:400;
+    color:rgba(255,255,255,.85);margin-top:20px;line-height:2;
+  }
+
+  /* ===== SECTION HEAD ===== */
+  section{padding:56px 24px;}
+  section.alt{background:#fff;}
+  .part-label{
+    display:inline-block;background:var(--green);color:var(--gold-light);
+    font-size:14px;font-weight:700;letter-spacing:.25em;
+    padding:6px 18px;border-radius:3px;margin-bottom:14px;
+  }
+  h2{
+    font-family:'Noto Serif JP',serif;font-size:27px;font-weight:900;
+    color:var(--green);line-height:1.5;margin-bottom:10px;
+  }
+  .h2-sub{font-size:16px;color:#5a614f;margin-bottom:34px;}
+
+  h3{
+    font-size:20px;font-weight:700;color:var(--green);
+    border-left:6px solid var(--gold);padding-left:14px;
+    margin:44px 0 18px;line-height:1.5;
+  }
+  p.body-text{font-size:17px;margin-bottom:16px;}
+  .em{color:var(--green);font-weight:700;background:linear-gradient(transparent 65%,rgba(196,164,77,.35) 65%);}
+
+  .figure{
+    background:#fff;border:1px solid #e2ddce;border-radius:14px;
+    padding:26px 18px;margin:22px 0;
+  }
+  section.alt .figure{background:var(--paper);}
+  .fig-caption{
+    text-align:center;font-size:14px;color:#6b7261;margin-top:12px;line-height:1.7;
+  }
+
+  /* big stat */
+  .big-stat{
+    background:var(--green);color:#fff;border-radius:14px;
+    text-align:center;padding:34px 20px;margin:30px 0;
+  }
+  .big-stat .num{
+    font-family:'Noto Serif JP',serif;font-size:56px;font-weight:900;
+    color:var(--gold-light);line-height:1.1;
+  }
+  .big-stat .label{font-size:17px;font-weight:500;margin-top:8px;}
+
+  /* note box */
+  .note{
+    border:2px solid var(--gold);border-radius:12px;background:#fdfaf1;
+    padding:20px 22px;margin:26px 0;font-size:16px;
+  }
+  .note b{color:var(--green);}
+
+  /* self-care steps */
+  .step{
+    display:flex;align-items:flex-start;gap:16px;margin:26px 0;
+  }
+  .step-num{
+    flex:0 0 52px;height:52px;border-radius:50%;
+    background:var(--gold);color:var(--green-deep);
+    font-family:'Noto Serif JP',serif;font-size:26px;font-weight:900;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step-body h4{font-size:19px;font-weight:700;color:var(--green);margin-bottom:6px;line-height:1.5;}
+  .step-body p{font-size:16px;}
+  .must{
+    display:inline-block;background:#8a2f2f;color:#fff;font-size:13px;font-weight:700;
+    padding:2px 10px;border-radius:3px;letter-spacing:.15em;margin-left:8px;vertical-align:middle;
+  }
+
+  /* signature */
+  .signature{
+    background:linear-gradient(160deg,var(--green) 0%,var(--green-deep) 100%);
+    color:#fff;padding:56px 26px;text-align:center;
+  }
+  .signature .philosophy{
+    font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;
+    color:var(--gold-light);margin-bottom:16px;line-height:1.8;
+  }
+  .signature .phil-text{font-size:15px;color:rgba(255,255,255,.85);max-width:560px;margin:0 auto 36px;line-height:2;}
+  .cta-links{display:flex;flex-direction:column;gap:14px;max-width:420px;margin:0 auto;}
+  .cta-links a{
+    display:block;text-decoration:none;font-size:17px;font-weight:700;
+    padding:16px;border-radius:10px;letter-spacing:.05em;
+  }
+  .cta-line{background:#06c755;color:#fff;}
+  .cta-map{background:var(--gold);color:var(--green-deep);}
+  .clinic-name{
+    margin-top:36px;font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;letter-spacing:.15em;
+  }
+  .clinic-loc{font-size:14px;color:rgba(255,255,255,.7);margin-top:6px;}
+
+  @media(max-width:480px){
+    .patient-name{font-size:31px;}
+    .lead{font-size:22px;}
+    h2{font-size:23px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= COVER ================= -->
+<div class="cover">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <div class="doc-type">施 術 報 告 書</div>
+  <div class="patient-name">藤原 愛美 様</div>
+  <div class="visit-date">2026.7.14</div>
+  <div class="lead">
+    痛いのは、足の裏。<br>犯人は、右のかかとでした。
+    <small>
+      モートン病のような足裏の痛み。<br>
+      でも本当の原因は、痛い場所から<br>いちばん遠いところに隠れていました。
+    </small>
+  </div>
+</div>
+
+<!-- ================= PART 1 ================= -->
+<section class="alt">
+  <div class="part-label">第 1 部</div>
+  <h2>痛みの「犯人」を追いつめた推理</h2>
+  <div class="h2-sub">読むより、まずこの図を見てください。今日の施術のすべてです。</div>
+
+  <!-- 因果チェーン図 -->
+  <div class="figure">
+    <svg viewBox="0 0 700 560" width="100%" role="img" aria-label="痛みの因果チェーン図">
+      <defs>
+        <marker id="arw" markerWidth="10" markerHeight="10" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#c4a44d"/>
+        </marker>
+      </defs>
+      <!-- Step boxes -->
+      <g font-family="'Noto Sans JP',sans-serif">
+        <rect x="60" y="20" width="580" height="80" rx="12" fill="#1a3d28"/>
+        <text x="350" y="53" text-anchor="middle" fill="#e0c87e" font-size="24" font-weight="900">① 過去の捻挫のあと</text>
+        <text x="350" y="83" text-anchor="middle" fill="#ffffff" font-size="17">右のかかとの骨に、歪みが残っていた</text>
+
+        <line x1="350" y1="100" x2="350" y2="130" stroke="#c4a44d" stroke-width="4" marker-end="url(#arw)"/>
+
+        <rect x="60" y="140" width="580" height="80" rx="12" fill="#2a5138"/>
+        <text x="350" y="173" text-anchor="middle" fill="#e0c87e" font-size="24" font-weight="900">② 体が右足に乗れない</text>
+        <text x="350" y="203" text-anchor="middle" fill="#ffffff" font-size="17">デスクワークと子育てで、重心が左へ大きく偏る</text>
+
+        <line x1="350" y1="220" x2="350" y2="250" stroke="#c4a44d" stroke-width="4" marker-end="url(#arw)"/>
+
+        <rect x="60" y="260" width="580" height="80" rx="12" fill="#2a5138"/>
+        <text x="350" y="293" text-anchor="middle" fill="#e0c87e" font-size="24" font-weight="900">③ 左半身が働きすぎる</text>
+        <text x="350" y="323" text-anchor="middle" fill="#ffffff" font-size="17">左の肩・肋骨・お尻・もも裏・アキレス腱がカチカチに</text>
+
+        <line x1="350" y1="340" x2="350" y2="370" stroke="#c4a44d" stroke-width="4" marker-end="url(#arw)"/>
+
+        <rect x="60" y="380" width="580" height="80" rx="12" fill="#8a2f2f"/>
+        <text x="350" y="413" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="900">④ 足の裏に痛み（結果）</text>
+        <text x="350" y="443" text-anchor="middle" fill="#ffffff" font-size="17">モートン病のような痛みとして表面化</text>
+
+        <line x1="350" y1="460" x2="350" y2="490" stroke="#c4a44d" stroke-width="4" marker-end="url(#arw)"/>
+
+        <rect x="60" y="500" width="580" height="50" rx="12" fill="none" stroke="#c4a44d" stroke-width="3"/>
+        <text x="350" y="533" text-anchor="middle" fill="#1a3d28" font-size="19" font-weight="700">だから施術は ①〜③ を全部リリースしました</text>
+      </g>
+    </svg>
+    <div class="fig-caption">痛い場所（④）ではなく、原因の連鎖（①→②→③）を上流から断つのが今日の施術です。</div>
+  </div>
+
+  <!-- 重心の偏り -->
+  <h3>重心は、これくらい左に寄っていました</h3>
+  <div class="figure">
+    <svg viewBox="0 0 700 300" width="100%" role="img" aria-label="左右の重心バランス図">
+      <g font-family="'Noto Sans JP',sans-serif">
+        <!-- left bar -->
+        <rect x="80" y="60" width="220" height="170" rx="10" fill="#1a3d28"/>
+        <text x="190" y="145" text-anchor="middle" fill="#e0c87e" font-size="52" font-weight="900">左</text>
+        <text x="190" y="195" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">乗りすぎ</text>
+        <!-- right bar -->
+        <rect x="400" y="140" width="220" height="90" rx="10" fill="#c9c2ac"/>
+        <text x="510" y="190" text-anchor="middle" fill="#5a614f" font-size="40" font-weight="900">右</text>
+        <text x="510" y="218" text-anchor="middle" fill="#5a614f" font-size="16" font-weight="700">乗れていない</text>
+        <!-- base line -->
+        <line x1="50" y1="230" x2="650" y2="230" stroke="#8a8570" stroke-width="3"/>
+        <text x="350" y="270" text-anchor="middle" fill="#6b7261" font-size="16">右かかとの歪みが「右足に体重を乗せられない体」を作っていた</text>
+        <text x="350" y="40" text-anchor="middle" fill="#1a3d28" font-size="20" font-weight="900">体重のかかり方（イメージ）</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ボディマップ -->
+  <h3>今日リリースしたポイント（全身マップ）</h3>
+  <div class="figure">
+    <svg viewBox="0 0 700 620" width="100%" role="img" aria-label="施術部位ボディマップ（背面）">
+      <g font-family="'Noto Sans JP',sans-serif">
+        <text x="350" y="34" text-anchor="middle" fill="#1a3d28" font-size="20" font-weight="900">背面から見た図（向かって右＝藤原様の左）</text>
+        <!-- body silhouette (back view) -->
+        <g fill="#2a5138">
+          <circle cx="350" cy="95" r="30"/>
+          <rect x="308" y="128" width="84" height="130" rx="26"/>
+          <rect x="285" y="132" width="26" height="95" rx="13"/><!-- right arm (viewer left) -->
+          <rect x="389" y="132" width="26" height="95" rx="13"/><!-- left arm -->
+          <rect x="312" y="258" width="76" height="70" rx="22"/><!-- hips -->
+          <rect x="316" y="328" width="30" height="130" rx="14"/><!-- right thigh -->
+          <rect x="354" y="328" width="30" height="130" rx="14"/><!-- left thigh -->
+          <rect x="318" y="458" width="26" height="110" rx="12"/><!-- right calf -->
+          <rect x="356" y="458" width="26" height="110" rx="12"/><!-- left calf -->
+          <rect x="310" y="568" width="36" height="18" rx="8"/><!-- right foot -->
+          <rect x="354" y="568" width="36" height="18" rx="8"/><!-- left foot -->
+        </g>
+
+        <!-- LEFT side trigger points (gold) : viewer right -->
+        <g>
+          <circle cx="392" cy="140" r="13" fill="#c4a44d" stroke="#fff" stroke-width="3"/>
+          <circle cx="390" cy="190" r="13" fill="#c4a44d" stroke="#fff" stroke-width="3"/>
+          <circle cx="372" cy="288" r="13" fill="#c4a44d" stroke="#fff" stroke-width="3"/>
+          <circle cx="369" cy="400" r="13" fill="#c4a44d" stroke="#fff" stroke-width="3"/>
+          <circle cx="369" cy="540" r="13" fill="#c4a44d" stroke="#fff" stroke-width="3"/>
+        </g>
+        <!-- labels left side -->
+        <g font-size="18" font-weight="700" fill="#1a3d28">
+          <line x1="405" y1="140" x2="480" y2="120" stroke="#c4a44d" stroke-width="2"/>
+          <text x="488" y="126">左の肩</text>
+          <line x1="403" y1="190" x2="480" y2="185" stroke="#c4a44d" stroke-width="2"/>
+          <text x="488" y="191">左の肋骨まわり</text>
+          <line x1="385" y1="288" x2="480" y2="270" stroke="#c4a44d" stroke-width="2"/>
+          <text x="488" y="276">左のお尻</text>
+          <line x1="382" y1="400" x2="480" y2="390" stroke="#c4a44d" stroke-width="2"/>
+          <text x="488" y="396">左のハムストリング</text>
+          <line x1="382" y1="540" x2="480" y2="530" stroke="#c4a44d" stroke-width="2"/>
+          <text x="488" y="536">左のアキレス腱</text>
+        </g>
+
+        <!-- RIGHT side released (white outline) : viewer left -->
+        <g>
+          <circle cx="298" cy="140" r="11" fill="none" stroke="#e0c87e" stroke-width="4"/>
+          <circle cx="328" cy="288" r="11" fill="none" stroke="#e0c87e" stroke-width="4"/>
+          <circle cx="331" cy="400" r="11" fill="none" stroke="#e0c87e" stroke-width="4"/>
+          <circle cx="331" cy="510" r="11" fill="none" stroke="#e0c87e" stroke-width="4"/>
+          <circle cx="322" cy="577" r="11" fill="#8a2f2f" stroke="#fff" stroke-width="3"/>
+        </g>
+        <g font-size="18" font-weight="700" fill="#1a3d28" text-anchor="end">
+          <line x1="285" y1="140" x2="215" y2="125" stroke="#a89b6d" stroke-width="2"/>
+          <text x="208" y="131">右の肩</text>
+          <line x1="315" y1="288" x2="215" y2="275" stroke="#a89b6d" stroke-width="2"/>
+          <text x="208" y="281">右のお尻</text>
+          <line x1="318" y1="400" x2="215" y2="392" stroke="#a89b6d" stroke-width="2"/>
+          <text x="208" y="398">右の太もも</text>
+          <line x1="318" y1="510" x2="215" y2="500" stroke="#a89b6d" stroke-width="2"/>
+          <text x="208" y="506">右のふくらはぎ</text>
+          <line x1="309" y1="577" x2="215" y2="570" stroke="#8a2f2f" stroke-width="2"/>
+          <text x="208" y="576" fill="#8a2f2f">右のかかと（歪みの起点）</text>
+        </g>
+
+        <!-- legend -->
+        <g font-size="15" fill="#1a3d28">
+          <circle cx="90" cy="60" r="9" fill="#c4a44d" stroke="#fff" stroke-width="2"/>
+          <text x="106" y="66">カチカチのトリガーポイント（左側）</text>
+          <circle cx="90" cy="88" r="8" fill="none" stroke="#e0c87e" stroke-width="4"/>
+          <text x="106" y="94">あわせてリリースした部位（右側）</text>
+        </g>
+      </g>
+    </svg>
+    <div class="fig-caption">左半身のトリガーポイントは全てリリース。右足側（お尻・太もも・ふくらはぎ・足）も全てリリースしました。</div>
+  </div>
+
+  <div class="big-stat">
+    <div class="num">ほぼ100%</div>
+    <div class="label">今日の施術で、体の歪みをリリースしました</div>
+  </div>
+
+  <!-- 揉み返しグラフ -->
+  <h3>この2日間だけ、知っておいてください</h3>
+  <div class="figure">
+    <svg viewBox="0 0 700 300" width="100%" role="img" aria-label="施術後2日間の経過グラフ">
+      <g font-family="'Noto Sans JP',sans-serif">
+        <line x1="70" y1="230" x2="650" y2="230" stroke="#8a8570" stroke-width="3"/>
+        <line x1="70" y1="230" x2="70" y2="50" stroke="#8a8570" stroke-width="3"/>
+        <path d="M 100 170 Q 220 60 340 110 T 620 210" fill="none" stroke="#1a3d28" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="100" cy="170" r="10" fill="#c4a44d" stroke="#fff" stroke-width="3"/>
+        <circle cx="300" cy="92" r="10" fill="#8a2f2f" stroke="#fff" stroke-width="3"/>
+        <circle cx="620" cy="210" r="10" fill="#1a3d28" stroke="#fff" stroke-width="3"/>
+        <text x="100" y="262" text-anchor="middle" font-size="17" font-weight="700" fill="#1a3d28">今日</text>
+        <text x="300" y="262" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">翌日</text>
+        <text x="620" y="262" text-anchor="middle" font-size="17" font-weight="700" fill="#1a3d28">2日後</text>
+        <text x="300" y="60" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">揉み返しが出るかも</text>
+        <text x="600" y="185" text-anchor="end" font-size="17" font-weight="700" fill="#1a3d28">スッと楽になります</text>
+        <text x="40" y="150" text-anchor="middle" font-size="15" fill="#6b7261" transform="rotate(-90 40 150)">だるさ・重さ</text>
+      </g>
+    </svg>
+    <div class="fig-caption">深く緩めた分、揉み返しが来るかもしれません。でも心配いりません。<b>2日ほどですぐ楽になります。</b></div>
+  </div>
+</section>
+
+<!-- ================= PART 2 ================= -->
+<section>
+  <div class="part-label">第 2 部</div>
+  <h2>セルフケアは、これだけでいい</h2>
+  <div class="h2-sub">今回は、足の裏のセルフケア<span class="em">だけ</span>で治ると考えています。お渡ししたTMX製の足裏マッサージツールを、毎日使ってください。</div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>右のかかとで、ツールを踏みつける<span class="must">必ず</span></h4>
+      <p>ツールの上に<span class="em">右のかかと</span>を置いて、グッと踏みつける。これで歪みの起点だった右かかとの骨が整っていきます。すべてはここから。まずこれを習慣にしてください。</p>
+    </div>
+  </div>
+
+  <div class="figure">
+    <svg viewBox="0 0 700 320" width="100%" role="img" aria-label="右かかとでツールを踏む図">
+      <g font-family="'Noto Sans JP',sans-serif">
+        <!-- floor -->
+        <line x1="60" y1="270" x2="640" y2="270" stroke="#8a8570" stroke-width="4"/>
+        <!-- tool -->
+        <rect x="290" y="232" width="120" height="38" rx="19" fill="#c4a44d"/>
+        <text x="350" y="300" text-anchor="middle" font-size="16" font-weight="700" fill="#6b7261">TMX 足裏ツール</text>
+        <!-- lower leg + foot -->
+        <rect x="322" y="60" width="46" height="130" rx="20" fill="#1a3d28"/>
+        <path d="M 322 180 Q 318 225 335 232 L 460 232 Q 472 220 458 208 Q 420 196 380 194 L 368 186 Z" fill="#2a5138"/>
+        <!-- heel marker -->
+        <circle cx="340" cy="222" r="16" fill="#8a2f2f" stroke="#fff" stroke-width="4"/>
+        <line x1="340" y1="205" x2="340" y2="150" stroke="#8a2f2f" stroke-width="0"/>
+        <text x="230" y="200" text-anchor="end" font-size="20" font-weight="900" fill="#8a2f2f">かかとを</text>
+        <text x="230" y="228" text-anchor="end" font-size="20" font-weight="900" fill="#8a2f2f">ツールの真上に</text>
+        <line x1="240" y1="215" x2="318" y2="222" stroke="#8a2f2f" stroke-width="3"/>
+        <!-- downward force arrows -->
+        <g stroke="#1a3d28" stroke-width="6" stroke-linecap="round">
+          <line x1="345" y1="30" x2="345" y2="55"/>
+        </g>
+        <path d="M 337 52 L 345 66 L 353 52 Z" fill="#1a3d28"/>
+        <text x="380" y="45" font-size="19" font-weight="900" fill="#1a3d28">体重をかけて踏みつける</text>
+      </g>
+    </svg>
+    <div class="fig-caption">「右かかとをツールに乗せて、踏みつける」——この動作だけで右かかとの歪みが整います。</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>いろんな角度で「痛気持ちいい」を探す</h4>
+      <p>かかとが済んだら、足裏全体をコロコロと。角度を変えながら<span class="em">痛気持ちいいポイント</span>を見つけて、どんどんほぐす癖をつけてください。</p>
+    </div>
+  </div>
+
+  <div class="figure">
+    <svg viewBox="0 0 700 300" width="100%" role="img" aria-label="足裏のほぐしポイントマップ">
+      <g font-family="'Noto Sans JP',sans-serif">
+        <text x="350" y="34" text-anchor="middle" fill="#1a3d28" font-size="20" font-weight="900">足の裏 ほぐしマップ</text>
+        <!-- foot sole shape -->
+        <path d="M 300 70 Q 260 75 255 130 Q 252 180 272 220 Q 285 255 320 258 Q 358 260 372 228 Q 390 185 388 130 Q 392 95 368 75 Q 340 60 300 70 Z" fill="#2a5138"/>
+        <!-- toes -->
+        <g fill="#2a5138">
+          <circle cx="285" cy="58" r="12"/><circle cx="313" cy="50" r="13"/><circle cx="341" cy="50" r="12"/><circle cx="364" cy="56" r="11"/><circle cx="383" cy="66" r="10"/>
+        </g>
+        <!-- zones -->
+        <circle cx="320" cy="105" r="20" fill="#c4a44d" opacity="0.9"/>
+        <circle cx="290" cy="160" r="16" fill="#c4a44d" opacity="0.75"/>
+        <circle cx="350" cy="165" r="16" fill="#c4a44d" opacity="0.75"/>
+        <circle cx="322" cy="230" r="22" fill="#8a2f2f"/>
+        <!-- labels -->
+        <g font-size="17" font-weight="700" fill="#1a3d28">
+          <line x1="342" y1="100" x2="470" y2="90" stroke="#c4a44d" stroke-width="2"/>
+          <text x="478" y="96">指のつけ根（痛みの出た場所）</text>
+          <line x1="368" y1="170" x2="470" y2="165" stroke="#c4a44d" stroke-width="2"/>
+          <text x="478" y="171">土踏まずまわり</text>
+          <line x1="346" y1="235" x2="470" y2="235" stroke="#8a2f2f" stroke-width="2"/>
+          <text x="478" y="241" fill="#8a2f2f" font-weight="900">かかと＝最重要</text>
+        </g>
+        <text x="350" y="288" text-anchor="middle" font-size="15" fill="#6b7261">濃い色ほど重点的に。毎日コツコツが最強です。</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="note">
+    <b>なぜ足の裏なのか。</b><br>
+    足の裏は、思った以上に硬くなって、全身に悪影響や痛みを出します。逆に言えば——良いツールさえあれば、<b>もっとも簡単に、自分の手で、高い効果のセルフケアができる場所</b>でもあるのです。だから、これだけは必ず続けてください。
+  </div>
+</section>
+
+<!-- ================= PART 3 ================= -->
+<section class="alt">
+  <div class="part-label">第 3 部</div>
+  <h2>次にお越しいただくタイミング</h2>
+  <div class="h2-sub">痛みが出たとき——だけではありません。</div>
+
+  <div class="figure">
+    <svg viewBox="0 0 700 260" width="100%" role="img" aria-label="来院タイミングの図">
+      <g font-family="'Noto Sans JP',sans-serif">
+        <rect x="50" y="50" width="280" height="150" rx="14" fill="#c9c2ac"/>
+        <text x="190" y="110" text-anchor="middle" font-size="22" font-weight="900" fill="#5a614f">痛みが出たとき</text>
+        <text x="190" y="145" text-anchor="middle" font-size="16" fill="#5a614f">もちろんOK</text>
+
+        <rect x="370" y="30" width="280" height="190" rx="14" fill="#1a3d28"/>
+        <text x="510" y="85" text-anchor="middle" font-size="22" font-weight="900" fill="#e0c87e">ストレスを感じたとき</text>
+        <text x="510" y="125" text-anchor="middle" font-size="16" fill="#ffffff">忙しい・イライラ・モヤモヤ</text>
+        <text x="510" y="165" text-anchor="middle" font-size="17" font-weight="700" fill="#e0c87e">実は、こちらが本命</text>
+      </g>
+    </svg>
+  </div>
+
+  <p class="body-text">ストレスを感じているときに施術を受けると、<span class="em">強力にストレスをリリースできる</span>——これにはエビデンスがあります。</p>
+  <p class="body-text">忙しくなったとき。イライラしたとき。なんだかモヤモヤするとき。そんなときこそ、体を整える絶好のタイミングです。ぜひご利用ください。</p>
+</section>
+
+<!-- ================= SIGNATURE ================= -->
+<div class="signature">
+  <div class="philosophy">神経反射入力装置論</div>
+  <div class="phil-text">
+    体は「入力」に応じて変わる装置です。今日の施術で歪みという誤った入力を取り除きました。ここからは、足裏への毎日の正しい入力が、藤原様の体を静かに整え続けてくれます。
+  </div>
+  <div class="cta-links">
+    <a class="cta-line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+    <a class="cta-map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+  </div>
+  <div class="clinic-name">三条健康堂接骨院</div>
+  <div class="clinic-loc">高松市由良町、由良川東公園のそば</div>
+</div>
+
+</div>
+</body>
+</html>
