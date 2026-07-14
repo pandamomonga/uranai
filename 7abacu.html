@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜平尾様｜三条健康堂接骨院</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-deep:#122b1c;
+    --gold:#c4a44d;
+    --gold-light:#e0cd96;
+    --cream:#f7f4ec;
+    --white:#ffffff;
+    --red:#c05038;
+    --blue:#5a5fa8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--cream);
+    color:var(--green-deep);
+    font-size:16px;
+    line-height:1.9;
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+
+  /* ===== 表紙 ===== */
+  .cover{
+    background:var(--green);
+    color:var(--white);
+    padding:64px 32px 56px;
+    text-align:center;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.35em;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:28px;
+  }
+  .cover .doc-type{
+    display:inline-block;
+    border:1px solid var(--gold);
+    color:var(--gold-light);
+    font-size:14px;
+    letter-spacing:0.3em;
+    padding:6px 22px 6px 26px;
+    margin-bottom:36px;
+  }
+  .cover h1{
+    font-family:'Noto Serif JP',serif;
+    font-weight:900;
+    font-size:34px;
+    line-height:1.6;
+    margin-bottom:28px;
+  }
+  .cover h1 .small{font-size:20px;font-weight:600;display:block;color:var(--gold-light);margin-top:10px;}
+  .cover .lead{
+    font-family:'Noto Serif JP',serif;
+    font-size:20px;
+    line-height:2.1;
+    color:var(--gold-light);
+    margin:36px auto 0;
+    max-width:520px;
+  }
+  .cover .lead strong{color:var(--white);font-weight:900;}
+  .cover .meta{
+    margin-top:44px;
+    font-size:15px;
+    letter-spacing:0.15em;
+    color:rgba(255,255,255,0.85);
+  }
+  .gold-line{width:64px;height:3px;background:var(--gold);margin:28px auto;}
+
+  /* ===== 結論ファースト ===== */
+  .conclusion{
+    background:var(--gold);
+    padding:40px 32px;
+    text-align:center;
+  }
+  .conclusion .label{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.3em;
+    color:var(--green-deep);
+    margin-bottom:14px;
+  }
+  .conclusion p{
+    font-family:'Noto Serif JP',serif;
+    font-size:26px;
+    font-weight:900;
+    line-height:1.8;
+    color:var(--green-deep);
+  }
+
+  /* ===== 章共通 ===== */
+  section{padding:56px 32px;}
+  .part-tag{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:24px;
+  }
+  .part-num{
+    font-family:'Noto Serif JP',serif;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:0.2em;
+    color:var(--white);
+    background:var(--green);
+    padding:8px 18px;
+    white-space:nowrap;
+  }
+  .part-tag .theme{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.2em;
+    color:var(--gold);
+  }
+  h2{
+    font-family:'Noto Serif JP',serif;
+    font-size:27px;
+    font-weight:900;
+    line-height:1.7;
+    margin-bottom:24px;
+    color:var(--green-deep);
+  }
+  p.body{margin-bottom:20px;}
+  .highlight-box{
+    background:var(--white);
+    border-left:6px solid var(--gold);
+    padding:24px 26px;
+    margin:28px 0;
+    box-shadow:0 2px 12px rgba(26,61,40,0.08);
+  }
+  .highlight-box .hb-title{
+    font-weight:900;
+    font-size:18px;
+    color:var(--green);
+    margin-bottom:10px;
+  }
+  strong{color:var(--green);font-weight:900;}
+  .gold-strong{color:#8a6f1f;font-weight:900;}
+
+  /* ===== ボディマップ ===== */
+  .bodymap-area{
+    background:var(--green);
+    margin:32px -32px -56px;
+    padding:44px 32px 56px;
+    text-align:center;
+  }
+  .bodymap-area .bm-title{
+    color:var(--gold);
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.3em;
+    margin-bottom:24px;
+  }
+  .bodymap-legend{
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  .bodymap-legend span{
+    color:var(--white);
+    font-size:14px;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .dot{width:14px;height:14px;border-radius:50%;display:inline-block;}
+
+  /* ===== データ ===== */
+  .data-section{background:var(--white);}
+  .data-intro{margin-bottom:28px;}
+  .data-grid{display:flex;flex-direction:column;gap:12px;}
+  .data-row{
+    display:flex;
+    align-items:center;
+    padding:18px 20px;
+    border-radius:8px;
+    color:var(--white);
+  }
+  .data-row .name{flex:1;font-weight:700;font-size:17px;}
+  .data-row .status{font-size:14px;font-weight:500;margin-right:16px;opacity:0.95;}
+  .data-row .val{font-size:24px;font-weight:900;font-variant-numeric:tabular-nums;}
+  .row-ok{background:#1f9d55;}
+  .row-high{background:var(--red);}
+  .row-low{background:var(--blue);}
+  .data-note{
+    margin-top:24px;
+    background:var(--cream);
+    padding:22px 24px;
+    border-radius:8px;
+    font-size:15.5px;
+  }
+  .data-note .dn-title{font-weight:900;color:var(--green);margin-bottom:8px;font-size:17px;}
+
+  /* ===== 今夜の処方 ===== */
+  .tonight{
+    display:flex;
+    gap:16px;
+    margin:28px 0;
+    flex-wrap:wrap;
+  }
+  .tonight .card{
+    flex:1;
+    min-width:240px;
+    background:var(--white);
+    border-top:5px solid var(--gold);
+    padding:26px 24px;
+    box-shadow:0 2px 12px rgba(26,61,40,0.08);
+    text-align:center;
+  }
+  .tonight .card .icon{font-size:40px;margin-bottom:12px;}
+  .tonight .card .t{font-weight:900;font-size:19px;color:var(--green);margin-bottom:10px;}
+  .tonight .card p{font-size:15.5px;}
+
+  /* ===== 次回展望 ===== */
+  .outlook{
+    background:var(--cream);
+    border:1px solid var(--gold);
+    padding:28px;
+    margin-top:8px;
+  }
+  .outlook .o-title{
+    font-weight:900;
+    color:var(--green);
+    font-size:19px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  /* ===== 署名 ===== */
+  .signature{
+    background:var(--green);
+    color:var(--white);
+    padding:56px 32px 48px;
+    text-align:center;
+  }
+  .signature .philosophy{
+    font-family:'Noto Serif JP',serif;
+    font-size:19px;
+    line-height:2.1;
+    color:var(--gold-light);
+    max-width:520px;
+    margin:0 auto 32px;
+  }
+  .signature .clinic{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:0.15em;
+    margin-bottom:8px;
+  }
+  .signature .addr{
+    font-size:14.5px;
+    color:rgba(255,255,255,0.85);
+    margin-bottom:28px;
+  }
+  .signature a{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--green-deep);
+    font-weight:900;
+    font-size:16px;
+    text-decoration:none;
+    padding:14px 30px;
+    border-radius:40px;
+    margin:6px 8px;
+  }
+  .signature a.line-btn{background:#06c755;color:#fff;}
+
+  @media (max-width:480px){
+    .cover h1{font-size:28px;}
+    .conclusion p{font-size:22px;}
+    h2{font-size:23px;}
+    section{padding:48px 24px;}
+    .bodymap-area{margin:32px -24px -48px;padding:40px 24px 48px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ================= 表紙 ================= -->
+  <div class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="doc-type">施 術 報 告 書</div>
+    <h1>平尾様
+      <span class="small">2026年7月14日　全身コンディション調整</span>
+    </h1>
+    <div class="gold-line"></div>
+    <p class="lead">
+      暑さと戦っていたのは、<br>
+      あなたではなく、<br>
+      <strong>あなたの「背中」でした。</strong>
+    </p>
+    <div class="meta">三条健康堂接骨院　院長　谷 弘誠</div>
+  </div>
+
+  <!-- ================= 結論ファースト ================= -->
+  <div class="conclusion">
+    <div class="label">本日の結論</div>
+    <p>全身、100%ほぐし切りました。<br>今夜は「水」と「睡眠」だけが仕事です。</p>
+  </div>
+
+  <!-- ================= 第1部 ================= -->
+  <section>
+    <div class="part-tag">
+      <div class="part-num">第 1 部</div>
+      <div class="theme">発見 ― 原因はどこにあったか</div>
+    </div>
+    <h2>最も固まっていたのは、<br>肋骨まわりの「背中」。</h2>
+    <p class="body">
+      連日の猛暑。しかもお仕事の状況によっては、かなり熱い環境での作業が続いていたとのこと。体には想像以上のダメージが蓄積していました。
+    </p>
+    <p class="body">
+      施術で最初に分かったのは、<strong>背中が全身の中で最もカチコチだった</strong>こと。特に肋骨が、なかなか緩んでくれませんでした。
+    </p>
+    <div class="highlight-box">
+      <div class="hb-title">肋骨が緩まない ＝ 体が「ストレスモード」のサイン</div>
+      <p>肋骨が固まると呼吸が浅くなり、体は常に防御態勢のまま。休んでいるつもりでも、体の内側は緊張しっぱなし——これが暑熱ストレス下の体で起きていたことです。</p>
+    </div>
+  </section>
+
+  <!-- ================= 第2部 ================= -->
+  <section style="background:var(--white);">
+    <div class="part-tag">
+      <div class="part-num">第 2 部</div>
+      <div class="theme">解除 ― どうやって緩めたか</div>
+    </div>
+    <h2>「頭」と「首」が、<br>全身の解除スイッチでした。</h2>
+    <p class="body">
+      固い背中を力ずくで押しても、ストレスモードは解けません。そこで今回は、<strong>時間をかけて頭と首を丁寧に緩める</strong>ことに集中しました。
+    </p>
+    <p class="body">
+      すると——<span class="gold-strong">一気に、全身がふわっと緩みました。</span>頭と首は、体全体の緊張を統括している「司令部」。ここが緩むと、防御態勢の解除命令が全身に届きます。
+    </p>
+    <div class="highlight-box">
+      <div class="hb-title">ご安心ください</div>
+      <p>背中・肋骨・頭・首、すべて<strong>100%ほぐし切っております。</strong>やり残しはありません。</p>
+    </div>
+
+    <div class="bodymap-area">
+      <div class="bm-title">本日の施術ポイント（背面）</div>
+      <svg viewBox="0 0 300 420" width="240" height="336" role="img" aria-label="施術部位の背面図：頭・首・背中">
+        <!-- 体のシルエット(背面) -->
+        <g fill="none" stroke="#e0cd96" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <!-- 頭 -->
+          <ellipse cx="150" cy="52" rx="30" ry="34"/>
+          <!-- 首 -->
+          <path d="M138 84 L136 104 M162 84 L164 104"/>
+          <!-- 胴体 -->
+          <path d="M136 104 Q100 112 92 150 Q86 190 96 235 Q104 268 112 280 L188 280 Q196 268 204 235 Q214 190 208 150 Q200 112 164 104"/>
+          <!-- 腕 -->
+          <path d="M92 150 Q74 190 70 240 Q68 262 72 276"/>
+          <path d="M208 150 Q226 190 230 240 Q232 262 228 276"/>
+          <!-- 脚 -->
+          <path d="M118 280 Q114 330 116 380 M182 280 Q186 330 184 380"/>
+          <path d="M116 380 L112 400 M184 380 L188 400"/>
+          <!-- 背骨 -->
+          <path d="M150 108 L150 260" stroke-dasharray="4 7" stroke-width="2.5" opacity="0.7"/>
+        </g>
+        <!-- 施術ハイライト -->
+        <g>
+          <!-- 頭 -->
+          <ellipse cx="150" cy="52" rx="30" ry="34" fill="#c4a44d" opacity="0.5"/>
+          <circle cx="150" cy="52" r="6" fill="#c4a44d"/>
+          <!-- 首 -->
+          <rect x="132" y="86" width="36" height="20" rx="8" fill="#c4a44d" opacity="0.5"/>
+          <circle cx="150" cy="96" r="5" fill="#c4a44d"/>
+          <!-- 背中(肋骨エリア) -->
+          <ellipse cx="150" cy="165" rx="52" ry="48" fill="#c4a44d" opacity="0.45"/>
+          <!-- 肋骨ライン -->
+          <g stroke="#c4a44d" stroke-width="3" fill="none" opacity="0.95">
+            <path d="M112 138 Q150 152 188 138"/>
+            <path d="M108 158 Q150 174 192 158"/>
+            <path d="M108 178 Q150 194 192 178"/>
+            <path d="M112 198 Q150 212 188 198"/>
+          </g>
+          <circle cx="150" cy="168" r="6" fill="#c4a44d"/>
+        </g>
+        <!-- ラベル -->
+        <g font-family="'Noto Sans JP',sans-serif" font-size="14" font-weight="700" fill="#ffffff">
+          <text x="196" y="50">① 頭</text>
+          <text x="196" y="98">② 首</text>
+          <text x="222" y="170">③ 背中・肋骨</text>
+        </g>
+        <g stroke="#ffffff" stroke-width="1.5" opacity="0.8">
+          <line x1="182" y1="46" x2="192" y2="46"/>
+          <line x1="170" y1="94" x2="192" y2="94"/>
+          <line x1="206" y1="166" x2="218" y2="166"/>
+        </g>
+      </svg>
+      <div class="bodymap-legend">
+        <span><span class="dot" style="background:#c4a44d;"></span>本日の重点施術部位</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 測定データ ================= -->
+  <section class="data-section" style="background:var(--cream);">
+    <div class="part-tag">
+      <div class="part-num">DATA</div>
+      <div class="theme">RaDoTech 生体エネルギー測定</div>
+    </div>
+    <h2>数値も、同じことを<br>語っていました。</h2>
+    <p class="body data-intro">本日の測定結果です。「体がストレスモードだった」ことを、データがはっきり裏付けています。</p>
+    <div class="data-grid">
+      <div class="data-row row-ok">
+        <div class="name">エネルギーレベル</div>
+        <div class="status">正常</div>
+        <div class="val">28.84</div>
+      </div>
+      <div class="data-row row-ok">
+        <div class="name">免疫システム</div>
+        <div class="status">正常</div>
+        <div class="val">32.95</div>
+      </div>
+      <div class="data-row row-ok">
+        <div class="name">代謝</div>
+        <div class="status">正常</div>
+        <div class="val">1.11</div>
+      </div>
+      <div class="data-row row-high">
+        <div class="name">心理・感情状態</div>
+        <div class="status">基準値超え</div>
+        <div class="val">1.23</div>
+      </div>
+      <div class="data-row row-low">
+        <div class="name">筋骨格系</div>
+        <div class="status">基準値以下</div>
+        <div class="val">0.79</div>
+      </div>
+    </div>
+    <div class="data-note">
+      <div class="dn-title">数値の読み方</div>
+      <p>エネルギー・免疫・代謝の土台はしっかり正常。一方で<strong>「心理・感情状態」が基準値を超え、「筋骨格系」が基準値を下回っている</strong>——これはまさに、暑熱環境のストレスで神経が高ぶり、筋肉と骨格に疲労がたまった状態を示しています。今回の「背中・頭・首」への施術は、この2項目に直接アプローチするものでした。</p>
+    </div>
+  </section>
+
+  <!-- ================= 第3部 ================= -->
+  <section>
+    <div class="part-tag">
+      <div class="part-num">第 3 部</div>
+      <div class="theme">今夜から ― 効果を最大化する過ごし方</div>
+    </div>
+    <h2>今夜の仕事は、<br>たった2つだけ。</h2>
+    <div class="tonight">
+      <div class="card">
+        <div class="icon">💧</div>
+        <div class="t">お水を、たくさん</div>
+        <p>緩んだ体は、たまっていた疲労物質を流し始めます。水分がその「運搬役」。今日はいつもより多めに飲んでください。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌙</div>
+        <div class="t">ぐっすり、眠る</div>
+        <p>ストレスモードが解除された今夜は、体が深い回復モードに入りやすい絶好のタイミング。早めにお布団へ。</p>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">今回の施術がもたらすもの</div>
+      <p>体のコンディション調整だけではありません。エビデンスでも示されている通り、この施術は<strong>ストレスの解消・リリース</strong>に大きく役立ちます。つまり——<span class="gold-strong">頭脳のパフォーマンスと体のパフォーマンス、その両方をハイレベルで維持できる</span>ということです。</p>
+    </div>
+    <div class="outlook">
+      <div class="o-title">◆ 今後の見通し</div>
+      <p>暑さが続く間は、背中と肋骨に再び緊張がたまりやすい時期です。「呼吸が浅いな」「背中が重いな」と感じたら、それが体からのサインです。ご自身のペースで、体の声に耳を傾けてあげてください。</p>
+    </div>
+  </section>
+
+  <!-- ================= 署名 ================= -->
+  <div class="signature">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <p class="philosophy">
+      体は、脳への最大の入力装置。<br>
+      背中・頭・首への刺激は、神経反射を通じて<br>
+      全身の緊張プログラムを書き換えます。<br>
+      ——神経反射入力装置論より
+    </p>
+    <div class="gold-line"></div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="addr">高松市由良町、由良川東公園のそば</div>
+    <a class="line-btn" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認</a>
+  </div>
+
+</div>
+</body>
+</html>
