@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜兼近様</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#14301f;
+    --gold:#c4a44d;
+    --gold-soft:#e3cf94;
+    --cream:#f6f2e7;
+    --cream2:#efe9d8;
+    --ink:#20281f;
+    --red:#e8492f;
+    --blue:#4f5bd5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;
+    background:#d8d2c2;
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:520px;margin:0 auto;background:var(--cream);
+    box-shadow:0 0 40px rgba(0,0,0,.25);
+  }
+  .serif{font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;}
+
+  /* ===== TOP BAR ===== */
+  .topbar{height:8px;background:var(--red);}
+
+  /* ===== COVER / PART 1 ===== */
+  .cover{
+    background:var(--green);color:var(--cream);
+    padding:38px 26px 44px;position:relative;overflow:hidden;
+  }
+  .eyebrow{
+    letter-spacing:.32em;font-size:13px;font-weight:700;
+    color:var(--gold);margin-bottom:22px;
+  }
+  .doc-type{
+    font-size:15px;font-weight:500;color:var(--gold-soft);
+    letter-spacing:.18em;margin-bottom:6px;
+  }
+  .patient{
+    font-size:40px;font-weight:900;letter-spacing:.04em;line-height:1.2;
+  }
+  .date{
+    font-size:15px;color:var(--gold-soft);margin-top:8px;font-weight:500;
+  }
+  .lead{
+    margin-top:30px;
+    font-size:26px;font-weight:900;line-height:1.55;letter-spacing:.01em;
+  }
+  .lead .u{color:var(--gold);}
+  .lead-sub{
+    margin-top:16px;font-size:19px;font-weight:500;color:var(--gold-soft);
+    line-height:1.7;
+  }
+
+  /* ===== SECTION SHELL ===== */
+  .part{padding:40px 26px;}
+  .part-num{
+    display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .part-num .no{
+    width:44px;height:44px;border-radius:50%;
+    background:var(--gold);color:var(--green);
+    font-weight:900;font-size:22px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .part-num .lbl{font-size:15px;font-weight:700;color:var(--green);letter-spacing:.14em;}
+  .h2{
+    font-size:29px;font-weight:900;color:var(--green);line-height:1.45;
+    margin-bottom:8px;
+  }
+  .p{font-size:18px;font-weight:500;color:#33402f;margin-top:14px;}
+  .p strong{color:var(--green);font-weight:900;}
+
+  /* ===== TRIPLE THREAT ===== */
+  .triple{
+    display:flex;flex-direction:column;gap:14px;margin-top:26px;
+  }
+  .tcard{
+    display:flex;align-items:center;gap:18px;
+    background:#fff;border:2px solid var(--cream2);border-left:8px solid var(--gold);
+    border-radius:16px;padding:18px 20px;
+  }
+  .tcard svg{flex:0 0 auto;}
+  .tcard .tx h3{font-size:21px;font-weight:900;color:var(--green);}
+  .tcard .tx p{font-size:16px;font-weight:500;color:#44513f;margin-top:2px;line-height:1.55;}
+
+  .lever{
+    margin-top:26px;background:var(--green);color:var(--cream);
+    border-radius:18px;padding:24px 22px;text-align:center;
+  }
+  .lever .small{font-size:16px;font-weight:600;color:var(--gold-soft);}
+  .lever .big{font-size:32px;font-weight:900;color:var(--gold);margin-top:6px;letter-spacing:.05em;}
+
+  /* ===== PART 2 : PROTOCOL (HERO) ===== */
+  .part-hero{background:var(--green);color:var(--cream);}
+  .part-hero .part-num .no{background:var(--cream);color:var(--green);}
+  .part-hero .part-num .lbl{color:var(--gold);}
+  .part-hero .h2{color:var(--cream);}
+  .part-hero .p{color:var(--cream2);}
+  .part-hero .p strong{color:var(--gold);}
+
+  .rx-hero{
+    background:var(--cream);border-radius:22px;padding:28px 22px;margin-top:24px;
+    color:var(--ink);text-align:center;
+  }
+  .rx-hero .cap{font-size:16px;font-weight:700;color:var(--gold);letter-spacing:.16em;}
+  .rx-hero .head{font-size:30px;font-weight:900;color:var(--green);margin-top:6px;line-height:1.4;}
+
+  .rx-steps{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+  .rx-step{
+    display:flex;gap:18px;align-items:center;text-align:left;
+    background:#fff;border:2px solid #e7e1cf;border-radius:16px;padding:18px;
+  }
+  .rx-step .icon{flex:0 0 auto;}
+  .rx-step .n{font-size:14px;font-weight:900;color:var(--gold);letter-spacing:.1em;}
+  .rx-step .t{font-size:22px;font-weight:900;color:var(--green);line-height:1.4;margin-top:2px;}
+  .rx-step .t em{font-style:normal;color:var(--red);}
+  .rx-step .d{font-size:16px;font-weight:500;color:#44513f;margin-top:5px;line-height:1.55;}
+
+  /* timeline */
+  .timeline{margin-top:26px;background:var(--cream);border-radius:22px;padding:26px 20px;}
+  .timeline .tl-title{font-size:19px;font-weight:900;color:var(--green);text-align:center;margin-bottom:20px;}
+  .tl-row{display:flex;justify-content:space-between;align-items:flex-end;gap:6px;}
+  .tl-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .tl-bar{
+    width:100%;max-width:38px;border-radius:8px 8px 0 0;
+    background:linear-gradient(180deg,var(--gold),var(--gold-soft));
+  }
+  .tl-ml{font-size:14px;font-weight:900;color:var(--green);}
+  .tl-time{font-size:13px;font-weight:700;color:#6a6450;}
+  .tl-note{font-size:15px;font-weight:600;color:#5b5540;text-align:center;margin-top:18px;line-height:1.6;}
+
+  .why{
+    margin-top:22px;background:rgba(196,164,77,.15);
+    border-radius:16px;padding:20px;
+  }
+  .why h4{font-size:19px;font-weight:900;color:var(--gold);margin-bottom:8px;}
+  .why p{font-size:17px;font-weight:500;color:var(--cream2);line-height:1.65;}
+  .why p strong{color:#fff;font-weight:900;}
+
+  .safety{
+    margin-top:16px;font-size:14px;font-weight:500;color:var(--gold-soft);
+    text-align:center;line-height:1.6;
+  }
+
+  /* ===== PART 3 : RESULT ===== */
+  .gauge-wrap{margin-top:26px;background:#fff;border:2px solid var(--cream2);border-radius:20px;padding:26px 22px;}
+  .gauge-title{font-size:18px;font-weight:900;color:var(--green);text-align:center;margin-bottom:6px;}
+  .gauge-sub{font-size:15px;font-weight:600;color:#6a6450;text-align:center;margin-bottom:20px;}
+  .gauge-label-row{display:flex;justify-content:space-between;font-size:15px;font-weight:900;margin-bottom:8px;}
+  .gauge-label-row .l{color:var(--red);}
+  .gauge-label-row .r{color:var(--green);}
+  .gauge-track{height:28px;border-radius:14px;background:#eee6d2;overflow:hidden;position:relative;}
+  .gauge-fill{height:100%;width:23%;border-radius:14px;background:linear-gradient(90deg,var(--red),#f08a2e);}
+  .gauge-cap{font-size:22px;font-weight:900;color:var(--red);text-align:center;margin-top:14px;}
+  .gauge-cap span{color:var(--green);}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;justify-content:center;}
+  .chip{
+    display:flex;align-items:center;gap:8px;
+    background:#fff;border:2px solid #e7e1cf;border-radius:999px;
+    padding:8px 15px;font-size:15px;font-weight:700;color:var(--green);
+  }
+  .dot{width:12px;height:12px;border-radius:50%;}
+  .dot.ok{background:#25a35a;}
+  .dot.low{background:var(--blue);}
+  .dot.up{background:var(--red);}
+
+  .body-card{margin-top:26px;background:var(--green);border-radius:22px;padding:28px 20px;color:var(--cream);text-align:center;}
+  .body-card .bc-title{font-size:18px;font-weight:900;color:var(--gold);letter-spacing:.1em;margin-bottom:16px;}
+  .body-legend{display:flex;justify-content:center;gap:22px;margin-top:16px;flex-wrap:wrap;}
+  .body-legend span{font-size:15px;font-weight:700;display:flex;align-items:center;gap:7px;color:var(--cream2);}
+
+  .finale{
+    background:var(--green2);color:var(--cream);text-align:center;
+    padding:46px 26px;
+  }
+  .finale .fk{font-size:16px;font-weight:700;color:var(--gold);letter-spacing:.14em;margin-bottom:14px;}
+  .finale .big{font-size:33px;font-weight:900;line-height:1.5;}
+  .finale .big .g{color:var(--gold);}
+  .finale .pct{font-size:66px;font-weight:900;color:var(--gold);line-height:1;margin:6px 0 4px;letter-spacing:.02em;}
+  .finale .after{margin-top:20px;font-size:19px;font-weight:600;color:var(--gold-soft);line-height:1.7;}
+
+  /* signature */
+  .sign{background:var(--green);color:var(--cream);padding:34px 26px 40px;border-top:2px solid rgba(196,164,77,.4);}
+  .sign .theory{font-size:15px;font-weight:500;color:var(--gold-soft);line-height:1.75;background:rgba(0,0,0,.18);border-radius:14px;padding:18px 20px;}
+  .sign .theory b{color:var(--gold);font-weight:900;}
+  .clinic{margin-top:24px;text-align:center;}
+  .clinic .nm{font-family:"Noto Serif JP",serif;font-size:24px;font-weight:700;color:var(--cream);}
+  .clinic .loc{font-size:15px;font-weight:500;color:var(--gold-soft);margin-top:6px;}
+  .cta{display:flex;gap:12px;margin-top:22px;}
+  .cta a{
+    flex:1;text-align:center;text-decoration:none;border-radius:14px;padding:15px 0;
+    font-size:17px;font-weight:900;
+  }
+  .cta .line{background:var(--gold);color:var(--green);}
+  .cta .map{background:transparent;border:2px solid var(--gold);color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"></div>
+
+  <!-- ============ PART 1 : COVER + INSIGHT ============ -->
+  <section class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="doc-type">施 術 報 告 書</div>
+    <div class="patient">兼近様</div>
+    <div class="date">2026年7月15日</div>
+
+    <div class="lead">
+      痛みの犯人は、<br>手の使いすぎ<span class="u">"だけ"</span>じゃ<br>ありませんでした。
+    </div>
+    <div class="lead-sub">
+      もう一人の犯人は——<br>コップ一杯の、<strong style="color:#fff">水</strong>。
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-num"><span class="no">1</span><span class="lbl">いま、なぜ痛いのか</span></div>
+    <div class="h2">体は、確実に良くなっています。</div>
+    <div class="p">
+      それでも今、痛みを底上げしている<strong>3つの要素</strong>が重なっています。
+      この夏の高松ならではの"三重奏"です。
+    </div>
+
+    <div class="triple">
+      <!-- 気圧 -->
+      <div class="tcard">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <path d="M14 30a9 9 0 0 1 1-18 12 12 0 0 1 23 3 8 8 0 0 1-1 15H15" stroke="#c4a44d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 38v8M28 40v8M36 38v8" stroke="#1a3d28" stroke-width="3" stroke-linecap="round"/>
+          <path d="M17 44l3 4 3-4M25 46l3 4 3-4M33 44l3 4 3-4" stroke="#1a3d28" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="tx">
+          <h3>気圧の変化</h3>
+          <p>内耳のセンサーが乱れ、自律神経がアクセルを踏みっぱなしに。</p>
+        </div>
+      </div>
+      <!-- 湿度 -->
+      <div class="tcard">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <path d="M28 8c8 10 13 16 13 23a13 13 0 0 1-26 0c0-7 5-13 13-23z" stroke="#c4a44d" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M34 30a6 6 0 0 1-6 6" stroke="#1a3d28" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="tx">
+          <h3>高い湿度</h3>
+          <p>汗が乾かず発汗が減り、痛み物質が体にこもります。</p>
+        </div>
+      </div>
+      <!-- 脱水 -->
+      <div class="tcard">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <path d="M28 9c7 9 12 15 12 21a12 12 0 0 1-24 0c0-6 5-12 12-21z" stroke="#c4a44d" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M13 13l30 30" stroke="#e8492f" stroke-width="3.4" stroke-linecap="round"/>
+        </svg>
+        <div class="tx">
+          <h3>かくれ脱水</h3>
+          <p>関節の"水クッション"が抜けて、骨が軋み、痛みが増します。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lever">
+      <div class="small">この3つのうち、あなたが今日から握れるレバーは</div>
+      <div class="big">たった一つ。「水」です。</div>
+    </div>
+  </section>
+
+  <!-- ============ PART 2 : PROTOCOL (HERO) ============ -->
+  <section class="part part-hero">
+    <div class="part-num"><span class="no">2</span><span class="lbl">今日からの処方</span></div>
+    <div class="h2">塩、ひとつまみ。</div>
+    <div class="p">
+      水を「効く水」に変えるだけ。<strong>お金も手間もかかりません。</strong>
+    </div>
+
+    <div class="rx-hero">
+      <div class="cap">PRESCRIPTION</div>
+      <div class="head">1〜1.5Lのペットボトルに<br>塩をひとつまみ</div>
+      <svg width="120" height="150" viewBox="0 0 120 150" style="margin:14px auto 0;display:block">
+        <!-- bottle -->
+        <path d="M48 14h24v10c0 4 10 6 10 16v82a10 10 0 0 1-10 10H48a10 10 0 0 1-10-10V40c0-10 10-12 10-16z" stroke="#1a3d28" stroke-width="3.4" fill="#eef4ef"/>
+        <!-- water -->
+        <path d="M39 70v48a9 9 0 0 0 9 9h24a9 9 0 0 0 9-9V70z" fill="#bfe0cf"/>
+        <!-- cap -->
+        <rect x="46" y="6" width="28" height="12" rx="3" fill="#c4a44d"/>
+        <!-- salt sprinkle -->
+        <circle cx="60" cy="34" r="2.4" fill="#1a3d28"/>
+        <circle cx="52" cy="42" r="2.2" fill="#1a3d28"/>
+        <circle cx="68" cy="44" r="2.2" fill="#1a3d28"/>
+        <circle cx="60" cy="50" r="2" fill="#1a3d28"/>
+      </svg>
+    </div>
+
+    <div class="rx-steps">
+      <div class="rx-step">
+        <svg class="icon" width="50" height="50" viewBox="0 0 50 50" fill="none">
+          <circle cx="25" cy="25" r="19" stroke="#1a3d28" stroke-width="3.2"/>
+          <path d="M25 14v12l8 6" stroke="#c4a44d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div class="n">RULE 01</div>
+          <div class="t">1時間に1回、<em>350ml</em></div>
+          <div class="d">喉が渇いていなくても、時計を見て飲む。これが一番のコツです。</div>
+        </div>
+      </div>
+      <div class="rx-step">
+        <svg class="icon" width="50" height="50" viewBox="0 0 50 50" fill="none">
+          <path d="M25 8c9 11 15 18 15 25a15 15 0 0 1-30 0c0-7 6-14 15-25z" stroke="#1a3d28" stroke-width="3.2" stroke-linejoin="round"/>
+          <path d="M18 33c1 3 3 5 6 6" stroke="#c4a44d" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="n">RULE 02</div>
+          <div class="t">渇く"前"に飲む</div>
+          <div class="d">この暑さでは、喉の渇きは"遅れて"やってきます。渇いた時にはもう手遅れ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline">
+      <div class="tl-title">一日の飲み方リズム（目安）</div>
+      <div class="tl-row">
+        <div class="tl-item"><div class="tl-ml">350</div><div class="tl-bar" style="height:60px"></div><div class="tl-time">起床</div></div>
+        <div class="tl-item"><div class="tl-ml">350</div><div class="tl-bar" style="height:66px"></div><div class="tl-time">午前</div></div>
+        <div class="tl-item"><div class="tl-ml">350</div><div class="tl-bar" style="height:72px"></div><div class="tl-time">昼</div></div>
+        <div class="tl-item"><div class="tl-ml">350</div><div class="tl-bar" style="height:72px"></div><div class="tl-time">午後</div></div>
+        <div class="tl-item"><div class="tl-ml">350</div><div class="tl-bar" style="height:66px"></div><div class="tl-time">夕方</div></div>
+        <div class="tl-item"><div class="tl-ml">350</div><div class="tl-bar" style="height:54px"></div><div class="tl-time">就寝前</div></div>
+      </div>
+      <div class="tl-note">こまめに、少しずつ。<br>1時間に1回のリズムが、体を"ガス欠"にさせません。</div>
+    </div>
+
+    <div class="why">
+      <h4>なぜ、塩がいるの？</h4>
+      <p>水だけだと、体を<strong>ただ通り抜けて</strong>しまいます。ひとつまみの塩が"水を体に留める鍵"。この猛暑では汗と一緒に塩も逃げるので、<strong>水と塩はセット</strong>が正解です。</p>
+    </div>
+
+    <div class="safety">
+      ※ 立ちくらみ・強いだるさが続くとき、リウマチの状態が気になるときは、主治医にもご相談ください。
+    </div>
+  </section>
+
+  <!-- ============ PART 3 : RESULT + FINALE ============ -->
+  <section class="part">
+    <div class="part-num"><span class="no">3</span><span class="lbl">今日の施術と、体の状態</span></div>
+    <div class="h2">心は安定。<br>足りないのは、水だけ。</div>
+    <div class="p">
+      測定データが、はっきり教えてくれています。<strong>気持ち（心）はしっかり安定</strong>。
+      でもエネルギーが一貫して低い——これが<strong>「かくれ脱水」のサイン</strong>です。
+    </div>
+
+    <!-- Energy gauge -->
+    <div class="gauge-wrap">
+      <div class="gauge-title">エネルギーレベル（RaDoTech）</div>
+      <div class="gauge-sub">直近2回とも「基準以下」＝ガス欠状態</div>
+      <div class="gauge-label-row"><span class="l">低い</span><span class="r">基準ゾーン</span></div>
+      <div class="gauge-track"><div class="gauge-fill"></div></div>
+      <div class="gauge-cap">いまは <span>"ガス欠"</span>。埋めるのは、水です。</div>
+
+      <div class="chips">
+        <div class="chip"><span class="dot ok"></span>心の状態　安定</div>
+        <div class="chip"><span class="dot ok"></span>免疫　回復途上</div>
+        <div class="chip"><span class="dot low"></span>代謝　基準前後</div>
+        <div class="chip"><span class="dot up"></span>筋骨格　働き活発</div>
+      </div>
+    </div>
+
+    <!-- Body map -->
+    <div class="body-card">
+      <div class="bc-title">今日、手を入れた場所</div>
+      <svg width="150" height="220" viewBox="0 0 150 220" style="display:block;margin:0 auto">
+        <!-- head -->
+        <circle cx="75" cy="26" r="16" stroke="#e3cf94" stroke-width="2.6" fill="none"/>
+        <!-- autonomic point: neck -->
+        <circle cx="75" cy="50" r="7" fill="#c4a44d" opacity=".9"/>
+        <!-- torso -->
+        <path d="M55 60h40l-4 66H59z" stroke="#e3cf94" stroke-width="2.6" fill="none"/>
+        <!-- arms -->
+        <path d="M55 64L30 110l-6 40" stroke="#e3cf94" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        <path d="M95 64l25 46 6 40" stroke="#e3cf94" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        <!-- hands (RA target) -->
+        <circle cx="22" cy="154" r="11" fill="#e8492f"/>
+        <circle cx="128" cy="154" r="11" fill="#e8492f"/>
+        <!-- sacrum point -->
+        <circle cx="75" cy="120" r="7" fill="#c4a44d" opacity=".9"/>
+        <!-- legs -->
+        <path d="M62 126l-5 78M88 126l5 78" stroke="#e3cf94" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="body-legend">
+        <span><span class="dot up"></span>手（リウマチの痛み）</span>
+        <span><span class="dot" style="background:#c4a44d"></span>自律神経の調整点</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section class="finale">
+    <div class="fk">TODAY'S RESULT</div>
+    <div class="big">神経も、筋肉も。</div>
+    <div class="pct">100%</div>
+    <div class="big"><span class="g">ほぐし切りました。</span></div>
+    <div class="after">
+      あとは、あなたの番。<br>
+      塩ひとつまみの水で、<br>
+      体を"満タン"に満たすだけです。
+    </div>
+  </section>
+
+  <!-- SIGNATURE -->
+  <section class="sign">
+    <div class="theory">
+      体は、環境を先読みして備える<b>"予測装置"</b>です。気圧・湿度・気温が急に変われば予測が外れ、自律神経はアクセルを踏みっぱなしになる。水は、その<b>"予測の余白"</b>を取り戻す、いちばん安い一手。——神経反射入力装置論より。
+    </div>
+    <div class="clinic">
+      <div class="nm">三条健康堂接骨院</div>
+      <div class="loc">高松市由良町、由良川東公園のそば</div>
+    </div>
+    <div class="cta">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談・予約</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>
