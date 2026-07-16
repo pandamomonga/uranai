@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜三澤様｜三条健康堂接骨院</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-deep:#122b1c;
+    --gold:#c4a44d;
+    --gold-light:#e2cd8f;
+    --paper:#f7f4ec;
+    --ink:#2a2a26;
+    --red:#c0563c;
+    --blue:#5b63b7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:560px;margin:0 auto;}
+
+  /* ===== 共通パーツ ===== */
+  .eyebrow{
+    font-size:12px;letter-spacing:.35em;color:var(--gold);
+    text-transform:uppercase;font-weight:700;
+  }
+  .part-label{
+    display:inline-block;
+    border:1.5px solid var(--gold);
+    color:var(--gold);
+    font-size:13px;font-weight:700;letter-spacing:.2em;
+    padding:4px 14px;border-radius:999px;
+    margin-bottom:14px;
+  }
+  section{padding:44px 24px;}
+  h2{
+    font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;
+    font-size:24px;line-height:1.5;font-weight:700;
+    margin-bottom:18px;
+  }
+  p{font-size:16px;margin-bottom:14px;}
+  .note{font-size:13px;color:#6b6b62;line-height:1.7;}
+
+  /* ===== 表紙 ===== */
+  .cover{
+    background:linear-gradient(160deg,var(--green) 0%,var(--green-deep) 100%);
+    color:#fff;
+    padding:56px 24px 48px;
+    position:relative;overflow:hidden;
+  }
+  .cover::after{
+    content:"";position:absolute;right:-70px;top:-70px;
+    width:220px;height:220px;border-radius:50%;
+    border:1.5px solid rgba(196,164,77,.35);
+  }
+  .cover .date{font-size:14px;color:var(--gold-light);letter-spacing:.12em;margin:20px 0 6px;}
+  .cover .name{
+    font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;
+    font-size:32px;font-weight:700;letter-spacing:.06em;
+  }
+  .cover .doc{font-size:15px;color:rgba(255,255,255,.85);letter-spacing:.25em;margin-bottom:30px;}
+  .lead{
+    font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;
+    font-size:21px;line-height:2;font-weight:600;
+    border-left:3px solid var(--gold);
+    padding-left:18px;margin-top:10px;
+  }
+  .lead small{display:block;font-size:14px;color:var(--gold-light);margin-top:12px;font-family:inherit;}
+
+  /* ===== PART 1 肩甲骨 ===== */
+  .p1{background:#fff;}
+  .body-map{
+    display:flex;justify-content:center;gap:20px;
+    background:var(--paper);border-radius:16px;padding:20px 10px;margin:22px 0;
+  }
+  .body-map figure{text-align:center;}
+  .body-map figcaption{font-size:13px;font-weight:700;color:var(--green);margin-top:6px;letter-spacing:.1em;}
+  .done{
+    background:var(--green);color:#fff;border-radius:14px;
+    padding:18px 20px;margin-top:8px;
+  }
+  .done strong{color:var(--gold-light);font-size:17px;}
+
+  /* ===== PART 2 振動マシン ===== */
+  .p2{background:var(--green-deep);color:#fff;}
+  .p2 h2{color:#fff;}
+  .spec{
+    display:flex;gap:12px;margin:22px 0;
+  }
+  .spec div{
+    flex:1;background:rgba(255,255,255,.07);
+    border:1px solid rgba(196,164,77,.4);
+    border-radius:14px;padding:16px 8px;text-align:center;
+  }
+  .spec .num{
+    font-family:"Hiragino Mincho ProN",serif;
+    font-size:30px;font-weight:700;color:var(--gold-light);line-height:1.2;
+  }
+  .spec .unit{font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;}
+  .fig8{
+    background:rgba(255,255,255,.05);border-radius:16px;
+    padding:20px;text-align:center;margin:20px 0;
+  }
+  .fig8 p{font-size:14px;color:var(--gold-light);margin:10px 0 0;}
+  .muscle-list{
+    display:flex;gap:10px;margin-top:18px;
+  }
+  .muscle-list span{
+    flex:1;text-align:center;
+    background:var(--gold);color:var(--green-deep);
+    font-weight:700;font-size:15px;
+    border-radius:10px;padding:12px 4px;
+  }
+
+  /* ===== PART 3 測定 ===== */
+  .p3{background:#fff;}
+  .bars{margin:24px 0 10px;}
+  .bar-row{margin-bottom:20px;}
+  .bar-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:15px;font-weight:700;margin-bottom:6px;
+  }
+  .bar-head .status{font-size:13px;font-weight:700;}
+  .st-low{color:var(--blue);}
+  .st-ok{color:#1e8a52;}
+  .st-high{color:var(--red);}
+  .track{background:#e9e5d9;border-radius:999px;height:14px;overflow:hidden;}
+  .fill{height:100%;border-radius:999px;}
+  .f-low{background:var(--blue);}
+  .f-ok{background:#2aa365;}
+  .f-high{background:var(--red);}
+  .bladder{
+    background:var(--paper);border-left:4px solid var(--red);
+    border-radius:0 14px 14px 0;padding:18px 20px;margin-top:26px;
+  }
+  .bladder h3{font-size:17px;color:var(--red);margin-bottom:8px;}
+  .bladder p{font-size:15px;margin-bottom:8px;}
+
+  /* ===== PART 4 今夜 ===== */
+  .p4{background:var(--green);color:#fff;}
+  .p4 h2{color:#fff;}
+  .tonight{display:flex;gap:14px;margin:24px 0;}
+  .tonight div{
+    flex:1;background:rgba(255,255,255,.08);
+    border:1px solid rgba(196,164,77,.45);
+    border-radius:16px;padding:22px 12px;text-align:center;
+  }
+  .tonight .t-title{font-size:17px;font-weight:700;color:var(--gold-light);margin-top:10px;}
+  .tonight p{font-size:14px;color:rgba(255,255,255,.85);margin:6px 0 0;line-height:1.7;}
+
+  /* ===== 署名 ===== */
+  footer{
+    background:var(--green-deep);color:#fff;
+    padding:40px 24px 48px;text-align:center;
+  }
+  footer .clinic{
+    font-family:"Hiragino Mincho ProN",serif;
+    font-size:20px;font-weight:700;letter-spacing:.15em;margin:8px 0 4px;
+  }
+  footer .theory{font-size:13px;color:var(--gold-light);letter-spacing:.08em;margin-bottom:22px;}
+  .links{display:flex;gap:12px;justify-content:center;}
+  .links a{
+    display:block;flex:1;max-width:200px;
+    text-decoration:none;font-weight:700;font-size:15px;
+    padding:14px 10px;border-radius:12px;
+  }
+  .l-line{background:#06c755;color:#fff;}
+  .l-map{background:transparent;color:var(--gold-light);border:1.5px solid var(--gold);}
+  footer .addr{font-size:13px;color:rgba(255,255,255,.7);margin-top:18px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ================= 表紙 ================= -->
+  <header class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="date">2026.7.16（木）</div>
+    <div class="name">三澤 様</div>
+    <div class="doc">施 術 報 告 書</div>
+    <div class="lead">
+      3万歩の旅の疲れは、<br>足ではなく「肩甲骨」に<br>たまっていました。
+      <small>本日、全て回収済みです。ご安心ください。</small>
+    </div>
+  </header>
+
+  <!-- ================= PART 1 ================= -->
+  <section class="p1">
+    <div class="part-label">PART 1</div>
+    <h2>本日の最大ポイントは<br>肩甲骨から肩でした</h2>
+    <p>昨日の約3万歩のご旅行。荷物を担いだ影響もあってか、<strong>肩甲骨から肩にかけて、かなり強いダメージ</strong>が入っていました。ご本人の自覚は「肩こり」でも、実際の中心は背中側・肩甲骨まわりです。</p>
+
+    <div class="body-map">
+      <figure>
+        <svg width="120" height="220" viewBox="0 0 120 220" role="img" aria-label="背面の施術部位">
+          <circle cx="60" cy="26" r="16" fill="none" stroke="#1a3d28" stroke-width="3"/>
+          <path d="M60 42 L60 120 M60 55 L28 100 M60 55 L92 100 M60 120 L40 200 M60 120 L80 200" fill="none" stroke="#1a3d28" stroke-width="3" stroke-linecap="round"/>
+          <!-- 施術ポイント -->
+          <circle cx="60" cy="26" r="10" fill="#c4a44d" opacity=".85"/>
+          <circle cx="46" cy="62" r="11" fill="#c0563c" opacity=".9"/>
+          <circle cx="74" cy="62" r="11" fill="#c0563c" opacity=".9"/>
+          <circle cx="60" cy="46" r="8" fill="#c0563c" opacity=".7"/>
+        </svg>
+        <figcaption>首・頭／肩甲骨・肩</figcaption>
+      </figure>
+      <figure>
+        <svg width="120" height="220" viewBox="0 0 120 220" role="img" aria-label="下半身の施術部位">
+          <circle cx="60" cy="26" r="16" fill="none" stroke="#1a3d28" stroke-width="3"/>
+          <path d="M60 42 L60 115 M60 60 L30 105 M60 60 L90 105 M60 115 L42 200 M60 115 L78 200" fill="none" stroke="#1a3d28" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="52" cy="122" r="10" fill="#c4a44d" opacity=".9"/>
+          <circle cx="68" cy="122" r="10" fill="#c4a44d" opacity=".9"/>
+          <circle cx="47" cy="160" r="9" fill="#c4a44d" opacity=".75"/>
+          <circle cx="73" cy="160" r="9" fill="#c4a44d" opacity=".75"/>
+          <circle cx="44" cy="188" r="8" fill="#c4a44d" opacity=".6"/>
+          <circle cx="76" cy="188" r="8" fill="#c4a44d" opacity=".6"/>
+        </svg>
+        <figcaption>股関節・膝／脚全体</figcaption>
+      </figure>
+    </div>
+
+    <div class="done">
+      <strong>✓ 肩甲骨〜肩、全て施術済みです。</strong><br>
+      強く硬くなっていた部分は、すべて緩めてあります。
+    </div>
+  </section>
+
+  <!-- ================= PART 2 ================= -->
+  <section class="p2">
+    <div class="part-label">PART 2</div>
+    <h2>股関節と膝は<br>「専用マシン」で掃除しました</h2>
+    <p>脚の問題の根っこは<strong style="color:var(--gold-light)">股関節</strong>にありました。本日はリハビリ専用の振動マシンを使用しています。</p>
+
+    <div class="spec">
+      <div><div class="num">4<span style="font-size:16px">Hz</span></div><div class="unit">周波数設定</div></div>
+      <div><div class="num">20<span style="font-size:16px">分</span></div><div class="unit">施術時間</div></div>
+      <div><div class="num">8の字</div><div class="unit">専用の動き</div></div>
+    </div>
+
+    <div class="fig8">
+      <svg width="180" height="90" viewBox="0 0 180 90" role="img" aria-label="8の字の振動軌道">
+        <path d="M90 45 C 60 5, 10 15, 10 45 C 10 75, 60 85, 90 45 C 120 5, 170 15, 170 45 C 170 75, 120 85, 90 45 Z" fill="none" stroke="#c4a44d" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="90" cy="45" r="6" fill="#e2cd8f"/>
+      </svg>
+      <p>8の字に動くリハビリ専用機だからこそ、<br>関節の「中」まで掃除できます。<br>（一般的な上下振動のマシンでは出せない効果です）</p>
+    </div>
+
+    <p>少し脚を開いて仰向けになった状態で、<strong style="color:var(--gold-light)">股関節と膝の内部をクリーニング</strong>。あわせて周囲の筋肉も全て緩めています。</p>
+
+    <div class="muscle-list">
+      <span>お尻</span><span>太もも</span><span>ふくらはぎ</span>
+    </div>
+  </section>
+
+  <!-- ================= PART 3 ================= -->
+  <section class="p3">
+    <div class="part-label">PART 3</div>
+    <h2>本日の測定データ<br><span style="font-size:15px;color:#6b6b62;font-weight:600">RaDoTech 生体エネルギー測定</span></h2>
+
+    <div class="bars">
+      <div class="bar-row">
+        <div class="bar-head"><span>⚡ エネルギー</span><span class="status st-low">基準以下 9.31</span></div>
+        <div class="track"><div class="fill f-low" style="width:42%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span>🛡 免疫システム</span><span class="status st-ok">正常 7.07</span></div>
+        <div class="track"><div class="fill f-ok" style="width:62%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span>🔄 代謝</span><span class="status st-low">基準以下 0.96</span></div>
+        <div class="track"><div class="fill f-low" style="width:45%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span>🧠 心理・情緒</span><span class="status st-ok">正常 0.86</span></div>
+        <div class="track"><div class="fill f-ok" style="width:60%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span>💪 筋骨格系</span><span class="status st-high">基準以上 1.40</span></div>
+        <div class="track"><div class="fill f-high" style="width:88%"></div></div>
+      </div>
+    </div>
+
+    <p>エネルギーと代謝が下がり、筋骨格系だけが上振れ。<strong>「3万歩を歩いた翌日の体」そのままの数値</strong>です。筋肉と関節が働きすぎて、体全体の電池が減っている状態でした。</p>
+
+    <div class="bladder">
+      <h3>膀胱：左158%／右116%（機能亢進）</h3>
+      <p>腎臓が老廃物や塩分を積極的に排出しようとしているサインです。旅行の疲労物質を体が「早く出したい」と言っています。</p>
+      <p style="margin-bottom:0"><strong>だからこそ、今日の水分補給が効きます。</strong></p>
+    </div>
+  </section>
+
+  <!-- ================= PART 4 ================= -->
+  <section class="p4">
+    <div class="part-label">PART 4</div>
+    <h2>今夜やることは<br>2つだけです</h2>
+
+    <div class="tonight">
+      <div>
+        <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><path d="M32 8 A16 16 0 1 0 40 26 A13 13 0 0 1 32 8 Z" fill="none" stroke="#e2cd8f" stroke-width="3" stroke-linejoin="round"/></svg>
+        <div class="t-title">ぐっすり眠る</div>
+        <p>首・頭まわりも100%緩めてあります。深く眠れる準備は完了しています。</p>
+      </div>
+      <div>
+        <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 6 C22 6 10 20 10 28 A12 12 0 0 0 34 28 C34 20 22 6 22 6 Z" fill="none" stroke="#e2cd8f" stroke-width="3" stroke-linejoin="round"/></svg>
+        <div class="t-title">水分をとる</div>
+        <p>腎臓・膀胱が排出モードです。水を届けるほど、回復が速くなります。</p>
+      </div>
+    </div>
+
+    <p>体はすでに「回復する側」に切り替わっています。この2つで、旅の疲れは効率よく抜けていきます。</p>
+  </section>
+
+  <!-- ================= 署名 ================= -->
+  <footer>
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="theory">神経反射入力装置論にもとづく施術</div>
+    <div class="links">
+      <a class="l-line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="l-map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップ</a>
+    </div>
+    <div class="addr">高松市由良町、由良川東公園のそば</div>
+  </footer>
+
+</div>
+</body>
+</html>
