@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜福田様｜三条健康堂接骨院</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --gold:#c4a44d;
+    --gold-bg:#fdf9ef;
+    --ink:#222;
+    --sub:#555;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    background:#f5f5f2;
+    color:var(--ink);
+    line-height:1.9;
+    font-size:16px;
+  }
+  .wrap{max-width:720px;margin:0 auto;background:#fff;}
+
+  /* ヘッダー */
+  .header{
+    background:var(--green);
+    color:#fff;
+    padding:36px 24px 30px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:.25em;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  h1{font-size:28px;font-weight:700;letter-spacing:.08em;}
+  .meta{
+    margin-top:14px;
+    font-size:16px;
+    color:#e8e4d8;
+  }
+  .meta b{font-size:20px;color:#fff;}
+
+  /* 免責 */
+  .disclaimer{
+    background:var(--gold-bg);
+    border-bottom:1px solid #eee;
+    padding:16px 24px;
+    font-size:14px;
+    color:#6b5a2e;
+    text-align:center;
+  }
+
+  section{padding:34px 24px;border-bottom:1px solid #eee;}
+  h2{
+    font-size:22px;
+    color:var(--green);
+    text-align:center;
+    margin-bottom:6px;
+    letter-spacing:.06em;
+  }
+  .h2sub{
+    text-align:center;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:.2em;
+    margin-bottom:22px;
+  }
+
+  /* 施術カード */
+  .cards{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .card{
+    flex:1 1 200px;
+    max-width:300px;
+    border:1px solid #e5e0d5;
+    border-radius:14px;
+    padding:26px 16px 20px;
+    text-align:center;
+    background:#fff;
+  }
+  .card .icon{font-size:52px;line-height:1;}
+  .card .name{
+    font-size:20px;
+    font-weight:700;
+    color:var(--green);
+    margin-top:12px;
+  }
+  .card .fact{font-size:14px;color:var(--sub);margin-top:6px;}
+  .badge{
+    display:inline-block;
+    margin-top:14px;
+    background:var(--green);
+    color:#fff;
+    font-size:13px;
+    padding:4px 16px;
+    border-radius:999px;
+    letter-spacing:.1em;
+  }
+
+  /* からだメモ */
+  .stats{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .stat{
+    flex:1 1 200px;
+    max-width:300px;
+    background:var(--gold-bg);
+    border-radius:14px;
+    padding:24px 16px;
+    text-align:center;
+  }
+  .stat .label{font-size:15px;font-weight:700;color:var(--green);}
+  .stat .big{
+    font-size:44px;
+    font-weight:800;
+    color:var(--green);
+    line-height:1.2;
+    margin:6px 0 2px;
+  }
+  .stat .big small{font-size:20px;}
+  .stat .note{font-size:13px;color:#6b5a2e;}
+
+  /* ホームケア */
+  .care{max-width:440px;margin:0 auto;}
+  .care-row{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:16px 6px;
+  }
+  .care-row + .care-row{border-top:1px dashed #ddd6c5;}
+  .care-row .emoji{font-size:52px;line-height:1;}
+  .care-row .t b{display:block;font-size:18px;color:var(--green);}
+  .care-row .t span{font-size:14px;color:var(--sub);}
+
+  /* POINT */
+  .point{
+    border:2px solid var(--gold);
+    border-radius:16px;
+    margin:34px 20px;
+    padding:30px 20px 26px;
+    position:relative;
+    background:#fffdf8;
+  }
+  .point-tag{
+    position:absolute;
+    top:-16px;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--gold);
+    color:#fff;
+    font-weight:800;
+    letter-spacing:.25em;
+    font-size:14px;
+    padding:5px 22px;
+    border-radius:999px;
+  }
+  .point h2{margin-top:6px;}
+  .point .lead{
+    font-size:16px;
+    text-align:center;
+    color:var(--ink);
+    max-width:520px;
+    margin:0 auto 26px;
+  }
+  h3{
+    font-size:19px;
+    color:var(--green);
+    margin:32px 0 14px;
+    padding-left:12px;
+    border-left:5px solid var(--gold);
+  }
+
+  /* 三つの論理カード */
+  .logic{display:flex;flex-direction:column;gap:12px;}
+  .logic-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    background:#fff;
+    border:1px solid #e5dcc4;
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .logic-mark{
+    flex:0 0 64px;
+    height:64px;
+    border-radius:50%;
+    background:var(--green);
+    color:var(--gold);
+    font-size:30px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .logic-body b{display:block;font-size:18px;color:var(--green);}
+  .logic-body span{font-size:14px;color:var(--sub);}
+  .logic-body .ex{
+    display:inline-block;
+    margin-top:6px;
+    background:var(--gold-bg);
+    border-radius:8px;
+    padding:2px 10px;
+    font-size:14px;
+    color:#6b5a2e;
+  }
+
+  /* なぜ3つ */
+  .why{
+    background:#fff;
+    border:1px solid #e5dcc4;
+    border-radius:12px;
+    padding:20px 18px;
+    font-size:16px;
+  }
+  .why p + p{margin-top:12px;}
+  .why b{color:var(--green);}
+
+  /* 会話フロー */
+  .flow{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .flow-step{
+    width:100%;
+    max-width:460px;
+    background:#fff;
+    border:1px solid #e5dcc4;
+    border-radius:12px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .flow-num{
+    flex:0 0 40px;height:40px;border-radius:50%;
+    background:var(--gold);color:#fff;font-weight:800;font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .flow-step .t b{display:block;font-size:17px;color:var(--green);}
+  .flow-step .t span{font-size:14px;color:var(--sub);}
+  .flow-arrow{font-size:22px;color:var(--gold);line-height:1;}
+
+  /* ビジネス表 */
+  .biz{display:flex;flex-direction:column;gap:10px;}
+  .biz-row{
+    display:flex;align-items:center;gap:14px;
+    background:#fff;border:1px solid #e5dcc4;border-radius:12px;
+    padding:14px 16px;
+  }
+  .biz-row .emoji{font-size:40px;line-height:1;}
+  .biz-row .t b{display:block;font-size:17px;color:var(--green);}
+  .biz-row .t span{font-size:14px;color:var(--sub);}
+
+  /* プロンプトボックス */
+  .prompt-block{margin-top:18px;}
+  .prompt-head{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;margin-bottom:10px;
+  }
+  .prompt-title{font-size:17px;font-weight:800;color:var(--green);}
+  .copy-btn{
+    background:var(--green);
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    font-size:15px;
+    font-weight:700;
+    padding:10px 22px;
+    cursor:pointer;
+    letter-spacing:.05em;
+  }
+  .copy-btn.done{background:var(--gold);color:#1a1a1a;}
+  .prompt-box{
+    background:#fff;
+    border:1px solid #d9d2bd;
+    border-radius:12px;
+    padding:18px 16px;
+    font-size:14px;
+    line-height:1.8;
+    white-space:pre-wrap;
+    color:#333;
+    max-height:420px;
+    overflow-y:auto;
+  }
+  .prompt-use{
+    font-size:13px;color:#6b5a2e;background:var(--gold-bg);
+    border-radius:8px;padding:8px 12px;margin-top:8px;
+  }
+
+  /* 次回 */
+  .next{
+    text-align:center;
+    font-size:16px;
+  }
+  .next .soft{color:var(--sub);font-size:15px;margin-top:8px;}
+
+  /* 署名 */
+  footer{
+    background:var(--green);
+    color:#e8e4d8;
+    padding:34px 24px 40px;
+    text-align:center;
+    font-size:14px;
+  }
+  footer .theory{
+    color:var(--gold);
+    font-size:15px;
+    letter-spacing:.12em;
+    margin-bottom:14px;
+  }
+  footer .profile{
+    max-width:480px;margin:0 auto 18px;line-height:1.9;
+  }
+  footer a{
+    display:inline-block;
+    color:#fff;
+    background:rgba(255,255,255,.12);
+    border:1px solid var(--gold);
+    border-radius:999px;
+    padding:9px 22px;
+    margin:6px 6px 0;
+    text-decoration:none;
+    font-size:15px;
+  }
+  footer .place{margin-top:16px;font-size:13px;color:#bdb79f;}
+
+  @media (max-width:480px){
+    h1{font-size:24px;}
+    .cards,.stats{flex-direction:column;align-items:stretch;}
+    .card,.stat{max-width:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ① ヘッダー -->
+  <div class="header">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>本日の施術報告</h1>
+    <div class="meta"><b>福田様</b>　2026年7月26日</div>
+  </div>
+
+  <!-- ② 免責（固定） -->
+  <div class="disclaimer">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+  <!-- ③ 本日ゆるめたところ -->
+  <section>
+    <h2>本日ゆるめたところ</h2>
+    <div class="h2sub">TREATED AREAS</div>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🫲</div>
+        <div class="name">背中</div>
+        <div class="fact">お疲れの背中を全体的にほぐしました</div>
+        <div class="badge">✓ 施術済み</div>
+      </div>
+      <div class="card">
+        <div class="icon">🦶</div>
+        <div class="name">足</div>
+        <div class="fact">足の痛みに対する施術を行いました</div>
+        <div class="badge">✓ 施術済み</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本日のからだメモ -->
+  <section>
+    <h2>本日のからだメモ</h2>
+    <div class="h2sub">BODY MEMO</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="label">リラックスモード</div>
+        <div class="big">100<small>%</small></div>
+        <div class="note">お疲れだった背中がゆるみ、施術後は深いリラックス状態です</div>
+      </div>
+      <div class="stat">
+        <div class="label">足の痛み</div>
+        <div class="big">寛解傾向 ↘</div>
+        <div class="note">良い流れが続くよう、足への施術も行っています</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 今夜のホームケア -->
+  <section>
+    <h2>今夜のホームケア</h2>
+    <div class="h2sub">HOME CARE</div>
+    <div class="care">
+      <div class="care-row">
+        <div class="emoji">💧</div>
+        <div class="t"><b>お水をゆっくり飲む</b><span>コップ1〜2杯を、少しずつで大丈夫です</span></div>
+      </div>
+      <div class="care-row">
+        <div class="emoji">😴</div>
+        <div class="t"><b>今夜はゆっくり寝る</b><span>リラックスモードのまま、早めにお布団へ</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 本日のポイント（第2部） -->
+  <div class="point">
+    <div class="point-tag">POINT</div>
+    <h2>仕事で使える「プロンプト作り」</h2>
+    <p class="lead">今日お話しした、AIへの頼み方のコツです。土台になっているのは、論理国語の先生・<b>出口汪（でぐち ひろし）</b>さんの「三つの論理」。この3つを知っているだけで、AIの答えも、仕事の会話も、見違えるほど整理されます。</p>
+
+    <h3>三つの論理とは</h3>
+    <div class="logic">
+      <div class="logic-card">
+        <div class="logic-mark">＝</div>
+        <div class="logic-body">
+          <b>イコールの関係</b>
+          <span>同じことを別の言葉で言い換える。抽象と具体、たとえ話。</span>
+          <span class="ex">「つまり」「たとえば」「要するに」</span>
+        </div>
+      </div>
+      <div class="logic-card">
+        <div class="logic-mark">⇔</div>
+        <div class="logic-body">
+          <b>対立の関係</b>
+          <span>比べる、反対側から見る。一度認めてからひっくり返す。</span>
+          <span class="ex">「たしかに〜。しかし〜」「一方で」</span>
+        </div>
+      </div>
+      <div class="logic-card">
+        <div class="logic-mark">→</div>
+        <div class="logic-body">
+          <b>因果の関係</b>
+          <span>理由と結論をつなぐ。鎖は一度に三段まで。</span>
+          <span class="ex">「なぜなら」「だから」「その結果」</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>なぜ「この3つ」なのか</h3>
+    <div class="why">
+      <p>出口さんの考え方はシンプルです。<b>文章を読む力はセンスではなく、言葉の規則＝論理である。</b>そして、どんな文章も会話も、文と文のつながりを分解すると、この3つの関係の組み合わせでできている——という発見です。</p>
+      <p>逆に言うと、<b>この3つのどれにも当てはまらないつながりは「話が飛んでいる」</b>ということ。相手に「なんかわかりにくい」と言われる話は、たいていここが抜けています。</p>
+    </div>
+
+    <h3>3つで会話を組み立てると、こうつながる</h3>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="t"><b>主張を一言で</b><span>まず結論。「私はこう思います」</span></div>
+      </div>
+      <div class="flow-arrow">↓ ＝</div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="t"><b>言い換えて具体化</b><span>「たとえば〜」で相手の頭に絵を描く</span></div>
+      </div>
+      <div class="flow-arrow">↓ ⇔</div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="t"><b>反対意見を先回り</b><span>「たしかに〜。しかし〜」で信頼される</span></div>
+      </div>
+      <div class="flow-arrow">↓ →</div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="t"><b>理由から結論へ</b><span>「だから、こうしましょう」で締める</span></div>
+      </div>
+    </div>
+
+    <h3>なぜビジネスで効くのか</h3>
+    <div class="biz">
+      <div class="biz-row">
+        <div class="emoji">🗣️</div>
+        <div class="t"><b>説明が伝わる（＝）</b><span>抽象的な話に具体例を添えるだけで、相手の理解速度が変わります</span></div>
+      </div>
+      <div class="biz-row">
+        <div class="emoji">🛡️</div>
+        <div class="t"><b>反論に強くなる（⇔）</b><span>反対意見を先に自分で言う人は「よく考えている人」に見えます</span></div>
+      </div>
+      <div class="biz-row">
+        <div class="emoji">🤝</div>
+        <div class="t"><b>提案が通る（→）</b><span>理由→だから→結論の鎖がある提案は、上司も断りにくいのです</span></div>
+      </div>
+    </div>
+
+    <h3>プロンプト① リサーチを「3つ」にまとめさせる</h3>
+    <div class="prompt-block">
+      <div class="prompt-head">
+        <div class="prompt-title">調べものが一発で整理されるプロンプト</div>
+        <button class="copy-btn" id="btn1" onclick="copyText('prompt1','btn1')">📋 コピー</button>
+      </div>
+      <div class="prompt-box" id="prompt1">あなたはリサーチの専門家です。
+以下のテーマについて調べて、「三つの論理」で整理して報告してください。
+
+【テーマ】
+（ここに調べたいことを書く）
+
+━━ 整理のルール ━━
+1. 最初に、結論を一文で書く
+2. 内容を必ず「3つ」にまとめる
+   ・それぞれに短い見出しをつける
+   ・各項目は「主張 → 具体例（＝）→ 理由（→）」の順で書く
+3. 反対意見や注意点があれば、
+   「たしかに〜。しかし〜」（⇔）の形で1つだけ入れる
+4. 最後に「つまり」で全体を一文に言い換えて締める（＝）
+5. 専門用語には、身近なたとえを一つ添える
+6. 事実と意見は分けて書く。あいまいな情報は「未確認」と明記する</div>
+      <div class="prompt-use">使い方：全文コピーしてAIに貼り、【テーマ】の下に調べたいことを書くだけ。答えが自動的に「結論＋3本柱」で返ってきます。</div>
+    </div>
+
+    <h3>プロンプト② 本や資料を「読めるアウトライン」に変える</h3>
+    <div class="prompt-block">
+      <div class="prompt-head">
+        <div class="prompt-title">勉強・読書・書籍分析用プロンプト</div>
+        <button class="copy-btn" id="btn2" onclick="copyText('prompt2','btn2')">📋 コピー</button>
+      </div>
+      <div class="prompt-box" id="prompt2">あなたは読書と学習のコーチです。
+以下の文章（本の内容・記事・資料）を、理解しやすいアウトラインと文章に変換してください。
+
+【文章】
+（ここに読んだ内容・分析したい文章を貼る）
+
+━━ 出力ルール ━━
+STEP1【骨格診断】
+まず文章を三つの論理でレントゲン撮影する。
+・主張＝○○（一言で言い換えると何か）
+・対立⇔○○（何と比べている／何に反対しているか)
+・因果→○○（なぜ→だから→結論の鎖）
+この3行だけを先に示す。
+
+STEP2【アウトライン】
+骨格をもとに、章立てのアウトラインを作る。
+・大見出しは3つまで、小見出しは各3つまで
+・抽象的な見出しには具体例（＝）を一行添える
+・因果（→）の鎖は一度に三段まで。長い場合は分割する
+
+STEP3【読みやすい文章】
+アウトラインに沿って、中学生にも読める文章に書き直す。
+・一文一義。長い文は分割する
+・「つまり」「しかし」「だから」を道しるべとして使う
+・元の内容を歪めない。書かれていないことを勝手に足さない</div>
+      <div class="prompt-use">使い方：本の一節や資料を貼るだけ。「骨格→アウトライン→やさしい文章」の三段変換で、難しい本もすっと頭に入ります。</div>
+    </div>
+
+    <h3>プロンプト③ 「分からない」を潰す学習コーチ化プロンプト</h3>
+    <div class="prompt-block">
+      <div class="prompt-head">
+        <div class="prompt-title">資格勉強・暗記もの・制度の全体像に</div>
+        <button class="copy-btn" id="btn3" onclick="copyText('prompt3','btn3')">📋 コピー</button>
+      </div>
+      <div class="prompt-box" id="prompt3"># 学習アウトライン生成プロンプト（汎用版）
+
+あなたは私専属の学習コーチです。私が「分からない」「アウトラインを作って」「深掘りして」と言ったら、以下のルールで教材を作ってください。このルールは、論理国語の三大関係（言い換え・対比・因果）に基づいています。
+
+## 設計原理：3つの法則
+すべての説明は、次の3法則のどれで攻めるかを意識して作ること。
+
+1. イコールの関係（言い換え）
+　専門用語には必ず「私の日常語」のラベルを貼る。字面が漠然としていると文全体がぼやけて答えが選べなくなる。字面を絵や身近な言い換えに変えるのが理解の最短ルート。私の職業や生活の言葉を知っていれば、それに寄せて言い換えること。
+
+2. 対立関係（対比）
+　項目を単独で提示することを禁止する。似たもの・紛らわしいものは必ずペアか全項目の比較表で出す。部分的な提示では覚えられない。関連する項目があるなら残らず全部並べること。
+
+3. 因果関係（物語）
+　制度・仕組み・概念は「〇〇がなかった。だから〇〇が生まれた」という欠落→誕生の一本線で語る。見出し自体をこの因果文で書く。物語は1人の人物・1つの場面の短い平易な文で（中学生に話せるレベル。凝った比喩は禁止。1文は短く）。
+
+## アウトラインの標準形（この順番で作る）
+1. 因果の見出し＋短い物語：なぜこれが存在するのかを、欠落→誕生の一本線で。
+2. 「覚える物は○個」と数を宣言：各項目は「誰が／どのレベルの義務か／何をするか」の3点セットで1対1対応させる（チャンク化。深追いしない）。
+3. 全比較表：関連項目は全部並べる。試験対策なら各項目に「どの過去問で出るか（住所）」を付ける。
+4. 義務レベルの明示：「しなければならない（義務）／努めるものとする（努力義務）／できる（任意）」のような義務レベルの違いが絡む箇所は、絶対に1行に圧縮しない。必ず項目ごとに表で明示する。
+5. 締め＝声出し1文：全項目を一本の因果でつなぐ、声に出して言える結びの1文を最後に置く（「全部一本の木」）。
+
+## 禁止事項
+- 誤文・嘘の文を絶対に書かない。ひっかけの説明も「正しい文＋どの語がすり替えられやすいかの指摘」だけで書く。誤った文をカギ括弧で引用する形式は全面禁止（誤文の方を記憶してしまう事故になる）。
+- 暗記用の教材に罠・ひっかけ分析を混ぜない。暗記段階は正しい文のみ。罠分析は別枠で、求められたときだけ出す。
+- 抽象的な見取り図だけで終わらせない。試験や実務で使える具体的な中身（数字・主語・手続き）を必ず各項目に入れる。
+- 説明の途中で例え話が私を混乱させたら、即座に例えを捨てて、素の短い宣言文に切り替える。
+
+## 追加の読解ルール（安全装置）
+問題文や条文を読むときは「書いてある字だけ数えろ」——脳内で因果や前提を勝手に足して読まない。書かれていないことを補って正誤判定しない。
+
+## 点検ルール
+私が「分からない」と言ったら、上の3法則のどれが欠けているかを点検して作り直すこと。
+- 用語が刺さらない → 法則1（言い換え）が欠けている
+- 似たものと混ざる → 法則2（全比較）が欠けている
+- なぜそうなるか腑に落ちない → 法則3（因果の物語）が欠けている</div>
+      <div class="prompt-use">使い方：勉強の最初にこれを貼っておくと、以後「分からない」「全体像を説明して」と言うだけで、三つの論理に沿った教材が返ってきます。資格試験や仕事の制度勉強に。</div>
+    </div>
+  </div>
+
+  <!-- ⑦ 次回のご案内 -->
+  <section class="next">
+    <h2>次回のご来院について</h2>
+    <div class="h2sub">NEXT VISIT</div>
+    <p>足の良い流れを保つため、無理のないペースでのご来院をおすすめしています。</p>
+    <p class="soft">お身体の様子で気になることがあれば、いつでもLINEでお知らせください。</p>
+  </section>
+
+  <!-- ⑧ 署名 -->
+  <footer>
+    <div class="theory">神経反射入力装置論にもとづく施術</div>
+    <div class="profile">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</div>
+    <a href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認</a>
+    <div class="place">高松市由良町・由良川東公園のそば</div>
+  </footer>
+
+</div>
+
+<script>
+async function copyText(srcId, btnId){
+  const text = document.getElementById(srcId).innerText;
+  const btn = document.getElementById(btnId);
+  let ok = false;
+  try{
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  }catch(e){
+    try{
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;';
+      document.body.appendChild(ta);
+      const sx = window.scrollX, sy = window.scrollY;
+      ta.focus(); ta.select();
+      ok = document.execCommand('copy');
+      window.scrollTo(sx, sy);
+      document.body.removeChild(ta);
+    }catch(e2){ ok = false; }
+  }
+  if(ok){
+    const orig = btn.textContent;
+    btn.textContent = '✓ 完了';
+    btn.classList.add('done');
+    setTimeout(()=>{ btn.textContent = orig; btn.classList.remove('done'); }, 1500);
+  }
+}
+</script>
+</body>
+</html>
