@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本日の施術報告｜兼近様｜三条健康堂接骨院</title>
+<style>
+:root{
+  --green:#1a3d28;
+  --gold:#c4a44d;
+  --bg:#ffffff;
+  --bg-soft:#f7f6f2;
+  --text:#22221f;
+  --muted:#5a5a52;
+  --ok:#2e7d4f;
+  --attn:#b08a2e;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+  background:var(--bg-soft);
+  color:var(--text);
+  font-size:16px;
+  line-height:1.7;
+}
+.wrap{max-width:680px;margin:0 auto;background:var(--bg);}
+/* ── Header ── */
+.header{
+  background:var(--green);
+  color:#fff;
+  padding:36px 24px 28px;
+  text-align:center;
+}
+.eyebrow{
+  font-size:12px;
+  letter-spacing:0.25em;
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:10px;
+}
+.header h1{font-size:28px;font-weight:800;letter-spacing:0.05em;}
+.patient-line{
+  margin-top:14px;
+  font-size:16px;
+  color:#e8e4d8;
+}
+.patient-line strong{font-size:20px;color:#fff;}
+/* ── Disclaimer ── */
+.disclaimer{
+  background:#f2efe6;
+  border-left:4px solid var(--gold);
+  padding:14px 18px;
+  font-size:14px;
+  color:var(--muted);
+  margin:0;
+}
+/* ── Sections ── */
+.section{padding:32px 20px;}
+.section h2{
+  font-size:20px;
+  color:var(--green);
+  font-weight:800;
+  text-align:center;
+  margin-bottom:6px;
+}
+.section .sub{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:22px;
+  letter-spacing:0.08em;
+}
+/* ── Status banner ── */
+.status-banner{
+  background:linear-gradient(135deg,#f4f1e6,#faf8f0);
+  border:2px solid var(--gold);
+  border-radius:14px;
+  padding:22px 18px;
+  text-align:center;
+  margin:0 20px;
+}
+.status-banner .big{
+  font-size:22px;
+  font-weight:800;
+  color:var(--green);
+}
+.status-banner .items{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+.status-banner .item{
+  text-align:center;
+}
+.status-banner .item .ico{font-size:40px;}
+.status-banner .item .lab{font-size:14px;font-weight:700;color:var(--green);margin-top:4px;}
+.status-banner .item .tag{
+  display:inline-block;
+  margin-top:4px;
+  font-size:12px;
+  font-weight:700;
+  color:#fff;
+  background:var(--ok);
+  border-radius:999px;
+  padding:2px 12px;
+}
+/* ── Treated cards ── */
+.cards{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.card{
+  flex:1 1 180px;
+  max-width:260px;
+  background:#fff;
+  border:1.5px solid #ddd8c8;
+  border-radius:14px;
+  padding:24px 14px;
+  text-align:center;
+}
+.card .ico{font-size:52px;}
+.card .name{font-size:20px;font-weight:800;color:var(--green);margin-top:8px;}
+.card .badge{
+  display:inline-block;
+  margin-top:10px;
+  background:var(--green);
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  border-radius:999px;
+  padding:4px 16px;
+}
+.card .memo{font-size:13px;color:var(--muted);margin-top:8px;}
+/* ── POINT box ── */
+.point{
+  border:2px solid var(--gold);
+  border-radius:14px;
+  padding:22px 18px 20px;
+  position:relative;
+  margin-top:28px;
+  background:#fffdf7;
+}
+.point .tag{
+  position:absolute;
+  top:-14px;
+  left:18px;
+  background:var(--gold);
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:0.2em;
+  border-radius:999px;
+  padding:3px 16px;
+}
+.point p{font-size:15px;margin-top:8px;}
+.point p:first-of-type{margin-top:4px;}
+/* ── RaDoTech chart ── */
+.chart{display:flex;flex-direction:column;gap:14px;}
+.row{display:flex;align-items:center;gap:10px;}
+.row .rlabel{
+  width:112px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--green);
+  line-height:1.3;
+}
+.row .bar-wrap{
+  flex:1;
+  background:#eeeade;
+  border-radius:999px;
+  height:26px;
+  overflow:hidden;
+}
+.row .bar{
+  height:100%;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-right:10px;
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+}
+.bar.attn{background:var(--attn);}
+.bar.ok{background:var(--ok);}
+.row .st{
+  width:64px;
+  font-size:12px;
+  font-weight:700;
+  text-align:center;
+  border-radius:6px;
+  padding:2px 0;
+}
+.st.attn{color:var(--attn);border:1px solid var(--attn);}
+.st.ok{color:var(--ok);border:1px solid var(--ok);}
+.chart-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;}
+/* ── Home care ── */
+.hc-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:#fff;
+  border:1.5px solid #ddd8c8;
+  border-radius:12px;
+  padding:14px 16px;
+  margin-bottom:12px;
+}
+.hc-row .ico{font-size:52px;flex-shrink:0;}
+.hc-row .lab{font-size:17px;font-weight:800;color:var(--green);}
+.hc-row .note{font-size:14px;color:var(--muted);}
+/* ── Part 2 ── */
+.part2{
+  background:var(--green);
+  color:#fff;
+  padding:36px 20px;
+}
+.part2 .p2-eyebrow{
+  text-align:center;
+  font-size:12px;
+  letter-spacing:0.25em;
+  color:var(--gold);
+  font-weight:700;
+}
+.part2 h2{
+  text-align:center;
+  font-size:22px;
+  font-weight:800;
+  margin:8px 0 4px;
+  color:#fff;
+}
+.part2 .p2-sub{
+  text-align:center;
+  font-size:13px;
+  color:#cfc9b4;
+  margin-bottom:24px;
+}
+.rank-card{
+  background:#fff;
+  color:var(--text);
+  border-radius:14px;
+  padding:20px 18px;
+  margin-bottom:16px;
+  position:relative;
+}
+.rank-num{
+  position:absolute;
+  top:-12px;
+  left:16px;
+  background:var(--gold);
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+  border-radius:999px;
+  padding:3px 16px;
+  letter-spacing:0.1em;
+}
+.rank-card .rc-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:6px;
+}
+.rank-card .rc-ico{font-size:44px;}
+.rank-card h3{font-size:18px;color:var(--green);font-weight:800;line-height:1.4;}
+.stars{color:var(--gold);font-size:15px;letter-spacing:2px;margin-top:2px;}
+.rank-card .rc-body{font-size:15px;margin-top:12px;}
+.ev{
+  margin-top:10px;
+  background:#f4f1e6;
+  border-radius:8px;
+  padding:10px 14px;
+  font-size:13px;
+  color:var(--muted);
+}
+.ev b{color:var(--green);}
+.tani-tag{
+  display:inline-block;
+  background:var(--green);
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  border-radius:999px;
+  padding:2px 12px;
+  margin-bottom:6px;
+}
+.plus-tag{
+  display:inline-block;
+  background:#8a7635;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  border-radius:999px;
+  padding:2px 12px;
+  margin-bottom:6px;
+}
+.part2 .closing{
+  background:rgba(255,255,255,0.08);
+  border:1px solid var(--gold);
+  border-radius:12px;
+  padding:18px;
+  font-size:15px;
+  margin-top:8px;
+}
+.part2 .closing b{color:var(--gold);}
+/* ── Next visit ── */
+.next{
+  text-align:center;
+  background:#fffdf7;
+  border:1.5px solid #ddd8c8;
+  border-radius:14px;
+  padding:24px 18px;
+}
+.next .ico{font-size:48px;}
+.next .lead{font-size:18px;font-weight:800;color:var(--green);margin-top:8px;}
+.next p{font-size:14px;color:var(--muted);margin-top:8px;}
+/* ── Signature ── */
+.sig{
+  background:var(--bg-soft);
+  padding:32px 20px 44px;
+  text-align:center;
+  border-top:3px solid var(--gold);
+}
+.sig .theory{
+  font-size:13px;
+  letter-spacing:0.15em;
+  color:var(--gold);
+  font-weight:700;
+}
+.sig .clinic{font-size:20px;font-weight:800;color:var(--green);margin-top:6px;}
+.sig .prof{
+  font-size:13px;
+  color:var(--muted);
+  max-width:520px;
+  margin:14px auto 0;
+  text-align:left;
+}
+.sig .links{margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.sig a{
+  display:inline-block;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:700;
+  border-radius:999px;
+  padding:12px 26px;
+}
+.sig a.line{background:#06c755;color:#fff;}
+.sig a.map{background:var(--green);color:#fff;}
+.sig .addr{font-size:13px;color:var(--muted);margin-top:14px;}
+@media (max-width:480px){
+  .row .rlabel{width:96px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ① Header -->
+  <div class="header">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>本日の施術報告</h1>
+    <div class="patient-line"><strong>兼近様</strong>　2026年7月27日</div>
+  </div>
+
+  <!-- ② Disclaimer -->
+  <p class="disclaimer">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+
+  <!-- Status -->
+  <div class="section" style="padding-bottom:0;">
+    <h2>いまの流れ</h2>
+    <div class="sub">GOOD TREND</div>
+  </div>
+  <div class="status-banner">
+    <div class="big">良い方向に向かっている時期です</div>
+    <div class="items">
+      <div class="item">
+        <div class="ico">🖐️</div>
+        <div class="lab">手の痛み</div>
+        <div class="tag">寛解傾向</div>
+      </div>
+      <div class="item">
+        <div class="ico">🦷</div>
+        <div class="lab">歯の痛み</div>
+        <div class="tag">寛解傾向</div>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-top:16px;">
+      日々の生活習慣の積み重ねと、漢方との組み合わせが<br>良い流れを後押ししていると考えています。
+    </p>
+  </div>
+
+  <!-- ③ Treated areas -->
+  <div class="section">
+    <h2>本日ゆるめたところ</h2>
+    <div class="sub">TREATED AREAS</div>
+    <div class="cards">
+      <div class="card">
+        <div class="ico"><svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="首">
+          <!-- 頭 -->
+          <circle cx="32" cy="16" r="11" stroke="#1a3d28" stroke-width="3.5" fill="none"/>
+          <!-- 首 -->
+          <path d="M26 26 L25 40 M38 26 L39 40" stroke="#1a3d28" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- 肩 -->
+          <path d="M25 40 C18 42 10 46 7 54 M39 40 C46 42 54 46 57 54" stroke="#1a3d28" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <!-- ケアポイント（首の輝き） -->
+          <path d="M46 30 l2.2 4.6 4.8 0.7 -3.5 3.4 0.8 4.8 -4.3-2.3 -4.3 2.3 0.8-4.8 -3.5-3.4 4.8-0.7 z" fill="#c4a44d"/>
+        </svg></div>
+        <div class="name">首</div>
+        <div class="badge">✓ 施術済み</div>
+        <div class="memo">硬さを確認し、100%ゆるめました</div>
+      </div>
+      <div class="card">
+        <div class="ico">🧠</div>
+        <div class="name">頭部</div>
+        <div class="badge">✓ 施術済み</div>
+        <div class="memo">首とあわせて調整しました</div>
+      </div>
+    </div>
+
+    <!-- POINT -->
+    <div class="point">
+      <span class="tag">POINT</span>
+      <p><b>本日のポイントは「首」です。</b></p>
+      <p>首と頭の状態は、歯の噛み合わせや手・手首の感覚と関連することが臨床上よく知られています。今日は硬さの強かった首をしっかりゆるめてありますので、噛み合わせの快適さや手首の落ち着きが、このまま続いてくれることを期待しています。</p>
+    </div>
+  </div>
+
+  <!-- ④ RaDoTech -->
+  <div class="section" style="background:var(--bg-soft);">
+    <h2>本日の測定データ</h2>
+    <div class="sub">RaDoTech 5 PARAMETERS</div>
+    <div class="chart">
+      <div class="row">
+        <div class="rlabel">⚡ エネルギー</div>
+        <div class="bar-wrap"><div class="bar attn" style="width:40%;">20.00</div></div>
+        <div class="st attn">基準未満</div>
+      </div>
+      <div class="row">
+        <div class="rlabel">🛡️ 免疫</div>
+        <div class="bar-wrap"><div class="bar attn" style="width:30%;">11.81</div></div>
+        <div class="st attn">基準未満</div>
+      </div>
+      <div class="row">
+        <div class="rlabel">♻️ 代謝</div>
+        <div class="bar-wrap"><div class="bar ok" style="width:78%;">1.18</div></div>
+        <div class="st ok">正常</div>
+      </div>
+      <div class="row">
+        <div class="rlabel">🧠 心理・感情</div>
+        <div class="bar-wrap"><div class="bar attn" style="width:34%;">0.60</div></div>
+        <div class="st attn">基準未満</div>
+      </div>
+      <div class="row">
+        <div class="rlabel">💪 筋骨格</div>
+        <div class="bar-wrap"><div class="bar attn" style="width:44%;">0.88</div></div>
+        <div class="st attn">基準未満</div>
+      </div>
+    </div>
+    <p class="chart-note">平均値 20.00｜左右比 L/R 0.88（基準 0.9–1.2）｜数値は本日の状態の記録です。</p>
+  </div>
+
+  <!-- ⑤ Home care -->
+  <div class="section">
+    <h2>おうちでのケア</h2>
+    <div class="sub">HOME CARE</div>
+    <div class="hc-row">
+      <div class="ico">🛁</div>
+      <div>
+        <div class="lab">首を温める</div>
+        <div class="note">湯船・蒸しタオルで首まわりをじんわり温めましょう</div>
+      </div>
+    </div>
+    <div class="hc-row">
+      <div class="ico">🌿</div>
+      <div>
+        <div class="lab">漢方をこれまで通りに</div>
+        <div class="note">良い流れの中にいます。今のリズムを続けましょう</div>
+      </div>
+    </div>
+    <div class="hc-row">
+      <div class="ico">😴</div>
+      <div>
+        <div class="lab">睡眠をたっぷり</div>
+        <div class="note">エネルギーの数値が低めの日は、休むことが一番のケアです</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 2 -->
+  <div class="part2">
+    <div class="p2-eyebrow">第2部｜院長コラム</div>
+    <h2>仕事で嫌いな人がいる。<br>さて、どうする？</h2>
+    <div class="p2-sub">臨床30年＋研究知見から、おすすめ順にランキングでお答えします</div>
+
+    <div style="height:16px;"></div>
+
+    <div class="rank-card">
+      <span class="rank-num">第1位</span>
+      <div class="rc-head">
+        <div class="rc-ico">🚶</div>
+        <div>
+          <span class="tani-tag">院長の答え</span>
+          <h3>距離を置く。「引き寄せない法則」</h3>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="rc-body">
+        相性の合わない人には近寄らない。いかに引き寄せるかではなく、<b>いかに引き寄せないか</b>。これが臨床の中で私がたどり着いた人生のコツです。
+      </div>
+      <div class="ev"><b>研究では：</b>職場の無礼な言動（インシビリティ）は、受けた側の健康や仕事ぶりを下げ、しかも周囲に「伝染」することが繰り返し報告されています。もっとも確実な対策は、接触量そのものを減らすこと。シンプルですが、科学的にも王道です。</div>
+    </div>
+
+    <div class="rank-card">
+      <span class="rank-num">第2位</span>
+      <div class="rc-head">
+        <div class="rc-ico">🔌</div>
+        <div>
+          <span class="tani-tag">院長の答え</span>
+          <h3>最初から「心のスイッチ」を切って行く</h3>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="rc-body">
+        嫌いな人に会うと分かっている日ほど、仕事に行く前から心のスイッチをオフにしておく。オンにして構えるより、切っておいた方がうまくいく——今日のお話の中で出た考え方です。
+      </div>
+      <div class="ev"><b>研究では：</b>感情労働の研究で、笑顔や愛想を「演技」し続けること（表層演技）は心身を強く消耗させることが分かっています。逆に、感情を最初から動員しない・仕事から心理的に切り離す「心理的ディタッチメント」は、疲労回復と燃え尽き予防に効果が示されています。スイッチオフ戦略は理にかなっています。</div>
+    </div>
+
+    <div class="rank-card">
+      <span class="rank-num">第3位</span>
+      <div class="rc-head">
+        <div class="rc-ico">🎮</div>
+        <div>
+          <span class="tani-tag">院長の答え</span>
+          <h3>仕事は「ゲーム」だと捉える</h3>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="rc-body">
+        その場所でどんなルールを自分で決め、どうクリアしていくか。人間関係も「自分の立ち位置をより良くするゲーム」と捉える。ゲーミフィケーションこそ、仕事で生き残る最良の策のひとつだと考えています。
+      </div>
+      <div class="ev"><b>研究では：</b>これは心理学でいう「認知的再評価」——出来事の意味づけを変える技術の一種で、ストレス対処法の中でもっとも効果の証拠が積み上がっている方法のひとつです。さらにゲーム化は「自分で決めている」という感覚（自律性）を生み、動機づけ研究でも意欲と粘り強さを高めることが示されています。
+      </div>
+    </div>
+
+    <div class="rank-card">
+      <span class="rank-num">第4位</span>
+      <div class="rc-head">
+        <div class="rc-ico">🗣️</div>
+        <div>
+          <span class="plus-tag">＋院長からの追加おすすめ</span>
+          <h3>自分を「実況中継」する（三人称セルフトーク）</h3>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="rc-body">
+        イラッとした瞬間、心の中で「さて、◯◯さん（自分の名前）はここでどう動くかな？」と実況者になってみる。自分を少し離れた場所から眺めるだけで、感情の波が小さくなります。ゲーム化との相性も抜群です。
+      </div>
+      <div class="ev"><b>研究では：</b>自分に三人称で語りかける「セルフディスタンシング」は、怒りや不安を努力感なく下げることが実験で示されています。数秒でできる即効ワザです。</div>
+    </div>
+
+    <div class="rank-card">
+      <span class="rank-num">第5位</span>
+      <div class="rc-head">
+        <div class="rc-ico">🌙</div>
+        <div>
+          <span class="plus-tag">＋院長からの追加おすすめ</span>
+          <h3>帰宅後の「回復の儀式」を持つ</h3>
+          <div class="stars">★★★☆☆</div>
+        </div>
+      </div>
+      <div class="rc-body">
+        嫌な人のことを家まで持ち帰らないために、帰宅後に「仕事を終える儀式」をひとつ決める。散歩・入浴・音楽・読書、何でも構いません。スイッチを切ったまま一日を閉じます。
+      </div>
+      <div class="ev"><b>研究では：</b>勤務後に仕事から心理的に離れる「リカバリー体験」が多い人ほど、翌日の気力・睡眠の質・長期的な健康が良いことが多くの調査で示されています。第2位のスイッチオフを、家庭で完成させる方法です。</div>
+    </div>
+
+    <div class="closing">
+      <b>まとめ。</b>嫌いな人を変えようとする方法は、実はどの研究でも成績がよくありません。<b>①近寄らない ②心を動員しない ③意味づけを自分で決める</b>——矢印をぜんぶ「自分側」に向ける方法だけが、確実に効きます。兼近様が今日お話しくださった感覚は、研究の結論とほぼ一致しています。自信を持ってお続けください。
+    </div>
+  </div>
+
+  <!-- ⑥ Next visit -->
+  <div class="section">
+    <div class="next">
+      <div class="ico">🍀</div>
+      <div class="lead">次回について</div>
+      <p>良い流れの中にいらっしゃいます。首の状態を見ながら、無理のないペースでお越しください。気になることがあれば、いつでもLINEでお声がけくださいね。</p>
+    </div>
+  </div>
+
+  <!-- ⑦ Signature -->
+  <div class="sig">
+    <div class="theory">神経反射入力装置論</div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <p class="prof">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a class="line" href="https://lin.ee/dwRtwDv">💬 LINEで相談・予約</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップ</a>
+    </div>
+    <p class="addr">高松市由良町｜由良川東公園のそば</p>
+  </div>
+
+</div>
+</body>
+</html>
