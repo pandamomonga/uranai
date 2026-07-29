@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜富野様｜三条健康堂接骨院</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background:#f7f6f2; color:#222; font-size:16px; line-height:1.7;
+  }
+  .wrap { max-width:640px; margin:0 auto; padding:0 16px 48px; }
+
+  /* ① Header */
+  .header { background:#1a3d28; color:#fff; margin:0 -16px; padding:36px 24px 30px; text-align:center; }
+  .eyebrow { font-size:13px; letter-spacing:0.18em; color:#c4a44d; font-weight:bold; }
+  .header h1 { font-size:28px; margin-top:10px; letter-spacing:0.05em; }
+  .header .meta { margin-top:14px; font-size:17px; }
+  .header .meta strong { font-size:20px; }
+
+  /* ② Disclaimer */
+  .disclaimer {
+    background:#fff; border-left:4px solid #c4a44d; padding:14px 16px;
+    font-size:14px; color:#555; margin:20px 0 28px; border-radius:0 8px 8px 0;
+  }
+
+  .sec-title { font-size:22px; color:#1a3d28; font-weight:bold; margin:34px 0 16px; display:flex; align-items:center; gap:10px; }
+  .sec-title::before { content:""; display:inline-block; width:6px; height:24px; background:#c4a44d; border-radius:3px; }
+
+  /* ③ Treated area cards */
+  .cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .card {
+    background:#fff; border-radius:14px; padding:20px 14px; text-align:center;
+    box-shadow:0 2px 8px rgba(26,61,40,0.08); position:relative;
+  }
+  .card .icon { font-size:44px; }
+  .card .label { font-size:17px; font-weight:bold; color:#1a3d28; margin-top:8px; }
+  .card .note { font-size:13px; color:#666; margin-top:4px; }
+  .badge {
+    display:inline-block; margin-top:10px; background:#1a3d28; color:#fff;
+    font-size:13px; font-weight:bold; padding:4px 12px; border-radius:999px;
+  }
+  .card.wide { grid-column:1 / -1; }
+
+  /* 状態メモ */
+  .memo { background:#fff; border-radius:14px; padding:18px 20px; box-shadow:0 2px 8px rgba(26,61,40,0.08); }
+  .memo-row { display:flex; align-items:center; gap:14px; padding:8px 0; }
+  .memo-row .m-icon { font-size:32px; flex-shrink:0; }
+  .memo-row .m-text { font-size:16px; font-weight:bold; color:#333; }
+
+  /* ④ RaDoTech chart */
+  .chart { background:#fff; border-radius:14px; padding:22px 20px; box-shadow:0 2px 8px rgba(26,61,40,0.08); }
+  .bar-row { margin-bottom:18px; }
+  .bar-row:last-child { margin-bottom:0; }
+  .bar-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+  .bar-name { font-size:16px; font-weight:bold; color:#333; }
+  .bar-val { font-size:18px; font-weight:bold; }
+  .bar-val.ok { color:#1a8a4c; }
+  .bar-val.low { color:#5b5bd6; }
+  .bar-bg { background:#eee9df; border-radius:999px; height:16px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:999px; }
+  .bar-fill.ok { background:#2fae63; }
+  .bar-fill.low { background:#7b7be0; }
+  .bar-status { font-size:12px; color:#777; margin-top:4px; }
+  .chart-note { font-size:12px; color:#888; margin-top:14px; }
+
+  /* POINT box */
+  .point {
+    border:2px solid #c4a44d; border-radius:14px; background:#fffdf6;
+    padding:22px 20px; margin-top:34px; position:relative;
+  }
+  .point-tag {
+    position:absolute; top:-14px; left:18px; background:#c4a44d; color:#fff;
+    font-size:14px; font-weight:bold; letter-spacing:0.15em; padding:3px 16px; border-radius:999px;
+  }
+  .point h3 { font-size:20px; color:#1a3d28; margin-bottom:10px; }
+  .point p { font-size:16px; color:#333; }
+  .point p + p { margin-top:10px; }
+
+  /* ⑤ Home care */
+  .care { background:#fff; border-radius:14px; padding:10px 20px; box-shadow:0 2px 8px rgba(26,61,40,0.08); }
+  .care-row { display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid #f0ece2; }
+  .care-row:last-child { border-bottom:none; }
+  .care-row .c-icon { font-size:52px; flex-shrink:0; }
+  .care-row .c-label { font-size:18px; font-weight:bold; color:#1a3d28; }
+  .care-row .c-note { font-size:14px; color:#666; margin-top:2px; }
+
+  /* ⑥ Next visit */
+  .next { background:#fff; border-radius:14px; padding:20px; box-shadow:0 2px 8px rgba(26,61,40,0.08); font-size:16px; color:#333; }
+
+  /* ⑦ Signature */
+  .sign { background:#1a3d28; color:#fff; margin:44px -16px 0; padding:32px 24px 40px; text-align:center; }
+  .sign .theory { font-size:14px; color:#c4a44d; letter-spacing:0.1em; font-weight:bold; }
+  .sign .clinic { font-size:22px; font-weight:bold; margin-top:8px; }
+  .sign .profile { font-size:14px; color:#d8e2da; margin-top:14px; text-align:left; line-height:1.9; }
+  .sign .place { font-size:15px; margin-top:16px; color:#fff; font-weight:bold; }
+  .cta { display:flex; gap:12px; justify-content:center; margin-top:18px; flex-wrap:wrap; }
+  .cta a {
+    display:inline-block; padding:14px 26px; border-radius:999px; font-size:16px;
+    font-weight:bold; text-decoration:none;
+  }
+  .cta .line { background:#06c755; color:#fff; }
+  .cta .map { background:#c4a44d; color:#1a3d28; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ① Header -->
+  <div class="header">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>本日の施術報告</h1>
+    <div class="meta"><strong>富野様</strong><br>2026年7月29日</div>
+  </div>
+
+  <!-- ② Disclaimer -->
+  <div class="disclaimer">
+    ※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。
+  </div>
+
+  <!-- 状態メモ（事実のみ） -->
+  <div class="sec-title">本日うかがったこと</div>
+  <div class="memo">
+    <div class="memo-row"><div class="m-icon">📦</div><div class="m-text">布団の配達・引き取りで、お仕事量が増えている時期</div></div>
+    <div class="memo-row"><div class="m-icon">🌡️</div><div class="m-text">気温・湿度ともに高く、体への負担が大きい季節</div></div>
+  </div>
+
+  <!-- ③ Treated areas -->
+  <div class="sec-title">本日ゆるめたところ</div>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🦴</div>
+      <div class="label">腰まわり</div>
+      <div class="note">施術後、まっすぐな状態を確認</div>
+      <div class="badge">✓ 施術済み</div>
+    </div>
+    <div class="card">
+      <div class="icon">🦵</div>
+      <div class="label">右足の筋肉</div>
+      <div class="note">硬さをゆるめました</div>
+      <div class="badge">✓ 施術済み</div>
+    </div>
+    <div class="card">
+      <div class="icon">💪</div>
+      <div class="label">右肩</div>
+      <div class="note">硬さをゆるめました</div>
+      <div class="badge">✓ 施術済み</div>
+    </div>
+    <div class="card">
+      <div class="icon">🧠</div>
+      <div class="label">左の首〜頭部の皮膚</div>
+      <div class="note">硬さをゆるめました</div>
+      <div class="badge">✓ 施術済み</div>
+    </div>
+    <div class="card wide">
+      <div class="icon">🌙</div>
+      <div class="label">自律神経の調整</div>
+      <div class="note">リラックスモードに整えました。今夜はゆったり眠れる状態です</div>
+      <div class="badge">✓ 施術済み</div>
+    </div>
+  </div>
+
+  <!-- ④ RaDoTech chart -->
+  <div class="sec-title">本日の測定結果（RaDoTech）</div>
+  <div class="chart">
+    <div class="bar-row">
+      <div class="bar-head"><span class="bar-name">⚡ エネルギー</span><span class="bar-val ok">39.39</span></div>
+      <div class="bar-bg"><div class="bar-fill ok" style="width:78%"></div></div>
+      <div class="bar-status">正常</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-head"><span class="bar-name">🛡️ 免疫</span><span class="bar-val ok">30.22</span></div>
+      <div class="bar-bg"><div class="bar-fill ok" style="width:70%"></div></div>
+      <div class="bar-status">正常</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-head"><span class="bar-name">🔥 代謝</span><span class="bar-val low">1.07</span></div>
+      <div class="bar-bg"><div class="bar-fill low" style="width:45%"></div></div>
+      <div class="bar-status">基準よりやや低め</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-head"><span class="bar-name">🧠 心理・感情</span><span class="bar-val low">0.71</span></div>
+      <div class="bar-bg"><div class="bar-fill low" style="width:38%"></div></div>
+      <div class="bar-status">基準よりやや低め</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-head"><span class="bar-name">💪 筋骨格</span><span class="bar-val ok">0.93</span></div>
+      <div class="bar-bg"><div class="bar-fill ok" style="width:74%"></div></div>
+      <div class="bar-status">正常</div>
+    </div>
+    <div class="chart-note">※ バーの長さは状態の目安を示すイメージです。</div>
+  </div>
+
+  <!-- POINT -->
+  <div class="point">
+    <div class="point-tag">POINT</div>
+    <h3>夏の水分補給で、パフォーマンスを守る</h3>
+    <p>脱水状態になると、神経の働きが落ちて、頭の回転や体の動きに影響が出やすくなります。逆に、水分と塩分がきちんと足りていると、神経のパフォーマンスが保たれ、お仕事中の判断も動きも安定します。</p>
+    <p>汗をかく季節は「喉が渇く前」に飲むのがコツです。下の飲み方を毎日続けてください。この夏、いつも良い状態の富野様でお仕事を続けていきましょう。</p>
+  </div>
+
+  <!-- ⑤ Home care -->
+  <div class="sec-title">おうちでのケア</div>
+  <div class="care">
+    <div class="care-row">
+      <div class="c-icon">🧂</div>
+      <div>
+        <div class="c-label">1.5Lの水 ＋ 塩ひとつまみ</div>
+        <div class="c-note">ペットボトルに必ず塩を入れて用意</div>
+      </div>
+    </div>
+    <div class="care-row">
+      <div class="c-icon">🥤</div>
+      <div>
+        <div class="c-label">1時間に200〜500ml</div>
+        <div class="c-note">こまめに分けて飲む</div>
+      </div>
+    </div>
+    <div class="care-row">
+      <div class="c-icon">🌅</div>
+      <div>
+        <div class="c-label">朝起きたら、すぐ一杯</div>
+        <div class="c-note">寝ている間に水分が減っています</div>
+      </div>
+    </div>
+    <div class="care-row">
+      <div class="c-icon">🏠</div>
+      <div>
+        <div class="c-label">室内でも、渇く前に飲む</div>
+        <div class="c-note">喉が渇いていなくてもOK</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ Next visit -->
+  <div class="sec-title">次回について</div>
+  <div class="next">
+    お仕事量の多い時期が続きます。体の状態を保つために、調子の変化を感じたときは、どうぞ無理をせずお早めにご相談ください。ご都合の良いタイミングで大丈夫です。
+  </div>
+
+  <!-- ⑦ Signature -->
+  <div class="sign">
+    <div class="theory">神経反射入力装置論にもとづく施術</div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="profile">
+      柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。
+    </div>
+    <div class="place">📍 高松市由良町・由良川東公園のそば</div>
+    <div class="cta">
+      <a class="line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップ</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
