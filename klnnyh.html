@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本日の施術報告｜平尾様</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --gold:#c4a44d;
+    --ink:#1a1a1a;
+    --gray:#5c5c5c;
+    --line:#dfe3df;
+    --okbg:#1f8a4c;
+    --lowbg:#5257c4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    background:#e8ebe8;color:var(--ink);line-height:1.7;-webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:700px;margin:0 auto;background:#fff;}
+
+  /* Header */
+  .hd{background:var(--green);color:#fff;padding:32px 24px 28px;}
+  .eyebrow{font-size:13px;letter-spacing:.16em;color:var(--gold);font-weight:700;margin-bottom:12px;}
+  .hd h1{font-size:32px;font-weight:900;letter-spacing:.04em;}
+  .hd .meta{margin-top:18px;padding-top:16px;border-top:1px solid rgba(196,164,77,.5);
+    display:flex;justify-content:space-between;align-items:baseline;}
+  .hd .pname{font-size:23px;font-weight:800;}
+  .hd .pdate{font-size:16px;color:#e8d9a8;}
+
+  .disc{background:#f4f6f4;border-left:6px solid var(--gold);padding:16px 18px;
+    font-size:14px;color:#444;line-height:1.75;}
+
+  section{padding:36px 20px 0;}
+  .sec-t{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+  .sec-t .no{background:var(--green);color:var(--gold);font-size:16px;font-weight:900;
+    width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 36px;}
+  .sec-t h2{font-size:23px;font-weight:900;color:var(--green);}
+
+  /* 施術部位 */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .card{border:2px solid var(--line);border-radius:14px;padding:20px 10px;text-align:center;}
+  .card .ic{font-size:42px;display:block;margin-bottom:8px;line-height:1;}
+  .card .lb{font-size:17px;font-weight:800;color:var(--green);display:block;}
+  .card .bd{display:inline-block;margin-top:10px;background:var(--green);color:#fff;
+    font-size:13px;font-weight:800;padding:4px 12px;border-radius:99px;}
+
+  /* 経過 */
+  .point{border:2px solid var(--gold);border-radius:14px;padding:24px 18px 20px;
+    position:relative;background:#fffdf6;}
+  .point .tag{position:absolute;top:-13px;left:16px;background:var(--gold);color:#fff;
+    font-size:13px;font-weight:900;letter-spacing:.14em;padding:3px 14px;border-radius:99px;}
+  .point .big{font-size:20px;font-weight:900;color:var(--green);line-height:1.6;margin-bottom:14px;}
+  .point .sm{font-size:16px;color:#3a3a3a;}
+
+  /* ===== 測定：見やすさ最優先 ===== */
+  .mrow{display:flex;align-items:center;gap:0;margin-bottom:12px;
+    border-radius:12px;overflow:hidden;border:2px solid var(--line);}
+  .mrow .mic{width:66px;flex:0 0 66px;font-size:30px;text-align:center;padding:16px 0;background:#f4f6f4;}
+  .mrow .mtx{flex:1;padding:12px 12px;}
+  .mrow .mtx .n{font-size:18px;font-weight:800;display:block;line-height:1.4;}
+  .mrow .mtx .s{font-size:14px;font-weight:800;}
+  .mrow .mval{width:104px;flex:0 0 104px;color:#fff;text-align:center;padding:16px 4px;}
+  .mrow .mval .v{font-size:26px;font-weight:900;line-height:1.1;display:block;}
+  .mrow .mval .u{font-size:12px;font-weight:700;opacity:.9;}
+  .ok .mval{background:var(--okbg);} .ok .s{color:var(--okbg);}
+  .low .mval{background:var(--lowbg);} .low .s{color:var(--lowbg);}
+  .low{border-color:var(--lowbg);}
+  .mnote{margin-top:16px;background:#f4f6f4;border-radius:12px;padding:16px 16px;
+    font-size:16px;line-height:1.8;}
+  .mnote b{color:var(--lowbg);}
+
+  /* ===== ランキング ===== */
+  .rk{border:2px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:20px;}
+  .rk.no1{border-color:var(--gold);border-width:3px;}
+  .rkh{background:var(--green);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:14px;}
+  .rk.no1 .rkh{background:var(--gold);}
+  .rkh .rank{font-size:22px;font-weight:900;letter-spacing:.02em;flex:0 0 auto;
+    border-right:2px solid rgba(255,255,255,.55);padding-right:14px;}
+  .rkh .ttl{font-size:20px;font-weight:900;line-height:1.4;}
+  .rkb{padding:20px 16px 22px;}
+  .rkb .hero{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+  .rkb .hero .e{font-size:52px;line-height:1;flex:0 0 auto;}
+  .rkb .hero .h{font-size:19px;font-weight:900;color:var(--green);line-height:1.5;}
+  .spec{border-top:1px solid var(--line);}
+  .spec .sr{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);align-items:center;}
+  .spec .sr .k{flex:0 0 76px;font-size:13px;font-weight:900;color:#fff;background:var(--green);
+    text-align:center;border-radius:6px;padding:5px 0;}
+  .spec .sr .k.warn{background:#b0483c;}
+  .spec .sr .t{flex:1;font-size:17px;font-weight:700;line-height:1.6;}
+  .spec .sr .t em{font-style:normal;color:var(--gold);font-weight:900;font-size:19px;}
+
+  /* NG */
+  .ng{border:2px solid #e3c9c5;border-radius:14px;background:#fdf6f5;padding:6px 16px;}
+  .ngr{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #eddcd9;align-items:center;}
+  .ngr:last-child{border-bottom:none;}
+  .ngr .x{font-size:26px;color:#a03f34;font-weight:900;flex:0 0 auto;}
+  .ngr .t{font-size:17px;font-weight:800;color:#a03f34;line-height:1.5;}
+  .ngr .t span{display:block;font-size:14px;font-weight:600;color:#7a5854;margin-top:2px;}
+
+  /* ホームケア */
+  .hc{border:2px solid var(--line);border-radius:14px;padding:4px 16px;}
+  .hcr{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center;}
+  .hcr:last-child{border-bottom:none;}
+  .hcr .e{font-size:32px;flex:0 0 auto;line-height:1;}
+  .hcr .t b{display:block;font-size:17px;font-weight:900;color:var(--green);}
+  .hcr .t span{font-size:14px;color:var(--gray);}
+
+  .next{background:#f4f6f4;border-radius:14px;padding:22px 18px;text-align:center;}
+  .next .n1{font-size:19px;font-weight:900;color:var(--green);margin-bottom:6px;}
+  .next .n2{font-size:15px;color:var(--gray);line-height:1.8;}
+
+  .ft{background:var(--green);color:#fff;padding:32px 22px 36px;margin-top:36px;}
+  .ft .th{font-size:13px;letter-spacing:.14em;color:var(--gold);font-weight:800;margin-bottom:10px;}
+  .ft .nm{font-size:21px;font-weight:900;margin-bottom:6px;}
+  .ft .pf{font-size:14px;line-height:1.85;color:#dbe4dc;}
+  .ft .lk{display:grid;gap:10px;margin-top:20px;}
+  .ft .lk a{display:block;text-align:center;text-decoration:none;font-size:18px;font-weight:900;
+    padding:15px 10px;border-radius:10px;}
+  .ft .lk a.g{background:var(--gold);color:#1a3d28;}
+  .ft .lk a.w{background:#fff;color:var(--green);}
+  .ft .ad{margin-top:16px;font-size:15px;color:#e8d9a8;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hd">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>本日の施術報告</h1>
+    <div class="meta"><div class="pname">平尾 様</div><div class="pdate">2026年8月3日</div></div>
+  </div>
+
+  <p class="disc">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+
+  <!-- 1 -->
+  <section>
+    <div class="sec-t"><div class="no">1</div><h2>本日ふれた場所</h2></div>
+    <div class="cards">
+      <div class="card"><span class="ic">🫁</span><span class="lb">呼吸まわり</span><span class="bd">✓ 施術済み</span></div>
+      <div class="card"><span class="ic">🦴</span><span class="lb">背中・脊柱</span><span class="bd">✓ 施術済み</span></div>
+      <div class="card"><span class="ic">🫀</span><span class="lb">胸まわり</span><span class="bd">✓ 施術済み</span></div>
+      <div class="card"><span class="ic">🦵</span><span class="lb">脚・骨盤</span><span class="bd">✓ 施術済み</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <div class="sec-t"><div class="no">2</div><h2>本日の経過</h2></div>
+    <div class="point">
+      <div class="tag">POINT</div>
+      <div class="big">ゆるむまでに、<br>いつもより時間がかかりました。</div>
+      <div class="sm">終了時には、しっかりゆるんだ状態を確認できています。</div>
+    </div>
+  </section>
+
+  <!-- 3 測定 -->
+  <section>
+    <div class="sec-t"><div class="no">3</div><h2>本日の測定</h2></div>
+
+    <div class="mrow ok">
+      <div class="mic">⚡</div>
+      <div class="mtx"><span class="n">エネルギー</span><span class="s">正常</span></div>
+      <div class="mval"><span class="v">25.45</span><span class="u">正常</span></div>
+    </div>
+
+    <div class="mrow ok">
+      <div class="mic">🛡</div>
+      <div class="mtx"><span class="n">免疫</span><span class="s">正常</span></div>
+      <div class="mval"><span class="v">24.44</span><span class="u">正常</span></div>
+    </div>
+
+    <div class="mrow low">
+      <div class="mic">♻️</div>
+      <div class="mtx"><span class="n">代謝</span><span class="s">やや低め</span></div>
+      <div class="mval"><span class="v">0.83</span><span class="u">基準 0.9〜1.1</span></div>
+    </div>
+
+    <div class="mrow ok">
+      <div class="mic">🧠</div>
+      <div class="mtx"><span class="n">心理・感情</span><span class="s">正常</span></div>
+      <div class="mval"><span class="v">0.99</span><span class="u">正常</span></div>
+    </div>
+
+    <div class="mrow ok">
+      <div class="mic">💪</div>
+      <div class="mtx"><span class="n">運動器</span><span class="s">正常</span></div>
+      <div class="mval"><span class="v">1.03</span><span class="u">正常</span></div>
+    </div>
+
+    <div class="mnote">5項目中4項目が正常。<b>代謝のみ、基準をわずかに下回りました。</b><br>次回も続けて確認していきましょう。</div>
+  </section>
+
+  <!-- 4 ランキング -->
+  <section>
+    <div class="sec-t"><div class="no">4</div><h2>仕事中に体の熱を<br>下げる方法</h2></div>
+
+    <div class="rk no1">
+      <div class="rkh"><div class="rank">第1位</div><div class="ttl">凍らせた飲み物</div></div>
+      <div class="rkb">
+        <div class="hero"><div class="e">🧊</div><div class="h">氷が溶けるときに、<br>体の中の熱を持っていく。</div></div>
+        <div class="spec">
+          <div class="sr"><div class="k">作り方</div><div class="t">ペットボトルを<em>7分目</em>まで凍らせる</div></div>
+          <div class="sr"><div class="k">飲む量</div><div class="t">体重60kgで<em>450mL</em></div></div>
+          <div class="sr"><div class="k">中身</div><div class="t">うすい塩水がベスト</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rk">
+      <div class="rkh"><div class="rank">第2位</div><div class="ttl">手のひらを冷やす</div></div>
+      <div class="rkb">
+        <div class="hero"><div class="e">🤲</div><div class="h">手のひらは、<br>体のラジエーター。</div></div>
+        <div class="spec">
+          <div class="sr"><div class="k">やり方</div><div class="t">ペットボトルに<em>タオルを巻いて</em>握る</div></div>
+          <div class="sr"><div class="k">時間</div><div class="t">休憩ごとに<em>2〜3分</em></div></div>
+          <div class="sr"><div class="k warn">注意</div><div class="t">キンキンを素手で握ると逆効果</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rk">
+      <div class="rkh"><div class="rank">第3位</div><div class="ttl">腕を水につける</div></div>
+      <div class="rkb">
+        <div class="hero"><div class="e">💧</div><div class="h">手だけでは足りない。<br>ひじまで、が正解。</div></div>
+        <div class="spec">
+          <div class="sr"><div class="k">やり方</div><div class="t">洗面所で<em>ひじまで</em>つける</div></div>
+          <div class="sr"><div class="k">時間</div><div class="t">休憩ごとに<em>2〜3分</em></div></div>
+          <div class="sr"><div class="k">水温</div><div class="t">水道水でOK</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rk">
+      <div class="rkh"><div class="rank">第4位</div><div class="ttl">うすい塩水</div></div>
+      <div class="rkb">
+        <div class="hero"><div class="e">🧂</div><div class="h">下げる力を、<br>切らさないための土台。</div></div>
+        <div class="spec">
+          <div class="sr"><div class="k">作り方</div><div class="t">水1Lに塩<em>1〜2g</em></div></div>
+          <div class="sr"><div class="k">飲み方</div><div class="t"><em>30分ごと</em>にコップ1杯</div></div>
+          <div class="sr"><div class="k warn">注意</div><div class="t">血圧の薬がある方は主治医へ</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 NG -->
+  <section>
+    <div class="sec-t"><div class="no">5</div><h2>やらない方がいいこと</h2></div>
+    <div class="ng">
+      <div class="ngr"><div class="x">✕</div><div class="t">氷を素手で握る<span>血管が縮んで、熱がこもります</span></div></div>
+      <div class="ngr"><div class="x">✕</div><div class="t">コーヒー・お茶で水分補給<span>入れた以上に出ていきます</span></div></div>
+      <div class="ngr"><div class="x">✕</div><div class="t">水だけをがぶ飲み<span>塩分が薄まってしまいます</span></div></div>
+    </div>
+  </section>
+
+  <!-- 6 ホームケア -->
+  <section>
+    <div class="sec-t"><div class="no">6</div><h2>今夜のホームケア</h2></div>
+    <div class="hc">
+      <div class="hcr"><div class="e">🛁</div><div class="t"><b>お風呂は38〜40℃で10分</b><span>熱いお湯は避けてください</span></div></div>
+      <div class="hcr"><div class="e">🤲</div><div class="t"><b>寝る前に手のひらを2〜3分</b><span>眠りに入りやすくなります</span></div></div>
+      <div class="hcr"><div class="e">💧</div><div class="t"><b>枕元にうすい塩水を1本</b><span>目が覚めたら一口</span></div></div>
+      <div class="hcr"><div class="e">🌬</div><div class="t"><b>冷房は切らずに28℃</b><span>明け方の熱こもりを防ぎます</span></div></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <div class="next">
+      <div class="n1">次回のご来院</div>
+      <div class="n2">暑さが続く間は、少し間隔を詰めていただくと<br>ゆるみやすさを保ちやすくなります。</div>
+    </div>
+  </section>
+
+  <div class="ft">
+    <div class="th">神経反射入力装置論</div>
+    <div class="nm">三条健康堂接骨院　谷 弘誠</div>
+    <div class="pf">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</div>
+    <div class="lk">
+      <a class="g" href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a class="w" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="ad">高松市由良町・由良川東公園のそば</div>
+  </div>
+
+</div>
+</body>
+</html>
