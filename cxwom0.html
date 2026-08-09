@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兼近様 施術報告書｜2026.08.09</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#2a5a3c;
+    --gold:#c4a44d;
+    --gold-l:#e8d9a8;
+    --ivory:#f5f0e4;
+    --white:#ffffff;
+    --gray:#f4f2ec;
+    --text:#25301f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--white);
+    color:var(--text);
+    font-size:18px;
+    line-height:1.8;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:var(--green);
+    color:var(--ivory);
+    padding:72px 28px 64px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-size:16px;
+    letter-spacing:0.28em;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:'Noto Serif JP',serif;
+    font-size:34px;
+    font-weight:900;
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .hero .date{
+    font-size:18px;
+    color:var(--gold-l);
+    letter-spacing:0.12em;
+    font-weight:500;
+  }
+  .hero .line{
+    width:64px;height:3px;background:var(--gold);
+    margin:26px auto 0;
+  }
+  .premise{
+    background:var(--gray);
+    padding:22px 28px;
+    font-size:16px;
+    color:#5a5f52;
+    text-align:center;
+    line-height:1.9;
+  }
+
+  /* ===== SECTION COMMON ===== */
+  section{padding:64px 24px;}
+  .sec-label{
+    text-align:center;
+    font-size:16px;
+    letter-spacing:0.25em;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  .sec-title{
+    font-family:'Noto Serif JP',serif;
+    font-size:28px;
+    font-weight:900;
+    color:var(--green);
+    text-align:center;
+    line-height:1.5;
+    margin-bottom:40px;
+  }
+  .sec-alt{background:var(--gray);}
+
+  /* ===== 主訴カード ===== */
+  .chief{
+    background:var(--green);
+    color:var(--ivory);
+    border-radius:16px;
+    padding:30px 26px;
+    text-align:center;
+    margin-bottom:48px;
+  }
+  .chief .small{font-size:16px;color:var(--gold);font-weight:700;letter-spacing:0.15em;margin-bottom:8px;}
+  .chief .big{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:900;line-height:1.5;}
+
+  /* ===== SVG図 ===== */
+  .figure{
+    background:var(--white);
+    border:2px solid var(--green);
+    border-radius:18px;
+    padding:26px 14px 20px;
+    margin-bottom:20px;
+  }
+  .figure svg{width:100%;height:auto;display:block;}
+  .figure-cap{
+    text-align:center;
+    font-size:16px;
+    color:#5a5f52;
+    margin-bottom:48px;
+    line-height:1.8;
+  }
+
+  /* ===== 施術アイコンカード ===== */
+  .care-list{display:grid;gap:16px;margin-bottom:48px;}
+  .care{
+    display:flex;align-items:center;gap:18px;
+    background:var(--white);
+    border:2px solid #dcd6c4;
+    border-radius:14px;
+    padding:20px;
+  }
+  .care .num{
+    flex:0 0 52px;height:52px;
+    background:var(--green);
+    color:var(--gold);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif JP',serif;
+    font-size:24px;font-weight:900;
+  }
+  .care .t{font-size:19px;font-weight:700;color:var(--green);line-height:1.5;}
+  .care .d{font-size:16px;color:#5a5f52;margin-top:3px;line-height:1.7;}
+
+  /* ===== RaDoTechバー ===== */
+  .rado{display:grid;gap:14px;margin-bottom:28px;}
+  .rbar{
+    border-radius:12px;
+    padding:16px 20px;
+    display:flex;justify-content:space-between;align-items:center;
+    color:#fff;
+  }
+  .rbar .n{font-size:18px;font-weight:700;}
+  .rbar .s{font-size:14px;font-weight:500;opacity:0.9;display:block;}
+  .rbar .v{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:900;}
+  .r-ok{background:#2e9e5b;}
+  .r-low{background:#6d6bc9;}
+  .balance{
+    background:var(--white);
+    border:2px solid var(--gold);
+    border-radius:14px;
+    padding:24px;
+    margin-bottom:16px;
+  }
+  .balance h3{
+    font-size:18px;color:var(--green);font-weight:900;
+    margin-bottom:16px;text-align:center;letter-spacing:0.08em;
+  }
+  .brow{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:12px 4px;border-bottom:1px solid #e5e0d0;
+    font-size:17px;
+  }
+  .brow:last-child{border-bottom:none;}
+  .brow .k{color:#5a5f52;}
+  .brow .val{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:900;color:var(--green);}
+  .brow .norm{font-size:15px;color:#8a8f80;margin-left:10px;}
+  .good-tag{
+    display:inline-block;background:var(--gold);color:var(--green);
+    font-size:14px;font-weight:900;border-radius:20px;
+    padding:2px 12px;margin-left:8px;vertical-align:middle;
+  }
+
+  /* ===== POINTボックス ===== */
+  .point{
+    border:2px solid var(--gold);
+    border-radius:16px;
+    background:var(--white);
+    padding:28px 24px;
+    margin-bottom:24px;
+  }
+  .point .p-label{
+    font-size:15px;letter-spacing:0.25em;color:var(--gold);
+    font-weight:900;margin-bottom:14px;
+  }
+  .point ul{list-style:none;}
+  .point li{
+    font-size:17px;line-height:1.9;
+    padding:10px 0 10px 30px;
+    position:relative;
+    border-bottom:1px dashed #e5e0d0;
+  }
+  .point li:last-child{border-bottom:none;}
+  .point li::before{
+    content:"◆";
+    position:absolute;left:4px;top:10px;
+    color:var(--gold);font-size:14px;
+  }
+  .point .src{font-size:14px;color:#8a8f80;display:block;margin-top:2px;}
+
+  /* ===== ステップフロー ===== */
+  .steps{display:grid;gap:0;margin-bottom:40px;}
+  .step{
+    background:var(--white);
+    border:2px solid var(--green);
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+  }
+  .step .st-n{
+    font-size:15px;letter-spacing:0.2em;color:var(--gold);
+    font-weight:900;margin-bottom:6px;
+  }
+  .step .st-t{font-size:20px;font-weight:900;color:var(--green);line-height:1.5;}
+  .step .st-d{font-size:16px;color:#5a5f52;margin-top:6px;line-height:1.7;}
+  .arrow{
+    text-align:center;color:var(--gold);
+    font-size:26px;line-height:1;
+    padding:8px 0;font-weight:900;
+  }
+
+  /* ===== 間隔テーブル ===== */
+  .timing{
+    background:var(--white);
+    border:2px solid #dcd6c4;
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:16px;
+  }
+  .timing .th{
+    background:var(--green);color:var(--ivory);
+    display:flex;font-weight:700;font-size:16px;
+  }
+  .timing .th div{flex:1;padding:14px;text-align:center;}
+  .trow{display:flex;border-top:1px solid #e5e0d0;font-size:17px;}
+  .trow div{flex:1;padding:16px 12px;text-align:center;}
+  .trow .em{font-weight:900;color:var(--green);font-family:'Noto Serif JP',serif;font-size:19px;}
+
+  /* ===== 締め ===== */
+  .next{
+    background:var(--white);
+    border:2px solid #dcd6c4;
+    border-radius:14px;
+    padding:26px;
+    text-align:center;
+    font-size:17px;
+    line-height:1.9;
+  }
+  .next b{color:var(--green);font-size:19px;}
+  footer{
+    background:var(--green);
+    color:var(--ivory);
+    text-align:center;
+    padding:56px 24px 64px;
+  }
+  footer .clinic{
+    font-family:'Noto Serif JP',serif;
+    font-size:24px;font-weight:900;margin-bottom:8px;
+  }
+  footer .name{font-size:18px;color:var(--gold-l);margin-bottom:22px;}
+  footer .brand{
+    font-size:15px;color:#b8c4ae;line-height:1.9;
+    padding-top:22px;border-top:1px solid #3a5c46;
+    max-width:520px;margin:0 auto 24px;
+  }
+  footer a{
+    display:inline-block;
+    color:var(--green);
+    background:var(--gold);
+    text-decoration:none;
+    font-weight:900;
+    font-size:16px;
+    border-radius:30px;
+    padding:12px 28px;
+    margin:6px;
+  }
+  @media (max-width:420px){
+    .hero h1{font-size:29px;}
+    .sec-title{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>兼近様<br>本日の施術のご報告</h1>
+    <div class="date">2026年8月9日（日）</div>
+    <div class="line"></div>
+  </div>
+  <div class="premise">
+    本報告書は、当院の施術記録と東洋医学的な見立て（イメージ）を<br>
+    わかりやすくまとめたものです。医学的な診断を行うものではありません。
+  </div>
+
+  <!-- ===== PART 1 ===== -->
+  <section>
+    <div class="sec-label">PART 1</div>
+    <div class="sec-title">本日の施術<br>― 東洋医学的アプローチ ―</div>
+
+    <div class="chief">
+      <div class="small">本日のテーマ</div>
+      <div class="big">ストレスによる<br>歯の食いしばり</div>
+    </div>
+
+    <!-- エネルギーマップ SVG -->
+    <div class="figure">
+      <svg viewBox="0 0 700 460" xmlns="http://www.w3.org/2000/svg">
+        <!-- 左：施術前 -->
+        <text x="175" y="36" text-anchor="middle" font-size="24" font-weight="900" fill="#1a3d28" font-family="Noto Sans JP,sans-serif">施術前のイメージ</text>
+        <!-- 体（施術前） -->
+        <g stroke="#b9b3a0" stroke-width="5" fill="none" stroke-linecap="round">
+          <circle cx="175" cy="90" r="26"/>
+          <line x1="175" y1="122" x2="175" y2="250"/>
+          <line x1="175" y1="150" x2="115" y2="210"/>
+          <line x1="175" y1="150" x2="235" y2="210"/>
+          <line x1="175" y1="250" x2="135" y2="370"/>
+          <line x1="175" y1="250" x2="215" y2="370"/>
+        </g>
+        <!-- 頭・首のロック -->
+        <circle cx="175" cy="90" r="40" fill="none" stroke="#6d6bc9" stroke-width="5" stroke-dasharray="8 7"/>
+        <text x="255" y="80" font-size="19" font-weight="700" fill="#6d6bc9" font-family="Noto Sans JP,sans-serif">頭・首・口が</text>
+        <text x="255" y="106" font-size="19" font-weight="700" fill="#6d6bc9" font-family="Noto Sans JP,sans-serif">カチカチ</text>
+        <!-- 骨盤の滞留 -->
+        <circle cx="175" cy="250" r="42" fill="#c4a44d" opacity="0.35"/>
+        <circle cx="175" cy="250" r="24" fill="#c4a44d" opacity="0.75"/>
+        <text x="175" y="330" text-anchor="middle" font-size="19" font-weight="700" fill="#8a6d1f" font-family="Noto Sans JP,sans-serif">骨盤に</text>
+        <text x="175" y="356" text-anchor="middle" font-size="19" font-weight="700" fill="#8a6d1f" font-family="Noto Sans JP,sans-serif">エネルギー集中</text>
+
+        <!-- 中央矢印 -->
+        <text x="350" y="240" text-anchor="middle" font-size="46" font-weight="900" fill="#c4a44d" font-family="Noto Sans JP,sans-serif">→</text>
+
+        <!-- 右：施術後 -->
+        <text x="525" y="36" text-anchor="middle" font-size="24" font-weight="900" fill="#1a3d28" font-family="Noto Sans JP,sans-serif">施術後のイメージ</text>
+        <g stroke="#2e9e5b" stroke-width="5" fill="none" stroke-linecap="round">
+          <circle cx="525" cy="90" r="26"/>
+          <line x1="525" y1="122" x2="525" y2="250"/>
+          <line x1="525" y1="150" x2="465" y2="210"/>
+          <line x1="525" y1="150" x2="585" y2="210"/>
+          <line x1="525" y1="250" x2="485" y2="370"/>
+          <line x1="525" y1="250" x2="565" y2="370"/>
+        </g>
+        <!-- 全身へ広がる光 -->
+        <circle cx="525" cy="90" r="14" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="465" cy="210" r="11" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="585" cy="210" r="11" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="525" cy="250" r="14" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="485" cy="370" r="11" fill="#c4a44d" opacity="0.6"/>
+        <circle cx="565" cy="370" r="11" fill="#c4a44d" opacity="0.6"/>
+        <!-- 流れの矢印 -->
+        <g stroke="#c4a44d" stroke-width="4" fill="none" stroke-linecap="round">
+          <path d="M525,235 L525,130"/>
+          <path d="M517,142 L525,128 L533,142"/>
+          <path d="M513,262 L492,352"/>
+          <path d="M537,262 L558,352"/>
+        </g>
+        <text x="525" y="415" text-anchor="middle" font-size="19" font-weight="700" fill="#1f7a45" font-family="Noto Sans JP,sans-serif">エネルギーが</text>
+        <text x="525" y="441" text-anchor="middle" font-size="19" font-weight="700" fill="#1f7a45" font-family="Noto Sans JP,sans-serif">全身へめぐる</text>
+      </svg>
+    </div>
+    <div class="figure-cap">
+      骨盤のあたりにエネルギーが集中して「ロック」がかかり、<br>
+      他の部位がエネルギー不足になっている――そんな状態のイメージでした。
+    </div>
+
+    <!-- 施術内容 -->
+    <div class="care-list">
+      <div class="care">
+        <div class="num">1</div>
+        <div>
+          <div class="t">全身のツボを刺激するマッサージ</div>
+          <div class="d">滞りをひらき、エネルギーの通り道をつくる</div>
+        </div>
+      </div>
+      <div class="care">
+        <div class="num">2</div>
+        <div>
+          <div class="t">頭・首の緩和</div>
+          <div class="d">カチカチに固まり、エネルギーを寄せつけない状態をゆるめる</div>
+        </div>
+      </div>
+      <div class="care">
+        <div class="num">3</div>
+        <div>
+          <div class="t">口まわりの筋肉の緩和</div>
+          <div class="d">食いしばりで硬くなった筋肉を、すべてほどく</div>
+        </div>
+      </div>
+      <div class="care">
+        <div class="num">4</div>
+        <div>
+          <div class="t">骨盤のエネルギーを全身へ</div>
+          <div class="d">たまっていたエネルギーを全身にめぐらせ、不足を解消</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RaDoTech -->
+    <div class="sec-label">MEASUREMENT</div>
+    <div class="sec-title" style="font-size:24px;margin-bottom:28px;">本日の測定結果</div>
+    <div class="rado">
+      <div class="rbar r-ok">
+        <div class="n">エネルギーレベル<span class="s">正常</span></div>
+        <div class="v">25.35</div>
+      </div>
+      <div class="rbar r-low">
+        <div class="n">免疫系<span class="s">基準より低め</span></div>
+        <div class="v">15.35</div>
+      </div>
+      <div class="rbar r-low">
+        <div class="n">代謝<span class="s">基準より低め</span></div>
+        <div class="v">1.07</div>
+      </div>
+      <div class="rbar r-low">
+        <div class="n">心身の状態<span class="s">基準より低め</span></div>
+        <div class="v">0.54</div>
+      </div>
+      <div class="rbar r-ok">
+        <div class="n">筋骨格系<span class="s">正常</span></div>
+        <div class="v">1.00</div>
+      </div>
+    </div>
+    <div class="balance">
+      <h3>からだのバランス</h3>
+      <div class="brow">
+        <span class="k">左右バランス（L/R）</span>
+        <span><span class="val">1.00</span><span class="good-tag">理想値</span></span>
+      </div>
+      <div class="brow">
+        <span class="k">位相角バランス（φ）</span>
+        <span><span class="val">1.07</span><span class="norm">基準 0.9-1.1 内</span></span>
+      </div>
+    </div>
+    <div class="figure-cap" style="margin-bottom:0;">
+      左右バランスは <b>1.00＝ぴったり</b>。土台はしっかり整っています。<br>
+      免疫・代謝・心身の数値が低めに出ており、<br>
+      「一部にエネルギーが偏り、他が不足気味」という<br>
+      本日の見立てのイメージと重なる結果でした。
+    </div>
+  </section>
+
+  <!-- ===== PART 2 ===== -->
+  <section class="sec-alt">
+    <div class="sec-label">PART 2</div>
+    <div class="sec-title">お子様の学習サポート<br>― AIを味方につける2つの方法 ―</div>
+
+    <div class="chief" style="margin-bottom:40px;">
+      <div class="small">当日お話しした内容</div>
+      <div class="big">「がんばる」より<br>「仕組みで勉強する」</div>
+    </div>
+
+    <!-- 方法1 -->
+    <div class="sec-label" style="margin-top:8px;">METHOD 1</div>
+    <div class="sec-title" style="font-size:24px;margin-bottom:24px;">ポモドーロ・テクニック</div>
+
+    <div class="figure" style="padding:22px 14px;">
+      <svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg">
+        <!-- 4サイクル -->
+        <g font-family="Noto Sans JP,sans-serif">
+          <!-- cycle template -->
+          <rect x="15"  y="50" width="110" height="64" rx="12" fill="#1a3d28"/>
+          <rect x="130" y="62" width="44"  height="40" rx="10" fill="#c4a44d"/>
+          <rect x="189" y="50" width="110" height="64" rx="12" fill="#1a3d28"/>
+          <rect x="304" y="62" width="44"  height="40" rx="10" fill="#c4a44d"/>
+          <rect x="363" y="50" width="110" height="64" rx="12" fill="#1a3d28"/>
+          <rect x="478" y="62" width="44"  height="40" rx="10" fill="#c4a44d"/>
+          <rect x="537" y="50" width="110" height="64" rx="12" fill="#1a3d28"/>
+          <text x="70"  y="90" text-anchor="middle" font-size="22" font-weight="900" fill="#f5f0e4">25分</text>
+          <text x="152" y="89" text-anchor="middle" font-size="16" font-weight="900" fill="#1a3d28">10分</text>
+          <text x="244" y="90" text-anchor="middle" font-size="22" font-weight="900" fill="#f5f0e4">25分</text>
+          <text x="326" y="89" text-anchor="middle" font-size="16" font-weight="900" fill="#1a3d28">10分</text>
+          <text x="418" y="90" text-anchor="middle" font-size="22" font-weight="900" fill="#f5f0e4">25分</text>
+          <text x="500" y="89" text-anchor="middle" font-size="16" font-weight="900" fill="#1a3d28">10分</text>
+          <text x="592" y="90" text-anchor="middle" font-size="22" font-weight="900" fill="#f5f0e4">25分</text>
+          <text x="350" y="155" text-anchor="middle" font-size="21" font-weight="900" fill="#1a3d28">勉強25分 ＋ 休憩10分 × 4セット</text>
+          <text x="350" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#8a6d1f">タイマーで「自動的に」区切る</text>
+        </g>
+      </svg>
+    </div>
+    <div class="figure-cap">
+      ポイントは、意志の力ではなくタイマーに区切らせること。<br>
+      「25分だけ」なので始めるハードルが下がり、<br>
+      締め切り効果で集中のスイッチが入ります。
+    </div>
+
+    <div class="point">
+      <div class="p-label">EVIDENCE ― 研究でわかっていること</div>
+      <ul>
+        <li>休憩なしで作業を続けると、注意力は時間とともに右肩下がりに低下。途中に短い休憩を挟んだグループだけが、最後まで集中を維持できた。
+          <span class="src">イリノイ大学の実験（2011年）</span></li>
+        <li>「あらかじめ決めた時間で休む」ポモドーロ型の学生は、好きなタイミングで休む学生より疲労が少なく、集中とやる気を保ったまま、同等以上の効率で勉強できた。
+          <span class="src">マーストリヒト大学の研究（2023年）</span></li>
+        <li>10分以内の短い休憩でも「活力が上がり、疲労が下がる」ことが、22の研究をまとめた分析で確認されている。
+          <span class="src">短時間休憩に関するメタ分析（2022年）</span></li>
+      </ul>
+    </div>
+    <div class="figure-cap" style="margin-bottom:56px;">
+      「テストの点が何点上がる」という直接データはまだ少ない手法ですが、<br>
+      集中の維持と疲労の軽減という土台の効果は、しっかり確認されています。
+    </div>
+
+    <!-- 方法2 -->
+    <div class="sec-label">METHOD 2</div>
+    <div class="sec-title" style="font-size:24px;margin-bottom:24px;">NotebookLM 記憶法<br><span style="font-size:18px;font-weight:700;">― 台本づくりは全部AIに任せる ―</span></div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="st-n">STEP 1</div>
+        <div class="st-t">マインドマップで全体図</div>
+        <div class="st-d">AIに勉強範囲のマップを作らせ、まず「地図」を眺める</div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="step">
+        <div class="st-n">STEP 2</div>
+        <div class="st-t">AIに「2択クイズ」を作らせる</div>
+        <div class="st-d">選択肢は2択程度のかんたんなものでOK。難しくしない</div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="step">
+        <div class="st-n">STEP 3</div>
+        <div class="st-t">クイズを解く＝思い出す練習</div>
+        <div class="st-d">「読み直す」のではなく「思い出す」。ここで記憶が定着する</div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="step" style="border-color:#c4a44d;background:#fdf9ee;">
+        <div class="st-n">STEP 4</div>
+        <div class="st-t">間隔を空けて、もう一度</div>
+        <div class="st-d">忘れかけた頃に解き直すと、記憶は一段と強くなる</div>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="p-label">EVIDENCE ― 「思い出す練習」の力</div>
+      <ul>
+        <li>1週間後のテストで、読み直しだけのグループは約4割しか覚えていなかったのに対し、思い出す練習（テスト形式）をしたグループは約6割を記憶。読む回数を増やすより、思い出す回数を増やすほうが強い。
+          <span class="src">ワシントン大学の実験（2006年）</span></li>
+        <li>118の研究をまとめた分析でも、クイズ形式の学習は通常の復習より明確に効果が高い。しかも2〜3択のかんたんなクイズでも効果は出る。
+          <span class="src">テスト効果のメタ分析（2017年）</span></li>
+        <li>毎回の小テストを取り入れた大学の授業では、学期末試験の成績が約半ランク（半レターグレード）上昇した。
+          <span class="src">テキサス大学の授業実践（2013年）</span></li>
+      </ul>
+    </div>
+
+    <div class="sec-label" style="margin-top:40px;">TIMING</div>
+    <div class="sec-title" style="font-size:22px;margin-bottom:20px;">解き直しのベストな間隔</div>
+    <div class="timing">
+      <div class="th"><div>テストまでの期間</div><div>復習の間隔</div></div>
+      <div class="trow"><div>1週間後</div><div class="em">1〜2日おき</div></div>
+      <div class="trow"><div>1ヶ月後</div><div class="em">4〜7日おき</div></div>
+      <div class="trow"><div>半年後</div><div class="em">2〜3週間おき</div></div>
+    </div>
+    <div class="figure-cap" style="margin-bottom:40px;">
+      目安は「テストまでの期間の10〜20%の間隔」で解き直すこと。<br>
+      1,300人超を対象にした大規模研究で導かれた黄金比です。
+      <span style="display:block;font-size:14px;color:#8a8f80;margin-top:4px;">（記憶の間隔効果に関する大規模研究・2008年）</span>
+    </div>
+
+    <div class="chief" style="margin-bottom:0;">
+      <div class="small">いちばん大切なポイント</div>
+      <div class="big">マップもクイズも<br>AIに作らせる。<br>本人は「解く」だけに集中。</div>
+    </div>
+  </section>
+
+  <!-- ===== 締め ===== -->
+  <section>
+    <div class="sec-label">NEXT</div>
+    <div class="sec-title" style="font-size:24px;">次回について</div>
+    <div class="next">
+      頭・首・口まわりの緊張は、日々のストレスで少しずつ戻ってきます。<br>
+      <b>お身体の状態に合わせて、無理のないペースで</b>お越しください。<br>
+      気になることがあれば、LINEからいつでもどうぞ。
+    </div>
+  </section>
+
+  <footer>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="name">院長　谷 弘誠</div>
+    <div class="brand">
+      高松発・一生動ける身体と人生の教養研究室<br>
+      無車・自転車・圧力鍋生活を実践する治療家より
+    </div>
+    <a href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+    <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+  </footer>
+
+</div>
+</body>
+</html>
