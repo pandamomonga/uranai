@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田様 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green-d:#122b1d;
+    --gold:#c4a44d;
+    --gold-l:#e6cf8a;
+    --ink:#22221e;
+    --paper:#ffffff;
+    --bg:#f4f2ec;
+    --line:#e2ddd0;
+    --ok:#2f8f5b;
+    --hi:#d97a2b;
+    --lo:#c9a227;
+    --zone:#c4552f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:500;
+    font-size:17px;
+    line-height:1.8;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 56px;}
+  .serif{font-family:"Noto Serif JP",serif;}
+
+  header{
+    background:
+      radial-gradient(circle at 85% -20%, rgba(196,164,77,.30), transparent 55%),
+      var(--green);
+    color:#f7f4ea;
+    border-radius:0 0 22px 22px;
+    padding:32px 24px 28px;
+    box-shadow:0 5px 18px rgba(26,61,40,.25);
+  }
+  .eyebrow{font-size:13px;letter-spacing:.18em;color:var(--gold);font-weight:700;}
+  header h1{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:31px;margin:8px 0 4px;letter-spacing:.04em;
+  }
+  .meta{font-size:17px;font-weight:700;color:#e9e3d2;}
+  .meta span{color:var(--gold);}
+
+  .premise{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:13px 15px;
+    margin:18px 0 24px;
+    font-size:16px;
+    color:#4a4a42;
+  }
+
+  h2{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:23px;color:var(--green);
+    margin:38px 0 14px;padding-left:12px;
+    border-left:6px solid var(--gold);letter-spacing:.03em;
+  }
+
+  /* ===== ボディマップ ===== */
+  .stage{
+    background:var(--green);
+    border-radius:18px;
+    padding:20px 8px 14px;
+    box-shadow:0 6px 20px rgba(26,61,40,.28);
+    position:relative;
+  }
+  .stage .cap{
+    text-align:center;color:var(--gold);
+    font-weight:900;font-size:17px;letter-spacing:.1em;
+    margin-bottom:4px;
+  }
+  .stage svg{display:block;width:100%;height:auto;}
+
+  @keyframes pulse{
+    0%{opacity:.9;r:14;}
+    50%{opacity:.35;r:24;}
+    100%{opacity:.9;r:14;}
+  }
+  .pz{animation:pulse 2.2s ease-in-out infinite;transform-origin:center;}
+  @keyframes flow{to{stroke-dashoffset:-60;}}
+  .flowline{
+    stroke:var(--gold-l);stroke-width:4;fill:none;
+    stroke-linecap:round;
+    stroke-dasharray:2 14;
+    animation:flow 2.4s linear infinite;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .pz,.flowline,.bar i{animation:none !important;}
+  }
+
+  .stage .note{
+    text-align:center;color:#e9e3d2;font-size:15px;
+    padding:8px 10px 4px;line-height:1.6;
+  }
+  .stage .note b{color:var(--gold);}
+
+  /* ===== 仙骨ズーム ===== */
+  .zoom{
+    background:var(--paper);
+    border:2px solid var(--gold);
+    border-radius:18px;
+    padding:18px 14px 14px;
+    margin-top:16px;
+    position:relative;
+  }
+  .zoom .tag{
+    position:absolute;top:-14px;left:16px;
+    background:var(--gold);color:#fff;
+    font-weight:900;font-size:14px;letter-spacing:.12em;
+    border-radius:999px;padding:4px 16px;
+  }
+  .zoom h3{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:22px;color:var(--green);
+    text-align:center;margin:6px 0 4px;
+  }
+  .zoom svg{display:block;width:78%;max-width:300px;margin:0 auto;height:auto;}
+  .zoom .z-cap{text-align:center;font-size:15px;color:#5c5c52;line-height:1.6;}
+
+  /* ===== ステップ図解 ===== */
+  .steps{display:flex;flex-direction:column;gap:0;margin-top:6px;}
+  .step{
+    display:flex;align-items:center;gap:14px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 16px;
+  }
+  .step .num{
+    flex:0 0 46px;width:46px;height:46px;
+    background:var(--green);color:var(--gold);
+    font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step .t{font-weight:900;font-size:19px;color:var(--green);}
+  .step .s{font-size:15px;color:#6b6b60;line-height:1.5;}
+  .step .done{
+    margin-left:auto;flex:0 0 auto;
+    background:var(--green);color:#fff;
+    font-size:13px;font-weight:700;
+    border-radius:999px;padding:4px 12px;white-space:nowrap;
+  }
+  .connector{
+    width:4px;height:22px;margin-left:37px;
+    background:repeating-linear-gradient(to bottom,var(--gold) 0 5px,transparent 5px 10px);
+  }
+
+  /* ===== 測定 ===== */
+  .meter{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px 16px 10px;
+  }
+  .m-row{margin-bottom:18px;}
+  .m-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+  .m-name{font-weight:900;font-size:18px;}
+  .m-val{font-weight:900;font-size:22px;font-family:"Noto Serif JP",serif;}
+  .m-val small{font-weight:700;font-size:14px;margin-left:6px;font-family:"Noto Sans JP",sans-serif;}
+  .bar{height:20px;background:#eeeae0;border-radius:999px;overflow:hidden;}
+  .bar i{display:block;height:100%;border-radius:999px;width:0;animation:grow 1.1s ease-out forwards;}
+  @keyframes grow{to{width:var(--w);}}
+  .c-ok{color:var(--ok);} .b-ok{background:linear-gradient(90deg,#3aa76b,var(--ok));}
+  .c-hi{color:var(--hi);} .b-hi{background:linear-gradient(90deg,#eda45c,var(--hi));}
+  .c-lo{color:var(--lo);} .b-lo{background:linear-gradient(90deg,#e0be4e,var(--lo));}
+  .legend{font-size:14px;color:#6b6b60;padding:4px 2px 8px;}
+  .dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin:0 4px 0 10px;}
+
+  /* ===== セルフケア ===== */
+  .care{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .care-card{
+    background:var(--green);
+    color:#f2eddc;
+    border-radius:16px;
+    padding:22px 12px 18px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(26,61,40,.22);
+  }
+  .care-card .ci{font-size:52px;line-height:1;}
+  .care-card .ct{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:20px;color:var(--gold);margin:10px 0 4px;
+  }
+  .care-card .cs{font-size:15px;line-height:1.6;}
+
+  .next{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:14px;padding:16px;font-size:17px;
+  }
+
+  footer{
+    margin-top:42px;
+    background:var(--green);
+    color:#efe9d8;
+    border-radius:16px;
+    padding:24px 20px;
+    font-size:15px;line-height:1.9;
+  }
+  footer .fname{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    font-size:20px;color:#fff;margin-bottom:6px;
+  }
+  footer .theory{color:var(--gold);font-weight:700;font-size:15px;margin-bottom:10px;}
+  footer a{color:var(--gold);font-weight:700;text-decoration:none;word-break:break-all;}
+  footer .links{margin-top:10px;font-size:15px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>本日の施術報告</h1>
+    <div class="meta">福田様　<span>2026年8月11日（火）</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="premise">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+  <!-- ===== ボディマップ ===== -->
+  <h2>本日ゆるめたところ</h2>
+  <div class="stage">
+    <div class="cap">BODY MAP｜背面</div>
+    <svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="背面ボディマップ：左後頭部・腰・仙骨2番・両股関節">
+      <!-- 人体シルエット（背面・男性） -->
+      <g fill="#2c5a3c" stroke="#3f7350" stroke-width="2">
+        <circle cx="200" cy="58" r="34"/>
+        <rect x="186" y="84" width="28" height="26" rx="7"/>
+        <path d="M148 108 L252 108
+                 C 266 108 274 118 276 132
+                 L 274 156
+                 C 268 198 254 228 246 250
+                 C 242 262 242 276 246 290
+                 L 252 320
+                 C 254 342 246 358 232 362
+                 L 232 470 Q 232 486 220 486 L 210 486 Q 202 486 202 470 L 202 372
+                 L 198 372 L 198 470 Q 198 486 190 486 L 180 486 Q 168 486 168 470
+                 L 168 362
+                 C 154 358 146 342 148 320
+                 L 154 290
+                 C 158 276 158 262 154 250
+                 C 146 228 132 198 126 156
+                 L 124 132
+                 C 126 118 134 108 148 108 Z"/>
+        <path d="M124 136 C 106 152 100 192 98 232 L 94 264 Q 92 278 102 280 L 110 281 Q 118 281 120 268 L 130 208 Z"/>
+        <path d="M276 136 C 294 152 300 192 302 232 L 306 264 Q 308 278 298 280 L 290 281 Q 282 281 280 268 L 270 208 Z"/>
+      </g>
+      <!-- 背骨ライン -->
+      <line x1="200" y1="108" x2="200" y2="320" stroke="#3f7350" stroke-width="3" stroke-dasharray="4 6"/>
+
+      <!-- 流れライン：仙骨→股関節／仙骨→腰→頭 -->
+      <path class="flowline" d="M200 322 C 200 300 200 260 200 232 C 200 180 200 140 196 96 C 194 82 186 70 176 62"/>
+      <path class="flowline" d="M200 322 C 186 330 168 338 156 344"/>
+      <path class="flowline" d="M200 322 C 214 330 232 338 244 344"/>
+
+      <!-- ゾーン発光 -->
+      <circle class="pz" cx="176" cy="58"  r="14" fill="#c4552f"/>
+      <circle class="pz" cx="200" cy="252" r="14" fill="#c4552f" style="animation-delay:.4s"/>
+      <circle class="pz" cx="200" cy="322" r="14" fill="#c4552f" style="animation-delay:.8s"/>
+      <circle class="pz" cx="156" cy="344" r="14" fill="#c4552f" style="animation-delay:1.2s"/>
+      <circle class="pz" cx="244" cy="344" r="14" fill="#c4552f" style="animation-delay:1.6s"/>
+      <circle cx="176" cy="58"  r="7" fill="#fff"/>
+      <circle cx="200" cy="252" r="7" fill="#fff"/>
+      <circle cx="200" cy="322" r="7" fill="#fff"/>
+      <circle cx="156" cy="344" r="7" fill="#fff"/>
+      <circle cx="244" cy="344" r="7" fill="#fff"/>
+
+      <!-- ラベル -->
+      <g font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="19" fill="#f5f0e4">
+        <text x="18"  y="46">④ 左後頭部</text>
+        <text x="292" y="248">③ 腰</text>
+        <text x="284" y="310">① 仙骨2番</text>
+        <text x="14"  y="392">② 両股関節</text>
+      </g>
+      <g stroke="#c4a44d" stroke-width="2">
+        <line x1="118" y1="42" x2="160" y2="54"/>
+        <line x1="288" y1="244" x2="216" y2="252"/>
+        <line x1="280" y1="306" x2="216" y2="320"/>
+        <line x1="118" y1="384" x2="148" y2="352"/>
+      </g>
+    </svg>
+    <div class="note"><b>① 仙骨2番</b>を起点に、<b>股関節・腰・左後頭部</b>まで<br>ひと続きにゆるめました</div>
+  </div>
+
+  <!-- ===== 仙骨ズーム ===== -->
+  <div class="zoom">
+    <div class="tag">TODAY'S FOCUS</div>
+    <h3>仙骨2番（S2）</h3>
+    <svg viewBox="0 0 300 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="仙骨（ひし形）とS2の位置図">
+      <!-- 仙骨＝ひし形 -->
+      <polygon points="150,25 90,115 150,205 210,115" fill="#f0ede3" stroke="#1a3d28" stroke-width="4"/>
+      <!-- 3分割線 -->
+      <line x1="110" y1="85"  x2="190" y2="85"  stroke="#1a3d28" stroke-width="2"/>
+      <line x1="110" y1="145" x2="190" y2="145" stroke="#1a3d28" stroke-width="2"/>
+      <!-- S2＝真ん中の帯をハイライト -->
+      <polygon points="110,85 190,85 210,115 190,145 110,145 90,115" fill="#c4552f" opacity=".9"/>
+      <circle class="pz" cx="150" cy="115" r="14" fill="#c4552f"/>
+      <circle cx="150" cy="115" r="6" fill="#fff"/>
+      <!-- 帯ラベル -->
+      <g font-family="'Noto Sans JP',sans-serif" font-weight="900" text-anchor="middle">
+        <text x="150" y="66"  font-size="16" fill="#8a8a7e">1</text>
+        <text x="150" y="185" font-size="16" fill="#8a8a7e">3</text>
+      </g>
+      <g font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="19" fill="#1a3d28">
+        <text x="236" y="112">S2</text>
+        <text x="236" y="132" font-size="14" font-weight="700" fill="#5c5c52">ここ</text>
+      </g>
+      <line x1="212" y1="115" x2="230" y2="110" stroke="#c4a44d" stroke-width="2"/>
+    </svg>
+    <div class="z-cap">骨盤の中央にある骨・仙骨の上から2番目。<br><b>本日いちばん強い硬さがあった場所</b>です。</div>
+  </div>
+
+  <!-- ===== 施術の流れ ===== -->
+  <h2>施術の流れ</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <div><div class="t">仙骨2番</div><div class="s">強い硬さ → ゆるめました</div></div>
+      <div class="done">✓ 済</div>
+    </div>
+    <div class="connector"></div>
+    <div class="step">
+      <div class="num">2</div>
+      <div><div class="t">両側の股関節</div><div class="s">左右の硬さ → ゆるめました</div></div>
+      <div class="done">✓ 済</div>
+    </div>
+    <div class="connector"></div>
+    <div class="step">
+      <div class="num">3</div>
+      <div><div class="t">腰の骨まわり</div><div class="s">腰椎に沿った硬さ → ゆるめました</div></div>
+      <div class="done">✓ 済</div>
+    </div>
+    <div class="connector"></div>
+    <div class="step">
+      <div class="num">4</div>
+      <div><div class="t">左の後頭部</div><div class="s">頭蓋骨左側の張り → ゆるめました</div></div>
+      <div class="done">✓ 済</div>
+    </div>
+  </div>
+
+  <!-- ===== 測定 ===== -->
+  <h2>本日の測定（RaDoTech）</h2>
+  <div class="meter">
+    <div class="m-row">
+      <div class="m-top"><span class="m-name">⚡ エネルギー</span><span class="m-val c-ok">29.04<small>標準</small></span></div>
+      <div class="bar"><i class="b-ok" style="--w:62%"></i></div>
+    </div>
+    <div class="m-row">
+      <div class="m-top"><span class="m-name">🛡 免疫</span><span class="m-val c-ok">29.97<small>標準</small></span></div>
+      <div class="bar"><i class="b-ok" style="--w:64%;animation-delay:.15s"></i></div>
+    </div>
+    <div class="m-row">
+      <div class="m-top"><span class="m-name">🔄 代謝</span><span class="m-val c-ok">1.20<small>標準</small></span></div>
+      <div class="bar"><i class="b-ok" style="--w:60%;animation-delay:.3s"></i></div>
+    </div>
+    <div class="m-row">
+      <div class="m-top"><span class="m-name">💭 精神・感情</span><span class="m-val c-hi">1.35<small>やや高め</small></span></div>
+      <div class="bar"><i class="b-hi" style="--w:78%;animation-delay:.45s"></i></div>
+    </div>
+    <div class="m-row">
+      <div class="m-top"><span class="m-name">💪 筋骨格</span><span class="m-val c-lo">0.67<small>やや低め</small></span></div>
+      <div class="bar"><i class="b-lo" style="--w:38%;animation-delay:.6s"></i></div>
+    </div>
+    <div class="legend">
+      <span class="dot" style="background:var(--ok)"></span>標準
+      <span class="dot" style="background:var(--hi)"></span>やや高め
+      <span class="dot" style="background:var(--lo)"></span>やや低め
+    </div>
+  </div>
+
+  <!-- ===== セルフケア ===== -->
+  <h2>今日のおすすめ</h2>
+  <div class="care">
+    <div class="care-card">
+      <div class="ci">💧</div>
+      <div class="ct">お水をゆっくり</div>
+      <div class="cs">常温の水を<br>少しずつこまめに</div>
+    </div>
+    <div class="care-card">
+      <div class="ci">🌙</div>
+      <div class="ct">ぐっすり眠る</div>
+      <div class="cs">今夜はいつもより<br>早めの就寝を</div>
+    </div>
+  </div>
+
+  <h2>次回の目安</h2>
+  <div class="next">
+    お体の様子に合わせて、無理のないペースでお越しください。気になることがあれば、いつでもLINEでご連絡ください。
+  </div>
+
+  <footer>
+    <div class="fname">三条健康堂接骨院</div>
+    <div class="theory">神経反射入力装置論にもとづく施術</div>
+    柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。
+    <div class="links">
+      高松市由良町、由良川東公園のそば。<br>
+      📍 <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップ</a><br>
+      💬 <a href="https://lin.ee/dwRtwDv">LINEでのご連絡はこちら</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
