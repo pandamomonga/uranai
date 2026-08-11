@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜兼近様｜2026年8月11日</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans CJK JP", "Yu Gothic", sans-serif;
+    background:#f4f2ec;
+    color:#222;
+    font-size:17px;
+    line-height:1.75;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 16px 48px; }
+
+  /* ===== Header ===== */
+  .header {
+    background:#1a3d28;
+    color:#fff;
+    text-align:center;
+    padding:36px 16px 30px;
+    margin:0 -16px 24px;
+  }
+  .eyebrow {
+    font-size:13px;
+    letter-spacing:3px;
+    color:#c4a44d;
+    font-weight:bold;
+    margin-bottom:12px;
+  }
+  h1 { font-size:28px; font-weight:900; letter-spacing:1px; }
+  .patient-line {
+    margin-top:14px;
+    font-size:20px;
+    font-weight:bold;
+  }
+  .date-line { margin-top:4px; font-size:15px; color:#d8d3c4; }
+
+  /* ===== 前提文 ===== */
+  .premise {
+    background:#fff;
+    border-left:5px solid #c4a44d;
+    padding:16px 18px;
+    font-size:15px;
+    color:#444;
+    border-radius:6px;
+    margin-bottom:32px;
+  }
+
+  /* ===== Section ===== */
+  .section { margin-bottom:44px; }
+  h2 {
+    font-size:22px;
+    font-weight:900;
+    color:#1a3d28;
+    border-bottom:3px solid #c4a44d;
+    padding-bottom:8px;
+    margin-bottom:20px;
+  }
+  h3 { font-size:19px; font-weight:bold; color:#1a3d28; margin-bottom:10px; }
+  p.body { margin-bottom:14px; }
+
+  /* ===== 本日の状態カード ===== */
+  .symptom-cards { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+  .symptom-card {
+    flex:1 1 30%;
+    min-width:100px;
+    background:#fff;
+    border:2px solid #e0dccd;
+    border-radius:12px;
+    text-align:center;
+    padding:18px 8px 14px;
+  }
+  .symptom-card .emoji { font-size:44px; display:block; margin-bottom:6px; }
+  .symptom-card .label { font-size:16px; font-weight:bold; color:#1a3d28; }
+
+  /* ===== 施術部位カード ===== */
+  .area-cards { display:flex; flex-direction:column; gap:12px; }
+  .area-card {
+    background:#fff;
+    border-radius:12px;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  }
+  .area-card .emoji { font-size:48px; flex-shrink:0; }
+  .area-card .txt { flex:1; }
+  .area-card .name { font-size:18px; font-weight:900; color:#1a3d28; }
+  .area-card .note { font-size:15px; color:#555; margin-top:2px; }
+  .badge {
+    background:#1a3d28;
+    color:#c4a44d;
+    font-size:14px;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:999px;
+    flex-shrink:0;
+  }
+
+  /* ===== 測定値バー ===== */
+  .meter { background:#fff; border-radius:12px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  .meter-row { margin-bottom:18px; }
+  .meter-row:last-child { margin-bottom:0; }
+  .meter-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+  .meter-name { font-size:16px; font-weight:bold; }
+  .meter-val { font-size:18px; font-weight:900; }
+  .bar-bg { background:#eceadf; border-radius:999px; height:16px; overflow:hidden; }
+  .bar { height:16px; border-radius:999px; }
+  .bar-green { background:#1fa254; }
+  .bar-blue { background:#5e5bc4; }
+  .bar-red { background:#e04a26; }
+  .meter-status { font-size:14px; font-weight:bold; margin-top:3px; }
+  .st-green { color:#157a3e; }
+  .st-blue { color:#4a47a8; }
+  .st-red { color:#c23a1a; }
+
+  /* ===== POINTボックス ===== */
+  .point {
+    background:#fff;
+    border:2px solid #c4a44d;
+    border-radius:12px;
+    padding:20px 20px 16px;
+    position:relative;
+    margin:24px 0;
+  }
+  .point-tag {
+    position:absolute;
+    top:-14px;
+    left:16px;
+    background:#c4a44d;
+    color:#1a3d28;
+    font-weight:900;
+    font-size:14px;
+    letter-spacing:2px;
+    padding:4px 14px;
+    border-radius:999px;
+  }
+  .point p { font-size:16px; }
+
+  /* ===== 水分スケジュール ===== */
+  .big-message {
+    background:#1a3d28;
+    color:#fff;
+    border-radius:14px;
+    text-align:center;
+    padding:26px 18px;
+    margin-bottom:22px;
+  }
+  .big-message .small { font-size:16px; color:#d8d3c4; margin-bottom:6px; }
+  .big-message .main { font-size:24px; font-weight:900; line-height:1.5; }
+  .big-message .accent { color:#c4a44d; }
+
+  .water-grid {
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .water-cell {
+    background:#fff;
+    border:2px solid #dfe8e2;
+    border-radius:12px;
+    text-align:center;
+    padding:14px 4px 12px;
+  }
+  .water-cell .time { font-size:14px; font-weight:900; color:#1a3d28; }
+  .water-cell .cup { font-size:36px; display:block; margin:4px 0 2px; }
+  .water-cell .amt { font-size:13px; color:#555; font-weight:bold; }
+  @media (max-width:480px) {
+    .water-grid { grid-template-columns:repeat(2, 1fr); }
+  }
+
+  .total-bar {
+    background:#fff;
+    border:3px solid #1a3d28;
+    border-radius:14px;
+    text-align:center;
+    padding:18px 12px;
+    margin-bottom:8px;
+  }
+  .total-bar .cups { font-size:30px; letter-spacing:2px; }
+  .total-bar .sum { font-size:22px; font-weight:900; color:#1a3d28; margin-top:4px; }
+  .total-bar .sub { font-size:15px; color:#555; margin-top:2px; }
+
+  /* ===== 塩分カード ===== */
+  .salt-cards { display:flex; gap:10px; flex-wrap:wrap; }
+  .salt-card {
+    flex:1 1 30%;
+    min-width:100px;
+    background:#fff;
+    border:2px solid #e0dccd;
+    border-radius:12px;
+    text-align:center;
+    padding:16px 8px 14px;
+  }
+  .salt-card .emoji { font-size:44px; display:block; margin-bottom:6px; }
+  .salt-card .label { font-size:16px; font-weight:900; color:#1a3d28; }
+  .salt-card .note { font-size:13px; color:#666; margin-top:2px; }
+  .salt-or { align-self:center; font-size:18px; font-weight:900; color:#c4a44d; }
+
+  /* ===== NG/OK ===== */
+  .ngok { display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+  .ngok-card {
+    flex:1 1 45%;
+    min-width:220px;
+    border-radius:12px;
+    padding:18px;
+    background:#fff;
+  }
+  .ngok-card.ng { border:3px solid #e04a26; }
+  .ngok-card.ok { border:3px solid #1fa254; }
+  .ngok-title { font-size:18px; font-weight:900; margin-bottom:8px; }
+  .ngok-card.ng .ngok-title { color:#c23a1a; }
+  .ngok-card.ok .ngok-title { color:#157a3e; }
+  .ngok-card p { font-size:16px; }
+
+  /* ===== 次回 ===== */
+  .next {
+    background:#fff;
+    border-radius:12px;
+    padding:22px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.06);
+    font-size:16px;
+  }
+
+  /* ===== Signature ===== */
+  .sig {
+    background:#1a3d28;
+    color:#f0ede3;
+    border-radius:14px;
+    padding:28px 22px;
+    font-size:15px;
+  }
+  .sig .theory { color:#c4a44d; font-weight:900; font-size:17px; margin-bottom:10px; }
+  .sig p { margin-bottom:12px; }
+  .sig .links a {
+    display:block;
+    background:#c4a44d;
+    color:#1a3d28;
+    text-decoration:none;
+    font-weight:900;
+    font-size:17px;
+    text-align:center;
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:10px;
+  }
+  .sig .place { text-align:center; font-size:14px; color:#d8d3c4; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>本日の施術報告</h1>
+    <div class="patient-line">兼近様</div>
+    <div class="date-line">2026年8月11日（火）</div>
+  </div>
+
+  <div class="premise">
+    ※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。
+  </div>
+
+  <!-- 本日の状態 -->
+  <div class="section">
+    <h2>本日うかがったお体の状態</h2>
+    <div class="symptom-cards">
+      <div class="symptom-card"><span class="emoji">🤕</span><div class="label">朝からの頭痛</div></div>
+      <div class="symptom-card"><span class="emoji">😵</span><div class="label">吐き気</div></div>
+      <div class="symptom-card"><span class="emoji">🫠</span><div class="label">体のだるさ</div></div>
+    </div>
+    <p class="body">「毎年、お盆の時期になると体がだるくなる」とのお話でした。実はこの時期、体調を崩しやすい条件が<strong>3つ同時に</strong>そろいます。</p>
+
+    <div class="point">
+      <div class="point-tag">POINT</div>
+      <p><strong>① 台風による気圧の低下</strong>　現在、台風が日本に接近しており、気圧が下がる局面に入っています。気圧の急な変化は耳の奥のセンサーを刺激し、自律神経のバランスを揺さぶるため、頭痛や吐き気につながりやすいことが知られています。</p>
+      <p style="margin-top:10px;"><strong>② 猛暑</strong>　本日の高松は最高気温34℃前後、熱中症「厳重警戒」レベルの暑さです。</p>
+      <p style="margin-top:10px;"><strong>③ かくれ脱水</strong>　汗で水分と塩分が失われ、気づかないうちに体が水不足になります。頭痛・吐き気・だるさは、脱水でも強まります。</p>
+      <p style="margin-top:10px;">毎年8月に同じ不調が出るのは、この3つが<strong>毎年同じタイミングで重なる</strong>ためと考えられます。さらに、気圧の低下や湿度の高さは、リウマチの症状が強まりやすい条件としても報告されています。</p>
+    </div>
+  </div>
+
+  <!-- 施術部位 -->
+  <div class="section">
+    <h2>本日、施術で触れた場所</h2>
+    <div class="area-cards">
+      <div class="area-card">
+        <span class="emoji">💆</span>
+        <div class="txt">
+          <div class="name">首〜後頭部まわり</div>
+          <div class="note">自律神経のバランスを整えるための入力</div>
+        </div>
+        <span class="badge">✓ 済み</span>
+      </div>
+      <div class="area-card">
+        <span class="emoji">🫲</span>
+        <div class="txt">
+          <div class="name">背中（背骨の両側）</div>
+          <div class="note">緊張をゆるめ、リラックス側の神経へ切り替え</div>
+        </div>
+        <span class="badge">✓ 済み</span>
+      </div>
+      <div class="area-card">
+        <span class="emoji">🤲</span>
+        <div class="txt">
+          <div class="name">手首・手指まわり</div>
+          <div class="note">リウマチに配慮した、やさしい強さでの施術</div>
+        </div>
+        <span class="badge">✓ 済み</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 測定値 -->
+  <div class="section">
+    <h2>本日の測定結果（RaDoTech）</h2>
+    <div class="meter">
+      <div class="meter-row">
+        <div class="meter-head"><span class="meter-name">⚡ エネルギーレベル</span><span class="meter-val">26.12</span></div>
+        <div class="bar-bg"><div class="bar bar-green" style="width:60%"></div></div>
+        <div class="meter-status st-green">正常範囲</div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-head"><span class="meter-name">🛡️ 免疫系</span><span class="meter-val">14.12</span></div>
+        <div class="bar-bg"><div class="bar bar-blue" style="width:32%"></div></div>
+        <div class="meter-status st-blue">基準より低め</div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-head"><span class="meter-name">🔥 代謝</span><span class="meter-val">1.34</span></div>
+        <div class="bar-bg"><div class="bar bar-red" style="width:88%"></div></div>
+        <div class="meter-status st-red">基準より高め</div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-head"><span class="meter-name">🧠 心理・感情の状態</span><span class="meter-val">0.85</span></div>
+        <div class="bar-bg"><div class="bar bar-green" style="width:55%"></div></div>
+        <div class="meter-status st-green">正常範囲</div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-head"><span class="meter-name">💪 筋骨格系</span><span class="meter-val">1.33</span></div>
+        <div class="bar-bg"><div class="bar bar-red" style="width:86%"></div></div>
+        <div class="meter-status st-red">基準より高め</div>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-tag">POINT</div>
+      <p>代謝と筋骨格系が高め、免疫系が低め。これは<strong>暑さと気圧変化に体ががんばって対応し、少し消耗ぎみ</strong>という読み方ができます。今の体に必要なのは「休息」と「水分＋塩分」です。</p>
+    </div>
+  </div>
+
+  <!-- 生活指導：水分補給 -->
+  <div class="section">
+    <h2>今回の生活指導：水の飲み方</h2>
+
+    <div class="big-message">
+      <div class="small">いちばん大事なことを、先にお伝えします</div>
+      <div class="main">喉が渇いて<span class="accent">いなくても</span>、<br>時間が来たら飲む。</div>
+    </div>
+
+    <p class="body">「水は飲んでいます」という方の多くが、実は<strong>喉が渇いたときにしか飲んでいません</strong>。ところが、喉の渇きを感じた時点で、体はすでに水不足の状態です。特に汗をかく夏は、渇きを待っていると間に合いません。</p>
+    <p class="body">そこで、<strong>「渇き」ではなく「時計」で飲む</strong>方法をおすすめします。1回はコップ1杯（約200ml）。がぶ飲みは不要です。</p>
+
+    <h3>📅 1日の水分スケジュール（このとおりでOK）</h3>
+    <div class="water-grid">
+      <div class="water-cell"><div class="time">起きてすぐ</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+      <div class="water-cell"><div class="time">朝食のとき</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+      <div class="water-cell"><div class="time">午前10時ごろ</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+      <div class="water-cell"><div class="time">昼食のとき</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+      <div class="water-cell"><div class="time">午後3時ごろ</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+      <div class="water-cell"><div class="time">夕食のとき</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+      <div class="water-cell"><div class="time">お風呂の前後</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+      <div class="water-cell"><div class="time">寝る前</div><span class="cup">🥛</span><div class="amt">コップ1杯</div></div>
+    </div>
+
+    <div class="total-bar">
+      <div class="cups">🥛🥛🥛🥛🥛🥛🥛🥛</div>
+      <div class="sum">1日 合計 8杯 ＝ 約1.5リットル</div>
+      <div class="sub">外出や畑仕事などで汗をかいた日は、これに1〜2杯プラス</div>
+    </div>
+
+    <h3 style="margin-top:26px;">🧂 水だけではなく、塩分も少し</h3>
+    <p class="body">汗と一緒に塩分も出ていきます。水だけをたくさん飲むと体の塩分がうすまり、かえってだるさが出ることがあります。1日のどこかで、次の<strong>どれか1つ</strong>を足してください。</p>
+    <div class="salt-cards">
+      <div class="salt-card"><span class="emoji">🍙</span><div class="label">梅干し1個</div><div class="note">朝がおすすめ</div></div>
+      <div class="salt-or">or</div>
+      <div class="salt-card"><span class="emoji">🍲</span><div class="label">味噌汁1杯</div><div class="note">食事と一緒に</div></div>
+      <div class="salt-or">or</div>
+      <div class="salt-card"><span class="emoji">🧂</span><div class="label">塩ひとつまみ</div><div class="note">コップの水に溶かす</div></div>
+    </div>
+
+    <div class="ngok">
+      <div class="ngok-card ng">
+        <div class="ngok-title">❌ ありがちな飲み方</div>
+        <p>・喉が渇いてから、まとめてがぶ飲み<br>・お茶やコーヒーだけで済ませる<br>・「飲んでいるつもり」で1日2〜3杯</p>
+      </div>
+      <div class="ngok-card ok">
+        <div class="ngok-title">⭕ おすすめの飲み方</div>
+        <p>・渇く前に、時間で1杯ずつ<br>・水＋塩分をセットで<br>・1日8杯を目で数える（ペットボトルで管理も◎）</p>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="point-tag">POINT</div>
+      <p>気圧はコントロールできませんが、<strong>水分と塩分は自分でコントロールできます</strong>。3つの条件のうち1つを消すだけでも、毎年8月のつらさはやわらぎます。まずは今日から「時計で飲む」を始めてみてください。</p>
+    </div>
+  </div>
+
+  <!-- 次回 -->
+  <div class="section">
+    <h2>次回のご来院について</h2>
+    <div class="next">
+      台風の通過前後は気圧の変化が続きますので、体調の波が出やすい時期です。無理のないタイミングで、またお体の状態を見せてください。頭痛や吐き気が強くなるようでしたら、遠慮なくご連絡ください。
+    </div>
+  </div>
+
+  <!-- 署名 -->
+  <div class="sig">
+    <div class="theory">神経反射入力装置論にもとづく施術</div>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a href="https://lin.ee/dwRtwDv">💬 LINEでのご相談はこちら</a>
+      <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Google Mapsで場所を見る</a>
+    </div>
+    <div class="place">三条健康堂接骨院｜由良川東公園のそば<br>高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</div>
+  </div>
+
+</div>
+</body>
+</html>
