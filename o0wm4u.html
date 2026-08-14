@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本日の施術報告｜藤村様</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background:#eceae4; color:#1c1c1c; line-height:1.7;
+    padding:20px 12px 60px;
+  }
+  .sheet { max-width:720px; margin:0 auto; background:#fff; box-shadow:0 2px 18px rgba(0,0,0,.10); }
+
+  /* Header */
+  .head { background:#1a3d28; color:#fff; padding:30px 28px 26px; border-bottom:5px solid #c4a44d; }
+  .eyebrow { font-size:13px; letter-spacing:.18em; color:#c4a44d; font-weight:700; margin-bottom:12px; }
+  .head h1 { font-size:30px; font-weight:800; letter-spacing:.04em; }
+  .meta { margin-top:16px; display:flex; flex-wrap:wrap; gap:10px 22px; font-size:17px; }
+  .meta b { font-size:21px; font-weight:800; }
+
+  /* Disclaimer */
+  .note { background:#f3f1ea; border-left:5px solid #c4a44d; margin:0; padding:16px 22px; font-size:15px; color:#3a3a3a; }
+
+  /* Section */
+  section { padding:30px 26px 6px; }
+  .sec-title { display:flex; align-items:center; gap:10px; font-size:21px; font-weight:800; color:#1a3d28; margin-bottom:18px; padding-bottom:10px; border-bottom:2px solid #dedad0; }
+  .sec-title span.num { background:#1a3d28; color:#c4a44d; font-size:14px; width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:800; }
+
+  /* Treatment cards */
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .card { border:2px solid #1a3d28; border-radius:10px; padding:16px 12px; text-align:center; background:#fff; }
+  .card .ico { font-size:40px; line-height:1.2; }
+  .card .lbl { font-size:17px; font-weight:800; color:#1a3d28; margin:8px 0 10px; }
+  .badge { display:inline-block; background:#1a3d28; color:#fff; font-size:13px; font-weight:700; padding:4px 12px; border-radius:20px; }
+
+  /* Flow */
+  .flow { display:grid; gap:10px; margin-top:16px; }
+  .step { display:flex; align-items:center; gap:14px; background:#f7f6f1; border-radius:8px; padding:14px 16px; }
+  .step .n { flex:none; width:30px; height:30px; border-radius:50%; background:#c4a44d; color:#1a3d28; font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; }
+  .step .t { font-size:16px; font-weight:600; }
+
+  /* Bars */
+  .bar-row { margin-bottom:16px; }
+  .bar-top { display:flex; justify-content:space-between; align-items:baseline; font-size:16px; margin-bottom:6px; }
+  .bar-top .name { font-weight:800; color:#1a2a1e; }
+  .bar-top .val { font-weight:800; font-size:19px; }
+  .track { background:#e4e1d8; height:20px; border-radius:10px; overflow:hidden; }
+  .fill { height:100%; border-radius:10px; }
+  .tag { font-size:14px; font-weight:700; margin-top:5px; display:inline-block; }
+  .low  { color:#3a4bb0; } .low .fill  { background:#4a5fc1; }
+  .norm { color:#146b3c; } .norm .fill { background:#1a7a4a; }
+  .high { color:#b8371a; } .high .fill { background:#d9542b; }
+
+  /* Point box */
+  .point { border:2px solid #c4a44d; background:#fdfbf3; border-radius:10px; padding:18px 20px; margin-top:18px; }
+  .point h3 { font-size:16px; color:#8a6d1f; letter-spacing:.1em; margin-bottom:8px; }
+  .point p { font-size:16px; }
+
+  /* Homecare */
+  .care { display:flex; gap:16px; align-items:flex-start; padding:18px 4px; border-bottom:1px dashed #d5d1c6; }
+  .care:last-child { border-bottom:none; }
+  .care .ico { font-size:46px; flex:none; width:60px; text-align:center; line-height:1.1; }
+  .care .lbl { font-size:19px; font-weight:800; color:#1a3d28; }
+  .care .pt { font-size:16px; color:#333; margin-top:4px; }
+  .care .sub { font-size:15px; color:#555; margin-top:6px; background:#f4f2eb; border-radius:6px; padding:8px 12px; }
+
+  /* Next */
+  .next { background:#f3f1ea; border-radius:10px; padding:20px 22px; font-size:16px; }
+  .next b { color:#1a3d28; font-size:18px; }
+
+  /* Signature */
+  .sig { background:#1a3d28; color:#e8e5db; padding:28px 26px 32px; margin-top:34px; }
+  .sig .theory { font-size:15px; color:#c4a44d; font-weight:700; margin-bottom:14px; letter-spacing:.06em; }
+  .sig p { font-size:15px; line-height:1.9; }
+  .sig .links { margin-top:18px; display:grid; gap:10px; }
+  .sig a { display:block; background:#c4a44d; color:#1a3d28; text-decoration:none; font-weight:800; font-size:17px; text-align:center; padding:14px; border-radius:8px; }
+  .sig .place { margin-top:14px; font-size:15px; }
+  @media (max-width:480px){
+    .head h1{font-size:25px;} .sec-title{font-size:19px;} .care .ico{font-size:38px;width:48px;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="head">
+    <div class="eyebrow">SANJO KENKO-DO｜施術報告書</div>
+    <h1>本日の施術報告</h1>
+    <div class="meta"><b>藤村 様</b><span>2026年8月14日（金）</span></div>
+  </div>
+
+  <p class="note">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+
+  <section>
+    <div class="sec-title"><span class="num">1</span>本日ふれた場所</div>
+    <div class="cards">
+      <div class="card"><div class="ico">🫁</div><div class="lbl">背中・肋骨まわり</div><div class="badge">✓ 施術済み</div></div>
+      <div class="card"><div class="ico">🧣</div><div class="lbl">首（左側）</div><div class="badge">✓ 施術済み</div></div>
+      <div class="card"><div class="ico">🦴</div><div class="lbl">背骨の関節</div><div class="badge">✓ 施術済み</div></div>
+      <div class="card"><div class="ico">💪</div><div class="lbl">左肩まわり</div><div class="badge">✓ 施術済み</div></div>
+      <div class="card"><div class="ico">🪽</div><div class="lbl">右 肩甲骨まわり</div><div class="badge">✓ 施術済み</div></div>
+    </div>
+
+    <div class="flow">
+      <div class="step"><div class="n">1</div><div class="t">肋骨まわり・首の左側の張りを確認</div></div>
+      <div class="step"><div class="n">2</div><div class="t">機械で背骨の関節を一つずつ、動きやすい状態へ</div></div>
+      <div class="step"><div class="n">3</div><div class="t">左肩・右肩甲骨の2か所をていねいにほぐす</div></div>
+    </div>
+
+    <div class="point">
+      <h3>POINT</h3>
+      <p>背中と肩の張りが強い状態でした。土台となる背骨の動きを整えてから、肩の2か所へ。動かしやすさが戻ってくる流れになっています。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><span class="num">2</span>本日の測定結果</div>
+
+    <div class="bar-row low">
+      <div class="bar-top"><span class="name">⚡ エネルギー量</span><span class="val">21.62</span></div>
+      <div class="track"><div class="fill" style="width:34%"></div></div>
+      <div class="tag">基準より低め</div>
+    </div>
+
+    <div class="bar-row norm">
+      <div class="bar-top"><span class="name">🛡 免疫のはたらき</span><span class="val">25.10</span></div>
+      <div class="track"><div class="fill" style="width:62%"></div></div>
+      <div class="tag">標準</div>
+    </div>
+
+    <div class="bar-row low">
+      <div class="bar-top"><span class="name">♻️ 代謝バランス</span><span class="val">0.94</span></div>
+      <div class="track"><div class="fill" style="width:44%"></div></div>
+      <div class="tag">基準より低め</div>
+    </div>
+
+    <div class="bar-row high">
+      <div class="bar-top"><span class="name">🧠 心と緊張の状態</span><span class="val">1.22</span></div>
+      <div class="track"><div class="fill" style="width:80%"></div></div>
+      <div class="tag">基準より高め</div>
+    </div>
+
+    <div class="bar-row norm">
+      <div class="bar-top"><span class="name">🦵 筋肉・関節の左右差</span><span class="val">1.10</span></div>
+      <div class="track"><div class="fill" style="width:60%"></div></div>
+      <div class="tag">標準（基準 0.9〜1.2）</div>
+    </div>
+
+    <div class="point">
+      <h3>読み取り方</h3>
+      <p>エネルギー量が低め、緊張の指標が高めという組み合わせでした。背中と肩の張りの出方と重なる並びです。数値は日によって動きます。今日の一枚として見てください。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><span class="num">3</span>毎日のセルフケア</div>
+
+    <div class="care">
+      <div class="ico">🎽</div>
+      <div>
+        <div class="lbl">エクササイズバンド</div>
+        <div class="pt">全身の筋肉に刺激を入れる。1日数分でかまいません。</div>
+        <div class="sub">セットで意識したいのがたんぱく質。鶏肉・サバの缶詰・納豆・豆腐など。動かす＋材料を入れる、この2つで筋肉と体の張りが保てます。</div>
+      </div>
+    </div>
+
+    <div class="care">
+      <div class="ico">👟</div>
+      <div>
+        <div class="lbl">インソール</div>
+        <div class="pt">立ち仕事のときの靴に入れてください。</div>
+        <div class="sub">足元が安定すると動きが軽くなり、膝にかかる負担も変わってきます。</div>
+      </div>
+    </div>
+
+    <div class="care">
+      <div class="ico">⏱</div>
+      <div>
+        <div class="lbl">インターバルタイマー</div>
+        <div class="pt">日常の作業に区切りをつける道具として使ってください。</div>
+        <div class="sub">次の作業への切り替えがしやすくなり、1日をダラダラ過ごしにくくなるというデータがあります。トレーニングの時間管理にもそのまま使えます。</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><span class="num">4</span>次回に向けて</div>
+    <div class="next">
+      <b>背骨の柔らかさは、積み重ねで変わります。</b><br>
+      本日ゆるんだ状態がどこまで続くか、次回に確認させてください。ご都合のよいタイミングでお越しいただければ大丈夫です。セルフケアは「完璧に」ではなく「毎日少し」で十分です。
+    </div>
+  </section>
+
+  <div class="sig">
+    <div class="theory">神経反射入力装置論にもとづく施術</div>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+      <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="place">高松市由良町・由良川東公園のそば</div>
+  </div>
+
+</div>
+</body>
+</html>
