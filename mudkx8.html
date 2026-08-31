@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜兼近様</title>
+<style>
+  :root{
+    --green:#1c4a3a;
+    --green-deep:#123227;
+    --gold:#c4a44d;
+    --gold-soft:#f3ead3;
+    --ink:#26251f;
+    --paper:#ffffff;
+    --paper-warm:#faf8f2;
+    --violet:#6a6ad0;
+    --red:#e05430;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+    background:var(--paper-warm);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.75;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 0 48px;}
+
+  /* header */
+  .head{
+    background:var(--green);
+    color:#fff;
+    padding:34px 24px 30px;
+  }
+  .head .brand{
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:.18em;
+    margin-bottom:14px;
+  }
+  .head h1{
+    font-size:27px;
+    line-height:1.4;
+    font-weight:700;
+  }
+  .head .sub{
+    margin-top:10px;
+    font-size:16px;
+    color:#dfeae4;
+  }
+  .head .date{
+    margin-top:4px;
+    font-size:14px;
+    color:#b9cfc6;
+  }
+  .disclaimer{
+    background:var(--green-deep);
+    color:#cfe0d8;
+    font-size:13px;
+    line-height:1.7;
+    padding:14px 24px;
+  }
+
+  /* sections */
+  .part{
+    padding:34px 20px 8px;
+  }
+  .part-tag{
+    display:inline-block;
+    background:var(--green);
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+    padding:4px 14px;
+    border-radius:999px;
+    letter-spacing:.08em;
+  }
+  .part h2{
+    font-size:23px;
+    margin:14px 0 6px;
+    color:var(--green-deep);
+    line-height:1.45;
+  }
+  .part .lead{
+    font-size:16px;
+    margin-bottom:18px;
+  }
+
+  .card{
+    background:var(--paper);
+    border-radius:14px;
+    padding:20px 18px;
+    margin-bottom:16px;
+    box-shadow:0 1px 0 rgba(28,74,58,.12);
+    border:1px solid #ece7d9;
+  }
+  .card h3{
+    font-size:19px;
+    color:var(--green-deep);
+    margin-bottom:8px;
+  }
+
+  /* metric rows */
+  .metric{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 4px;
+    border-bottom:1px dashed #e0dac9;
+    gap:10px;
+  }
+  .metric:last-child{border-bottom:none;}
+  .metric .m-name{
+    font-size:16px;
+    font-weight:700;
+  }
+  .metric .m-state{
+    font-size:13px;
+    color:#7a766a;
+  }
+  .metric .m-val{
+    font-size:24px;
+    font-weight:700;
+    min-width:86px;
+    text-align:right;
+  }
+  .low .m-val{color:var(--violet);}
+  .ok .m-val{color:var(--green);}
+  .badge{
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    border-radius:6px;
+    padding:2px 8px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .badge.ok{background:#e2f1e9;color:var(--green);}
+  .badge.low{background:#e9e9fa;color:var(--violet);}
+  .badge.hyper{background:#fdeae3;color:var(--red);}
+
+  /* organ bars */
+  .organ-grid{display:flex;gap:14px;flex-wrap:wrap;}
+  .organ{
+    flex:1 1 240px;
+    background:var(--paper);
+    border:1px solid #ece7d9;
+    border-radius:14px;
+    padding:18px 16px;
+  }
+  .organ h4{font-size:17px;margin-bottom:4px;color:var(--green-deep);}
+  .organ .o-state{font-size:14px;font-weight:700;margin-bottom:12px;}
+  .organ .o-state.low{color:var(--violet);}
+  .organ .o-state.hyper{color:var(--red);}
+  .bar-row{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:14px;}
+  .bar-row .b-label{width:34px;color:#7a766a;}
+  .bar-track{flex:1;height:12px;background:#efece2;border-radius:6px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:6px;}
+  .bar-fill.low{background:var(--violet);}
+  .bar-fill.hyper{background:var(--red);}
+  .bar-row .b-num{width:52px;text-align:right;font-weight:700;}
+
+  /* mechanism chain */
+  .chain{
+    background:var(--green-deep);
+    border-radius:14px;
+    padding:22px 18px;
+    margin:6px 0 16px;
+  }
+  .chain h3{color:var(--gold);font-size:18px;margin-bottom:14px;}
+  .chain ol{list-style:none;}
+  .chain li{
+    background:rgba(255,255,255,.06);
+    color:#f2f0e6;
+    border-left:3px solid var(--gold);
+    padding:10px 14px;
+    font-size:16px;
+    border-radius:0 8px 8px 0;
+    margin-bottom:6px;
+  }
+  .chain .arrow{
+    text-align:center;
+    color:var(--gold);
+    font-size:15px;
+    line-height:1.2;
+    margin:2px 0 8px;
+  }
+  .reassure{
+    background:#e9f3ee;
+    border-radius:12px;
+    padding:16px 16px;
+    font-size:16px;
+    color:var(--green-deep);
+  }
+  .reassure strong{font-size:17px;}
+
+  /* POINT box */
+  .point{
+    border:2px solid var(--gold);
+    border-radius:12px;
+    background:var(--gold-soft);
+    padding:18px 16px 16px;
+    position:relative;
+    margin:24px 0 8px;
+  }
+  .point .p-tag{
+    position:absolute;
+    top:-13px;
+    left:14px;
+    background:var(--gold);
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.14em;
+    padding:2px 12px;
+    border-radius:6px;
+  }
+  .point p{font-size:15px;line-height:1.8;}
+
+  /* steps */
+  .step{
+    display:flex;
+    gap:14px;
+    margin-bottom:6px;
+  }
+  .step .s-num{
+    flex:0 0 44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--green);
+    color:#fff;
+    font-size:19px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .step .s-body{
+    flex:1;
+    background:var(--paper);
+    border:1px solid #ece7d9;
+    border-radius:14px;
+    padding:16px 16px 14px;
+  }
+  .step .s-body h3{font-size:18px;color:var(--green-deep);margin-bottom:6px;}
+  .step .s-body p{font-size:15px;}
+  .step-line{
+    width:2px;
+    height:18px;
+    background:#cfc9b6;
+    margin-left:21px;
+  }
+  .tag-list{margin:8px 0 4px;display:flex;flex-wrap:wrap;gap:6px;}
+  .tag-list span{
+    background:var(--gold-soft);
+    border:1px solid #e2d5ac;
+    color:#6d5a20;
+    font-size:13px;
+    font-weight:700;
+    border-radius:999px;
+    padding:3px 10px;
+  }
+
+  /* prompt boxes */
+  .prompt{
+    background:#f4f7f5;
+    border:1px solid #d8e2dc;
+    border-radius:10px;
+    padding:14px;
+    margin-top:10px;
+    font-size:14.5px;
+    line-height:1.8;
+    white-space:pre-wrap;
+  }
+  .copy-btn{
+    margin-top:10px;
+    background:var(--green);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:700;
+    padding:11px 18px;
+    cursor:pointer;
+    width:100%;
+  }
+  .copy-btn.copied{background:var(--gold);}
+
+  /* footer */
+  footer{
+    margin-top:36px;
+    background:var(--green);
+    color:#e6efe9;
+    padding:30px 22px 34px;
+    font-size:14px;
+    line-height:1.8;
+  }
+  footer .f-brand{color:var(--gold);letter-spacing:.18em;font-size:12px;margin-bottom:10px;}
+  footer .f-theory{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;}
+  footer .f-links{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
+  footer .f-links a{
+    color:var(--green-deep);
+    background:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    border-radius:8px;
+    padding:9px 16px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div class="brand">SANJO KENKO-DO</div>
+    <h1>施術報告書</h1>
+    <div class="sub">兼近様</div>
+    <div class="date">2026年8月31日（月）</div>
+  </div>
+  <div class="disclaimer">
+    ※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。
+  </div>
+
+  <!-- ============ PART 1 ============ -->
+  <div class="part">
+    <span class="part-tag">第1部</span>
+    <h2>本日のお身体について</h2>
+    <p class="lead">
+      本日は、これまでで一番といっていいほど、頭に強い緊張（歪み）が出ていました。相当考え込まれていたのだと思います。しっかり施術しましたので、ここからだんだん頭が緩んで、楽になっていきます。ご安心ください。
+    </p>
+
+    <div class="card">
+      <h3>本日の測定結果</h3>
+      <div class="metric ok">
+        <div>
+          <span class="m-name">⚡ エネルギーレベル</span><span class="badge ok">正常</span>
+        </div>
+        <div class="m-val">31.45</div>
+      </div>
+      <div class="metric low">
+        <div>
+          <span class="m-name">🛡 免疫系</span><span class="badge low">低下</span>
+        </div>
+        <div class="m-val">17.03</div>
+      </div>
+      <div class="metric low">
+        <div>
+          <span class="m-name">♻ 代謝</span><span class="badge low">低下</span>
+        </div>
+        <div class="m-val">0.98</div>
+      </div>
+      <div class="metric low">
+        <div>
+          <span class="m-name">🧠 心理・感情の状態</span><span class="badge low">低下</span>
+        </div>
+        <div class="m-val">0.66</div>
+      </div>
+      <div class="metric low">
+        <div>
+          <span class="m-name">💪 筋骨格系</span><span class="badge low">低下</span>
+        </div>
+        <div class="m-val">0.76</div>
+      </div>
+    </div>
+
+    <div class="organ-grid">
+      <div class="organ">
+        <h4>🛡 免疫系</h4>
+        <div class="o-state low">不足ぎみ</div>
+        <div class="bar-row"><span class="b-label">左</span><div class="bar-track"><div class="bar-fill low" style="width:31%"></div></div><span class="b-num">31%</span></div>
+        <div class="bar-row"><span class="b-label">右</span><div class="bar-track"><div class="bar-fill low" style="width:72%"></div></div><span class="b-num">72%</span></div>
+      </div>
+      <div class="organ">
+        <h4>🫀 肝臓</h4>
+        <div class="o-state hyper">活発に働きすぎ</div>
+        <div class="bar-row"><span class="b-label">左</span><div class="bar-track"><div class="bar-fill hyper" style="width:100%"></div></div><span class="b-num">116%</span></div>
+        <div class="bar-row"><span class="b-label">右</span><div class="bar-track"><div class="bar-fill hyper" style="width:100%"></div></div><span class="b-num">173%</span></div>
+      </div>
+    </div>
+
+    <div class="chain">
+      <h3>体の中で起きていた流れ</h3>
+      <ol>
+        <li>ストレス・悩みで、体が一気に頑張りすぎた（オーバーシュート）</li>
+        <div class="arrow">▼</div>
+        <li>その反動で、体のエネルギーがガクッと下がった</li>
+        <div class="arrow">▼</div>
+        <li>下がったエネルギーを支えるために、肝臓がフル稼働して助けてくれていた</li>
+        <div class="arrow">▼</div>
+        <li>そのぶん肝臓に負担がかかっていた、と考えられます</li>
+      </ol>
+    </div>
+
+    <div class="reassure">
+      <strong>ご安心ください。</strong><br>
+      肝臓が頑張っているのは、体を守るための「代償反応」です。本日の施術で頭の緊張にはしっかりアプローチしましたので、これから少しずつ緩んで楽になっていきます。
+    </div>
+
+    <div class="point">
+      <span class="p-tag">POINT</span>
+      <p>
+        エネルギー総量は 31.45 で正常域。一方で、免疫 17.03／代謝 0.98／心理 0.66／筋骨格 0.76 と各系統は低下、肝臓は左 116%・右 173% と活発でした。「全体を保つために、肝臓が一手に引き受けていた」バランスが数字に表れています。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ PART 2 ============ -->
+  <div class="part">
+    <span class="part-tag">第2部</span>
+    <h2>お子様のテスト勉強・攻略ステップ</h2>
+    <p class="lead">
+      今回のストレスの元になっている、お子様のテスト勉強。やることはシンプルです。この順番どおりに進めてください。
+    </p>
+
+    <div class="step">
+      <div class="s-num">1</div>
+      <div class="s-body">
+        <h3>CamScanner（カムスキャナー）を入れる</h3>
+        <p>スマホで撮影するだけで、書類をPDFにまとめてくれる無料アプリです。まずこれをインストールします。</p>
+      </div>
+    </div>
+    <div class="step-line"></div>
+
+    <div class="step">
+      <div class="s-num">2</div>
+      <div class="s-body">
+        <h3>「一次情報」を全部PDFにする</h3>
+        <p>これが一番大事な材料になります。次のものをすべて撮影してPDF化してください。</p>
+        <div class="tag-list">
+          <span>過去問</span><span>これまでのテスト</span><span>授業のノート</span><span>テスト結果（答案）</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-line"></div>
+
+    <div class="step">
+      <div class="s-num">3</div>
+      <div class="s-body">
+        <h3>PDFをGeminiに入れて、弱点を「見える化」する</h3>
+        <p>PDFをそのままGeminiに添付して、下の文をコピーして送ります。</p>
+        <div class="prompt" id="prompt1">現在、赤点を取っています。先生からは「基礎がまだ分かっていない」という指摘をもらいました。全部攻略したいのですが、どこが分からないのか、何が弱いのかが自分でも分かっていません。
+
+添付のPDF（過去問・テスト・授業ノート・テスト結果）をもとに、まず「基礎のうち、僕が何を分かっていないのか」をすべてアウトラインで出してください。分かりやすく、情報を整理して（エントロピー低く）出してください。そして、すぐに理解できるように、それぞれに短い説明文もつけてください。</div>
+        <button class="copy-btn" data-target="prompt1">プロンプト①をコピー</button>
+      </div>
+    </div>
+    <div class="step-line"></div>
+
+    <div class="step">
+      <div class="s-num">4</div>
+      <div class="s-body">
+        <h3>説明文を読んだら、二択クイズにしてもらう</h3>
+        <p>アウトラインと説明文をひととおり読んだあと、続けてこの文を送ります。</p>
+        <div class="prompt" id="prompt2">今のアウトラインと説明文の内容を、すべて暗記して自分の身につけたいです。そのために、面白い二択クイズにしてください。クイズは最大80問以内で作ってください。</div>
+        <button class="copy-btn" data-target="prompt2">プロンプト②をコピー</button>
+      </div>
+    </div>
+    <div class="step-line"></div>
+
+    <div class="step">
+      <div class="s-num">5</div>
+      <div class="s-body">
+        <h3>全問正解できるまで、何周も解く</h3>
+        <p>一度で終わりにせず、全問正解できるまで繰り返します。このシンプルな流れを回すだけで、基礎の弱点は克服できるはずです。</p>
+      </div>
+    </div>
+
+    <div class="point">
+      <span class="p-tag">POINT</span>
+      <p>
+        クイズは<strong>連続で解かない</strong>のがコツです。1周したら<strong>1〜2日あけて</strong>次の周をやると、記憶に残りやすくなります（間隔をあけた反復）。あいだの日には、別の範囲のクイズを作ってもらうなど、工夫の余地はいろいろあります。
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="f-brand">SANJO KENKO-DO</div>
+    <div class="f-theory">神経反射入力装置論</div>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <p style="margin-top:10px;">三条健康堂接骨院（由良川東公園のそば）</p>
+    <div class="f-links">
+      <a href="#">LINEで相談する</a>
+      <a href="#">地図を開く</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', async function(){
+    var target = document.getElementById(btn.getAttribute('data-target'));
+    var text = target.innerText;
+    var ok = false;
+    try{
+      await navigator.clipboard.writeText(text);
+      ok = true;
+    }catch(e){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '0';
+      ta.style.width = '1px';
+      ta.style.height = '1px';
+      ta.style.opacity = '0';
+      ta.style.pointerEvents = 'none';
+      document.body.appendChild(ta);
+      var sx = window.scrollX, sy = window.scrollY;
+      ta.focus(); ta.select();
+      try{ ok = document.execCommand('copy'); }catch(err){ ok = false; }
+      window.scrollTo(sx, sy);
+      document.body.removeChild(ta);
+    }
+    if(ok){
+      var original = btn.textContent;
+      btn.textContent = '✓ 完了';
+      btn.classList.add('copied');
+      setTimeout(function(){
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1500);
+    }
+  });
+});
+</script>
+</body>
+</html>
