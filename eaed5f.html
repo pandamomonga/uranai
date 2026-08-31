@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜藤原様</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+    background:#f4f4f0; color:#222; font-size:16px; line-height:1.7;
+  }
+  .wrap { max-width:640px; margin:0 auto; background:#ffffff; }
+
+  /* ヘッダー */
+  .head { background:#14503c; color:#fff; padding:34px 24px 30px; text-align:center; }
+  .eyebrow { font-size:13px; letter-spacing:.35em; color:#d9c07a; margin-bottom:10px; }
+  .head h1 { font-size:26px; letter-spacing:.12em; }
+  .head .meta { margin-top:12px; font-size:16px; color:#e9f2ee; }
+  .head .meta strong { font-size:20px; color:#fff; }
+
+  .disclaimer {
+    background:#f6f3ea; border-left:4px solid #c4a44d;
+    padding:14px 18px; font-size:14px; color:#555; line-height:1.8;
+  }
+
+  section { padding:30px 22px; }
+  .sec-title { text-align:center; margin-bottom:22px; }
+  .sec-title .en { display:block; font-size:12px; letter-spacing:.3em; color:#c4a44d; margin-bottom:4px; }
+  .sec-title .ja { font-size:22px; font-weight:700; color:#14503c; }
+
+  /* 測定カード */
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .m-card {
+    border:1px solid #e2e2da; border-radius:12px; padding:16px 14px; text-align:center; background:#fff;
+  }
+  .m-card .icon { font-size:26px; }
+  .m-card .label { font-size:14px; color:#555; margin-top:4px; }
+  .m-card .value { font-size:26px; font-weight:700; margin-top:2px; }
+  .m-card .tag { display:inline-block; margin-top:6px; font-size:12px; font-weight:700;
+    padding:2px 12px; border-radius:99px; }
+  .low  { color:#4a4fae; }
+  .low-tag { background:#eceefc; color:#4a4fae; }
+  .ok   { color:#1a8c53; }
+  .ok-tag { background:#e5f6ec; color:#1a8c53; }
+
+  .liver-card {
+    grid-column:1 / -1; background:#fff4ef; border:1px solid #f2c9b5;
+    border-radius:12px; padding:18px 16px; text-align:center;
+  }
+  .liver-card .label { font-size:15px; color:#8a4a2b; font-weight:700; }
+  .liver-vals { display:flex; justify-content:center; gap:26px; margin-top:8px; }
+  .liver-vals div { text-align:center; }
+  .liver-vals .n { font-size:26px; font-weight:700; color:#e05a2b; }
+  .liver-vals .s { font-size:13px; color:#8a4a2b; }
+  .liver-card .tag { display:inline-block; margin-top:8px; font-size:13px; font-weight:700;
+    background:#e05a2b; color:#fff; padding:3px 16px; border-radius:99px; }
+
+  /* 読み解き */
+  .story { background:#f8faf9; }
+  .story-flow { display:flex; flex-direction:column; gap:0; align-items:center; }
+  .flow-box {
+    width:100%; background:#fff; border:1px solid #dfe6e2; border-radius:12px;
+    padding:16px 18px; text-align:center;
+  }
+  .flow-box .t { font-weight:700; font-size:17px; color:#14503c; }
+  .flow-box .d { font-size:15px; color:#555; margin-top:4px; }
+  .arrow { font-size:22px; color:#c4a44d; padding:6px 0; font-weight:700; }
+
+  .liver-msg {
+    margin-top:18px; background:#14503c; color:#fff; border-radius:12px;
+    padding:18px 20px; font-size:16px; line-height:1.9; text-align:center;
+  }
+  .liver-msg strong { color:#ffd98a; font-size:18px; }
+
+  /* 発見セクション */
+  .discover { background:#fff; }
+  .big-fact {
+    background:#f6f3ea; border-radius:14px; padding:22px 18px; text-align:center; margin-bottom:20px;
+  }
+  .big-fact .k { font-size:13px; letter-spacing:.2em; color:#c4a44d; font-weight:700; }
+  .big-fact .v { font-size:23px; font-weight:700; color:#14503c; margin-top:6px; }
+  .big-fact .s { font-size:15px; color:#666; margin-top:6px; }
+
+  .hyp {
+    border:1px dashed #b9c7c0; border-radius:12px; padding:18px; font-size:15.5px; line-height:1.9;
+  }
+  .hyp .h-tag { display:inline-block; background:#14503c; color:#fff; font-size:12px;
+    padding:2px 12px; border-radius:99px; margin-bottom:10px; letter-spacing:.15em; }
+  .hyp b { color:#14503c; }
+
+  /* POINT（エビデンス） */
+  .point-box {
+    border:2px solid #c4a44d; border-radius:14px; padding:24px 18px 18px; position:relative; margin-top:26px;
+  }
+  .point-box .p-tag {
+    position:absolute; top:-14px; left:18px; background:#c4a44d; color:#fff;
+    font-size:13px; font-weight:700; letter-spacing:.25em; padding:3px 16px; border-radius:99px;
+  }
+  .point-box h3 { font-size:18px; color:#14503c; margin-bottom:14px; line-height:1.6; }
+  .rank { display:flex; gap:14px; padding:12px 0; border-top:1px solid #eee6d2; align-items:flex-start; }
+  .rank:first-of-type { border-top:none; }
+  .rank .no {
+    flex:0 0 34px; height:34px; border-radius:50%; background:#c4a44d; color:#fff;
+    font-weight:700; font-size:17px; display:flex; align-items:center; justify-content:center;
+  }
+  .rank .tx .rt { font-weight:700; font-size:16.5px; color:#222; }
+  .rank .tx .rd { font-size:14px; color:#666; margin-top:2px; }
+  .src-note { font-size:12.5px; color:#999; margin-top:12px; line-height:1.7; }
+
+  /* セルフケア */
+  .care { background:#f8faf9; }
+  .care-card {
+    background:#fff; border:1px solid #dfe6e2; border-radius:14px;
+    padding:20px 18px; margin-bottom:14px; display:flex; gap:16px; align-items:flex-start;
+  }
+  .care-card .c-icon {
+    flex:0 0 52px; height:52px; border-radius:14px; background:#14503c; color:#fff;
+    font-size:26px; display:flex; align-items:center; justify-content:center;
+  }
+  .care-card .c-tx .ct { font-weight:700; font-size:18px; color:#14503c; }
+  .care-card .c-tx .cd { font-size:15px; color:#555; margin-top:4px; line-height:1.8; }
+
+  .close-msg {
+    text-align:center; font-size:16px; line-height:2; padding:6px 10px 0; color:#333;
+  }
+
+  /* フッター */
+  footer { background:#14503c; color:#dfe9e4; padding:32px 24px 40px; text-align:center; font-size:14px; }
+  footer .theory { color:#ffd98a; font-size:15px; font-weight:700; letter-spacing:.1em; margin-bottom:14px; }
+  footer .prof { line-height:1.9; margin-bottom:18px; }
+  footer .clinic { font-size:16px; font-weight:700; color:#fff; }
+  footer .place { margin-top:4px; }
+  .btns { display:flex; gap:12px; justify-content:center; margin-top:18px; }
+  .btns a {
+    display:inline-block; padding:12px 26px; border-radius:99px; text-decoration:none;
+    font-weight:700; font-size:15px;
+  }
+  .btn-line { background:#2bb24c; color:#fff; }
+  .btn-map { background:#fff; color:#14503c; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1>施 術 報 告 書</h1>
+    <div class="meta"><strong>藤原様</strong><br>2026年8月31日</div>
+  </div>
+
+  <div class="disclaimer">
+    ※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。
+  </div>
+
+  <!-- 測定結果 -->
+  <section>
+    <div class="sec-title">
+      <span class="en">MEASUREMENT</span>
+      <span class="ja">本日の測定結果</span>
+    </div>
+    <div class="grid">
+      <div class="m-card">
+        <div class="icon">⚡</div>
+        <div class="label">エネルギーレベル</div>
+        <div class="value low">22.70</div>
+        <span class="tag low-tag">基準より低め</span>
+      </div>
+      <div class="m-card">
+        <div class="icon">🛡️</div>
+        <div class="label">免疫システム</div>
+        <div class="value ok">17.52</div>
+        <span class="tag ok-tag">正常</span>
+      </div>
+      <div class="m-card">
+        <div class="icon">🔄</div>
+        <div class="label">代謝</div>
+        <div class="value low">1.07</div>
+        <span class="tag low-tag">基準より低め</span>
+      </div>
+      <div class="m-card">
+        <div class="icon">🧠</div>
+        <div class="label">心理・感情の状態</div>
+        <div class="value ok">0.86</div>
+        <span class="tag ok-tag">正常</span>
+      </div>
+      <div class="m-card" style="grid-column:1 / -1;">
+        <div class="icon">💪</div>
+        <div class="label">筋骨格系</div>
+        <div class="value low">0.81</div>
+        <span class="tag low-tag">基準より低め</span>
+      </div>
+      <div class="liver-card">
+        <div class="label">🫀 肝臓の活動</div>
+        <div class="liver-vals">
+          <div><div class="n">109%</div><div class="s">左</div></div>
+          <div><div class="n">152%</div><div class="s">右</div></div>
+        </div>
+        <span class="tag">ハイパーアクティブ（働きすぎ）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 読み解き -->
+  <section class="story">
+    <div class="sec-title">
+      <span class="en">READING</span>
+      <span class="ja">数字が語っていること</span>
+    </div>
+    <div class="story-flow">
+      <div class="flow-box">
+        <div class="t">仕事の疲れ ＋ 夏バテのような状態</div>
+        <div class="d">体全体のエネルギーが下がっています</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="flow-box">
+        <div class="t">足りない分を、誰かが補わないといけない</div>
+        <div class="d">体は自動で「帳尻合わせ」を始めます</div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="flow-box">
+        <div class="t">肝臓がフル稼働（右152%）</div>
+        <div class="d">エネルギー不足を代わりに支えている状態です</div>
+      </div>
+    </div>
+    <div class="liver-msg">
+      肝臓が悪いのではありません。<br>
+      <strong>肝臓は、めちゃくちゃ頑張ってくれています。</strong><br>
+      だからこそ、休ませてあげる番です。
+    </div>
+  </section>
+
+  <!-- 本日の発見 -->
+  <section class="discover">
+    <div class="sec-title">
+      <span class="en">TODAY'S FINDING</span>
+      <span class="ja">本日、新しくわかったこと</span>
+    </div>
+    <div class="big-fact">
+      <div class="k">NEW FACT</div>
+      <div class="v">約10年前、左の鎖骨を骨折</div>
+      <div class="s">腰痛・首の不調・体の違和感と、つながりがある可能性があります</div>
+    </div>
+    <div class="hyp">
+      <span class="h-tag">院長の仮説</span><br>
+      鎖骨が折れて骨がくっついたあとも、まわりの筋肉にある<b>「センサー（受容器）」の反応は鈍いまま</b>残ることがあります。センサーの情報が減ると、<b>脳と体の連携（リレーションシップ）</b>がうまくいかず、それが違和感や不調として現れる——そう考えています。
+    </div>
+
+    <div class="point-box">
+      <span class="p-tag">POINT</span>
+      <h3>鎖骨骨折の経験がある方が、長時間ディスプレイに向かうデスクワークを続けると起きやすいこと ベスト5</h3>
+      <div class="rank">
+        <div class="no">1</div>
+        <div class="tx">
+          <div class="rt">首の痛み・こりが強くなる</div>
+          <div class="rd">肩甲骨の動きの乱れは首の痛みと関連。キーボード作業1日4〜6時間で、首・肩の痛みリスクは約4倍という報告があります。</div>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="no">2</div>
+        <div class="tx">
+          <div class="rt">肩甲骨の動きが乱れる（肩甲骨ディスキネジス）</div>
+          <div class="rd">鎖骨が変形して治ると肩甲骨が前傾・内向きになりやすく、そこに長時間の前かがみ姿勢が重なります。</div>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="no">3</div>
+        <div class="tx">
+          <div class="rt">頭が前に出る姿勢 → 頭痛の引き金に</div>
+          <div class="rd">首の上部の筋肉に負担が集中し、首から来る頭痛（頸性頭痛）につながることがあります。</div>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="no">4</div>
+        <div class="tx">
+          <div class="rt">特定の筋肉だけが働きすぎて、慢性的な張り・疲労</div>
+          <div class="rd">動きにくい部分を他の筋肉がカバーする「代償」が続き、日常動作でも張りや疲れが抜けにくくなります。</div>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="no">5</div>
+        <div class="tx">
+          <div class="rt">体の位置センサー（固有受容感覚）が鈍る</div>
+          <div class="rd">首や肩まわりの位置感覚が低下すると、姿勢のコントロールが乱れ、不調が長引きやすくなります。</div>
+        </div>
+      </div>
+      <div class="src-note">※海外の追跡研究では、鎖骨骨折から10〜30年経過しても、折った側の肩に症状が残りやすいという報告があります。上記は国内外の研究をもとにした一般的な傾向です。</div>
+    </div>
+  </section>
+
+  <!-- セルフケア -->
+  <section class="care">
+    <div class="sec-title">
+      <span class="en">SELF CARE</span>
+      <span class="ja">今日からのセルフケア 3つ</span>
+    </div>
+    <div class="care-card">
+      <div class="c-icon">🥤</div>
+      <div class="c-tx">
+        <div class="ct">① 炭酸水を飲む</div>
+        <div class="cd">頑張りすぎている肝臓と、下がっているエネルギーのサポートに。日常の水分補給に取り入れてみてください。</div>
+      </div>
+    </div>
+    <div class="care-card">
+      <div class="c-icon">🙆</div>
+      <div class="c-tx">
+        <div class="ct">② 鎖骨まわりのストレッチ その1</div>
+        <div class="cd">施術のときにお伝えした動きです。鎖骨まわりの筋肉をゆるめ、鈍っているセンサーを起こしていきます。</div>
+      </div>
+    </div>
+    <div class="care-card">
+      <div class="c-icon">💫</div>
+      <div class="c-tx">
+        <div class="ct">③ 鎖骨まわりのストレッチ その2</div>
+        <div class="cd">こちらも施術のときにお伝えした動きです。デスクワークの合間に、その1とセットで行うのがおすすめです。</div>
+      </div>
+    </div>
+    <p class="close-msg">
+      数字は正直です。今日の体は「休ませてほしい」と言っていました。<br>
+      3つのセルフケアで、少しずつ整えていきましょう。
+    </p>
+  </section>
+
+  <footer>
+    <div class="theory">神経反射入力装置論にもとづく施術</div>
+    <div class="prof">
+      柔道整復師。三条健康堂接骨院 院長。<br>
+      香川県高松市にて30年間、延べ1万人以上の施術を行う。<br>
+      年間約200冊の読書を続け、noteメンバーシップ<br>「50代からの教養ノート」を主宰。
+    </div>
+    <div class="clinic">三条健康堂接骨院</div>
+    <div class="place">由良川東公園のそば</div>
+    <div class="btns">
+      <a class="btn-line" href="#">LINEで相談</a>
+      <a class="btn-map" href="#">地図を見る</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
