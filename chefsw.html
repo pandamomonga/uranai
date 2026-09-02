@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富野様 施術報告書 2026.9.2｜三条健康堂接骨院</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff; --bg:#f6f5f0; --ink:#24302a; --muted:#5d6a63;
+    --green:#1f4d3a; --green-soft:#e6efe9; --gold:#c4a44d; --gold-soft:#fbf5e4;
+    --low:#4f63c9; --low-soft:#e9ecfa; --high:#d9502a; --high-soft:#fcece6; --line:#dfe3df;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.8;}
+  h1,h2,.serif{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;}
+  .wrap{max-width:640px;margin:0 auto;background:var(--paper);}
+
+  /* header */
+  .hero{background:var(--green);color:#fff;padding:36px 24px 30px;}
+  .eyebrow{font-size:13px;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;}
+  .hero h1{font-size:30px;font-weight:700;line-height:1.35;}
+  .hero .date{margin-top:10px;font-size:16px;color:#d8e3dc;}
+  .hero .name{margin-top:18px;display:inline-block;border-bottom:2px solid var(--gold);font-size:22px;padding-bottom:2px;}
+  .notice{background:var(--gold-soft);padding:14px 24px;font-size:14px;color:#6b5b2a;line-height:1.7;border-bottom:1px solid #eadfba;}
+
+  section{padding:30px 22px 8px;}
+  .sec-title{font-family:"Shippori Mincho",serif;font-size:22px;color:var(--green);font-weight:700;padding-left:14px;border-left:5px solid var(--gold);line-height:1.3;margin-bottom:16px;}
+  .lead{font-size:16px;color:var(--ink);margin-bottom:14px;}
+  .lead b{color:var(--green);}
+
+  /* summary card (chief complaint) */
+  .chief{display:flex;align-items:center;gap:14px;background:var(--green-soft);border-radius:14px;padding:16px 18px;margin-bottom:8px;}
+  .chief .ico{font-size:34px;line-height:1;}
+  .chief .t{font-size:20px;font-weight:700;color:var(--green);}
+  .chief .d{font-size:15px;color:var(--muted);}
+
+  /* meter cards */
+  .meters{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+  .meter{border-radius:14px;padding:14px 12px 12px;border:2px solid var(--line);}
+  .meter.low{border-color:var(--low);background:var(--low-soft);}
+  .meter.high{border-color:var(--high);background:var(--high-soft);}
+  .meter .organ{font-size:18px;font-weight:700;display:flex;align-items:center;gap:6px;}
+  .meter.low .organ{color:var(--low);} .meter.high .organ{color:var(--high);}
+  .meter .state{font-size:14px;font-weight:700;margin-bottom:8px;}
+  .meter.low .state{color:var(--low);} .meter.high .state{color:var(--high);}
+  .row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px;}
+  .row .lb{width:22px;color:var(--muted);font-weight:700;}
+  .bar{flex:1;height:14px;background:#fff;border-radius:7px;position:relative;overflow:hidden;border:1px solid var(--line);}
+  .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:7px;}
+  .meter.low .bar i{background:var(--low);} .meter.high .bar i{background:var(--high);}
+  .bar em{position:absolute;left:60%;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.5;}
+  .row .v{width:46px;text-align:right;font-weight:700;font-size:16px;}
+  .legend{font-size:13px;color:var(--muted);text-align:right;margin-bottom:6px;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px;}
+  .chip{font-size:14px;padding:6px 12px;border-radius:999px;background:var(--green-soft);color:var(--green);font-weight:500;}
+  .chip.warn{background:var(--low-soft);color:var(--low);font-weight:700;}
+
+  /* POINT box */
+  .point{border:2px solid var(--gold);border-radius:14px;padding:22px 18px 18px;position:relative;margin:18px 0 10px;background:#fff;}
+  .point .tag{position:absolute;top:-13px;left:16px;background:var(--gold);color:#fff;font-size:13px;font-weight:700;letter-spacing:.14em;padding:2px 12px;border-radius:999px;}
+  .point p{font-size:16px;margin-bottom:10px;}
+  .point p:last-child{margin-bottom:0;}
+  .point b{color:var(--green);}
+
+  figure{margin:10px 0 6px;text-align:center;}
+  figure svg{width:100%;height:auto;display:block;}
+  figcaption{font-size:14px;color:var(--muted);margin-top:8px;text-align:left;}
+
+  /* step cards */
+  .steps{display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
+  .step{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff;}
+  .step .num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;}
+  .step .t{font-size:17px;font-weight:700;color:var(--green);}
+  .step .d{font-size:15px;color:var(--muted);}
+  .after{background:var(--green);color:#fff;border-radius:14px;padding:18px 20px;margin-top:14px;}
+  .after .t{font-family:"Shippori Mincho",serif;font-size:20px;color:var(--gold);margin-bottom:4px;}
+  .after p{font-size:16px;color:#eef4f0;}
+
+  /* care */
+  .care{display:flex;flex-direction:column;gap:10px;}
+  .care-card{display:flex;gap:14px;align-items:flex-start;background:var(--green-soft);border-radius:14px;padding:14px 16px;}
+  .care-card .icon{font-size:28px;line-height:1.2;}
+  .care-card .t{font-size:17px;font-weight:700;color:var(--green);}
+  .care-card .d{font-size:15px;color:var(--ink);}
+  .next{background:var(--gold-soft);border-radius:14px;padding:16px 18px;font-size:16px;}
+
+  .disclaimer{padding:18px 22px 6px;font-size:14px;color:var(--muted);}
+  .footer{background:var(--green);color:#fff;padding:30px 24px 40px;margin-top:20px;}
+  .footer .brand{font-family:"Shippori Mincho",serif;font-size:22px;color:var(--gold);margin-bottom:8px;}
+  .footer p{font-size:15px;color:#d8e3dc;margin-bottom:10px;line-height:1.7;}
+  .footer a{display:block;text-align:center;background:var(--gold);color:#1a1a1a;font-weight:700;text-decoration:none;padding:13px;border-radius:10px;margin-top:10px;font-size:16px;}
+  .footer a.map{background:#fff;color:var(--green);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1>本日の施術報告書</h1>
+    <div class="date">2026年9月2日（水）</div>
+    <div class="name serif">富野 様</div>
+  </div>
+  <div class="notice">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+  <!-- 主訴 -->
+  <section>
+    <div class="sec-title">本日のお悩み</div>
+    <div class="chief">
+      <span class="ico">🧍</span>
+      <div>
+        <div class="t">首のこり・首すじの張り</div>
+        <div class="d">肩というより「首そのもの」が張って痛くなる状態</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 測定 -->
+  <section>
+    <div class="sec-title">測定でわかったこと</div>
+    <p class="lead">RaDoTechで体の電気的なバランスを測ると、<b>胆のうのラインが下がり、肝臓のラインが上がる</b>という、はっきりした組み合わせが出ていました。</p>
+    <div class="legend">｜印＝基準の100%</div>
+    <div class="meters">
+      <div class="meter low">
+        <div class="organ">🫧 胆のう</div>
+        <div class="state">不足（下がっている）</div>
+        <div class="row"><span class="lb">左</span><span class="bar"><i style="width:35%"></i><em></em></span><span class="v">59%</span></div>
+        <div class="row"><span class="lb">右</span><span class="bar"><i style="width:74%"></i><em></em></span><span class="v">123%</span></div>
+      </div>
+      <div class="meter high">
+        <div class="organ">🫀 肝臓</div>
+        <div class="state">過活動（働きすぎ）</div>
+        <div class="row"><span class="lb">左</span><span class="bar"><i style="width:70%"></i><em></em></span><span class="v">117%</span></div>
+        <div class="row"><span class="lb">右</span><span class="bar"><i style="width:99%"></i><em></em></span><span class="v">165%</span></div>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip">エネルギー 正常</span>
+      <span class="chip">免疫 正常</span>
+      <span class="chip">代謝 正常</span>
+      <span class="chip">心と気分 正常</span>
+      <span class="chip warn">筋骨格の左右バランス 0.73（基準0.9〜1.2）</span>
+    </div>
+    <p class="lead" style="font-size:15px;color:var(--muted)">全体の元気は保たれています。目立つのは「胆のうと肝臓の差」と「筋肉の左右差（右側に偏り）」の2点です。</p>
+  </section>
+
+  <!-- 読み解き -->
+  <section>
+    <div class="sec-title">東洋医学で読み解くと</div>
+    <div class="point">
+      <span class="tag">POINT</span>
+      <p>東洋医学では、<b>肝臓と胆のうは「表と裏」の一組</b>と考えます。荷物を二人で担ぐ相棒のような関係です。</p>
+      <p>今回は、胆のう側の力が下がったぶんを、<b>肝臓が一人で担いで支えていた</b>状態でした。肝臓の165%は「悪い数字」ではなく、体がバランスを取ろうとがんばった跡です。</p>
+      <p>ですから整える相手は、がんばっている肝臓ではなく、<b>下がっている胆のうのライン</b>になります。</p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="胆のうが下がり肝臓が支えている図">
+        <line x1="60" y1="150" x2="540" y2="90" stroke="#c4a44d" stroke-width="10" stroke-linecap="round"/>
+        <rect x="70" y="150" width="120" height="60" rx="10" fill="#e9ecfa" stroke="#4f63c9" stroke-width="3"/>
+        <text x="130" y="176" text-anchor="middle" font-size="20" font-weight="700" fill="#4f63c9">胆のう</text>
+        <text x="130" y="200" text-anchor="middle" font-size="18" fill="#4f63c9">59%</text>
+        <rect x="410" y="20" width="120" height="70" rx="10" fill="#fcece6" stroke="#d9502a" stroke-width="3"/>
+        <text x="470" y="50" text-anchor="middle" font-size="20" font-weight="700" fill="#d9502a">肝臓</text>
+        <text x="470" y="76" text-anchor="middle" font-size="18" fill="#d9502a">165%</text>
+        <text x="300" y="60" text-anchor="middle" font-size="18" fill="#24302a">↑ 一人で担いでいる</text>
+        <text x="300" y="215" text-anchor="middle" font-size="16" fill="#5d6a63">担ぎ手の力の差 ＝ 体の左右差・首の張り</text>
+      </svg>
+      <figcaption>片方が下がると、もう片方が持ち上げて支える。この「傾き」が体のどこかに張りとして出ます。</figcaption>
+    </figure>
+  </section>
+
+  <!-- 胆のうのライン -->
+  <section>
+    <div class="sec-title">胆のうのラインは「体の横」を通ります</div>
+    <p class="lead">胆のうのエネルギーライン（経絡）は、<b>目じり → 頭の横 → 首の横 → 肩 → 肋骨の横 → 脚の外側 → 足</b>と、体の横をずっと通る一本道です。</p>
+    <figure>
+      <svg viewBox="0 0 600 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="胆のうのラインの通り道">
+        <!-- body -->
+        <circle cx="300" cy="62" r="40" fill="#e6efe9" stroke="#1f4d3a" stroke-width="3"/>
+        <path d="M262 112 L338 112 L352 260 L340 262 L330 400 L306 400 L300 300 L294 400 L270 400 L260 262 L248 260 Z" fill="#e6efe9" stroke="#1f4d3a" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M262 118 L228 240" stroke="#1f4d3a" stroke-width="12" stroke-linecap="round"/>
+        <path d="M338 118 L372 240" stroke="#1f4d3a" stroke-width="12" stroke-linecap="round"/>
+        <!-- gallbladder line (patient's right = viewer's left) -->
+        <path d="M268 50 C240 60,236 90,262 106 C250 118,240 140,246 176 C240 210,236 240,250 262 C258 320,262 360,270 400 C268 420,262 440,256 452"
+              fill="none" stroke="#c4a44d" stroke-width="7" stroke-linecap="round" stroke-dasharray="12 8"/>
+        <!-- markers -->
+        <g font-size="16" font-weight="700" fill="#1f4d3a">
+          <circle cx="252" cy="70" r="7" fill="#c4a44d"/><text x="60" y="76">頭の横（側頭部）</text>
+          <circle cx="258" cy="112" r="7" fill="#c4a44d"/><text x="60" y="118">首の横 ← 今回の張り</text>
+          <circle cx="248" cy="150" r="7" fill="#c4a44d"/><text x="60" y="156">肩・肩甲骨</text>
+          <circle cx="244" cy="200" r="7" fill="#c4a44d"/><text x="60" y="206">右の肋骨の下</text>
+          <circle cx="262" cy="330" r="7" fill="#c4a44d"/><text x="60" y="336">脚の外側</text>
+          <circle cx="258" cy="448" r="7" fill="#c4a44d"/><text x="60" y="454">足の指</text>
+        </g>
+        <g stroke="#c4a44d" stroke-width="1.5" opacity=".7">
+          <line x1="215" y1="72" x2="246" y2="70"/><line x1="230" y1="114" x2="252" y2="112"/>
+          <line x1="180" y1="152" x2="242" y2="150"/><line x1="185" y1="202" x2="238" y2="200"/>
+          <line x1="150" y1="332" x2="256" y2="330"/><line x1="130" y1="450" x2="252" y2="448"/>
+        </g>
+        <text x="420" y="240" font-size="15" fill="#5d6a63">点線＝胆のうのライン</text>
+        <text x="420" y="262" font-size="15" fill="#5d6a63">（右半身を表示）</text>
+      </svg>
+      <figcaption>首や頭の横も、すべてこのラインの通り道です。だから「胆のうのライン」と「首のこり」は一本の線でつながっています。</figcaption>
+    </figure>
+    <div class="point">
+      <span class="tag">POINT</span>
+      <p>触って確かめると、<b>右足の親指と中指がカチカチ</b>に固くなっていました。親指は肝臓のラインの出発点、中指は胃のライン（消化の相棒）にあたる場所です。</p>
+      <p>足の指の固さ → 右の肋骨の下 → 肩甲骨・肩 → 頭蓋骨と、ライン上の緊張が上へつながり、いちばん上の「首」に張りとして表れていた、という読み方ができます。</p>
+    </div>
+  </section>
+
+  <!-- 施術 -->
+  <section>
+    <div class="sec-title">本日ほぐした場所（下から上へ）</div>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><div><div class="t">右足の親指・中指</div><div class="d">カチカチだった指を緩めて、ラインの出発点をほどきました。</div></div></div>
+      <div class="step"><span class="num">2</span><div><div class="t">右の肋骨の下</div><div class="d">肝臓・胆のうのある場所。がんばっていた肝臓まわりをゆるめました。</div></div></div>
+      <div class="step"><span class="num">3</span><div><div class="t">肩甲骨と肩</div><div class="d">胆のうのラインが肩を通る場所。首のすぐ下の土台です。</div></div></div>
+      <div class="step"><span class="num">4</span><div><div class="t">頭蓋骨（頭の横）</div><div class="d">ラインの終点側。頭の横から首の付け根までを緩めました。</div></div></div>
+    </div>
+    <p class="lead" style="font-size:15px;color:var(--muted)">このほか、いつもどおり全身の施術も行っています。</p>
+    <div class="after">
+      <div class="t">施術後の状態</div>
+      <p>左右のバランスが整い、首の張りがとれて楽になった状態でお帰りいただきました。</p>
+    </div>
+  </section>
+
+  <!-- ホームケア -->
+  <section>
+    <div class="sec-title">ご自宅でできること</div>
+    <div class="care">
+      <div class="care-card"><span class="icon">🙆</span><div><div class="t">体の横をゆっくり伸ばす</div><div class="d">片手を上げて反対側に体を倒し、脇から腰の横までを10秒ほど。胆のうのラインをそのままなぞる動きです。</div></div></div>
+      <div class="care-card"><span class="icon">🛁</span><div><div class="t">湯船で首の横を温める</div><div class="d">首すじから体の側面までじんわり温めると、ライン全体がゆるみやすくなります。</div></div></div>
+      <div class="care-card"><span class="icon">🍚</span><div><div class="t">食事の時間をそろえる</div><div class="d">胆のうは食事のたびに動く臓器です。時間をそろえ、脂っこいものを続けないだけで負担が減ります。</div></div></div>
+    </div>
+  </section>
+
+  <!-- 次回 -->
+  <section>
+    <div class="sec-title">次回について</div>
+    <div class="next">胆のうのラインが下がりやすい時期です。首の張りが戻ってくる前に、もう一度バランスを確認できると安心です。ご都合のよいタイミングでお気軽にご連絡ください。</div>
+  </section>
+
+  <p class="disclaimer">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+
+  <div class="footer">
+    <div class="brand">三条健康堂接骨院</div>
+    <p>柔道整復師。香川県高松市にて30年間、延べ1万人以上の施術を行う。独自の「神経反射入力装置論」にもとづき、体の反射をととのえる施術を行っています。</p>
+    <p>📍 高松市由良町・由良川東公園のそば</p>
+    <a href="https://lin.ee/dwRtwDv">💬 LINEでご相談・ご予約</a>
+    <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+  </div>
+
+</div>
+</body>
+</html>
