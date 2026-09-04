@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11月テスト攻略｜電子工学基礎</title>
+<style>
+  :root{--bg:#0f0f0f;--ink:#f5f0e4;--gold:#c4a44d;--teal:#7ee0b8;--coral:#ff9a7a;--mute:#b8b2a4;--card:#1a1a1a;--line:#2e2e2e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;font-size:17px;line-height:1.75;padding:0 0 80px;}
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px;}
+  header{padding:48px 0 28px;border-bottom:1px solid var(--line);}
+  header .sub{color:var(--gold);font-size:16px;letter-spacing:.04em;}
+  header h1{font-size:34px;line-height:1.25;margin:10px 0 18px;font-weight:700;}
+  .stats{display:flex;gap:10px;}
+  .stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center;}
+  .stat b{display:block;font-size:30px;color:var(--gold);line-height:1.1;}
+  .stat span{font-size:14px;color:var(--mute);}
+  nav{display:flex;gap:8px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--line);}
+  nav a{color:var(--ink);text-decoration:none;font-size:15px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;}
+  section{padding:36px 0 8px;}
+  h2{font-size:26px;color:var(--gold);margin-bottom:6px;font-weight:700;}
+  .lead{color:var(--mute);font-size:16px;margin-bottom:20px;}
+  .step{display:flex;gap:14px;margin-bottom:18px;}
+  .num{flex:0 0 46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#0f0f0f;}
+  .num.g{background:var(--teal);} .num.c{background:var(--coral);} .num.n{background:var(--mute);}
+  .step .t{font-size:19px;font-weight:700;line-height:1.3;}
+  .step .w{color:var(--gold);font-size:14px;margin:2px 0 4px;}
+  .step p{font-size:16px;color:var(--ink);}
+  .step .p{color:var(--teal);font-size:15px;margin-top:4px;}
+  .legend{display:flex;gap:16px;font-size:14px;color:var(--mute);margin:6px 0 0;}
+  .dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:6px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px;}
+  .card h3{font-size:20px;margin-bottom:8px;}
+  .card ol{padding-left:22px;} .card li{margin-bottom:6px;}
+  .row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;}
+  .time{flex:0 0 64px;color:var(--gold);font-size:22px;font-weight:700;line-height:1.2;}
+  .time small{display:block;font-size:12px;color:var(--mute);font-weight:400;}
+  .maxim{border-left:4px solid var(--gold);padding:8px 14px;margin-bottom:12px;background:var(--card);border-radius:0;}
+  .maxim b{display:block;font-size:19px;}
+  .maxim span{font-size:15px;color:var(--mute);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+  summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:12px;font-size:18px;font-weight:700;}
+  summary::-webkit-details-marker{display:none;}
+  summary .tag{flex:0 0 auto;background:var(--gold);color:#0f0f0f;border-radius:6px;padding:2px 9px;font-size:15px;}
+  summary .when{margin-left:auto;font-size:13px;color:var(--mute);font-weight:400;white-space:nowrap;}
+  details[open] summary{border-bottom:1px solid var(--line);}
+  .body{padding:14px 18px 18px;}
+  .body .note{font-size:15px;color:var(--mute);margin-bottom:10px;}
+  pre{white-space:pre-wrap;word-break:break-all;font-family:inherit;font-size:15px;line-height:1.65;background:#0f0f0f;border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--ink);margin-bottom:12px;}
+  .copy{width:100%;background:var(--gold);color:#0f0f0f;border:0;border-radius:10px;padding:14px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .copy.done{background:var(--teal);}
+  .fill{color:var(--coral);}
+  footer{padding:40px 0 0;color:var(--mute);font-size:14px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="sub">香川高専 電子工学基礎（山本先生）</div>
+  <h1>11月のテストを<br>70点で取りにいく</h1>
+  <div class="stats">
+    <div class="stat"><b>70</b><span>目標点</span></div>
+    <div class="stat"><b>10</b><span>残り週</span></div>
+    <div class="stat"><b>90</b><span>1日の分（分）</span></div>
+  </div>
+</header>
+
+<nav>
+  <a href="#map">攻略マップ</a>
+  <a href="#daily">毎日やること</a>
+  <a href="#project">プロジェクト作成</a>
+  <a href="#prompts">プロンプト集</a>
+  <a href="#maxim">先生の癖</a>
+</nav>
+
+<section id="map">
+  <h2>攻略マップ</h2>
+  <p class="lead">上から順に。番号の横にあるP番号が、下のプロンプト集の番号です。</p>
+
+  <div class="step"><div class="num n">0</div><div><div class="t">範囲を確定する</div><div class="w">今週</div><p>先生に「今の授業はどの章か」「11月の試験範囲」を聞く。範囲プリントが出たら写真を撮る。</p><div class="p">プロンプト不要</div></div></div>
+  <div class="step"><div class="num g">1</div><div><div class="t">測定する</div><div class="w">毎日・3分</div><p>二択クイズ8問。今日どこが弱いかを先に知る。</p><div class="p">P1</div></div></div>
+  <div class="step"><div class="num g">2</div><div><div class="t">基礎を入れる</div><div class="w">9月</div><p>新しい章は3つの軸（文字式・変換・単位）でアウトラインを作ってから読む。分からない所はチャットで聞く。1日1問は紙に手で書く。</p><div class="p">P2 → P3 → P4</div></div></div>
+  <div class="step"><div class="num g">3</div><div><div class="t">暗記シートを作る</div><div class="w">9月末</div><p>質問したチャットの履歴と間違えた問題を集めて、表で覚える暗記テストを作る（谷先生が作って渡す）。</p><div class="p">P5</div></div></div>
+  <div class="step"><div class="num c">4</div><div><div class="t">問題を予測する</div><div class="w">10月中旬</div><p>先生の癖 × 試験範囲 で「出る問題の型」をリストにする。</p><div class="p">P6 → P7</div></div></div>
+  <div class="step"><div class="num c">5</div><div><div class="t">模擬試験を解く</div><div class="w">10月末〜</div><p>先生とそっくりの形式で模擬を作り、時間を計って解く。最大3回。</p><div class="p">P8 → P9</div></div></div>
+  <div class="step"><div class="num c">6</div><div><div class="t">落とした所だけ直す</div><div class="w">11月</div><p>模擬で落とした問題を、二択（1）と暗記シート（3）に戻す。新しい問題には手を出さない。</p><div class="p">P9の結果を使う</div></div></div>
+  <div class="legend"><span><i class="dot" style="background:var(--teal)"></i>基礎づくり</span><span><i class="dot" style="background:var(--coral)"></i>予測と模擬</span></div>
+</section>
+
+<section id="daily">
+  <h2>毎日やること</h2>
+  <p class="lead">平日90分。電子工学基礎30分＋他2科目30分ずつ。時間で切る。</p>
+  <div class="card">
+    <h3>電子工学基礎の30分</h3>
+    <div class="row"><div class="time">3分<small>入口</small></div><div>二択クイズ8問（P1）。間違えた問題が今日の1問になる。</div></div>
+    <div class="row"><div class="time">20分<small>本体</small></div><div>その1問を、答えを見ずに紙に文字式で最後まで書く。書けたら写真を撮ってチェック（P4）。</div></div>
+    <div class="row"><div class="time">7分<small>質問</small></div><div>分からなかった所を聞く（P3）。この履歴が後で暗記シートの材料になる。</div></div>
+  </div>
+  <div class="card">
+    <h3>他の科目の30分</h3>
+    <p>教科書の例題を1つだけ。難しい問題は飛ばす。A日は科目1・2・3、B日は科目4・5・6を交互に。</p>
+  </div>
+  <div class="card">
+    <h3>土日の90分</h3>
+    <p>新しいことはやらない。その週に解いた問題をもう一度解く。暗記シートができたら表を1周。</p>
+  </div>
+</section>
+
+<section id="project">
+  <h2>Claudeプロジェクトの作り方</h2>
+  <p class="lead">プロジェクトは2個。電子工学基礎で1個、他の5科目で1個。</p>
+  <div class="card">
+    <h3>1. 電子工学基礎（山本先生）</h3>
+    <ol>
+      <li>Claudeアプリ左のメニューで「プロジェクト」→「新規作成」</li>
+      <li>名前：<b>電子工学基礎（山本先生）</b></li>
+      <li>「指示」（カスタム指示）の欄に、下の <b>P0</b> を丸ごと貼る</li>
+      <li>「ファイルを追加」に、教科書のスキャン・過去問PDF・範囲プリントの写真を入れる</li>
+      <li>チャットを始める時は最初の行に「9/10 P1」のように日付とP番号を書く</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h3>2. 他5科目</h3>
+    <ol>
+      <li>名前：<b>他5科目</b></li>
+      <li>「指示」の欄に、下の <b>P10</b> を貼る</li>
+      <li>各科目の教科書スキャンを、科目名を付けて入れる</li>
+      <li>チャットの1行目に科目名を書く</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h3>気をつけること</h3>
+    <ol>
+      <li>プロジェクトの中のチャットは、そのプロジェクトの中だけを検索できる。電子工学基礎の質問は必ず1のプロジェクトで</li>
+      <li>P0を指示欄に入れておけば、毎回貼らなくていい</li>
+      <li>写真は明るい所で1ページずつ。斜めでも読めるが、影が入ると数式が崩れる</li>
+    </ol>
+  </div>
+</section>
+
+<section id="prompts">
+  <h2>プロンプト集</h2>
+  <p class="lead">タップして開く → 「コピー」→ Claudeに貼る。<span class="fill">オレンジの［ ］</span>は自分で書き換える。</p>
+
+<details>
+<summary><span class="tag">P0</span>共通の前提<span class="when">指示欄に</span></summary>
+<div class="body">
+<p class="note">プロジェクトの「指示」欄に貼る。プロジェクトを使わない時はチャットの最初に貼る。</p>
+<pre>これから香川高専3年「電子工学基礎」の試験対策をします。前提を共有します。
+
+・担当は山本雅史先生。出題の癖は次の5本。
+  1 数字は出ない、文字で答えろ（全問文字式、数値計算なし）
+  2 ℃は罠、Kに直せ（温度は℃で出る。+273が必要）
+  3 単位を書かぬ者、点を失う（J/W、Pa/N、K/℃、g→kg、kV→V）
+  4 難問ほど安い、簡単な問題ほど高い（8点問題＝教科書例題、6点問題＝応用）
+  5 順番は暗記→8点→6点→誘導（英訳10・穴埋め10は暗記で20点）
+・配点構造：英訳1点×10、穴埋め2点×5、8点問題×7、6点問題×3、誘導1点×6
+・目標は70点。内訳は暗記20＋8点問題5問40＋6点問題1問＋部分点。
+・私の弱点：①式を立てても求める文字について解き切らない ②単位変換の抜け ③光子・電子の3公式（E=hc/λ、eV=½mv²、λ=h/mv）
+・回答は短く、結論から。専門用語は最初に一言で説明してから使う。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P1</span>二択クイズ<span class="when">毎日・入口</span></summary>
+<div class="body">
+<pre>今日の範囲は［教科書の章名・ページ］です。
+この範囲から、二択の確認クイズを8問作ってください。
+
+ルール
+・1問1画面。「AかBか」で答えが1語か1式になるもの。
+・山本先生の癖（文字式、℃→K、単位、g→kg）に関係する引っかけを必ず3問以上入れる。
+・正解を見せる前に私の答えを聞く。8問答えたら、正誤と1行の理由をまとめて出す。
+・間違えた問題は「今日の手書き1問」として最後に指定する。
+・私が「次」と言ったら次の問題。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P2</span>3軸アウトライン<span class="when">新しい章の前</span></summary>
+<div class="body">
+<p class="note">章のスキャン写真を一緒に貼る。</p>
+<pre>教科書の［第○章 章名］をスキャンした画像（またはテキスト）を渡します。
+この章のアウトラインを、次の3つの軸で整理してください。
+
+軸A 文字式：この章で「与えられた記号だけで組む式」はどれか。式の形を列挙。
+軸B 変換：この章で「変換を忘れると落ちる所」はどこか（℃→K、g→kg、kV→V、J→eV、cm→m など）。
+軸C 単位：答えに書く単位はどれか。紛らわしいペア（J/W、Pa/N など）を並べる。
+
+出力の形
+1 章の骨組み：見出しを5〜8行で。各行は1文。
+2 軸A・B・Cの表：左列＝項目、右列＝式または注意点。
+3 「この章で8点問題になりそうな教科書例題」を3つ、例題番号で。
+4 「この章で6点問題（応用）になりそうな型」を2つ。
+まだ解説はしないでください。骨組みだけ。私が質問したら答えてください。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P3</span>質問する<span class="when">分からない時</span></summary>
+<div class="body">
+<pre>［第○章］の［例題番号 or 問題文］で、［どこが分からないか1文］。
+
+答え方のルール
+・まず「何を求める問題か」を1行で。
+・次に、途中式を「文字式のまま」1行ずつ。数字は入れない。
+・最後に、山本先生の癖に照らして「ここで落としやすい」を1つだけ。
+・私が「もう1回」と言ったら、別の例え方で説明し直す。
+・私が「なるほど」と言ったら、同じ型の類題を1問出す（答えはまだ見せない）。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P4</span>手書き1問のチェック<span class="when">毎日</span></summary>
+<div class="body">
+<p class="note">解いた答案の写真を一緒に貼る。</p>
+<pre>今日の手書き1問を解きました。答案の写真（または書き写し）を渡します。
+
+3点チェックをしてください。
+1 求める文字について解き切っているか（c＝、λ＝、x＝ の形になっているか）
+2 変換の抜けはないか（℃→K、g→kg、kV→V、J→eV）
+3 単位は正しいか
+
+出力の形
+・3点それぞれ「○」か「×＋1行の直し方」
+・最終式が合っているか「○／×」と正解の文字式
+・この問題で山本先生ならどこに引っかけを置くか、1行
+褒め言葉は不要。直す所だけ。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P5</span>暗記シート作成<span class="when">9月末・谷先生</span></summary>
+<div class="body">
+<p class="note">P3の質問履歴とP1・P4で間違えた問題を全部集めてから使う。これは谷先生が作って、できたHTMLを渡す。</p>
+<pre>【汎用プロンプト｜対比軸・暗記テスト生成システム】
+
+あなたは「暗記テストの設計者」です。以下の手順と仕様を厳密に守って、
+私が指定するジャンル（例：ケアマネ試験／英単語／日本史／数学の公式／簿記など）の
+暗記教材とテスト画面（HTML1枚）を作ってください。
+
+■ 手順（この順番を守る）
+1. 私が渡す教材・過去問・メモを読み、「出題者が入れ替えて引っかけを作る軸」を洗い出す。
+   軸とは「AかBか」「誰がやるか」「何年か」「どの分類か」のように、答えが短い分類になるもの。
+2. 軸の一覧を表で提示し、私の確認を待つ（勝手に作り始めない）。
+3. 確認後、軸ごとに次の形で教材（Markdown）を書く。
+   ## 軸N　軸の名前
+   問い：主語と述語のある1文（例「次の事業所を指定するのは、市町村長か、都道府県知事か。」）
+   ヒント1（候補）：右列に入る答えの候補を全部列挙（例「2か月／6か月／12か月／なし」）
+   ヒント2（数）：各候補が何行あるか（例「2か月＝5、6か月＝3」）
+   表：見出し行＝軸、左列＝比べる対象、右列＝答え。
+       ・1つの軸に「比べられる相手を全員」入れる（例：2か月組も6か月組もなし組も1表に）
+       ・右列は1行1答え。「原則」「ただし」「地域の事情で」などの但し書きは入れない
+       ・但し書きが必要なら結論の1行に移す
+   結論：声に出して言える1行（30字以内）
+4. 教材は自動生成せず、問い・ヒント・表・結論をすべて手で書く。
+   根拠が不確かな行は「未照合」と明記し、末尾に「検証記録（軸／照合先／直した行）」を付ける。
+5. その教材から、下記仕様のテスト画面（HTML1枚）を作る。
+
+■ テスト画面の仕様（すべて必須）
+- 単位は「表1枚」。1画面に表がまるごと出る。左列は見える、右列は全部「？？？」で隠す。
+- 表の行の順番は、表示するたびにシャッフルする（答えの順に並んでいると位置で覚えてしまうため）。
+- 表の出る順番もシャッフルする（分野をまぜて出す）。
+- ボタン：「ヒント1（候補）」→「ヒント2（数）」→「答えを見る」。
+- 答えを見た後、「答えを隠す／答えを出す」を何回でも切り替えられるボタンを置く
+  （見て、消して、頭で言い直して、また出す、を繰り返すため）。
+- 判定ボタンは 左＝「できなかった（チェック）」、右＝「できた」。
+  ヒント1以内で全部言えた時だけ「できた」に数える。
+- 終了画面に「チェックの表だけもう一周」ボタン。もう一周の順番もシャッフル。
+- 「できた／できなかった」を押すたびに進み具合を保存し、次に開いたら「続きから」で再開できる
+  （保存APIが使える環境ではそれを使う。使えない環境ではメモリ内保持とし、その旨を明記）。
+- 画面は上端に寄せず、上から3割ほど下げて目線の高さから始める。
+- ダークテーマ（背景#15191a／本文#e8e6e0／左列#7ee0b8／問い#FFE066／正解#4ade80／誤り#ff7a6b）。
+- 問いの文は表の上に黄色で1行。何を答えるのかが1文で分かること。
+- 自動で文を生成しない。表示する文字はすべて教材に手で書いたもの。
+- localStorage・sessionStorageは使わない。単一HTML・外部ライブラリなし。
+
+■ 作る前に必ず1本だけ見本を出し、私が「この形でいい」と言ってから残りを作る。
+■ 私の理解が間違っていたら、私の発言を引用して「——正しい／——ここが震源」と1文で判定してから直す。
+
+ジャンル：香川高専「電子工学基礎」（山本雅史先生）［範囲：第○章〜第○章］
+教材：［P3の質問履歴、P1・P4で間違えた問題、過去問PDFをここに貼る］</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P6</span>先生の癖を見抜く<span class="when">過去問が来たら</span></summary>
+<div class="body">
+<p class="note">過去問のPDFか写真を一緒に貼る。採点跡があるほど良い。</p>
+<pre>山本雅史先生の過去問（答案の採点跡つき）を渡します。この先生の出題の癖を分析してください。
+
+見る所
+1 配点構造：何点問題が何問。難易度と配点の関係。
+2 形式：数値か文字式か。単位を書かせるか。誘導形式か。
+3 引っかけの置き場所：単位変換、紛らわしい用語ペア、条件文（断熱・滑らか等）の式への翻訳。
+4 採点の癖：部分点の出し方。最終式重視か途中式重視か。
+5 暗記で取れる部分：英訳・穴埋めの出典（教科書の文章そのままか）。
+6 前回との比較：［前回の分析があれば貼る］と比べて変わった所・変わらない所。
+
+出力の形
+・癖を「格言」5本に圧縮（各20字以内＋1行の説明）
+・「70点への逆算」を配点で示す
+・「今回新しく分かった癖」があれば別枠で</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P7</span>出題を予測する<span class="when">範囲が決まったら</span></summary>
+<div class="body">
+<pre>11月中旬の試験の範囲が確定しました：［範囲プリントの内容 or 章名］。
+シラバス：［URL or 貼り付け］
+先生の癖：P0の5本＋P6の分析結果［貼る］
+過去問：［貼る or 前回の分析を貼る］
+
+この情報から、次の試験の出題を予測してください。
+
+出力の形
+1 「ほぼ確実に出る」（過去問と同型で範囲内）：問題の型を5〜7個、8点問題候補として
+2 「新規範囲から出る」：問題の型を3〜5個、教科書の例題番号つき
+3 「6点問題（応用）候補」：2〜3個
+4 「暗記20点の中身」：英訳になりそうな用語30語、穴埋めになりそうな教科書の文章の箇所
+5 それぞれに「先生の癖で引っかけになる所」を1行
+確度は「高・中・低」で。低いものは3個以内に絞る。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P8</span>模擬試験を作る<span class="when">10月末</span></summary>
+<div class="body">
+<p class="note">P7の予測結果を一緒に貼る。</p>
+<pre>P7の予測をもとに、山本先生形式の模擬試験を1回分作ってください。
+
+形式（前回の過去問と同じ）
+・英訳 1点×10（紛らわしいペアを含める：isobaric/isochoric 等）
+・穴埋め 2点×5（教科書の文章そのまま）
+・8点問題×7（教科書例題レベル、全問文字式、温度は℃で出す、分子量を与えてg→kgを仕込む）
+・6点問題×3（応用：混合・氷の融解・2容器・円運動など、範囲に合わせて）
+・誘導問題 1点×6（P-V図または導出の穴埋め）
+・合計100点
+
+ルール
+・数値計算は出さない。答えは全部文字式。
+・解答欄に単位を書かせる。
+・問題文の図は言葉で説明（「滑らかに動くピストン」「断熱容器」等の条件を明記）。
+・解答と配点は「解答を見せて」と言うまで出さない。
+・試験時間の目安：50分。
+私は時間を計って解きます。解き終わったら答案を渡すので採点してください。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P9</span>採点と弱点分析<span class="when">模擬の後</span></summary>
+<div class="body">
+<p class="note">答案の写真を一緒に貼る。</p>
+<pre>模擬試験の答案を渡します。採点してください。
+
+出力の形
+1 大問ごとの表：内容／得点／落とした原因を1行
+2 落とした原因を4つに分類して点数を集計
+   ①解き切っていない（求める文字にしていない）
+   ②変換の抜け（℃→K、g→kg、kV→V、J→eV）
+   ③単位の誤り・未記入
+   ④知らない・公式が出ない
+3 「弱点ベスト3」：点数の大きい順。それぞれ「今すぐ直せる癖」か「暗記が必要」かを明記
+4 次の1週間でやること：二択に追加する問題の型3つ、暗記シートに追加する軸1〜2本、手書き1問の候補5問
+5 70点まであと何点か。どの問題を取れば届くか。
+褒めない。数字と直し方だけ。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+
+<details>
+<summary><span class="tag">P10</span>他5科目用<span class="when">指示欄に</span></summary>
+<div class="body">
+<p class="note">「他5科目」プロジェクトの指示欄に貼る。使う時は科目名と範囲を1行目に書くだけ。</p>
+<pre>香川高専3年の定期試験対策です。目標は各科目70点。
+チャットの1行目に「科目名／今日の範囲」を書きます。それを受けて次の形で答えてください。
+
+1 その範囲の教科書例題を1つ選ぶ（一番基本のもの）
+2 ①何を求める問題か1行 ②途中式を1行ずつ ③落としやすい所1つ
+3 説明のあと、同じ型の類題を1問出す。答えは私が解くまで見せない。
+4 私が「答え合わせ」と言ったら、正誤と直し方を1行で
+
+ルール：難しい問題は出さない。1回30分で終わる分量。回答は短く、結論から。</pre>
+<button class="copy" onclick="cp(this)">コピー</button>
+</div>
+</details>
+</section>
+
+<section id="maxim">
+  <h2>山本先生の癖・格言5本</h2>
+  <p class="lead">試験当日、問題を開く前に頭の中で唱える。</p>
+  <div class="maxim"><b>数字は出ない、文字で答えろ</b><span>与えられた記号だけで式を組む。答えは分数の形に整える。</span></div>
+  <div class="maxim"><b>℃は罠、Kに直せ</b><span>Tを見たら反射で（T+273）。</span></div>
+  <div class="maxim"><b>単位を書かぬ者、点を失う</b><span>JとW、PaとN、Kと℃。最後の1秒は単位に使う。</span></div>
+  <div class="maxim"><b>難問ほど安い、簡単な問題ほど高い</b><span>8点問題は教科書例題。6点問題は応用。誘導は最後。</span></div>
+  <div class="maxim"><b>順番は暗記→8点→6点→誘導</b><span>英訳10＋穴埋め10の20点を先に確保する。</span></div>
+  <div class="card" style="margin-top:20px">
+    <h3>70点の作り方</h3>
+    <p>暗記 20 ＋ 8点問題 5問 40 ＋ 6点問題 1問 6 ＋ 部分点 ＝ 70</p>
+  </div>
+</section>
+
+<footer>三条健康堂 AI家庭教師枠｜困ったら谷先生にLINE</footer>
+</div>
+
+<script>
+async function cp(btn){
+  const pre=btn.parentElement.querySelector('pre');
+  const text=pre.textContent;
+  let ok=false;
+  try{ await navigator.clipboard.writeText(text); ok=true; }
+  catch(e){
+    const ta=document.createElement('textarea');
+    ta.value=text;
+    ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none';
+    document.body.appendChild(ta);
+    const sx=window.scrollX, sy=window.scrollY;
+    ta.focus(); ta.select();
+    try{ ok=document.execCommand('copy'); }catch(err){}
+    document.body.removeChild(ta);
+    window.scrollTo(sx,sy);
+  }
+  const orig=btn.textContent;
+  btn.textContent= ok ? '✓ 完了' : 'コピーできませんでした';
+  btn.classList.add('done');
+  setTimeout(()=>{ btn.textContent=orig; btn.classList.remove('done'); },1500);
+}
+</script>
+</body>
+</html>
