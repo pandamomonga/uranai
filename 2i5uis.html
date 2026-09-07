@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三澤様 施術報告書｜2026年9月7日｜三条健康堂接骨院</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1f4d3a;
+    --green-deep:#173a2c;
+    --gold:#b9963f;
+    --gold-soft:#f3ead3;
+    --ink:#1b1b1b;
+    --ink-soft:#3d3d3d;
+    --paper:#ffffff;
+    --mist:#f4f6f4;
+    --line:#d9dfda;
+    --blue:#4b56b8;
+    --red:#c9482b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Noto Sans JP",system-ui,sans-serif;
+    color:var(--ink);background:var(--mist);
+    font-size:17px;line-height:1.85;
+  }
+  .wrap{max-width:560px;margin:0 auto;background:var(--paper)}
+  h1,h2,h3{font-family:"Noto Serif JP",serif;line-height:1.4}
+
+  /* ① 表紙 */
+  .cover{background:var(--green);color:#fff;padding:36px 24px 30px;position:relative;overflow:hidden}
+  .cover::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:26px solid rgba(185,150,63,.22)}
+  .eyebrow{font-size:13px;letter-spacing:.28em;color:var(--gold);margin-bottom:14px}
+  .cover .name{font-size:32px;font-weight:700}
+  .cover .name small{font-size:18px;font-weight:500;margin-left:6px}
+  .cover .date{font-size:16px;color:#e6efe9;margin-top:6px}
+  .cover .lead{
+    margin-top:26px;font-family:"Noto Serif JP",serif;font-size:24px;font-weight:700;
+    line-height:1.55;position:relative
+  }
+  .cover .lead::before{content:"";display:block;width:44px;height:3px;background:var(--gold);margin-bottom:14px}
+  .cover .sub{font-size:16px;color:#e6efe9;margin-top:12px}
+
+  .notice{padding:18px 24px;background:var(--gold-soft);font-size:15px;line-height:1.75;color:var(--ink-soft)}
+
+  section{padding:32px 24px;border-bottom:1px solid var(--line)}
+  .sec-title{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .sec-title .num{
+    font-family:"Noto Serif JP",serif;font-size:14px;font-weight:700;color:var(--gold);
+    letter-spacing:.1em;white-space:nowrap
+  }
+  .sec-title h2{font-size:22px;color:var(--green-deep)}
+  p{margin-bottom:12px}
+  .hi{background:linear-gradient(transparent 62%,var(--gold-soft) 62%);font-weight:700;padding:0 2px}
+
+  /* 状態カード */
+  .status{
+    display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;
+    background:var(--mist);border-left:5px solid var(--green);padding:18px 18px 18px 16px;margin-bottom:14px
+  }
+  .status .ic{width:72px;height:72px;display:flex;align-items:center;justify-content:center}
+  .status .lb{font-size:14px;color:var(--ink-soft)}
+  .status .vl{font-family:"Noto Serif JP",serif;font-size:21px;font-weight:700;color:var(--green-deep)}
+  .status .vl.ok{color:var(--green)}
+
+  /* 測定 */
+  .meter{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 18px}
+  .m{border:1px solid var(--line);padding:16px 14px 14px;text-align:center}
+  .m .t{font-size:15px;font-weight:700;margin-bottom:2px}
+  .m .st{font-size:13px;font-weight:700;margin-bottom:12px}
+  .m.low .st{color:var(--blue)} .m.high .st{color:var(--red)}
+  .bars{display:flex;justify-content:center;align-items:flex-end;gap:14px;height:120px;margin-bottom:8px}
+  .bar{width:26px;background:var(--line);position:relative;border-radius:4px 4px 0 0}
+  .bar span{position:absolute;bottom:0;left:0;right:0;border-radius:4px 4px 0 0}
+  .bar.n span{background:#5cb87c}
+  .m.low .bar.s span{background:var(--blue)}
+  .m.high .bar.s span{background:var(--red)}
+  .bar b{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:13px;white-space:nowrap}
+  .bl{display:flex;justify-content:center;gap:14px;font-size:12px;color:var(--ink-soft)}
+  .bl i{display:inline-block;width:26px;text-align:center;font-style:normal}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+  .chip{font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:#fff}
+  .chip.low{border-color:var(--blue);color:var(--blue)}
+  .chip.high{border-color:var(--red);color:var(--red)}
+  .chip.ok{border-color:var(--green);color:var(--green)}
+  .chip b{font-weight:700}
+
+  .point{border:2px solid var(--gold);padding:22px 18px 16px;position:relative;margin-top:20px;background:#fffdf7}
+  .point .tag{
+    position:absolute;top:-13px;left:14px;background:var(--gold);color:#fff;
+    font-size:12px;letter-spacing:.18em;padding:3px 12px;font-weight:700
+  }
+  .point p:last-child{margin-bottom:0}
+
+  /* 流れ図 */
+  .flow{display:grid;grid-template-columns:1fr;gap:0;margin:10px 0 6px}
+  .step{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:start;padding:12px 0}
+  .step + .step{border-top:1px dashed var(--line)}
+  .step .k{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Noto Serif JP",serif;font-weight:700;font-size:15px;color:#fff}
+  .step:nth-child(1) .k{background:#6b7280}
+  .step:nth-child(2) .k{background:var(--blue)}
+  .step:nth-child(3) .k{background:var(--red)}
+  .step:nth-child(4) .k{background:var(--green)}
+  .step h3{font-size:18px;color:var(--green-deep);margin-bottom:2px}
+  .step p{font-size:16px;margin:0;color:var(--ink-soft)}
+
+  /* セルフケア */
+  .care{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
+  .c{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center;border:1px solid var(--line);padding:14px 16px 14px 12px;background:#fff}
+  .c .ic{width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+  .c h3{font-size:19px;color:var(--green-deep);margin-bottom:2px}
+  .c p{font-size:16px;margin:0;color:var(--ink-soft)}
+  .c .when{display:inline-block;font-size:13px;color:var(--gold);font-weight:700;margin-right:6px}
+  .memo{margin-top:16px;padding:14px 16px;background:var(--mist);font-size:15px;color:var(--ink-soft);border-left:4px solid var(--gold)}
+
+  /* 署名 */
+  .sign{background:var(--green-deep);color:#fff;padding:34px 24px 30px;text-align:center}
+  .sign .theory{font-family:"Noto Serif JP",serif;font-size:15px;letter-spacing:.32em;color:var(--gold);margin-bottom:16px}
+  .sign .nm{font-family:"Noto Serif JP",serif;font-size:24px;font-weight:700}
+  .sign .nm small{display:block;font-family:"Noto Sans JP",sans-serif;font-size:14px;font-weight:400;color:#cfdbd4;margin-top:4px}
+  .sign .prof{font-size:14px;color:#cfdbd4;line-height:1.75;margin:14px auto 0;max-width:440px}
+  .sign .loc{font-size:15px;color:#e6efe9;margin-top:14px}
+  .btns{display:flex;flex-direction:column;gap:10px;margin:20px 0 18px}
+  .btn{display:block;padding:14px;border-radius:8px;text-decoration:none;font-weight:700;font-size:17px;color:#fff}
+  .btn.line{background:#06c755}
+  .btn.map{background:var(--gold)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .foot{font-size:12px;color:#b9c8bf;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ① 表紙 -->
+  <header class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="name">三澤様<small>施術報告書</small></div>
+    <div class="date">2026年9月7日（月）</div>
+    <div class="lead">左足首は、旅行に出られる状態です。</div>
+    <div class="sub">今日は「捻挫のその後」と「からだ全体の元気」の2つを見ました。</div>
+  </header>
+
+  <div class="notice">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+  <!-- ② 本日の状態 -->
+  <section>
+    <div class="sec-title"><span class="num">本日の状態</span><h2>捻挫は、ほぼ回復しました</h2></div>
+
+    <div class="status">
+      <div class="ic">
+        <svg viewBox="0 0 72 72" width="72" height="72" aria-hidden="true">
+          <path d="M28 10 v24 q0 6 6 8 l18 6 q6 2 4 8 H16 q-6 0 -6 -6 v-8 q0 -6 6 -8 l4 -2 v-22 z" fill="none" stroke="#1f4d3a" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="24" cy="38" r="5" fill="#b9963f"/>
+          <path d="M48 20 l6 6 l12 -12" fill="none" stroke="#1f4d3a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="lb">左足首の捻挫</div>
+        <div class="vl ok">ほぼ回復</div>
+      </div>
+    </div>
+
+    <div class="status">
+      <div class="ic">
+        <svg viewBox="0 0 72 72" width="72" height="72" aria-hidden="true">
+          <rect x="10" y="22" width="52" height="34" rx="4" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+          <path d="M26 22 v-6 h20 v6" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+          <path d="M10 36 h52" stroke="#1f4d3a" stroke-width="3"/>
+          <circle cx="36" cy="36" r="4" fill="#b9963f"/>
+        </svg>
+      </div>
+      <div>
+        <div class="lb">明日からのご旅行</div>
+        <div class="vl ok">問題なく行けると考えています</div>
+      </div>
+    </div>
+
+    <p>足首そのものは、もう心配いりません。今日はそこに加えて、<span class="hi">からだ全体の元気</span>を測定で見ています。</p>
+  </section>
+
+  <!-- ③ からだのシグナル -->
+  <section>
+    <div class="sec-title"><span class="num">からだのシグナル</span><h2>元気が下がり、免疫が支えていました</h2></div>
+
+    <div class="meter">
+      <div class="m low">
+        <div class="t">膀胱のライン</div>
+        <div class="st">低下</div>
+        <div class="bars">
+          <div class="bar s" style="height:100%"><span style="height:10%"></span><b>10%</b></div>
+          <div class="bar n" style="height:100%"><span style="height:100%"></span><b>基準</b></div>
+          <div class="bar s" style="height:100%"><span style="height:2%"></span><b>0%</b></div>
+        </div>
+        <div class="bl"><i>左</i><i></i><i>右</i></div>
+      </div>
+      <div class="m high">
+        <div class="t">免疫のライン</div>
+        <div class="st">過活動</div>
+        <div class="bars">
+          <div class="bar s" style="height:100%"><span style="height:100%"></span><b>190%</b></div>
+          <div class="bar n" style="height:100%"><span style="height:55%"></span><b>基準</b></div>
+          <div class="bar s" style="height:100%"><span style="height:85%"></span><b>160%</b></div>
+        </div>
+        <div class="bl"><i>左</i><i></i><i>右</i></div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip low">エネルギー <b>9.84</b> 低め</span>
+      <span class="chip high">免疫 <b>17.92</b> 高め</span>
+      <span class="chip low">代謝 <b>0.98</b> 低め</span>
+      <span class="chip high">心の状態 <b>2.67</b> 高め</span>
+      <span class="chip ok">運動器 <b>1.07</b> 正常</span>
+    </div>
+
+    <div class="point">
+      <span class="tag">POINT</span>
+      <p>膀胱のラインは、東洋医学では<span class="hi">からだの一番外側で天候を受け止める「守りのライン」</span>です。ここが下がるのは、からだ全体が少し元気をなくしているサイン。</p>
+      <p>免疫のラインが高いのは、その分を<span class="hi">免疫が肩代わりして頑張っていた</span>ということ。「過活動」は悪い状態ではなく、からだが自分でバランスを取ろうとした跡です。</p>
+    </div>
+  </section>
+
+  <!-- ④ 読み方 -->
+  <section>
+    <div class="sec-title"><span class="num">今日の読み方</span><h2>気圧に、からだが反応していました</h2></div>
+
+    <div class="flow">
+      <div class="step">
+        <div class="k">気圧</div>
+        <div><h3>天候の変化</h3><p>気圧の上下は、内耳や自律神経にストレスとして届きます。</p></div>
+      </div>
+      <div class="step">
+        <div class="k">守り</div>
+        <div><h3>膀胱のラインが下がる</h3><p>外側の守りが薄くなり、からだ全体の元気が下がります。</p></div>
+      </div>
+      <div class="step">
+        <div class="k">免疫</div>
+        <div><h3>免疫が肩代わり</h3><p>足りない分を免疫が頑張って持ち上げ、バランスを取ろうとします。</p></div>
+      </div>
+      <div class="step">
+        <div class="k">施術</div>
+        <div><h3>今日、バランスを整えました</h3><p>下がっていたラインと頑張りすぎていたラインの両方を調整済みです。</p></div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px">ここからは、<span class="hi">整えた状態をご自身でキープ</span>していただくだけで大丈夫です。方針は「温めて守る」「巡らせる」の2つだけ。</p>
+  </section>
+
+  <!-- ⑤ 今日のセルフケア -->
+  <section>
+    <div class="sec-title"><span class="num">今夜のセルフケア</span><h2>寝るまでに、温めておく</h2></div>
+
+    <div class="care">
+      <div class="c">
+        <div class="ic">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+            <path d="M10 30 h44 v10 q0 12 -22 12 q-22 0 -22 -12 z" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+            <path d="M22 26 q-4 -6 0 -12 M32 26 q-4 -6 0 -12 M42 26 q-4 -6 0 -12" fill="none" stroke="#b9963f" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div><h3>足湯を10分</h3><p>外くるぶしまでしっかり浸かる。湯船でも可。守りのラインは足首の外側を通っています。</p></div>
+      </div>
+      <div class="c">
+        <div class="ic">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+            <ellipse cx="32" cy="14" rx="8" ry="8" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+            <path d="M20 24 h24 v30 h-24 z" fill="none" stroke="#1f4d3a" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="24" y="24" width="16" height="8" fill="#b9963f"/>
+            <rect x="24" y="42" width="16" height="8" fill="#b9963f"/>
+          </svg>
+        </div>
+        <div><h3>首の後ろと腰を温める</h3><p>ホットタオルかカイロ。首の付け根と、腰のベルトの高さ。</p></div>
+      </div>
+      <div class="c">
+        <div class="ic">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+            <path d="M18 18 h24 l-3 34 h-18 z" fill="none" stroke="#1f4d3a" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M42 24 h6 q6 0 6 6 t-6 6 h-6" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+            <path d="M25 12 q2 -4 0 -8 M31 12 q2 -4 0 -8 M37 12 q2 -4 0 -8" fill="none" stroke="#b9963f" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div><h3>白湯を少しずつ</h3><p>今夜だけは、冷たい飲み物と生ものをお休みに。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 旅行中のセルフケア -->
+  <section>
+    <div class="sec-title"><span class="num">旅行中のセルフケア</span><h2>移動の日に、気圧から守る</h2></div>
+
+    <div class="care">
+      <div class="c">
+        <div class="ic">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+            <path d="M22 40 q-8 -6 -6 -18 q2 -12 14 -12 q12 0 12 12 q0 8 -6 12 q-4 4 -4 10 q0 6 -6 6 q-6 0 -4 -10" fill="none" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M46 16 q6 6 6 14 q0 8 -6 14" fill="none" stroke="#b9963f" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div><h3><span class="when">移動前・移動中</span>耳をくるくる</h3><p>耳を軽く引っ張り、前後に回す。気圧の変化に一番反応するのは耳です。</p></div>
+      </div>
+      <div class="c">
+        <div class="ic">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+            <path d="M14 50 v-22 q0 -8 8 -8 h20 q8 0 8 8 v22" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+            <path d="M10 50 h44" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="32" cy="36" r="5" fill="#b9963f"/>
+            <path d="M32 20 v-8" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div><h3><span class="when">予兆を感じたら</span>手首の「内関」を押す</h3><p>手首のシワから指3本分ひじ側、真ん中。酔い止めのツボとして知られ、天気による不調にも使われます。</p></div>
+      </div>
+      <div class="c">
+        <div class="ic">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+            <circle cx="32" cy="18" r="8" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+            <path d="M18 34 q14 -8 28 0 v6 q-14 8 -28 0 z" fill="#b9963f"/>
+            <path d="M20 42 v12 M44 42 v12" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div><h3><span class="when">乗り物の中</span>首の後ろを冷やさない</h3><p>スカーフや薄手のタオルを1枚。冷房の風が首に当たらないように。</p></div>
+      </div>
+      <div class="c">
+        <div class="ic">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+            <path d="M28 10 v24 q0 6 6 8 l16 5 q4 1 3 6 H18 q-6 0 -6 -6 v-8 q0 -6 6 -8 l4 -2 v-19 z" fill="none" stroke="#1f4d3a" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M40 22 a10 10 0 1 1 -2 -6" fill="none" stroke="#b9963f" stroke-width="3" stroke-linecap="round"/>
+            <path d="M38 14 l2 3 l3 -2" fill="none" stroke="#b9963f" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div><h3><span class="when">座席で</span>足首回しを20回</h3><p>左右それぞれ、ゆっくり大きく。捻挫の再発予防と、守りのラインの流れを兼ねています。</p></div>
+      </div>
+    </div>
+
+    <div class="memo">全部やらなくても大丈夫です。迷ったら「足湯・首の後ろを温める・耳くるくる・内関」の4つだけ覚えて出発してください。</div>
+  </section>
+
+  <!-- ⑦ 署名 -->
+  <footer class="sign">
+    <div class="theory">神 経 反 射 入 力 装 置 論</div>
+    <div class="nm">谷 弘誠<small>柔道整復師／三条健康堂接骨院 院長</small></div>
+    <div class="prof">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</div>
+    <div class="loc">香川県高松市由良町・由良川東公園のそば</div>
+    <div class="btns">
+      <a class="btn line" href="https://lin.ee/dwRtwDv">💬 LINEでご相談</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">📍 Googleマップで確認する</a>
+    </div>
+    <div class="foot">本報告書は測定値および施術所見にもとづく経過共有です。<br>診断・治療方針の決定は医療機関の判断によります。</div>
+  </footer>
+
+</div>
+</body>
+</html>
