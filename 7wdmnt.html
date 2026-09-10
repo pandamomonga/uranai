@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>施術報告書｜兼近様｜2026年9月10日</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1f5e45; --green-deep:#17493a; --green-pale:#e9f2ed;
+    --gold:#c9a44c; --gold-pale:#fbf6e8;
+    --ink:#1e2622; --ink-soft:#4a5550; --line:#d9e2dd;
+    --low:#4f6fd9; --low-pale:#e8edfb; --high:#e0512f; --high-pale:#fdeae4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#f4f6f5;line-height:1.75;font-size:16px}
+  .wrap{max-width:560px;margin:0 auto;background:#fff}
+  h1,h2,h3{font-family:'Noto Serif JP',serif}
+
+  .head{background:var(--green);color:#fff;padding:32px 24px 28px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}
+  .head h1{font-size:28px;line-height:1.3;font-weight:700}
+  .head .who{margin-top:14px;font-size:20px;font-weight:500}
+  .head .date{margin-top:4px;font-size:14px;opacity:.85}
+
+  .note{background:var(--gold-pale);border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:14px 20px;font-size:14px;color:var(--ink-soft);line-height:1.7}
+
+  section{padding:30px 22px 8px}
+  h2{font-size:22px;color:var(--green);line-height:1.35;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:6px;height:24px;background:var(--gold);border-radius:3px;flex:none}
+  h3{font-size:19px;color:var(--green-deep);margin:22px 0 10px}
+  p{margin-bottom:12px}
+  .soft{color:var(--ink-soft);font-size:15px}
+
+  .part{margin:36px 0 0;background:var(--green-deep);color:#fff;padding:22px 24px}
+  .part .k{color:var(--gold);font-size:13px;letter-spacing:.18em;margin-bottom:6px}
+  .part .t{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;line-height:1.35}
+
+  /* summary cards */
+  .sum{display:grid;gap:10px}
+  .sc{display:flex;gap:14px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px}
+  .sc svg{width:44px;height:44px;flex:none}
+  .sc .t{font-weight:700;font-size:17px;line-height:1.4}
+  .sc .s{font-size:14px;color:var(--ink-soft)}
+
+  /* POINT box */
+  .point{border:2px solid var(--gold);border-radius:14px;padding:22px 18px 16px;position:relative;margin-top:10px;background:#fff}
+  .point .tag{position:absolute;top:-13px;left:16px;background:var(--gold);color:#fff;font-size:12px;letter-spacing:.14em;padding:3px 12px;border-radius:999px;font-weight:700}
+
+  .bars{display:grid;gap:14px;margin-top:6px}
+  .bar .lab{display:flex;justify-content:space-between;font-size:15px;font-weight:500;margin-bottom:4px}
+  .bar .lab .v{font-weight:700}
+  .bar .tr{height:14px;background:#eef1ef;border-radius:7px;overflow:hidden;position:relative}
+  .bar .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:7px}
+  .bar .tr b{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:var(--green);opacity:.55}
+  .low i{background:var(--low)} .high i{background:var(--high)}
+  .legend{font-size:12px;color:var(--ink-soft);margin-top:8px;display:flex;gap:14px;flex-wrap:wrap}
+  .legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .legend .l::before{background:var(--low)} .legend .h::before{background:var(--high)} .legend .n::before{background:var(--green);opacity:.55;width:3px;border-radius:0}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .chip{font-size:14px;padding:6px 12px;border-radius:999px;font-weight:500}
+  .chip.l{background:var(--low-pale);color:#2f4bb0} .chip.g{background:var(--green-pale);color:var(--green-deep)}
+
+  .fig{display:block;width:100%;height:auto;margin:14px auto 6px}
+  .cap{font-size:14px;color:var(--ink-soft);text-align:center;margin-bottom:8px}
+
+  /* neck */
+  .neck{display:flex;gap:16px;align-items:center;background:var(--green-pale);border-radius:14px;padding:16px}
+  .neck svg{width:104px;height:104px;flex:none}
+  .neck .t{font-weight:700;font-size:18px;line-height:1.4;color:var(--green-deep)}
+  .neck .s{font-size:14px;color:var(--ink-soft);margin-top:4px}
+
+  .result{display:flex;gap:14px;align-items:flex-start;background:var(--green);color:#fff;border-radius:14px;padding:18px 18px}
+  .chk{width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex:none}
+  .result .big{font-size:19px;font-weight:700;line-height:1.4}
+  .result .sm{font-size:14px;opacity:.9;margin-top:4px}
+
+  /* lesson */
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+  .exc{border:1.5px solid var(--line);border-radius:12px;padding:12px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+  .exc svg{width:40px;height:40px}
+  .exc .t{font-size:15px;font-weight:700}
+  .exc .s{font-size:12px;color:var(--ink-soft);line-height:1.5}
+
+  .say{display:grid;gap:8px;margin:14px 0}
+  .bub{background:var(--gold-pale);border:1.5px solid var(--gold);border-radius:16px 16px 16px 4px;padding:10px 14px;font-size:16px;font-weight:500;max-width:92%}
+  .bub.ai{background:var(--green-pale);border-color:var(--green);border-radius:16px 16px 4px 16px;margin-left:auto;font-weight:400}
+
+  .rule{display:flex;gap:10px;margin:14px 0}
+  .rc{flex:1;border-radius:14px;padding:16px 10px;text-align:center}
+  .rc.g{background:var(--green);color:#fff}
+  .rc.y{background:var(--gold-pale);border:2px solid var(--gold)}
+  .rc .n{font-family:'Noto Serif JP',serif;font-size:40px;font-weight:700;line-height:1}
+  .rc .u{font-size:14px;margin-top:4px;font-weight:500}
+  .rc.g .n{color:var(--gold)}
+  .eq{display:flex;align-items:center;font-size:28px;color:var(--ink-soft);font-weight:700}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+  .vc{border-radius:12px;padding:14px 12px;text-align:center}
+  .vc.no{background:#f1f2f1;color:var(--ink-soft)}
+  .vc.yes{background:var(--green-pale);border:2px solid var(--green);color:var(--green-deep)}
+  .vc .h{font-size:13px;margin-bottom:4px}
+  .vc .b{font-size:18px;font-weight:700;line-height:1.35}
+
+  footer{margin-top:34px;padding:26px 22px 34px;background:var(--green-deep);color:#fff}
+  .theory{border-left:3px solid var(--gold);padding-left:14px;margin-bottom:22px}
+  .theory .tt{font-family:'Noto Serif JP',serif;font-size:18px;color:var(--gold);margin-bottom:6px}
+  .theory p{font-size:14px;opacity:.9;line-height:1.7}
+  .prof{font-size:13px;opacity:.9;line-height:1.7;border-top:1px solid rgba(255,255,255,.2);padding-top:18px}
+  .prof .nm{font-size:16px;font-weight:700;margin-bottom:4px;opacity:1}
+  .links{display:flex;gap:10px;margin-top:18px}
+  .links a{flex:1;text-align:center;padding:13px 10px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none}
+  .links .line{background:#06c755;color:#fff}
+  .links .map{background:#fff;color:var(--green-deep)}
+  .addr{font-size:13px;opacity:.85;margin-top:12px;text-align:center}
+  .sig{font-size:12px;opacity:.75;margin-top:16px;text-align:center;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1>施術報告書</h1>
+    <div class="who">兼近 様</div>
+    <div class="date">2026年9月10日（木）</div>
+  </header>
+
+  <div class="note">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+  <div class="part">
+    <div class="k">第1部</div>
+    <div class="t">本日の身体の状態と施術</div>
+  </div>
+
+  <!-- まとめ -->
+  <section>
+    <h2>今日のまとめ</h2>
+    <div class="sum">
+      <div class="sc">
+        <svg viewBox="0 0 44 44" fill="none" stroke="#4f6fd9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4 10 25h10l-2 15 16-22H24z"/></svg>
+        <div><div class="t">体が疲れている状態</div><div class="s">エネルギーの数値が低めに出ています</div></div>
+      </div>
+      <div class="sc">
+        <svg viewBox="0 0 44 44" fill="none" stroke="#e0512f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30c0-8 6-14 14-14s14 6 14 14"/><path d="M14 30h16"/><path d="M22 16V8M17 11l5-3 5 3"/></svg>
+        <div><div class="t">首が大きく歪んでいた（左側）</div><div class="s">本日、しっかり解除しました</div></div>
+      </div>
+      <div class="sc">
+        <svg viewBox="0 0 44 44" fill="none" stroke="#1f5e45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30h32"/><path d="M22 30V14"/><path d="M8 14h28l-4 8H12z"/></svg>
+        <div><div class="t">肝臓がバランスを取ろうと頑張っている</div><div class="s">身体全体を支えるための反応です</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 測定 -->
+  <section>
+    <h2>測定結果</h2>
+    <div class="point">
+      <div class="tag">POINT</div>
+      <div class="bars">
+        <div class="bar low">
+          <div class="lab"><span>心臓（左）</span><span class="v">73%</span></div>
+          <div class="tr"><i style="width:36%"></i><b></b></div>
+        </div>
+        <div class="bar low">
+          <div class="lab"><span>心臓（右）</span><span class="v">29%</span></div>
+          <div class="tr"><i style="width:14%"></i><b></b></div>
+        </div>
+        <div class="bar high">
+          <div class="lab"><span>肝臓（左）</span><span class="v">212%</span></div>
+          <div class="tr"><i style="width:100%"></i><b></b></div>
+        </div>
+        <div class="bar high">
+          <div class="lab"><span>肝臓（右）</span><span class="v">212%</span></div>
+          <div class="tr"><i style="width:100%"></i><b></b></div>
+        </div>
+      </div>
+      <div class="legend"><span class="l">低下</span><span class="h">亢進（頑張りすぎ）</span><span class="n">基準100%</span></div>
+
+      <svg class="fig" viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans JP,sans-serif">
+        <!-- 支点 -->
+        <path d="M148 132 L172 132 L160 108 Z" fill="#1f5e45"/>
+        <!-- 傾いた板 -->
+        <g transform="rotate(-12 160 110)">
+          <rect x="40" y="105" width="240" height="8" rx="4" fill="#c9a44c"/>
+          <!-- 心臓側（低下・下がる） -->
+          <g transform="translate(70 70)">
+            <circle cx="0" cy="0" r="30" fill="#e8edfb" stroke="#4f6fd9" stroke-width="2"/>
+            <text x="0" y="-2" text-anchor="middle" font-size="13" font-weight="700" fill="#2f4bb0">心臓</text>
+            <text x="0" y="16" text-anchor="middle" font-size="12" fill="#2f4bb0">低下</text>
+          </g>
+          <!-- 肝臓側（亢進・上がる） -->
+          <g transform="translate(250 70)">
+            <circle cx="0" cy="0" r="30" fill="#fdeae4" stroke="#e0512f" stroke-width="2"/>
+            <text x="0" y="-2" text-anchor="middle" font-size="13" font-weight="700" fill="#e0512f">肝臓</text>
+            <text x="0" y="16" text-anchor="middle" font-size="12" fill="#e0512f">頑張る</text>
+          </g>
+        </g>
+        <text x="160" y="146" text-anchor="middle" font-size="12" fill="#4a5550">下がった心臓を、肝臓が持ち上げてバランスを取っている</text>
+      </svg>
+
+      <div class="chips">
+        <span class="chip l">エネルギー 13.51 低め</span>
+        <span class="chip l">心身の状態 0.68 低め</span>
+        <span class="chip g">免疫 正常</span>
+        <span class="chip g">筋骨格 正常</span>
+      </div>
+    </div>
+    <p class="soft" style="margin-top:14px">肝臓の数値が高いのは「悪い」のではなく、疲れて下がった部分を補うための頑張りです。疲れが抜けてくると、この頑張りも自然に落ち着いていく流れです。</p>
+  </section>
+
+  <!-- 首 -->
+  <section>
+    <h2>首の歪み</h2>
+    <div class="neck">
+      <svg viewBox="0 0 80 80" fill="none" stroke="#1f5e45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- 後頭部側から見た頭・首・肩（向かって左＝患者の左） -->
+        <path d="M22 62c2-8 6-14 10-16V38c-6-4-9-11-9-18C23 11 30 5 40 5s17 6 17 15c0 7-3 14-9 18v8c4 2 8 8 10 16"/>
+        <path d="M32 46h16" stroke-dasharray="3 3" opacity=".5"/>
+        <!-- 首の左側（向かって左）を強調 -->
+        <path d="M32 36c-1 3-1 8 0 12" stroke="#e0512f" stroke-width="7" stroke-linecap="round"/>
+        <path d="M20 30l-6-3M19 38h-7M20 46l-6 3" stroke="#e0512f" stroke-width="2.6"/>
+        <text x="10" y="76" font-size="11" fill="#e0512f" font-weight="700" font-family="Noto Sans JP,sans-serif">左</text>
+        <text x="60" y="76" font-size="11" fill="#4a5550" font-family="Noto Sans JP,sans-serif">右</text>
+      </svg>
+      <div>
+        <div class="t">左の首の歪みが大きくなると、調子が落ちやすい傾向があります</div>
+        <div class="s">背中側から見た図です。今日はこの部分の歪みが大きく出ていました。</div>
+      </div>
+    </div>
+    <div class="result" style="margin-top:14px">
+      <div class="chk">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+      </div>
+      <div>
+        <div class="big">本日、首の歪みは解除しました</div>
+        <div class="sm">ご安心ください。肝臓の頑張りも、これで少しずつ楽になっていく見込みです。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第2部 -->
+  <div class="part">
+    <div class="k">第2部　課外授業</div>
+    <div class="t">頭の中を「写メ→AI」にアップデートする</div>
+  </div>
+
+  <section>
+    <h2>写真を撮って、AIに「次どうすれば？」</h2>
+    <p>セットアップも、トラブル解決も、修理も。まず写真を撮ってAIに聞けば、手順を全部教えてもらえる時代になりました。分からなくなったら、また写真を撮って聞く。これを繰り返すだけです。</p>
+
+    <svg class="fig" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans JP,sans-serif">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5 0 10z" fill="#c9a44c"/></marker></defs>
+      <!-- 円の矢印 -->
+      <path d="M160 52 A98 98 0 0 1 258 150" fill="none" stroke="#c9a44c" stroke-width="4" marker-end="url(#ar)"/>
+      <path d="M258 150 A98 98 0 0 1 160 248" fill="none" stroke="#c9a44c" stroke-width="4" marker-end="url(#ar)"/>
+      <path d="M160 248 A98 98 0 0 1 62 150" fill="none" stroke="#c9a44c" stroke-width="4" marker-end="url(#ar)"/>
+      <path d="M62 150 A98 98 0 0 1 160 52" fill="none" stroke="#c9a44c" stroke-width="4" marker-end="url(#ar)"/>
+      <!-- ノード -->
+      <g transform="translate(160 52)"><circle r="36" fill="#1f5e45"/><text y="-4" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">①写メを</text><text y="14" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">撮る</text></g>
+      <g transform="translate(258 150)"><circle r="36" fill="#1f5e45"/><text y="-4" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">②AIに</text><text y="14" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">聞く</text></g>
+      <g transform="translate(160 248)"><circle r="36" fill="#1f5e45"/><text y="-4" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">③手順どおり</text><text y="14" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">やる</text></g>
+      <g transform="translate(62 150)"><circle r="36" fill="#1f5e45"/><text y="-4" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">④詰まったら</text><text y="14" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">また撮る</text></g>
+      <text x="160" y="146" text-anchor="middle" font-size="15" fill="#1f5e45" font-weight="700">解決するまで</text>
+      <text x="160" y="166" text-anchor="middle" font-size="15" fill="#1f5e45" font-weight="700">ぐるぐる回す</text>
+    </svg>
+
+    <h3>こんな聞き方でOK</h3>
+    <div class="say">
+      <div class="bub">📷 今こういう状態なんだけど、次どうすればいい？</div>
+      <div class="bub">📷 これが分からないんだけど</div>
+      <div class="bub">📷 この設定、どこに隠れてるの？</div>
+    </div>
+
+    <h3>日常でこんなに使える</h3>
+    <div class="ex">
+      <div class="exc">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#1f5e45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="30" height="20" rx="2"/><path d="M12 33h16M20 28v5"/></svg>
+        <div class="t">パソコンの設定</div><div class="s">セットアップの手順を一つずつ</div>
+      </div>
+      <div class="exc">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#1f5e45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="27" r="7"/><circle cx="29" cy="27" r="7"/><path d="M11 27l7-12h8l3 12M18 15l-3-5h6"/></svg>
+        <div class="t">自転車のパンク</div><div class="s">修理の順番を写真で聞く</div>
+      </div>
+      <div class="exc">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#1f5e45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="30" height="14" rx="3"/><path d="M11 30c2 2 2 4 0 6M20 30c2 2 2 4 0 6M29 30c2 2 2 4 0 6"/></svg>
+        <div class="t">エアコンの不調</div><div class="s">「今こんな状態」を送るだけ</div>
+      </div>
+      <div class="exc">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#c9a44c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="28" height="20" rx="2"/><path d="M11 17h18M11 23h10"/></svg>
+        <div class="t">型番のシール</div><div class="s">写すだけで、その機材の情報が全部分かる</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>お子様の勉強のマインドチェンジ</h2>
+    <p>準備はしない。問題を解く「実務」だけをやる。これが今日の一番大事な話です。</p>
+
+    <div class="rule">
+      <div class="rc g"><div class="n">3</div><div class="u">朝に3問</div></div>
+      <div class="eq">+</div>
+      <div class="rc g"><div class="n">3</div><div class="u">晩に3問</div></div>
+      <div class="eq">=</div>
+      <div class="rc y"><div class="n" style="color:#1f5e45">6</div><div class="u">1日6問だけ</div></div>
+    </div>
+    <p class="soft" style="text-align:center">これを毎日続ける。それ以外の時間は、遊んでOK。</p>
+
+    <div class="vs">
+      <div class="vc no"><div class="h">やらなくていい</div><div class="b">勉強の準備<br>（まとめ・整理）</div></div>
+      <div class="vc yes"><div class="h">これだけやる</div><div class="b">問題を作って<br>すぐ解く</div></div>
+    </div>
+
+    <h3>分からないときの、AIへの頼み方</h3>
+    <p class="soft">雑談するみたいに「こうしてほしいんだけど」と言えば、そのとおりに作ってくれます。</p>
+    <div class="say">
+      <div class="bub">ここが分からないんだけど</div>
+      <div class="bub ai">→ AIが答えを出す</div>
+      <div class="bub">いや、これでもまだ分からない。もっと分かりやすくしてよ</div>
+      <div class="bub ai">→ 言い直してくれる</div>
+      <div class="bub">僕の頭の中が整理できるような言い方にしてよ</div>
+      <div class="bub ai">→ 分かるまで付き合ってくれる</div>
+    </div>
+
+    <div class="result" style="margin-top:20px">
+      <div class="chk">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+      </div>
+      <div>
+        <div class="big">写メを撮って、聞く。問題を作って、すぐ解く。</div>
+        <div class="sm">この2つに頭を切り替えるのが、本日の課外授業でした。ご安心ください、誰でもできます。</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="theory">
+      <div class="tt">神経反射入力装置論</div>
+      <p>身体を「神経に反射を入力する装置」として捉え、硬さや滞りのある場所に適切な刺激を入れることで、身体が自ら整う方向へ導く施術理論です。</p>
+    </div>
+    <div class="prof">
+      <div class="nm">谷先生｜三条健康堂接骨院 院長</div>
+      柔道整復師。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。
+    </div>
+    <div class="links">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップ</a>
+    </div>
+    <div class="addr">高松市由良町｜由良川東公園のそば</div>
+    <div class="sig">高松発・一生動ける身体と人生の教養研究室<br>無車・自転車・圧力鍋生活を実践する治療家より</div>
+  </footer>
+
+</div>
+</body>
+</html>
