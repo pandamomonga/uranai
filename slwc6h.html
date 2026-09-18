@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三澤様 施術報告書｜三条健康堂接骨院</title>
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#2c6e49;
+    --gold:#c4a44d;
+    --ink:#1f241f;
+    --paper:#ece7db;
+    --line:#ded7c5;
+    --warm:#d1481a;
+    --cool:#2a6b7c;
+    --ok:#1f7a4d;
+    --muted:#55605a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+    background:var(--paper);color:var(--ink);font-size:18px;line-height:1.8;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:640px;margin:0 auto;background:#fff;}
+
+  /* 表紙 */
+  .cover{background:var(--green);color:#fff;text-align:center;padding:36px 18px 30px;border-bottom:6px solid var(--gold);}
+  .cover .clinic{font-size:14px;letter-spacing:.3em;color:var(--gold);font-weight:700;}
+  .cover .name{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:42px;font-weight:700;margin:14px 0 4px;letter-spacing:.06em;}
+  .cover .date{font-size:16px;color:#cfe0d4;}
+  .cover .catch{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.6;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.3);}
+  .note-top{background:#f7f4ec;color:#3c4640;font-size:13px;line-height:1.7;padding:12px 18px;border-bottom:1px solid var(--line);}
+
+  /* 目次 */
+  .toc{padding:24px 18px;border-bottom:1px solid var(--line);}
+  .toc h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:21px;color:var(--green);text-align:center;margin-bottom:14px;}
+  .toc ol{list-style:none;}
+  .toc li{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin-bottom:8px;font-size:18px;font-weight:700;}
+  .toc .b{flex:0 0 auto;background:var(--green);color:#fff;font-size:14px;font-weight:700;padding:4px 9px;border-radius:4px;}
+
+  /* 部の見出し */
+  .part{padding:0;border-bottom:1px solid var(--line);}
+  .phead{background:#f2f5f2;border-top:4px solid var(--green);padding:18px 18px 16px;}
+  .phead .b{display:inline-block;background:var(--green);color:#fff;font-size:15px;font-weight:700;padding:3px 12px;border-radius:4px;letter-spacing:.08em;}
+  .phead h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:27px;line-height:1.45;color:var(--green);margin-top:10px;}
+  .phead .sub{font-size:17px;color:var(--muted);line-height:1.7;margin-top:6px;}
+  .pbody{padding:22px 18px 30px;}
+  .cap{font-size:18px;line-height:1.75;text-align:center;margin-top:16px;}
+
+  /* 3つのサイン */
+  .sig{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .s{border:2px solid var(--line);border-radius:8px;padding:12px 6px 14px;text-align:center;}
+  .s .t{font-size:16px;font-weight:700;}
+  .s .n{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:30px;font-weight:700;line-height:1.2;margin-top:2px;}
+  .s .st{font-size:15px;font-weight:700;margin-top:4px;}
+  .s.ok{border-color:#9dcbb2;background:#eef7f1;}
+  .s.ok .n,.s.ok .st{color:var(--ok);}
+  .s.hot{border-color:#efb492;background:#fdefe7;}
+  .s.hot .n,.s.hot .st{color:var(--warm);}
+
+  figure{margin:0;}
+  svg{display:block;width:100%;height:auto;}
+  .fcap{font-size:16px;color:var(--muted);text-align:center;margin-top:6px;}
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+  .ch{border:2px solid var(--line);border-radius:8px;padding:10px 4px 8px;}
+  .ch h3{font-size:18px;text-align:center;}
+  .ch .lab{font-size:15px;font-weight:700;text-align:center;}
+  .ch.hot{border-color:#efb492;}
+  .ch.hot .lab{color:var(--warm);}
+  .ch.cold{border-color:#a8c5cd;}
+  .ch.cold .lab{color:var(--cool);}
+
+  .point{border:2px solid var(--gold);border-radius:8px;padding:20px 14px 14px;margin-top:20px;position:relative;background:#fffdf7;}
+  .point .tag{position:absolute;top:-13px;left:14px;background:var(--gold);color:#fff;font-size:13px;font-weight:700;letter-spacing:.14em;padding:2px 12px;border-radius:3px;}
+  .point p{font-size:18px;line-height:1.75;}
+
+  /* 行動 */
+  .acts{display:grid;gap:10px;}
+  .act{display:flex;align-items:center;gap:14px;border:2px solid #cfe0d4;border-radius:8px;background:#f2f8f4;padding:14px;}
+  .act .tx h3{font-size:21px;color:var(--green);line-height:1.4;}
+  .act .tx p{font-size:16px;color:var(--muted);line-height:1.6;}
+
+  .sign{background:var(--green);color:#fff;text-align:center;padding:32px 18px 28px;}
+  .sign .theory{font-size:15px;letter-spacing:.34em;color:var(--gold);font-weight:700;}
+  .sign .nm{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:26px;font-weight:700;margin:14px 0 2px;letter-spacing:.08em;}
+  .sign .nm small{display:block;font-size:14px;color:#cfe0d4;letter-spacing:0;margin-top:4px;}
+  .sign .loc{font-size:15px;color:#cfe0d4;margin-top:10px;}
+  .btn{display:block;text-decoration:none;font-size:17px;font-weight:700;padding:14px 10px;border-radius:5px;margin-top:10px;}
+  .btn.line{background:var(--gold);color:#241d06;}
+  .btn.map{border:2px solid rgba(255,255,255,.55);color:#fff;}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:2px;}
+  .foot{font-size:13px;color:#b9cdbf;line-height:1.7;margin-top:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="clinic">SANJO KENKO-DO</div>
+    <div class="name">三澤様</div>
+    <div class="date">2026年9月18日（金）</div>
+    <div class="catch">からだは回復。<br>あとは頭を休ませるだけ。</div>
+  </header>
+
+  <div class="note-top">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+  <!-- 目次 -->
+  <nav class="toc">
+    <h2>今日の報告は、4つの話です</h2>
+    <ol>
+      <li><span class="b">第1部</span>からだの回復ぐあい</li>
+      <li><span class="b">第2部</span>腸に出ていたサイン</li>
+      <li><span class="b">第3部</span>仕事と、頭の疲れ</li>
+      <li><span class="b">第4部</span>今日からすること</li>
+    </ol>
+  </nav>
+
+  <!-- 第1部 -->
+  <div class="part">
+    <div class="phead">
+      <span class="b">第 1 部</span>
+      <h2>からだの回復ぐあい</h2>
+      <p class="sub">まず、今日の測定で出た「からだの側」の数字です。</p>
+    </div>
+    <div class="pbody">
+      <div class="sig">
+        <div class="s ok">
+          <svg viewBox="0 0 48 48" style="width:44px;margin:0 auto 4px" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M24 5l14 6v11c0 9-6 16-14 19-8-3-14-10-14-19V11z"/><path d="M17 24l5 5 10-10"/></svg>
+          <div class="t">免疫</div>
+          <div class="n">17.4</div>
+          <div class="st">標準</div>
+        </div>
+        <div class="s ok">
+          <svg viewBox="0 0 48 48" style="width:44px;margin:0 auto 4px" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M8 17v14M14 13v22M34 13v22M40 17v14M14 24h20"/></svg>
+          <div class="t">筋肉</div>
+          <div class="n">1.01</div>
+          <div class="st">標準</div>
+        </div>
+        <div class="s hot">
+          <svg viewBox="0 0 48 48" style="width:44px;margin:0 auto 4px" fill="none" stroke="#d1481a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M34 40H19a10 10 0 01-10-10 8 8 0 013.2-6.4A9 9 0 0122 11a8 8 0 0114 5 8 8 0 014 7z"/><path d="M40 8l4-4M44 14h5M35 4l1-4"/></svg>
+          <div class="t">頭</div>
+          <div class="n">1.85</div>
+          <div class="st">高い</div>
+        </div>
+      </div>
+      <p class="cap">免疫も筋肉も、もう標準に戻っています。<br>残っているのは、頭だけです。</p>
+    </div>
+  </div>
+
+  <!-- 第2部 -->
+  <div class="part">
+    <div class="phead">
+      <span class="b">第 2 部</span>
+      <h2>腸に出ていたサイン</h2>
+      <p class="sub">今日いちばん強く動いていたのが、腸でした。何が起きているかを図にします。</p>
+    </div>
+    <div class="pbody">
+      <figure>
+        <svg viewBox="0 0 340 215" role="img" aria-label="膵臓・脾臓が下がり、大腸が上がっているシーソーの図">
+          <line x1="14" y1="182" x2="326" y2="182" stroke="#ded7c5" stroke-width="4" stroke-linecap="round"/>
+          <polygon points="150,182 190,182 170,120" fill="#1a3d28"/>
+          <polygon points="25,152 315,92 315,106 25,166" fill="#6b7a6f"/>
+          <circle cx="75" cy="122" r="34" fill="#2a6b7c"/>
+          <text x="75" y="129" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold" font-family="sans-serif">膵・脾</text>
+          <circle cx="265" cy="58" r="34" fill="#d1481a"/>
+          <text x="265" y="65" text-anchor="middle" fill="#fff" font-size="21" font-weight="bold" font-family="sans-serif">大腸</text>
+          <text x="75" y="205" text-anchor="middle" fill="#2a6b7c" font-size="19" font-weight="bold" font-family="sans-serif">下がっている</text>
+          <text x="265" y="120" text-anchor="middle" fill="#d1481a" font-size="19" font-weight="bold" font-family="sans-serif">その分を支えている</text>
+        </svg>
+        <figcaption class="fcap">下がった側を、もう片方が持ち上げて釣り合わせています。</figcaption>
+      </figure>
+
+      <div class="charts">
+        <div class="ch hot">
+          <h3>大腸</h3>
+          <svg viewBox="0 0 200 210" role="img" aria-label="大腸は左191パーセント、右139パーセントで標準より高い">
+            <line x1="14" y1="170" x2="186" y2="170" stroke="#c9c2b1" stroke-width="3"/>
+            <line x1="14" y1="100" x2="186" y2="100" stroke="#9aa79d" stroke-width="2" stroke-dasharray="6 5"/>
+            <rect x="26" y="36" width="36" height="134" rx="3" fill="#d1481a"/>
+            <rect x="82" y="100" width="36" height="70" rx="3" fill="#2fa06a"/>
+            <rect x="138" y="72" width="36" height="98" rx="3" fill="#d1481a"/>
+            <text x="44" y="29" text-anchor="middle" fill="#d1481a" font-size="21" font-weight="bold" font-family="sans-serif">191%</text>
+            <text x="100" y="93" text-anchor="middle" fill="#1f7a4d" font-size="18" font-weight="bold" font-family="sans-serif">100%</text>
+            <text x="156" y="65" text-anchor="middle" fill="#d1481a" font-size="21" font-weight="bold" font-family="sans-serif">139%</text>
+            <text x="44" y="194" text-anchor="middle" fill="#1f241f" font-size="19" font-family="sans-serif">左</text>
+            <text x="100" y="194" text-anchor="middle" fill="#1f7a4d" font-size="18" font-weight="bold" font-family="sans-serif">標準</text>
+            <text x="156" y="194" text-anchor="middle" fill="#1f241f" font-size="19" font-family="sans-serif">右</text>
+          </svg>
+          <div class="lab">標準より　働きすぎ</div>
+        </div>
+
+        <div class="ch cold">
+          <h3>膵臓・脾臓</h3>
+          <svg viewBox="0 0 200 210" role="img" aria-label="膵臓・脾臓は左29パーセント、右66パーセントで標準より低い">
+            <line x1="14" y1="170" x2="186" y2="170" stroke="#c9c2b1" stroke-width="3"/>
+            <line x1="14" y1="100" x2="186" y2="100" stroke="#9aa79d" stroke-width="2" stroke-dasharray="6 5"/>
+            <rect x="26" y="150" width="36" height="20" rx="3" fill="#2a6b7c"/>
+            <rect x="82" y="100" width="36" height="70" rx="3" fill="#2fa06a"/>
+            <rect x="138" y="124" width="36" height="46" rx="3" fill="#2a6b7c"/>
+            <text x="44" y="143" text-anchor="middle" fill="#2a6b7c" font-size="21" font-weight="bold" font-family="sans-serif">29%</text>
+            <text x="100" y="93" text-anchor="middle" fill="#1f7a4d" font-size="18" font-weight="bold" font-family="sans-serif">100%</text>
+            <text x="156" y="117" text-anchor="middle" fill="#2a6b7c" font-size="21" font-weight="bold" font-family="sans-serif">66%</text>
+            <text x="44" y="194" text-anchor="middle" fill="#1f241f" font-size="19" font-family="sans-serif">左</text>
+            <text x="100" y="194" text-anchor="middle" fill="#1f7a4d" font-size="18" font-weight="bold" font-family="sans-serif">標準</text>
+            <text x="156" y="194" text-anchor="middle" fill="#1f241f" font-size="19" font-family="sans-serif">右</text>
+          </svg>
+          <div class="lab">標準より　控えめ</div>
+        </div>
+      </div>
+
+      <div class="point">
+        <span class="tag">POINT</span>
+        <p>強く出ている側は、弱い側を助けているサインです。悪い状態ではありません。様子を見るだけで大丈夫です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第3部 -->
+  <div class="part">
+    <div class="phead">
+      <span class="b">第 3 部</span>
+      <h2>仕事と、頭の疲れ</h2>
+      <p class="sub">ここからは、お仕事の話です。第1部で高いままだった「頭」の理由が、今日はっきりしました。</p>
+    </div>
+    <div class="pbody">
+      <p class="cap" style="margin-top:0">疲れの出どころは、仕事の中身ではなく<br>1日にこなす、量のほうでした。</p>
+
+      <figure style="margin-top:14px">
+        <svg viewBox="0 0 320 236" role="img" aria-label="コップから水があふれている図。あふれた分が頭の疲れ">
+          <defs>
+            <clipPath id="cup"><path d="M108 66 H212 L200 202 H120 Z"/></clipPath>
+          </defs>
+          <text x="160" y="24" text-anchor="middle" fill="#1f241f" font-size="20" font-weight="bold" font-family="sans-serif">1日の仕事の量</text>
+          <path d="M84 68 q10 26 22 44 q6 10 2 22" fill="none" stroke="#d1481a" stroke-width="9" stroke-linecap="round"/>
+          <path d="M236 68 q-10 26 -22 44 q-6 10 -2 22" fill="none" stroke="#d1481a" stroke-width="9" stroke-linecap="round"/>
+          <rect x="100" y="58" width="120" height="16" rx="6" fill="#d1481a"/>
+          <g clip-path="url(#cup)">
+            <rect x="100" y="64" width="120" height="150" fill="#f0a882"/>
+            <rect x="100" y="118" width="120" height="96" fill="#d1481a"/>
+          </g>
+          <path d="M108 66 H212 L200 202 H120 Z" fill="none" stroke="#4a5550" stroke-width="5" stroke-linejoin="round"/>
+          <line x1="72" y1="118" x2="248" y2="118" stroke="#1f7a4d" stroke-width="4" stroke-dasharray="8 6"/>
+          <text x="160" y="44" text-anchor="middle" fill="#d1481a" font-size="19" font-weight="bold" font-family="sans-serif">あふれた分が、頭の疲れ</text>
+          <text x="160" y="228" text-anchor="middle" fill="#1f7a4d" font-size="19" font-weight="bold" font-family="sans-serif">緑の線＝休みながらこなせる量</text>
+        </svg>
+      </figure>
+
+      <p class="cap">あふれた分は、寝ている間に返していきます。<br>だから睡眠が短い日が続くと、回復が後まわしになります。</p>
+    </div>
+  </div>
+
+  <!-- 第4部 -->
+  <div class="part">
+    <div class="phead">
+      <span class="b">第 4 部</span>
+      <h2>今日からすること</h2>
+      <p class="sub">第3部の「量」を、こちら側で調整するための3つです。</p>
+    </div>
+    <div class="pbody">
+      <div class="acts">
+        <div class="act">
+          <svg viewBox="0 0 48 48" style="width:46px;flex:0 0 46px" fill="none" stroke="#2c6e49" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 29A16 16 0 0119 8a17 17 0 1021 21z"/></svg>
+          <div class="tx"><h3>睡眠を長く</h3><p>回復は、寝ている間に進みます。</p></div>
+        </div>
+        <div class="act">
+          <svg viewBox="0 0 48 48" style="width:46px;flex:0 0 46px" fill="none" stroke="#2c6e49" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="36" height="24" rx="3"/><path d="M16 41h16M24 33v8"/></svg>
+          <div class="tx"><h3>パソコンを減らす</h3><p>1日の作業量を、少しだけ落とす。</p></div>
+        </div>
+        <div class="act">
+          <svg viewBox="0 0 48 48" style="width:46px;flex:0 0 46px" fill="none" stroke="#2c6e49" stroke-width="3" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 14v10l6 4"/></svg>
+          <div class="tx"><h3>こまめに休む</h3><p>短い休憩を、何度もはさむ。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="sign">
+    <div class="theory">神 経 反 射 入 力 装 置 論</div>
+    <div class="nm">谷 弘誠<small>柔道整復師／三条健康堂接骨院 院長</small></div>
+    <div class="loc">香川県高松市由良町・由良川東公園のそば</div>
+    <a class="btn line" href="https://lin.ee/dwRtwDv">LINEでご相談</a>
+    <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップで確認する</a>
+    <div class="foot">本報告書はRaDoTech測定値および施術所見にもとづく経過共有です。<br>診断・治療方針の決定は医療機関の判断によります。</div>
+  </footer>
+
+</div>
+</body>
+</html>
