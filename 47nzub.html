@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>定員のはしご｜900から1へ</title>
+<style>
+  :root{
+    --paper:#fbfaf7;
+    --ink:#1c1c1c;
+    --mute:#5a5a56;
+    --track:#ece9e1;
+    --line:#d9d5cb;
+    --big:#6d3f7a;    /* 大きい側の目印 */
+    --mini:#2b3a67;   /* ミニ施設 */
+    --tak:#b8741a;    /* 小多機・看多機 */
+    --day:#1f7a6d;    /* 通所（デイ） */
+    --gh:#a63d3d;     /* グループホーム */
+    --room:#4f5d6b;   /* 部屋・ユニット */
+    --short:#6b7a2a;  /* ショートステイ */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    padding:20px 14px 40px;
+  }
+  main{max-width:720px;margin:0 auto}
+
+  h1{font-size:26px;font-weight:700;letter-spacing:.02em}
+  .sub{font-size:16px;color:var(--mute);margin-top:4px}
+
+  .legend{
+    display:flex;flex-wrap:wrap;gap:8px 16px;
+    margin:16px 0 20px;padding:12px 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{display:inline-block;width:14px;height:14px;border-radius:3px}
+
+  h2{font-size:20px;margin:26px 0 4px}
+  .h2sub{font-size:15px;color:var(--mute);margin-bottom:12px}
+
+  .ladder{display:grid;gap:8px}
+  .row{
+    display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:stretch;
+  }
+  .num{
+    text-align:right;padding-right:4px;
+    font-variant-numeric:tabular-nums;
+    line-height:1;
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:4px;
+  }
+  .num b{font-size:30px;font-weight:700}
+  .num small{font-size:13px;color:var(--mute)}
+  .track{
+    position:relative;min-height:44px;border-radius:6px;
+    background:var(--track);
+    display:flex;align-items:center;
+  }
+  .bar{
+    position:absolute;left:0;top:0;bottom:0;border-radius:6px;
+    background:#d6d1c4;
+  }
+  .chips{
+    position:relative;display:flex;flex-wrap:wrap;gap:6px;padding:6px 8px;
+  }
+  .chip{
+    color:#fff;font-size:15px;font-weight:600;line-height:1.3;
+    padding:5px 9px;border-radius:5px;white-space:nowrap;
+  }
+  .chip.big{background:var(--big)}
+  .chip.mini{background:var(--mini)}
+  .chip.tak{background:var(--tak)}
+  .chip.day{background:var(--day)}
+  .chip.gh{background:var(--gh)}
+  .chip.room{background:var(--room)}
+  .chip.short{background:var(--short)}
+
+  .divider{
+    margin:22px 0 10px;padding-top:14px;border-top:2px dashed var(--line);
+    font-size:16px;font-weight:700;color:var(--mini);
+  }
+
+  .note{font-size:14px;color:var(--mute);margin-top:14px}
+
+  .stairs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .stair{border:1px solid var(--line);border-radius:8px;padding:12px}
+  .stair h3{font-size:16px;color:var(--tak);margin-bottom:8px}
+  .step{display:grid;grid-template-columns:52px 1fr;gap:8px;align-items:center;margin-bottom:6px}
+  .step span{font-size:15px}
+  .step .sb{height:26px;border-radius:5px;background:var(--tak);color:#fff;font-weight:700;font-size:16px;
+    display:flex;align-items:center;padding-left:8px;font-variant-numeric:tabular-nums}
+
+  .say{
+    margin-top:28px;padding:14px 16px;border-radius:8px;
+    background:var(--ink);color:#fbfaf7;
+    font-size:18px;font-weight:700;letter-spacing:.06em;
+    font-variant-numeric:tabular-nums;line-height:1.7;
+  }
+  .say small{display:block;font-size:14px;font-weight:400;letter-spacing:0;color:#cfcbc2;margin-bottom:4px}
+  .say em{font-style:normal;color:#e6c27a}
+
+  @media (max-width:420px){
+    .row{grid-template-columns:66px 1fr}
+    .num b{font-size:27px}
+    .stairs{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>定員のはしご</h1>
+  <p class="sub">900から1へ。棒の長さ＝人数。色＝仲間。</p>
+
+  <div class="legend">
+    <span><i style="background:var(--big)"></i>大きい側の目印</span>
+    <span><i style="background:var(--mini)"></i>ミニ施設</span>
+    <span><i style="background:var(--tak)"></i>小多機・看多機</span>
+    <span><i style="background:var(--day)"></i>通所（デイ）</span>
+    <span><i style="background:var(--gh)"></i>グループホーム</span>
+    <span><i style="background:var(--room)"></i>部屋・ユニット</span>
+    <span><i style="background:var(--short)"></i>ショートステイ</span>
+  </div>
+
+  <h2>上の段（30以上）</h2>
+  <p class="h2sub">棒は900を満タンとした長さ。</p>
+  <div class="ladder">
+
+    <div class="row">
+      <div class="num"><b>900</b><small>超</small></div>
+      <div class="track"><div class="bar" style="width:100%"></div>
+        <div class="chips">
+          <span class="chip day">デイ・通所リハの大規模Ⅱ（月の延べ人数）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>750</b><small>以内</small></div>
+      <div class="track"><div class="bar" style="width:83%"></div>
+        <div class="chips">
+          <span class="chip day">デイ・通所リハの通常規模（月の延べ人数）</span>
+          <span class="chip day">750超〜900＝大規模Ⅰ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>100</b><small>以上</small></div>
+      <div class="track"><div class="bar" style="width:11%"></div>
+        <div class="chips">
+          <span class="chip big">老健・介護医療院で栄養士必置</span>
+          <span class="chip big">介護医療院Ⅱ型は100人に医師1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>44</b><small>人に1</small></div>
+      <div class="track"><div class="bar" style="width:4.9%"></div>
+        <div class="chips">
+          <span class="chip big">居宅介護支援のケアマネ1人が持つ利用者</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>40</b><small>以下</small></div>
+      <div class="track"><div class="bar" style="width:4.4%"></div>
+        <div class="chips">
+          <span class="chip big">特養・ショートで栄養士を置かなくてよい上限（連携あり）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>30</b><small>以上</small></div>
+      <div class="track"><div class="bar" style="width:3.3%"></div>
+        <div class="chips">
+          <span class="chip big">広域型の特養</span>
+          <span class="chip big">特定施設（都道府県指定）</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider">ここから下は「29の国」。棒は29を満タンとした長さ。</div>
+  <div class="ladder">
+
+    <div class="row">
+      <div class="num"><b>29</b><small>以下</small></div>
+      <div class="track"><div class="bar" style="width:100%"></div>
+        <div class="chips">
+          <span class="chip mini">ミニ特養</span>
+          <span class="chip mini">地域密着型特定施設</span>
+          <span class="chip mini">小規模老健</span>
+          <span class="chip tak">小多機・看多機 登録（本体）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>20</b><small>以上</small></div>
+      <div class="track"><div class="bar" style="width:69%"></div>
+        <div class="chips">
+          <span class="chip short">単独型ショート</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>19</b><small>以下</small></div>
+      <div class="track"><div class="bar" style="width:65.5%"></div>
+        <div class="chips">
+          <span class="chip mini">併設型小規模介護医療院</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>18</b><small>以下</small></div>
+      <div class="track"><div class="bar" style="width:62%"></div>
+        <div class="chips">
+          <span class="chip day">地域密着型通所介護</span>
+          <span class="chip day">療養通所介護</span>
+          <span class="chip tak">小多機・看多機 登録（サテ）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>15</b><small>まで</small></div>
+      <div class="track"><div class="bar" style="width:52%"></div>
+        <div class="chips">
+          <span class="chip tak">小多機・看多機 通い（本体）</span>
+          <span class="chip room">ユニットの上限</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>12</b><small>以下</small></div>
+      <div class="track"><div class="bar" style="width:41%"></div>
+        <div class="chips">
+          <span class="chip day">認デイ 単独型・併設型</span>
+          <span class="chip tak">小多機・看多機 通い（サテ）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>10</b><small>おおむね</small></div>
+      <div class="track"><div class="bar" style="width:34.5%"></div>
+        <div class="chips">
+          <span class="chip room">1ユニット</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>9</b><small>まで</small></div>
+      <div class="track"><div class="bar" style="width:31%"></div>
+        <div class="chips">
+          <span class="chip tak">小多機・看多機 泊まり（本体）</span>
+          <span class="chip gh">GH 1軒の上限</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>6</b><small>まで</small></div>
+      <div class="track"><div class="bar" style="width:20.7%"></div>
+        <div class="chips">
+          <span class="chip tak">小多機・看多機 泊まり（サテ）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>5</b><small>以上</small></div>
+      <div class="track"><div class="bar" style="width:17.2%"></div>
+        <div class="chips">
+          <span class="chip gh">GH 1軒の下限</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>4</b><small>以下</small></div>
+      <div class="track"><div class="bar" style="width:13.8%"></div>
+        <div class="chips">
+          <span class="chip room">老健・介護医療院の療養室</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>3</b><small>以下</small></div>
+      <div class="track"><div class="bar" style="width:10.3%"></div>
+        <div class="chips">
+          <span class="chip day">共用型認デイ 1軒1日</span>
+          <span class="chip gh">GHの家の数（最大）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="num"><b>1</b><small>人</small></div>
+      <div class="track"><div class="bar" style="width:3.5%"></div>
+        <div class="chips">
+          <span class="chip room">特養の居室（必要時2）</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="note">補足：小多機・看多機の通いは、登録26人以上なら18まで。ユニットは「おおむね10、15を超えない」。デイ・通所リハの規模は「1か月の延べ利用者数」で3段階。</p>
+
+  <h2>小多機・看多機の3段（名簿→椅子→布団）</h2>
+  <div class="stairs">
+    <div class="stair">
+      <h3>本体</h3>
+      <div class="step"><span>登録</span><div class="sb" style="width:100%">29</div></div>
+      <div class="step"><span>通い</span><div class="sb" style="width:52%">15</div></div>
+      <div class="step"><span>泊まり</span><div class="sb" style="width:31%">9</div></div>
+    </div>
+    <div class="stair">
+      <h3>サテライト</h3>
+      <div class="step"><span>登録</span><div class="sb" style="width:62%">18</div></div>
+      <div class="step"><span>通い</span><div class="sb" style="width:41%">12</div></div>
+      <div class="step"><span>泊まり</span><div class="sb" style="width:21%">6</div></div>
+    </div>
+  </div>
+
+  <div class="say">
+    <small>声出し（上の段）</small>
+    <em>900・750・100・44・40・30</em>
+    <small style="margin-top:8px">声出し（29の国）</small>
+    29・20・19・18・15・12・10・9・6・5・4・3・1
+  </div>
+</main>
+</body>
+</html>
