@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お金と資格 暗記シート 2026-09-20</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:#15191a;color:#e8e6e0;font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;font-size:17px;line-height:1.6}
+header{padding:18px 16px 8px}
+h1{margin:0;font-size:22px;color:#FFE066;font-weight:700}
+.how{margin:6px 0 0;font-size:14px;color:#b9b6ad}
+nav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 16px 12px;position:sticky;top:0;background:#15191a;z-index:5;border-bottom:1px solid #2a3032}
+nav button{border:0;border-radius:6px;padding:10px 14px;font-size:16px;font-weight:700;color:#fff;cursor:pointer;opacity:.55}
+nav button.on{opacity:1;outline:2px solid #FFE066;outline-offset:1px}
+nav button:focus-visible,.row button:focus-visible,.bar button:focus-visible,.tools button:focus-visible{outline:3px solid #7ee0b8;outline-offset:2px}
+.c0{background:#1f5aa6}.c1{background:#b5742a}.c2{background:#0c6b56}
+main{padding:0 16px 110px;max-width:900px;margin:0 auto}
+.band{margin:16px 0 4px;padding:10px 14px;border-radius:6px;color:#fff;font-weight:700;font-size:18px}
+.lead{margin:6px 2px 10px;font-size:15px;color:#FFE066}
+.tools{display:flex;gap:8px;margin:0 0 10px}
+.tools button{background:#2a3032;color:#e8e6e0;border:1px solid #3c4446;border-radius:6px;padding:8px 12px;font-size:14px;cursor:pointer}
+.row{display:grid;grid-template-columns:1fr auto;gap:8px 10px;align-items:center;padding:12px 0;border-bottom:1px solid #2a3032}
+.q{color:#7ee0b8;font-weight:700}
+.src{display:block;color:#8f958f;font-size:13px;font-weight:400;margin-top:2px}
+.ans{grid-column:1/2;justify-self:start;background:#FFE066;color:#000;border:0;border-radius:6px;padding:9px 14px;font-size:17px;font-weight:700;cursor:pointer;text-align:left;min-width:96px}
+.ans.hide{letter-spacing:.2em}
+.mark{grid-row:1/3;grid-column:2/3;background:#2a3032;color:#e8e6e0;border:1px solid #3c4446;border-radius:6px;padding:10px 10px;font-size:14px;cursor:pointer;white-space:nowrap}
+.mark.on{background:#ff7a6b;color:#000;border-color:#ff7a6b;font-weight:700}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#0f1213;border-top:1px solid #2a3032;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;align-items:center;justify-content:center;z-index:6}
+.bar button{background:#FFE066;color:#000;border:0;border-radius:6px;padding:12px 18px;font-size:16px;font-weight:700;cursor:pointer}
+.bar button.sub{background:#2a3032;color:#e8e6e0;border:1px solid #3c4446}
+.bar span{font-size:14px;color:#b9b6ad}
+.none{padding:24px 4px;color:#b9b6ad}
+</style>
+</head>
+<body>
+<header>
+<h1>お金と資格 暗記シート</h1>
+<p class="how">黄色をタップすると答えが開きます。言えなかった行は「△まだ怪しい」を押してください。</p>
+</header>
+<nav id="tabs"></nav>
+<main id="main"></main>
+<div class="bar">
+<button id="onlyBtn" type="button">△だけ見る</button>
+<button id="clearBtn" class="sub" type="button">△を全部消す</button>
+<span id="count"></span>
+</div>
+<script>
+var DATA=[
+{name:"だれが集める",lead:"集めるのは医療保険者と年金保険者。配るのは支払基金。",rows:[
+["65歳以上の人の保険料を年金から天引きするのは誰か","年金保険者","第27回-問3 肢1"],
+["年金から天引きする集め方の名前は何か","特別徴収",""],
+["天引きできない65歳以上の人から、市町村が納付書で集める方法の名前は何か","普通徴収",""],
+["特別徴収になるのは、年金が年いくら以上の人か","18万円以上","第22回-問9 肢2"],
+["40〜64歳の会社員の介護保険料を集めるのは誰か","医療保険者","第27回-問3 肢2"],
+["国保に入っている40〜64歳の人の介護保険料を集めるのは誰か","市町村（国保の保険者として）","第23回-問11 肢3"],
+["医療保険者は、40〜64歳の人から集めた介護保険料を、どこに納めるか","支払基金","第27回-問3 肢3"],
+["医療保険者が支払基金に納める金の名前は何か","介護給付費・地域支援事業支援納付金",""],
+["全国の医療保険者から集まった第2号保険料を、市町村に交付金として配るのは誰か","支払基金（医療保険者ではない）","第27回-問3 肢4・肢5"],
+["支払基金が市町村に配る交付金は何と何か","介護給付費交付金と地域支援事業支援交付金",""],
+["納付金の額を計算するために、医療保険者に加入者の数や給料の総額を報告させることができるのは誰か","支払基金（市町村ではない）","第23回-問16 肢3"],
+["会社員の第2号保険料の半分を負担するのは誰か","事業主","第27回-問12 肢3"],
+["納付書で払う65歳以上の人が保険料を払わないとき、本人と連帯して納める義務を負うのは誰か","世帯主と配偶者","第22回-問9 肢4・第21回-問10 肢2"]
+]},
+{name:"資格の日付",lead:"その日になるのは、国内の引っ越しと第2号の医療保険だけ。残りは全部翌日。",rows:[
+["国内で別の市町村へ引っ越した被保険者は、新しい市町村の資格をいつ取るか","引っ越したその日（翌日・翌月ではない）","第21回-問5 肢1・第27回-問5 肢4"],
+["国内で別の市町村へ引っ越した被保険者は、前の市町村の資格をいつ失うか","引っ越したその日",""],
+["海外へ引っ越した被保険者は、住んでいた市町村の資格をいつ失うか","日本を出た日の翌日",""],
+["国内の引っ越しで、前の市町村の資格を失う日が「翌日」にならないのはなぜか","翌日にすると、引っ越した日が2つの市町村の二重になるから",""],
+["死亡した被保険者は、資格をいつ失うか","死亡した日の翌日（死亡届を出した日ではない）","第21回-問5 肢2・第25回-問5 肢5"],
+["障害者支援施設などの適用除外施設に入所した被保険者は、資格をいつ失うか","入所した日の翌日",""],
+["第2号被保険者は、医療保険を抜けたとき、介護保険の資格をいつ失うか","抜けたその日","第21回-問5 肢3"],
+["資格を失う日が「その日」になるのは、どの2つの場面か","国内の引っ越しと、第2号が医療保険を抜けたとき（残りは全部翌日）",""],
+["第2号被保険者が、医療保険を抜けたその日に介護保険の資格を失うのはなぜか","健康保険を失う日が、すでに退職の翌日だから",""],
+["40歳・65歳で資格を取得するのはいつか","誕生日の前日",""],
+["9/20に引っ越して9/30に転入届を出した被保険者は、何日から新しい市町村の被保険者か","9/20（届を出した日ではなく、引っ越した日）",""],
+["9/20に死亡し、9/25に死亡届が出された被保険者は、何日に資格を失うか","9/21（届を出した日ではなく、死亡した日の翌日）","第21回-問5 肢2"],
+["転入の届出をしなければならないのは第何号か","第1号だけ（14日以内）",""],
+["第2号被保険者は、資格取得の届出が要るか","要らない","第28回-問10 肢1・第21回-問5 肢5"],
+["住民異動届を出すと、介護保険の届出はどうなるか","出したものとみなされる",""],
+["認定を受けている人は、転入後何日以内に申請すれば調査なしで引き継げるか","14日以内",""],
+["第1号被保険者が生活保護を受けたら、資格はどうなるか","失わない","第25回-問5 肢2"],
+["第1号被保険者の資格に、医療保険の加入は関係あるか","関係ない（住所と年齢だけ）","第27回-問5 肢5"]
+]},
+{name:"入らない人",lead:"施設が介護までやる人は入らない。住まいだけの施設の人は入る。",rows:[
+["救護施設の入所者は、被保険者になるか","ならない","第22回-問3 肢2"],
+["更生施設の入所者は、被保険者になるか","なる","第22回-問3 肢3"],
+["軽費老人ホームの入所者は、被保険者になるか","なる","第22回-問3 肢1"],
+["養護老人ホームの入所者は、被保険者になるか","なる","第26回-問6 肢1"],
+["母子生活支援施設の入所者は、被保険者になるか","なる","第26回-問6 肢5"],
+["生活介護＋施設入所支援で指定障害者支援施設に入所している人は、被保険者になるか","ならない（障害の種類は問わない）","第22回-問3 肢5"],
+["自立訓練＋施設入所支援で指定障害者支援施設に入所している人は、被保険者になるか","なる","第22回-問3 肢4"],
+["身体障害者福祉法の措置で障害者支援施設に入所している身体障害者は、被保険者になるか","ならない",""],
+["医療型障害児入所施設の入所者は、被保険者になるか","ならない","第28回-問10 肢3"],
+["除外かどうかを決めるのは、措置か契約かか、それとも施設の種類か","施設の種類",""],
+["障害者支援施設や救護施設の入所者が、介護保険の被保険者から外される理由は何か","施設が介護までやるので、介護保険を使う場面がないから",""],
+["適用除外施設を出て介護保険施設に入った人の保険者はどこか","適用除外施設に入る前の住所地の市町村","第21回-問5 肢4"],
+["養護老人ホームに措置入所した人の保険者はどこか","入所前の住所地の市町村（住所地特例）","第25回-問5 肢3"]
+]},
+{name:"名前の意味",lead:"「料」は1人の料金。「負担」は全員で背負う分。",rows:[
+["「保険料」とは何か","1人が実際に払う金額",""],
+["「保険料率」とは何か","1人の金額を出すための物差し",""],
+["「第2号被保険者負担率」とは何か","費用全体のうち、40〜64歳の全員で持つ割合",""],
+["第2号被保険者負担率は、いま何％か","27％",""],
+["65歳以上の全員で持つ割合は何％か","23％",""],
+["公費（税金）で持つ割合は何％か","50％","第27回-問11 肢3"],
+["「所得段階別定額保険料」は、第何号の保険料の話か","第1号","第27回-問12 肢2・第28回-問9 肢3"],
+["第1号の所得段階の標準は何段階か","13段階",""],
+["「基準額」とは何か","第1号の段階表の真ん中の金額",""],
+["「賦課期日」とは何か","保険料をかける基準の日（4月1日）",""],
+["「納期」とは何か","納付書で払う人の締切日",""],
+["「調整交付金」とは何か","国が、後期高齢者の多い町・所得の低い町に多めに渡す金（国の負担のうち5％分）","第27回-問11 肢2"]
+]},
+{name:"だれが決める",lead:"全国で同じなら国。町の65歳以上の話なら市町村。県は保険料を決めない。",rows:[
+["第2号被保険者負担率を決めるのは誰か","国（政令）","第23回-問11 肢5・第21回-問4 肢1"],
+["第1号の保険料率を決めるのは誰か","市町村（条例）","第28回-問9 肢4"],
+["第1号の保険料率は、何年ごとに決めるか","おおむね3年ごと","第28回-問9 肢2・第22回-問9 肢1"],
+["会社員の第2号保険料を決めるのは誰か","医療保険者","第27回-問12 肢5"],
+["第1号保険料の賦課期日（4月1日）を決めているのは、市町村の条例か、法律か","法律（市町村は決められない）","第21回-問10 肢1"],
+["普通徴収の納期を決めるのは誰か","市町村（条例）","第28回-問4 肢5・第21回-問10 肢3"],
+["保険料の減免を決めるのは誰か","市町村（条例）","第22回-問9 肢5"],
+["介護報酬の算定基準を決めるのは誰か","厚生労働大臣","第27回-問4 肢1・第21回-問4 肢2"],
+["基本指針を定めるのは誰か","厚生労働大臣","第28回-問4 肢2"],
+["総合確保方針を定めるのは誰か","厚生労働大臣","第28回-問4 肢1"],
+["財政安定化基金を置くのは誰か","都道府県","第23回-問4 肢1・第21回-問4 肢4"],
+["介護保険審査会を置くのは誰か","都道府県","第23回-問4 肢4"],
+["介護給付費等審査委員会を置くのは誰か","国保連","第23回-問4 肢5"],
+["都道府県は、介護保険の保険料について何か決めるか","何も決めない",""],
+["情報公表の調査と、介護支援専門員の登録消除をするのは誰か","都道府県知事","第27回-問16 肢4・肢5"],
+["介護保険の特別会計を設けるのは誰か","市町村","第28回-問4 肢3"]
+]},
+{name:"国保と後期",lead:"どの保険でも、集めるのは市町村。都道府県は集めない。",rows:[
+["国保の保険者は誰か","都道府県と市町村",""],
+["国保の保険料率を決めるのは誰か","市町村（条例）",""],
+["国保で、都道府県が市町村に示すものは何か","標準保険料率（目安）",""],
+["国保の保険料を集めるのは誰か","市町村",""],
+["国保で、市町村が都道府県に納める金の名前は何か","国保事業費納付金",""],
+["国保で、都道府県が市町村に渡す金の名前は何か","保険給付費等交付金",""],
+["後期高齢者医療を運営するのは誰か","後期高齢者医療広域連合",""],
+["後期高齢者医療の保険料率を決めるのは誰か","広域連合（条例）","第27回-問60 肢1"],
+["後期高齢者医療の保険料率は、何年ごとに決めるか","2年ごと",""],
+["後期高齢者医療の保険料を集めるのは誰か","市町村",""],
+["介護保険・国保・後期高齢者医療で、都道府県が保険料を集めることはあるか","ない","第23回-問11 肢3"],
+["介護保険で、町の財布が足りないときに支えるものは何か","都道府県の財政安定化基金",""],
+["財政安定化基金の財源は、誰がどれだけ出すか","国・都道府県・市町村が3分の1ずつ","第21回-問12 肢1"],
+["財政安定化基金への市町村の拠出金は、何から出すか","第1号保険料","第28回-問11 肢2"]
+]}
+];
+var cur=0,only=false,open={},weak={};
+var tabs=document.getElementById("tabs"),main=document.getElementById("main"),count=document.getElementById("count");
+function key(b,i){return b+"-"+i}
+function drawTabs(){
+tabs.innerHTML="";
+DATA.forEach(function(d,b){
+var t=document.createElement("button");t.type="button";t.className="c"+(b%3)+(b===cur&&!only?" on":"");t.textContent=d.name;
+t.onclick=function(){cur=b;only=false;draw();window.scrollTo(0,0)};tabs.appendChild(t);
+});
+}
+function rowEl(b,i){
+var r=DATA[b].rows[i],k=key(b,i);
+var row=document.createElement("div");row.className="row";
+var q=document.createElement("div");q.className="q";q.textContent=r[0];
+if(r[2]){var s=document.createElement("span");s.className="src";s.textContent="（"+r[2]+"）";q.appendChild(s)}
+var a=document.createElement("button");a.type="button";
+function paint(){a.className="ans"+(open[k]?"":" hide");a.textContent=open[k]?r[1]:"？？？";a.setAttribute("aria-label",open[k]?"答えを隠す":"答えを開く")}
+a.onclick=function(){open[k]=!open[k];paint()};paint();
+var m=document.createElement("button");m.type="button";
+function paintM(){m.className="mark"+(weak[k]?" on":"");m.textContent=weak[k]?"△ついてる":"△まだ怪しい"}
+m.onclick=function(){weak[k]=!weak[k];paintM();tally();if(only&&!weak[k]){draw()}};paintM();
+row.appendChild(q);row.appendChild(m);row.appendChild(a);
+return row;
+}
+function blockEl(b,filter){
+var d=DATA[b],frag=document.createDocumentFragment();
+var idx=[];d.rows.forEach(function(_,i){if(!filter||weak[key(b,i)])idx.push(i)});
+if(!idx.length)return frag;
+var band=document.createElement("div");band.className="band c"+(b%3);band.textContent=d.name;frag.appendChild(band);
+var lead=document.createElement("p");lead.className="lead";lead.textContent=d.lead;frag.appendChild(lead);
+var tools=document.createElement("div");tools.className="tools";
+var h=document.createElement("button");h.type="button";h.textContent="全部隠す";
+h.onclick=function(){idx.forEach(function(i){open[key(b,i)]=false});draw()};
+var o=document.createElement("button");o.type="button";o.textContent="全部開く";
+o.onclick=function(){idx.forEach(function(i){open[key(b,i)]=true});draw()};
+tools.appendChild(h);tools.appendChild(o);frag.appendChild(tools);
+idx.forEach(function(i){frag.appendChild(rowEl(b,i))});
+return frag;
+}
+function tally(){
+var n=0;for(var k in weak){if(weak[k])n++}
+count.textContent="△ "+n+"行";
+}
+function draw(){
+drawTabs();main.innerHTML="";
+if(only){
+var any=false;
+DATA.forEach(function(_,b){var f=blockEl(b,true);if(f.childNodes.length){any=true;main.appendChild(f)}});
+if(!any){var p=document.createElement("p");p.className="none";p.textContent="△の付いた行はありません。上のタブから選んでください。";main.appendChild(p)}
+}else{main.appendChild(blockEl(cur,false))}
+document.getElementById("onlyBtn").textContent=only?"全部の行に戻る":"△だけ見る";
+tally();
+}
+document.getElementById("onlyBtn").onclick=function(){only=!only;draw();window.scrollTo(0,0)};
+document.getElementById("clearBtn").onclick=function(){weak={};draw()};
+draw();
+</script>
+</body>
+</html>
