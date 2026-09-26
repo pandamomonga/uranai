@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田様 施術報告書 2026.9.26</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1f5a3c; --green-light:#e6f0ea; --green-mid:#bfe6cd;
+    --gold:#c4a44d; --gold-light:#fbf6e7;
+    --ok:#1a9a5a; --up:#e05a3a; --down:#4a5fc1;
+    --ink:#1c2420; --sub:#5c6b64; --line:#dfe5e1; --bg:#ffffff; --panel:#f7f8fb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .page{max-width:540px;margin:0 auto;padding:0 18px 40px}
+
+  header{padding:34px 0 18px;text-align:center;border-bottom:3px solid var(--green);margin-bottom:16px}
+  .eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold);font-weight:700;margin-bottom:8px}
+  h1{font-family:'Noto Serif JP',serif;font-size:27px;color:var(--green);line-height:1.35;font-weight:900}
+  .date{font-size:15px;color:var(--sub);margin-top:6px}
+
+  .disclaimer{font-size:13px;color:var(--sub);background:var(--panel);border-left:3px solid var(--gold);padding:10px 12px;border-radius:0 8px 8px 0;margin-bottom:22px;line-height:1.6}
+
+  .toc{border:1.5px solid var(--line);border-radius:12px;padding:16px 16px 12px;margin-bottom:28px}
+  .toc .t{font-size:15px;color:var(--sub);margin-bottom:8px}
+  .toc .row{display:flex;gap:12px;align-items:flex-start;padding:7px 0;border-top:1px dashed var(--line)}
+  .toc .row:first-of-type{border-top:0}
+  .toc .n{background:var(--green);color:#fff;font-size:13px;font-weight:700;padding:2px 9px;border-radius:4px;white-space:nowrap;margin-top:3px}
+  .toc .h{font-size:17px;font-weight:700;line-height:1.5}
+  .toc .s{font-size:14px;color:var(--sub)}
+
+  section{margin-bottom:34px}
+  .part{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .part .num{background:var(--green);color:#fff;font-weight:700;font-size:15px;padding:4px 12px;border-radius:4px;white-space:nowrap}
+  .part h2{font-family:'Noto Serif JP',serif;font-size:22px;color:var(--green);font-weight:900;line-height:1.35}
+  .bridge{font-size:15px;color:var(--sub);margin-bottom:12px;padding-left:12px;border-left:3px solid var(--green-mid);line-height:1.6}
+  .lead{font-size:20px;font-weight:700;line-height:1.5;margin-bottom:18px;font-family:'Noto Serif JP',serif;color:var(--green)}
+  h3{font-size:19px;color:var(--green);margin:22px 0 10px;font-weight:700;line-height:1.4}
+  p{font-size:16px}
+  .cap{font-size:15px;color:var(--sub);text-align:center;margin-top:8px;line-height:1.6}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+  .card{border:1.5px solid var(--line);border-radius:10px;padding:13px 12px;display:flex;flex-direction:column;gap:3px;background:#fff}
+  .card .icon{font-size:26px;line-height:1}
+  .card .label{font-size:14px;color:var(--sub)}
+  .card .val{font-size:25px;font-weight:700;line-height:1.1}
+  .card .tag{font-size:13px;font-weight:700;padding:2px 9px;border-radius:99px;align-self:flex-start;margin-top:3px}
+  .ok .tag{background:#e3f5ea;color:var(--ok)} .ok .val{color:var(--ok)}
+  .up .tag{background:#fde9e4;color:var(--up)} .up .val{color:var(--up)}
+  .down .tag{background:#e8ecfa;color:var(--down)} .down .val{color:var(--down)}
+  .card.wide{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between}
+  .card.wide .val{font-size:25px}
+
+  .panel{background:var(--panel);border-radius:12px;padding:18px 14px 14px;margin-bottom:16px}
+  .panel h4{font-size:17px;color:var(--green);text-align:center;margin-bottom:12px;font-weight:700}
+  .bars{display:flex;justify-content:center;align-items:flex-end;gap:22px;height:190px;margin-bottom:6px}
+  .bar{display:flex;flex-direction:column;align-items:center;gap:5px;justify-content:flex-end;height:100%}
+  .bar .col{width:44px;border-radius:8px 8px 4px 4px}
+  .bar .pct{font-size:19px;font-weight:700}
+  .bar .name{font-size:14px;color:var(--sub)}
+  .norm .col{background:var(--green-mid);height:88px}
+  .norm .pct{color:var(--ok);font-size:15px}
+  .lo .col{background:var(--down)} .lo .pct{color:var(--down)}
+  .hi .col{background:var(--up)} .hi .pct{color:var(--up)}
+  .twochart{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .twochart .bars{gap:10px;height:170px}
+  .twochart .bar .col{width:34px}
+  .twochart .bar .pct{font-size:16px}
+  .twochart .norm .col{height:80px}
+
+  .flow{display:flex;flex-direction:column;margin:16px 0 18px}
+  .step{display:flex;gap:12px;align-items:flex-start}
+  .step .dot{width:34px;height:34px;border-radius:50%;background:var(--green-light);color:var(--green);font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+  .step .txt{padding-top:5px;font-size:16px;line-height:1.55}
+  .arrow{margin-left:16px;height:20px;border-left:2px dashed #b9c9c0}
+
+  .point{border:2px solid var(--gold);border-radius:10px;padding:20px 16px 16px;position:relative;margin:20px 0;background:#fff}
+  .point .ptag{position:absolute;top:-12px;left:14px;background:var(--gold);color:#fff;font-size:12px;font-weight:700;letter-spacing:.18em;padding:3px 10px;border-radius:4px}
+  .point p{font-size:16px;line-height:1.7}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 6px}
+  .pic{border:1.5px solid var(--line);border-radius:12px;padding:12px 8px 10px;text-align:center;background:#fff}
+  .pic.bad{border-color:#f0c9bf;background:#fffaf8}
+  .pic.good{border-color:#b9dcc6;background:#f4faf6}
+  .pic .mark{font-size:22px;font-weight:900;line-height:1;margin-bottom:6px}
+  .bad .mark{color:var(--up)} .good .mark{color:var(--ok)}
+  .pic svg{width:100%;height:auto;display:block}
+  .pic .t{font-size:15px;font-weight:700;margin-top:8px;line-height:1.45}
+  .pic .d{font-size:13px;color:var(--sub);line-height:1.5;margin-top:3px}
+  .result{background:var(--green);color:#fff;border-radius:10px;padding:12px 14px;font-size:16px;font-weight:700;text-align:center;line-height:1.5;margin:8px 0 6px}
+
+  .divider{height:1px;background:var(--line);margin:8px 0 30px}
+
+  .banner{background:var(--green);color:#fff;border-radius:14px;padding:20px 18px;margin-bottom:18px;text-align:center}
+  .banner .s{font-size:13px;letter-spacing:.2em;color:#e6d9a8;font-weight:700;margin-bottom:6px}
+  .banner .b{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:900;line-height:1.5}
+  .banner .sub{font-size:15px;color:#d7e5dc;margin-top:8px;line-height:1.6}
+
+  .hyp{display:flex;gap:10px;align-items:center;background:var(--gold-light);border:1.5px solid #e7d79f;border-radius:10px;padding:12px 14px;margin-bottom:14px}
+  .hyp .l{font-size:12px;font-weight:700;letter-spacing:.15em;color:var(--gold);white-space:nowrap}
+  .hyp .v{font-size:16px;font-weight:700;line-height:1.5}
+
+  .bignum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+  .bn{border:1.5px solid var(--line);border-radius:10px;padding:14px 12px;text-align:center;background:#fff}
+  .bn .n{font-size:30px;font-weight:900;color:var(--green);line-height:1.1;font-family:'Noto Serif JP',serif}
+  .bn .n small{font-size:16px;font-weight:700}
+  .bn .l{font-size:14px;color:var(--sub);margin-top:4px;line-height:1.45}
+  .bn.gold .n{color:#9c7f2a}
+  .bn.full{grid-column:1/-1}
+
+  .hbars{display:flex;flex-direction:column;gap:10px;margin:8px 0 4px}
+  .hb{display:grid;grid-template-columns:96px 1fr 44px;align-items:center;gap:8px}
+  .hb .nm{font-size:15px;font-weight:700;line-height:1.3}
+  .hb .tr{background:#eef1ee;border-radius:6px;height:22px;overflow:hidden}
+  .hb .fl{height:100%;border-radius:6px}
+  .hb .vv{font-size:17px;font-weight:700;text-align:right}
+  .hb.human .fl{background:var(--gold)} .hb.human .vv{color:#9c7f2a}
+  .hb.robo .fl{background:var(--green)} .hb.robo .vv{color:var(--green)}
+  .hb.robo2 .fl{background:var(--green-mid)} .hb.robo2 .vv{color:var(--green)}
+
+  .chips{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+  .chip{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+  .chip .ic{font-size:22px;line-height:1.2;flex-shrink:0}
+  .chip .tt{font-size:15px;font-weight:700;line-height:1.45}
+  .chip .dd{font-size:14px;color:var(--sub);line-height:1.5}
+
+  .merits{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+  .mr{border:1.5px solid var(--line);border-radius:10px;padding:12px 10px;background:#fff}
+  .mr .ic{font-size:24px;line-height:1;margin-bottom:6px}
+  .mr .tt{font-size:16px;font-weight:700;line-height:1.4}
+  .mr .dd{font-size:13px;color:var(--sub);line-height:1.5;margin-top:3px}
+
+  .tl{margin:14px 0 6px;position:relative;padding-left:22px}
+  .tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--green-mid)}
+  .ti{position:relative;padding:0 0 14px}
+  .ti:before{content:"";position:absolute;left:-19px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px #fff}
+  .ti .y{font-size:16px;font-weight:900;color:var(--green);font-family:'Noto Serif JP',serif}
+  .ti .w{font-size:15px;line-height:1.55}
+  .ti.now:before{background:var(--gold)}
+  .ti.now .y{color:#9c7f2a}
+
+  .eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:6px;margin:14px 0}
+  .eq .box{border-radius:10px;padding:12px 6px;text-align:center;font-weight:700;font-size:15px;line-height:1.4;background:var(--green-light);color:var(--green)}
+  .eq .box .ic{font-size:26px;display:block;margin-bottom:4px;line-height:1}
+  .eq .box.res{background:var(--green);color:#fff}
+  .eq .op{font-size:24px;font-weight:900;color:var(--gold)}
+
+  .fields{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+  .fd{border:1.5px solid var(--line);border-radius:12px;padding:14px 14px 12px;background:#fff}
+  .fd .hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .fd .hd .ic{font-size:26px;line-height:1}
+  .fd .hd .tt{font-size:18px;font-weight:700;color:var(--green)}
+  .fd ul{list-style:none}
+  .fd li{font-size:15px;line-height:1.55;padding:4px 0 4px 14px;position:relative;border-top:1px dashed var(--line)}
+  .fd li:first-child{border-top:0}
+  .fd li:before{content:"";position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .fd li b{color:var(--green)}
+
+  .handles{background:var(--gold-light);border:1.5px solid #e7d79f;border-radius:12px;padding:16px 14px 12px;margin-top:14px}
+  .handles .t{font-size:13px;letter-spacing:.2em;color:#9c7f2a;font-weight:700;text-align:center;margin-bottom:10px}
+  .handles .h{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-top:1px dashed #e7d79f}
+  .handles .h:first-of-type{border-top:0}
+  .handles .h .n{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:900;color:#9c7f2a;white-space:nowrap;line-height:1}
+  .handles .h .n small{font-size:14px}
+  .handles .h .w{font-size:15px;line-height:1.5}
+
+  .but{border-left:3px solid var(--up);background:#fff7f5;border-radius:0 10px 10px 0;padding:12px 14px;margin-top:14px}
+  .but .t{font-size:13px;font-weight:700;color:var(--up);letter-spacing:.15em;margin-bottom:4px}
+  .but p{font-size:15px;line-height:1.6}
+
+  .oneline{margin-top:18px;text-align:center;font-family:'Noto Serif JP',serif;font-size:19px;font-weight:900;color:var(--green);line-height:1.6;padding:14px 10px;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold)}
+
+  .src{margin-top:16px;background:var(--panel);border-radius:10px;padding:12px 14px}
+  .src .t{font-size:13px;font-weight:700;color:var(--sub);letter-spacing:.1em;margin-bottom:6px}
+  .src li{font-size:12px;color:var(--sub);line-height:1.6;list-style:none;padding-left:10px;position:relative}
+  .src li:before{content:"・";position:absolute;left:0}
+
+  footer{border-top:3px solid var(--green);padding-top:22px;margin-top:10px}
+  footer .th{font-family:'Noto Serif JP',serif;font-size:19px;color:var(--green);font-weight:900;margin-bottom:6px}
+  footer p{font-size:14px;color:var(--sub);line-height:1.7;margin-bottom:8px}
+  footer .name{font-size:16px;font-weight:700;color:var(--ink);margin-top:14px;margin-bottom:4px}
+  footer .links{display:flex;gap:10px;margin-top:14px}
+  footer .links a{flex:1;text-align:center;padding:13px 10px;border-radius:10px;font-weight:700;text-decoration:none;font-size:15px}
+  .line{background:#06c755;color:#fff} .map{background:#fff;color:var(--green);border:1.5px solid var(--green)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <h1>福田様 施術報告書</h1>
+  <div class="date">2026年9月26日（土）</div>
+</header>
+
+<div class="disclaimer">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+<div class="toc">
+  <div class="t">今日の報告は2つの話です</div>
+  <div class="row"><span class="n">第1部</span><div><div class="h">本日の身体と、ハーフマラソンの走り方</div><div class="s">ストレスの数値・心臓のエネルギーライン・フォーム2か所</div></div></div>
+  <div class="row"><span class="n">第2部</span><div><div class="h">フィジカルAI × 全固体電池</div><div class="s">お仕事のプレゼン・提案に使える数字と話の筋</div></div></div>
+</div>
+
+<!-- ================= 第1部 ================= -->
+<section>
+  <div class="part"><span class="num">第1部</span><h2>本日の身体と、ハーフマラソンの走り方</h2></div>
+  <p class="lead">本日は全部施術しています。<br>ご安心ください。</p>
+  <p class="bridge">まず今日の数字から。ストレスがかなり溜まっていた可能性と、心臓のラインが一人で頑張っていた可能性、この二つが軸です。</p>
+
+  <div class="cards">
+    <div class="card ok"><div class="icon">⚡</div><div class="label">エネルギー</div><div class="val">35.28</div><span class="tag">正常</span></div>
+    <div class="card ok"><div class="icon">🛡️</div><div class="label">免疫</div><div class="val">38.72</div><span class="tag">正常</span></div>
+    <div class="card ok"><div class="icon">🔥</div><div class="label">代謝</div><div class="val">1.10</div><span class="tag">正常</span></div>
+    <div class="card up"><div class="icon">🧠</div><div class="label">心・ストレス</div><div class="val">1.53</div><span class="tag">高め</span></div>
+    <div class="card ok wide"><div><div class="icon">💪</div><div class="label">筋骨格（左右バランス）</div></div><div style="text-align:right"><div class="val">0.93</div><span class="tag">正常</span></div></div>
+  </div>
+
+  <div class="panel">
+    <h4>エネルギーライン（基準＝真ん中の緑）</h4>
+    <div class="twochart">
+      <div>
+        <div class="bars">
+          <div class="bar lo"><div class="pct">39%</div><div class="col" style="height:31px"></div><div class="name">左</div></div>
+          <div class="bar norm"><div class="pct">基準</div><div class="col"></div><div class="name">100%</div></div>
+          <div class="bar lo"><div class="pct">45%</div><div class="col" style="height:36px"></div><div class="name">右</div></div>
+        </div>
+        <div class="cap" style="margin-top:2px;font-weight:700;color:var(--down)">膀胱のライン：下がっている</div>
+      </div>
+      <div>
+        <div class="bars">
+          <div class="bar hi"><div class="pct">98%</div><div class="col" style="height:78px"></div><div class="name">左</div></div>
+          <div class="bar norm"><div class="pct">基準</div><div class="col"></div><div class="name">100%</div></div>
+          <div class="bar hi"><div class="pct">176%</div><div class="col" style="height:141px"></div><div class="name">右</div></div>
+        </div>
+        <div class="cap" style="margin-top:2px;font-weight:700;color:var(--up)">心臓のライン：上がっている</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- シーソー -->
+  <div class="panel" style="padding-bottom:10px">
+    <h4>身体の中で起きていたこと（イメージ）</h4>
+    <svg viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <!-- fulcrum -->
+      <polygon points="170,150 150,168 190,168" fill="#1f5a3c"/>
+      <!-- plank (tilted: left down, right up) -->
+      <g transform="rotate(-14 170 148)">
+        <rect x="40" y="143" width="260" height="10" rx="5" fill="#c4a44d"/>
+        <!-- left pan: bladder (down) -->
+        <rect x="46" y="96" width="76" height="46" rx="10" fill="#e8ecfa" stroke="#4a5fc1" stroke-width="2"/>
+        <text x="84" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="#4a5fc1" font-family="Noto Sans JP,sans-serif">膀胱</text>
+        <text x="84" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#4a5fc1" font-family="Noto Sans JP,sans-serif">下がる</text>
+        <!-- right pan: heart (up, pushing) -->
+        <rect x="218" y="96" width="76" height="46" rx="10" fill="#fde9e4" stroke="#e05a3a" stroke-width="2"/>
+        <text x="256" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="#e05a3a" font-family="Noto Sans JP,sans-serif">心臓</text>
+        <text x="256" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#e05a3a" font-family="Noto Sans JP,sans-serif">一人で支える</text>
+      </g>
+      <!-- arrows -->
+      <path d="M84 30 L84 62" stroke="#4a5fc1" stroke-width="3" fill="none"/>
+      <polygon points="84,70 77,58 91,58" fill="#4a5fc1"/>
+      <path d="M256 56 L256 24" stroke="#e05a3a" stroke-width="3" fill="none"/>
+      <polygon points="256,16 249,28 263,28" fill="#e05a3a"/>
+      <text x="170" y="30" text-anchor="middle" font-size="13" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">片方が下がると</text>
+      <text x="170" y="48" text-anchor="middle" font-size="13" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">もう片方が上げて釣り合う</text>
+    </svg>
+  </div>
+
+  <div class="flow">
+    <div class="step"><div class="dot">1</div><div class="txt">膀胱のエネルギーラインが下がっている（左39%・右45%）</div></div>
+    <div class="arrow"></div>
+    <div class="step"><div class="dot">2</div><div class="txt">下がった分は、身体のどこかが補う必要がある</div></div>
+    <div class="arrow"></div>
+    <div class="step"><div class="dot">3</div><div class="txt">心臓のラインが右176%まで上がり、一人で釣り合いを取っていた可能性</div></div>
+    <div class="arrow"></div>
+    <div class="step"><div class="dot">4</div><div class="txt">心の数値も高め（1.53）。ストレスが溜まっていた状態と重なります</div></div>
+  </div>
+
+  <div class="point">
+    <span class="ptag">POINT</span>
+    <p><strong>数字が示していること。</strong>心・ストレスが高め（1.53）、心臓のラインが右176%、膀胱のラインが左右とも半分以下。この三つがそろうと「心臓が一人で頑張って全体のバランスを取っていた」可能性が高い状態です。本日はここを全部施術しています。</p>
+  </div>
+
+  <h3>丸亀ハーフに向けて、走り方を2か所だけ</h3>
+  <p class="bridge">本日から来年2月の丸亀ハーフマラソンに向けてトレーニング開始。30分走った分、首の歪みがいつもより大きく出ていました。直すのは、首の乗せ方と膝の幅、この2か所です。</p>
+
+  <h4 style="font-size:17px;color:var(--green);margin:10px 0 4px">① 首は、肩甲骨と肩甲骨の間に乗せる</h4>
+  <div class="compare">
+    <div class="pic bad">
+      <div class="mark">✕</div>
+      <svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg">
+        <!-- torso side view -->
+        <rect x="52" y="62" width="40" height="70" rx="14" fill="#e6f0ea" stroke="#1f5a3c" stroke-width="2.5"/>
+        <!-- forward neck -->
+        <path d="M70 62 L92 40" stroke="#e05a3a" stroke-width="7" stroke-linecap="round"/>
+        <!-- head forward -->
+        <circle cx="100" cy="30" r="17" fill="#fde9e4" stroke="#e05a3a" stroke-width="2.5"/>
+        <!-- strain marks -->
+        <path d="M60 52 L56 44 M64 50 L62 41" stroke="#e05a3a" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- arrow showing forward -->
+        <path d="M40 30 L74 30" stroke="#e05a3a" stroke-width="2.5" stroke-dasharray="4 3"/>
+        <polygon points="80,30 72,25 72,35" fill="#e05a3a"/>
+        <text x="70" y="146" text-anchor="middle" font-size="12" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">横から見た図</text>
+      </svg>
+      <div class="t">首が前に出る</div>
+      <div class="d">頭を支えるのに余分な力がいる</div>
+    </div>
+    <div class="pic good">
+      <div class="mark">○</div>
+      <svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg">
+        <rect x="52" y="62" width="40" height="70" rx="14" fill="#e6f0ea" stroke="#1f5a3c" stroke-width="2.5"/>
+        <!-- scapulae band -->
+        <rect x="56" y="70" width="32" height="12" rx="4" fill="#c4a44d" opacity=".9"/>
+        <!-- upright neck -->
+        <path d="M72 62 L72 44" stroke="#1a9a5a" stroke-width="7" stroke-linecap="round"/>
+        <!-- head on top -->
+        <circle cx="72" cy="30" r="17" fill="#e3f5ea" stroke="#1a9a5a" stroke-width="2.5"/>
+        <!-- plumb line -->
+        <path d="M72 6 L72 20" stroke="#1a9a5a" stroke-width="2" stroke-dasharray="3 3"/>
+        <text x="122" y="80" text-anchor="middle" font-size="11" fill="#9c7f2a" font-family="Noto Sans JP,sans-serif" font-weight="700">肩甲骨</text>
+        <text x="122" y="93" text-anchor="middle" font-size="11" fill="#9c7f2a" font-family="Noto Sans JP,sans-serif" font-weight="700">の間</text>
+        <text x="70" y="146" text-anchor="middle" font-size="12" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">横から見た図</text>
+      </svg>
+      <div class="t">肩甲骨の間に乗せる</div>
+      <div class="d">首の筋肉はゆるめたまま</div>
+    </div>
+  </div>
+  <div class="result">頭を支えるための余分なロスが消える</div>
+
+  <h4 style="font-size:17px;color:var(--green);margin:18px 0 4px">② 膝と膝の間を、なるべく近づけて走る</h4>
+  <div class="compare">
+    <div class="pic bad">
+      <div class="mark">✕</div>
+      <svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg">
+        <!-- head with big sway arrow -->
+        <path d="M30 18 L110 18" stroke="#e05a3a" stroke-width="2.5"/>
+        <polygon points="22,18 32,12 32,24" fill="#e05a3a"/>
+        <polygon points="118,18 108,12 108,24" fill="#e05a3a"/>
+        <circle cx="70" cy="40" r="14" fill="#fde9e4" stroke="#e05a3a" stroke-width="2.5"/>
+        <!-- torso back view -->
+        <path d="M46 56 L94 56 L86 100 L54 100 Z" fill="#e6f0ea" stroke="#1f5a3c" stroke-width="2.5"/>
+        <!-- legs splayed -->
+        <path d="M58 100 L38 122 L34 142" stroke="#1f5a3c" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <path d="M82 100 L102 122 L106 142" stroke="#1f5a3c" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <!-- knee gap -->
+        <path d="M44 122 L96 122" stroke="#e05a3a" stroke-width="2" stroke-dasharray="3 3"/>
+        <text x="70" y="118" text-anchor="middle" font-size="12" fill="#e05a3a" font-weight="700" font-family="Noto Sans JP,sans-serif">広い</text>
+        <text x="20" y="148" font-size="11" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">左</text>
+        <text x="112" y="148" font-size="11" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">右</text>
+      </svg>
+      <div class="t">膝と膝が離れる</div>
+      <div class="d">頭が左右に大きく揺れる</div>
+    </div>
+    <div class="pic good">
+      <div class="mark">○</div>
+      <svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg">
+        <path d="M58 18 L82 18" stroke="#1a9a5a" stroke-width="2.5"/>
+        <polygon points="50,18 60,12 60,24" fill="#1a9a5a"/>
+        <polygon points="90,18 80,12 80,24" fill="#1a9a5a"/>
+        <circle cx="70" cy="40" r="14" fill="#e3f5ea" stroke="#1a9a5a" stroke-width="2.5"/>
+        <path d="M46 56 L94 56 L86 100 L54 100 Z" fill="#e6f0ea" stroke="#1f5a3c" stroke-width="2.5"/>
+        <!-- legs close -->
+        <path d="M60 100 L63 122 L60 142" stroke="#1f5a3c" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <path d="M80 100 L77 122 L80 142" stroke="#1f5a3c" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <path d="M84 122 L100 122" stroke="#1a9a5a" stroke-width="2" stroke-dasharray="3 3"/>
+        <text x="114" y="127" text-anchor="middle" font-size="12" fill="#1a9a5a" font-weight="700" font-family="Noto Sans JP,sans-serif">近い</text>
+        <text x="20" y="148" font-size="11" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">左</text>
+        <text x="112" y="148" font-size="11" fill="#5c6b64" font-family="Noto Sans JP,sans-serif">右</text>
+      </svg>
+      <div class="t">膝と膝を近づける</div>
+      <div class="d">頭の揺れ幅が小さくなる</div>
+    </div>
+  </div>
+  <div class="result">頭の揺れが減り、ロスが減る</div>
+  <p class="cap">後ろから見た図。向かって右が福田様の右側です。</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= 第2部 ================= -->
+<section>
+  <div class="part"><span class="num">第2部</span><h2>フィジカルAI × 全固体電池</h2></div>
+  <p class="bridge">身体の話の次は、「身体を持ったAI」の話です。本日の施術中に出た仮説を、プレゼン・提案でそのまま使えるように数字で裏づけました。</p>
+
+  <div class="banner">
+    <div class="s">結論</div>
+    <div class="b">勝負は「手」。<br>その手を一日中動かすのが、<br>全固体電池。</div>
+    <div class="sub">二つがそろったとき、ロボットは研究室を出て現場に立ちます。</div>
+  </div>
+
+  <div class="hyp"><div class="l">仮説</div><div class="v">フィジカルAIでいちばん大事なのは、繊細に感じて、動かせる「手」ではないか。</div></div>
+
+  <h3>裏づけ①　「手」が難しさの6割</h3>
+  <div class="bignum">
+    <div class="bn"><div class="n">約6<small>割</small></div><div class="l">ロボット全体の開発の難しさのうち「手」が占める割合（テスラCEOの発言）</div></div>
+    <div class="bn gold"><div class="n">5年<small>／</small>100<small>億円</small></div><div class="l">ホンダ×理研が多指ハンドのAI開発に投じる規模（2026年9月）</div></div>
+  </div>
+
+  <h4 style="font-size:17px;color:var(--green);margin:14px 0 6px">指の自由度（動かせる関節の数）</h4>
+  <div class="hbars">
+    <div class="hb human"><div class="nm">人の手</div><div class="tr"><div class="fl" style="width:100%"></div></div><div class="vv">27</div></div>
+    <div class="hb robo"><div class="nm">テスラ<br>Optimus V3</div><div class="tr"><div class="fl" style="width:81%"></div></div><div class="vv">22</div></div>
+    <div class="hb robo2"><div class="nm">Figure 02</div><div class="tr"><div class="fl" style="width:59%"></div></div><div class="vv">16</div></div>
+  </div>
+  <p class="cap">最新機は人の手にかなり近づいた。ここからの差は「触覚」で決まります。</p>
+
+  <div class="chips">
+    <div class="chip"><div class="ic">🖐️</div><div><div class="tt">1cm²に1万点以上の触覚</div><div class="dd">北京の研究チームのF-TAC Hand。手のひらの7割以上を0.1mm刻みの触覚センサーが覆う</div></div></div>
+    <div class="chip"><div class="ic">📷</div><div><div class="tt">指先に触覚、手のひらにカメラ</div><div class="dd">Figure 03。BMW工場で稼働、350台以上を出荷済み（2026年4月時点）</div></div></div>
+    <div class="chip"><div class="ic">🇯🇵</div><div><div class="tt">日本は「視触覚」で追う</div><div class="dd">国内ロボット大手3社がカメラで触覚と滑りを読むハンドを採用、まず自動車工場から</div></div></div>
+  </div>
+
+  <div class="point">
+    <span class="ptag">POINT</span>
+    <p><strong>第1部とつながっています。</strong>テスラの新しい手は、モーターを指ではなく前腕に置き、腱で指を引く設計です。人の手もまったく同じで、指を動かす筋肉の大半は前腕にあり、腱でつながっています。人体の設計をそのまま真似したとき、ロボットの手はいちばん人に近づきました。</p>
+  </div>
+
+  <h3>裏づけ②　いまの弱点は「電池」</h3>
+  <div class="bignum">
+    <div class="bn"><div class="n">2〜4<small>時間</small></div><div class="l">いまのヒューマノイドの連続稼働時間（Figure 03で5時間）</div></div>
+    <div class="bn gold"><div class="n">24<small>時間</small></div><div class="l">工場・倉庫が求める稼働。足りない分は交代と充電でしのいでいる</div></div>
+  </div>
+
+  <h4 style="font-size:17px;color:var(--green);margin:14px 0 6px">全固体電池の強み（液体の電解液を使わない）</h4>
+  <div class="merits">
+    <div class="mr"><div class="ic">🔥</div><div class="tt">燃えにくい</div><div class="dd">液漏れ・発火の元になる電解液がない。人のそばで働くロボットに向く</div></div>
+    <div class="mr"><div class="ic">🌡️</div><div class="tt">熱に強い</div><div class="dd">従来55〜60℃の限界が85℃前後へ。冷却が軽くなり、パック実質密度は2倍近く</div></div>
+    <div class="mr"><div class="ic">⚡</div><div class="tt">充電が速い</div><div class="dd">EVでは10分以下の充電・1,200km超がトヨタの目標</div></div>
+    <div class="mr"><div class="ic">📐</div><div class="tt">形の自由度</div><div class="dd">薄く重ねて置ける。サムスンSDIはロボット向けにパウチ型を公開</div></div>
+  </div>
+
+  <h4 style="font-size:17px;color:var(--green);margin:14px 0 4px">いつ来るか</h4>
+  <div class="tl">
+    <div class="ti now"><div class="y">2026年（いま）</div><div class="w">中国勢がロボット向け半固体電池を量産出荷（300Wh/kg超、稼働2〜3倍）。XPENGのIRONは全固体電池を採用</div></div>
+    <div class="ti"><div class="y">2027年</div><div class="w">サムスンSDI、ロボット向けパウチ型全固体電池を量産予定（現代自動車グループと共同）。CATL・BYDも小規模量産</div></div>
+    <div class="ti"><div class="y">2027〜28年</div><div class="w">トヨタ×出光、日産、ホンダが全固体電池搭載EVを投入予定。出光は固体電解質の大型装置を建設中</div></div>
+    <div class="ti"><div class="y">2030年代</div><div class="w">普及価格帯へ。政府の「本格実用化」目標は2030年頃</div></div>
+  </div>
+
+  <div class="bignum">
+    <div class="bn"><div class="n">1000<small>倍超</small></div><div class="l">ヒューマノイド向け全固体電池の需要、2026年→2035年（74GWh、TrendForce）</div></div>
+    <div class="bn gold"><div class="n">8.7<small>兆円</small></div><div class="l">全固体電池の世界市場、2045年予測（富士経済、2023年比299倍）</div></div>
+  </div>
+
+  <h3>掛け算　手 × 電池 ＝ 現場に出せるロボット</h3>
+  <div class="eq">
+    <div class="box"><span class="ic">🖐️</span>繊細な手</div>
+    <div class="op">×</div>
+    <div class="box"><span class="ic">🔋</span>燃えない<br>長持ち電池</div>
+    <div class="op">＝</div>
+    <div class="box res"><span class="ic">🤖</span>現場で<br>働ける</div>
+  </div>
+
+  <div class="fields">
+    <div class="fd">
+      <div class="hd"><div class="ic">🏗️</div><div class="tt">工事現場</div></div>
+      <ul>
+        <li>技能者は<b>299万人→264万人</b>へ（2025年度→2035年度、日建連の予測）</li>
+        <li>政府目標：2040年までに国内AIロボット<b>1,000万台</b>、建設だけで<b>62万台</b>（2026年6月改訂）</li>
+        <li>清水建設が東京のトーチタワー現場でヒューマノイド巡回を実証開始（2026年7月）。川田テクノロジーズは2025年秋から運用試験</li>
+      </ul>
+    </div>
+    <div class="fd">
+      <div class="hd"><div class="ic">🏭</div><div class="tt">工場</div></div>
+      <ul>
+        <li>Figure 03がBMW工場で稼働。生産は<b>1日1台→1時間1台</b>へ（4か月で）</li>
+        <li>テスラは2026年夏に生産開始、2027年に<b>数万台</b>を計画（発表ベース）</li>
+        <li>官民で<b>10.5兆円</b>投資、世界シェア3割（約20兆円）が政府の狙い</li>
+      </ul>
+    </div>
+    <div class="fd">
+      <div class="hd"><div class="ic">🔬</div><div class="tt">精密作業</div></div>
+      <ul>
+        <li>細かい力加減の「巧緻作業」が次の壁。ホンダ×理研は人の手に触覚センサーを着けてデータを集める方式</li>
+        <li>触覚ハンドのデータ歩留まりは<b>30%</b>。ここが改善した会社が精密作業を取る</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="handles">
+    <div class="t">プレゼンで使える3つの数字</div>
+    <div class="h"><div class="n">6<small>割</small></div><div class="w">ロボットの難しさは「手」に集中している</div></div>
+    <div class="h"><div class="n">2〜4<small>h</small></div><div class="w">いまの稼働時間。全固体電池がこの壁を越える</div></div>
+    <div class="h"><div class="n">62<small>万台</small></div><div class="w">2040年、建設現場に入るAIロボットの政府目標</div></div>
+  </div>
+
+  <div class="but">
+    <div class="t">ただし</div>
+    <p>2026年時点で工場に入っているヒューマノイドは少数の試験現場に限られ、作業も限定的。速度と信頼性は「10年前の産業ロボット並み」という冷めた評価もあります。提案では「2027〜28年に手と電池がそろう。その前に現場データを取る側に回る」と置くのが一番強いです。</p>
+  </div>
+
+  <div class="oneline">手と電池がそろう2027〜28年が、<br>現場ロボットの元年。<br>先に準備した会社が取る。</div>
+
+  <div class="src">
+    <div class="t">出典（提案資料に載せられます）</div>
+    <ul>
+      <li>日経クロステック「理研とホンダ、多指ハンド用AI構築へ」2026年9月／「国内ロボ3社が期待、ハンド進化の新潮流『視触覚』」2026年8月</li>
+      <li>日経クロステック「EV向け全固体電池、2026年登場か」2025年8月／出光興産ニュースリリース 2026年1月29日</li>
+      <li>亜洲日報「インターバッテリー2026」2026年3月／DigitalToday「ヒューマノイド向け電池、競争軸は容量から稼働率へ」2026年9月</li>
+      <li>清水建設ニュースリリース 2026年7月8日／日経クロステック「ヒューマノイドが建設現場にやってくる」2026年4月</li>
+      <li>総合資格navi（政府AIロボティクス戦略改訂 2026年6月30日）／富士経済「2025 次世代電池関連技術・市場の全貌」</li>
+      <li>Tesla Optimus V3 特許解説（2026年4〜5月）／Figure AI 公式・The Robot Report（2026年6月）／Wikipedia「Humanoid hand」</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="th">神経反射入力装置論</div>
+  <p>身体を「神経反射の入力装置」として捉え、触れた場所からの反射で全身の調整を行う施術理論です。</p>
+  <p class="name">三条健康堂接骨院 院長</p>
+  <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+  <p>高松市由良町・由良川東公園のそば</p>
+  <div class="links"><a class="line" href="#">LINEで相談する</a><a class="map" href="#">地図を見る</a></div>
+</footer>
+
+</div>
+</body>
+</html>
