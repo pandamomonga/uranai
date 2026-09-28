@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>消える表　お金3　1号と2号の保険料</title>
+<style>
+  :root{--bg:#15191a;--fg:#e8e6e0;--term:#7ee0b8;--yel:#FFE066;--ok:#4ade80;--ng:#ff7a6b;--card:#1f2426;--line:#343b3e;--green:#0c6b56;--navy:#1f5aa6;--brown:#b5742a}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;font-size:17px;line-height:1.55}
+  .wrap{max-width:640px;margin:0 auto;padding:12px 14px 60px}
+  h1{font-size:20px;margin:6px 0 8px;color:var(--yel)}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+  .btn{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;user-select:none}
+  .btn.navy{background:var(--navy);border-color:var(--navy);color:#fff}
+  .cnt{margin-left:auto;font-size:15px;color:var(--yel);font-weight:700}
+  .svc{background:#111516;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+  .svc h2{margin:0;padding:8px 12px;font-size:17px;color:#fff;background:var(--brown)}
+  .row{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
+  .lab{padding:8px 12px 2px;font-size:15px;color:var(--term)}
+  .cell{padding:6px 12px 10px;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;user-select:none}
+  .cell .q{color:var(--yel);font-weight:700;font-size:18px;letter-spacing:2px}
+  .cell .mark{font-size:13px;color:#9ab;white-space:nowrap}
+  .cell .mark.tri{color:var(--ng);font-weight:700}
+  .cell .mark.dot{color:var(--ok)}
+  .cell.open{background:#1c2a24;flex-direction:column;align-items:stretch;cursor:default}
+  .cell.open .ans{font-size:17px;color:var(--fg);font-weight:600}
+  .judge{display:flex;gap:8px;margin-top:8px}
+  .judge .btn{flex:1;text-align:center;font-size:16px;padding:10px}
+  .judge .ok{background:var(--green);border-color:var(--green);color:#fff}
+  .judge .ng{background:var(--brown);border-color:var(--brown);color:#fff}
+  .row.gone .cell{color:#556;font-size:13px;min-height:30px;padding:2px 12px 8px;cursor:default}
+  .row.gone .lab{color:#556;font-size:13px}
+  .row.hide{display:none}
+  .koe{margin-top:14px;font-size:14px;color:var(--yel);background:#20282b;padding:10px 12px;border-radius:8px}
+  .foot{margin-top:12px;font-size:13px;color:#8a9}
+  .done{margin:10px 0;padding:12px;border-radius:10px;background:#173125;color:var(--ok);font-weight:700;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>消える表　お金3　1号と2号の保険料</h1>
+  <div class="bar">
+    <span class="btn navy" id="hideAll">全部隠す</span>
+    <span class="btn" id="triOnly">△だけ見る</span>
+    <span class="btn" id="resetAll">全部戻す</span>
+    <span class="cnt" id="cnt"></span>
+  </div>
+  <div id="doneMsg" class="done" style="display:none">残り0マス。この表は卒業です。声出しの1行だけ残してください。</div>
+  <div id="board"></div>
+  <div class="koe">声出し：1号は市町村の条例・13段階・3年で均衡・賦課期日は年度初日・天引きは年金保険者・納期と減免は条例・世帯主と配偶者が連帯・選べない・生保も払う。2号は医療保険者が決めて集め、事業主が半分、負担率は国の政令、使うのは給付と総合だけ</div>
+  <div class="foot">問いを読んで口で答える→タップして開ける→「言えた」か「△」。2回続けて「言えた」のマスは消える。開くたびに前回の続きから。</div>
+</div>
+<script>
+const DATA=[{"s": "第1号保険料（決め方）", "items": [["第1号保険料の保険料率を決めるのは、だれか", "市町村（条例で）"], ["所得段階はいくつか", "13段階（国の標準。市町村の条例でさらに細かくできる）"], ["保険料率は、何年を通じて財政を均衡させるか", "3年（5年ではない）"], ["賦課期日はいつで、何で決まっているか", "当該年度の初日。法律で決まっている（条例ではない）"], ["保険料の減免・徴収猶予は、何で決めるか", "市町村の条例（政令ではない）"]]}, {"s": "第1号保険料（集め方）", "items": [["特別徴収（天引き）を行うのは、だれか", "年金保険者（支払基金ではない）"], ["特別徴収の対象になるのは、どんな人か", "年金が年額18万円以上の人（遺族年金・障害年金も対象）"], ["普通徴収の納期を決めるのは、何か", "市町村の条例（省令・政令ではない）"], ["普通徴収で連帯納付義務があるのは、だれか", "世帯主と配偶者"], ["被保険者は、普通徴収と特別徴収を選べるか", "選べない（年金額で決まる）"], ["生活保護受給者の第1号保険料は", "免除されない（生活扶助に加算して払う）"], ["保険料はコンビニで払えるか", "払える（市町村と委託契約を結んだコンビニ）"]]}, {"s": "第1号保険料（使いみち）", "items": [["第1号保険料は、何に使えるか", "給付費＋地域支援事業の全部（総合・包括・任意）＋市町村特別給付＋保健福祉事業＋財政安定化基金の拠出金"]]}, {"s": "第2号保険料", "items": [["第2号保険料を決めて集めるのは、だれか", "各医療保険者（市町村の条例でも都道府県でもない）"], ["第2号保険料は所得段階別定額か", "違う（医療保険ごとの決め方。所得段階別は第1号）"], ["被用者保険（健保・共済）では、保険料をだれが半分もつか", "事業主"], ["第2号被保険者負担率を決めるのは、だれか", "国（政令）"], ["集めた第2号保険料は、どう流れるか", "医療保険者→支払基金（納付金）→市町村（交付金）"], ["第2号保険料は、何に使えるか", "給付費と総合事業だけ（包括・任意・特別給付・基金には入らない）"], ["被用者保険に入っている生活保護受給者は、第2号保険料を払うか", "払う"]]}];
+const KEY="kieru_okane3_v2";
+let st={};
+function load(){ try{ const x=localStorage.getItem(KEY); if(x) st=JSON.parse(x);}catch(e){ st={}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} }
+function get(k){ return st[k]||(st[k]={k:0,t:false,g:false}); }
+let open={}; let triOnly=false; let total=0;
+DATA.forEach(d=>{ total+=d.items.length; });
+function render(){
+  const b=document.getElementById('board'); b.innerHTML="";
+  let remain=0;
+  DATA.forEach((d,r)=>{
+    const svc=document.createElement('div'); svc.className='svc';
+    svc.innerHTML=`<h2>${d.s}</h2>`;
+    d.items.forEach((it,c)=>{
+      const [q,a]=it; const key=`${r}_${c}`; const s=get(key);
+      const row=document.createElement('div'); row.className='row';
+      if(s.g) row.classList.add('gone'); else remain++;
+      if(triOnly && !s.t) row.classList.add('hide');
+      const lab=`<div class="lab">${q}</div>`;
+      let cell;
+      if(s.g){ cell=`<div class="cell">済　${a}</div>`; }
+      else if(open[key]){
+        cell=`<div class="cell open"><div class="ans">${a}</div>
+          <div class="judge"><span class="btn ok" data-j="ok" data-k="${key}">言えた${s.k===1?'（2回目で消える）':''}</span><span class="btn ng" data-j="ng" data-k="${key}">△ 言えなかった</span></div></div>`;
+      }else{
+        const mark = s.t ? `<span class="mark tri">△</span>` : (s.k===1 ? `<span class="mark dot">●1</span>` : `<span class="mark"></span>`);
+        cell=`<div class="cell" data-open="${key}"><span class="q">？？？</span>${mark}</div>`;
+      }
+      row.innerHTML=lab+cell; svc.appendChild(row);
+    });
+    b.appendChild(svc);
+  });
+  document.getElementById('cnt').textContent=`残り ${remain}／${total}`;
+  document.getElementById('doneMsg').style.display= remain===0 ? 'block':'none';
+  b.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',()=>{open[el.dataset.open]=true;render();}));
+  b.querySelectorAll('[data-j]').forEach(el=>el.addEventListener('click',()=>judge(el.dataset.k,el.dataset.j)));
+}
+function judge(key,j){
+  const s=get(key);
+  if(j==='ok'){ s.k+=1; s.t=false; if(s.k>=2){ s.g=true; } }
+  else { s.k=0; s.t=true; }
+  delete open[key]; save(); render();
+}
+document.getElementById('hideAll').addEventListener('click',()=>{open={};render();});
+document.getElementById('triOnly').addEventListener('click',()=>{triOnly=!triOnly;document.getElementById('triOnly').textContent=triOnly?'全部見る':'△だけ見る';render();});
+document.getElementById('resetAll').addEventListener('click',()=>{ if(confirm('消したマスも△も全部戻します。よいですか')){ st={}; open={}; save(); render(); } });
+load(); render();
+</script>
+</body>
+</html>
