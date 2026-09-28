@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>消える表　期限2　月と日の仲間</title>
+<style>
+  :root{--bg:#15191a;--fg:#e8e6e0;--term:#7ee0b8;--yel:#FFE066;--ok:#4ade80;--ng:#ff7a6b;--card:#1f2426;--line:#343b3e;--green:#0c6b56;--navy:#1f5aa6;--brown:#b5742a}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;font-size:17px;line-height:1.55}
+  .wrap{max-width:640px;margin:0 auto;padding:12px 14px 60px}
+  h1{font-size:20px;margin:6px 0 8px;color:var(--yel)}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+  .btn{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px;cursor:pointer;user-select:none}
+  .btn.navy{background:var(--navy);border-color:var(--navy);color:#fff}
+  .cnt{margin-left:auto;font-size:15px;color:var(--yel);font-weight:700}
+  .svc{background:#111516;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+  .svc h2{margin:0;padding:8px 12px;font-size:17px;color:#fff;background:var(--green)}
+  .row{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
+  .lab{padding:8px 12px 2px;font-size:15px;color:var(--term)}
+  .cell{padding:6px 12px 10px;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;user-select:none}
+  .cell .q{color:var(--yel);font-weight:700;font-size:18px;letter-spacing:2px}
+  .cell .mark{font-size:13px;color:#9ab;white-space:nowrap}
+  .cell .mark.tri{color:var(--ng);font-weight:700}
+  .cell .mark.dot{color:var(--ok)}
+  .cell.open{background:#1c2a24;flex-direction:column;align-items:stretch;cursor:default}
+  .cell.open .ans{font-size:17px;color:var(--fg);font-weight:600}
+  .judge{display:flex;gap:8px;margin-top:8px}
+  .judge .btn{flex:1;text-align:center;font-size:16px;padding:10px}
+  .judge .ok{background:var(--green);border-color:var(--green);color:#fff}
+  .judge .ng{background:var(--brown);border-color:var(--brown);color:#fff}
+  .row.gone .cell{color:#556;font-size:13px;min-height:30px;padding:2px 12px 8px;cursor:default}
+  .row.gone .lab{color:#556;font-size:13px}
+  .row.hide{display:none}
+  .koe{margin-top:14px;font-size:14px;color:var(--yel);background:#20282b;padding:10px 12px;border-radius:8px}
+  .foot{margin-top:12px;font-size:13px;color:#8a9}
+  .done{margin:10px 0;padding:12px;border-radius:10px;background:#173125;color:var(--ok);font-weight:700;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>消える表　期限2　月と日の仲間</h1>
+  <div class="bar">
+    <span class="btn navy" id="hideAll">全部隠す</span>
+    <span class="btn" id="triOnly">△だけ見る</span>
+    <span class="btn" id="resetAll">全部戻す</span>
+    <span class="cnt" id="cnt"></span>
+  </div>
+  <div id="doneMsg" class="done" style="display:none">残り0マス。この表は卒業です。声出しの1行だけ残してください。</div>
+  <div id="board"></div>
+  <div class="koe">声出し：認定は新規6月・更新12月（最長48月）。申請30日・更新60日前・転入14日・医療14日。モニタリングは居宅月1・予防3月に1。審査請求3月。ショート30日</div>
+  <div class="foot">問いを読んで口で答える→タップして開ける→「言えた」か「△」。2回続けて「言えた」のマスは消える。開くたびに前回の続きから。</div>
+</div>
+<script>
+const DATA=[{"s": "認定の有効期間", "items": [["新規認定の有効期間は、原則何月か（幅は）", "原則6月（3〜12月）"], ["区分変更の有効期間は、原則何月か", "原則6月（3〜12月）"], ["更新認定の有効期間は、原則何月か（幅は）", "原則12月（3〜36月）"], ["更新で要介護度が変わらないときの最長は", "48月"]]}, {"s": "認定の日数", "items": [["認定は、申請から何日以内に出すか", "30日以内（遅れるときは理由と見込みを通知）"], ["更新の申請は、いつからできるか", "有効期間満了の60日前から"], ["転入したとき、何日以内に申請すれば認定を引き継げるか", "14日以内"], ["主治医意見書・基本調査の「特別な医療」は、過去何日間か", "過去14日間"], ["認定の効力は、いつにさかのぼるか", "申請した日"], ["第1号の資格を取得するのは、いつか", "65歳の誕生日の前日"], ["資格の取得日と喪失日は", "取得は当日、喪失は翌日（同じ日に転入したら当日）"]]}, {"s": "何月に1回", "items": [["居宅介護支援のモニタリング訪問は", "月1回（テレビ電話を使うなら訪問は2月に1回）"], ["介護予防支援のモニタリング訪問は", "3月に1回"], ["感染症対策委員会は、施設と居宅系でそれぞれ何月に1回か", "施設は3月に1回、居宅系は6月に1回"], ["運営推進会議は、GH・小多機などと、地域密着型通所・認知症デイで、それぞれ何月に1回か", "2月に1回と、6月に1回"], ["訪問看護指示書と特別指示書の期間は", "6月以内と、14日"]]}, {"s": "期限いろいろ", "items": [["審査請求は、いつまでにするか", "処分を知った日の翌日から3月以内"], ["ショートの連続利用は、何日までか", "30日（31日目から自費）"], ["高額介護サービス費と高額医療合算の単位は", "月単位と、年単位（8月〜翌7月）"]]}, {"s": "お金の数字", "items": [["特別徴収の対象は、年金が年額いくら以上か", "18万円"], ["特定福祉用具販売と住宅改修の上限は", "年10万円と、20万円（改修は要介護度が3段階上がるか転居でもう一度）"], ["不正受給の返還に付く加算金は", "4割"]]}];
+const KEY="kieru_kigen2_v1";
+let st={};
+function load(){ try{ const x=localStorage.getItem(KEY); if(x) st=JSON.parse(x);}catch(e){ st={}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} }
+function get(k){ return st[k]||(st[k]={k:0,t:false,g:false}); }
+let open={}; let triOnly=false; let total=0;
+DATA.forEach(d=>{ total+=d.items.length; });
+function render(){
+  const b=document.getElementById('board'); b.innerHTML="";
+  let remain=0;
+  DATA.forEach((d,r)=>{
+    const svc=document.createElement('div'); svc.className='svc';
+    svc.innerHTML=`<h2>${d.s}</h2>`;
+    d.items.forEach((it,c)=>{
+      const [q,a]=it; const key=`${r}_${c}`; const s=get(key);
+      const row=document.createElement('div'); row.className='row';
+      if(s.g) row.classList.add('gone'); else remain++;
+      if(triOnly && !s.t) row.classList.add('hide');
+      const lab=`<div class="lab">${q}</div>`;
+      let cell;
+      if(s.g){ cell=`<div class="cell">済　${a}</div>`; }
+      else if(open[key]){
+        cell=`<div class="cell open"><div class="ans">${a}</div>
+          <div class="judge"><span class="btn ok" data-j="ok" data-k="${key}">言えた${s.k===1?'（2回目で消える）':''}</span><span class="btn ng" data-j="ng" data-k="${key}">△ 言えなかった</span></div></div>`;
+      }else{
+        const mark = s.t ? `<span class="mark tri">△</span>` : (s.k===1 ? `<span class="mark dot">●1</span>` : `<span class="mark"></span>`);
+        cell=`<div class="cell" data-open="${key}"><span class="q">？？？</span>${mark}</div>`;
+      }
+      row.innerHTML=lab+cell; svc.appendChild(row);
+    });
+    b.appendChild(svc);
+  });
+  document.getElementById('cnt').textContent=`残り ${remain}／${total}`;
+  document.getElementById('doneMsg').style.display= remain===0 ? 'block':'none';
+  b.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',()=>{open[el.dataset.open]=true;render();}));
+  b.querySelectorAll('[data-j]').forEach(el=>el.addEventListener('click',()=>judge(el.dataset.k,el.dataset.j)));
+}
+function judge(key,j){
+  const s=get(key);
+  if(j==='ok'){ s.k+=1; s.t=false; if(s.k>=2){ s.g=true; } }
+  else { s.k=0; s.t=true; }
+  delete open[key]; save(); render();
+}
+document.getElementById('hideAll').addEventListener('click',()=>{open={};render();});
+document.getElementById('triOnly').addEventListener('click',()=>{triOnly=!triOnly;document.getElementById('triOnly').textContent=triOnly?'全部見る':'△だけ見る';render();});
+document.getElementById('resetAll').addEventListener('click',()=>{ if(confirm('消したマスも△も全部戻します。よいですか')){ st={}; open={}; save(); render(); } });
+load(); render();
+</script>
+</body>
+</html>
