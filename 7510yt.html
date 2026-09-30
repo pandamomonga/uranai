@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>消える表 計画を作る人</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; background: #15191a; color: #e8e6e0; font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 16px; line-height: 1.5; overflow-x: hidden; }
+  header { position: sticky; top: 0; z-index: 20; background: #15191a; padding: 10px 12px 8px; border-bottom: 1px solid #2a3032; }
+  .title { font-size: 18px; font-weight: 700; color: #FFE066; }
+  .remain { float: right; font-size: 15px; color: #7ee0b8; font-weight: 700; }
+  .btns { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .btns button { flex: 1 1 auto; background: #24292b; color: #e8e6e0; border: 1px solid #3a4245; border-radius: 8px; padding: 8px 6px; font-size: 13px; }
+  .btns button.on { background: #1f5aa6; border-color: #1f5aa6; color: #fff; }
+  .toc { padding: 8px 12px 0; font-size: 13px; color: #b8b5ad; }
+  .toc div { padding: 2px 0; }
+  .toc span { color: #7ee0b8; }
+  .toc .dz { color: #ff7a6b; }
+  section { margin: 14px 8px 0; }
+  .band { position: sticky; top: 92px; z-index: 10; padding: 8px 12px; border-radius: 10px 10px 0 0; font-weight: 700; color: #fff; font-size: 15px; }
+  .band .cnt { float: right; font-weight: 400; font-size: 13px; }
+  .b0 { background: #0c6b56; } .b1 { background: #1f5aa6; } .b2 { background: #b5742a; } .b3 { background: #5a3d8a; }
+  .card { background: #1c2123; border: 1px solid #2a3032; border-top: none; border-radius: 0 0 10px 10px; padding: 4px 8px 8px; }
+  .row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; padding: 8px 0; border-bottom: 1px solid #2a3032; }
+  .row:has(.tile.open) .a { flex: 1 1 100%; }
+  .row:last-child { border-bottom: none; }
+  .row.done { opacity: .18; filter: grayscale(1); }
+  .row.done .tile { background: #2a2f31; color: #6f7779; }
+  .row.hidden { display: none; }
+  .q { flex: 1 1 58%; font-size: 15px; padding-top: 4px; }
+  .q .s { color: #7ee0b8; }
+  .a { flex: 1 1 40%; min-width: 120px; }
+  .tile { width: 100%; min-height: 44px; border-radius: 8px; background: #FFE066; color: #111; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; border: 2px solid transparent; }
+  .tile.open { background: #24292b; color: #e8e6e0; font-weight: 400; border-color: #3a4245; display: block; text-align: left; padding: 8px; }
+  .tile.open .ans { font-weight: 700; font-size: 16px; color: #FFE066; margin-bottom: 4px; }
+  .tile.open .who, .tile.open .cm { font-size: 12px; line-height: 1.4; margin-top: 3px; color: #cfcbc2; }
+  .tile.open .who span, .tile.open .cm span { display: inline-block; font-size: 11px; padding: 0 5px; border-radius: 4px; margin-right: 5px; background: #33393c; color: #7ee0b8; }
+  .tile.open .cm-y { color: #FFE066; } .tile.open .cm-y span { background: #FFE066; color: #111; }
+  .tile.open .cm-n { color: #9aa3a6; } .tile.open .cm-n span { background: #3a4245; color: #cfcbc2; }
+  .tile.open .cm-p { color: #ffb36b; } .tile.open .cm-p span { background: #b5742a; color: #fff; }
+  .row.dz { background: #2a1c1c; border-left: 6px solid #ff7a6b; padding-left: 6px; border-radius: 6px; }
+  .row.dz .tile { border-color: #ff7a6b; }
+  .row.dz .q::before { content: "△"; display: inline-block; color: #ff7a6b; font-weight: 900; font-size: 30px; line-height: 1; margin-right: 8px; vertical-align: -4px; }
+  .row.done .q::before { content: "済 "; color: #4ade80; font-weight: 700; }
+  .ab { display: none; gap: 6px; margin-top: 6px; }
+  .tile.open + .ab { display: flex; }
+  .ab button { flex: 1; border-radius: 8px; padding: 7px 4px; font-size: 13px; border: none; }
+  .ab .ok { background: #4ade80; color: #111; font-weight: 700; }
+  .ab .ng { background: #ff7a6b; color: #111; font-weight: 900; font-size: 20px; }
+  footer { padding: 18px 14px 40px; color: #b8b5ad; font-size: 14px; }
+  footer .koe { color: #FFE066; font-weight: 700; margin-bottom: 8px; }
+  .note { font-size: 12px; color: #7f8a8d; margin-top: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <span class="remain" id="remain"></span>
+  <div class="title">消える表 計画を作る人</div>
+  <div class="btns">
+    <button id="bHide">全部隠す</button>
+    <button id="bDz">△だけ見る</button>
+    <button id="bReset">全部戻す</button>
+  </div>
+</header>
+<div class="toc" id="toc"></div>
+<main id="main"></main>
+<footer>
+  <div class="koe">声出し：「通いと泊まりは管理者、住むと多機能はケアマネ、訪問はその道の人、入浴と療養管理は作らない」</div>
+  <div>見る前に口で言う→マスを開ける→「はい」なら1回で暗くなる。「△」なら赤い△が残る。残った△だけ回す。「全部戻す」は2回押しで全部最初に戻る。</div>
+  <div class="note">2026-09-30　※順番は見出しの中だけで開くたびに変わります。</div>
+</footer>
+<script>
+const DATA = [
+ {
+  "h": "1 居宅サービス（訪問・通い・泊まり・用具）",
+  "items": [
+   [
+    "訪問介護の計画を作るのはだれか",
+    "サービス提供責任者",
+    "訪問介護の現場のまとめ役（介護福祉士など）",
+    "要らない"
+   ],
+   [
+    "訪問入浴介護に、事業所が作る計画はあるか",
+    "ない（作らない）",
+    "",
+    ""
+   ],
+   [
+    "訪問看護の計画書を作るのはだれか",
+    "看護師等（准看護師は除く）",
+    "訪問看護の看護師・保健師・リハ職",
+    "要らない"
+   ],
+   [
+    "訪問リハの計画を作るのはだれか",
+    "医師とリハ職が共同で作る",
+    "医師＋理学療法士・作業療法士・言語聴覚士",
+    "要らない"
+   ],
+   [
+    "居宅療養管理指導に、事業所が作る計画はあるか",
+    "ない（作らない）",
+    "",
+    ""
+   ],
+   [
+    "通所介護の計画を作るのはだれか",
+    "管理者",
+    "その事業所の長。資格なしでよい",
+    "要らない"
+   ],
+   [
+    "通所リハの計画を作るのはだれか",
+    "医師とリハ職などの従業者が共同で作る",
+    "医師＋理学療法士・作業療法士など",
+    "要らない"
+   ],
+   [
+    "短期入所生活介護の計画を作るのはだれか",
+    "管理者",
+    "その事業所の長。資格なしでよい",
+    "要らない"
+   ],
+   [
+    "短期入所療養介護の計画を作るのはだれか",
+    "管理者",
+    "その事業所の長。資格なしでよい",
+    "要らない"
+   ],
+   [
+    "特定施設（有料など）の計画を作るのはだれか",
+    "計画作成担当者（介護支援専門員）",
+    "有料老人ホームなどの中のケアマネ",
+    "要る"
+   ],
+   [
+    "福祉用具貸与の計画を作るのはだれか",
+    "福祉用具専門相談員",
+    "福祉用具の店の相談員（講習修了者など）",
+    "要らない"
+   ],
+   [
+    "特定福祉用具販売の計画を作るのはだれか",
+    "福祉用具専門相談員",
+    "福祉用具の店の相談員（講習修了者など）",
+    "要らない"
+   ],
+   [
+    "住宅改修に、事業者が作る計画はあるか",
+    "ない（理由書を介護支援専門員などが書く）",
+    "",
+    ""
+   ]
+  ]
+ },
+ {
+  "h": "2 地域密着型サービス",
+  "items": [
+   [
+    "定期巡回・随時対応型の計画を作るのはだれか",
+    "計画作成責任者",
+    "定期巡回の電話番（オペレーター）の1人。医師・保健師・看護師・准看護師・介護福祉士・社会福祉士・ケアマネのどれか",
+    "要らない"
+   ],
+   [
+    "夜間対応型訪問介護の計画を作るのはだれか",
+    "オペレーションセンター従業者",
+    "夜間対応型の電話番（看護師・介護福祉士・ケアマネなど）",
+    "要らない"
+   ],
+   [
+    "地域密着型通所介護の計画を作るのはだれか",
+    "管理者",
+    "その事業所の長。資格なしでよい",
+    "要らない"
+   ],
+   [
+    "認知症対応型通所介護の計画を作るのはだれか",
+    "管理者",
+    "その事業所の長。資格なしでよい",
+    "要らない"
+   ],
+   [
+    "小規模多機能の計画を作るのはだれか",
+    "介護支援専門員",
+    "小多機に置くケアマネ本人（認知症と計画作成の研修も受けた人）",
+    "要る"
+   ],
+   [
+    "看護小規模多機能の計画を作るのはだれか",
+    "介護支援専門員（看護師等と連携）",
+    "看多機に置くケアマネ本人",
+    "要る"
+   ],
+   [
+    "グループホームの計画を作るのはだれか",
+    "計画作成担当者",
+    "グループホームの計画係。事業所に1人以上はケアマネ、残りは認知症の研修修了者",
+    "1人は要る・ほかは要らない"
+   ],
+   [
+    "地域密着型特定施設の計画を作るのはだれか",
+    "計画作成担当者",
+    "29人以下の有料老人ホームなどの中のケアマネ",
+    "要る"
+   ],
+   [
+    "地域密着型特養（29人以下）の計画を作るのはだれか",
+    "計画担当介護支援専門員",
+    "施設の中で計画係をするケアマネ",
+    "要る"
+   ]
+  ]
+ },
+ {
+  "h": "3 施設とケアマネジメント",
+  "items": [
+   [
+    "特養の施設サービス計画を作るのはだれか",
+    "計画担当介護支援専門員",
+    "施設の中で計画係をするケアマネ",
+    "要る"
+   ],
+   [
+    "老健の施設サービス計画を作るのはだれか",
+    "計画担当介護支援専門員",
+    "施設の中で計画係をするケアマネ",
+    "要る"
+   ],
+   [
+    "介護医療院の施設サービス計画を作るのはだれか",
+    "計画担当介護支援専門員",
+    "施設の中で計画係をするケアマネ",
+    "要る"
+   ],
+   [
+    "居宅サービス計画（ケアプラン）を作るのはだれか",
+    "居宅介護支援事業所の介護支援専門員",
+    "ケアマネ本人",
+    "要る"
+   ],
+   [
+    "介護予防サービス計画を作るのはだれか",
+    "地域包括支援センターの担当職員（令和6年から指定を受けた居宅介護支援事業所も）",
+    "包括の保健師・社会福祉士・主任ケアマネ・ケアマネ・経験ある看護師など",
+    "要らない（ケアマネでなくてよい）"
+   ]
+  ]
+ },
+ {
+  "h": "4 例外と決まり",
+  "items": [
+   [
+    "小多機の登録者の居宅サービス計画を作るのはだれか",
+    "小多機事業所の介護支援専門員",
+    "小多機のケアマネ本人",
+    "要る"
+   ],
+   [
+    "サテライト型小多機で、介護支援専門員の代わりに計画を作るのはだれか",
+    "研修修了者",
+    "計画作成の研修を受けた人（ケアマネの代わり）",
+    "要らない"
+   ],
+   [
+    "グループホームの計画作成担当者は、事業所に何人以上要るか",
+    "1人以上（うち1人以上は介護支援専門員）",
+    "グループホームの計画係",
+    "1人は要る・ほかは要らない"
+   ],
+   [
+    "夜間対応型でオペレーションセンターがないとき、計画を作るのはだれか",
+    "訪問介護員等",
+    "夜間のヘルパー",
+    "要らない"
+   ],
+   [
+    "短期入所の計画を作るのは、連続何日以上の利用のときか",
+    "おおむね4日以上",
+    "",
+    ""
+   ],
+   [
+    "認知症デイの計画を作った後に居宅サービス計画ができたら、計画を直す必要はあるか",
+    "ある（必要に応じて変更する）",
+    "",
+    ""
+   ]
+  ]
+ }
+];
+const KEY = "kieru_keikaku_tsukuru_2026-09-30";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { state = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+function st(q){ if(!state[q]) state[q] = {ok:0, dz:false, done:false}; return state[q]; }
+let showDzOnly = false, showDone = false;
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const bands = ["b0","b1","b2","b3"];
+function build(){
+  const main = document.getElementById("main"); main.innerHTML = "";
+  DATA.forEach((sec, si) => {
+    const s = document.createElement("section");
+    const band = document.createElement("div"); band.className = "band " + bands[si%4]; band.innerHTML = sec.h + '<span class="cnt" id="cnt'+si+'"></span>';
+    const card = document.createElement("div"); card.className = "card";
+    shuffle(sec.items.slice()).forEach(([q,a,who,cm]) => {
+      const row = document.createElement("div"); row.className = "row"; row.dataset.q = q;
+      row.innerHTML = '<div class="q">'+q+'</div><div class="a"><div class="tile">？？？</div><div class="ab"><button class="ok">はい（消す）</button><button class="ng">△</button></div></div>';
+      const tile = row.querySelector(".tile");
+      const openHtml = () => {
+        let h = '<div class="ans">'+a+'</div>';
+        if(who) h += '<div class="who"><span>だれ</span>'+who+'</div>';
+        if(cm){ let cls = cm.startsWith("要る") ? "cm-y" : (cm.startsWith("1人") ? "cm-p" : "cm-n"); h += '<div class="cm '+cls+'"><span>ケアマネ資格</span>'+cm+'</div>'; }
+        return h;
+      };
+      tile.addEventListener("click", () => { if(tile.classList.contains("open")){ tile.classList.remove("open"); tile.textContent="？？？"; } else { tile.classList.add("open"); tile.innerHTML = openHtml(); } });
+      row.querySelector(".ok").addEventListener("click", () => { const x = st(q); x.ok = 1; x.dz = false; x.done = true; save(); tile.classList.remove("open"); tile.textContent="？？？"; refresh(); });
+      row.querySelector(".ng").addEventListener("click", () => { const x = st(q); x.ok = 0; x.dz = true; x.done = false; save(); tile.classList.remove("open"); tile.textContent="？？？"; refresh(); });
+      card.appendChild(row);
+    });
+    s.appendChild(band); s.appendChild(card); main.appendChild(s);
+  });
+  refresh();
+}
+function refresh(){
+  let total=0, done=0, dz=0; const toc=[];
+  DATA.forEach((sec, si) => {
+    let t=0,d=0,z=0;
+    sec.items.forEach(([q]) => { const x=st(q); t++; if(x.done) d++; if(x.dz) z++; });
+    total+=t; done+=d; dz+=z;
+    document.getElementById("cnt"+si).textContent = "残り"+(t-d)+"／"+t+(z?"　△"+z:"");
+    toc.push('<div>'+sec.h+'　<span>残り'+(t-d)+'／'+t+'</span>'+(z?'　<span class="dz">△'+z+'</span>':'')+'</div>');
+  });
+  document.getElementById("remain").textContent = "残り "+(total-done)+"／"+total;
+  document.getElementById("toc").innerHTML = toc.join("");
+  document.querySelectorAll(".row").forEach(row => {
+    const x = st(row.dataset.q);
+    row.classList.toggle("done", x.done); row.classList.toggle("dz", x.dz);
+    let hide = false;
+    if(showDzOnly && !x.dz) hide = true;
+    row.classList.toggle("hidden", hide);
+  });
+  document.getElementById("bDz").textContent = showDzOnly ? "全部見る" : "△だけ見る";
+  document.getElementById("bDz").classList.toggle("on", showDzOnly);
+}
+document.getElementById("bHide").addEventListener("click", () => { document.querySelectorAll(".tile").forEach(t => { t.classList.remove("open"); t.textContent="？？？"; }); });
+document.getElementById("bDz").addEventListener("click", () => { showDzOnly = !showDzOnly; refresh(); });
+let resetArmed = null;
+document.getElementById("bReset").addEventListener("click", (e) => {
+  const b = e.currentTarget;
+  if(resetArmed){ clearTimeout(resetArmed); resetArmed = null; b.textContent = "全部戻す"; b.classList.remove("on"); state = {}; save(); build(); return; }
+  b.textContent = "もう一度押すと戻す"; b.classList.add("on");
+  resetArmed = setTimeout(() => { resetArmed = null; b.textContent = "全部戻す"; b.classList.remove("on"); }, 3000);
+});
+build();
+</script>
+</body>
+</html>
