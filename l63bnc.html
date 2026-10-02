@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兼近様 施術報告書 2026.10.02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* 一列の縦スクロール。白地に、部の区切りだけ深緑の帯。図が主役で、文は図の前後に一行ずつ。 */
+:root{
+  --green:#1a3d28;
+  --green-mid:#2a5a3c;
+  --norm:#2e8b57;
+  --gold:#c4a44d;
+  --gold-ink:#6f5610;
+  --gold-wash:#f6efd9;
+  --ivory:#f5f0e4;
+  --paper:#ffffff;
+  --tint:#f3f1ea;
+  --line:#d9d4c3;
+  --ink:#1c241d;
+  --ink-soft:#3d4a3f;
+  --low:#3f4bb0;
+  --low-wash:#e9ebfa;
+  --high:#c23f22;
+  --high-wash:#fbe9e3;
+  --fill:#b4520a;
+  --display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+  --mono:ui-monospace,"SFMono-Regular","Menlo","Consolas","Hiragino Kaku Gothic ProN",monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.8;
+  font-weight:500;
+}
+.wrap{max-width:720px;margin:0 auto}
+.pad{padding-inline:20px}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--body)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* 表紙 */
+.cover{background:var(--green);color:var(--ivory);padding-block:56px 48px;text-align:left}
+.cover .eyebrow{font-size:14px;letter-spacing:.3em;color:var(--gold);font-weight:700}
+.cover h1{font-family:var(--display);font-weight:900;font-size:40px;line-height:1.3;margin-top:18px;letter-spacing:.06em}
+.cover .who{font-family:var(--display);font-size:26px;font-weight:700;margin-top:22px;padding-top:20px;border-top:1px solid var(--gold)}
+.cover .date{font-size:16px;margin-top:6px;font-variant-numeric:tabular-nums;color:var(--ivory)}
+
+/* 前提文 */
+.premise{background:var(--tint);padding-block:18px;font-size:16px;line-height:1.75;color:var(--ink)}
+
+/* 目次 */
+.toc{padding-block:40px 44px}
+.toc h2{font-family:var(--display);font-size:24px;font-weight:700;line-height:1.5;text-wrap:balance}
+.toc ol{list-style:none;margin-top:20px;display:grid;gap:12px}
+.toc a{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;text-decoration:none;border:1px solid var(--line);border-left:6px solid var(--green);padding:16px 18px;background:var(--paper)}
+.toc .no{font-family:var(--display);font-size:20px;font-weight:700;color:var(--green);white-space:nowrap}
+.toc .tt{font-size:18px;font-weight:700;line-height:1.5}
+
+/* 部の帯 */
+.band{background:var(--green);color:var(--ivory);padding-block:26px}
+.band .no{font-size:15px;letter-spacing:.24em;color:var(--gold);font-weight:700}
+.band h2{font-family:var(--display);font-size:28px;font-weight:900;line-height:1.4;margin-top:4px;text-wrap:balance}
+
+.part{padding-block:30px 52px;display:grid;gap:36px}
+.lead{font-size:18px;line-height:1.8;font-weight:500}
+.block{display:grid;gap:14px;min-width:0}
+.block h3{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.5;color:var(--green);text-wrap:balance}
+.fig-title{font-size:16px;font-weight:700;color:var(--ink)}
+.fig{border:1px solid var(--line);padding:16px 12px 12px;background:var(--paper)}
+.cap{font-size:16px;line-height:1.75;color:var(--ink-soft)}
+.small{font-size:14px;line-height:1.7;color:var(--ink-soft)}
+
+/* 重なっていたもの */
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none}
+.chips li{border:2px solid var(--green);padding:8px 16px;font-weight:700;font-size:17px;background:var(--paper)}
+
+/* 安心の一言 */
+.assure{background:var(--green);color:var(--ivory);padding:22px 20px;font-family:var(--display);font-size:22px;font-weight:700;line-height:1.6;text-wrap:balance}
+
+/* 今夜の3つ */
+.tonight{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;list-style:none}
+.tonight li{background:var(--gold-wash);padding:16px 8px 14px;text-align:center;display:grid;gap:8px;justify-items:center;min-width:0}
+.tonight svg{width:56px;height:56px}
+.tonight span{font-weight:700;font-size:16px;line-height:1.45}
+
+/* 測定カード */
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;list-style:none}
+.metrics li{border:1px solid var(--line);padding:14px 14px 12px;display:grid;gap:4px;min-width:0}
+.metrics li:first-child{grid-column:1/-1}
+.metrics .k{font-size:15px;font-weight:700}
+.metrics .v{font-family:var(--display);font-size:32px;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums}
+.pill{justify-self:start;font-size:14px;font-weight:700;padding:2px 10px;line-height:1.6}
+.pill.low{background:var(--low-wash);color:var(--low)}
+.pill.ok{background:var(--norm);color:#ffffff}
+.pill.high{background:var(--high-wash);color:var(--high)}
+
+.organs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.organ{border:1px solid var(--line);padding:14px 10px 12px;display:grid;gap:8px;justify-items:center;min-width:0}
+.organ .nm{font-weight:700;font-size:17px}
+
+/* 第2部 */
+.verdict{border-top:4px solid var(--green);border-bottom:4px solid var(--green);padding-block:22px;font-family:var(--display);font-size:26px;font-weight:900;line-height:1.55;color:var(--green);text-wrap:balance}
+.reasons{display:grid;gap:22px;list-style:none}
+.reasons>li{display:grid;gap:10px;min-width:0}
+.reasons .rt{font-size:19px;font-weight:700;line-height:1.55}
+.point{border:2px solid var(--gold);padding:22px 14px 14px;position:relative;margin-top:10px;display:grid;gap:10px}
+.point .tag{position:absolute;top:-13px;left:12px;background:var(--gold);color:var(--green);font-size:13px;font-weight:900;letter-spacing:.16em;padding:1px 12px}
+.point p{font-size:16px;line-height:1.75}
+
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;list-style:none;counter-reset:f}
+.flow li{background:var(--tint);padding:12px 4px;text-align:center;font-size:15px;font-weight:700;line-height:1.45;min-width:0}
+.flow li::before{counter-increment:f;content:counter(f);display:block;font-family:var(--display);font-size:22px;color:var(--green);line-height:1.2}
+
+.prompt{border:1px solid var(--green);display:grid;min-width:0}
+.prompt .head{background:var(--green);color:var(--ivory);padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.prompt .when{font-family:var(--display);font-size:20px;font-weight:700}
+.prompt .what{font-size:15px;font-weight:500}
+.prompt pre{font-family:var(--mono);font-size:16px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere;padding:16px 14px;background:var(--tint);color:var(--ink);user-select:all;-webkit-user-select:all}
+.prompt pre .fill{color:var(--fill);font-weight:700}
+.copy{appearance:none;border:0;cursor:pointer;font-family:var(--body);font-size:17px;font-weight:700;padding:14px;background:var(--gold);color:var(--green);transition:background-color .15s}
+.copy:hover{background:#d2b565}
+.copy.done{background:var(--norm);color:#ffffff}
+
+.kit{list-style:none;display:grid;gap:10px}
+.kit li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;border:1px solid var(--line);border-left:6px solid var(--green);padding:14px 14px 14px 12px;min-width:0}
+.kit .mk{font-family:var(--display);font-size:26px;font-weight:700;line-height:44px;height:44px;text-align:center;background:var(--green);color:var(--ivory)}
+.kit strong{display:block;font-size:18px;line-height:1.5}
+.kit div span{display:block;font-size:16px;line-height:1.7;color:var(--ink-soft)}
+.kit li.out{border-left-color:var(--ink-soft);background:var(--tint)}
+.kit li.out .mk{background:var(--paper);color:var(--high);border:2px solid var(--high);line-height:40px}
+.steps{display:grid;gap:8px;padding-left:1.6em;font-size:17px;font-weight:700;line-height:1.7}
+.steps li::marker{color:var(--green);font-family:var(--display)}
+
+.caution{background:var(--gold-wash);padding:18px 16px;display:grid;gap:6px}
+.caution strong{font-size:18px}
+
+.src{font-size:13px;line-height:1.7;color:var(--ink-soft);overflow-wrap:anywhere}
+
+/* 署名 */
+.sign{background:var(--green);color:var(--ivory);padding-block:44px 40px;display:grid;gap:18px;text-align:center}
+.sign .theory{font-family:var(--display);font-size:20px;letter-spacing:.42em;color:var(--gold);font-weight:700}
+.sign .nm{font-family:var(--display);font-size:26px;font-weight:700;line-height:1.4}
+.sign .nm small{display:block;font-family:var(--body);font-size:15px;font-weight:500;margin-top:4px}
+.sign .loc{font-size:16px}
+.sign .btns{display:grid;gap:10px;max-width:420px;width:100%;margin:0 auto}
+.sign .btn{display:block;text-decoration:none;font-weight:700;font-size:17px;padding:14px 12px;background:var(--ivory);color:var(--green)}
+.sign .btn.map{background:var(--gold)}
+.sign .sig,.sign .prof,.sign .foot{font-size:14px;line-height:1.8;text-align:left;max-width:560px;margin:0 auto}
+.sign .sig{font-weight:700;color:var(--gold)}
+.sign hr{border:0;border-top:1px solid var(--gold);max-width:560px;width:100%;margin:0 auto}
+
+@media (max-width:380px){
+  .cover h1{font-size:34px}
+  .verdict{font-size:23px}
+  .tonight span{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){.copy{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap pad">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1>施術報告書</h1>
+    <div class="who">兼近様</div>
+    <div class="date">2026年10月2日（金）</div>
+  </div>
+</header>
+
+<div class="premise">
+  <div class="wrap pad">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+</div>
+
+<nav class="toc" aria-label="目次">
+  <div class="wrap pad">
+    <h2>今日の報告は、2つの話です</h2>
+    <ol>
+      <li><a href="#part1"><span class="no">第1部</span><span class="tt">本日のお身体と施術</span></a></li>
+      <li><a href="#part2"><span class="no">第2部</span><span class="tt">息子さんの試験勉強、いちばん効く進め方</span></a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ========== 第1部 ========== -->
+<section id="part1">
+  <div class="band"><div class="wrap pad">
+    <div class="no">第1部</div>
+    <h2>本日のお身体と施術</h2>
+  </div></div>
+
+  <div class="wrap pad part">
+    <p class="lead">まず、本日さわって感じたお身体の様子です。</p>
+
+    <div class="block">
+      <h3>頭が、かなり固くなっていました</h3>
+      <div class="fig-title">図1　本日こわばりを感じた場所（背中側から見た図）</div>
+      <div class="fig">
+        <svg viewBox="0 0 340 250" role="img" aria-label="背中側から見た頭と肩の図。頭全体にこわばりの印がついている。画面の左が左、右が右。">
+          <defs>
+            <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
+              <rect width="8" height="8" fill="#f6efd9"/>
+              <rect width="3.2" height="8" fill="#c4a44d"/>
+            </pattern>
+          </defs>
+          <!-- 肩と首 -->
+          <path d="M48 244 C52 196 96 182 140 174 L140 150 L200 150 L200 174 C244 182 288 196 292 244 Z" fill="#f3f1ea" stroke="#1a3d28" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- 頭 -->
+          <ellipse cx="170" cy="92" rx="60" ry="70" fill="url(#hatch)" stroke="#c23f22" stroke-width="3.5"/>
+          <!-- 耳 -->
+          <path d="M110 92 q-12 2 -8 22 q4 10 12 6" fill="#f3f1ea" stroke="#1a3d28" stroke-width="2.5"/>
+          <path d="M230 92 q12 2 8 22 q-4 10 -12 6" fill="#f3f1ea" stroke="#1a3d28" stroke-width="2.5"/>
+          <!-- 引き出し線 -->
+          <line x1="224" y1="52" x2="262" y2="30" stroke="#1c241d" stroke-width="1.5"/>
+          <text x="266" y="28" font-size="16" font-weight="700" fill="#1c241d">頭全体</text>
+          <text x="266" y="48" font-size="15" fill="#1c241d">カチカチ</text>
+          <!-- 左右 -->
+          <text x="24" y="236" font-size="16" font-weight="700" fill="#1a3d28" text-anchor="middle">左</text>
+          <text x="316" y="236" font-size="16" font-weight="700" fill="#1a3d28" text-anchor="middle">右</text>
+        </svg>
+      </div>
+      <p class="cap">次の3つが重なっていたように感じました。</p>
+      <ul class="chips">
+        <li>考えごと</li>
+        <li>ストレス</li>
+        <li>気候の変化</li>
+      </ul>
+    </div>
+
+    <p class="assure">ご安心ください。<br>本日、確実に施術しました。</p>
+
+    <div class="block">
+      <h3>今夜は、この3つだけ</h3>
+      <ul class="tonight">
+        <li>
+          <svg viewBox="0 0 56 56" aria-hidden="true">
+            <path d="M12 26 h26 v10 a11 11 0 0 1 -11 11 h-4 a11 11 0 0 1 -11 -11 z" fill="#ffffff" stroke="#1a3d28" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M38 29 h4 a5 5 0 0 1 0 10 h-4" fill="none" stroke="#1a3d28" stroke-width="2.5"/>
+            <path d="M19 19 q-3 -4 0 -8 M25 19 q-3 -4 0 -8 M31 19 q-3 -4 0 -8" fill="none" stroke="#c23f22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span>温かいものを飲む</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 56 56" aria-hidden="true">
+            <circle cx="28" cy="13" r="6" fill="#ffffff" stroke="#1a3d28" stroke-width="2.5"/>
+            <path d="M10 48 C10 30 18 23 28 23 C38 23 46 30 46 48 Z" fill="#ffffff" stroke="#1a3d28" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M17 34 h22 M15 41 h26" fill="none" stroke="#c23f22" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span>体を温かくする</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 56 56" aria-hidden="true">
+            <path d="M36 9 A20 20 0 1 0 47 37 A16 16 0 0 1 36 9 Z" fill="#ffffff" stroke="#1a3d28" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M40 14 h8 l-8 9 h8" fill="none" stroke="#c23f22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>爆睡する</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h3>本日の測定（RaDoTech）</h3>
+      <p class="cap">続いて、測定器に出た本日の数字です。全体に低めの表示でした。</p>
+      <ul class="metrics">
+        <li><span class="k">エネルギー</span><span class="v">23.16</span><span class="pill low">標準より低め</span></li>
+        <li><span class="k">免疫</span><span class="v">22.82</span><span class="pill ok">標準</span></li>
+        <li><span class="k">代謝</span><span class="v">0.90</span><span class="pill low">標準より低め</span></li>
+        <li><span class="k">心理・情動</span><span class="v">0.75</span><span class="pill low">標準より低め</span></li>
+        <li><span class="k">筋骨格</span><span class="v">0.85</span><span class="pill low">標準より低め</span></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="fig-title">図2　左右のバランス（シーソーにたとえた図）</div>
+      <div class="fig">
+        <svg viewBox="0 0 340 190" role="img" aria-label="シーソーの図。左が255.24、右が300.49で、右が重く下がっている。">
+          <g transform="rotate(7 170 118)">
+            <rect x="40" y="113" width="260" height="10" fill="#1a3d28"/>
+            <rect x="48" y="76" width="44" height="37" fill="#3f4bb0"/>
+            <rect x="248" y="69" width="44" height="44" fill="#c23f22"/>
+          </g>
+          <path d="M170 124 L146 166 L194 166 Z" fill="#c4a44d" stroke="#1a3d28" stroke-width="2"/>
+          <line x1="20" y1="167" x2="320" y2="167" stroke="#1c241d" stroke-width="2"/>
+          <text x="70" y="40" font-size="16" font-weight="700" fill="#1c241d" text-anchor="middle">左</text>
+          <text x="70" y="62" font-size="18" font-weight="700" fill="#1c241d" text-anchor="middle">255.24</text>
+          <text x="270" y="40" font-size="16" font-weight="700" fill="#1c241d" text-anchor="middle">右</text>
+          <text x="270" y="62" font-size="18" font-weight="700" fill="#1c241d" text-anchor="middle">300.49</text>
+        </svg>
+      </div>
+      <p class="cap">右がやや重めです。左右の比は0.85（目安は0.9〜1.2）でした。</p>
+    </div>
+
+    <div class="block">
+      <div class="fig-title">図3　標準（まん中の緑）と比べた、左右の高さ</div>
+      <div class="organs">
+        <div class="organ">
+          <div class="nm">心包・循環</div>
+          <svg viewBox="0 30 300 206" role="img" aria-label="心包・循環の棒グラフ。左81パーセント、標準100パーセント、右21パーセント。">
+            <line x1="30" y1="200" x2="270" y2="200" stroke="#1c241d" stroke-width="2"/>
+            <rect x="62" y="135.2" width="44" height="64.8" fill="#3f4bb0"/>
+            <rect x="128" y="120" width="44" height="80" fill="#2e8b57"/>
+            <rect x="194" y="183.2" width="44" height="16.8" fill="#3f4bb0"/>
+            <text x="84" y="127" font-size="18" font-weight="700" fill="#1c241d" text-anchor="middle">81%</text>
+            <text x="150" y="112" font-size="15" font-weight="700" fill="#1c241d" text-anchor="middle">標準</text>
+            <text x="216" y="175" font-size="18" font-weight="700" fill="#1c241d" text-anchor="middle">21%</text>
+            <text x="84" y="224" font-size="16" font-weight="700" fill="#1c241d" text-anchor="middle">左</text>
+            <text x="150" y="224" font-size="15" fill="#1c241d" text-anchor="middle">100%</text>
+            <text x="216" y="224" font-size="16" font-weight="700" fill="#1c241d" text-anchor="middle">右</text>
+          </svg>
+          <span class="pill low">不足ぎみの表示</span>
+        </div>
+        <div class="organ">
+          <div class="nm">肝</div>
+          <svg viewBox="0 30 300 206" role="img" aria-label="肝の棒グラフ。左107パーセント、標準100パーセント、右175パーセント。">
+            <line x1="30" y1="200" x2="270" y2="200" stroke="#1c241d" stroke-width="2"/>
+            <rect x="62" y="114.4" width="44" height="85.6" fill="#c23f22"/>
+            <rect x="128" y="120" width="44" height="80" fill="#2e8b57"/>
+            <rect x="194" y="60" width="44" height="140" fill="#c23f22"/>
+            <text x="84" y="106" font-size="18" font-weight="700" fill="#1c241d" text-anchor="middle">107%</text>
+            <text x="150" y="112" font-size="15" font-weight="700" fill="#1c241d" text-anchor="middle">標準</text>
+            <text x="216" y="52" font-size="18" font-weight="700" fill="#1c241d" text-anchor="middle">175%</text>
+            <text x="84" y="224" font-size="16" font-weight="700" fill="#1c241d" text-anchor="middle">左</text>
+            <text x="150" y="224" font-size="15" fill="#1c241d" text-anchor="middle">100%</text>
+            <text x="216" y="224" font-size="16" font-weight="700" fill="#1c241d" text-anchor="middle">右</text>
+          </svg>
+          <span class="pill high">がんばっている表示</span>
+        </div>
+      </div>
+      <p class="cap">肝ががんばって、ほかを助けている形です。測定器の説明では、この表示は見守るだけでよいとされています。</p>
+      <p class="small">測定器には「15%を下回る日が数日続くときは医師に相談」という目安があります。本日のいちばん低い値は21%でした。数字は体調の目安で、病気の診断ではありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第2部 ========== -->
+<section id="part2">
+  <div class="band"><div class="wrap pad">
+    <div class="no">第2部</div>
+    <h2>息子さんの試験勉強、いちばん効く進め方</h2>
+  </div></div>
+
+  <div class="wrap pad part">
+    <p class="lead">ここからは、考えごとのひとつ、息子さんの11月の試験の話です。効果が確かめられている勉強法を調べ、今日から使える形にしました。</p>
+
+    <p class="verdict">毎日、全科目を少しずつ。<br>週末に測って、組み直す。</p>
+
+    <div class="block">
+      <div class="fig-title">図4　1週間の回し方</div>
+      <div class="fig">
+        <svg viewBox="0 0 360 262" role="img" aria-label="平日は全科目を2問ずつ、週末はミニ模擬テスト30分、その結果でメニューを組み直し、また平日に戻る、という循環の図。">
+          <defs>
+            <marker id="arr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+              <path d="M0 0 L14 7 L0 14 Z" fill="#1a3d28"/>
+            </marker>
+          </defs>
+          <rect x="92" y="10" width="176" height="66" fill="#1a3d28"/>
+          <text x="180" y="38" font-size="15" fill="#f5f0e4" text-anchor="middle">平日</text>
+          <text x="180" y="62" font-size="18" font-weight="700" fill="#f5f0e4" text-anchor="middle">全科目を2問ずつ</text>
+
+          <rect x="212" y="184" width="142" height="66" fill="#f6efd9" stroke="#c4a44d" stroke-width="2"/>
+          <text x="283" y="212" font-size="15" fill="#1c241d" text-anchor="middle">週末</text>
+          <text x="283" y="236" font-size="17" font-weight="700" fill="#1c241d" text-anchor="middle">ミニ模擬30分</text>
+
+          <rect x="6" y="184" width="142" height="66" fill="#f3f1ea" stroke="#1a3d28" stroke-width="2"/>
+          <text x="77" y="212" font-size="15" fill="#1c241d" text-anchor="middle">結果を見て</text>
+          <text x="77" y="236" font-size="16" font-weight="700" fill="#1c241d" text-anchor="middle">メニュー組み直し</text>
+
+          <line x1="248" y1="82" x2="284" y2="178" stroke="#1a3d28" stroke-width="3" marker-end="url(#arr)"/>
+          <line x1="206" y1="217" x2="154" y2="217" stroke="#1a3d28" stroke-width="3" marker-end="url(#arr)"/>
+          <line x1="76" y1="178" x2="112" y2="82" stroke="#1a3d28" stroke-width="3" marker-end="url(#arr)"/>
+        </svg>
+      </div>
+      <p class="cap">数学に時間が寄っていても、この形なら全科目に毎日ふれられます。</p>
+    </div>
+
+    <div class="block">
+      <h3>この形にした、3つの理由</h3>
+      <ol class="reasons">
+        <li>
+          <div class="rt">1　思い出す練習と、日を分ける勉強がいちばん効く</div>
+          <div class="point">
+            <span class="tag">POINT</span>
+            <p>10種類の勉強法を比べた研究で、評価が最も高かったのは「テスト形式で思い出す」と「日を分けて勉強する」の2つでした。読み返しやマーカーは低い評価でした。</p>
+          </div>
+        </li>
+        <li>
+          <div class="rt">2　科目や単元を、混ぜて解く</div>
+          <div class="point">
+            <span class="tag">POINT</span>
+            <p>中学生787人の数学の授業で比べた実験です。1か月以上あとのテストで、差が出ました。</p>
+            <svg viewBox="0 0 300 236" role="img" aria-label="1か月以上あとのテストの正答率。混ぜて練習した組は61パーセント、単元ごとにまとめて練習した組は37パーセント。">
+              <line x1="52" y1="40" x2="280" y2="40" stroke="#d9d4c3" stroke-width="1.5"/>
+              <line x1="52" y1="110" x2="280" y2="110" stroke="#d9d4c3" stroke-width="1.5"/>
+              <line x1="52" y1="180" x2="280" y2="180" stroke="#1c241d" stroke-width="2"/>
+              <text x="44" y="45" font-size="14" fill="#1c241d" text-anchor="end">100%</text>
+              <text x="44" y="115" font-size="14" fill="#1c241d" text-anchor="end">50%</text>
+              <text x="44" y="185" font-size="14" fill="#1c241d" text-anchor="end">0%</text>
+              <rect x="86" y="94.6" width="60" height="85.4" fill="#1a3d28"/>
+              <rect x="190" y="128.2" width="60" height="51.8" fill="#8a8473"/>
+              <text x="116" y="86" font-size="20" font-weight="700" fill="#1c241d" text-anchor="middle">61%</text>
+              <text x="220" y="120" font-size="20" font-weight="700" fill="#1c241d" text-anchor="middle">37%</text>
+              <text x="116" y="204" font-size="15" font-weight="700" fill="#1c241d" text-anchor="middle">混ぜて練習</text>
+              <text x="220" y="204" font-size="15" font-weight="700" fill="#1c241d" text-anchor="middle">まとめて練習</text>
+              <text x="166" y="228" font-size="13" fill="#1c241d" text-anchor="middle">1か月以上あとのテストの正答率</text>
+            </svg>
+          </div>
+        </li>
+        <li>
+          <div class="rt">3　本番と同じく、紙に手で書く</div>
+          <div class="point">
+            <span class="tag">POINT</span>
+            <p>118本の研究をまとめた分析では、練習テストは読み直しより成績が上がり、練習と本番の形式が同じときに効果が大きくなりました。練習から本番まで1〜6日あくほうが、1日未満より効果が大きく出ています。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="block">
+      <h3>準備は1回だけ。全科目用のプロジェクトを作る</h3>
+      <p class="cap">全科目が1か所にあると、毎日の2問を混ぜて出せます。今回は、教科書を全部入れなくて大丈夫です。</p>
+      <div class="fig-title">図5　新しいプロジェクトに入れるもの</div>
+      <ul class="kit">
+        <li><span class="mk">1</span><div><strong>シラバスまとめ</strong><span>一緒にお送りするファイル1個です。9科目の「11月の試験までに、できるようになること」が載っています。これが土台になります。</span></div></li>
+        <li><span class="mk">2</span><div><strong>試験範囲のプリント</strong><span>シラバスは年度はじめの予定表です。配られたら写真で足すと、実際の範囲に合います。</span></div></li>
+        <li><span class="mk">3</span><div><strong>過去問・返ってきた答案</strong><span>科目ごとに写真数枚で十分です。先生の出し方に近い問題になります。</span></div></li>
+        <li class="out"><span class="mk">×</span><div><strong>教科書まるごと</strong><span>今回は入れません。</span></div></li>
+      </ul>
+      <ol class="steps">
+        <li>Claudeで新しいプロジェクトを作る。名前は「全科目・毎日2問」。</li>
+        <li>図5の1〜3を入れる。2と3は、手に入ったものからで大丈夫です。</li>
+        <li>プロジェクトの「指示」の欄に、下の文を貼る。</li>
+      </ol>
+      <div class="prompt">
+        <div class="head"><span class="when">最初に1回</span><span class="what">プロジェクトの「指示」の欄に貼る</span></div>
+<pre id="p-setup">このプロジェクトは、香川高専3年（電気情報工学科）の後期中間試験の対策です。試験は11月。目標は70点です。
+
+科目：国語Ⅲ、数学ⅢB、物理学Ⅱ、英語ⅢA、英語ⅢB、応用数学Ⅰ、電気基礎、電子工学基礎、情報処理基礎
+<span class="fill">［試験がない科目は消す］</span>
+
+資料の使い方（先に書いたものほど優先）
+・試験範囲のプリント
+・過去問、返ってきた答案
+・シラバスまとめ（週ごとの到達目標）
+試験範囲や過去問がある科目は、その範囲と形式に合わせて出題する。シラバスしかない科目は、到達目標から教科書の例題レベルで出題し、「シラバスだけで作りました」と一言添える。シラバスは予定表なので、私が「◯◯は今ここまで」と書いたら、そちらを優先する。
+
+私が「全科目2問」と言ったら
+・各科目2問。1問目は二択。2問目は紙に手で書いて解く問題（式・説明・英文・漢字など、その科目の本番の形）。
+・「今週のメニュー」の指定があれば、それに合わせて問題数を変える。
+・科目の順番は毎回ばらばらに混ぜる。応用問題は出さない。
+・答えと解説は、私の答案の写真が届くまで見せない。
+・写真が届いたら、次の順で返す。
+　1　○×の一覧
+　2　×の問題だけ、どこで止まったかを1行、直し方を1行
+　3　手書きの問題は「最後の形まで書けたか・単位・変換」も確認する
+　4　「間違いメモ（日付・科目・何を間違えたか）」を3行以内でまとめる
+
+私が「ミニ模擬テスト」と言ったら
+・30分、全部で10問前後、各科目1〜2問。紙に書いて答える問題だけ。配点をつけて合計100点。
+・半分は今週の「間違いメモ」の所から、残りはまだ出していない範囲から。間違いメモが見つからなければ、私に聞く。
+・答えは、答案の写真が届くまで見せない。
+・写真が届いたら、次の順で返す。
+　1　科目ごとの点数の表
+　2　落とした問題を「知らなかった」「解き切れなかった」「読み間違い」に分ける
+　3　弱い科目を2つ選ぶ
+　4　70点まで、あと何点か
+　5　「来週のメニュー」を1行で書く（例：全科目2問ずつ、電気基礎と数学ⅢBだけ3問）
+
+共通
+・回答は短く、結論から。褒め言葉は不要。数字と直し方だけ。</pre>
+        <button class="copy" type="button" data-target="p-setup">この文をコピー</button>
+      </div>
+      <p class="small">「指示」の欄が見つからないときは、チャットの最初に貼っても同じです。いまの科目別のプロジェクトは、深く質問する場所としてそのまま使います。</p>
+    </div>
+
+    <div class="block">
+      <h3>毎日は、貼って、書いて、撮るだけ</h3>
+      <p class="cap">準備ができたら、毎日打つのは下の短い文だけです。オレンジ色の［　］を書き換えてください。</p>
+      <ol class="flow">
+        <li>文を<br>貼る</li>
+        <li>紙に<br>解く</li>
+        <li>写真を<br>送る</li>
+        <li>採点が<br>届く</li>
+      </ol>
+      <div class="prompt">
+        <div class="head"><span class="when">毎日</span><span class="what">全科目2問（いまの二択8問と入れ替え）</span></div>
+<pre id="p-daily">全科目2問をお願いします。
+今週のメニュー：<span class="fill">［週末にもらった1行を貼る。最初の週は「全科目2問ずつ」］</span>
+進み具合：<span class="fill">［授業が進んだ科目だけ書く。なければ「変更なし」］</span></pre>
+        <button class="copy" type="button" data-target="p-daily">この文をコピー</button>
+      </div>
+      <div class="prompt">
+        <div class="head"><span class="when">週末</span><span class="what">ミニ模擬テスト30分 → 来週のメニュー</span></div>
+<pre id="p-weekly">ミニ模擬テストをお願いします。時間は30分です。</pre>
+        <button class="copy" type="button" data-target="p-weekly">この文をコピー</button>
+      </div>
+      <p class="cap">週末の採点の最後に「来週のメニュー」が1行で届きます。それを次の週の毎日の文に貼ると、弱い科目だけ問題が増えます。</p>
+    </div>
+
+    <div class="block">
+      <h3>苦手な1〜2科目だけ、授業ノートも使う</h3>
+      <p class="cap">全科目でやると続かないので、苦手な科目だけにします。こちらは、いまの科目別のプロジェクトで使います。</p>
+      <div class="prompt">
+        <div class="head"><span class="when">授業の前</span><span class="what">苦手科目だけ</span></div>
+<pre id="p-before">今日、<span class="fill">［科目名］</span>の授業があります。範囲は<span class="fill">［教科書の章・ページ］</span>です。
+授業で「ここだけは聞いてノートに書いてくる」ポイントを3つ、1行ずつで教えてください。</pre>
+        <button class="copy" type="button" data-target="p-before">この文をコピー</button>
+      </div>
+      <div class="prompt">
+        <div class="head"><span class="when">授業の後</span><span class="what">ノートの写真と一緒に</span></div>
+<pre id="p-after"><span class="fill">［科目名］</span>の今日のノートの写真を送ります。
+1　授業の前に決めた3つのポイントが書けているか、○×で
+2　このノートから二択クイズを5問（正解は、私が答えてから見せる）
+3　書けていなかった所を「間違いメモ」の形で1〜2行にまとめる</pre>
+        <button class="copy" type="button" data-target="p-after">この文をコピー</button>
+      </div>
+    </div>
+
+    <div class="caution">
+      <strong>ひとつだけ、先にお伝えします</strong>
+      <p>混ぜて解くと、練習中の点はいったん下がります。研究でも同じことが起きていて、本番では逆転しています。点数ではなく「続いた日数」を数えてあげてください。</p>
+    </div>
+
+    <p class="src">出典：Dunlosky ほか（2013）Psychological Science in the Public Interest ／ Adesope ほか（2017）Review of Educational Research ／ Rohrer ほか（2020）Journal of Educational Psychology ／ Taylor &amp; Rohrer（2010）Applied Cognitive Psychology</p>
+  </div>
+</section>
+
+<footer class="sign">
+  <div class="wrap pad" style="display:grid;gap:18px">
+    <div class="theory">神経反射入力装置論</div>
+    <div class="nm">谷 弘誠<small>柔道整復師／三条健康堂接骨院 院長</small></div>
+    <div class="loc">香川県高松市由良町・由良川東公園のそば</div>
+    <div class="btns">
+      <a class="btn line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップで確認する</a>
+    </div>
+    <hr>
+    <p class="prof">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+    <p class="foot">本報告書はRaDoTech測定値および施術所見にもとづく経過共有です。診断・治療方針の決定は医療機関の判断によります。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function fallbackCopy(text){
+    var sx = window.scrollX, sy = window.scrollY;
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly','');
+    ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;';
+    document.body.appendChild(ta);
+    ta.focus({preventScroll:true});
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    window.scrollTo(sx, sy);
+    return ok;
+  }
+  function flash(btn, ok){
+    var orig = btn.getAttribute('data-label');
+    btn.textContent = ok ? '✓ 完了' : '長押しでコピーしてください';
+    if (ok) btn.classList.add('done');
+    setTimeout(function(){ btn.textContent = orig; btn.classList.remove('done'); }, 1500);
+  }
+  var btns = document.querySelectorAll('.copy');
+  for (var i = 0; i < btns.length; i++){
+    (function(btn){
+      btn.setAttribute('data-label', btn.textContent);
+      btn.addEventListener('click', async function(){
+        var el = document.getElementById(btn.getAttribute('data-target'));
+        var text = el ? el.textContent : '';
+        var ok = false;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            await navigator.clipboard.writeText(text);
+            ok = true;
+          }
+        } catch(e){ ok = false; }
+        if (!ok) ok = fallbackCopy(text);
+        flash(btn, ok);
+      });
+    })(btns[i]);
+  }
+})();
+</script>
+</body>
+</html>
