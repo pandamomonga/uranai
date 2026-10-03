@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>消える表 10月3日の質問</title>
+<style>
+  :root{
+    --bg:#15191a; --card:#1d2324; --card2:#232a2b; --text:#e8e6e0; --term:#7ee0b8;
+    --yellow:#FFE066; --ok:#4ade80; --ng:#ff7a6b; --line:#2f3739;
+    --navy:#1f5aa6; --brown:#b5742a; --green:#0c6b56;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text)}
+  body{font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;font-size:18px;line-height:1.6;-webkit-tap-highlight-color:transparent}
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px 80px}
+  header{padding:18px 0 6px}
+  h1{font-size:22px;margin:0}
+  .how{font-size:15px;opacity:.8;margin-top:4px}
+
+  .bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0}
+  .count{display:flex;justify-content:space-between;align-items:center;font-size:16px;margin-bottom:6px}
+  .count b{font-size:20px;color:var(--ok)}
+  .count .tri{color:var(--ng);font-weight:700}
+  .btnrow{display:flex;gap:8px}
+  .btnrow button{flex:1;font:inherit;font-size:15px;font-weight:700;padding:9px 4px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--text)}
+  .btnrow button.on{background:var(--ng);color:#1a0d0b;border-color:var(--ng)}
+  .btnrow button.warn{background:var(--ng);color:#1a0d0b;border-color:var(--ng)}
+
+  .toc{margin:14px 0 6px;background:var(--card);border-radius:12px;padding:6px 0}
+  .toc a{display:flex;justify-content:space-between;gap:10px;padding:9px 14px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line);font-size:16px}
+  .toc a:last-child{border-bottom:0}
+  .toc .num{white-space:nowrap;font-size:14px;opacity:.9}
+  .toc .num .t{color:var(--ng);font-weight:700}
+  .toc .grad{color:var(--ok);font-weight:700}
+
+  section{margin-top:26px}
+  .sh{position:sticky;top:92px;z-index:10;color:#fff;font-weight:700;font-size:18px;padding:10px 14px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .sh .left{font-size:14px;font-weight:400;white-space:nowrap;opacity:.95}
+  .c0{background:var(--navy)} .c1{background:var(--brown)} .c2{background:var(--green)}
+
+  .item{display:flex;gap:10px;background:var(--card);border-radius:12px;margin:12px 0;padding:14px 12px;border:2px solid transparent;transition:opacity .2s}
+  .mark{flex:0 0 40px;font-size:44px;line-height:1;color:transparent;font-weight:900;text-align:center;padding-top:0}
+  .item.tri{border-color:var(--ng)}
+  .item.tri .mark{color:var(--ng)}
+  .item.done{opacity:.28;filter:grayscale(1)}
+  .body{flex:1;min-width:0}
+  .q{font-size:18px;word-break:break-word}
+  .ask{margin-top:10px;width:100%;font:inherit;font-size:20px;font-weight:900;letter-spacing:.2em;padding:10px;border:0;border-radius:10px;background:var(--yellow);color:#111}
+  .rev{display:none;margin-top:10px}
+  .item.open .rev{display:block}
+  .item.open .ask{display:none}
+  .a{font-size:21px;font-weight:700;color:var(--term);word-break:break-word}
+  .n{font-size:15px;opacity:.85;margin-top:4px;word-break:break-word}
+  .jb{display:flex;gap:10px;margin-top:12px}
+  .jb button{flex:1;font:inherit;font-size:18px;font-weight:900;padding:11px 4px;border:0;border-radius:10px}
+  .jb .yes{background:var(--ok);color:#0c2414}
+  .jb .no{background:var(--ng);color:#2a0f0b}
+  .voice{margin:14px 0 0;background:var(--green);color:#fff;border-radius:10px;padding:12px 14px;font-weight:700;font-size:17px}
+  .voice small{display:block;font-weight:400;font-size:13px;opacity:.85}
+  .hidden{display:none !important}
+  .grad-note{display:none;color:var(--ok);font-weight:700;margin:10px 2px 0;font-size:16px}
+  section.graduated .grad-note{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>消える表 10月3日の質問</h1>
+    <div class="how">見る前に口で言う → 「？？？」を押して開ける → 言えたら「はい」、言えなかったら「△」。並びは開くたびに見出しの中で入れ替わります。</div>
+  </header>
+
+  <div class="bar">
+    <div class="count"><span>残り <b id="left">0</b> ／ <span id="total">0</span></span><span class="tri">△ <span id="tricount">0</span></span></div>
+    <div class="btnrow">
+      <button id="hideAll">全部隠す</button>
+      <button id="triOnly">△だけ見る</button>
+      <button id="resetAll">全部戻す</button>
+    </div>
+  </div>
+
+  <nav class="toc" id="toc"></nav>
+  <main id="main"></main>
+</div>
+
+<script>
+var DATA = [
+{h:"だれが決めるか（値段と限度額）", voice:"値段は大臣、上乗せは市町村", items:[
+["介護保険のサービスの値段（介護報酬）の基準を決めるのは、だれか","厚生労働大臣",""],
+["厚生労働大臣が介護報酬の基準を決める前に、意見を聴かなければならない会議は、どこか","社会保障審議会",""],
+["介護報酬の1単位の単価は、基本は何円か","10円","人件費の高い地域は上乗せがある"],
+["区分支給限度基準額を決めるのは、だれか","厚生労働大臣",""],
+["区分支給限度基準額を上乗せする条例を作るのは、だれか","市町村",""],
+["種類支給限度基準額を条例で決めるのは、だれか","市町村",""],
+["第1号被保険者の保険料率を条例で決めるのは、だれか","市町村",""]
+]},
+{h:"後期高齢者医療と広域連合", voice:"作るのは市町村、線は県、ハンコは知事", items:[
+["後期高齢者医療制度を運営するのは、どこか","後期高齢者医療広域連合",""],
+["後期高齢者医療広域連合は、どの区域ごとに1つ作られるか","都道府県の区域ごと",""],
+["後期高齢者医療広域連合を作り、メンバーになっているのは、だれか","その都道府県内のすべての市町村",""],
+["都道府県は、後期高齢者医療広域連合のメンバーに入っているか","入っていない","都道府県は線を引く範囲になるだけ"],
+["後期高齢者医療広域連合を作るときに許可を出すのは、だれか","都道府県知事",""],
+["後期高齢者医療の保険料率を条例で決めるのは、どこか","後期高齢者医療広域連合",""],
+["後期高齢者医療の保険料を被保険者から集めるのは、どこか","市町村",""],
+["後期高齢者医療広域連合を設けると定めた法律は、何か","高齢者の医療の確保に関する法律","第48条"],
+["地方自治法で、広域連合は何という団体にあたるか","特別地方公共団体",""],
+["後期高齢者医療の公費の割合（国：都道府県：市町村）は、いくつか","4：1：1",""],
+["国民健康保険を運営するのは、だれか","都道府県と市町村",""],
+["介護保険の保険者は、だれか","市町村（特別区を含む）",""]
+]},
+{h:"地域密着型の線", voice:"訪問介護は昼は県、夜と24時間は市町村。通いは18、住むは29", items:[
+["訪問介護（昼の普通の訪問介護）の事業者を指定するのは、だれか","都道府県知事",""],
+["夜間対応型訪問介護の事業者を指定するのは、だれか","市町村長",""],
+["定期巡回・随時対応型訪問介護看護の事業者を指定するのは、だれか","市町村長",""],
+["地域密着型サービスのうち、訪問系の2つは、何と何か","夜間対応型訪問介護と定期巡回・随時対応型訪問介護看護",""],
+["地域密着型通所介護の利用定員は、何人以下か","18人以下",""],
+["通所介護（都道府県知事が指定）の利用定員は、何人以上か","19人以上",""],
+["地域密着型特養の入所定員は、何人以下か","29人以下",""],
+["特養（都道府県知事が指定）の入所定員は、何人以上か","30人以上",""],
+["地域密着型特定施設入居者生活介護の入居定員は、何人以下か","29人以下",""]
+]},
+{h:"ショートと特養の食事", voice:"会議は医師か栄養士。栄養士がいなければ連携先。40はショートと特養", items:[
+["ショート（短期入所生活介護）の食事内容は、医師又は栄養士を含む会議で検討しなければならないか","しなければならない","第27回-問53 肢4"],
+["ショートの食事内容を検討する会議に、医師と栄養士の両方が入っていなければならないか","どちらか1人でよい","「医師又は栄養士」"],
+["特養の食事内容は、医師又は栄養士を含む会議で検討しなければならないか","しなければならない",""],
+["特養が栄養士を置いていないとき、食事内容の会議に入れる栄養士は、だれか","連携している他の施設の栄養士",""],
+["ショートの医師は、何人以上置くか","1人以上",""],
+["ショートの医師は、非常勤でよいか","非常勤でよい",""],
+["ショートの栄養士は、何人以上置くか","1人以上",""],
+["ショートが、連携先の栄養士がいれば栄養士を置かなくてよい利用定員は、何人以下か","40人以下",""],
+["特養が、連携先の栄養士がいれば栄養士を置かなくてよい入所定員は、何人以下か","40人以下",""],
+["ショートの夕食は、午後何時以降が望ましいか","午後6時以降","遅くとも午後5時以降"],
+["ショートの食事の提供の業務は、だれが行うのが望ましいか","事業者自ら","委託もできる"],
+["ショートで、病気の人の献立について、事業者に指導をするのは、だれか","医師","医師が指導する側、事業者が指導を受ける側"],
+["ショートの事業者は、利用者ができるだけ起きて、どこで食事をとれるよう支えるか","食堂",""],
+["ショートの調理は、何に従って行い、実施状況を明らかにしておくか","あらかじめ作った献立",""]
+]},
+{h:"老健・介護医療院の栄養士", voice:"100は老健と医療院、40は特養とショート。会議がないのは老健だけ", items:[
+["老健が栄養士又は管理栄養士を必ず置く入所定員の線は、何人以上か","100人以上","常勤で1人以上"],
+["介護医療院が栄養士又は管理栄養士を必ず置く入所定員の線は、何人以上か","100人以上","1人以上"],
+["介護医療院の栄養士は、同じ敷地にある病院の栄養士が兼務してよいか","してよい","栄養管理に支障がなければ"],
+["介護医療院の食事内容は、医師又は栄養士を含む会議で検討しなければならないか","しなければならない",""],
+["老健の基準の通知に、食事内容を会議で検討する項目はあるか","ない","老健の食事の項は 提供・調理・時間・委託の4つ"],
+["病院が栄養士を必ず置く病床数の線は、何床以上か","100床以上","老健・介護医療院と同じ数字"]
+]},
+{h:"要介護認定の申請を代わりに出す", voice:"窓口2つ、施設4つ、社労士1人。住まいと小多機はまだダメ", items:[
+["指定居宅介護支援事業者は、利用者に代わって要介護認定の申請をしてよいか","してよい",""],
+["地域包括支援センターは、利用者に代わって要介護認定の申請をしてよいか","してよい",""],
+["介護保険施設（特養・老健・介護医療院）は、入所者に代わって要介護認定の申請をしてよいか","してよい",""],
+["地域密着型特養は、入所者に代わって要介護認定の申請をしてよいか","してよい",""],
+["社会保険労務士は、本人に代わって要介護認定の申請をしてよいか","してよい","根拠は社会保険労務士法"],
+["グループホームは、入居者に代わって要介護認定の申請をしてよいか","してはいけない",""],
+["特定施設（有料老人ホームなど）は、入居者に代わって要介護認定の申請をしてよいか","してはいけない",""],
+["地域密着型特定施設は、入居者に代わって要介護認定の申請をしてよいか","してはいけない",""],
+["小規模多機能型居宅介護の事業者は、利用者に代わって要介護認定の申請をしてよいか","してはいけない",""],
+["訪問介護の事業者は、利用者に代わって要介護認定の申請をしてよいか","してはいけない",""],
+["介護保険施設は、新規の要介護認定の申請も代わりに出してよいか","してよい","更新だけではない（第26回-問18 肢3）"],
+["家族・成年後見人・民生委員は、報酬をもらわずに、本人に代わって要介護認定の申請を出してよいか","してよい",""],
+["居宅介護支援事業者などによる申請の代行を定めているのは、介護保険法の第何条か","第27条",""],
+["厚労省が次の制度改正で、申請代行できる側に足す方針のサービスは、いくつか","5つ","GH・小多機・看多機・特定施設・地域密着型特定施設。まだ施行されていない"]
+]},
+{h:"認定調査を任せる先", voice:"新規は受託法人だけ。更新と区分変更は、代行の4つ＋受託法人＋ケアマネ", items:[
+["市町村が新規の認定調査を任せてよい相手は、だれか","指定市町村事務受託法人だけ",""],
+["市町村は、新規の認定調査を居宅介護支援事業者に任せてよいか","してはいけない",""],
+["市町村は、新規の認定調査を地域包括支援センターに任せてよいか","してはいけない","第22回-問22"],
+["市町村は、更新の認定調査を介護保険施設に任せてよいか","してよい","第24回-問17"],
+["市町村は、更新の認定調査を地域包括支援センターに任せてよいか","してよい",""],
+["市町村は、更新の認定調査を地域密着型特養に任せてよいか","してよい",""],
+["市町村は、更新の認定調査を介護支援専門員（個人）に任せてよいか","してよい",""],
+["市町村は、更新の認定調査を指定市町村事務受託法人に任せてよいか","してよい",""],
+["市町村は、区分変更の認定調査を居宅介護支援事業者に任せてよいか","してよい","更新と同じ"],
+["市町村は、認定調査を社会保険労務士に任せてよいか","してはいけない","社労士は書類の代行だけ"],
+["市町村は、認定調査を都道府県に任せてよいか","してはいけない","第24回-問16"]
+]},
+{h:"生活支援コーディネーターと認知症地域支援推進員", voice:"コーディネーターは助け合いを作る、推進員は認知症をつなぐ", items:[
+["生活支援コーディネーターが置かれるのは、地域支援事業のどの事業か","生活支援体制整備事業",""],
+["生活支援コーディネーターの別名は、何か","地域支え合い推進員",""],
+["生活支援コーディネーターが、足りないサービスや担い手を作り、活動の場を確保する仕事を何というか","資源開発",""],
+["生活支援コーディネーターが、関係者で情報を共有し、連携の仕組みを作る仕事を何というか","ネットワーク構築",""],
+["生活支援コーディネーターが、地域の困りごとと住民の活動を結ぶ仕事を何というか","ニーズと取組のマッチング",""],
+["生活支援コーディネーターになるのに、決まった資格は要るか","要らない","研修を受けた人が望ましい"],
+["生活支援コーディネーターと一緒に動く、社協・包括・民生委員などの話し合いの場を何というか","協議体",""],
+["生活支援コーディネーターの第1層が受け持つ範囲は、どこか","市町村全体",""],
+["生活支援コーディネーターの第2層が受け持つ範囲は、どこか","中学校区くらい（日常生活圏域）",""],
+["認知症地域支援推進員が置かれるのは、地域支援事業のどの事業か","認知症総合支援事業","その中の認知症地域支援・ケア向上事業"],
+["認知症地域支援推進員が作って広める、認知症の人の状態に合わせたサービスの流れの案内を何というか","認知症ケアパス",""],
+["認知症地域支援推進員が開く、認知症の人と家族と地域の人が集まる場を何というか","認知症カフェ",""],
+["認知症地域支援推進員が組んで動く、家を訪ねて早い時期に集中して支える専門職のチームを何というか","認知症初期集中支援チーム",""],
+["認知症地域支援推進員になれる人に、介護福祉士は入るか","入る","医師・保健師・看護師・作業療法士・歯科衛生士・精神保健福祉士・社会福祉士も。ほかに市町村が認めた経験者"],
+["認知症地域支援推進員が置かれる場所に、地域包括支援センターは入るか","入る","市町村本庁・認知症疾患医療センターなどにも置かれる"],
+["介護サービス相談員は、地域支援事業のどの事業の人か","任意事業",""],
+["福祉用具専門相談員は、どこの職員か","福祉用具の事業所（貸与・販売）",""]
+]},
+{h:"市町村特別給付と保健福祉事業", voice:"上乗せは量、横出しは種類、保健福祉は家族にも。お金は全部65歳以上の保険料", items:[
+["市町村特別給付は、介護給付・予防給付と並ぶ、何の3本目か","保険給付",""],
+["市町村特別給付を行うために、市町村が定めるのは、何か","条例",""],
+["市町村特別給付を定めているのは、介護保険法の第何条か","第62条",""],
+["市町村特別給付の財源は、何か","第1号被保険者の保険料だけ",""],
+["市町村特別給付を受けられるのは、だれか","要介護者と要支援者",""],
+["市町村特別給付は、第2号被保険者の要介護者も受けてよいか","受けてよい",""],
+["市町村特別給付の例に、紙おむつの支給・配食・移送は入るか","入る",""],
+["市町村特別給付は、「上乗せ」と「横出し」のどちらか","横出し","国のメニューにない種類を足す"],
+["区分支給限度基準額より量を増やすことは、「上乗せ」と「横出し」のどちらか","上乗せ",""],
+["保健福祉事業を定めているのは、介護保険法の第何条か","第115条の49",""],
+["保健福祉事業の対象に、介護している家族は入るか","入る",""],
+["保健福祉事業の財源は、何か","第1号被保険者の保険料だけ",""],
+["保健福祉事業は、地域支援事業に含まれるか","含まれない","第26回-問13 肢4"]
+]},
+{h:"区分支給限度基準額の枠", voice:"帰る人は枠の中、住む人は枠の外。医者の指導とケアプランも外。貸すのは中、買うのは外", items:[
+["訪問介護の費用は、区分支給限度基準額の枠に入るか","入る",""],
+["居宅療養管理指導の費用は、区分支給限度基準額の枠に入るか","入らない",""],
+["福祉用具貸与の費用は、区分支給限度基準額の枠に入るか","入る",""],
+["福祉用具購入費は、区分支給限度基準額の枠に入るか","入らない","別の枠がある"],
+["住宅改修費は、区分支給限度基準額の枠に入るか","入らない","別の枠がある"],
+["特定施設入居者生活介護（短期利用でない）の費用は、区分支給限度基準額の枠に入るか","入らない",""],
+["特定施設入居者生活介護の短期利用の費用は、区分支給限度基準額の枠に入るか","入る",""],
+["グループホーム（短期利用でない）の費用は、区分支給限度基準額の枠に入るか","入らない",""],
+["グループホームの短期利用の費用は、区分支給限度基準額の枠に入るか","入る",""],
+["小規模多機能型居宅介護の費用は、区分支給限度基準額の枠に入るか","入る",""],
+["定期巡回・随時対応型訪問介護看護の費用は、区分支給限度基準額の枠に入るか","入る",""],
+["ショート（短期入所生活介護）の費用は、区分支給限度基準額の枠に入るか","入る",""],
+["通所リハビリテーションの費用は、区分支給限度基準額の枠に入るか","入る",""],
+["地域密着型特養の費用は、区分支給限度基準額の枠に入るか","入らない",""],
+["居宅介護支援（ケアプラン作り）の費用は、区分支給限度基準額の枠に入るか","入らない",""],
+["介護職員等処遇改善加算は、区分支給限度基準額の枠に入るか","入らない",""],
+["特定施設やグループホームに住んでいる間、他のサービスを組み合わせて足していくことはあるか","ない","だから枠で止める必要がない"]
+]}
+];
+
+var KEY = "kieru_1003_v1";
+var state = {};
+function load(){ try{ var s = window.localStorage.getItem(KEY); if(s){ state = JSON.parse(s) || {}; } }catch(e){ state = {}; } }
+function save(){ try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+
+var triOnly = false;
+var COLORS = ["c0","c1","c2"];
+
+function build(){
+  var main = document.getElementById("main");
+  main.innerHTML = "";
+  DATA.forEach(function(sec, si){
+    var s = document.createElement("section");
+    s.id = "sec" + si;
+    var sh = document.createElement("div");
+    sh.className = "sh " + COLORS[si % 3];
+    sh.innerHTML = '<span>' + (si+1) + '　' + sec.h + '</span><span class="left" id="sl' + si + '"></span>';
+    s.appendChild(sh);
+    var items = shuffle(sec.items.slice());
+    items.forEach(function(it){
+      var q = it[0], a = it[1], n = it[2];
+      var d = document.createElement("div");
+      d.className = "item";
+      d.setAttribute("data-q", q);
+      d.innerHTML =
+        '<div class="mark">△</div>' +
+        '<div class="body">' +
+          '<div class="q"></div>' +
+          '<button class="ask" type="button">？？？</button>' +
+          '<div class="rev"><div class="a"></div>' + (n ? '<div class="n"></div>' : '') +
+            '<div class="jb"><button class="yes" type="button">はい</button><button class="no" type="button">△</button></div>' +
+          '</div>' +
+        '</div>';
+      d.querySelector(".q").textContent = q;
+      d.querySelector(".a").textContent = a;
+      if(n){ d.querySelector(".n").textContent = n; }
+      var st = state[q];
+      if(st === "done"){ d.classList.add("done"); }
+      if(st === "tri"){ d.classList.add("tri"); }
+      d.querySelector(".ask").addEventListener("click", function(){ d.classList.add("open"); });
+      d.querySelector(".q").addEventListener("click", function(){
+        if(d.classList.contains("done")){ d.classList.toggle("open"); }
+      });
+      d.querySelector(".yes").addEventListener("click", function(){
+        state[q] = "done"; save();
+        d.classList.remove("tri"); d.classList.add("done"); d.classList.remove("open");
+        refresh();
+      });
+      d.querySelector(".no").addEventListener("click", function(){
+        state[q] = "tri"; save();
+        d.classList.remove("done"); d.classList.add("tri"); d.classList.remove("open");
+        refresh();
+      });
+      s.appendChild(d);
+    });
+    var g = document.createElement("div");
+    g.className = "grad-note";
+    g.textContent = "この見出しは全部言えました。声出しだけ残します。";
+    s.appendChild(g);
+    var v = document.createElement("div");
+    v.className = "voice";
+    v.innerHTML = '<small>声に出して1回</small>';
+    var vt = document.createElement("span");
+    vt.textContent = "「" + sec.voice + "」";
+    v.appendChild(vt);
+    s.appendChild(v);
+    main.appendChild(s);
+  });
+  refresh();
+}
+
+function refresh(){
+  var total = 0, left = 0, tri = 0;
+  var toc = document.getElementById("toc");
+  toc.innerHTML = "";
+  DATA.forEach(function(sec, si){
+    var sl = 0, st = 0;
+    sec.items.forEach(function(it){
+      total++;
+      var s = state[it[0]];
+      if(s !== "done"){ left++; sl++; }
+      if(s === "tri"){ tri++; st++; }
+    });
+    var el = document.getElementById("sl" + si);
+    if(el){ el.textContent = "残り " + sl + "／" + sec.items.length + (st ? "　△" + st : ""); }
+    var secEl = document.getElementById("sec" + si);
+    if(secEl){
+      if(sl === 0){ secEl.classList.add("graduated"); } else { secEl.classList.remove("graduated"); }
+      if(triOnly){ if(st === 0){ secEl.classList.add("hidden"); } else { secEl.classList.remove("hidden"); } }
+      else { secEl.classList.remove("hidden"); }
+    }
+    var a = document.createElement("a");
+    a.href = "#sec" + si;
+    var right = (sl === 0) ? '<span class="grad">卒業</span>' : ('残り ' + sl + (st ? '　<span class="t">△' + st + '</span>' : ''));
+    a.innerHTML = '<span></span><span class="num">' + right + '</span>';
+    a.firstChild.textContent = (si+1) + "　" + sec.h;
+    a.addEventListener("click", function(ev){
+      ev.preventDefault();
+      var t = document.getElementById("sec" + si);
+      if(t){ var y = t.getBoundingClientRect().top + window.pageYOffset - 96; window.scrollTo({top:y, behavior:"smooth"}); }
+    });
+    toc.appendChild(a);
+  });
+  document.getElementById("total").textContent = total;
+  document.getElementById("left").textContent = left;
+  document.getElementById("tricount").textContent = tri;
+  var items = document.querySelectorAll(".item");
+  for(var i=0;i<items.length;i++){
+    var d = items[i];
+    if(triOnly && !d.classList.contains("tri")){ d.classList.add("hidden"); } else { d.classList.remove("hidden"); }
+  }
+}
+
+document.getElementById("hideAll").addEventListener("click", function(){
+  var items = document.querySelectorAll(".item.open");
+  for(var i=0;i<items.length;i++){ items[i].classList.remove("open"); }
+});
+
+document.getElementById("triOnly").addEventListener("click", function(){
+  triOnly = !triOnly;
+  this.textContent = triOnly ? "全部見る" : "△だけ見る";
+  this.classList.toggle("on", triOnly);
+  refresh();
+});
+
+var resetArmed = false, resetTimer = null;
+document.getElementById("resetAll").addEventListener("click", function(){
+  var b = this;
+  if(!resetArmed){
+    resetArmed = true;
+    b.textContent = "もう一度押すと戻す";
+    b.classList.add("warn");
+    resetTimer = setTimeout(function(){ resetArmed = false; b.textContent = "全部戻す"; b.classList.remove("warn"); }, 4000);
+    return;
+  }
+  clearTimeout(resetTimer);
+  resetArmed = false;
+  b.textContent = "全部戻す";
+  b.classList.remove("warn");
+  state = {}; save();
+  triOnly = false;
+  var t = document.getElementById("triOnly"); t.textContent = "△だけ見る"; t.classList.remove("on");
+  build();
+  window.scrollTo(0,0);
+});
+
+load();
+build();
+</script>
+</body>
+</html>
