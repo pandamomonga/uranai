@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>渡瀬様 施術報告</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<style>
+/* レイアウト：スマホ縦1カラム。表紙→目次→第1〜4部を「図が主役・文字は一行」で縦に流す */
+:root{
+  --paper:#ffffff;
+  --wash:#f2f6f1;
+  --ink:#16241c;
+  --ink-sub:#3d4d44;
+  --green:#14503a;
+  --green-std:#2a8f55;
+  --gold:#a8821f;
+  --gold-soft:#f7efd6;
+  --alert:#c5401d;
+  --alert-soft:#fbe4dc;
+  --low:#4a52b8;
+  --line:#cfd9d1;
+  --font-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%}
+body{
+  background:var(--wash);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.75;
+  -webkit-text-size-adjust:100%;
+}
+.sheet{
+  max-width:560px;
+  margin-inline:auto;
+  background:var(--paper);
+  display:flex;
+  flex-direction:column;
+}
+.pad{padding-inline:20px}
+h1,h2{font-family:var(--font-display);text-wrap:balance;margin:0}
+h1,h2,.lead,.cap,.chain li,.next .v,.bridge{word-break:auto-phrase}
+p{margin:0}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body)}
+
+/* 表紙 */
+.cover{
+  background:var(--green);
+  color:#ffffff;
+  padding-block:34px 30px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.eyebrow{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.28em;
+  color:#f3dc9a;
+}
+.cover h1{font-size:26px;line-height:1.45;font-weight:800}
+.cover .who{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 14px;
+  align-items:baseline;
+  font-weight:700;
+  font-size:18px;
+}
+.cover .who .date{font-weight:500;font-size:16px}
+.cover .lead{
+  font-size:18px;
+  font-weight:700;
+  line-height:1.6;
+  border-top:1px solid #f3dc9a;
+  padding-top:14px;
+}
+.premise{
+  background:var(--gold-soft);
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.7;
+  padding-block:14px;
+}
+
+/* 目次 */
+.toc{padding-block:26px 6px;display:flex;flex-direction:column;gap:12px}
+.toc h2{font-size:21px;color:var(--green)}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.toc a{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:700;
+  font-size:17px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px 14px;
+}
+.toc a:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.toc .no{
+  flex:none;
+  font-size:13px;
+  font-weight:900;
+  color:#ffffff;
+  background:var(--green);
+  border-radius:6px;
+  padding:2px 9px;
+}
+.toc .t{min-width:0}
+
+/* 各部 */
+.part{
+  padding-block:30px 8px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  scroll-margin-top:10px;
+}
+.part-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--green);padding-top:16px}
+.part-no{font-size:14px;font-weight:900;letter-spacing:.14em;color:var(--gold)}
+.part h2{font-size:25px;line-height:1.5;color:var(--green);font-weight:800}
+.bridge{font-size:17px;color:var(--ink-sub);font-weight:500}
+.cap{font-size:17px;font-weight:700;line-height:1.7}
+.note{font-size:14px;color:var(--ink-sub);line-height:1.7}
+
+/* POINT箱（測定の根拠だけに使う） */
+.point{
+  position:relative;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:26px 14px 16px;
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.point .tag{
+  position:absolute;
+  top:-14px;left:14px;
+  background:var(--gold);
+  color:#ffffff;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.16em;
+  padding:2px 12px;
+  border-radius:6px;
+}
+.point .ttl{font-size:17px;font-weight:700;text-align:center}
+
+.fig{background:var(--wash);border-radius:12px;padding:14px 10px}
+.fig .figcap{font-size:14px;color:var(--ink-sub);text-align:center;font-weight:500;padding-top:4px}
+
+/* 電池 */
+.battery{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 18px;
+  align-items:center;
+  justify-content:center;
+  background:var(--wash);
+  border-radius:12px;
+  padding:16px 14px;
+}
+.battery svg{width:132px;flex:none}
+.battery .val{display:flex;flex-direction:column;min-width:0}
+.battery .num{font-size:40px;font-weight:900;line-height:1.1;color:var(--low);font-variant-numeric:tabular-nums}
+.battery .lbl{font-size:15px;font-weight:700}
+
+/* 流れ（順番に意味がある） */
+.chain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.chain li{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px 14px;
+  font-weight:700;
+  font-size:17px;
+  line-height:1.55;
+  text-align:center;
+  background:var(--paper);
+}
+.chain li + li{margin-top:30px;position:relative}
+.chain li + li::before{
+  content:"";
+  position:absolute;
+  top:-22px;left:50%;
+  margin-left:-9px;
+  border-left:9px solid transparent;
+  border-right:9px solid transparent;
+  border-top:13px solid var(--gold);
+}
+.chain li.hot{border:2px solid var(--alert);background:var(--alert-soft)}
+.chain li.end{background:var(--green);color:#ffffff;border-color:var(--green)}
+
+/* 図の凡例 */
+.legend{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:8px}
+.legend li{display:flex;gap:10px;align-items:center;font-size:16px;font-weight:700;line-height:1.5}
+.legend .n{
+  flex:none;
+  width:28px;height:28px;
+  border-radius:50%;
+  background:var(--alert);
+  color:#ffffff;
+  font-size:15px;font-weight:900;
+  display:grid;place-items:center;
+}
+.legend .n.main{background:var(--gold)}
+.legend .tx{min-width:0}
+.legend small{font-size:14px;font-weight:500;color:var(--ink-sub)}
+
+/* これから */
+.next{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.next li{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px;
+}
+.next svg{width:46px;flex:none}
+.next .tx{min-width:0;display:flex;flex-direction:column;gap:2px}
+.next .k{font-size:14px;font-weight:900;letter-spacing:.1em;color:var(--gold)}
+.next .v{font-size:17px;font-weight:700;line-height:1.6}
+
+/* 署名 */
+.sign{
+  margin-top:34px;
+  background:var(--green);
+  color:#ffffff;
+  padding-block:30px 26px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  text-align:center;
+}
+.sign .theory{font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:.34em;color:#f3dc9a}
+.sign .nm{font-family:var(--font-display);font-size:24px;font-weight:800;letter-spacing:.12em}
+.sign .role{font-size:15px;font-weight:500}
+.sign .prof{font-size:15px;line-height:1.8;text-align:left}
+.sign .loc{font-size:16px;font-weight:700}
+.btns{display:flex;flex-direction:column;gap:10px}
+.btn{
+  display:block;
+  text-decoration:none;
+  font-weight:900;
+  font-size:17px;
+  padding:13px 14px;
+  border-radius:10px;
+  background:#ffffff;
+  color:var(--green);
+}
+.btn.map{background:var(--gold-soft);color:var(--ink)}
+.sign .foot{font-size:13px;line-height:1.8}
+
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.9);opacity:0}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none;opacity:.6}}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="cover pad">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <div class="who"><span>渡瀬様</span><span class="date">2026年10月11日（日）施術のご報告</span></div>
+    <h1>胆のう系のラインが、<br>ひとりで体を支えていました。</h1>
+    <p class="lead">左の肩甲骨（けんこうこつ）の内側を<br>中心に、右肩と頭まわりをゆるめました。</p>
+  </header>
+
+  <p class="premise pad">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+
+  <nav class="toc pad" aria-label="目次">
+    <h2>今日の報告は4つの話です</h2>
+    <ol>
+      <li><a href="#p1"><span class="no">第1部</span><span class="t">測定で見えたこと</span></a></li>
+      <li><a href="#p2"><span class="no">第2部</span><span class="t">今日いちばんのポイント</span></a></li>
+      <li><a href="#p3"><span class="no">第3部</span><span class="t">目と頭のつかれ</span></a></li>
+      <li><a href="#p4"><span class="no">第4部</span><span class="t">これからのこと</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- 第1部 -->
+  <section class="part pad" id="p1">
+    <div class="part-head">
+      <div class="part-no">第1部</div>
+      <h2>測定で見えたこと</h2>
+      <p class="bridge">まず、施術の前に測った数値からお伝えします。</p>
+    </div>
+
+    <div class="point">
+      <span class="tag">POINT</span>
+      <p class="ttl">胆のう系のライン（胆経・たんけい）</p>
+      <svg viewBox="0 0 340 268" role="img" aria-label="胆のう系ラインの測定値。標準100%に対して、左155%、右106%。">
+        <line x1="24" y1="230" x2="316" y2="230" stroke="#16241c" stroke-width="2"/>
+        <rect x="45" y="44" width="66" height="186" rx="6" fill="#c5401d"/>
+        <rect x="137" y="110" width="66" height="120" rx="6" fill="#2a8f55"/>
+        <rect x="229" y="103" width="66" height="127" rx="6" fill="#c5401d"/>
+        <line x1="24" y1="110" x2="316" y2="110" stroke="#16241c" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <text x="78" y="34" text-anchor="middle" font-size="27" font-weight="900" fill="#c5401d">155%</text>
+        <text x="170" y="100" text-anchor="middle" font-size="20" font-weight="900" fill="#14503a">100%</text>
+        <text x="262" y="93" text-anchor="middle" font-size="22" font-weight="900" fill="#c5401d">106%</text>
+        <text x="78" y="256" text-anchor="middle" font-size="18" font-weight="900" fill="#16241c">左</text>
+        <text x="170" y="256" text-anchor="middle" font-size="18" font-weight="900" fill="#16241c">標準</text>
+        <text x="262" y="256" text-anchor="middle" font-size="18" font-weight="900" fill="#16241c">右</text>
+      </svg>
+      <p class="cap">真ん中の緑が標準です。左は標準の約1.5倍、働きすぎの表示でした。</p>
+      <p class="note">※経絡（けいらく）のバランスを見る目安の数値で、内臓の病気を示すものではありません。</p>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 340 190" role="img" aria-label="一本の柱だけが屋根を支えているイメージ図">
+        <rect x="30" y="28" width="280" height="28" rx="5" fill="#14503a"/>
+        <text x="170" y="48" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">からだ</text>
+        <rect x="150" y="56" width="40" height="104" fill="#c5401d"/>
+        <rect x="50" y="112" width="40" height="48" fill="#b7c1b9" stroke="#3d4d44" stroke-width="1.5"/>
+        <rect x="250" y="112" width="40" height="48" fill="#b7c1b9" stroke="#3d4d44" stroke-width="1.5"/>
+        <line x1="20" y1="160" x2="320" y2="160" stroke="#16241c" stroke-width="2"/>
+        <text x="170" y="181" text-anchor="middle" font-size="15" font-weight="900" fill="#c5401d">胆のう系</text>
+        <text x="70" y="181" text-anchor="middle" font-size="14" font-weight="700" fill="#16241c">ほかのライン</text>
+        <text x="270" y="181" text-anchor="middle" font-size="14" font-weight="700" fill="#16241c">ほかのライン</text>
+      </svg>
+      <p class="figcap">一本の柱で屋根を支えているイメージです</p>
+    </div>
+
+    <div class="battery">
+      <svg viewBox="0 0 140 76" role="img" aria-label="残りわずかの電池のイメージ">
+        <rect x="4" y="8" width="116" height="60" rx="10" fill="#ffffff" stroke="#16241c" stroke-width="4"/>
+        <rect x="122" y="26" width="12" height="24" rx="3" fill="#16241c"/>
+        <rect x="13" y="17" width="22" height="42" rx="4" fill="#4a52b8"/>
+      </svg>
+      <div class="val">
+        <span class="lbl">頭のエネルギー（心理・感情）</span>
+        <span class="num">0.74</span>
+        <span class="lbl">標準より下の表示</span>
+      </div>
+    </div>
+    <p class="cap">ストレスを受けとめる力や、頭のスッキリ感に使うエネルギーが、底をつきかけていました。</p>
+  </section>
+
+  <!-- 第2部 -->
+  <section class="part pad" id="p2">
+    <div class="part-head">
+      <div class="part-no">第2部</div>
+      <h2>今日いちばんのポイントは、<br>左の肩甲骨の内側</h2>
+      <p class="bridge">では、体のどこをゆるめたか。背中から見た図でお見せします。</p>
+    </div>
+
+    <div class="fig">
+      <svg viewBox="0 0 340 330" role="img" aria-label="背中側から見た図。左の肩甲骨の内側に大きなトリガーポイント、右肩の僧帽筋・三角筋・前鋸筋に印。">
+        <defs>
+          <marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#a8821f"/>
+          </marker>
+        </defs>
+        <ellipse cx="262" cy="142" rx="40" ry="34" fill="#fbe4dc" stroke="#c5401d" stroke-width="2" stroke-dasharray="5 4"/>
+        <circle cx="170" cy="46" r="30" fill="#ffffff" stroke="#14503a" stroke-width="3"/>
+        <path d="M150 88 L190 88 C200 104 240 108 262 116 C284 124 292 146 292 170 L292 236 L262 236 L258 176 L246 300 L94 300 L82 176 L78 236 L48 236 L48 170 C48 146 56 124 78 116 C100 108 140 104 150 88 Z" fill="none" stroke="#14503a" stroke-width="3" stroke-linejoin="round"/>
+        <line x1="170" y1="100" x2="170" y2="292" stroke="#14503a" stroke-width="2" stroke-dasharray="3 6"/>
+        <path d="M98 138 L152 146 L136 212 Z" fill="#ffffff" stroke="#14503a" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M242 138 L188 146 L204 212 Z" fill="#ffffff" stroke="#14503a" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M168 170 Q200 118 232 124" fill="none" stroke="#a8821f" stroke-width="3.5" marker-end="url(#ah)"/>
+        <circle class="pulse" cx="153" cy="180" r="15" fill="none" stroke="#a8821f" stroke-width="3"/>
+        <circle cx="153" cy="180" r="15" fill="#a8821f" stroke="#ffffff" stroke-width="2"/>
+        <text x="153" y="186" text-anchor="middle" font-size="17" font-weight="900" fill="#ffffff">1</text>
+        <circle cx="226" cy="110" r="12" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <text x="226" y="115" text-anchor="middle" font-size="15" font-weight="900" fill="#ffffff">2</text>
+        <circle cx="282" cy="148" r="12" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <text x="282" y="153" text-anchor="middle" font-size="15" font-weight="900" fill="#ffffff">3</text>
+        <circle cx="250" cy="208" r="12" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <text x="250" y="213" text-anchor="middle" font-size="15" font-weight="900" fill="#ffffff">4</text>
+        <rect x="14" y="282" width="44" height="34" rx="8" fill="#14503a"/>
+        <text x="36" y="306" text-anchor="middle" font-size="19" font-weight="900" fill="#ffffff">左</text>
+        <rect x="282" y="282" width="44" height="34" rx="8" fill="#14503a"/>
+        <text x="304" y="306" text-anchor="middle" font-size="19" font-weight="900" fill="#ffffff">右</text>
+      </svg>
+      <p class="figcap">背中側から見た図（画面の右が、渡瀬様の右です）</p>
+    </div>
+
+    <ul class="legend">
+      <li><span class="n main">1</span><span class="tx">左の肩甲骨の内側 <small>大きなトリガーポイント（筋肉のしこり）</small></span></li>
+      <li><span class="n">2</span><span class="tx">僧帽筋（そうぼうきん） <small>首から肩</small></span></li>
+      <li><span class="n">3</span><span class="tx">三角筋（さんかくきん） <small>肩の外側</small></span></li>
+      <li><span class="n">4</span><span class="tx">前鋸筋（ぜんきょきん） <small>わきの下</small></span></li>
+    </ul>
+
+    <p class="bridge">今日、手で触れて見えた流れはこうでした。</p>
+    <ol class="chain">
+      <li class="hot">左の肩甲骨の内側に、<br>大きなトリガーポイント</li>
+      <li>右肩の動きにブレーキ</li>
+      <li>右の僧帽筋・三角筋・前鋸筋が<br>カチカチに</li>
+      <li class="end">右肩が上がりにくい状態</li>
+    </ol>
+  </section>
+
+  <!-- 第3部 -->
+  <section class="part pad" id="p3">
+    <div class="part-head">
+      <div class="part-no">第3部</div>
+      <h2>目と頭のつかれ</h2>
+      <p class="bridge">肩に加えて、頭まわりにもポイントがありました。最近のお仕事の読書が関わっていそうです。</p>
+    </div>
+
+    <ol class="chain">
+      <li>研究のための読書・読みもの</li>
+      <li>文字を追う、目の小さな筋肉</li>
+      <li>首と頭を固定する筋肉</li>
+      <li class="hot">側頭骨（そくとうこつ）とおでこに、<br>たくさんのトリガーポイント</li>
+    </ol>
+
+    <div class="fig">
+      <svg viewBox="0 0 340 240" role="img" aria-label="頭の図。両側の側頭部とおでこにトリガーポイントの印。">
+        <ellipse cx="92" cy="132" rx="9" ry="17" fill="#ffffff" stroke="#14503a" stroke-width="3"/>
+        <ellipse cx="248" cy="132" rx="9" ry="17" fill="#ffffff" stroke="#14503a" stroke-width="3"/>
+        <ellipse cx="170" cy="122" rx="76" ry="94" fill="#ffffff" stroke="#14503a" stroke-width="3"/>
+        <ellipse cx="142" cy="140" rx="14" ry="8" fill="#ffffff" stroke="#14503a" stroke-width="2.5"/>
+        <circle cx="142" cy="140" r="4.5" fill="#16241c"/>
+        <ellipse cx="198" cy="140" rx="14" ry="8" fill="#ffffff" stroke="#14503a" stroke-width="2.5"/>
+        <circle cx="198" cy="140" r="4.5" fill="#16241c"/>
+        <path d="M170 150 L164 170 L174 170" fill="none" stroke="#14503a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M152 190 Q170 198 188 190" fill="none" stroke="#14503a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="146" cy="72" r="8" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="170" cy="62" r="8" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="194" cy="72" r="8" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="110" cy="96" r="8" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="107" cy="118" r="8" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="230" cy="96" r="8" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="233" cy="118" r="8" fill="#c5401d" stroke="#ffffff" stroke-width="2"/>
+        <text x="170" y="104" text-anchor="middle" font-size="16" font-weight="900" fill="#16241c">おでこ</text>
+        <line x1="66" y1="104" x2="98" y2="106" stroke="#16241c" stroke-width="1.5"/>
+        <line x1="274" y1="104" x2="242" y2="106" stroke="#16241c" stroke-width="1.5"/>
+        <text x="40" y="109" text-anchor="middle" font-size="16" font-weight="900" fill="#16241c">側頭</text>
+        <text x="300" y="109" text-anchor="middle" font-size="16" font-weight="900" fill="#16241c">側頭</text>
+      </svg>
+      <p class="figcap">赤い印が、今日ゆるめたところです（側頭は両側）</p>
+    </div>
+  </section>
+
+  <!-- 第4部 -->
+  <section class="part pad" id="p4">
+    <div class="part-head">
+      <div class="part-no">第4部</div>
+      <h2>これからのこと</h2>
+      <p class="bridge">最後に、今日の仕上がりと、この先の使い方です。</p>
+    </div>
+
+    <ul class="next">
+      <li>
+        <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21" fill="#14503a"/><path d="M13 24 L20 31 L33 16" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="tx"><span class="k">今日</span><span class="v">見つけたトリガーポイントは、すべてゆるめました。安心してください。かなり楽になると思います。</span></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21" fill="#a8821f"/><path d="M12 23 H31 M24 15 L32 23 L24 31" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="tx"><span class="k">まずは</span><span class="v">この状態で、今の忙しい時期を乗り切ってください。</span></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21" fill="#14503a"/><path d="M26 9 L14 26 H22 L20 37 L32 20 H24 Z" fill="#f3dc9a"/></svg>
+        <div class="tx"><span class="k">この先</span><span class="v">ストレスが強く溜まったときは、ほぐせばまた復活します。「エネルギーチャージ」のつもりで使ってください。</span></div>
+      </li>
+    </ul>
+    <p class="note">※感じ方や回復の早さには個人差があります。</p>
+  </section>
+
+  <footer class="sign pad">
+    <div class="theory">神経反射入力装置論</div>
+    <div>
+      <div class="nm">谷 弘誠</div>
+      <div class="role">柔道整復師／三条健康堂接骨院 院長</div>
+    </div>
+    <p class="prof">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="loc">香川県高松市由良町・由良川東公園のそば</div>
+    <div class="btns">
+      <a class="btn" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="btn map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップで場所を見る</a>
+    </div>
+    <p class="foot">本報告書はRaDoTech測定値および施術所見にもとづく経過共有です。<br>診断・治療方針の決定は医療機関の判断によります。</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
