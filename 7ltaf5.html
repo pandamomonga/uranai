@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>福田様 施術報告書 2026.10.12</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* Layout: 1カラムの縦読み。表紙 → 目次 → 3つの部（各部は前置き1行 → 図 → 短い言葉）→ ひとこと → 定型フッター。白地・深緑・金の単一テーマ（院のブランド色）。 */
+:root{
+  color-scheme: light;
+  --paper:#ffffff;
+  --ink:#1c2a23;
+  --ink-soft:#44534b;
+  --green:#1f5e45;
+  --green-tint:#eef4f0;
+  --gold:#c9a44c;
+  --gold-deep:#7d6114;
+  --std:#3fae6a;
+  --high:#c63d1f;
+  --low:#4a5fc7;
+  --fig:#d3ded7;
+  --line:#cdd8d1;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.8;margin:0}
+.wrap{max-width:560px;margin:0 auto;padding-inline:20px;padding-block:28px 40px;display:flex;flex-direction:column;gap:44px}
+p{margin:0}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--sans);fill:var(--ink)}
+
+/* 表紙 */
+.cover{display:flex;flex-direction:column;gap:14px;padding-top:12px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--gold-deep)}
+.cover h1{font-family:var(--serif);font-size:34px;line-height:1.3;margin:0;color:var(--green);font-weight:700}
+.goldbar{width:64px;height:4px;background:var(--gold)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 24px;font-size:17px}
+.meta b{font-size:21px}
+.lead{font-family:var(--serif);font-size:23px;line-height:1.6;font-weight:600;color:var(--ink);text-wrap:balance}
+.disclaimer{font-size:14px;line-height:1.7;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:12px}
+
+/* 目次 */
+.toc{background:var(--green-tint);padding:20px;display:flex;flex-direction:column;gap:12px}
+.toc h2{margin:0;font-size:20px;color:var(--green);font-weight:700}
+.toc ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.toc li{display:flex;gap:12px;align-items:baseline;font-size:17px;font-weight:500}
+.toc li span{flex:none;font-family:var(--serif);font-weight:700;color:var(--green);font-size:15px;min-width:3.4em}
+
+/* 各部 */
+.part{display:flex;flex-direction:column;gap:18px}
+.part-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--green);padding-top:14px}
+.part-no{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--gold-deep);letter-spacing:.12em}
+.part-head h2{margin:0;font-family:var(--serif);font-size:25px;line-height:1.4;color:var(--green);text-wrap:balance}
+.bridge{font-size:16px;color:var(--ink-soft)}
+.say{font-size:18px;font-weight:700;line-height:1.7}
+.fig{background:var(--green-tint);padding:14px 10px}
+.fig-cap{font-size:14px;color:var(--ink-soft);text-align:center;margin-top:6px}
+
+/* 第1部：こたえやすいこと */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.trio div{border:1.5px solid var(--line);padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-size:15px;font-weight:700;line-height:1.45;min-width:0}
+.trio svg{width:44px;height:44px}
+.sub{font-size:16px;font-weight:700;color:var(--green)}
+
+/* 第2部：順番 */
+.steps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0}
+.steps li{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.steps li:first-child{border-top:1px solid var(--line)}
+.num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--green);color:#ffffff;font-weight:700;font-size:19px;display:flex;align-items:center;justify-content:center}
+.steps .body{display:flex;flex-direction:column;min-width:0}
+.steps strong{font-size:19px;line-height:1.5}
+.steps small{font-size:15px;color:var(--ink-soft);line-height:1.5}
+.tag{display:inline-block;margin-left:8px;font-size:13px;font-weight:700;color:var(--ink);background:#f1e2b4;padding:1px 8px;vertical-align:middle}
+.after{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.after div{background:var(--green);color:#ffffff;font-weight:700;font-size:16px;text-align:center;padding:14px 4px;line-height:1.4;min-width:0}
+
+/* 第3部：測定 */
+.point{border:2px solid var(--gold);padding:26px 14px 16px;position:relative;display:flex;flex-direction:column;gap:16px}
+.point-tag{position:absolute;top:-14px;left:14px;background:var(--gold);color:var(--ink);font-weight:700;font-size:14px;letter-spacing:.14em;padding:2px 14px}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tiles div{border:1.5px solid var(--line);padding:10px 12px;display:flex;flex-direction:column;min-width:0}
+.tiles span{font-size:15px;font-weight:700}
+.tiles b{font-size:24px;font-variant-numeric:tabular-nums;line-height:1.3}
+.tiles i{font-style:normal;font-size:14px;font-weight:700;color:var(--green)}
+.note{font-size:14px;color:var(--ink-soft);line-height:1.7}
+
+/* ひとこと */
+.oneline{border-top:3px solid var(--gold);border-bottom:3px solid var(--gold);padding:20px 4px;display:flex;flex-direction:column;gap:8px;text-align:center}
+.oneline .t{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--gold-deep)}
+.oneline p{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.7;text-wrap:balance}
+
+/* フッター */
+footer{display:flex;flex-direction:column;gap:18px;border-top:1px solid var(--line);padding-top:22px;font-size:15px;line-height:1.75;color:var(--ink-soft)}
+footer h4{margin:0 0 4px;font-size:16px;color:var(--green)}
+footer b{color:var(--ink);font-size:16px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 8px}
+.links a{flex:1 1 150px;text-align:center;font-weight:700;font-size:16px;padding:12px 10px;text-decoration:none}
+.links a.line{background:var(--green);color:#ffffff}
+.links a.map{border:2px solid var(--green);color:var(--green);background:var(--paper)}
+.links a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sig{font-size:13px;color:var(--ink-soft);margin-top:8px}
+</style>
+<style>img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1>施術報告書</h1>
+    <div class="goldbar"></div>
+    <div class="meta">
+      <div>患者様　<b>福田様</b></div>
+      <div>施術日　<b>2026.10.12</b>（月）</div>
+    </div>
+    <p class="lead">長い移動でかたまった体を、<br>4つの順番でゆるめました。</p>
+    <p class="disclaimer">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+  </header>
+
+  <nav class="toc" aria-label="目次">
+    <h2>今日の報告は3つの話です</h2>
+    <ol>
+      <li><span>第1部</span>長い移動と、体の疲れ</li>
+      <li><span>第2部</span>今日ゆるめた4つの場所</li>
+      <li><span>第3部</span>測定データが教えてくれたこと</li>
+    </ol>
+  </nav>
+
+  <!-- 第1部 -->
+  <section class="part">
+    <div class="part-head">
+      <div class="part-no">第1部</div>
+      <h2>長い移動と、体の疲れ</h2>
+    </div>
+    <p class="bridge">まず、今回の疲れの背景からお話しします。</p>
+
+    <div class="fig">
+      <svg viewBox="0 0 340 214" role="img" aria-label="移動距離が長くなるほど体の疲れが増えるイメージ図。福島と東京の移動は右上の位置。">
+        <!-- 軸 -->
+        <line x1="52" y1="20" x2="52" y2="170" stroke="#1c2a23" stroke-width="2"/>
+        <line x1="52" y1="170" x2="322" y2="170" stroke="#1c2a23" stroke-width="2"/>
+        <text x="20" y="100" font-size="14" font-weight="700" text-anchor="middle" transform="rotate(-90 20 100)">体の疲れ</text>
+        <text x="187" y="200" font-size="14" font-weight="700" text-anchor="middle">移動距離</text>
+        <text x="60" y="188" font-size="13">短い</text>
+        <text x="316" y="188" font-size="13" text-anchor="end">長い</text>
+        <!-- 比例の線 -->
+        <line x1="52" y1="170" x2="270" y2="58" stroke="#1f5e45" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="106" cy="142" r="6" fill="#1f5e45"/>
+        <circle cx="160" cy="114" r="6" fill="#1f5e45"/>
+        <circle cx="214" cy="87" r="6" fill="#1f5e45"/>
+        <!-- 今回 -->
+        <circle cx="270" cy="58" r="13" fill="#c9a44c" stroke="#1c2a23" stroke-width="2"/>
+        <rect x="150" y="12" width="150" height="28" fill="#ffffff" stroke="#1c2a23" stroke-width="1.5"/>
+        <text x="225" y="31" font-size="15" font-weight="700" text-anchor="middle">福島 ⇄ 東京</text>
+        <line x1="262" y1="40" x2="268" y2="46" stroke="#1c2a23" stroke-width="1.5"/>
+      </svg>
+      <p class="fig-cap">距離がのびるほど、疲れも比例して<br>増えていきます（イメージ図）</p>
+    </div>
+
+    <p class="say">長い移動ほど、体は疲れます。</p>
+
+    <p class="sub">移動中、体にこたえやすいこと</p>
+    <div class="trio">
+      <div>
+        <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M12 6h8v20h14v6H12z" fill="#1f5e45"/><rect x="14" y="32" width="4" height="8" fill="#1f5e45"/><rect x="28" y="32" width="4" height="8" fill="#1f5e45"/></svg>
+        硬い<br>シート
+      </div>
+      <div>
+        <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M8 6h7v22h17v5H8z" fill="#1f5e45"/><path d="M22 8q8 9 4 18" fill="none" stroke="#c63d1f" stroke-width="3.5" stroke-linecap="round"/><rect x="10" y="33" width="4" height="7" fill="#1f5e45"/><rect x="26" y="33" width="4" height="7" fill="#1f5e45"/></svg>
+        体に合わない<br>シート
+      </div>
+      <div>
+        <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="16" fill="none" stroke="#1f5e45" stroke-width="4"/><path d="M22 12v10l8 5" fill="none" stroke="#1f5e45" stroke-width="4" stroke-linecap="round"/></svg>
+        同じ姿勢の<br>まま長時間
+      </div>
+    </div>
+  </section>
+
+  <!-- 第2部 -->
+  <section class="part">
+    <div class="part-head">
+      <div class="part-no">第2部</div>
+      <h2>今日ゆるめた4つの場所</h2>
+    </div>
+    <p class="bridge">その疲れが体のどこに出ていたか。<br>ゆるめた順番でお見せします。</p>
+
+    <div class="fig">
+      <svg viewBox="0 0 340 440" role="img" aria-label="背中側から見た体の図。1 胸郭、2 両方の太もも、3 左の首、4 両ひざの内側。">
+        <!-- 体（背中側） -->
+        <g fill="#d3ded7" stroke="#d3ded7">
+          <circle cx="170" cy="48" r="24" stroke="none"/>
+          <rect x="158" y="66" width="24" height="26" stroke="none"/>
+          <path d="M108,90 Q170,82 232,90 Q246,94 244,110 L212,205 Q208,225 212,248 L128,248 Q132,225 128,205 L96,110 Q94,94 108,90 Z" stroke="none"/>
+          <path d="M94,106 L72,172 L66,234" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M246,106 L268,172 L274,234" fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M148,246 L144,332 L142,412" fill="none" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M192,246 L196,332 L198,412" fill="none" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- ゆるめた場所 -->
+        <g fill="#c9a44c" stroke="#1c2a23" stroke-width="1.5">
+          <ellipse cx="170" cy="140" rx="52" ry="42"/>
+          <ellipse cx="146" cy="288" rx="14" ry="32"/>
+          <ellipse cx="194" cy="288" rx="14" ry="32"/>
+          <ellipse cx="161" cy="79" rx="7" ry="12"/>
+          <circle cx="154" cy="336" r="8"/>
+          <circle cx="186" cy="336" r="8"/>
+        </g>
+        <!-- 肩甲骨の内側 -->
+        <path d="M146,112 Q134,140 148,168" fill="none" stroke="#1f5e45" stroke-width="3" stroke-linecap="round"/>
+        <path d="M194,112 Q206,140 192,168" fill="none" stroke="#1f5e45" stroke-width="3" stroke-linecap="round"/>
+        <!-- 引き出し線 -->
+        <g stroke="#1c2a23" stroke-width="1.5">
+          <line x1="222" y1="134" x2="276" y2="122"/>
+          <line x1="132" y1="288" x2="50" y2="288"/>
+          <line x1="154" y1="78" x2="92" y2="62"/>
+          <line x1="194" y1="336" x2="276" y2="336"/>
+        </g>
+        <!-- 番号 -->
+        <g fill="#1f5e45">
+          <circle cx="290" cy="120" r="14"/>
+          <circle cx="36" cy="288" r="14"/>
+          <circle cx="26" cy="58" r="14"/>
+          <circle cx="290" cy="336" r="14"/>
+        </g>
+        <g font-size="17" font-weight="700" text-anchor="middle">
+          <text x="290" y="126" style="fill:#ffffff">1</text>
+          <text x="36" y="294" style="fill:#ffffff">2</text>
+          <text x="26" y="64" style="fill:#ffffff">3</text>
+          <text x="290" y="342" style="fill:#ffffff">4</text>
+        </g>
+        <g font-size="15" font-weight="700">
+          <text x="290" y="154" text-anchor="middle">胸郭</text>
+          <text x="46" y="322" text-anchor="middle">両ふともも</text>
+          <text x="44" y="64">左の首</text>
+          <text x="290" y="370" text-anchor="middle">両ひざの内側</text>
+        </g>
+        <!-- 左右 -->
+        <g font-size="17" font-weight="700" text-anchor="middle">
+          <text x="60" y="424">左</text>
+          <text x="280" y="424">右</text>
+        </g>
+      </svg>
+      <p class="fig-cap">背中側から見た図（向かって右が、福田様の右）</p>
+    </div>
+
+    <ol class="steps">
+      <li><span class="num">1</span><span class="body"><strong>胸郭<span class="tag">かなり硬め</span></strong><small>肩甲骨の内側から、胸郭ぜんたいを</small></span></li>
+      <li><span class="num">2</span><span class="body"><strong>両方の太もも</strong></span></li>
+      <li><span class="num">3</span><span class="body"><strong>左の首</strong></span></li>
+      <li><span class="num">4</span><span class="body"><strong>両ひざの内側</strong></span></li>
+    </ol>
+
+    <div class="fig">
+      <svg viewBox="0 0 340 200" role="img" aria-label="首を後ろから見た図。首の左がわをゆるめました。">
+        <g fill="#d3ded7">
+          <circle cx="170" cy="62" r="44"/>
+          <rect x="146" y="98" width="48" height="50"/>
+          <path d="M40,196 Q60,152 146,142 L194,142 Q280,152 300,196 Z"/>
+        </g>
+        <rect x="146" y="102" width="22" height="42" rx="8" fill="#c9a44c" stroke="#1c2a23" stroke-width="1.5"/>
+        <line x1="146" y1="122" x2="96" y2="122" stroke="#1c2a23" stroke-width="1.5"/>
+        <text x="92" y="127" font-size="16" font-weight="700" text-anchor="end">首の左がわ</text>
+        <g font-size="19" font-weight="700" text-anchor="middle">
+          <text x="44" y="62">左</text>
+          <text x="296" y="62">右</text>
+        </g>
+      </svg>
+      <p class="fig-cap">首は「左がわ」です（後ろから見た図）</p>
+    </div>
+
+    <p class="say">この順番でゆるめると、<br>体ぜんたいの流れが整っていきます。</p>
+    <div class="after">
+      <div>全身の流れが<br>整う</div>
+      <div>リラックス<br>しやすく</div>
+      <div>ストレスの<br>解消にも</div>
+    </div>
+  </section>
+
+  <!-- 第3部 -->
+  <section class="part">
+    <div class="part-head">
+      <div class="part-no">第3部</div>
+      <h2>測定データが<br>教えてくれたこと</h2>
+    </div>
+    <p class="bridge">最後に、手で感じたことを測定データで確かめます。</p>
+
+    <div class="point">
+      <div class="point-tag">POINT</div>
+      <p class="say">肝のエネルギーが、<br>体ぜんたいを支えていました。</p>
+
+      <div class="fig">
+        <svg viewBox="0 0 340 266" role="img" aria-label="縦棒グラフ。膵・脾は左75%、右72%で標準100%より低め。肝は左94%、右145%で右が標準より高い。">
+          <g font-size="17" font-weight="700" text-anchor="middle">
+            <text x="86" y="24">膵・脾</text>
+            <text x="254" y="24">肝</text>
+          </g>
+          <line x1="18" y1="210" x2="322" y2="210" stroke="#1c2a23" stroke-width="2"/>
+          <!-- 膵・脾 -->
+          <rect x="28" y="135" width="28" height="75" rx="5" fill="#4a5fc7"/>
+          <rect x="72" y="110" width="28" height="100" rx="5" fill="#3fae6a"/>
+          <rect x="116" y="138" width="28" height="72" rx="5" fill="#4a5fc7"/>
+          <!-- 肝 -->
+          <rect x="196" y="116" width="28" height="94" rx="5" fill="#c63d1f"/>
+          <rect x="240" y="110" width="28" height="100" rx="5" fill="#3fae6a"/>
+          <rect x="284" y="65" width="28" height="145" rx="5" fill="#c63d1f"/>
+          <line x1="18" y1="110" x2="322" y2="110" stroke="#1c2a23" stroke-width="1.5" stroke-dasharray="5 5"/>
+          <g font-size="15" font-weight="700" text-anchor="middle" style="font-variant-numeric:tabular-nums">
+            <text x="42" y="129">75%</text>
+            <text x="86" y="103">100%</text>
+            <text x="130" y="132">72%</text>
+            <text x="210" y="105">94%</text>
+            <text x="254" y="103">100%</text>
+            <text x="298" y="58">145%</text>
+          </g>
+          <g font-size="14" font-weight="700" text-anchor="middle">
+            <text x="42" y="230">左</text><text x="86" y="230">標準</text><text x="130" y="230">右</text>
+            <text x="210" y="230">左</text><text x="254" y="230">標準</text><text x="298" y="230">右</text>
+          </g>
+          <g font-size="15" font-weight="700" text-anchor="middle">
+            <text x="86" y="256" style="fill:#4a5fc7">ひかえめ</text>
+            <text x="254" y="256" style="fill:#c63d1f">がんばり中</text>
+          </g>
+        </svg>
+        <p class="fig-cap">まん中の緑が標準（100%）<br>肝の右は標準の1.45倍</p>
+      </div>
+
+      <div class="fig">
+        <svg viewBox="0 0 340 204" role="img" aria-label="たとえの図。体ぜんたいという屋根を、背の高い肝の柱がひとりで支え、膵・脾の柱は屋根に届いていない。">
+          <rect x="34" y="20" width="272" height="38" fill="#1f5e45"/>
+          <text x="170" y="45" font-size="17" font-weight="700" text-anchor="middle" style="fill:#ffffff">体ぜんたい</text>
+          <!-- 膵・脾の柱（届いていない） -->
+          <rect x="66" y="92" width="72" height="72" fill="#4a5fc7"/>
+          <text x="102" y="134" font-size="16" font-weight="700" text-anchor="middle" style="fill:#ffffff">膵・脾</text>
+          <line x1="102" y1="62" x2="102" y2="88" stroke="#1c2a23" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <!-- 肝の柱（支えている） -->
+          <rect x="202" y="58" width="72" height="106" fill="#c63d1f"/>
+          <text x="238" y="118" font-size="18" font-weight="700" text-anchor="middle" style="fill:#ffffff">肝</text>
+          <line x1="20" y1="164" x2="320" y2="164" stroke="#1c2a23" stroke-width="2"/>
+          <g font-size="15" font-weight="700" text-anchor="middle">
+            <text x="102" y="188">届いていない</text>
+            <text x="238" y="188">ひとりで支える</text>
+          </g>
+        </svg>
+        <p class="fig-cap">屋根（体）を、肝の柱が<br>背のびして支えているイメージ</p>
+      </div>
+
+      <p class="say">それでも、筋肉には<br>疲れが出ていました。</p>
+
+      <div class="fig">
+        <svg viewBox="0 0 340 122" role="img" aria-label="筋骨格系の値は0.84。基準の範囲0.9から1.2より少し低い。">
+          <text x="170" y="20" font-size="16" font-weight="700" text-anchor="middle">筋骨格系</text>
+          <rect x="30" y="62" width="280" height="18" fill="#ffffff" stroke="#1c2a23" stroke-width="1.5"/>
+          <rect x="135" y="62" width="105" height="18" fill="#3fae6a" stroke="#1c2a23" stroke-width="1.5"/>
+          <path d="M114,60 L105,44 L123,44 Z" fill="#4a5fc7" stroke="#1c2a23" stroke-width="1.5"/>
+          <text x="96" y="57" font-size="17" font-weight="700" text-anchor="end" style="font-variant-numeric:tabular-nums">今日 0.84</text>
+          <g font-size="14" font-weight="700" text-anchor="middle" style="font-variant-numeric:tabular-nums">
+            <text x="135" y="100">0.9</text>
+            <text x="240" y="100">1.2</text>
+          </g>
+          <text x="187" y="116" font-size="14" font-weight="700" text-anchor="middle">基準の範囲</text>
+        </svg>
+        <p class="fig-cap">基準より少し低め（左右のバランス値）<br>左 450.91 ／ 右 539.80</p>
+      </div>
+
+      <p class="note">東洋医学では、肝は筋（すじ・筋肉）とつながりが深いと考えます。</p>
+    </div>
+
+    <p class="sub">そのほかの4項目は、すべて正常でした</p>
+    <div class="tiles">
+      <div><span>エネルギー</span><b>41.28</b><i>正常</i></div>
+      <div><span>免疫</span><b>39.49</b><i>正常</i></div>
+      <div><span>代謝</span><b>1.14</b><i>正常</i></div>
+      <div><span>心理・感情</span><b>1.15</b><i>正常</i></div>
+    </div>
+    <p class="note">※測定値は体の電気的な反応をみる目安で、病気の診断ではありません。</p>
+  </section>
+
+  <div class="oneline">
+    <div class="t">ひとことで言うと</div>
+    <p>肝が支えてくれていた体を、<br>胸郭から順にゆるめて、<br>流れを整えました。</p>
+  </div>
+
+  <footer>
+    <div>
+      <h4>三条健康堂の考え方｜神経反射入力装置論</h4>
+      <p>からだを「入力装置」としてとらえ、皮ふ・筋肉・関節への刺激を通して神経の反射を整え、からだが自分で回復する力を引き出す施術理論です。</p>
+    </div>
+    <div>
+      <b>谷 先生｜三条健康堂接骨院 院長</b>
+      <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+      <div class="links">
+        <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+        <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+      </div>
+      <p>高松市由良町、由良川東公園のそば</p>
+      <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
