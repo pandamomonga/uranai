@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平尾様 施術報告書｜三条健康堂接骨院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a3d28;
+    --green2:#2e5c40;
+    --gold:#c4a44d;
+    --gold-deep:#7d6219;
+    --ink:#1f2a22;
+    --sub:#3f4a43;
+    --line:#e4dfd2;
+    --paper:#ffffff;
+    --cream:#faf7ef;
+    --red:#c23c26;
+    --red-bg:#fbebe7;
+    --blue:#3a48b0;
+    --blue-bg:#eaecf9;
+    --ok:#2a8049;
+    --ok-bg:#e7f3eb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Noto Sans JP","Noto Sans CJK JP","Hiragino Sans",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.8;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:540px;margin:0 auto;background:var(--paper);}
+  .serif{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;}
+  svg{display:block;width:100%;height:auto;}
+  svg text{font-family:"Noto Sans JP","Noto Sans CJK JP",sans-serif;}
+
+  /* 表紙 */
+  .cover{background:var(--green);color:#fff;padding:34px 22px 30px;text-align:center;border-bottom:6px solid var(--gold);}
+  .eyebrow{font-size:13px;letter-spacing:.32em;color:var(--gold);font-weight:700;}
+  .cover h1{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;font-size:32px;font-weight:900;letter-spacing:.12em;margin-top:8px;line-height:1.4;}
+  .cover .name{font-size:24px;font-weight:700;margin-top:14px;}
+  .cover .date{font-size:16px;margin-top:4px;color:#e8e2cf;}
+  .note{margin:18px 16px 0;padding:12px 14px;background:var(--cream);border-left:4px solid var(--gold);font-size:14px;line-height:1.7;color:var(--sub);}
+
+  .hitokoto{margin:20px 16px 0;padding:20px 18px;border:2px solid var(--green);border-radius:14px;text-align:center;}
+  .hitokoto .t{display:inline-block;background:var(--green);color:#fff;font-size:13px;font-weight:700;padding:2px 12px;border-radius:20px;letter-spacing:.1em;}
+  .hitokoto .big{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;font-size:22px;font-weight:900;color:var(--green);line-height:1.6;margin-top:10px;}
+  .hitokoto .small{font-size:16px;margin-top:8px;color:var(--sub);}
+
+  /* 目次 */
+  .toc{margin:22px 16px 0;padding:18px 16px;background:var(--cream);border-radius:14px;}
+  .toc h2{font-size:20px;color:var(--green);text-align:center;margin-bottom:10px;}
+  .toc h2 b{color:var(--gold-deep);font-size:26px;}
+  .toc a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;}
+  .toc .no{display:inline-block;background:var(--gold);color:var(--green);font-weight:900;font-size:13px;padding:1px 8px;border-radius:6px;margin-right:8px;}
+  .toc .ti{font-weight:700;font-size:17px;}
+  .toc .su{display:block;font-size:14px;color:var(--sub);margin-top:2px;padding-left:2px;}
+
+  /* 部 */
+  section{padding:34px 16px 6px;}
+  .part{display:inline-block;font-size:14px;font-weight:900;color:var(--gold-deep);border:2px solid var(--gold);border-radius:6px;padding:0 10px;letter-spacing:.08em;}
+  section h2{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;font-size:25px;font-weight:900;color:var(--green);margin-top:8px;line-height:1.45;}
+  .lead{font-size:16px;color:var(--sub);margin-top:6px;padding-bottom:12px;border-bottom:2px solid var(--line);}
+  h3{font-size:20px;color:var(--green);margin:26px 0 4px;}
+  .lead2{font-size:15px;color:var(--sub);margin-bottom:8px;}
+  .figure{margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 8px 8px;}
+  .cap{text-align:center;font-weight:700;font-size:17px;color:var(--green);margin-top:12px;line-height:1.6;}
+  .cap small{display:block;font-weight:500;font-size:14px;color:var(--sub);}
+
+  /* 指標カード */
+  .ind{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;margin-top:10px;background:#fff;}
+  .ind .ic{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:#fff;}
+  .ind .nm{font-weight:700;font-size:17px;line-height:1.4;}
+  .ind .nm small{display:block;font-weight:500;font-size:13px;color:var(--sub);}
+  .ind .val{text-align:right;}
+  .ind .num{font-size:26px;font-weight:900;line-height:1.1;}
+  .chip{display:inline-block;font-size:13px;font-weight:700;padding:1px 9px;border-radius:20px;margin-top:3px;}
+  .lo .ic{background:var(--blue);} .lo .num{color:var(--blue);} .lo .chip{background:var(--blue-bg);color:var(--blue);}
+  .hi .ic{background:var(--red);} .hi .num{color:var(--red);} .hi .chip{background:var(--red-bg);color:var(--red);}
+  .ok .ic{background:var(--ok);} .ok .num{color:var(--ink);} .ok .chip{background:var(--ok-bg);color:var(--ok);}
+  .ind.hi,.ind.lo{border-width:2px;}
+  .ind.hi{border-color:#e9b3a8;} .ind.lo{border-color:#b8bfe9;}
+
+  .calm{margin-top:12px;padding:12px 14px;background:var(--ok-bg);border-radius:10px;font-size:15px;line-height:1.7;color:var(--ink);}
+
+  /* 話カード */
+  .voice{margin-top:14px;padding:16px;background:var(--cream);border-radius:14px;position:relative;}
+  .voice .who{font-size:13px;font-weight:700;color:var(--gold-deep);}
+  .voice .q{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;font-size:20px;font-weight:900;color:var(--green);line-height:1.6;margin-top:4px;}
+  .work{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;margin-top:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;}
+  .work .ic{width:44px;height:44px;border-radius:10px;background:var(--green);color:#fff;font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center;}
+  .work p{font-size:16px;line-height:1.6;}
+
+  .plist{margin-top:12px;}
+  .plist div{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px dashed var(--line);font-size:16px;}
+  .plist .n{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .plist .n.g{background:var(--green2);}
+  .plist small{color:var(--sub);font-size:13px;}
+
+  .result{margin-top:16px;padding:16px;background:var(--green);color:#fff;border-radius:14px;text-align:center;}
+  .result .a{font-size:16px;line-height:1.7;}
+  .result .b{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;font-size:21px;font-weight:900;color:#f3dc92;margin-top:6px;line-height:1.5;}
+
+  /* 流れ */
+  .flow{margin-top:12px;}
+  .step{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:#fff;border:1px solid var(--line);}
+  .step .n{width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;}
+  .step .t{font-weight:700;font-size:17px;line-height:1.4;}
+  .step .d{font-size:14px;color:var(--sub);line-height:1.5;margin-top:2px;}
+  .step.s2{border:2px solid #b8bfe9;} .step.s2 .n{background:var(--blue);}
+  .step.s3{border:2px solid #e9b3a8;} .step.s3 .n{background:var(--red);}
+  .step.s4{border:2px solid var(--gold);} .step.s4 .n{background:var(--gold);color:var(--green);}
+  .arrow{text-align:center;color:var(--gold);font-size:20px;line-height:1.2;padding:2px 0;}
+
+  /* POINT */
+  .point{margin-top:22px;border:2px solid var(--gold);border-radius:14px;padding:22px 14px 14px;position:relative;background:#fff;}
+  .point .tag{position:absolute;top:-13px;left:14px;background:var(--gold);color:var(--green);font-weight:900;font-size:13px;letter-spacing:.14em;padding:2px 12px;border-radius:6px;}
+  .point p{font-size:16px;line-height:1.75;}
+  .point b{color:var(--red);}
+
+  /* セルフケア */
+  .goal{margin-top:14px;padding:16px;border-radius:14px;background:var(--cream);border:2px solid var(--gold);text-align:center;}
+  .goal .t{font-size:13px;font-weight:700;color:var(--gold-deep);letter-spacing:.1em;}
+  .goal .b{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;font-size:22px;font-weight:900;color:var(--green);line-height:1.5;margin-top:2px;}
+  .when{display:flex;align-items:center;gap:8px;margin:26px 0 6px;font-size:19px;font-weight:900;color:var(--green);}
+  .when span{display:inline-block;background:var(--green);color:#fff;font-size:13px;padding:1px 10px;border-radius:20px;font-weight:700;}
+  .care{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px;border:1px solid var(--line);border-radius:12px;margin-top:10px;background:#fff;}
+  .care .n{width:40px;height:40px;border-radius:50%;background:var(--green2);color:#fff;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;}
+  .care .t{font-weight:900;font-size:18px;line-height:1.45;color:var(--green);}
+  .care .d{font-size:16px;line-height:1.7;margin-top:4px;}
+  .care .y{display:inline-block;font-size:13px;font-weight:700;color:var(--gold-deep);border:1px solid var(--gold);border-radius:4px;padding:0 6px;margin-bottom:4px;}
+  .care.star{border:2px solid var(--gold);background:#fffdf6;}
+  .why{font-size:14px;color:var(--sub);margin-top:4px;line-height:1.6;}
+
+  .food{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+  .food .box{border-radius:12px;padding:12px;}
+  .food .yes{background:var(--ok-bg);border:2px solid #9fcfae;}
+  .food .no{background:var(--red-bg);border:2px solid #e9b3a8;}
+  .food h4{font-size:16px;margin-bottom:6px;}
+  .food .yes h4{color:var(--ok);} .food .no h4{color:var(--red);}
+  .food li{list-style:none;font-size:15px;line-height:1.5;padding:5px 0;border-bottom:1px dashed rgba(0,0,0,.12);}
+  .food li:last-child{border-bottom:none;}
+  .food li small{display:block;font-size:13px;color:var(--sub);}
+
+  .oneline{margin:26px 16px 0;padding:20px 16px;background:var(--green);color:#fff;border-radius:14px;text-align:center;}
+  .oneline .t{font-size:13px;color:var(--gold);font-weight:700;letter-spacing:.14em;}
+  .oneline p{font-family:"Noto Serif JP","Noto Serif CJK JP",serif;font-size:22px;font-weight:900;line-height:1.6;margin-top:6px;}
+  .safety{margin:16px 16px 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;line-height:1.7;color:var(--sub);}
+
+  /* フッター */
+  footer{margin-top:34px;background:var(--green);color:#fff;padding:26px 18px 30px;border-top:6px solid var(--gold);}
+  footer h4{font-size:16px;color:var(--gold);margin-bottom:6px;}
+  footer p{font-size:14px;line-height:1.75;color:#eef0ea;}
+  footer .prof{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.25);}
+  footer .prof b{display:block;font-size:17px;margin-bottom:6px;}
+  footer .links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 10px;}
+  footer .links a{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;padding:12px 6px;border-radius:10px;}
+  footer .links .line{background:#06c755;color:#fff;}
+  footer .links .map{background:#fff;color:var(--green);}
+  footer .sig{margin-top:14px;font-size:13px;color:#d9d3bd;}
+  footer .brand{margin-top:16px;text-align:center;font-size:12px;letter-spacing:.3em;color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===== 表紙 ===== -->
+<header class="cover">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <h1>施術報告書</h1>
+  <div class="name">平尾 様</div>
+  <div class="date">2026年10月14日（水）</div>
+</header>
+
+<div class="note">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+<div class="hitokoto">
+  <span class="t">今日の体をひとことで</span>
+  <div class="big">体の電池は少なめ。<br>なのに、頭と心臓はフル回転。</div>
+  <div class="small">詰まっていた首をほどいて、<br>まっすぐに整えました。</div>
+</div>
+
+<!-- ===== 目次 ===== -->
+<nav class="toc">
+  <h2>今日の報告は <b>4</b> つの話です</h2>
+  <a href="#p1"><span class="no">第1部</span><span class="ti">測った数字</span><span class="su">電池は少なめ、頭と心臓はフル回転</span></a>
+  <a href="#p2"><span class="no">第2部</span><span class="ti">触れた体</span><span class="su">左の頭の付け根が、首に詰まっていた</span></a>
+  <a href="#p3"><span class="no">第3部</span><span class="ti">つなげてみると</span><span class="su">夜の充電不足と、昼のがんばり</span></a>
+  <a href="#p4"><span class="no">第4部</span><span class="ti">今夜からのセルフケア</span><span class="su">目と足を温めて、夜11時に眠る</span></a>
+</nav>
+
+<!-- ===== 第1部 ===== -->
+<section id="p1">
+  <span class="part">第1部</span>
+  <h2>測った数字</h2>
+  <p class="lead">まずは施術の前に、機械で測った数字から。</p>
+
+  <div class="ind lo">
+    <div class="ic">気</div>
+    <div class="nm">エネルギー<small>体の電池</small></div>
+    <div class="val"><div class="num">14.31</div><span class="chip">低め</span></div>
+  </div>
+  <div class="ind hi">
+    <div class="ic">頭</div>
+    <div class="nm">心理・情緒<small>頭と気持ちの張り</small></div>
+    <div class="val"><div class="num">1.24</div><span class="chip">高め</span></div>
+  </div>
+  <div class="ind ok">
+    <div class="ic">守</div>
+    <div class="nm">免疫<small>守る力</small></div>
+    <div class="val"><div class="num">10.61</div><span class="chip">基準内</span></div>
+  </div>
+  <div class="ind ok">
+    <div class="ic">巡</div>
+    <div class="nm">代謝<small>めぐり</small></div>
+    <div class="val"><div class="num">1.17</div><span class="chip">基準内</span></div>
+  </div>
+  <div class="ind ok">
+    <div class="ic">骨</div>
+    <div class="nm">筋肉・骨格<small>左右のバランス</small></div>
+    <div class="val"><div class="num">0.95</div><span class="chip">基準内</span></div>
+  </div>
+
+  <p class="cap">守る力とめぐりは、ちゃんと保てています。<small>気になるのは「電池が低め」「頭が高め」の2つ。</small></p>
+
+  <h3>心（しん）と胆（たん）</h3>
+  <p class="lead2">次は内臓ごとの数字。真ん中の緑の棒が標準です。</p>
+
+  <div class="figure">
+  <svg viewBox="0 0 360 270" role="img" aria-label="心と胆の左右の数値。心は左117、右152で高め。胆は左41、右90で低め。">
+    <line x1="180" y1="14" x2="180" y2="252" stroke="#e4dfd2" stroke-width="1.5"/>
+    <!-- 心 -->
+    <text x="87" y="24" text-anchor="middle" font-size="17" font-weight="900" fill="#1a3d28">心（しん）</text>
+    <text x="87" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#c23c26">昼の担当・高め</text>
+    <line x1="12" y1="130" x2="168" y2="130" stroke="#2a8049" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <rect x="22" y="113" width="36" height="117" rx="5" fill="#c23c26"/>
+    <rect x="69" y="130" width="36" height="100" rx="5" fill="#2a8049"/>
+    <rect x="116" y="78" width="36" height="152" rx="5" fill="#c23c26"/>
+    <text x="40" y="105" text-anchor="middle" font-size="16" font-weight="900" fill="#c23c26">117</text>
+    <text x="87" y="122" text-anchor="middle" font-size="14" font-weight="700" fill="#2a8049">100</text>
+    <text x="134" y="70" text-anchor="middle" font-size="16" font-weight="900" fill="#c23c26">152</text>
+    <!-- 胆 -->
+    <text x="272" y="24" text-anchor="middle" font-size="17" font-weight="900" fill="#1a3d28">胆（たん）</text>
+    <text x="272" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#3a48b0">夜の担当・低め</text>
+    <line x1="194" y1="130" x2="352" y2="130" stroke="#2a8049" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <rect x="207" y="189" width="36" height="41" rx="5" fill="#3a48b0"/>
+    <rect x="254" y="130" width="36" height="100" rx="5" fill="#2a8049"/>
+    <rect x="301" y="140" width="36" height="90" rx="5" fill="#3a48b0"/>
+    <text x="225" y="181" text-anchor="middle" font-size="16" font-weight="900" fill="#3a48b0">41</text>
+    <text x="272" y="122" text-anchor="middle" font-size="14" font-weight="700" fill="#2a8049">100</text>
+    <text x="319" y="124" text-anchor="middle" font-size="16" font-weight="900" fill="#3a48b0">90</text>
+    <!-- 地面とラベル -->
+    <line x1="12" y1="230" x2="168" y2="230" stroke="#3f4a43" stroke-width="1.5"/>
+    <line x1="194" y1="230" x2="352" y2="230" stroke="#3f4a43" stroke-width="1.5"/>
+    <g font-size="15" font-weight="700" fill="#1f2a22" text-anchor="middle">
+      <text x="40" y="252">左</text><text x="87" y="252">標準</text><text x="134" y="252">右</text>
+      <text x="225" y="252">左</text><text x="272" y="252">標準</text><text x="319" y="252">右</text>
+    </g>
+  </svg>
+  </div>
+  <p class="lead2" style="margin-top:6px;text-align:center;">数字は標準を100としたときの割合（%）です</p>
+
+  <div class="figure" style="margin-top:14px;">
+  <svg viewBox="0 0 360 160" role="img" aria-label="シーソーの図。昼の担当の心が上がり、夜の担当の胆が下がっている。">
+    <line x1="20" y1="142" x2="340" y2="142" stroke="#e4dfd2" stroke-width="2"/>
+    <polygon points="180,98 160,142 200,142" fill="#c4a44d"/>
+    <line x1="44" y1="70" x2="316" y2="128" stroke="#1a3d28" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="66" cy="48" r="25" fill="#fbebe7" stroke="#c23c26" stroke-width="3"/>
+    <text x="66" y="56" text-anchor="middle" font-size="22" font-weight="900" fill="#c23c26">心</text>
+    <circle cx="294" cy="99" r="25" fill="#eaecf9" stroke="#3a48b0" stroke-width="3"/>
+    <text x="294" y="107" text-anchor="middle" font-size="22" font-weight="900" fill="#3a48b0">胆</text>
+    <text x="104" y="34" font-size="15" font-weight="700" fill="#c23c26">昼の担当 ↑ 高め</text>
+    <text x="294" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#3a48b0">夜の担当 ↓ 低め</text>
+  </svg>
+  </div>
+  <p class="cap">昼の担当が上がり、夜の担当が下がる。<br>シーソーの形でした。</p>
+
+  <div class="calm">心の「高め」は、がんばっている体を支えるための<b>埋め合わせ</b>の反応とされ、ふつうは様子見でよいものです。</div>
+</section>
+
+<!-- ===== 第2部 ===== -->
+<section id="p2">
+  <span class="part">第2部</span>
+  <h2>触れた体</h2>
+  <p class="lead">その数字を、実際に体に触れて確かめました。</p>
+
+  <div class="voice">
+    <div class="who">平尾様のお話</div>
+    <div class="q">「頭から首から上に、<br>急に汗が吹き出る」</div>
+  </div>
+  <div class="work">
+    <div class="ic">仕</div>
+    <p>今は、パソコンの入力など<b>仕事がいくつも重なっている時期</b>。がんばりが続いています。</p>
+  </div>
+
+  <h3>いちばん詰まっていたところ</h3>
+  <p class="lead2">頭と首のつなぎ目を、背中側から見た図です。</p>
+  <div class="figure">
+  <svg viewBox="0 0 360 250" role="img" aria-label="施術前は左の頭の付け根が首のいちばん上の骨に詰まっていた。施術後はすき間ができてまっすぐになった。">
+    <!-- 施術前 -->
+    <text x="88" y="22" text-anchor="middle" font-size="17" font-weight="900" fill="#c23c26">施術前</text>
+    <g transform="translate(-4,7) rotate(-11 88 80)">
+      <ellipse cx="88" cy="82" rx="42" ry="46" fill="#f3efe4" stroke="#1a3d28" stroke-width="3"/>
+    </g>
+    <rect x="66" y="136" width="44" height="14" rx="5" fill="#fff" stroke="#1a3d28" stroke-width="2.5"/>
+    <rect x="68" y="155" width="40" height="13" rx="5" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <rect x="68" y="173" width="40" height="13" rx="5" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <rect x="68" y="191" width="40" height="13" rx="5" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <circle cx="64" cy="134" r="15" fill="#c23c26" fill-opacity="0.22" stroke="#c23c26" stroke-width="2.5"/>
+    <text x="36" y="174" text-anchor="middle" font-size="14" font-weight="900" fill="#c23c26">詰まり</text>
+    <text x="116" y="146" font-size="12" font-weight="700" fill="#3f4a43">首の一番</text>
+    <text x="116" y="161" font-size="12" font-weight="700" fill="#3f4a43">上の骨</text>
+    <text x="20" y="236" text-anchor="middle" font-size="16" font-weight="900" fill="#1f2a22">左</text>
+    <text x="156" y="236" text-anchor="middle" font-size="16" font-weight="900" fill="#1f2a22">右</text>
+
+    <line x1="180" y1="30" x2="180" y2="220" stroke="#e4dfd2" stroke-width="1.5"/>
+
+    <!-- 施術後 -->
+    <text x="272" y="22" text-anchor="middle" font-size="17" font-weight="900" fill="#2a8049">施術後</text>
+    <ellipse cx="272" cy="78" rx="42" ry="46" fill="#f3efe4" stroke="#1a3d28" stroke-width="3"/>
+    <rect x="250" y="138" width="44" height="14" rx="5" fill="#fff" stroke="#1a3d28" stroke-width="2.5"/>
+    <rect x="252" y="157" width="40" height="13" rx="5" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <rect x="252" y="175" width="40" height="13" rx="5" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <rect x="252" y="193" width="40" height="13" rx="5" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <rect x="246" y="125" width="52" height="12" rx="3" fill="#2a8049" fill-opacity="0.18"/>
+    <line x1="236" y1="124" x2="236" y2="138" stroke="#2a8049" stroke-width="2.5"/>
+    <polygon points="236,120 231,128 241,128" fill="#2a8049"/>
+    <polygon points="236,142 231,134 241,134" fill="#2a8049"/>
+    <text x="208" y="168" text-anchor="middle" font-size="14" font-weight="900" fill="#2a8049">すき間</text>
+    <text x="204" y="236" text-anchor="middle" font-size="16" font-weight="900" fill="#1f2a22">左</text>
+    <text x="340" y="236" text-anchor="middle" font-size="16" font-weight="900" fill="#1f2a22">右</text>
+  </svg>
+  </div>
+  <p class="cap">左の頭の付け根が、首のいちばん上の骨に<br>くっつくほど詰まっていました。</p>
+
+  <h3>今日施術した4か所</h3>
+  <p class="lead2">首と肩まわりを、背中側から見た図です。</p>
+  <div class="figure">
+  <svg viewBox="0 0 360 330" role="img" aria-label="背中側から見た図。1 左の頭の付け根、2 首の横、3 首から肩、4 肩甲骨まわり。">
+    <!-- 体 -->
+    <path d="M160,112 Q128,124 88,138 Q64,146 60,170 L58,304 L302,304 L300,170 Q296,146 272,138 Q232,124 200,112 Z" fill="#f3efe4" stroke="#1a3d28" stroke-width="3"/>
+    <rect x="160" y="92" width="40" height="32" fill="#f3efe4" stroke="none"/>
+    <line x1="160" y1="92" x2="160" y2="114" stroke="#1a3d28" stroke-width="3"/>
+    <line x1="200" y1="92" x2="200" y2="114" stroke="#1a3d28" stroke-width="3"/>
+    <ellipse cx="180" cy="58" rx="34" ry="40" fill="#f3efe4" stroke="#1a3d28" stroke-width="3"/>
+    <line x1="180" y1="126" x2="180" y2="300" stroke="#c9c1ab" stroke-width="2.5" stroke-dasharray="3 6"/>
+    <!-- 肩甲骨 -->
+    <path d="M112,170 L150,166 L144,244 Z" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <path d="M248,170 L210,166 L216,244 Z" fill="#fff" stroke="#3f4a43" stroke-width="2"/>
+    <!-- ① 左の頭の付け根 -->
+    <ellipse cx="166" cy="94" rx="18" ry="11" fill="#c23c26" fill-opacity="0.22"/>
+    <line x1="152" y1="90" x2="100" y2="64" stroke="#c23c26" stroke-width="2"/>
+    <circle cx="166" cy="94" r="11" fill="#c23c26"/>
+    <text x="166" y="99" text-anchor="middle" font-size="14" font-weight="900" fill="#fff">1</text>
+    <text x="8" y="50" font-size="15" font-weight="900" fill="#c23c26">頭の付け根</text>
+    <text x="8" y="68" font-size="13" font-weight="700" fill="#c23c26">（左がとくに）</text>
+    <!-- ② 首の横 -->
+    <line x1="210" y1="108" x2="276" y2="78" stroke="#2e5c40" stroke-width="2"/>
+    <circle cx="154" cy="112" r="10" fill="#2e5c40"/>
+    <text x="154" y="117" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">2</text>
+    <circle cx="206" cy="112" r="10" fill="#2e5c40"/>
+    <text x="206" y="117" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">2</text>
+    <text x="352" y="76" text-anchor="end" font-size="15" font-weight="900" fill="#1a3d28">首の横</text>
+    <!-- ③ 首〜肩 -->
+    <line x1="260" y1="140" x2="300" y2="124" stroke="#2e5c40" stroke-width="2"/>
+    <circle cx="108" cy="142" r="10" fill="#2e5c40"/>
+    <text x="108" y="147" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">3</text>
+    <circle cx="252" cy="142" r="10" fill="#2e5c40"/>
+    <text x="252" y="147" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">3</text>
+    <text x="352" y="120" text-anchor="end" font-size="15" font-weight="900" fill="#1a3d28">首〜肩</text>
+    <!-- ④ 肩甲骨 -->
+    <line x1="240" y1="200" x2="300" y2="200" stroke="#2e5c40" stroke-width="2"/>
+    <circle cx="128" cy="200" r="10" fill="#2e5c40"/>
+    <text x="128" y="205" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">4</text>
+    <circle cx="230" cy="200" r="10" fill="#2e5c40"/>
+    <text x="230" y="205" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">4</text>
+    <text x="352" y="194" text-anchor="end" font-size="15" font-weight="900" fill="#1a3d28">肩甲骨</text>
+    <!-- 左右 -->
+    <text x="26" y="324" text-anchor="middle" font-size="16" font-weight="900" fill="#1f2a22">左</text>
+    <text x="334" y="324" text-anchor="middle" font-size="16" font-weight="900" fill="#1f2a22">右</text>
+    <text x="180" y="324" text-anchor="middle" font-size="13" font-weight="700" fill="#3f4a43">背中側から見た図</text>
+  </svg>
+  </div>
+
+  <div class="plist">
+    <div><span class="n">1</span><span>頭の付け根の筋肉<br><small>後頭下筋群（こうとうかきんぐん）</small></span></div>
+    <div><span class="n g">2</span><span>首の横の筋肉<br><small>胸鎖乳突筋（きょうさにゅうとつきん）</small></span></div>
+    <div><span class="n g">3</span><span>首から肩の筋肉<br><small>僧帽筋（そうぼうきん）・ひどい肩こり</small></span></div>
+    <div><span class="n g">4</span><span>肩甲骨まわり<br><small>動きが止まっていたところ</small></span></div>
+  </div>
+
+  <div class="result">
+    <div class="a">全部ゆるめて、頭と首のあいだに<br>すき間をつくり、まっすぐに整えました。</div>
+    <div class="b">今夜から楽になる<br>可能性が高い状態です</div>
+  </div>
+</section>
+
+<!-- ===== 第3部 ===== -->
+<section id="p3">
+  <span class="part">第3部</span>
+  <h2>つなげてみると</h2>
+  <p class="lead">測った数字と、触れた体。<br>重ねると一枚の絵になります。</p>
+
+  <h3>こんな流れが考えられます</h3>
+  <div class="flow">
+    <div class="step"><span class="n">1</span><div><div class="t">仕事が重なる</div><div class="d">パソコン入力・がんばりすぎの時期</div></div></div>
+    <div class="arrow">▼</div>
+    <div class="step s2"><span class="n">2</span><div><div class="t">夜に充電しきれない</div><div class="d">夜の担当「胆」が低め／電池が低め</div></div></div>
+    <div class="arrow">▼</div>
+    <div class="step s3"><span class="n">3</span><div><div class="t">昼は気を張って回す</div><div class="d">昼の担当「心」が高め／頭が高め</div></div></div>
+    <div class="arrow">▼</div>
+    <div class="step s4"><span class="n">4</span><div><div class="t">熱と力みが首から上へ</div><div class="d">首の詰まり・急な汗・ひどい肩こり</div></div></div>
+  </div>
+
+  <h3>夜の胆、昼の心</h3>
+  <p class="lead2">東洋医学の体内時計（子午流注・しごるちゅう）では、2つは真向かいのペアです。</p>
+  <div class="figure">
+  <svg viewBox="0 0 360 210" role="img" aria-label="体内時計の図。胆は夜11時から1時、心は昼11時から1時の担当で、時計の真向かい。">
+    <circle cx="120" cy="105" r="78" fill="#faf7ef" stroke="#1a3d28" stroke-width="3"/>
+    <line x1="120" y1="44" x2="120" y2="166" stroke="#c4a44d" stroke-width="3" stroke-dasharray="6 5"/>
+    <circle cx="120" cy="30" r="17" fill="#3a48b0"/>
+    <circle cx="127" cy="25" r="13" fill="#faf7ef"/>
+    <circle cx="120" cy="180" r="15" fill="#e0902b"/>
+    <text x="120" y="111" text-anchor="middle" font-size="14" font-weight="700" fill="#3f4a43">真向かい</text>
+    <text x="214" y="40" font-size="18" font-weight="900" fill="#3a48b0">胆（たん）</text>
+    <text x="214" y="62" font-size="15" font-weight="700" fill="#1f2a22">夜11時〜1時</text>
+    <text x="214" y="160" font-size="18" font-weight="900" fill="#c23c26">心（しん）</text>
+    <text x="214" y="182" font-size="15" font-weight="700" fill="#1f2a22">昼11時〜1時</text>
+  </svg>
+  </div>
+  <p class="cap">夜の充電が足りないぶん、<br>昼に心臓ががんばっている形です。</p>
+
+  <div class="point">
+    <span class="tag">POINT</span>
+    <svg viewBox="0 0 300 220" role="img" aria-label="胆の通り道。頭の横から頭の付け根、肩の上へ。今日詰まっていた左の頭の付け根はこの通り道の上。">
+      <path d="M100,150 Q120,138 132,124 L168,124 Q180,138 200,150 Q236,160 270,168 L270,214 L30,214 L30,168 Q64,160 100,150 Z" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+      <ellipse cx="150" cy="74" rx="40" ry="48" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+      <path d="M114,48 L106,62 L114,74 L106,88 L118,102 L136,116 L104,148 L70,166" fill="none" stroke="#c4a44d" stroke-width="4" stroke-dasharray="7 5" stroke-linecap="round"/>
+      <circle cx="136" cy="116" r="13" fill="none" stroke="#c23c26" stroke-width="3"/>
+      <circle cx="136" cy="116" r="5" fill="#c23c26"/>
+      <circle cx="70" cy="166" r="5" fill="#7d6219"/>
+      <line x1="150" y1="118" x2="196" y2="104" stroke="#c23c26" stroke-width="2"/>
+      <text x="200" y="100" font-size="14" font-weight="900" fill="#c23c26">頭の付け根</text>
+      <text x="200" y="117" font-size="12" font-weight="700" fill="#c23c26">風池（ふうち）</text>
+      <text x="48" y="72" font-size="14" font-weight="700" fill="#7d6219">頭の横</text>
+      <text x="8" y="120" font-size="14" font-weight="700" fill="#7d6219">肩の上</text>
+      <text x="8" y="136" font-size="12" font-weight="700" fill="#7d6219">肩井（けんせい）</text>
+      <line x1="40" y1="142" x2="64" y2="160" stroke="#7d6219" stroke-width="1.5"/>
+      <text x="40" y="208" text-anchor="middle" font-size="15" font-weight="900" fill="#1f2a22">左</text>
+      <text x="260" y="208" text-anchor="middle" font-size="15" font-weight="900" fill="#1f2a22">右</text>
+    </svg>
+    <p style="margin-top:8px;">胆の通り道（金の点線）は、<b>頭の横 → 頭の付け根 → 肩の上</b>。今日いちばん詰まっていた左の頭の付け根は、この道の上です。測定で胆が低かったのも、<b>同じ左（41）</b>でした。</p>
+  </div>
+
+  <h3>上が熱く、下が冷える</h3>
+  <p class="lead2">昔から「頭寒足熱（ずかんそくねつ）」がよいと言われます。今はその逆さま。</p>
+  <div class="figure">
+  <svg viewBox="0 0 360 232" role="img" aria-label="今は頭が熱く足が冷える。目標は頭が涼しく足が温かい。">
+    <!-- 今 -->
+    <text x="90" y="18" text-anchor="middle" font-size="17" font-weight="900" fill="#c23c26">今</text>
+    <g transform="translate(0,12)">
+    <circle cx="90" cy="62" r="30" fill="#c23c26" fill-opacity="0.2"/>
+    <path d="M78,34 q-4,-6 0,-12 M90,32 q-4,-6 0,-12 M102,34 q-4,-6 0,-12" fill="none" stroke="#c23c26" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="90" cy="62" r="18" fill="#fff" stroke="#c23c26" stroke-width="3"/>
+    <text x="90" y="68" text-anchor="middle" font-size="15" font-weight="900" fill="#c23c26">熱</text>
+    <rect x="70" y="84" width="40" height="62" rx="12" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+    <rect x="74" y="146" width="13" height="44" rx="6" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+    <rect x="93" y="146" width="13" height="44" rx="6" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+    <ellipse cx="90" cy="194" rx="32" ry="10" fill="#3a48b0" fill-opacity="0.22"/>
+    <text x="134" y="198" font-size="15" font-weight="900" fill="#3a48b0">冷</text>
+    </g>
+    <!-- 矢印 -->
+    <line x1="160" y1="122" x2="196" y2="122" stroke="#c4a44d" stroke-width="4"/>
+    <polygon points="206,122 194,114 194,130" fill="#c4a44d"/>
+    <!-- 目標 -->
+    <text x="270" y="18" text-anchor="middle" font-size="17" font-weight="900" fill="#2a8049">目標</text>
+    <g transform="translate(0,12)">
+    <circle cx="270" cy="62" r="18" fill="#fff" stroke="#3a48b0" stroke-width="3"/>
+    <text x="270" y="68" text-anchor="middle" font-size="15" font-weight="900" fill="#3a48b0">涼</text>
+    <rect x="250" y="84" width="40" height="62" rx="12" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+    <rect x="254" y="146" width="13" height="44" rx="6" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+    <rect x="273" y="146" width="13" height="44" rx="6" fill="#f3efe4" stroke="#1a3d28" stroke-width="2.5"/>
+    <ellipse cx="270" cy="194" rx="32" ry="10" fill="#e0902b" fill-opacity="0.3"/>
+    <text x="314" y="198" font-size="15" font-weight="900" fill="#b8661a">温</text>
+    </g>
+  </svg>
+  </div>
+  <p class="cap">だからセルフケアは<br>「上の熱を下ろして、夜に充電」です。</p>
+</section>
+
+<!-- ===== 第4部 ===== -->
+<section id="p4">
+  <span class="part">第4部</span>
+  <h2>今夜からのセルフケア</h2>
+  <p class="lead">今日ゆるめた首と肩を、家でも長持ちさせるために。</p>
+
+  <div class="goal">
+    <div class="t">めざすこと</div>
+    <div class="b">目と足を温めて、<br>夜11時に眠る</div>
+  </div>
+
+  <div class="when"><span>夜</span>寝る前にすること</div>
+
+  <div class="care star">
+    <span class="n">1</span>
+    <div>
+      <span class="y">施術のときにお話ししたもの</span>
+      <div class="t">蒸しタオルで目を温める</div>
+      <div class="d">水でぬらして固くしぼり、電子レンジ（500〜600W）で30秒〜1分。手首の内側で熱すぎないか確かめてから、目の上に5〜10分。</div>
+      <div class="why">冷めてきたら首の後ろにのせると、頭の付け根もゆるみます。</div>
+    </div>
+  </div>
+
+  <div class="care">
+    <span class="n">2</span>
+    <div>
+      <div class="t">ぬるめのお風呂で足元から</div>
+      <div class="d">38〜40℃のお湯に10〜15分。シャワーだけの日は、くるぶしの上までの足湯を10分。</div>
+      <div class="why">下を温めると、上にたまった熱が下りやすくなります。</div>
+    </div>
+  </div>
+
+  <div class="care">
+    <span class="n">3</span>
+    <div>
+      <div class="t">夜11時には布団へ</div>
+      <div class="d">夜11時〜1時は「胆」の時間。この時間に眠っていることが、いちばんの充電です。寝る30分前には、スマホとパソコンを閉じます。</div>
+    </div>
+  </div>
+
+  <div class="care">
+    <span class="n">4</span>
+    <div>
+      <div class="t">布団の中で、長く吐く</div>
+      <div class="d">4秒で吸って、8秒かけて口から吐く。これを5回。</div>
+      <div class="why">吐く息を長くすると、がんばっていた心臓が落ち着きやすくなります。</div>
+    </div>
+  </div>
+
+  <div class="when"><span>昼</span>仕事中にすること</div>
+
+  <div class="care">
+    <span class="n">5</span>
+    <div>
+      <div class="t">1時間に1回、肩をストン</div>
+      <div class="d">肩を耳に近づけて3秒 → ストンと落とす。5回。そのあと肩甲骨を後ろへ大きく5回まわします。</div>
+    </div>
+  </div>
+
+  <div class="care">
+    <span class="n">6</span>
+    <div>
+      <div class="t">画面は目の高さに・窓を開ける</div>
+      <div class="d">画面が低いと、あごが前に出て頭の付け根がまた詰まりやすくなります。こもった部屋も心臓の負担になりやすいので、ときどき換気を。</div>
+    </div>
+  </div>
+
+  <div class="when"><span>食</span>食べもの</div>
+  <div class="food">
+    <div class="box yes">
+      <h4>◯ おすすめ</h4>
+      <ul>
+        <li>温かい汁もの<small>みそ汁・スープ</small></li>
+        <li>酸っぱいもの<small>梅干し・酢の物・みかん</small></li>
+        <li>青菜<small>春菊・小松菜</small></li>
+        <li>魚・卵・豆腐<small>疲れの回復に</small></li>
+      </ul>
+    </div>
+    <div class="box no">
+      <h4>△ ひかえめに</h4>
+      <ul>
+        <li>午後のコーヒー<small>午後は麦茶・白湯へ</small></li>
+        <li>エナジードリンク<small>心臓をさらに急がせます</small></li>
+        <li>夜のお酒・揚げ物<small>夜の胆を休ませるため</small></li>
+        <li>遅い夕食<small>寝る3時間前までに</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="why" style="margin-top:8px;">酸っぱいものと青菜は、東洋医学で「胆」を助ける食べものとされています。</p>
+</section>
+
+<div class="oneline">
+  <div class="t">ひとことで言うと</div>
+  <p>目を温めて、足を温めて、<br>夜11時に眠る。</p>
+</div>
+
+<div class="safety">念のため：急な汗に、動悸・胸の痛み・息苦しさ・めまいが重なるときは、早めに医療機関を受診してください。</div>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="blk">
+    <h4>三条健康堂の考え方｜神経反射入力装置論</h4>
+    <p>からだを「入力装置」としてとらえ、皮ふ・筋肉・関節への刺激を通して神経の反射を整え、からだが自分で回復する力を引き出す施術理論です。</p>
+  </div>
+  <div class="prof">
+    <b>谷 先生｜三条健康堂接骨院 院長</b>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+    </div>
+    <p>高松市由良町、由良川東公園のそば</p>
+    <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+  </div>
+  <div class="brand">SANJO KENKO-DO</div>
+</footer>
+
+</div>
+</body>
+</html>
