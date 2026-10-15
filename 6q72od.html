@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>中野様のからだ習慣</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&display=swap">
+<style>
+/* Layout: 患者さんに手渡す「一枚もの」を縦に積んだ一列。表紙→いまの体→4つの目次→第1〜4部→まとめ。単一の明るいテーマ（紙の配布物として固定） */
+:root{
+  --bg:#FFFFFF;
+  --band:#F1F5F2;
+  --ink:#1C2924;
+  --sub:#3F4D46;
+  --green:#1E5B45;
+  --green-soft:#E2EDE6;
+  --gold:#8F6410;
+  --gold-mark:#C68A12;
+  --gold-soft:#F6ECD6;
+  --line:#C6D2CA;
+  --wall:#ECF0ED;
+  --wall-edge:#BCC7C0;
+  --ball:#7A8186;
+  --yellow:#DDD44C;
+  --yellow-edge:#958E1C;
+  --block:#3D4E66;
+  --pain:#BF4728;
+  --f-display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","BIZ UDPGothic",sans-serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.75;word-break:auto-phrase;line-break:strict}
+*{box-sizing:border-box}
+.page{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 44px;display:grid;gap:40px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+p{margin:0}
+
+/* 表紙 */
+.cover{display:grid;gap:6px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--gold)}
+.cover h1{font-weight:900;font-size:clamp(34px,9.5vw,46px);line-height:1.22;color:var(--green)}
+.cover .date{font-size:15px;color:var(--sub)}
+
+/* いまの体 */
+.now{background:var(--band);border-radius:20px;padding:18px;display:grid;grid-template-columns:92px 1fr;gap:16px;align-items:center}
+.now svg{width:100%;height:auto;display:block}
+.now .txt{min-width:0;display:grid;gap:8px}
+.now h2{font-size:22px;color:var(--green)}
+.now p{font-size:17px;line-height:1.7}
+.now .goal{font-weight:700;color:var(--ink)}
+.cap{font-size:13px;color:var(--sub);text-align:center;line-height:1.4;margin-top:4px}
+ruby rt{font-size:11.5px;color:var(--sub)}
+
+/* 目次 */
+.index{display:grid;gap:14px}
+.index h2{font-size:26px;color:var(--ink)}
+.index h2 em{font-style:normal;color:var(--green)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:grid;gap:2px;padding:12px 12px 14px;border:2px solid var(--line);border-radius:18px;text-decoration:none;color:var(--ink);background:var(--bg);position:relative}
+.tile:focus-visible{outline:3px solid var(--gold-mark);outline-offset:2px}
+.tile svg{width:100%;height:92px;display:block}
+.tile .no{position:absolute;top:10px;left:10px;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;font:700 17px/30px var(--f-body);text-align:center}
+.tile b{font-family:var(--f-display);font-weight:900;font-size:24px;color:var(--green);line-height:1.3;margin-top:4px}
+.tile span{font-size:16px;line-height:1.4;color:var(--sub)}
+
+/* 各部 */
+.part{display:grid;gap:18px;scroll-margin-top:16px}
+.head{display:grid;gap:4px}
+.chip{justify-self:start;background:var(--green);color:#fff;font-size:15px;font-weight:700;padding:3px 14px;border-radius:999px;letter-spacing:.06em}
+.head h2{font-weight:900;font-size:36px;line-height:1.25;color:var(--green);margin-top:6px}
+.head .subt{font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.4}
+.head .lead{font-size:17px;color:var(--sub);margin-top:6px}
+
+/* 体操カード */
+.ex{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.card{display:grid;grid-template-columns:128px 1fr;gap:14px;align-items:center;border:1.5px solid var(--line);border-radius:18px;padding:12px}
+.pic{position:relative}
+.pic svg{width:100%;height:auto;display:block}
+.pic .no{position:absolute;top:-4px;left:-4px;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;font:700 17px/30px var(--f-body);text-align:center}
+.card .txt{min-width:0}
+.card h3{font-size:20px;line-height:1.35;color:var(--ink)}
+.nb{display:inline-block}
+.card p{font-size:17px;line-height:1.6;margin-top:4px}
+.tip{background:var(--gold-soft);border-radius:14px;padding:12px 16px;font-weight:700;font-size:17px;display:flex;gap:10px;align-items:center}
+.tip svg{flex:none;width:26px;height:26px}
+
+/* 大きい図 */
+.hero{background:var(--band);border-radius:20px;padding:14px}
+.hero svg{width:100%;max-width:360px;height:auto;display:block;margin:0 auto}
+
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.facts li{display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start;font-size:18px;line-height:1.6}
+.facts li::before{content:"";width:12px;height:12px;margin-top:10px;border-radius:50%;background:var(--green)}
+.keep{justify-self:start;background:var(--green-soft);color:var(--green);font-weight:700;font-size:18px;padding:8px 16px;border-radius:14px}
+.key{border-left:6px solid var(--green);background:var(--green-soft);border-radius:0 14px 14px 0;padding:12px 16px;font-family:var(--f-display);font-weight:700;font-size:20px;line-height:1.5;color:var(--green)}
+
+/* POINT */
+.point{position:relative;border:2px solid var(--gold-mark);border-radius:14px;padding:20px 16px 14px;font-weight:700;font-size:18px;line-height:1.6}
+.point::before{content:"POINT";position:absolute;top:-12px;left:14px;background:var(--gold-mark);color:#fff;font-size:13px;letter-spacing:.14em;padding:1px 10px;border-radius:6px}
+
+/* 食事 */
+.meals{display:grid;gap:10px}
+.meal{display:grid;grid-template-columns:60px 1fr;gap:12px;align-items:center;padding:10px 12px;border:1.5px solid var(--line);border-radius:16px}
+.when{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:20px;line-height:1}
+.when.m{background:var(--gold-soft);color:var(--gold)}
+.when.d{background:var(--gold-mark);color:#fff}
+.when.n{background:var(--green);color:#fff}
+.when.s{background:var(--band);color:var(--ink);border:2px solid var(--line);font-size:17px}
+.meal .txt{min-width:0}
+.meal strong{display:block;font-size:19px;line-height:1.45}
+.meal small{display:block;font-size:16px;color:var(--sub);line-height:1.5}
+
+.box{border:1.5px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px}
+.box h3{font-size:21px;color:var(--green)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;font-size:17px;line-height:1.6;counter-increment:s}
+.steps li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--green-soft);color:var(--green);font-weight:700;font-size:16px;line-height:28px;text-align:center;margin-top:1px}
+.steps b{font-size:18px}
+.usual{font-size:17px;line-height:1.6}
+.usual b{color:var(--green)}
+
+.energy{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.food{background:var(--band);border-radius:14px;padding:10px 10px 12px;text-align:center;display:grid;gap:2px}
+.food svg{width:100%;max-width:120px;height:auto;margin:0 auto;display:block}
+.food b{font-size:18px}
+.food span{font-size:15px;color:var(--sub);line-height:1.45}
+
+.closing{background:var(--green);color:#fff;border-radius:20px;padding:20px 18px;display:grid;gap:6px}
+.closing .four{font-family:var(--f-display);font-weight:900;font-size:22px;line-height:1.5;letter-spacing:.02em}
+.closing p{font-size:18px}
+
+footer{border-top:1.5px solid var(--line);padding-top:16px;display:grid;gap:2px;font-size:15px;color:var(--sub)}
+footer .eyebrow{font-size:12px}
+footer b{font-family:var(--f-display);font-size:18px;color:var(--ink)}
+
+/* ピクトグラム共通 */
+.w{fill:var(--wall)}
+.we{stroke:var(--wall-edge);stroke-width:2}
+.fl{stroke:var(--line);stroke-width:3;stroke-linecap:round}
+.hd,.tr{fill:var(--green)}
+.lm{stroke:var(--green);stroke-width:13;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.lg{stroke-width:15}
+.ft{stroke-width:9}
+.tk{stroke-width:26}
+.thin{stroke-width:10}
+.ar{stroke:var(--gold-mark);stroke-width:5;stroke-linecap:round;fill:none}
+.ah{fill:var(--gold-mark)}
+.bg{fill:var(--ball)}
+.by{fill:var(--yellow);stroke:var(--yellow-edge);stroke-width:2}
+.blk{fill:var(--block)}
+
+@media (max-width:380px){
+  .card{grid-template-columns:110px 1fr;gap:12px}
+  .head h2{font-size:32px}
+}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+</style>
+
+</head>
+<body style="margin:0">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <!-- バンザイ＋ひざではさむ -->
+  <symbol id="pic-banzai" viewBox="0 0 200 220">
+    <rect class="w" x="22" y="8" width="156" height="200" rx="6"/>
+    <line class="fl" x1="12" y1="208" x2="188" y2="208"/>
+    <path class="lm" d="M86 92 L70 62 L86 34"/>
+    <path class="lm" d="M114 92 L130 62 L114 34"/>
+    <circle class="bg" cx="100" cy="26" r="16"/>
+    <circle class="hd" cx="100" cy="68" r="15"/>
+    <rect class="tr" x="82" y="86" width="36" height="58" rx="14"/>
+    <path class="lm lg" d="M92 140 L82 170 L88 204"/>
+    <path class="lm lg" d="M108 140 L118 170 L112 204"/>
+    <ellipse class="by" cx="100" cy="171" rx="15" ry="18"/>
+    <path class="ar" d="M46 171 H62"/><polygon class="ah" points="71,171 61,163.5 61,178.5"/>
+    <path class="ar" d="M154 171 H138"/><polygon class="ah" points="129,171 139,163.5 139,178.5"/>
+  </symbol>
+
+  <!-- 階段 7階 -->
+  <symbol id="pic-stairs" viewBox="0 0 240 160">
+    <path d="M8 152 V138 H42 V118 H76 V98 H110 V78 H144 V58 H178 V38 H232 V152 Z" fill="var(--green-soft)"/>
+    <path d="M8 138 H42 V118 H76 V98 H110 V78 H144 V58 H178 V38 H232" fill="none" stroke="var(--green)" stroke-width="4" stroke-linejoin="round"/>
+    <path class="lm thin" d="M80 72 L68 114"/>
+    <path class="lm thin" d="M80 72 L97 79 L97 95"/>
+    <path class="lm" style="stroke-width:18" d="M80 70 L86 42"/>
+    <path class="lm" style="stroke-width:8" d="M86 48 L72 64"/>
+    <path class="lm" style="stroke-width:8" d="M86 48 L102 60"/>
+    <circle class="hd" cx="90" cy="24" r="11"/>
+    <path d="M206 38 V6" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+    <rect x="206" y="6" width="30" height="20" rx="3" fill="var(--gold-mark)"/>
+    <text x="221" y="21" text-anchor="middle" font-family="BIZ UDPGothic, sans-serif" font-weight="700" font-size="14" fill="#fff">7F</text>
+  </symbol>
+
+  <!-- マッサージでゆるめる -->
+  <symbol id="pic-massage" viewBox="0 0 240 160">
+    <line class="fl" x1="8" y1="146" x2="232" y2="146"/>
+    <circle cx="150" cy="132" r="13" fill="var(--block)"/>
+    <circle cx="150" cy="132" r="4.5" fill="var(--wall)"/>
+    <path class="lm" style="stroke-width:10" d="M62 88 L42 140"/>
+    <path class="lm tk" style="stroke-width:22" d="M70 126 L60 82"/>
+    <circle class="hd" cx="57" cy="62" r="12"/>
+    <path class="lm" style="stroke-width:14" d="M76 128 L204 112"/>
+    <path class="ar" d="M130 90 H174"/>
+    <polygon class="ah" points="121,90 131,82.5 131,97.5"/>
+    <polygon class="ah" points="183,90 173,82.5 173,97.5"/>
+    <path d="M80 50 q7 -7 14 0 t14 0" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M84 62 q7 -7 14 0 t14 0" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- たんぱく質の皿 -->
+  <symbol id="pic-plate" viewBox="0 0 240 160">
+    <ellipse cx="116" cy="108" rx="100" ry="44" fill="#FFFFFF" stroke="var(--line)" stroke-width="3"/>
+    <ellipse cx="116" cy="108" rx="78" ry="32" fill="none" stroke="var(--line)" stroke-width="2"/>
+    <path d="M60 104 Q62 80 96 80 Q126 82 122 104 Q116 124 88 124 Q62 122 60 104Z" fill="#EBCDAC" stroke="#A97E55" stroke-width="2.5"/>
+    <path d="M78 96 Q92 90 106 96" fill="none" stroke="#A97E55" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="150" cy="102" rx="16" ry="20" fill="#FFF8EA" stroke="#B9A47C" stroke-width="2.5"/>
+    <circle cx="170" cy="116" r="10" fill="#FFFFFF" stroke="#B9A47C" stroke-width="2"/>
+    <circle cx="170" cy="116" r="5" fill="#E9B83A"/>
+    <rect x="186" y="12" width="40" height="46" rx="5" fill="var(--ball)"/>
+    <ellipse cx="206" cy="12" rx="20" ry="5" fill="#A9B1B6"/>
+    <rect x="186" y="28" width="40" height="14" fill="var(--green-soft)"/>
+    <path d="M194 35 q6 -6 12 0 q-6 6 -12 0z M206 35 l6 -4 v8z" fill="var(--green)"/>
+  </symbol>
+</svg>
+
+<main class="page">
+
+  <header class="cover">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1>中野様の<br>からだ習慣</h1>
+    <p class="date">2026年10月15日</p>
+  </header>
+
+  <section class="now" aria-labelledby="now-h">
+    <div>
+      <svg viewBox="0 0 120 210" role="img" aria-label="左あしを前から見た図。ひざの外側、すねの上が痛む場所">
+        <path d="M40 8 L82 8 L78 92 Q78 104 74 112 L72 184 L48 184 L46 112 Q42 104 42 92 Z" fill="var(--green-soft)" stroke="var(--green)" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="61" cy="98" r="11" fill="none" stroke="var(--green)" stroke-width="2.5"/>
+        <ellipse cx="58" cy="192" rx="20" ry="8" fill="var(--green-soft)" stroke="var(--green)" stroke-width="3"/>
+        <circle cx="72" cy="124" r="15" fill="none" stroke="var(--pain)" stroke-width="2.5" stroke-dasharray="4 4"/>
+        <circle cx="72" cy="124" r="7.5" fill="var(--pain)"/>
+        <path d="M92 124 H112" stroke="var(--pain)" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="118,124 110,118 110,130" fill="var(--pain)"/>
+      </svg>
+      <p class="cap">左あし<br>（前から）</p>
+    </div>
+    <div class="txt">
+      <h2 id="now-h">いまの体</h2>
+      <p>転んだあと、体のバランスがくずれ、<b>左ひざの外側</b>が痛くなりました。痛むのは、すねの筋肉（<ruby>前脛骨筋<rt>ぜんけいこつきん</rt></ruby>）のつけ根です。</p>
+      <p class="goal">筋肉をもう少しふやすと、若々しさを保てます。</p>
+    </div>
+  </section>
+
+  <nav class="index" aria-labelledby="idx-h">
+    <h2 id="idx-h">習慣は<em>4つ</em>です</h2>
+    <div class="tiles">
+      <a class="tile" href="#part1">
+        <span class="no">1</span>
+        <svg viewBox="0 0 200 220" aria-hidden="true"><use href="#pic-banzai"/></svg>
+        <b>きたえる</b><span>ボール体操</span>
+      </a>
+      <a class="tile" href="#part2">
+        <span class="no">2</span>
+        <svg viewBox="0 0 240 160" aria-hidden="true"><use href="#pic-stairs"/></svg>
+        <b>つづける</b><span>階段を7階まで</span>
+      </a>
+      <a class="tile" href="#part3">
+        <span class="no">3</span>
+        <svg viewBox="0 0 240 160" aria-hidden="true"><use href="#pic-massage"/></svg>
+        <b>ゆるめる</b><span>毎日マッサージ</span>
+      </a>
+      <a class="tile" href="#part4">
+        <span class="no">4</span>
+        <svg viewBox="0 0 240 160" aria-hidden="true"><use href="#pic-plate"/></svg>
+        <b>食べる</b><span>たんぱく質</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- 第1部 -->
+  <section class="part" id="part1" aria-labelledby="p1-h">
+    <div class="head">
+      <span class="chip">第1部</span>
+      <h2 id="p1-h">きたえる</h2>
+      <p class="subt">ボール体操で、筋肉をふやす</p>
+      <p class="lead">まずは筋肉の貯金づくり。家の壁とボールでできます。</p>
+    </div>
+
+    <ol class="ex">
+      <li class="card">
+        <div class="pic">
+          <svg viewBox="0 0 200 220" role="img" aria-label="壁に背中をつけ、くるぶしの間のボールをはさむ図">
+            <rect class="w" x="22" y="8" width="156" height="200" rx="6"/>
+            <line class="fl" x1="12" y1="208" x2="188" y2="208"/>
+            <path class="lm" d="M86 74 L68 128"/>
+            <path class="lm" d="M114 74 L132 128"/>
+            <circle class="hd" cx="100" cy="40" r="16"/>
+            <rect class="tr" x="81" y="62" width="38" height="64" rx="15"/>
+            <path class="lm lg" d="M92 122 L84 198"/>
+            <path class="lm lg" d="M108 122 L116 198"/>
+            <path class="lm ft" d="M74 202 H88"/>
+            <path class="lm ft" d="M112 202 H126"/>
+            <circle class="bg" cx="100" cy="185" r="13"/>
+            <path class="ar" d="M52 186 H64"/><polygon class="ah" points="73,186 63,178.5 63,193.5"/>
+            <path class="ar" d="M148 186 H136"/><polygon class="ah" points="127,186 137,178.5 137,193.5"/>
+          </svg>
+          <span class="no">1</span>
+        </div>
+        <div class="txt">
+          <h3>足首ではさむ</h3>
+          <p>壁に背中をつけて立ち、くるぶしの間のボールをギュッ。</p>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="pic">
+          <svg viewBox="0 0 200 220" role="img" aria-label="壁を向いて、片手でボールを頭の上の壁に押しつける図">
+            <rect class="w" x="22" y="8" width="156" height="200" rx="6"/>
+            <line class="fl" x1="12" y1="208" x2="188" y2="208"/>
+            <circle class="bg" cx="140" cy="30" r="16"/>
+            <path class="lm" d="M116 106 L138 42"/>
+            <path class="lm" d="M86 108 L64 120 L64 92"/>
+            <circle class="hd" cx="100" cy="80" r="15"/>
+            <rect class="tr" x="82" y="98" width="36" height="58" rx="14"/>
+            <path class="lm lg" d="M92 152 L88 202"/>
+            <path class="lm lg" d="M108 152 L112 202"/>
+            <path class="ar" d="M166 100 V62"/><polygon class="ah" points="166,52 158.5,62 173.5,62"/>
+          </svg>
+          <span class="no">2</span>
+        </div>
+        <div class="txt">
+          <h3>片手で押し上げる</h3>
+          <p>壁を向いて立ち、片手でボールを頭の上の壁に押しつけて、背のび。</p>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="pic">
+          <svg viewBox="0 0 200 220" role="img" aria-label="壁に横向きに立ち、腰と壁でボールをはさむ図">
+            <rect class="w" x="160" y="8" width="30" height="200"/>
+            <line class="we" x1="160" y1="8" x2="160" y2="208"/>
+            <line class="fl" x1="12" y1="208" x2="190" y2="208"/>
+            <path class="lm" d="M98 74 L58 102"/>
+            <path class="lm" d="M126 72 L153 47"/>
+            <circle class="hd" cx="112" cy="44" r="15"/>
+            <rect class="tr" x="94" y="62" width="36" height="60" rx="14"/>
+            <path class="lm lg" d="M104 118 L100 202"/>
+            <path class="lm lg" d="M122 118 L134 156 L146 184"/>
+            <circle class="bg" cx="145" cy="112" r="14"/>
+            <path class="ar" d="M132 88 H148"/><polygon class="ah" points="157,88 147,80.5 147,95.5"/>
+          </svg>
+          <span class="no">3</span>
+        </div>
+        <div class="txt">
+          <h3>腰で押す</h3>
+          <p>壁に横向きに立ち、腰と壁でボールをはさんで押す。壁側のひざは曲げて、外側の足で立つ。</p>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="pic">
+          <svg viewBox="0 0 200 220" role="img" aria-label="壁に背中をつけ、両手でボールを頭の上に押し、ひざで大きいボールをはさむ図"><use href="#pic-banzai"/></svg>
+          <span class="no">4</span>
+        </div>
+        <div class="txt">
+          <h3><span class="nb">バンザイ＋</span><span class="nb">ひざではさむ</span></h3>
+          <p>壁に背中をつけ、両手でボールを頭の上の壁へ。ひざで大きいボールをはさむ。</p>
+        </div>
+      </li>
+
+      <li class="card">
+        <div class="pic">
+          <svg viewBox="0 0 200 220" role="img" aria-label="壁のクッションに、上げたひざを押しつける図">
+            <rect class="w" x="10" y="8" width="24" height="200"/>
+            <line class="we" x1="34" y1="8" x2="34" y2="208"/>
+            <line class="fl" x1="10" y1="208" x2="190" y2="208"/>
+            <polygon class="blk" points="34,88 64,88 58,156 34,156"/>
+            <path class="lm" d="M122 72 L100 104"/>
+            <path class="lm tk" d="M124 62 L122 120"/>
+            <circle class="hd" cx="126" cy="40" r="15"/>
+            <path class="lm lg" d="M122 126 L124 200"/>
+            <path class="lm ft" d="M126 204 H110"/>
+            <path class="lm lg" d="M120 124 L72 120 L78 174"/>
+            <path class="lm ft" d="M78 178 L66 180"/>
+            <path class="ar" d="M114 150 H96"/><polygon class="ah" points="87,150 97,142.5 97,157.5"/>
+          </svg>
+          <span class="no">5</span>
+        </div>
+        <div class="txt">
+          <h3>ひざで押す</h3>
+          <p>壁のクッションに、ひざを腰の高さまで上げて押しつける。</p>
+        </div>
+      </li>
+    </ol>
+
+    <p class="tip">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="var(--gold-mark)"/><path d="M7 14 q3 -5 6 0 t6 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+      どれも、息を止めずに、ゆっくり。
+    </p>
+  </section>
+
+  <!-- 第2部 -->
+  <section class="part" id="part2" aria-labelledby="p2-h">
+    <div class="head">
+      <span class="chip">第2部</span>
+      <h2 id="p2-h">つづける</h2>
+      <p class="subt">いつもの階段を、7階まで</p>
+      <p class="lead">きたえた筋肉に、心臓と肺の力を合わせます。</p>
+    </div>
+    <div class="hero">
+      <svg viewBox="0 0 240 160" role="img" aria-label="階段を7階まで上る図"><use href="#pic-stairs"/></svg>
+    </div>
+    <ul class="facts">
+      <li>マンションの階段を、7階まで上る</li>
+      <li>心臓と肺の力（VO2max）がきたえられる</li>
+    </ul>
+    <p class="keep">いまできています。<br>このまま続けましょう</p>
+  </section>
+
+  <!-- 第3部 -->
+  <section class="part" id="part3" aria-labelledby="p3-h">
+    <div class="head">
+      <span class="chip">第3部</span>
+      <h2 id="p3-h">ゆるめる</h2>
+      <p class="subt">毎日マッサージで、回復</p>
+      <p class="lead">がんばった体は、ゆるめて回復させます。</p>
+    </div>
+    <div class="hero">
+      <svg viewBox="0 0 240 160" role="img" aria-label="マッサージ道具で体をほぐす図"><use href="#pic-massage"/></svg>
+    </div>
+    <ul class="facts">
+      <li>毎日、マッサージ道具で体をほぐす</li>
+      <li>体がリラックスできたら、合格</li>
+    </ul>
+    <p class="key">この回復（リカバリー）が、とても大切です。</p>
+  </section>
+
+  <!-- 第4部 -->
+  <section class="part" id="part4" aria-labelledby="p4-h">
+    <div class="head">
+      <span class="chip">第4部</span>
+      <h2 id="p4-h">食べる</h2>
+      <p class="subt">たんぱく質を、分けてとる</p>
+      <p class="lead">どれだけ動いても、材料がないと筋肉はふえません。</p>
+    </div>
+    <div class="hero">
+      <svg viewBox="0 0 240 160" role="img" aria-label="鶏むね肉と卵とサバ缶の図"><use href="#pic-plate"/></svg>
+    </div>
+
+    <p class="point">たんぱく質は1回にまとめず、朝・昼・夜に分けてとる。</p>
+
+    <div class="meals">
+      <div class="meal">
+        <span class="when m">朝</span>
+        <div class="txt"><strong>鶏むね肉 100g ＋ 納豆・卵</strong><small>これだけで、十分なたんぱく質</small></div>
+      </div>
+      <div class="meal">
+        <span class="when d">昼</span>
+        <div class="txt"><strong>サバ缶</strong></div>
+      </div>
+      <div class="meal">
+        <span class="when n">夜</span>
+        <div class="txt"><strong>鶏むね肉の料理</strong></div>
+      </div>
+      <div class="meal">
+        <span class="when s">間食</span>
+        <div class="txt"><strong>プロテイン 1杯</strong><small>毎日、1杯だけ</small></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>鶏むね肉の使い方</h3>
+      <ol class="steps">
+        <li><span><b>2kgの袋入りを買う</b><br>エブリイで1,350円くらい（吉備高原どり など）</span></li>
+        <li><span><b>皮と脂は、取って捨てる</b></span></li>
+        <li><span><b>朝に100g</b>（たんぱく質 約23g）</span></li>
+      </ol>
+      <p class="usual">いつもの <b>ヨーグルト・納豆・卵・チーズ・サバ缶</b> も、そのまま続けて。</p>
+    </div>
+
+    <div class="box">
+      <h3>動いたあとの低血糖に</h3>
+      <p class="usual">運動すると、血糖が下がることがあります。食物繊維の多いものでそなえます。</p>
+      <div class="energy">
+        <div class="food">
+          <svg viewBox="0 0 120 100" aria-hidden="true">
+            <path d="M18 50 Q60 6 102 50 Z" fill="#FFFFFF" stroke="var(--line)" stroke-width="2"/>
+            <circle cx="44" cy="40" r="4.5" fill="#7A4E3A"/><circle cx="60" cy="30" r="4.5" fill="#7A4E3A"/><circle cx="76" cy="40" r="4.5" fill="#7A4E3A"/><circle cx="54" cy="44" r="4" fill="#7A4E3A"/><circle cx="68" cy="44" r="4" fill="#7A4E3A"/>
+            <path d="M12 50 H108 Q100 92 60 92 Q20 92 12 50 Z" fill="var(--green)"/>
+            <rect x="44" y="90" width="32" height="6" rx="3" fill="var(--green)"/>
+          </svg>
+          <b>豆ごはん</b><span>豆を入れて炊く</span>
+        </div>
+        <div class="food">
+          <svg viewBox="0 0 120 100" aria-hidden="true">
+            <path d="M18 28 Q28 84 98 70 Q105 66 101 58 Q46 68 32 24 Q26 16 18 28Z" fill="#E8C93A" stroke="#9C7F12" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M22 26 L18 12" stroke="#6E5A12" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <b>バナナ</b><span>1日1本</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-label="まとめ">
+    <p class="four">きたえる・つづける・<br>ゆるめる・食べる</p>
+    <p>4つそろうと、筋肉はふえていきます。</p>
+  </section>
+
+  <footer>
+    <span class="eyebrow">SANJO KENKO-DO</span>
+    <b>三条健康堂接骨院</b>
+    <span>高松市由良町　由良川東公園のそば</span>
+  </footer>
+
+</main>
+
+</body>
+</html>
