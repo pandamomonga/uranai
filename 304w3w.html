@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>北澤様 施術報告書｜2026年10月20日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1f5e45; --green-d:#163f2f; --green-l:#2e8b57;
+  --gold:#c4a44d; --gold-t:#8a6d1f; --gold-l:#e6cf85;
+  --cream:#f7f3e8; --line:#e2dccb; --sub:#5a5a52; --txt:#1f1f1b;
+  --ok-bg:#e8f2ec; --blue-bg:#e6ecf7; --blue:#3a54ad; --blue-t:#22346f;
+  --red-bg:#fbe9e4; --red:#c0432f; --red-t:#8f2f1f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Noto Sans JP',"Hiragino Sans","Yu Gothic",sans-serif;background:#e9e5da;color:var(--txt);font-size:17px;line-height:1.8}
+.serif{font-family:'Shippori Mincho',"Hiragino Mincho ProN","Yu Mincho",serif}
+.wrap{max-width:480px;margin:0 auto;background:#fff;min-height:100vh}
+
+/* 表紙 */
+.cover{background:linear-gradient(165deg,#1f5e45,#163f2f);color:#fff;padding:40px 24px 30px}
+.eyebrow{font-size:13px;letter-spacing:.32em;color:var(--gold-l);font-weight:700}
+.cover h1{font-size:30px;margin-top:10px;line-height:1.4;font-weight:700}
+.cover .name{font-size:24px;margin-top:14px}
+.cover .date{font-size:15px;color:#d9e5de;margin-top:4px}
+.kv{margin-top:22px;border:1px solid rgba(230,207,133,.6);border-radius:14px;overflow:hidden}
+.kv>div{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:12px 14px;align-items:center}
+.kv>div+div{border-top:1px solid rgba(230,207,133,.35)}
+.kv .k{font-size:13px;color:var(--gold-l);line-height:1.5}
+.kv .v{font-size:19px;font-weight:700;line-height:1.5}
+
+/* 前提 */
+.note{background:var(--cream);padding:14px 20px;font-size:15px;color:var(--sub);line-height:1.7;border-bottom:1px solid var(--line)}
+
+/* 目次 */
+.toc{margin:22px 20px 0;border:1.5px solid var(--line);border-radius:16px;padding:16px 18px}
+.toc .t{font-size:16px;font-weight:700;color:var(--green-d)}
+.toc ol{list-style:none;margin-top:8px}
+.toc li{display:grid;grid-template-columns:52px 1fr;font-size:16px;padding:7px 0;border-top:1px dashed var(--line);line-height:1.6}
+.toc li:first-child{border-top:0}
+.toc li b{color:var(--gold-t)}
+
+/* 各部 */
+.part{padding:36px 20px 32px;border-top:8px solid var(--cream)}
+.tag{display:inline-block;background:var(--green);color:#fff;font-size:13px;font-weight:700;letter-spacing:.2em;padding:4px 12px;border-radius:999px}
+.lead{font-size:16px;color:var(--sub);margin-top:12px;line-height:1.7}
+.h{font-size:24px;color:var(--green-d);margin-top:6px;line-height:1.45}
+.fig{margin-top:18px;background:var(--cream);border-radius:16px;padding:14px 10px}
+.fig svg{width:100%;height:auto;display:block}
+.cap{font-size:15px;color:var(--sub);text-align:center;margin-top:8px;line-height:1.6}
+.say{font-size:17px;margin-top:16px;line-height:1.85}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.two>div{font-size:15px;line-height:1.6;text-align:center;padding:10px 6px;border-radius:12px}
+.two .ng{background:var(--red-bg);color:var(--red-t)}
+.two .ok{background:var(--ok-bg);color:var(--green-d)}
+.good{margin-top:16px;background:var(--ok-bg);border-radius:12px;padding:12px 14px;font-size:16px;color:var(--green-d);line-height:1.7}
+
+/* POINT */
+.point{margin-top:24px;border:2px solid var(--gold);border-radius:14px;padding:22px 16px 14px;position:relative;background:#fff}
+.point .pt{position:absolute;top:-12px;left:14px;background:var(--gold);color:#fff;font-size:12px;font-weight:700;letter-spacing:.2em;padding:3px 10px;border-radius:999px}
+.point .num{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;text-align:center;background:var(--cream);border-radius:10px;padding:10px 6px}
+.point .num b{font-size:18px;color:var(--green-d);display:block;line-height:1.35}
+.point .num span{font-size:13px;color:var(--sub);display:block;line-height:1.4;margin-top:2px}
+.point .arrow{font-size:22px;color:var(--gold-t)}
+.point .why{background:var(--green);color:#fff;border-radius:10px;padding:10px 12px;font-size:15px;margin-top:10px;line-height:1.7}
+.point .src{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.5}
+
+/* 第4部 */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:16px}
+.flow>div{background:var(--cream);border-radius:12px;padding:10px 4px 10px;text-align:center}
+.flow .n{display:block;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#fff;font-weight:700;font-size:15px;line-height:26px;margin:0 auto 4px}
+.flow .w{font-size:13px;line-height:1.45;color:var(--green-d);font-weight:700}
+.rule{margin-top:14px;background:var(--green);color:#fff;border-radius:14px;padding:14px 14px;text-align:center}
+.rule .big{font-size:22px;font-weight:700;line-height:1.5}
+.rule .big em{font-style:normal;color:var(--gold-l)}
+.rule .s{font-size:14px;color:#d9e5de;margin-top:4px;line-height:1.6}
+.when{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.when>div{background:var(--cream);border-radius:12px;padding:10px 8px;text-align:center;font-size:15px;line-height:1.5;color:var(--green-d);font-weight:700}
+.when span{display:block;font-size:13px;font-weight:400;color:var(--sub)}
+
+.ex{margin-top:22px;border:1.5px solid var(--line);border-radius:18px;overflow:hidden}
+.ex .hd{display:flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:10px 14px}
+.ex .hd .n{width:32px;height:32px;border-radius:50%;background:var(--gold);color:#fff;font-weight:700;text-align:center;line-height:32px;font-size:17px;flex:none}
+.ex .hd h3{font-size:19px;line-height:1.4;font-weight:700}
+.ex .hd h3 small{font-size:13px;font-weight:400;color:#d9e5de;display:block}
+.ex .pic{background:var(--cream);padding:10px}
+.ex .pic svg{width:100%;height:auto;display:block}
+.ex .pic+.pic{border-top:1px dashed #ddd3b8}
+.ex .do{padding:12px 16px 14px;font-size:16px;line-height:1.75}
+.ex .do b{color:var(--green-d)}
+.ex .do .sec{display:inline-block;margin-top:8px;background:var(--blue-bg);color:var(--blue-t);font-weight:700;font-size:14px;border-radius:999px;padding:4px 12px}
+.toes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 10px 4px;background:var(--cream)}
+.toes>div{text-align:center}
+.toes svg{width:62px;height:62px;margin:0 auto;display:block}
+.toes .l{font-size:14px;font-weight:700;color:var(--green-d);margin-top:2px}
+.toes-cap{background:var(--cream);text-align:center;font-size:14px;color:var(--sub);padding:0 10px 12px;line-height:1.6}
+.safe{margin-top:16px;background:var(--red-bg);color:var(--red-t);border-radius:12px;padding:12px 14px;font-size:16px;line-height:1.7}
+
+/* タイマー */
+.timer{margin-top:24px;background:linear-gradient(165deg,#1f5e45,#163f2f);border-radius:18px;padding:22px 18px 20px;color:#fff;text-align:center;transition:background .3s}
+.timer.work{background:linear-gradient(165deg,#b8873b,#8a6d1f)}
+.timer.rest{background:linear-gradient(165deg,#3a54ad,#22346f)}
+.timer .t{font-size:13px;letter-spacing:.25em;color:var(--gold-l);font-weight:700}
+.timer .ph{font-size:30px;font-weight:700;margin-top:6px;line-height:1.4;min-height:1.4em}
+.timer .num{font-size:66px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.timer .rnd{font-size:16px;color:#e6eee9;margin-top:4px}
+.timer .opts{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap;font-size:15px}
+.timer .opts label{display:flex;align-items:center;gap:4px}
+.timer select{font-size:16px;padding:6px 8px;border-radius:8px;border:1px solid #9fc2b0;background:#fff;color:#163f2f}
+.timer button{margin-top:14px;width:100%;font-size:19px;font-weight:700;padding:14px;border-radius:12px;border:0;background:var(--gold);color:#fff;cursor:pointer}
+.timer button.stop{background:#c0432f}
+.timer .hint{font-size:14px;color:#e6eee9;margin-top:10px;line-height:1.6}
+
+/* まとめ */
+.oneline{background:linear-gradient(165deg,#1f5e45,#163f2f);color:#fff;text-align:center;padding:38px 20px}
+.oneline .t{font-size:13px;letter-spacing:.3em;color:var(--gold-l);font-weight:700}
+.oneline .m{font-size:26px;line-height:1.6;margin-top:10px}
+.oneline .s{font-size:17px;margin-top:10px;color:#efeadb}
+.oneline .bye{font-size:15px;margin-top:20px;color:#e9e4d6;line-height:1.7}
+
+/* フッター */
+footer{background:var(--cream);padding:30px 20px 40px;font-size:15px}
+footer h5{font-size:16px;color:var(--green-d);margin-bottom:4px}
+footer .blk{padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:18px}
+footer p{line-height:1.8}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.links a{display:block;text-align:center;font-weight:700;font-size:16px;text-decoration:none;border-radius:10px;padding:12px 6px}
+.links .line{background:#05873f;color:#fff}
+.links .map{background:#fff;color:var(--green);border:2px solid var(--green)}
+.sig{font-size:13px;color:var(--sub);margin-top:14px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= 表紙 ================= -->
+<section class="cover">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <h1 class="serif">施術報告書</h1>
+  <div class="name">北澤 様</div>
+  <div class="date">2026年10月20日（火）</div>
+  <div class="kv">
+    <div><div class="k">きょうの<br>ご相談</div><div class="v">右肩が、途中までしか<br>上がらない</div></div>
+    <div><div class="k">きょうの<br>結果</div><div class="v">右肩 約100°<br>→ 上がりはじめた</div></div>
+    <div><div class="k">ゆるめた<br>場所</div><div class="v">右肩の、三角筋のうしろ</div></div>
+  </div>
+</section>
+
+<!-- ================= 前提（固定） ================= -->
+<div class="note">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div>
+
+<!-- ================= 目次 ================= -->
+<nav class="toc">
+  <div class="t">今日の報告は、4つの話です</div>
+  <ol>
+    <li><b>第1部</b><span>なぜ今、肩なのか</span></li>
+    <li><b>第2部</b><span>肩の中で、何が起きているか</span></li>
+    <li><b>第3部</b><span>本日ゆるめたところ</span></li>
+    <li><b>第4部</b><span>おうちで「寝たままバンド」</span></li>
+  </ol>
+</nav>
+
+<!-- ================= 第1部 ================= -->
+<section class="part">
+  <span class="tag">第1部</span>
+  <p class="lead">まず、「腰が落ち着いたら、今度は肩」という流れの話から。</p>
+  <h2 class="h serif">負担の置き場が、腰から肩へ</h2>
+
+  <div class="fig">
+    <svg viewBox="0 0 360 160" aria-hidden="true">
+      <circle cx="52" cy="62" r="40" fill="#e6ecf7" stroke="#3a54ad" stroke-width="3"/>
+      <text x="52" y="74" text-anchor="middle" font-size="32" font-weight="700" fill="#22346f">腰</text>
+      <text x="52" y="130" text-anchor="middle" font-size="14" fill="#5a5a52">前は ここ</text>
+      <path d="M100,62 H126" stroke="#9a7a2c" stroke-width="4" stroke-linecap="round"/>
+      <path d="M120,52 L132,62 L120,72" fill="none" stroke="#9a7a2c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="142" y="18" width="76" height="88" rx="12" fill="#fff" stroke="#c4a44d" stroke-width="2"/>
+      <rect x="155" y="32" width="22" height="62" rx="4" fill="#1f5e45"/>
+      <rect x="187" y="52" width="11" height="42" rx="3" fill="#c4a44d"/>
+      <text x="180" y="128" text-anchor="middle" font-size="14" fill="#5a5a52">支える筋肉が</text>
+      <text x="180" y="146" text-anchor="middle" font-size="14" fill="#5a5a52">細くなる年代</text>
+      <path d="M234,62 H260" stroke="#9a7a2c" stroke-width="4" stroke-linecap="round"/>
+      <path d="M254,52 L266,62 L254,72" fill="none" stroke="#9a7a2c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="308" cy="62" r="40" fill="#fbe9e4" stroke="#c0432f" stroke-width="3"/>
+      <text x="308" y="74" text-anchor="middle" font-size="32" font-weight="700" fill="#8f2f1f">肩</text>
+      <text x="308" y="130" text-anchor="middle" font-size="14" fill="#5a5a52">今は ここ</text>
+    </svg>
+  </div>
+
+  <p class="say">50代なかばは、からだを支える筋肉が減りやすい年代。更年期の前後は、女性の筋肉の減り方が速まる時期でもあります。支えが細くなると、負担を受ける場所が腰から肩へ移りやすくなります。</p>
+
+  <div class="point">
+    <span class="pt">POINT</span>
+    <div class="num">
+      <div><b>更年期の前後</b><span>女性は</span></div>
+      <div class="arrow">→</div>
+      <div><b>筋肉の減りが速まる</b><span>同年代の男性には見られない</span></div>
+    </div>
+    <div class="why">だから今は、「支えを足す」がいちばん効きやすい時期。今やるのが、いちばんです。</div>
+    <div class="src">出典：Frontiers in Physiology（2021）　※効果には個人差があります</div>
+  </div>
+</section>
+
+<!-- ================= 第2部 ================= -->
+<section class="part">
+  <span class="tag">第2部</span>
+  <p class="lead">では、なぜ「途中で止まる」のか。肩の中を図にしました。</p>
+  <h2 class="h serif">肩のうしろが「栓」になる</h2>
+
+  <div class="fig">
+    <svg viewBox="0 0 360 215" aria-hidden="true">
+      <text x="85" y="18" text-anchor="middle" font-size="13" fill="#5a5a52">屋根（肩峰）</text>
+      <rect x="20" y="26" width="130" height="16" rx="8" fill="#9a7a2c"/>
+      <path d="M44,60 Q28,80 44,100" stroke="#9a7a2c" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="85" cy="77" r="34" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2.5"/>
+      <path d="M64,47 l-9,-12 M106,47 l9,-12 M85,41 v-14" stroke="#c0432f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M104,96 Q138,120 150,186 L132,190 Q118,132 96,110 Z" fill="#c0432f"/>
+      <text x="126" y="208" text-anchor="middle" font-size="13" fill="#8f2f1f">うしろの筋肉 きつい</text>
+      <path d="M30,140 V112" stroke="#c0432f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M22,120 L30,110 L38,120" fill="none" stroke="#c0432f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="275" y="18" text-anchor="middle" font-size="13" fill="#5a5a52">屋根（肩峰）</text>
+      <rect x="210" y="26" width="130" height="16" rx="8" fill="#9a7a2c"/>
+      <path d="M234,86 Q218,106 234,126" stroke="#9a7a2c" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="275" cy="104" r="34" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2.5"/>
+      <text x="275" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5e45">すき間</text>
+      <path d="M297,124 Q320,132 310,152 Q300,172 340,186" stroke="#1f5e45" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <text x="300" y="208" text-anchor="middle" font-size="13" fill="#1f5e45">うしろの筋肉 ゆるむ</text>
+      <path d="M232,170 l6,6 l12,-13" fill="none" stroke="#1f5e45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="two">
+      <div class="ng">うしろがきついと<br>骨の頭が屋根にぶつかり<br>途中で止まる</div>
+      <div class="ok">うしろがゆるむと<br>すき間ができて<br>腕が上がる</div>
+    </div>
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 360 215" aria-hidden="true">
+      <circle cx="95" cy="42" r="15" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+      <rect x="89" y="56" width="12" height="10" fill="#f3e7c4"/>
+      <rect x="69" y="64" width="52" height="82" rx="16" fill="#1f5e45"/>
+      <path d="M71,72 L66,8" stroke="#9a7a2c" stroke-width="15" stroke-linecap="round"/>
+      <path d="M71,72 L66,8" stroke="#f3e7c4" stroke-width="11" stroke-linecap="round"/>
+      <path d="M119,72 L170,58" stroke="#9a7a2c" stroke-width="15" stroke-linecap="round"/>
+      <path d="M119,72 L170,58" stroke="#f3e7c4" stroke-width="11" stroke-linecap="round"/>
+      <path d="M150,66 A32,32 0 0 1 119,100" stroke="#c0432f" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+      <text x="158" y="96" text-anchor="middle" font-size="15" font-weight="700" fill="#c0432f">約100°</text>
+      <text x="36" y="28" text-anchor="middle" font-size="14" fill="#5a5a52">上まで</text>
+      <text x="48" y="168" text-anchor="middle" font-size="13" fill="#5a5a52">左</text>
+      <text x="150" y="168" text-anchor="middle" font-size="13" fill="#5a5a52">右</text>
+      <text x="95" y="200" text-anchor="middle" font-size="15" font-weight="700" fill="#163f2f">きょうの最初</text>
+      <circle cx="265" cy="42" r="15" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+      <rect x="259" y="56" width="12" height="10" fill="#f3e7c4"/>
+      <rect x="239" y="64" width="52" height="82" rx="16" fill="#1f5e45"/>
+      <path d="M241,72 L236,8" stroke="#9a7a2c" stroke-width="15" stroke-linecap="round"/>
+      <path d="M241,72 L236,8" stroke="#f3e7c4" stroke-width="11" stroke-linecap="round"/>
+      <path d="M289,72 L322,28" stroke="#9a7a2c" stroke-width="15" stroke-linecap="round"/>
+      <path d="M289,72 L322,28" stroke="#f3e7c4" stroke-width="11" stroke-linecap="round"/>
+      <path d="M312,36 L324,12" stroke="#1f5e45" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M316,12 L324,10 L326,18" stroke="#1f5e45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="330" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5e45">上がり</text>
+      <text x="330" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5e45">はじめた</text>
+      <text x="320" y="168" text-anchor="middle" font-size="13" fill="#5a5a52">右</text>
+      <text x="265" y="200" text-anchor="middle" font-size="15" font-weight="700" fill="#163f2f">うしろをゆるめた後</text>
+    </svg>
+    <p class="cap">うしろから見た図。向かって右が右肩。<br>約100°から、上がりはじめました</p>
+  </div>
+
+  <div class="good">✓ 夜の痛みがなく、上がった状態が保てているのは、よいサインです。</div>
+
+  <div class="point">
+    <span class="pt">POINT</span>
+    <div class="num">
+      <div><b>肩のうしろを<br>もみほぐす</b><span>その場で</span></div>
+      <div class="arrow">→</div>
+      <div><b>すき間が<br>広がった</b><span>超音波で計測</span></div>
+    </div>
+    <div class="why">うしろの筋肉をゆるめると、屋根と骨の頭の「すき間」がその場で広がる。本日の施術は、この考え方です。</div>
+    <div class="src">出典：Physical Therapy Korea（2012・27人）／J Bone Joint Surg（1990）　※効果には個人差があります</div>
+  </div>
+</section>
+
+<!-- ================= 第3部 ================= -->
+<section class="part">
+  <span class="tag">第3部</span>
+  <p class="lead">次に、本日ゆるめた場所と、からだの計測（RaDoTech）です。</p>
+  <h2 class="h serif">右肩の、三角筋のうしろ</h2>
+
+  <div class="fig">
+    <svg viewBox="0 0 360 325" aria-hidden="true">
+      <text x="180" y="16" text-anchor="middle" font-size="13" fill="#5a5a52">うしろから見た図</text>
+      <circle cx="180" cy="48" r="20" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+      <rect x="172" y="66" width="16" height="12" fill="#f3e7c4"/>
+      <rect x="140" y="76" width="80" height="110" rx="22" fill="#1f5e45"/>
+      <path d="M146,88 L112,202" stroke="#9a7a2c" stroke-width="16" stroke-linecap="round"/>
+      <path d="M146,88 L112,202" stroke="#f3e7c4" stroke-width="12" stroke-linecap="round"/>
+      <path d="M214,88 L248,202" stroke="#9a7a2c" stroke-width="16" stroke-linecap="round"/>
+      <path d="M214,88 L248,202" stroke="#f3e7c4" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="110" cy="210" r="9" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+      <circle cx="250" cy="210" r="9" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+      <path d="M162,184 L160,300" stroke="#22346f" stroke-width="22" stroke-linecap="round"/>
+      <path d="M198,184 L200,300" stroke="#22346f" stroke-width="22" stroke-linecap="round"/>
+      <path d="M257,214 L240,152 L226,114 L214,98 L198,88 L186,82" stroke="#c4a44d" stroke-width="4" fill="none" stroke-dasharray="7 6" stroke-linecap="round"/>
+      <path d="M262,226 L296,240" stroke="#c4a44d" stroke-width="2"/>
+      <text x="300" y="254" text-anchor="middle" font-size="13" fill="#8a6d1f">小腸の線</text>
+      <text x="300" y="271" text-anchor="middle" font-size="13" fill="#8a6d1f">（経絡）</text>
+      <circle cx="226" cy="104" r="24" fill="#c0432f" fill-opacity=".22"/>
+      <circle cx="226" cy="104" r="24" fill="none" stroke="#c0432f" stroke-width="3"/>
+      <circle cx="226" cy="104" r="7" fill="#c0432f"/>
+      <path d="M246,92 L286,66" stroke="#c0432f" stroke-width="2"/>
+      <text x="290" y="54" font-size="14" font-weight="700" fill="#8f2f1f">三角筋の</text>
+      <text x="290" y="72" font-size="14" font-weight="700" fill="#8f2f1f">うしろ</text>
+      <text x="100" y="318" text-anchor="middle" font-size="14" fill="#5a5a52">左</text>
+      <text x="260" y="318" text-anchor="middle" font-size="14" fill="#5a5a52">右</text>
+    </svg>
+    <p class="cap">ここをゆるめると、右肩が上がりはじめました。<br>東洋医学で「小腸の線」が通る場所です</p>
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 360 240" aria-hidden="true">
+      <line x1="20" y1="110" x2="340" y2="110" stroke="#1f5e45" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <rect x="38" y="93" width="34" height="102" rx="5" fill="#e07a2e"/>
+      <text x="55" y="86" text-anchor="middle" font-size="14" font-weight="700" fill="#8f2f1f">120</text>
+      <rect x="80" y="110" width="34" height="85" rx="5" fill="#2e8b57"/>
+      <text x="97" y="103" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5e45">100</text>
+      <rect x="122" y="50" width="34" height="145" rx="5" fill="#c0432f"/>
+      <text x="139" y="43" text-anchor="middle" font-size="15" font-weight="700" fill="#8f2f1f">170</text>
+      <text x="55" y="213" text-anchor="middle" font-size="13" fill="#5a5a52">左</text>
+      <text x="97" y="213" text-anchor="middle" font-size="13" fill="#5a5a52">基準</text>
+      <text x="139" y="213" text-anchor="middle" font-size="13" fill="#5a5a52">右</text>
+      <text x="97" y="234" text-anchor="middle" font-size="16" font-weight="700" fill="#163f2f">小腸の線</text>
+      <rect x="206" y="152" width="34" height="43" rx="5" fill="#3a54ad"/>
+      <text x="223" y="145" text-anchor="middle" font-size="14" font-weight="700" fill="#22346f">50</text>
+      <rect x="248" y="110" width="34" height="85" rx="5" fill="#2e8b57"/>
+      <text x="265" y="103" text-anchor="middle" font-size="14" font-weight="700" fill="#1f5e45">100</text>
+      <rect x="290" y="120" width="34" height="75" rx="5" fill="#7f93cf"/>
+      <text x="307" y="142" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">88</text>
+      <text x="223" y="213" text-anchor="middle" font-size="13" fill="#5a5a52">左</text>
+      <text x="265" y="213" text-anchor="middle" font-size="13" fill="#5a5a52">基準</text>
+      <text x="307" y="213" text-anchor="middle" font-size="13" fill="#5a5a52">右</text>
+      <text x="265" y="234" text-anchor="middle" font-size="16" font-weight="700" fill="#163f2f">胆の線</text>
+      <line x1="20" y1="195" x2="340" y2="195" stroke="#b9b3a5" stroke-width="1.5"/>
+    </svg>
+    <p class="cap">経絡の計測（緑＝基準100）。<br>右の「小腸の線」が高め。本日ゆるめた場所を通る線です</p>
+  </div>
+
+  <p class="say">筋骨格の数値は 0.85（基準 0.9〜1.2）で、支えが少なめ。ここを足すのが、第4部のバンドです。※計測の数字は目安です。</p>
+</section>
+
+<!-- ================= 第4部 ================= -->
+<section class="part">
+  <span class="tag">第4部</span>
+  <p class="lead">最後に、おうちでの「寝たままバンド」。上がった肩を、自分の筋肉で支えるために。</p>
+  <h2 class="h serif">寝たまま、4つ</h2>
+
+  <div class="flow">
+    <div><span class="n">1</span><div class="w">脚上げ<br>（股関節）</div></div>
+    <div><span class="n">2</span><div class="w">天井へ<br>プッシュ</div></div>
+    <div><span class="n">3</span><div class="w">横にひらく<br>T</div></div>
+    <div><span class="n">4</span><div class="w">バンザイ<br>Y</div></div>
+  </div>
+
+  <div class="rule">
+    <div class="big"><em>10秒</em> うごかしつづける → <em>10秒</em> やすむ</div>
+    <div class="s">回数を数えません。タイマーの音に合わせて、動いて、休む。慣れたら20秒うごく。</div>
+  </div>
+  <div class="when">
+    <div>朝<span>目が覚めたら、布団の中で</span></div>
+    <div>夜<span>布団に入ったら、寝る前に</span></div>
+  </div>
+
+  <!-- 1 脚上げ -->
+  <div class="ex">
+    <div class="hd"><span class="n">1</span><h3>脚上げ<small>股関節｜仰向け と 横向き、2つの向きで</small></h3></div>
+    <div class="pic">
+      <svg viewBox="0 0 320 180" aria-hidden="true">
+        <text x="40" y="22" font-size="15" font-weight="700" fill="#163f2f">A 仰向け</text>
+        <rect x="10" y="132" width="300" height="12" rx="6" fill="#6e4b55"/>
+        <path d="M172,113 L60,118" stroke="#22346f" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="52" cy="119" r="8" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <path d="M172,113 L95,42" stroke="#22346f" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="88" cy="36" r="8" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <path d="M54,112 L84,32" stroke="#52c41a" stroke-width="6" stroke-linecap="round"/>
+        <path d="M58,126 L94,44" stroke="#52c41a" stroke-width="6" stroke-linecap="round"/>
+        <rect x="165" y="98" width="100" height="30" rx="14" fill="#1f5e45"/>
+        <circle cx="274" cy="112" r="17" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+        <circle cx="266" cy="108" r="2" fill="#5a5a52"/>
+        <path d="M130,92 V60" stroke="#c0432f" stroke-width="4" stroke-linecap="round"/>
+        <path d="M121,69 L130,58 L139,69" fill="none" stroke="#c0432f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="130" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#c0432f">上げ下げ</text>
+        <text x="160" y="168" text-anchor="middle" font-size="13" fill="#5a5a52">足首にバンド。片脚を上げ下げ</text>
+      </svg>
+    </div>
+    <div class="pic">
+      <svg viewBox="0 0 320 180" aria-hidden="true">
+        <text x="40" y="22" font-size="15" font-weight="700" fill="#163f2f">B 横向き</text>
+        <rect x="10" y="132" width="300" height="12" rx="6" fill="#6e4b55"/>
+        <path d="M172,118 L60,120" stroke="#22346f" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="52" cy="121" r="8" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <path d="M172,110 L70,62" stroke="#22346f" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="62" cy="58" r="8" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <path d="M52,112 L58,66" stroke="#52c41a" stroke-width="6" stroke-linecap="round"/>
+        <path d="M60,128 L70,70" stroke="#52c41a" stroke-width="6" stroke-linecap="round"/>
+        <rect x="165" y="96" width="100" height="32" rx="14" fill="#1f5e45"/>
+        <path d="M250,112 L300,116" stroke="#9a7a2c" stroke-width="13" stroke-linecap="round"/>
+        <path d="M250,112 L300,116" stroke="#f3e7c4" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="282" cy="98" r="17" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+        <path d="M120,96 V72" stroke="#c0432f" stroke-width="4" stroke-linecap="round"/>
+        <path d="M111,81 L120,70 L129,81" fill="none" stroke="#c0432f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="120" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="#c0432f">上げ下げ</text>
+        <text x="160" y="168" text-anchor="middle" font-size="13" fill="#5a5a52">横向きに寝て、上の脚を上げ下げ（おしりの横）</text>
+      </svg>
+    </div>
+    <div class="toes">
+      <div>
+        <svg viewBox="0 0 62 62" aria-hidden="true"><g transform="translate(31 33)"><ellipse cx="0" cy="8" rx="9" ry="12" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/><ellipse cx="0" cy="-8" rx="11" ry="10" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/><circle cx="-8" cy="-20" r="3" fill="#9a7a2c"/><circle cx="-3" cy="-22" r="3" fill="#9a7a2c"/><circle cx="2" cy="-22" r="2.6" fill="#9a7a2c"/><circle cx="7" cy="-20" r="2.4" fill="#9a7a2c"/><path d="M0,-28 V-40" stroke="#1f5e45" stroke-width="3" stroke-linecap="round"/><path d="M-5,-35 L0,-41 L5,-35" fill="none" stroke="#1f5e45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+        <div class="l">① 正面</div>
+      </div>
+      <div>
+        <svg viewBox="0 0 62 62" aria-hidden="true"><g transform="translate(31 33) rotate(-30)"><ellipse cx="0" cy="8" rx="9" ry="12" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/><ellipse cx="0" cy="-8" rx="11" ry="10" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/><circle cx="-8" cy="-20" r="3" fill="#9a7a2c"/><circle cx="-3" cy="-22" r="3" fill="#9a7a2c"/><circle cx="2" cy="-22" r="2.6" fill="#9a7a2c"/><circle cx="7" cy="-20" r="2.4" fill="#9a7a2c"/><path d="M0,-28 V-40" stroke="#1f5e45" stroke-width="3" stroke-linecap="round"/><path d="M-5,-35 L0,-41 L5,-35" fill="none" stroke="#1f5e45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+        <div class="l">② 内向き</div>
+      </div>
+      <div>
+        <svg viewBox="0 0 62 62" aria-hidden="true"><g transform="translate(31 33) rotate(30)"><ellipse cx="0" cy="8" rx="9" ry="12" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/><ellipse cx="0" cy="-8" rx="11" ry="10" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/><circle cx="-8" cy="-20" r="3" fill="#9a7a2c"/><circle cx="-3" cy="-22" r="3" fill="#9a7a2c"/><circle cx="2" cy="-22" r="2.6" fill="#9a7a2c"/><circle cx="7" cy="-20" r="2.4" fill="#9a7a2c"/><path d="M0,-28 V-40" stroke="#1f5e45" stroke-width="3" stroke-linecap="round"/><path d="M-5,-35 L0,-41 L5,-35" fill="none" stroke="#1f5e45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+        <div class="l">③ 外向き</div>
+      </div>
+    </div>
+    <div class="toes-cap">つま先の向きを 正面 → 内 → 外 の3回で。向きを変えると、使う筋肉が変わります（ドイツのリハビリの型）</div>
+    <div class="do"><b>やること：</b>A仰向け・B横向きで、つま先3方向。反対の脚も。<br><span class="sec">10秒 上げ下げ → 10秒 やすむ ×6（片脚）</span></div>
+  </div>
+
+  <!-- 2 天井プッシュ -->
+  <div class="ex">
+    <div class="hd"><span class="n">2</span><h3>天井へプッシュ<small>胸・肩の前・肩甲骨を前へ滑らせる筋肉</small></h3></div>
+    <div class="pic">
+      <svg viewBox="0 0 320 180" aria-hidden="true">
+        <rect x="10" y="132" width="300" height="12" rx="6" fill="#6e4b55"/>
+        <path d="M172,112 L40,116" stroke="#22346f" stroke-width="22" stroke-linecap="round"/>
+        <circle cx="30" cy="117" r="9" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <!-- バンド：背中の下 → 体の両わき → 手 -->
+        <path d="M176,127 H262" stroke="#e8386f" stroke-width="7" stroke-linecap="round"/>
+        <path d="M222,118 Q206,76 224,30" stroke="#e8386f" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M270,118 Q288,76 272,30" stroke="#e8386f" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <rect x="165" y="96" width="100" height="28" rx="13" fill="#1f5e45"/>
+        <circle cx="274" cy="110" r="17" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+        <circle cx="266" cy="106" r="2" fill="#5a5a52"/>
+        <path d="M238,102 L234,36" stroke="#9a7a2c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M238,102 L234,36" stroke="#f3e7c4" stroke-width="10" stroke-linecap="round"/>
+        <path d="M252,102 L262,36" stroke="#9a7a2c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M252,102 L262,36" stroke="#f3e7c4" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="232" cy="30" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <circle cx="264" cy="30" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <path d="M190,96 V60" stroke="#c0432f" stroke-width="4" stroke-linecap="round"/>
+        <path d="M181,69 L190,58 L199,69" fill="none" stroke="#c0432f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="130" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#c0432f">天井へ押し上げる</text>
+        <text x="130" y="76" text-anchor="middle" font-size="12" fill="#8f2f1f">バンドは背中の下</text>
+        <text x="160" y="168" text-anchor="middle" font-size="13" fill="#5a5a52">バンドを背中に通して、両手で天井へ</text>
+      </svg>
+    </div>
+    <div class="do"><b>やること：</b>バンドを背中の下に通し、両端を持つ。両手を天井へ押し上げて、戻す。<br><span class="sec">10秒 押して戻す → 10秒 やすむ</span></div>
+  </div>
+
+  <!-- 3 T -->
+  <div class="ex">
+    <div class="hd"><span class="n">3</span><h3>横にひらく「T」<small>肩のうしろ・肩甲骨のあいだ</small></h3></div>
+    <div class="pic">
+      <svg viewBox="0 0 320 180" aria-hidden="true">
+        <rect x="10" y="30" width="300" height="120" rx="12" fill="#6e4b55"/>
+        <path d="M195,82 L60,86" stroke="#22346f" stroke-width="13" stroke-linecap="round"/>
+        <path d="M195,98 L60,94" stroke="#22346f" stroke-width="13" stroke-linecap="round"/>
+        <circle cx="52" cy="84" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <circle cx="52" cy="96" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <path d="M56,86 L248,36" stroke="#e8386f" stroke-width="7" stroke-linecap="round"/>
+        <path d="M56,94 L248,144" stroke="#e8386f" stroke-width="7" stroke-linecap="round"/>
+        <rect x="190" y="72" width="78" height="36" rx="16" fill="#1f5e45"/>
+        <path d="M255,76 L252,40" stroke="#9a7a2c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M255,76 L252,40" stroke="#f3e7c4" stroke-width="10" stroke-linecap="round"/>
+        <path d="M255,104 L252,140" stroke="#9a7a2c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M255,104 L252,140" stroke="#f3e7c4" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="251" cy="36" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <circle cx="251" cy="144" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <circle cx="282" cy="90" r="16" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+        <text x="282" y="124" text-anchor="middle" font-size="12" fill="#fff">頭</text>
+        <text x="52" y="124" text-anchor="middle" font-size="12" fill="#fff">足</text>
+        <text x="150" y="18" text-anchor="middle" font-size="13" fill="#5a5a52">上から見た図</text>
+        <text x="150" y="172" text-anchor="middle" font-size="13" fill="#5a5a52">足にかけたバンドを、両手で横にひらく</text>
+      </svg>
+    </div>
+    <div class="do"><b>やること：</b>両足にバンドをかけ、両手で持つ。腕を横に大きくひらいて、戻す。<br><span class="sec">10秒 ひらいて戻す → 10秒 やすむ</span></div>
+  </div>
+
+  <!-- 4 Y -->
+  <div class="ex">
+    <div class="hd"><span class="n">4</span><h3>バンザイの「Y」<small>腕を上げる筋肉</small></h3></div>
+    <div class="pic">
+      <svg viewBox="0 0 320 180" aria-hidden="true">
+        <rect x="10" y="30" width="300" height="120" rx="12" fill="#6e4b55"/>
+        <path d="M170,82 L60,86" stroke="#22346f" stroke-width="13" stroke-linecap="round"/>
+        <path d="M170,98 L60,94" stroke="#22346f" stroke-width="13" stroke-linecap="round"/>
+        <circle cx="52" cy="84" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <circle cx="52" cy="96" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <path d="M56,86 L300,142" stroke="#e8386f" stroke-width="7" stroke-linecap="round"/>
+        <path d="M56,94 L300,38" stroke="#e8386f" stroke-width="7" stroke-linecap="round"/>
+        <rect x="165" y="72" width="76" height="36" rx="16" fill="#1f5e45"/>
+        <path d="M236,76 L298,42" stroke="#9a7a2c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M236,76 L298,42" stroke="#f3e7c4" stroke-width="10" stroke-linecap="round"/>
+        <path d="M236,104 L298,138" stroke="#9a7a2c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M236,104 L298,138" stroke="#f3e7c4" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="302" cy="40" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <circle cx="302" cy="140" r="7" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="1.5"/>
+        <circle cx="254" cy="90" r="16" fill="#f3e7c4" stroke="#9a7a2c" stroke-width="2"/>
+        <text x="254" y="124" text-anchor="middle" font-size="12" fill="#fff">頭</text>
+        <text x="52" y="124" text-anchor="middle" font-size="12" fill="#fff">足</text>
+        <text x="150" y="18" text-anchor="middle" font-size="13" fill="#5a5a52">上から見た図</text>
+        <text x="150" y="172" text-anchor="middle" font-size="13" fill="#5a5a52">バンドを交差させて、頭の上へバンザイ</text>
+      </svg>
+    </div>
+    <div class="do"><b>やること：</b>足にかけたバンドを交差させて持つ。腕を頭の上へ、バンザイして戻す。痛くない高さまで。<br><span class="sec">10秒 上げて戻す → 10秒 やすむ</span></div>
+  </div>
+
+  <div class="safe">痛みが出る高さまでは上げません。「気持ちよく動く」ところまでで十分です。</div>
+
+  <!-- タイマー -->
+  <div class="timer" id="timer">
+    <div class="t">INTERVAL TIMER</div>
+    <div class="ph" id="ph">うごく → やすむ</div>
+    <div class="num" id="num">10</div>
+    <div class="rnd" id="rnd">数えなくても、音でお知らせします</div>
+    <div class="opts">
+      <label>うごく<select id="selWork"><option value="10" selected>10秒</option><option value="20">20秒</option></select></label>
+      <label>回数<select id="selRounds"><option value="3" selected>3回</option><option value="6">6回</option><option value="10">10回</option></select></label>
+    </div>
+    <button id="btn" type="button">▶ タイマーをはじめる</button>
+    <div class="hint">やすむは10秒。音が出ないときは、スマホのマナーモードを確認してください。</div>
+  </div>
+
+  <div class="point">
+    <span class="pt">POINT</span>
+    <div class="num">
+      <div><b>軽いバンドでも<br>最後がきつくなるまで</b><span>10秒うごきつづける</span></div>
+      <div class="arrow">→</div>
+      <div><b>筋肉の増え方は<br>重い負荷と同じ</b><span>21研究のまとめ</span></div>
+    </div>
+    <div class="why">重さより「最後の数秒がきつい」かどうか。10秒動きつづけて休む形は、それを自然につくります。布団で朝と夜にくっつけると、続きます。</div>
+    <div class="src">出典：Schoenfeld（2017・21研究のメタ分析）／Gollwitzer &amp; Sheeran（2006）　※効果には個人差があります</div>
+  </div>
+</section>
+
+<!-- ================= まとめ ================= -->
+<section class="oneline">
+  <div class="t">ひとことで言うと</div>
+  <p class="m serif">肩のうしろをゆるめて、<br>寝たまま支えを足す。</p>
+  <p class="s">布団の上で、朝と夜。10秒うごいて、10秒やすむ。</p>
+  <p class="bye">今日は右肩が上がりはじめています。<br>無理のない範囲で、続けてみてください。</p>
+</section>
+
+<!-- ================= フッター ================= -->
+<footer>
+  <div class="blk">
+    <h5>三条健康堂の考え方｜神経反射入力装置論</h5>
+    <p>からだを「入力装置」としてとらえ、皮ふ・筋肉・関節への刺激を通して神経の反射を整え、からだが自分で回復する力を引き出す施術理論です。</p>
+  </div>
+  <div class="prof">
+    <h5>谷 先生｜三条健康堂接骨院 院長</h5>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+    </div>
+    <p>高松市由良町、由良川東公園のそば</p>
+    <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var box=document.getElementById('timer'), ph=document.getElementById('ph'), num=document.getElementById('num'),
+      rnd=document.getElementById('rnd'), btn=document.getElementById('btn'),
+      selWork=document.getElementById('selWork'), selRounds=document.getElementById('selRounds');
+  var REST=10, running=false, tick=null, ac=null, closeT=null;
+
+  function ensureAC(){
+    if(ac && ac.state!=='closed') return ac;
+    var AC=window.AudioContext||window.webkitAudioContext; if(!AC) return null;
+    try{ ac=new AC({latencyHint:'playback',sampleRate:48000}); }
+    catch(e){ try{ ac=new AC(); }catch(e2){ ac=null; } }
+    return ac;
+  }
+  function beep(freq,t0,dur){
+    if(!ac) return;
+    var o=ac.createOscillator(), g=ac.createGain();
+    o.type='sine'; o.frequency.value=freq;
+    g.gain.setValueAtTime(0.0001,t0);
+    g.gain.linearRampToValueAtTime(0.14,t0+0.02);
+    g.gain.setValueAtTime(0.14,Math.max(t0+0.02,t0+dur-0.09));
+    g.gain.linearRampToValueAtTime(0.0001,t0+dur);
+    o.connect(g); g.connect(ac.destination);
+    o.start(t0); o.stop(t0+dur+0.02);
+  }
+  function play(kind){
+    var c=ensureAC(); if(!c) return;
+    if(c.state==='suspended'){ try{ c.resume(); }catch(e){} }
+    var t=c.currentTime+0.03;
+    if(kind==='work'){ beep(880,t,0.16); beep(880,t+0.24,0.16); }
+    else if(kind==='rest'){ beep(440,t,0.32); }
+    else { beep(660,t,0.16); beep(880,t+0.22,0.16); beep(1100,t+0.44,0.34); }
+    if(navigator.vibrate){ try{ navigator.vibrate(kind==='work'?[120,80,120]:kind==='rest'?[220]:[120,80,120,80,300]); }catch(e){} }
+  }
+  function closeLater(){
+    clearTimeout(closeT);
+    closeT=setTimeout(function(){ if(ac && ac.state!=='closed'){ try{ ac.close(); }catch(e){} } ac=null; },1200);
+  }
+
+  var phase, round, rounds, work, endAt;
+  function setPhase(p){
+    phase=p;
+    box.className='timer '+(p==='work'?'work':p==='rest'?'rest':'');
+    if(p==='work'){ ph.textContent='うごく'; endAt=Date.now()+work*1000; }
+    else if(p==='rest'){ ph.textContent='やすむ'; endAt=Date.now()+REST*1000; }
+    rnd.textContent=round+' / '+rounds+' 回目';
+    play(p);
+    render();
+  }
+  function render(){
+    var left=Math.max(0,Math.ceil((endAt-Date.now())/1000));
+    num.textContent=left;
+  }
+  function loop(){
+    if(!running) return;
+    var left=endAt-Date.now();
+    if(left<=0){
+      if(phase==='work'){ setPhase('rest'); }
+      else { if(round>=rounds){ finish(); return; } round++; setPhase('work'); }
+    } else { render(); }
+  }
+  function start(){
+    work=parseInt(selWork.value,10); rounds=parseInt(selRounds.value,10);
+    running=true; round=1;
+    btn.textContent='■ とめる'; btn.className='stop';
+    selWork.disabled=true; selRounds.disabled=true;
+    ensureAC();
+    setPhase('work');
+    tick=setInterval(loop,200);
+  }
+  function stop(){
+    running=false; clearInterval(tick);
+    btn.textContent='▶ タイマーをはじめる'; btn.className='';
+    selWork.disabled=false; selRounds.disabled=false;
+    box.className='timer';
+    ph.textContent='うごく → やすむ';
+    num.textContent=selWork.value;
+    rnd.textContent='数えなくても、音でお知らせします';
+    closeLater();
+  }
+  function finish(){
+    running=false; clearInterval(tick);
+    box.className='timer';
+    ph.textContent='おつかれさまでした'; num.textContent='✓';
+    rnd.textContent=rounds+'回 できました。次の種目へ';
+    play('done');
+    btn.textContent='▶ もう一度はじめる'; btn.className='';
+    selWork.disabled=false; selRounds.disabled=false;
+    closeLater();
+  }
+  btn.addEventListener('click',function(){ running?stop():start(); });
+  selWork.addEventListener('change',function(){ if(!running){ num.textContent=selWork.value; } });
+})();
+</script>
+</body>
+</html>
