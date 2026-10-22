@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>中野様 転ばない歩き方</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&display=swap">
+<style>
+/* Layout: スマホ縦1列。表紙→目次→第1〜4部（各部＝AかBか→だから）→★まとめ→ひとこと→定型フッター */
+:root{
+  --bg:#fbfaf5; --card:#ffffff; --ink:#1f2a22; --sub:#3f4a43; --line:#d9dccf;
+  --green:#1a3d28; --green-soft:#e9f0ea; --on-green:#fbfaf5;
+  --gold:#c4a44d; --gold-soft:#f7f0dc; --gold-ink:#7a6220;
+  --red:#c23c26; --red-soft:#fbebe7;
+  --serif:'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif;
+  --sans:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.8;}
+*{box-sizing:border-box;}
+.wrap{max-width:560px;margin:0 auto;padding-block:20px 40px;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:48px;}
+h1,h2,h3,p,ul,ol,figure{margin:0;}
+ul,ol{padding:0;list-style:none;}
+h1,h2{text-wrap:balance;}
+
+/* 表紙 */
+.hero{background:var(--green);color:var(--on-green);border-radius:20px;padding:26px 22px 22px;display:flex;flex-direction:column;gap:16px;}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--gold);}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:36px;line-height:1.35;}
+.hero h1 span{color:var(--gold);}
+.hero .sub{font-size:17px;line-height:1.7;font-weight:700;}
+.hero .date{font-size:14px;opacity:.85;}
+
+/* 目次 */
+.toc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:8px;}
+.toc h2{font-family:var(--serif);font-size:20px;color:var(--green);}
+.toc li{display:flex;gap:12px;align-items:baseline;padding-block:7px;border-top:1px dashed var(--line);}
+.toc li:first-child{border-top:none;}
+.toc .n{flex:none;font-size:13px;font-weight:900;color:var(--green);background:var(--green-soft);border-radius:999px;padding:1px 10px;}
+.toc .t{font-weight:700;font-size:17px;}
+
+/* 各部 */
+section{display:flex;flex-direction:column;gap:16px;}
+.part{align-self:flex-start;font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--on-green);background:var(--green);border-radius:999px;padding:2px 14px;}
+section h2{font-family:var(--serif);font-weight:900;font-size:30px;line-height:1.4;color:var(--green);}
+.lead{font-size:16px;color:var(--sub);border-left:3px solid var(--gold);padding-left:12px;}
+
+/* 対立カード：A はこう／B はこう → だから */
+.duel{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.duel .side{border-radius:14px;padding:12px 10px;display:flex;flex-direction:column;gap:4px;min-width:0;text-align:center;}
+.duel .a{background:var(--card);border:2px solid var(--line);}
+.duel .b{background:var(--green);color:var(--on-green);}
+.duel .k{font-size:13px;font-weight:700;letter-spacing:.06em;}
+.duel .a .k{color:var(--sub);}
+.duel .b .k{color:var(--gold);}
+.duel .v{font-family:var(--serif);font-size:22px;font-weight:900;line-height:1.35;}
+.duel .d{font-size:14px;line-height:1.55;}
+.duel .a .d{color:var(--sub);}
+.dakara{display:flex;flex-direction:column;gap:6px;align-items:flex-start;background:var(--gold-soft);border-radius:14px;padding:12px 14px;}
+.dakara .k{font-size:14px;font-weight:900;color:var(--gold-ink);background:var(--card);border-radius:999px;padding:2px 12px;}
+.dakara .v{font-family:var(--serif);font-size:22px;font-weight:900;line-height:1.45;color:var(--green);}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;}
+.card h3{font-size:18px;font-weight:900;line-height:1.5;}
+.cap{font-size:15px;color:var(--sub);line-height:1.7;}
+figure svg{display:block;width:100%;height:auto;}
+
+/* POINT（エビデンス専用） */
+.point{position:relative;border:2px solid var(--gold);border-radius:14px;background:var(--card);padding:22px 16px 14px;display:flex;flex-direction:column;gap:10px;}
+.point .tag{position:absolute;top:-12px;left:14px;background:var(--gold);color:var(--green);font-size:12px;font-weight:900;letter-spacing:.18em;padding:2px 10px;border-radius:6px;}
+.point .head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
+.point h3{font-size:18px;font-weight:900;line-height:1.5;}
+.point .st{font-size:15px;color:var(--gold-ink);letter-spacing:.06em;white-space:nowrap;}
+.point .src{font-size:13px;color:var(--sub);line-height:1.6;border-top:1px dashed var(--line);padding-top:8px;}
+.hl{background:linear-gradient(transparent 58%, var(--gold-soft) 58%);font-weight:900;}
+
+/* 歩く人 */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.walk{background:var(--card);border-radius:16px;padding:12px 10px;display:flex;flex-direction:column;gap:8px;min-width:0;}
+.walk.ng{border:3px solid var(--red);}
+.walk.ok{border:3px solid var(--green);}
+.walk .lab{align-self:center;font-size:15px;font-weight:900;color:var(--on-green);border-radius:999px;padding:2px 14px;}
+.walk.ng .lab{background:var(--red);}
+.walk.ok .lab{background:var(--green);}
+.walk li{font-size:15px;font-weight:700;line-height:1.5;padding-left:1em;text-indent:-1em;}
+.walk li::before{content:"・";}
+
+/* 場所 */
+.spots{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.spot{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0;}
+.spot.hot{border:3px solid var(--red);}
+.spot svg{width:56px;height:56px;}
+.spot .nm{font-weight:900;font-size:16px;line-height:1.4;}
+.spot .d{font-size:14px;line-height:1.55;color:var(--sub);}
+.spot .x8{color:var(--red);font-weight:900;font-size:15px;}
+
+/* 次回の流れ */
+.steps{display:flex;flex-direction:column;gap:10px;}
+.steps li{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;background:var(--card);border:2px solid var(--green);border-radius:16px;padding:12px;}
+.steps .n{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--green);display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:900;}
+.steps .t{font-weight:900;font-size:18px;line-height:1.45;}
+.steps .d{display:block;font-size:14px;font-weight:400;color:var(--sub);}
+
+/* ★まとめ */
+.rank{display:flex;flex-direction:column;gap:8px;}
+.rank li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;}
+.rank .nm{font-weight:900;font-size:16px;line-height:1.4;}
+.rank .nt{font-size:14px;color:var(--sub);line-height:1.5;}
+.rank .st{color:var(--gold-ink);font-size:15px;letter-spacing:.06em;white-space:nowrap;}
+.rank li.hot{border:2px solid var(--green);}
+.legend{font-size:13px;color:var(--sub);line-height:1.7;}
+
+/* ひとこと・注意 */
+.oneline{background:var(--green);color:var(--on-green);border-radius:20px;padding:22px 18px;text-align:center;display:flex;flex-direction:column;gap:6px;}
+.oneline .t{font-size:13px;letter-spacing:.2em;color:var(--gold);font-weight:700;}
+.oneline p{font-family:var(--serif);font-size:34px;font-weight:900;line-height:1.3;}
+.safety{font-size:14px;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;line-height:1.7;}
+
+/* フッター */
+footer{border-top:3px solid var(--green);padding-top:20px;display:flex;flex-direction:column;gap:16px;}
+footer h4{margin:0;font-family:var(--serif);font-size:17px;color:var(--green);}
+footer p{margin:0;font-size:14px;line-height:1.75;color:var(--sub);}
+footer .prof{display:flex;flex-direction:column;gap:8px;}
+footer .prof b{font-size:16px;color:var(--ink);}
+footer .links{display:flex;gap:10px;flex-wrap:wrap;}
+footer .links a{flex:1;min-width:140px;text-align:center;text-decoration:none;font-weight:900;font-size:15px;border-radius:999px;padding:10px 12px;}
+footer .links .line{background:var(--green);color:var(--on-green);}
+footer .links .map{background:var(--card);color:var(--green);border:2px solid var(--green);}
+footer .links a:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+footer .sig{font-size:13px;}
+footer .brand{text-align:center;font-size:13px;letter-spacing:.3em;font-weight:700;color:var(--gold-ink);}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===== 表紙 ===== -->
+<header class="hero">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <h1>中野様、<br><span>もう転ばない<br>歩き方</span></h1>
+  <p class="sub">「元気な歩き方」と<br>「転ばない歩き方」は、別ものです。</p>
+  <div class="date">2026年10月22日</div>
+</header>
+
+<!-- ===== 目次 ===== -->
+<nav class="toc" aria-label="目次">
+  <h2>今日のお話は4つです</h2>
+  <ol>
+    <li><span class="n">第1部</span><span class="t">体力か、歩き方か</span></li>
+    <li><span class="n">第2部</span><span class="t">大股か、小股か</span></li>
+    <li><span class="n">第3部</span><span class="t">まっすぐか、曲がり角か</span></li>
+    <li><span class="n">第4部</span><span class="t">守るか、鍛えるか</span></li>
+  </ol>
+</nav>
+
+<!-- ===== 第1部 ===== -->
+<section id="p1">
+  <span class="part">第1部</span>
+  <h2>体力か、歩き方か</h2>
+  <p class="lead">体力のせい？ 歩き方のせい？</p>
+
+  <div class="duel">
+    <div class="side a"><span class="k">体力は</span><span class="v">十分</span><span class="d">7階まで階段<br>バランス運動も◎</span></div>
+    <div class="side b"><span class="k">歩き方は</span><span class="v">急ぎ足・大股</span><span class="d">娘さんの速さで<br>テレビ流の大股</span></div>
+  </div>
+  <div class="dakara"><span class="k">だから</span><span class="v">転ぶのは、歩き方のせい。</span></div>
+
+  <div class="point">
+    <span class="tag">POINT</span>
+    <div class="head"><h3>急ぐ人・大股の人ほど転んだ</h3><span class="st">★★★★☆</span></div>
+    <p>元気な高齢者79人を、わざとつまずかせた実験です。転んだのは<span class="hl">速く歩く人・大股の人</span>でした。</p>
+    <p>体力があっても、<span class="hl">つまずく回数が多ければ転ぶ</span>。だから中野様が減らすのは、つまずく回数です。</p>
+    <p class="src">出典：Pavol ほか（J Gerontol 1999・2001）米国</p>
+  </div>
+</section>
+
+<!-- ===== 第2部 ===== -->
+<section id="p2">
+  <span class="part">第2部</span>
+  <h2>大股か、小股か</h2>
+  <p class="lead">テレビは大股、山登りは小股。<br>どちらが正しい？</p>
+
+  <div class="duel">
+    <div class="side a"><span class="k">テレビの大股は</span><span class="v">元気の結果</span><span class="d">元気だから<br>大股になる</span></div>
+    <div class="side b"><span class="k">山道の小股は</span><span class="v">転ばない技</span><span class="d">足が体の真下<br>だからふんばれる</span></div>
+  </div>
+  <div class="dakara"><span class="k">だから</span><span class="v">街では、小股で歩く。</span></div>
+
+  <div class="compare">
+    <div class="walk ng">
+      <span class="lab">× テレビ歩き</span>
+      <svg viewBox="0 0 160 170" role="img" aria-label="悪い例。前かがみで大股、前の足はかかとからドンと着地している。">
+        <line x1="4" y1="146" x2="156" y2="146" stroke="#9aa39c" stroke-width="2"/>
+        <path d="M24 48 L46 48 M18 62 L42 62 M26 76 L44 76" stroke="#9aa39c" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="90" cy="26" r="12" fill="#1f2a22"/>
+        <g fill="none" stroke="#1f2a22" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="87" y1="39" x2="76" y2="85"/>
+          <polyline points="84,52 106,76"/>
+          <polyline points="84,52 62,76"/>
+          <polyline points="76,85 102,112 124,141 138,130"/>
+          <polyline points="76,85 56,115 34,133 22,145"/>
+        </g>
+        <path d="M112 152 L104 160 M124 153 L124 164 M136 152 L144 160" stroke="#c23c26" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <ul>
+        <li>大股でグイグイ</li>
+        <li>かかとでドン</li>
+        <li>急ぎ足</li>
+      </ul>
+    </div>
+    <div class="walk ok">
+      <span class="lab">○ 山道歩き</span>
+      <svg viewBox="0 0 160 170" role="img" aria-label="良い例。背すじはまっすぐ、小股で、前の足はつま先を上げて足裏全体で着く。">
+        <line x1="4" y1="146" x2="156" y2="146" stroke="#9aa39c" stroke-width="2"/>
+        <circle cx="80" cy="26" r="12" fill="#1f2a22"/>
+        <g fill="none" stroke="#1f2a22" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="80" y1="39" x2="80" y2="86"/>
+          <polyline points="80,52 92,76"/>
+          <polyline points="80,52 68,77"/>
+          <polyline points="80,86 75,116 72,142 90,145"/>
+          <polyline points="80,86 97,111 101,130 116,125"/>
+        </g>
+        <path d="M122 120 L122 100 M116 106 L122 99 L128 106" fill="none" stroke="#1a3d28" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <ul>
+        <li>小股でゆっくり</li>
+        <li>つま先を上げる</li>
+        <li>足裏全体でそっと</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="point">
+    <span class="tag">POINT</span>
+    <div class="head"><h3>小股にすると、<br>滑って転ぶリスクが約6分の1</h3><span class="st">★★★★☆</span></div>
+    <figure>
+      <svg viewBox="0 0 340 214" role="img" aria-label="棒グラフ。今の歩幅のままを1とすると、歩幅をひと回り縮めたときの滑って転ぶリスクは約6分の1。">
+        <line x1="20" y1="170" x2="320" y2="170" stroke="#3f4a43" stroke-width="2"/>
+        <rect x="70" y="30" width="80" height="140" fill="#c23c26"/>
+        <text x="110" y="22" text-anchor="middle" font-size="17" font-weight="900" fill="#c23c26">1</text>
+        <rect x="190" y="146.7" width="80" height="23.3" fill="#1a3d28"/>
+        <text x="230" y="138" text-anchor="middle" font-size="18" font-weight="900" fill="#1a3d28">約6分の1</text>
+        <text x="110" y="191" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">今の大股</text>
+        <text x="110" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">のまま</text>
+        <text x="230" y="191" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">ひと回り</text>
+        <text x="230" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">小股にする</text>
+      </svg>
+    </figure>
+    <p>歩く速さと歩幅を別々に変えて、わざと滑らせた実験です。歩幅をひと回り縮めると、<span class="hl">転ぶリスクが約6分の1</span>になりました。</p>
+    <p class="src">出典：Espy ほか（Gait &amp; Posture 2010）若い人の実験のため★4</p>
+  </div>
+
+  <div class="point">
+    <span class="tag">POINT</span>
+    <div class="head"><h3>「歩幅が狭いと認知症」は<br>順番が逆</h3><span class="st">★★★☆☆</span></div>
+    <p>テレビの元の研究は、<span class="hl">元気な脳の人が大股になる</span>と見たもの。わざと大股にしても転ばなくなるわけではありません。年をとって歩幅が縮むのは<span class="hl">転ばないための体の工夫</span>だった、という研究もあります。</p>
+    <p class="src">出典：谷口優（たにぐち・ゆう）ほか（東京都健康長寿医療センター）／Maki（J Am Geriatr Soc 1997）</p>
+  </div>
+</section>
+
+<!-- ===== 第3部 ===== -->
+<section id="p3">
+  <span class="part">第3部</span>
+  <h2>まっすぐか、曲がり角か</h2>
+  <p class="lead">危ない場所は、決まっています。</p>
+
+  <div class="duel">
+    <div class="side a"><span class="k">まっすぐの道は</span><span class="v">転んでも<br>軽いケガ</span><span class="d">手や前につく</span></div>
+    <div class="side b"><span class="k">曲がり角は</span><span class="v">骨折が<br>約8倍</span><span class="d">横に倒れて<br>腰の骨を打つ</span></div>
+  </div>
+  <div class="dakara"><span class="k">だから</span><span class="v">曲がる前に、ひと呼吸。</span></div>
+
+  <div class="point">
+    <span class="tag">POINT</span>
+    <div class="head"><h3>曲がりながら転ぶと、<br>大腿骨（だいたいこつ）骨折が約8倍</h3><span class="st">★★★☆☆</span></div>
+    <figure>
+      <svg viewBox="0 0 340 214" role="img" aria-label="棒グラフ。まっすぐ歩いて転んだときを1とすると、曲がりながら転んだときの大腿骨骨折のなりやすさは約8倍。">
+        <line x1="20" y1="170" x2="320" y2="170" stroke="#3f4a43" stroke-width="2"/>
+        <rect x="70" y="152.5" width="80" height="17.5" fill="#1a3d28"/>
+        <text x="110" y="144" text-anchor="middle" font-size="17" font-weight="900" fill="#1a3d28">1</text>
+        <rect x="190" y="30" width="80" height="140" fill="#c23c26"/>
+        <text x="230" y="22" text-anchor="middle" font-size="18" font-weight="900" fill="#c23c26">約8倍</text>
+        <text x="110" y="191" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">まっすぐ歩いて</text>
+        <text x="110" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">転んだとき</text>
+        <text x="230" y="191" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">曲がりながら</text>
+        <text x="230" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">転んだとき</text>
+      </svg>
+    </figure>
+    <p class="src">出典：Cumming・Klineberg（J Am Geriatr Soc 1994）オーストラリアの高齢者の調査</p>
+  </div>
+
+  <div class="card">
+    <h3>ここで、小股に切り替える</h3>
+    <div class="spots">
+      <div class="spot hot">
+        <svg viewBox="0 0 120 120" role="img" aria-label="曲がり角">
+          <path d="M24 118 L24 62 Q24 24 62 24 L118 24" fill="none" stroke="#1f2a22" stroke-width="28"/>
+          <path d="M24 104 L24 64 Q24 24 64 24 L90 24" fill="none" stroke="#c23c26" stroke-width="5" stroke-dasharray="9 7"/>
+          <polygon points="90,14 110,24 90,34" fill="#c23c26"/>
+        </svg>
+        <span class="nm">曲がり角</span>
+        <span class="d">手前でゆるめる</span>
+        <span class="x8">骨折 約8倍</span>
+      </div>
+      <div class="spot">
+        <svg viewBox="0 0 120 120" role="img" aria-label="横断歩道">
+          <rect x="4" y="14" width="112" height="92" rx="12" fill="#1f2a22"/>
+          <rect x="18" y="26" width="14" height="68" fill="#fbfaf5"/><rect x="42" y="26" width="14" height="68" fill="#fbfaf5"/><rect x="66" y="26" width="14" height="68" fill="#fbfaf5"/><rect x="90" y="26" width="14" height="68" fill="#fbfaf5"/>
+        </svg>
+        <span class="nm">横断歩道</span>
+        <span class="d">点滅したら待つ<br>雨の白線は滑る</span>
+      </div>
+      <div class="spot">
+        <svg viewBox="0 0 120 120" role="img" aria-label="坂道">
+          <polygon points="6,108 114,108 114,28" fill="#1f2a22"/>
+          <path d="M30 100 L84 62" stroke="#c4a44d" stroke-width="8" stroke-linecap="round"/>
+          <polygon points="98,52 74,56 90,72" fill="#c4a44d"/>
+        </svg>
+        <span class="nm">坂道</span>
+        <span class="d">さらに小股<br>下りはゆっくり</span>
+      </div>
+      <div class="spot">
+        <svg viewBox="0 0 120 120" role="img" aria-label="娘さんと並んで歩く">
+          <circle cx="40" cy="26" r="15" fill="#c4a44d"/>
+          <rect x="23" y="45" width="34" height="68" rx="15" fill="#c4a44d"/>
+          <circle cx="84" cy="44" r="14" fill="#1a3d28"/>
+          <rect x="68" y="62" width="32" height="51" rx="14" fill="#1a3d28"/>
+        </svg>
+        <span class="nm">娘さんと</span>
+        <span class="d">娘さんが合わせる<br>話すときは止まる</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第4部 ===== -->
+<section id="p4">
+  <span class="part">第4部</span>
+  <h2>守るか、鍛えるか</h2>
+  <p class="lead">今日は守り方。<br>次回からは鍛え方です。</p>
+
+  <div class="duel">
+    <div class="side a"><span class="k">今日は</span><span class="v">守る</span><span class="d">小股で<br>つまずきを減らす</span></div>
+    <div class="side b"><span class="k">次回からは</span><span class="v">鍛える</span><span class="d">足を素早く出す<br>反射を鍛える</span></div>
+  </div>
+  <div class="dakara"><span class="k">だから</span><span class="v">つまずいても、転ばない足に。</span></div>
+
+  <div class="card">
+    <h3>足の反射トレーニング<br><span style="font-size:14px;color:var(--sub);font-weight:700">サッカー選手の練習の、リハビリ版</span></h3>
+    <figure>
+      <svg viewBox="0 0 340 200" role="img" aria-label="マットの上に前後左右4つのマス。合図が出たマスへ、足を素早く踏み出す練習。">
+        <rect x="100" y="12" width="60" height="50" rx="8" fill="#e9f0ea" stroke="#1a3d28" stroke-width="3"/>
+        <text x="130" y="44" text-anchor="middle" font-size="16" font-weight="900" fill="#1a3d28">前</text>
+        <rect x="100" y="138" width="60" height="50" rx="8" fill="#e9f0ea" stroke="#1a3d28" stroke-width="3"/>
+        <text x="130" y="170" text-anchor="middle" font-size="16" font-weight="900" fill="#1a3d28">後</text>
+        <rect x="24" y="75" width="60" height="50" rx="8" fill="#e9f0ea" stroke="#1a3d28" stroke-width="3"/>
+        <text x="54" y="107" text-anchor="middle" font-size="16" font-weight="900" fill="#1a3d28">左</text>
+        <rect x="176" y="75" width="60" height="50" rx="8" fill="#c4a44d" stroke="#7a6220" stroke-width="3"/>
+        <text x="206" y="107" text-anchor="middle" font-size="16" font-weight="900" fill="#1a3d28">右</text>
+        <rect x="100" y="75" width="60" height="50" rx="8" fill="#ffffff" stroke="#9aa39c" stroke-width="2" stroke-dasharray="6 4"/>
+        <g fill="#1f2a22"><ellipse cx="118" cy="100" rx="7" ry="11"/><ellipse cx="118" cy="114" rx="5" ry="4"/></g>
+        <g fill="#c23c26"><ellipse cx="206" cy="100" rx="7" ry="11"/><ellipse cx="206" cy="114" rx="5" ry="4"/></g>
+        <path d="M150 92 Q175 70 196 88" fill="none" stroke="#c23c26" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="192,80 200,92 186,92" fill="#c23c26"/>
+        <text x="270" y="104" text-anchor="middle" font-size="15" font-weight="900" fill="#c23c26">合図</text>
+        <text x="270" y="124" text-anchor="middle" font-size="15" font-weight="900" fill="#c23c26">「右！」</text>
+      </svg>
+    </figure>
+    <p class="cap">専用マットの4つのマスに、合図でリズムよく足を出します。速さより「迷わず出せる」ことが目標です。</p>
+  </div>
+
+  <div class="point">
+    <span class="tag">POINT</span>
+    <div class="head"><h3>足を素早く出す練習で、<br>転倒が約半分</h3><span class="st">★★★★★</span></div>
+    <figure>
+      <svg viewBox="0 0 340 214" role="img" aria-label="棒グラフ。練習しない人の転ぶ回数を1とすると、足を素早く出す練習をした人は約0.5。">
+        <line x1="20" y1="170" x2="320" y2="170" stroke="#3f4a43" stroke-width="2"/>
+        <rect x="70" y="30" width="80" height="140" fill="#c23c26"/>
+        <text x="110" y="22" text-anchor="middle" font-size="17" font-weight="900" fill="#c23c26">1</text>
+        <rect x="190" y="100" width="80" height="70" fill="#1a3d28"/>
+        <text x="230" y="92" text-anchor="middle" font-size="18" font-weight="900" fill="#1a3d28">約半分</text>
+        <text x="110" y="191" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">練習しない</text>
+        <text x="230" y="191" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">ステップ練習</text>
+        <text x="230" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a22">をした人</text>
+      </svg>
+    </figure>
+    <p>60歳以上660人・7つの試験をまとめた研究です。合図に合わせて足を出す練習をした人は、<span class="hl">転ぶ回数が約半分（0.48倍）</span>になりました。筋力は変わらず、<span class="hl">足を出す反射の速さ</span>が上がっていました。</p>
+    <p class="src">出典：Okubo ほか（Br J Sports Med 2017）7つのランダム化試験の統合解析</p>
+  </div>
+
+  <div class="point">
+    <span class="tag">POINT</span>
+    <div class="head"><h3>転ぶ人と転ばない人の差は<br>「足を出す速さ」</h3><span class="st">★★★★☆</span></div>
+    <p>高齢者477人に、光ったマスへ足を出してもらった調査です。転んだことがある人は<span class="hl">約0.15秒遅く</span>、この速さが転倒をいちばんよく予測しました。</p>
+    <p class="src">出典：Lord・Fitzpatrick（J Gerontol 2001）オーストラリア</p>
+  </div>
+
+  <div class="card">
+    <h3>次回からの流れ</h3>
+    <ol class="steps">
+      <li><span class="n">1</span><span class="t">その場で足踏み<span class="d">リズムに合わせて、まず迷わず出す</span></span></li>
+      <li><span class="n">2</span><span class="t">マットの4マスへ合図でステップ<span class="d">前・後・左・右。少しずつテンポを上げる</span></span></li>
+      <li><span class="n">3</span><span class="t">歩きながら曲がる練習<span class="d">第3部の「曲がり角」を、安全な院内で</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== ★まとめ ===== -->
+<section id="sum">
+  <span class="part">まとめ</span>
+  <h2>★で見る、今日の結論</h2>
+  <p class="lead">★は研究の確かさです。</p>
+  <ol class="rank">
+    <li class="hot"><div><div class="nm">足を素早く出す練習で、転倒が約半分</div><div class="nt">次回から</div></div><span class="st">★★★★★</span></li>
+    <li class="hot"><div><div class="nm">年2回以上転んだら、体の全体を点検</div><div class="nt">目・お薬・立ちくらみも、かかりつけ医で</div></div><span class="st">★★★★★</span></li>
+    <li><div><div class="nm">急ぎ足・大股の人ほど転ぶ</div><div class="nt">今日からやめる</div></div><span class="st">★★★★☆</span></li>
+    <li><div><div class="nm">小股にすると、滑り転倒が約6分の1</div><div class="nt">今日から始める</div></div><span class="st">★★★★☆</span></li>
+    <li><div><div class="nm">遠近両用メガネは転倒2倍超</div><div class="nt">お使いなら、外出は遠く用の1本に</div></div><span class="st">★★★★☆</span></li>
+    <li><div><div class="nm">曲がり角で転ぶと骨折が約8倍</div><div class="nt">曲がる前にひと呼吸</div></div><span class="st">★★★☆☆</span></li>
+    <li><div><div class="nm">かかとでドンと着くと滑りやすい</div><div class="nt">足裏全体でそっと</div></div><span class="st">★★★☆☆</span></li>
+  </ol>
+  <p class="legend">★5＝国際ガイドライン・複数試験の統合<br>★4＝実験・追跡研究で筋が通る<br>★3＝研究はあるが小規模・間接的<br>出典：世界転倒予防ガイドライン（Age and Ageing 2022）／Lord ほか（2002）メガネ</p>
+</section>
+
+<div class="oneline">
+  <div class="t">ひとことで言うと</div>
+  <p>急がば、小股。</p>
+</div>
+
+<div class="safety">念のため：めまい・立ちくらみ・急な脱力があって転んだときや、転んだあとに痛みが続くときは、早めに医療機関を受診してください。</div>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="blk">
+    <h4>三条健康堂の考え方｜神経反射入力装置論</h4>
+    <p>からだを「入力装置」としてとらえ、皮ふ・筋肉・関節への刺激を通して神経の反射を整え、からだが自分で回復する力を引き出す施術理論です。</p>
+  </div>
+  <div class="prof">
+    <b>谷 先生｜三条健康堂接骨院 院長</b>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+    </div>
+    <p>高松市由良町、由良川東公園のそば</p>
+    <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+  </div>
+  <div class="brand">SANJO KENKO-DO</div>
+</footer>
+
+</div>
+</body>
+</html>
