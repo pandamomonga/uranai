@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>藤村様 施術報告書 10.23</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap">
+<style>
+/* 白地の報告書。深緑の表紙帯 → 目次 → 第1部〜第3部（AかBかの対立見出し）→ フッター。1列、スマホ幅基準 */
+:root{
+  --paper:#ffffff;
+  --paper-2:#f6f4ee;
+  --ink:#22261f;
+  --ink-2:#596055;
+  --line:#e3dfd2;
+  --green:#1a3d28;
+  --green-2:#2c5a3e;
+  --gold:#c4a44d;
+  --gold-soft:#f3ead0;
+  --gold-ink:#7a6420;
+  --high:#c8553d;
+  --high-ink:#a8432f;
+  --high-soft:#f4d9cf;
+  --low:#6f8fb3;
+  --low-ink:#4f6f93;
+  --ok:#3f9a5c;
+  --ivory:#f5f0e4;
+  --f-display:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper-2);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.85;-webkit-text-size-adjust:100%}
+.wrap{max-width:680px;margin:0 auto;background:var(--paper)}
+.in{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.45}
+p{margin:0}
+
+/* 表紙 */
+.hero{background:var(--green);color:var(--ivory)}
+.hero .in{padding-block:44px 38px;text-align:center}
+.eyebrow{font-size:13px;letter-spacing:.28em;color:var(--gold);font-weight:700}
+.hero h1{font-size:30px;margin-top:12px;color:#fff}
+.hero .who{margin-top:16px;font-size:16px;color:#e7e2d3}
+.hero .who b{font-size:22px;color:#fff;font-weight:700;margin-right:2px}
+.hero .date{margin-top:6px;font-size:14px;color:var(--gold);letter-spacing:.06em}
+
+.disc{background:var(--paper-2);border-left:4px solid var(--gold)}
+.disc .in{padding-block:14px;font-size:14px;color:var(--ink-2);line-height:1.7}
+
+/* 目次 */
+.toc .in{padding-block:30px 8px}
+.toc .lead{font-family:var(--f-display);font-size:19px;font-weight:700;color:var(--green);text-align:center}
+.toc ol{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.toc li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.toc .no{font-family:var(--f-display);font-weight:900;color:var(--gold);font-size:15px;white-space:nowrap}
+.toc .tt{font-weight:700;font-size:16px;line-height:1.5;min-width:0}
+.toc .tt small{display:block;font-weight:400;font-size:13px;color:var(--ink-2)}
+
+/* 部 */
+.part .in{padding-block:40px 36px}
+.part + .part{border-top:8px solid var(--paper-2)}
+.part-no{display:inline-block;font-size:13px;letter-spacing:.2em;font-weight:700;color:#fff;background:var(--green);padding:3px 12px;border-radius:3px}
+.part h2{font-size:25px;color:var(--green);margin-top:12px}
+.bridge{margin-top:12px;color:var(--ink-2);font-size:15px}
+
+.block{margin-top:28px}
+.block > h3{font-size:19px;color:var(--ink);padding-bottom:6px;border-bottom:2px solid var(--gold-soft)}
+.block > h3 .k{color:var(--gold);margin-right:6px}
+
+figure{margin:16px 0 0}
+figure svg{display:block;width:100%;max-width:420px;height:auto;margin:0 auto}
+figcaption{text-align:center;font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.6}
+
+/* 番号つき凡例（背面図） */
+.tp{list-style:none;margin:12px auto 0;padding:0;display:grid;gap:6px;max-width:420px}
+.tp li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:15px;line-height:1.6}
+.tp .d{width:24px;height:24px;border-radius:50%;background:var(--high);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;margin-top:1px}
+.tp span:last-child{min-width:0}
+
+/* A／B 対比 */
+.ab{display:grid;gap:12px;margin-top:16px}
+.ab .card{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--paper)}
+.ab .tag{display:inline-block;font-size:13px;font-weight:700;color:var(--green);background:var(--gold-soft);padding:2px 10px;border-radius:999px}
+.ab .card h4{margin:8px 0 6px;font-family:var(--f-display);font-size:18px;line-height:1.5}
+.ab .card p{font-size:16px}
+.so{margin-top:14px;background:var(--green);color:#fff;border-radius:12px;padding:16px}
+.so .lbl{font-family:var(--f-display);font-weight:900;color:var(--gold);font-size:15px;letter-spacing:.1em}
+.so p{margin-top:4px;font-size:16px;line-height:1.8}
+.note{margin-top:10px;font-size:13.5px;color:var(--ink-2);line-height:1.7}
+
+/* 流れ（一枚の絵） */
+.stages{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.stages li{border-radius:12px;padding:14px 16px;border:1px solid var(--line)}
+.stages li.now{border:2px solid var(--gold);background:var(--gold-soft)}
+.stages .st{font-family:var(--f-display);font-weight:900;color:var(--green);font-size:16px;line-height:1.55}
+.stages .st span{font-family:var(--f-body);font-weight:700;font-size:12.5px;color:#fff;background:var(--gold);padding:1px 8px;border-radius:3px;margin-left:6px;white-space:nowrap}
+.stages p{font-size:14px;line-height:1.6;margin-top:2px;color:var(--ink-2)}
+.stages .arr{text-align:center;color:var(--gold);font-size:18px;line-height:1;border:0;padding:0}
+
+/* POINT（確かさ） */
+.point{margin-top:22px;border:2px solid var(--gold);border-radius:12px;padding:20px 16px 16px;position:relative;background:var(--paper)}
+.point .ptag{position:absolute;top:-12px;left:14px;background:var(--gold);color:#fff;font-weight:900;font-size:12px;letter-spacing:.2em;padding:2px 10px;border-radius:3px}
+.rank{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.rank li{display:grid;gap:2px}
+.rank .stars{color:var(--gold);letter-spacing:.08em;font-size:15px}
+.rank .claim{font-weight:700;font-size:16px;line-height:1.6}
+.rank .src{font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.legend{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink-2);line-height:1.7}
+
+/* 次回の約束 */
+.promise{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.promise li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:12px 14px;background:var(--paper-2);border-radius:10px}
+.promise .n{width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-family:var(--f-display);font-weight:900;display:grid;place-items:center;font-size:16px}
+.promise .t{font-weight:700;font-size:16px;line-height:1.55;min-width:0}
+.promise .t small{display:block;font-weight:400;font-size:14px;color:var(--ink-2)}
+
+.ask{margin-top:18px;border:1px dashed var(--green-2);border-radius:10px;padding:12px 14px;font-size:15px}
+.ask b{color:var(--green)}
+
+.oneline{margin-top:26px;text-align:center;background:var(--green);color:#fff;border-radius:12px;padding:20px 16px}
+.oneline .t{font-size:12px;letter-spacing:.24em;color:var(--gold);font-weight:700}
+.oneline p{font-family:var(--f-display);font-weight:900;font-size:26px;margin-top:4px}
+.oneline small{display:block;font-size:13px;color:#dcd6c5;margin-top:4px}
+
+.safety{font-size:13px;color:var(--ink-2);background:var(--paper-2)}
+.safety .in{padding-block:14px}
+
+/* フッター */
+footer{background:var(--green);color:#e7e2d3}
+footer .in{padding-block:34px 30px;display:grid;gap:22px}
+footer h4{margin:0 0 6px;font-family:var(--f-display);color:var(--gold);font-size:16px}
+footer p{font-size:14px;line-height:1.8}
+footer b{color:#fff;font-size:16px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.links a{flex:1 1 140px;text-align:center;text-decoration:none;font-weight:700;font-size:15px;padding:12px 10px;border-radius:999px}
+.links .line{background:#06c755;color:#fff}
+.links .map{background:var(--ivory);color:var(--green)}
+.links a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sig{color:var(--gold);font-size:13px}
+.brand{text-align:center;letter-spacing:.3em;font-size:12px;color:var(--gold);font-weight:700}
+
+@media (min-width:560px){
+  .ab{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:34px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero"><div class="in">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <h1>本日の施術報告書</h1>
+  <p class="who"><b>藤村様</b>へ</p>
+  <p class="date">2026年10月23日（金）</p>
+</div></header>
+
+<div class="disc"><div class="in">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div></div>
+
+<section class="toc"><div class="in">
+  <p class="lead">今日の報告は、3つの話です</p>
+  <ol>
+    <li><span class="no">第1部</span><span class="tt">左か、右か<small>左の肩まわりと、胸のねじれ</small></span></li>
+    <li><span class="no">第2部</span><span class="tt">上か、下か<small>測定で見えた、上と下のかたより</small></span></li>
+    <li><span class="no">第3部</span><span class="tt">肩か、骨盤か<small>今日いちばん大事だった場所</small></span></li>
+  </ol>
+</div></section>
+
+<!-- ===== 第1部 ===== -->
+<section class="part" id="part1"><div class="in">
+  <span class="part-no">第1部</span>
+  <h2>左か、右か</h2>
+  <p class="bridge">まずは体の左右の話です。今日は、手で触れても、測定で見ても、「左」にかたよりがはっきり出ていました。</p>
+
+  <div class="block">
+    <h3><span class="k">1</span>今日、手で確かめたこと</h3>
+    <figure>
+      <svg viewBox="0 0 360 340" role="img" aria-label="背中側から見た上半身の図。胸が右へねじれ、左の肩甲骨のまわり、首から肩の筋肉、首の横の筋肉にしこりがあった">
+        <defs>
+          <marker id="ar1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#c4a44d"/></marker>
+        </defs>
+        <text x="20" y="30" font-size="20" font-weight="900" fill="#1a3d28" font-family="Noto Sans JP, sans-serif">左</text>
+        <text x="318" y="30" font-size="20" font-weight="900" fill="#1a3d28" font-family="Noto Sans JP, sans-serif">右</text>
+        <!-- 首 -->
+        <rect x="162" y="90" width="36" height="40" rx="8" fill="#efe9dc" stroke="#cfc6b2"/>
+        <!-- 胴体（背中） -->
+        <path d="M162 116 Q118 120 80 138 Q58 148 58 174 L64 296 Q68 326 100 334 L260 334 Q292 326 296 296 L302 174 Q302 148 280 138 Q242 120 198 116 Z" fill="#efe9dc" stroke="#cfc6b2" stroke-width="1.5"/>
+        <!-- 頭（後ろ姿） -->
+        <ellipse cx="180" cy="56" rx="38" ry="44" fill="#e6dfcf" stroke="#cfc6b2"/>
+        <!-- 背骨 -->
+        <line x1="180" y1="124" x2="180" y2="330" stroke="#cfc6b2" stroke-width="2" stroke-dasharray="3 5"/>
+        <!-- 右の肩甲骨（ふつう） -->
+        <path d="M214 162 L262 158 L220 238 Z" fill="#e2dac8" stroke="#cfc6b2" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- 左の肩甲骨（しこり） -->
+        <path d="M146 162 L98 158 L140 238 Z" fill="#f4d9cf" stroke="#c8553d" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- 左の僧帽筋（首から肩） -->
+        <path d="M166 104 Q130 128 86 146" stroke="#c8553d" stroke-width="9" fill="none" stroke-linecap="round" opacity=".7"/>
+        <!-- 左の肩甲挙筋（首の横〜肩甲骨の上の角） -->
+        <line x1="170" y1="100" x2="147" y2="160" stroke="#c8553d" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+        <!-- しこりの番号 -->
+        <g font-family="Noto Sans JP, sans-serif" font-size="12" font-weight="900" text-anchor="middle">
+          <circle cx="153" cy="146" r="11" fill="#c8553d" stroke="#ffffff" stroke-width="2"/><text x="153" y="150.5" fill="#ffffff">1</text>
+          <circle cx="118" cy="131" r="11" fill="#c8553d" stroke="#ffffff" stroke-width="2"/><text x="118" y="135.5" fill="#ffffff">2</text>
+          <circle cx="130" cy="200" r="11" fill="#c8553d" stroke="#ffffff" stroke-width="2"/><text x="130" y="204.5" fill="#ffffff">3</text>
+        </g>
+        <!-- 胸のねじれ -->
+        <path d="M94 284 Q180 250 266 278" stroke="#c4a44d" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#ar1)"/>
+        <text x="180" y="312" text-anchor="middle" font-size="14" font-weight="700" fill="#7a6420" font-family="Noto Sans JP, sans-serif">胸が右へねじれていた</text>
+      </svg>
+      <figcaption>背中側から見た図（向かって右が藤村様の右）<br>赤い所＝押すと響くしこりがあった所</figcaption>
+    </figure>
+    <ul class="tp">
+      <li><span class="d">1</span><span>首の横から肩甲骨の上の角へ（肩甲挙筋〈けんこうきょきん〉）</span></li>
+      <li><span class="d">2</span><span>首から肩の上（僧帽筋〈そうぼうきん〉）</span></li>
+      <li><span class="d">3</span><span>左の肩甲骨〈けんこうこつ〉のまわり</span></li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">2</span>手で見るか、数字で見るか</h3>
+    <div class="ab">
+      <div class="card">
+        <span class="tag">A　手で触れると</span>
+        <h4>胸が右へねじれ、左の肩にしこり</h4>
+        <p>胸（胸郭〈きょうかく〉）が大きく右へねじれていました。左の肩甲骨のまわりと、首から肩の筋肉には、押すと響くしこり（トリガーポイント）がありました。</p>
+      </div>
+      <div class="card">
+        <span class="tag">B　測定で見ると</span>
+        <h4>左が右より、約3割高い</h4>
+        <p>体の左右の反応を比べると、左140・右107でした。左右の比は1.31で、目安（0.9〜1.2）を超えていました。</p>
+      </div>
+    </div>
+    <div class="so">
+      <div class="lbl">だから</div>
+      <p>手と数字が、同じ「左」を指していました。胸が右へねじれると、左の肩甲骨は前へ引っぱられ続けます。左の肩まわりの筋肉は、引きのばされたまま踏んばっていたと考えています。</p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 360 184" role="img" aria-label="左右の測定をシーソーにした図。左140が重く下がり、右107が上がっている">
+        <line x1="20" y1="172" x2="340" y2="172" stroke="#cfc6b2" stroke-width="1.5"/>
+        <polygon points="180,124 160,172 200,172" fill="#c4a44d"/>
+        <g transform="rotate(-8 180 119)" font-family="Noto Sans JP, sans-serif" text-anchor="middle">
+          <rect x="40" y="114" width="280" height="10" rx="5" fill="#2c5a3e"/>
+          <rect x="52" y="62" width="88" height="52" rx="6" fill="#c8553d"/>
+          <text x="96" y="84" font-size="14" font-weight="700" fill="#ffffff">左</text>
+          <text x="96" y="106" font-size="19" font-weight="900" fill="#ffffff">140</text>
+          <rect x="234" y="72" width="72" height="42" rx="6" fill="#e2dac8"/>
+          <text x="270" y="89" font-size="13" font-weight="700" fill="#22261f">右</text>
+          <text x="270" y="107" font-size="16" font-weight="900" fill="#22261f">107</text>
+        </g>
+      </svg>
+      <figcaption>左右の測定をシーソーにすると<br>（数値が大きいほど、反応が強い）</figcaption>
+    </figure>
+    <p class="note">※測定は、手首と足首のツボで、皮ふの電気の通りやすさを測るものです。体調や汗でも変わる「目安」として見ています。</p>
+  </div>
+</div></section>
+
+<!-- ===== 第2部 ===== -->
+<section class="part" id="part2"><div class="in">
+  <span class="part-no">第2部</span>
+  <h2>上か、下か</h2>
+  <p class="bridge">左右の次は、上と下の話です。測定では、手首で測る線が高く、足首で測る線が低く出ていました。</p>
+
+  <div class="block">
+    <h3><span class="k">1</span>手首の線と、足首の線</h3>
+    <div class="ab">
+      <div class="card">
+        <span class="tag">A　上（手首で測る線）</span>
+        <h4>小腸経が、標準のおよそ2倍</h4>
+        <p>小腸経〈しょうちょうけい〉は左201・右182。小指から腕の裏を通り、肩甲骨の上を回って首へ上がる線です。第1部のしこりの場所と重なります。</p>
+      </div>
+      <div class="card">
+        <span class="tag">B　下（足首で測る線）</span>
+        <h4>脾経は、右が標準の半分</h4>
+        <p>脾経〈ひけい〉は左96・右48。足の親指から、足の内側を上がる線です。体全体の元気の目安も、基準より低めでした。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 360 262" role="img" aria-label="経絡測定の棒グラフ。標準を100として、小腸経は左201・右182で高く、脾経は左96・右48で低い">
+        <line x1="34" y1="200" x2="350" y2="200" stroke="#cfc6b2" stroke-width="1"/>
+        <line x1="34" y1="120" x2="350" y2="120" stroke="#3f9a5c" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <text x="30" y="124" text-anchor="end" font-size="11" fill="#3f9a5c" font-family="Noto Sans JP, sans-serif">100</text>
+        <text x="30" y="204" text-anchor="end" font-size="11" fill="#596055" font-family="Noto Sans JP, sans-serif">0</text>
+        <!-- 小腸経 -->
+        <rect x="42" y="39.2" width="26" height="160.8" rx="4" fill="#c8553d"/>
+        <text x="55" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">201</text>
+        <rect x="82" y="120" width="26" height="80" rx="4" fill="#3f9a5c"/>
+        <rect x="122" y="54.4" width="26" height="145.6" rx="4" fill="#c8553d"/>
+        <text x="135" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">182</text>
+        <!-- 脾経 -->
+        <rect x="212" y="123.2" width="26" height="76.8" rx="4" fill="#6f8fb3"/>
+        <text x="225" y="116" text-anchor="middle" font-size="13" font-weight="700" fill="#4f6f93" font-family="Noto Sans JP, sans-serif">96</text>
+        <rect x="252" y="120" width="26" height="80" rx="4" fill="#3f9a5c"/>
+        <rect x="292" y="161.6" width="26" height="38.4" rx="4" fill="#6f8fb3"/>
+        <text x="305" y="154" text-anchor="middle" font-size="13" font-weight="700" fill="#4f6f93" font-family="Noto Sans JP, sans-serif">48</text>
+        <!-- 軸ラベル -->
+        <g font-size="12" fill="#596055" font-family="Noto Sans JP, sans-serif" text-anchor="middle">
+          <text x="55" y="216">左</text><text x="95" y="216">標準</text><text x="135" y="216">右</text>
+          <text x="225" y="216">左</text><text x="265" y="216">標準</text><text x="305" y="216">右</text>
+        </g>
+        <text x="95" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">上：小腸経</text>
+        <text x="95" y="255" text-anchor="middle" font-size="12.5" fill="#a8432f" font-family="Noto Sans JP, sans-serif">がんばりすぎ</text>
+        <text x="265" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#4f6f93" font-family="Noto Sans JP, sans-serif">下：脾経</text>
+        <text x="265" y="255" text-anchor="middle" font-size="12.5" fill="#4f6f93" font-family="Noto Sans JP, sans-serif">手薄</text>
+      </svg>
+      <figcaption>本日の経絡測定（緑の棒＝標準を100としたとき）</figcaption>
+    </figure>
+
+    <div class="so">
+      <div class="lbl">だから</div>
+      <p>上に力がこもり、下が手薄な形です。東洋医学では、上実下虚〈じょうじつかきょ〉と呼びます。肩まわりががんばりすぎて、足もとが追いついていない状態です。</p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 360 216" role="img" aria-label="二つのコップのたとえ。上のコップはあふれそうで、下のコップは足りない。上から下へ回したい">
+        <defs>
+          <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#c4a44d"/></marker>
+        </defs>
+        <!-- 矢印 -->
+        <path d="M150 46 Q180 18 210 46" stroke="#c4a44d" stroke-width="3.5" fill="none" stroke-linecap="round" marker-end="url(#ar2)"/>
+        <text x="180" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="#7a6420" font-family="Noto Sans JP, sans-serif">下へ回したい</text>
+        <!-- 上のコップ -->
+        <path d="M50 62 L146 62 L138 170 L58 170 Z" fill="#f0c4b8"/>
+        <path d="M48 58 L148 58 L138 170 L58 170 Z" fill="none" stroke="#22261f" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M148 60 Q156 66 155 78" stroke="#c8553d" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="156" cy="88" r="3.5" fill="#c8553d"/>
+        <circle cx="153" cy="102" r="3" fill="#c8553d"/>
+        <!-- 下のコップ -->
+        <path d="M218.7 134 L305.3 134 L302 170 L222 170 Z" fill="#c9d6e6"/>
+        <path d="M212 58 L312 58 L302 170 L222 170 Z" fill="none" stroke="#22261f" stroke-width="2.5" stroke-linejoin="round"/>
+        <g font-family="Noto Sans JP, sans-serif" text-anchor="middle">
+          <text x="98" y="192" font-size="15" font-weight="700" fill="#a8432f">上のコップ</text>
+          <text x="98" y="210" font-size="12.5" fill="#596055">あふれそう（肩・首）</text>
+          <text x="262" y="192" font-size="15" font-weight="700" fill="#4f6f93">下のコップ</text>
+          <text x="262" y="210" font-size="12.5" fill="#596055">足りない（足もと）</text>
+        </g>
+      </svg>
+      <figcaption>たとえるなら、<br>上のコップはあふれそうで、下のコップは足りない状態</figcaption>
+    </figure>
+    <p class="note">※「小腸」「脾」は経絡〈けいらく〉の名前です。おなかや内臓の病気という意味ではありません。</p>
+  </div>
+</div></section>
+
+<!-- ===== 第3部 ===== -->
+<section class="part" id="part3"><div class="in">
+  <span class="part-no">第3部</span>
+  <h2>肩か、骨盤か</h2>
+  <p class="bridge">では、上と下のどちらから整えるか。今日たどり着いた答えは、左の骨盤でした。</p>
+
+  <div class="block">
+    <h3><span class="k">1</span>目立つ場所か、流れのカギか</h3>
+    <div class="ab">
+      <div class="card">
+        <span class="tag">A　左の肩まわり</span>
+        <h4>いちばん目立つ場所</h4>
+        <p>しこりがはっきりしていて、いちばん目立つ場所でした。ただ、施術を進めても、体の奥のリズムはなかなか出てきませんでした。</p>
+      </div>
+      <div class="card">
+        <span class="tag">B　左の骨盤</span>
+        <h4>流れのカギだった場所</h4>
+        <p>左の骨盤のあたりに、力が入ったままでした。ここの力を抜いてもらうと、体の奥のゆっくりしたリズム（一次呼吸〈いちじこきゅう〉）が動き出しました。</p>
+      </div>
+    </div>
+    <div class="so">
+      <div class="lbl">だから</div>
+      <p>目立つ肩は、がんばりの「結果」が出ている場所。左の骨盤は、流れを止めていた場所だったと考えています。</p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 360 248" role="img" aria-label="ホースのたとえ。途中で折れていると水が流れにくい。折れを戻すと流れ出す">
+        <g font-family="Noto Sans JP, sans-serif">
+          <!-- 上段：力が入ったまま -->
+          <text x="16" y="24" font-size="15" font-weight="700" fill="#1a3d28">力が入ったまま</text>
+          <rect x="18" y="50" width="24" height="24" rx="4" fill="#596055"/>
+          <path d="M42 62 L130 62 L144 42 L156 82 L170 62 L298 62" stroke="#2c5a3e" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="150" cy="62" r="30" fill="none" stroke="#c8553d" stroke-width="2" stroke-dasharray="5 4"/>
+          <circle cx="311" cy="68" r="3" fill="#6f8fb3"/>
+          <circle cx="316" cy="80" r="2.5" fill="#6f8fb3"/>
+          <text x="150" y="112" text-anchor="middle" font-size="13.5" font-weight="700" fill="#a8432f">左の骨盤の力み</text>
+          <text x="302" y="104" text-anchor="middle" font-size="13" fill="#596055">流れにくい</text>
+          <line x1="16" y1="128" x2="344" y2="128" stroke="#e3dfd2" stroke-width="1.5"/>
+          <!-- 下段：力を抜くと -->
+          <text x="16" y="154" font-size="15" font-weight="700" fill="#1a3d28">力を抜くと</text>
+          <rect x="18" y="180" width="24" height="24" rx="4" fill="#596055"/>
+          <path d="M42 192 L298 192" stroke="#2c5a3e" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path d="M306 192 Q324 184 342 172" stroke="#6f8fb3" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M306 192 L344 192" stroke="#6f8fb3" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M306 192 Q324 200 342 212" stroke="#6f8fb3" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <text x="170" y="236" text-anchor="middle" font-size="14" font-weight="700" fill="#1a3d28">体の奥のリズムが、動き出した</text>
+        </g>
+      </svg>
+      <figcaption>ホースが途中で折れていると、水は先まで届きません</figcaption>
+    </figure>
+    <p class="note">※一次呼吸とは、肺の呼吸とは別に、頭から背骨、骨盤の仙骨〈せんこつ〉までをゆっくり行き来するリズムのことです。オステオパシーという手技療法で大切にしている考え方です。</p>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">2</span>つなげると、今日の体はこうなります</h3>
+    <ol class="stages">
+      <li class="now"><div class="st">左の骨盤に、力が入ったまま<span>今日ゆるめた所</span></div></li>
+      <li class="arr" aria-hidden="true">▼</li>
+      <li><div class="st">体の奥のリズムが、流れにくくなる</div></li>
+      <li class="arr" aria-hidden="true">▼</li>
+      <li><div class="st">胸が右へねじれて、つり合いを取る</div></li>
+      <li class="arr" aria-hidden="true">▼</li>
+      <li><div class="st">左の肩が引っぱられ、がんばり続ける</div><p>しこりと、測定の「上が高い」に出る</p></li>
+    </ol>
+    <p class="note">※今日の施術から、谷が考えた流れです。順番は、次回も確かめていきます。</p>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">3</span>次回の約束</h3>
+    <ol class="promise">
+      <li><span class="n">1</span><span class="t">次回も、まず左の骨盤から<small>流れのカギから先に確かめます</small></span></li>
+      <li><span class="n">2</span><span class="t">施術の前と後に測る<small>左右の比1.31が、目安の0.9〜1.2に近づくかを見ます</small></span></li>
+    </ol>
+    <p class="ask"><b>次回、教えてください：</b>立つときや座るとき、左右どちらかに体重をかけたり、脚を組んだりするくせはありますか。左の骨盤の力みとつながりがあるかを見たいからです。</p>
+  </div>
+
+  <div class="oneline">
+    <div class="t">ひとことで言うと</div>
+    <p>灯台下暗し。</p>
+    <small>（とうだいもとくらし）<br>いちばん大事な場所は、足もとにありました</small>
+  </div>
+</div></section>
+
+<div class="safety"><div class="in">念のため：腰や足のしびれ、強い痛み、熱が続くときは、早めに医療機関を受診してください。</div></div>
+
+<footer><div class="in">
+  <div>
+    <h4>三条健康堂の考え方｜神経反射入力装置論</h4>
+    <p>からだを「入力装置」としてとらえ、皮ふ・筋肉・関節への刺激を通して神経の反射を整え、からだが自分で回復する力を引き出す施術理論です。</p>
+  </div>
+  <div>
+    <b>谷 先生｜三条健康堂接骨院 院長</b>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+    </div>
+    <p>高松市由良町、由良川東公園のそば</p>
+    <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+  </div>
+  <div class="brand">SANJO KENKO-DO</div>
+</div></footer>
+
+</div>
+
+</body>
+</html>
