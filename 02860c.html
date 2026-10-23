@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>兼近様 施術報告書 10.23</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap">
+<style>
+/* 白地の報告書。深緑の表紙帯 → 目次 → 第1部・第2部（AかBかの対立見出し）→ フッター。1列、スマホ幅基準 */
+:root{
+  --paper:#ffffff;
+  --paper-2:#f6f4ee;
+  --ink:#22261f;
+  --ink-2:#596055;
+  --line:#e3dfd2;
+  --green:#1a3d28;
+  --green-2:#2c5a3e;
+  --gold:#c4a44d;
+  --gold-soft:#f3ead0;
+  --high:#c8553d;
+  --low:#6f8fb3;
+  --ok:#3f9a5c;
+  --ivory:#f5f0e4;
+  --f-display:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper-2);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.85;-webkit-text-size-adjust:100%}
+.wrap{max-width:680px;margin:0 auto;background:var(--paper)}
+.in{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.45}
+p{margin:0}
+.serif{font-family:var(--f-display)}
+
+/* 表紙 */
+.hero{background:var(--green);color:var(--ivory)}
+.hero .in{padding-block:44px 38px;text-align:center}
+.eyebrow{font-size:13px;letter-spacing:.28em;color:var(--gold);font-weight:700}
+.hero h1{font-size:30px;margin-top:12px;color:#fff}
+.hero .who{margin-top:16px;font-size:16px;color:#e7e2d3}
+.hero .who b{font-size:22px;color:#fff;font-weight:700;margin-right:2px}
+.hero .date{margin-top:6px;font-size:14px;color:var(--gold);letter-spacing:.06em}
+
+.disc{background:var(--paper-2);border-left:4px solid var(--gold)}
+.disc .in{padding-block:14px;font-size:14px;color:var(--ink-2);line-height:1.7}
+
+/* 目次 */
+.toc .in{padding-block:30px 8px}
+.toc .lead{font-family:var(--f-display);font-size:19px;font-weight:700;color:var(--green);text-align:center}
+.toc ol{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.toc li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.toc .no{font-family:var(--f-display);font-weight:900;color:var(--gold);font-size:15px;white-space:nowrap}
+.toc .tt{font-weight:700;font-size:16px;line-height:1.5;min-width:0}
+.toc .tt small{display:block;font-weight:400;font-size:13px;color:var(--ink-2)}
+
+/* 部 */
+.part .in{padding-block:40px 36px}
+.part + .part{border-top:8px solid var(--paper-2)}
+.part-no{display:inline-block;font-size:13px;letter-spacing:.2em;font-weight:700;color:#fff;background:var(--green);padding:3px 12px;border-radius:3px}
+.part h2{font-size:25px;color:var(--green);margin-top:12px}
+.part h2 .vs{color:var(--gold);font-size:.8em;margin:0 4px}
+.bridge{margin-top:12px;color:var(--ink-2);font-size:15px}
+
+.block{margin-top:28px}
+.block > h3{font-size:19px;color:var(--ink);padding-bottom:6px;border-bottom:2px solid var(--gold-soft)}
+.block > h3 .k{color:var(--gold);margin-right:6px}
+
+figure{margin:16px 0 0}
+figure svg{display:block;width:100%;max-width:420px;height:auto;margin:0 auto}
+figcaption{text-align:center;font-size:13px;color:var(--ink-2);margin-top:6px}
+
+/* A／B 対比 */
+.ab{display:grid;gap:12px;margin-top:16px}
+.ab .card{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--paper)}
+.ab .tag{display:inline-block;font-size:13px;font-weight:700;color:var(--green);background:var(--gold-soft);padding:2px 10px;border-radius:999px}
+.ab .card h4{margin:8px 0 6px;font-family:var(--f-display);font-size:18px;line-height:1.5}
+.ab .card p{font-size:16px}
+.so{margin-top:14px;background:var(--green);color:#fff;border-radius:12px;padding:16px}
+.so .lbl{font-family:var(--f-display);font-weight:900;color:var(--gold);font-size:15px;letter-spacing:.1em}
+.so p{margin-top:4px;font-size:16px;line-height:1.8}
+.note{margin-top:10px;font-size:13.5px;color:var(--ink-2)}
+
+/* 3つのカード（目・手・首） */
+.three{display:grid;gap:10px;margin-top:16px}
+.three .c{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:14px}
+.three .ic{width:56px;height:56px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center}
+.three .ic svg{width:32px;height:32px}
+.three .c div:last-child{min-width:0}
+.three b{display:block;font-size:17px;color:var(--green)}
+.three p{font-size:15px;line-height:1.75}
+
+/* ステージ */
+.stages{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.stages li{border-radius:12px;padding:14px 16px;border:1px solid var(--line)}
+.stages li.now{border:2px solid var(--gold);background:var(--gold-soft)}
+.stages .st{font-family:var(--f-display);font-weight:900;color:var(--green);font-size:16px}
+.stages .st span{font-family:var(--f-body);font-weight:700;font-size:13px;color:var(--ink-2);margin-left:6px}
+.stages p{font-size:15px;line-height:1.7;margin-top:2px}
+.stages .arr{text-align:center;color:var(--gold);font-size:18px;line-height:1;border:0;padding:0}
+
+/* POINT（エビデンス） */
+.point{margin-top:22px;border:2px solid var(--gold);border-radius:12px;padding:20px 16px 16px;position:relative;background:var(--paper)}
+.point .ptag{position:absolute;top:-12px;left:14px;background:var(--gold);color:#fff;font-weight:900;font-size:12px;letter-spacing:.2em;padding:2px 10px;border-radius:3px}
+.rank{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.rank li{display:grid;gap:2px}
+.rank .stars{color:var(--gold);letter-spacing:.08em;font-size:15px}
+.rank .claim{font-weight:700;font-size:16px;line-height:1.6}
+.rank .src{font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.legend{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink-2);line-height:1.7}
+
+/* 約束 */
+.promise{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.promise li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:12px 14px;background:var(--paper-2);border-radius:10px}
+.promise .n{width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-family:var(--f-display);font-weight:900;display:grid;place-items:center;font-size:16px}
+.promise .t{font-weight:700;font-size:16px;line-height:1.55;min-width:0}
+.promise .t small{display:block;font-weight:400;font-size:14px;color:var(--ink-2)}
+
+.ask{margin-top:18px;border:1px dashed var(--green-2);border-radius:10px;padding:12px 14px;font-size:15px}
+.ask b{color:var(--green)}
+
+.oneline{margin-top:26px;text-align:center;background:var(--green);color:#fff;border-radius:12px;padding:20px 16px}
+.oneline .t{font-size:12px;letter-spacing:.24em;color:var(--gold);font-weight:700}
+.oneline p{font-family:var(--f-display);font-weight:900;font-size:26px;margin-top:4px}
+.oneline small{display:block;font-size:13px;color:#dcd6c5;margin-top:4px}
+
+.safety{font-size:13px;color:var(--ink-2);background:var(--paper-2)}
+.safety .in{padding-block:14px}
+
+/* フッター */
+footer{background:var(--green);color:#e7e2d3}
+footer .in{padding-block:34px 30px;display:grid;gap:22px}
+footer h4{margin:0 0 6px;font-family:var(--f-display);color:var(--gold);font-size:16px}
+footer p{font-size:14px;line-height:1.8}
+footer b{color:#fff;font-size:16px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.links a{flex:1 1 140px;text-align:center;text-decoration:none;font-weight:700;font-size:15px;padding:12px 10px;border-radius:999px}
+.links .line{background:#06c755;color:#fff}
+.links .map{background:var(--ivory);color:var(--green)}
+.links a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sig{color:var(--gold);font-size:13px}
+.brand{text-align:center;letter-spacing:.3em;font-size:12px;color:var(--gold);font-weight:700}
+
+@media (min-width:560px){
+  .ab{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:34px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero"><div class="in">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <h1>本日の施術報告書</h1>
+  <p class="who"><b>兼近様</b>へ</p>
+  <p class="date">2026年10月23日（金）</p>
+</div></header>
+
+<div class="disc"><div class="in">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</div></div>
+
+<section class="toc"><div class="in">
+  <p class="lead">今日の報告は、2つの話です</p>
+  <ol>
+    <li><span class="no">第1部</span><span class="tt">首だけの話か、体全体のやりくりか<small>今日の体の見立てと、お仕事とのつながり</small></span></li>
+    <li><span class="no">第2部</span><span class="tt">一夜漬けか、コツコツ分散か<small>つばさくんの試験の考え方</small></span></li>
+  </ol>
+</div></section>
+
+<!-- ===== 第1部 ===== -->
+<section class="part" id="part1"><div class="in">
+  <span class="part-no">第1部</span>
+  <h2>首だけの話か、<br>体全体のやりくりか</h2>
+  <p class="bridge">まずは今日の体の話です。背中は驚くほどカチカチで、首の緊張もかなり高い状態でした。</p>
+
+  <div class="block">
+    <h3><span class="k">1</span>今日の首の状態</h3>
+    <figure>
+      <svg viewBox="0 0 360 330" role="img" aria-label="背中側から見た首の図。1番の骨が右へ、2番と3番が左へずれ、首の付け根の奥と首の横の筋肉、背中が固い">
+        <text x="22" y="34" font-size="20" font-weight="900" fill="#1a3d28" font-family="Noto Sans JP, sans-serif">左</text>
+        <text x="318" y="34" font-size="20" font-weight="900" fill="#1a3d28" font-family="Noto Sans JP, sans-serif">右</text>
+        <!-- 背中 -->
+        <path d="M58 330 L58 266 Q68 236 132 226 L150 222 L210 222 L228 226 Q292 236 302 266 L302 330 Z" fill="#f4d9cf" stroke="#c8553d" stroke-width="1.5"/>
+        <text x="180" y="296" text-anchor="middle" font-size="15" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">背中もカチカチ</text>
+        <!-- 首 -->
+        <rect x="148" y="138" width="64" height="90" rx="10" fill="#efe9dc" stroke="#cfc6b2"/>
+        <!-- 頭（後ろ姿） -->
+        <ellipse cx="180" cy="80" rx="58" ry="64" fill="#e6dfcf" stroke="#cfc6b2"/>
+        <!-- 胸鎖乳突筋 -->
+        <line x1="152" y1="146" x2="144" y2="226" stroke="#c8553d" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+        <line x1="208" y1="146" x2="216" y2="226" stroke="#c8553d" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+        <!-- 後頭下筋群 -->
+        <ellipse cx="180" cy="142" rx="40" ry="10" fill="#c8553d" opacity=".55"/>
+        <!-- 頸椎 -->
+        <rect x="178" y="152" width="32" height="18" rx="5" fill="#1a3d28"/>
+        <text x="194" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Noto Sans JP, sans-serif">1</text>
+        <rect x="154" y="176" width="32" height="18" rx="5" fill="#1a3d28"/>
+        <text x="170" y="190" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Noto Sans JP, sans-serif">2</text>
+        <rect x="156" y="200" width="32" height="18" rx="5" fill="#1a3d28"/>
+        <text x="172" y="214" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Noto Sans JP, sans-serif">3</text>
+        <!-- 矢印 -->
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#c4a44d"/></marker>
+        </defs>
+        <line x1="214" y1="161" x2="244" y2="161" stroke="#c4a44d" stroke-width="3" marker-end="url(#ah)"/>
+        <text x="250" y="158" font-size="13" font-weight="700" fill="#22261f" font-family="Noto Sans JP, sans-serif">1番が</text>
+        <text x="250" y="175" font-size="13" font-weight="700" fill="#22261f" font-family="Noto Sans JP, sans-serif">右へ大きく</text>
+        <line x1="150" y1="197" x2="120" y2="197" stroke="#c4a44d" stroke-width="3" marker-end="url(#ah)"/>
+        <text x="114" y="193" text-anchor="end" font-size="13" font-weight="700" fill="#22261f" font-family="Noto Sans JP, sans-serif">2番・3番が</text>
+        <text x="114" y="210" text-anchor="end" font-size="13" font-weight="700" fill="#22261f" font-family="Noto Sans JP, sans-serif">左へ</text>
+        <!-- ラベル -->
+        <line x1="221" y1="140" x2="252" y2="120" stroke="#a8432f" stroke-width="1.2"/>
+        <text x="254" y="112" font-size="12" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">首の付け根の奥</text>
+        <text x="254" y="127" font-size="12" fill="#a8432f" font-family="Noto Sans JP, sans-serif">（後頭下筋群）</text>
+        <line x1="216" y1="206" x2="236" y2="200" stroke="#a8432f" stroke-width="1.2"/>
+        <text x="240" y="200" font-size="12" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">首の横の筋肉</text>
+        <text x="236" y="215" font-size="11.5" fill="#a8432f" font-family="Noto Sans JP, sans-serif">（胸鎖乳突筋）</text>
+      </svg>
+      <figcaption>背中側から見た図（向かって右が兼近様の右）<br>赤い所＝固かった所</figcaption>
+    </figure>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">2</span>首だけで見るか、体全体で見るか</h3>
+    <div class="ab">
+      <div class="card">
+        <span class="tag">A　首だけを見ると</span>
+        <h4>上と下が逆向きにずれていた</h4>
+        <p>首の骨の2番・3番は左へ、1番は右へ大きくずれていました。上と下で逆向きにずれて、バランスを取っていた形です。そのぶん、首の付け根の奥（後頭下筋群〈こうとうかきんぐん〉）と、首の横の筋肉（胸鎖乳突筋〈きょうさにゅうとつきん〉）が固くなっていました。</p>
+      </div>
+      <div class="card">
+        <span class="tag">B　体全体を見ると</span>
+        <h4>肝（かん）だけが頑張りすぎていた</h4>
+        <p>測定では、体全体のエネルギーは基準より低め。大腸は左右とも足りない状態です。その中で、肝だけが右で169と、ひとり飛び抜けていました。</p>
+      </div>
+    </div>
+    <div class="so">
+      <div class="lbl">だから</div>
+      <p>体全体で足りない分を、肝がひとりで補っている状態です。東洋医学では、肝は「筋（すじ）」を受けもちます。その頑張りが筋肉を締め、首と背中を固めていたと考えています。</p>
+    </div>
+    <p class="note">※「肝」「大腸」は経絡（けいらく）の名前です。肝臓や腸の病気という意味ではありません。</p>
+
+    <figure>
+      <svg viewBox="0 0 360 236" role="img" aria-label="測定結果の棒グラフ。標準を100として、大腸は左74・右52で不足、肝は左113・右169で頑張りすぎ">
+        <line x1="34" y1="190" x2="350" y2="190" stroke="#cfc6b2" stroke-width="1"/>
+        <line x1="34" y1="95.6" x2="350" y2="95.6" stroke="#3f9a5c" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <text x="30" y="99.6" text-anchor="end" font-size="11" fill="#3f9a5c" font-family="Noto Sans JP, sans-serif">100</text>
+        <text x="30" y="194" text-anchor="end" font-size="11" fill="#596055" font-family="Noto Sans JP, sans-serif">0</text>
+        <!-- 大腸 -->
+        <rect x="42" y="120.1" width="26" height="69.9" rx="4" fill="#6f8fb3"/>
+        <text x="55" y="113" text-anchor="middle" font-size="13" font-weight="700" fill="#4f6f93" font-family="Noto Sans JP, sans-serif">74</text>
+        <rect x="82" y="95.6" width="26" height="94.4" rx="4" fill="#3f9a5c"/>
+        <rect x="122" y="140.9" width="26" height="49.1" rx="4" fill="#6f8fb3"/>
+        <text x="135" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#4f6f93" font-family="Noto Sans JP, sans-serif">52</text>
+        <!-- 肝 -->
+        <rect x="212" y="83.3" width="26" height="106.7" rx="4" fill="#c8553d"/>
+        <text x="225" y="77" text-anchor="middle" font-size="13" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">113</text>
+        <rect x="252" y="95.6" width="26" height="94.4" rx="4" fill="#3f9a5c"/>
+        <rect x="292" y="30.4" width="26" height="159.6" rx="4" fill="#c8553d"/>
+        <text x="305" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">169</text>
+        <!-- 軸ラベル -->
+        <g font-size="12" fill="#596055" font-family="Noto Sans JP, sans-serif" text-anchor="middle">
+          <text x="55" y="206">左</text><text x="95" y="206">標準</text><text x="135" y="206">右</text>
+          <text x="225" y="206">左</text><text x="265" y="206">標準</text><text x="305" y="206">右</text>
+        </g>
+        <text x="95" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#4f6f93" font-family="Noto Sans JP, sans-serif">大腸（足りない）</text>
+        <text x="265" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#a8432f" font-family="Noto Sans JP, sans-serif">肝（頑張りすぎ）</text>
+      </svg>
+      <figcaption>本日の経絡測定（緑の棒＝標準を100としたとき）</figcaption>
+    </figure>
+    <p class="note">体の左右でも、右のほうが強く出ていました（左246・右301）。首の1番が右へずれていたのと、向きがそろっています。</p>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">3</span>お仕事とのつながり</h3>
+    <p style="margin-top:12px;font-size:16px">食料品のピッキングは、目と手と首を一日中いっしょに使うお仕事です。今日固かった場所と、ぴったり重なります。</p>
+    <div class="three">
+      <div class="c">
+        <div class="ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16 Q16 5 29 16 Q16 27 3 16 Z" fill="none" stroke="#1a3d28" stroke-width="2.4"/><circle cx="16" cy="16" r="4.5" fill="#1a3d28"/></svg></div>
+        <div><b>目</b><p>伝票と棚のラベルを、何千回も見比べます。目を使うほど、首の付け根の奥が固くなりやすいと考えられています。東洋医学でも、肝は目とつながる場所です。</p></div>
+      </div>
+      <div class="c">
+        <div class="ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M10 28 V15 M10 15 V6 a2 2 0 0 1 4 0 V14 M14 13 V5 a2 2 0 0 1 4 0 V14 M18 14 V7 a2 2 0 0 1 4 0 V17 M22 15 a2 2 0 0 1 4 0 V20 Q26 28 18 28 H12 Q8 26 6 21 L4 17 a2 2 0 0 1 3.4-2 L10 18" fill="none" stroke="#1a3d28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><b>手</b><p>商品をつかみ、指先を使い続けます。人差し指から腕を上り、首の横まで来る道は、大腸の経絡の通り道です。</p></div>
+      </div>
+      <div class="c">
+        <div class="ic"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="7" fill="none" stroke="#1a3d28" stroke-width="2.4"/><path d="M12.5 19 V25 M19.5 19 V25 M6 29 Q16 23 26 29" fill="none" stroke="#1a3d28" stroke-width="2.4" stroke-linecap="round"/><path d="M5 9 A12 12 0 0 1 27 9" fill="none" stroke="#c4a44d" stroke-width="2.4" stroke-linecap="round"/><path d="M24 5.5 L27.2 9.2 L23 10.5" fill="none" stroke="#c4a44d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><b>首</b><p>棚のほうへ、何度も振り向きます。同じ向きのひねりが積み重なると、首の骨は一方へずれたまま残りやすくなります。</p></div>
+      </div>
+    </div>
+    <p class="ask"><b>次回、教えてください：</b>最近、作業の量や持ち場（冷蔵・冷凍のエリアなど）に変わったことはありましたか。お仕事はいつも同じなのに、今日は特に固かったからです。</p>
+  </div>
+
+  <div class="oneline">
+    <div class="t">ひとことで言うと</div>
+    <p>無い袖は、振れぬ。</p>
+    <small>足りない分をひとりで補う肝に、ひと休みを。</small>
+  </div>
+</div></section>
+
+<!-- ===== 第2部 ===== -->
+<section class="part" id="part2"><div class="in">
+  <span class="part-no">第2部</span>
+  <h2>一夜漬けか、<br>コツコツ分散か</h2>
+  <p class="bridge">体も勉強も、足りない分を一気に取り返そうとすると、どこかが固まります。ここからは、つばさくんの試験の話です。</p>
+
+  <div class="block">
+    <h3><span class="k">1</span>1・2年生と、3年生のちがい</h3>
+    <div class="ab">
+      <div class="card">
+        <span class="tag">A　1・2年生</span>
+        <h4>一夜漬けでも、なんとかなった</h4>
+        <p>一般科目が中心で、単元ごとに話が完結しやすい学年です。一夜漬けは「速く覚えられるが、長くは残らない」やり方。目の前のテストを越えるだけなら、間に合います。</p>
+      </div>
+      <div class="card">
+        <span class="tag">B　3年生から</span>
+        <h4>一夜漬けでは、届かなくなる</h4>
+        <p>高専は、学年が上がるほど専門科目が増える「くさび型」のしくみです。3年の専門科目は、1・2年の内容の上に乗っています。一夜漬けで抜けた土台が、そのまま穴になります。</p>
+      </div>
+    </div>
+    <figure>
+      <svg viewBox="0 0 360 206" role="img" aria-label="くさび型のイメージ。1年から5年へ進むほど一般科目が減り、専門科目が増える。3年が切り替えどき">
+        <polygon points="40,30 340,30 340,62 40,132" fill="#f3ead0"/>
+        <polygon points="40,132 340,62 340,180 40,180" fill="#2c5a3e"/>
+        <text x="96" y="72" font-size="15" font-weight="700" fill="#7a6420" font-family="Noto Sans JP, sans-serif">一般科目</text>
+        <text x="262" y="138" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff" font-family="Noto Sans JP, sans-serif">専門科目</text>
+        <line x1="190" y1="22" x2="190" y2="182" stroke="#c4a44d" stroke-width="2.5" stroke-dasharray="5 4"/>
+        <text x="190" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="#22261f" font-family="Noto Sans JP, sans-serif">3年：やり方の切り替えどき</text>
+        <g font-size="12.5" fill="#596055" font-family="Noto Sans JP, sans-serif" text-anchor="middle">
+          <text x="70" y="198">1年</text><text x="130" y="198">2年</text><text x="190" y="198">3年</text><text x="250" y="198">4年</text><text x="310" y="198">5年</text>
+        </g>
+      </svg>
+      <figcaption>くさび型のイメージ図（割合は学科で違います）</figcaption>
+    </figure>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">2</span>ミクロの力か、マクロの力か</h3>
+    <div class="ab">
+      <div class="card">
+        <span class="tag">ミクロ</span>
+        <h4>1つの科目を深く分かる力</h4>
+        <p>たとえば電子工学基礎なら、電界やコンデンサーの中身を理解する力です。</p>
+      </div>
+      <div class="card">
+        <span class="tag">マクロ</span>
+        <h4>たくさんの科目を、全部回す力</h4>
+        <p>広い試験範囲を、限られた時間で、毎日少しずつ回していく力です。</p>
+      </div>
+    </div>
+    <div class="so">
+      <div class="lbl">だから</div>
+      <p>学校はこの2つを見ている、というのが谷の見立てです。「わざと試している」と書いた資料はありません。ただ、しくみを見ると、マクロの力がないと先へ進めないつくりになっています。</p>
+    </div>
+    <ul class="note" style="margin:12px 0 0;padding-left:1.2em">
+      <li>高専では入学のときから「生徒ではなく学生」と言われます。自分で勉強を回すことが前提という意味です。</li>
+      <li>4・5年になると、授業の外での自習が単位に含まれる「学修単位」の科目が入ってきます（香川高専のシラバスにもあります）。</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">3</span>これは、ステージを上がるゲーム</h3>
+    <ol class="stages">
+      <li><div class="st">ステージ1<span>1・2年</span></div><p>一夜漬けでもクリアできる。</p></li>
+      <li class="arr" aria-hidden="true">▼</li>
+      <li class="now"><div class="st">ステージ2<span>3年　いまここ</span></div><p>装備を「毎日少しずつ回す型」に持ちかえた人だけが、先へ進める。</p></li>
+      <li class="arr" aria-hidden="true">▼</li>
+      <li><div class="st">ステージ3<span>4・5年</span></div><p>授業の外の自習が、最初から単位に入る。</p></li>
+    </ol>
+
+    <div class="point">
+      <span class="ptag">POINT</span>
+      <ol class="rank">
+        <li>
+          <span class="stars">★★★★★</span>
+          <span class="claim">同じ勉強時間なら、日を分けてやるほうが、一夜漬けより長く残る</span>
+          <span class="src">出典：Dunlosky ほか（Psychological Science in the Public Interest, 2013）。10の勉強法を、たくさんの研究で比べたまとめ</span>
+        </li>
+        <li>
+          <span class="stars">★★★★★</span>
+          <span class="claim">読み返すより、自分で問題を解いて確かめるほうが身につく</span>
+          <span class="src">出典：同上。つばさくんが今やっている毎日のクイズは、まさにこれです</span>
+        </li>
+        <li>
+          <span class="stars">★★★</span>
+          <span class="claim">成績の高い学生ほど、試験の準備を早く始め、毎回その時期がぶれない</span>
+          <span class="src">出典：奈良高専 研究紀要（2003）。1学科・約210人へのアンケート</span>
+        </li>
+        <li>
+          <span class="stars">★★★</span>
+          <span class="claim">高専では3年以降につまずく学生が増える。多くは、低学年からの遅れを取り戻せないまま</span>
+          <span class="src">出典：同上</span>
+        </li>
+      </ol>
+      <p class="legend">★5＝たくさんの研究をまとめた結果　★3＝1つの学校の調査</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3><span class="k">4</span>つばさくんへ、次の一手</h3>
+    <ol class="promise">
+      <li><span class="n">1</span><span class="t">毎日、全科目を少しずつ<small>1科目を深くより、6科目を少しずつ</small></span></li>
+      <li><span class="n">2</span><span class="t">読むより、解いて確かめる<small>分からなかった所だけ、AIに聞き直す</small></span></li>
+      <li><span class="n">3</span><span class="t">試験前だけ頑張らない<small>準備を始める時期を、毎回そろえる</small></span></li>
+    </ol>
+  </div>
+
+  <div class="oneline">
+    <div class="t">ひとことで言うと</div>
+    <p>雨垂れ、石を穿つ。</p>
+    <small>（あまだれ、いしをうがつ）<br>小さなしずくも、毎日落ちれば石に穴をあける</small>
+  </div>
+</div></section>
+
+<div class="safety"><div class="in">念のため：首や腕の強いしびれ、めまい、続く頭痛があるときは、早めに医療機関を受診してください。</div></div>
+
+<footer><div class="in">
+  <div>
+    <h4>三条健康堂の考え方｜神経反射入力装置論</h4>
+    <p>からだを「入力装置」としてとらえ、皮ふ・筋肉・関節への刺激を通して神経の反射を整え、からだが自分で回復する力を引き出す施術理論です。</p>
+  </div>
+  <div>
+    <b>谷 先生｜三条健康堂接骨院 院長</b>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">地図を見る</a>
+    </div>
+    <p>高松市由良町、由良川東公園のそば</p>
+    <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+  </div>
+  <div class="brand">SANJO KENKO-DO</div>
+</div></footer>
+
+</div>
+</body>
+</html>
