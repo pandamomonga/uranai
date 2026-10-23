@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>藤村様のGoogleマップ道案内</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap">
+<style>
+/* 一本道：縦に一列、4部作。各部は「AかBか」→「だから」→やること、の同じ形 */
+:root{
+  --bg:#ffffff;
+  --paper:#f7f3e8;
+  --ink:#1f2a24;
+  --muted:#4d5951;
+  --brand:#1a3d28;
+  --brand-ink:#1a3d28;
+  --on-brand:#fbf8ef;
+  --gold-line:#c4a44d;
+  --gold-ink:#7f621a;
+  --chip:#e4ede6;
+  --line:#d8d1bf;
+  --a-bg:#f1efea;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1713; --paper:#17221c; --ink:#edf0ea; --muted:#bcc6bf;
+    --brand:#1f4a33; --brand-ink:#a6d3b4; --on-brand:#fbf8ef;
+    --gold-line:#c4a44d; --gold-ink:#e2c574; --chip:#203428; --line:#34453b; --a-bg:#1b2420;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1713; --paper:#17221c; --ink:#edf0ea; --muted:#bcc6bf;
+  --brand:#1f4a33; --brand-ink:#a6d3b4; --on-brand:#fbf8ef;
+  --gold-line:#c4a44d; --gold-ink:#e2c574; --chip:#203428; --line:#34453b; --a-bg:#1b2420;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.8;-webkit-text-size-adjust:100%}
+a{color:var(--brand-ink)}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+
+/* 表紙 */
+.cover{background:var(--brand);color:var(--on-brand)}
+.cover .wrap{padding-block:36px 32px}
+.eyebrow{font-size:12px;letter-spacing:.24em;color:var(--gold-line);font-weight:700;margin:0 0 14px}
+.cover h1{font-family:var(--serif);font-size:30px;line-height:1.45;margin:0 0 12px;text-wrap:balance}
+.cover h1 span{display:block;font-size:20px;color:var(--gold-line);margin-bottom:6px}
+.cover p{margin:0;font-size:17px}
+.cover .rule{height:2px;background:var(--gold-line);width:56px;margin:18px 0}
+
+/* 目次と一本道 */
+.toc{padding-block:28px 8px}
+.toc h2{font-family:var(--serif);font-size:20px;margin:0 0 16px;color:var(--brand-ink)}
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;position:relative;margin:0 0 18px;padding:0;list-style:none}
+.road::before{content:"";position:absolute;left:12%;right:12%;top:22px;height:3px;background:var(--gold-line)}
+.road li{position:relative;text-align:center;min-width:0}
+.road a{text-decoration:none;color:var(--ink);display:block}
+.road .dot{width:44px;height:44px;border-radius:50%;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;margin:0 auto 8px;font-weight:700;font-size:18px;border:3px solid var(--bg);position:relative}
+.road .lbl{font-size:15px;font-weight:700;line-height:1.4;display:block}
+.toc ol.list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.toc ol.list a{display:block;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:16px;line-height:1.6}
+.toc ol.list b{color:var(--brand-ink);margin-right:6px}
+
+/* 各部 */
+.part{padding-block:36px 8px;border-top:1px solid var(--line);margin-top:28px}
+.part-no{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.12em;color:var(--on-brand);background:var(--brand);padding:2px 12px;border-radius:4px;margin:0 0 12px}
+.part h2{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0 0 10px;color:var(--brand-ink);text-wrap:balance}
+.lead{margin:0 0 18px;color:var(--muted);font-size:16px}
+h3{font-family:var(--serif);font-size:20px;margin:28px 0 12px;color:var(--brand-ink)}
+
+/* AかBか */
+.vs{display:grid;grid-template-columns:1fr;gap:10px}
+.vs .card{border-radius:12px;padding:14px 16px;min-width:0}
+.vs .a{background:var(--a-bg);border:1px solid var(--line)}
+.vs .b{background:var(--chip);border:2px solid var(--brand-ink)}
+.vs .tag{font-size:13px;font-weight:700;letter-spacing:.08em;margin:0 0 4px;color:var(--muted)}
+.vs .b .tag{color:var(--brand-ink)}
+.vs p{margin:0}
+.so{margin:14px 0 0;padding:12px 16px;border-left:4px solid var(--gold-line);background:var(--paper);font-weight:700;border-radius:0 10px 10px 0}
+
+/* チェックリスト */
+.check{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.check li{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;background:var(--paper);border-radius:10px;padding:10px 14px}
+.box{width:22px;height:22px;border:2px solid var(--brand-ink);border-radius:4px;margin-top:5px}
+.check small{display:block;color:var(--muted);font-size:15px;line-height:1.6}
+
+/* ボタン */
+.go{display:block;text-align:center;text-decoration:none;background:var(--brand);color:var(--on-brand);font-weight:700;font-size:19px;padding:18px 16px;border-radius:14px;border:3px solid var(--gold-line);margin:18px 0 10px;line-height:1.5}
+.go small{display:block;font-size:14px;font-weight:500;color:var(--gold-line)}
+.go.sub{background:var(--bg);color:var(--brand-ink);border:2px solid var(--brand-ink);font-size:17px;padding:14px 16px}
+.go:focus-visible,.copy:focus-visible,.toc a:focus-visible{outline:3px solid var(--gold-line);outline-offset:3px}
+.hint{font-size:15px;color:var(--muted);margin:0 0 6px}
+
+/* 画面カード：こう聞かれたら、こう答える */
+.qa{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:qa}
+.qa li{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.qa .q{background:var(--paper);padding:12px 16px;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start}
+.qa .n{width:32px;height:32px;border-radius:50%;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font-weight:700;font-size:16px;margin-top:2px}
+.qa .q p{margin:0;min-width:0}
+.qa .q .s{font-size:13px;color:var(--muted);letter-spacing:.06em;display:block;line-height:1.4}
+.qa .ans{padding:12px 16px 14px;display:grid;gap:6px}
+.chip{display:inline-block;background:var(--chip);color:var(--brand-ink);border:1px solid var(--brand-ink);font-weight:700;border-radius:10px;padding:4px 12px;font-size:16px;line-height:1.6;justify-self:start}
+.qa .ans p{margin:0;font-size:16px}
+
+/* POINT */
+.point{border:2px solid var(--gold-line);border-radius:12px;padding:18px 16px 14px;position:relative;margin:24px 0 8px}
+.point::before{content:"POINT";position:absolute;top:-12px;left:14px;background:var(--bg);color:var(--gold-ink);font-weight:700;font-size:13px;letter-spacing:.16em;padding:0 8px}
+.point p{margin:0}
+.point p+p{margin-top:8px}
+
+/* 動画のルール */
+.rules{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.rules li{background:var(--chip);color:var(--brand-ink);border-radius:8px;padding:6px 12px;font-weight:700;font-size:16px}
+.rules li.ng{background:var(--a-bg);color:var(--ink);border:1px dashed var(--muted);font-weight:500}
+
+/* 撮影ルート */
+.route{list-style:none;margin:0;padding:0;position:relative}
+.route::before{content:"";position:absolute;left:19px;top:20px;bottom:20px;border-left:3px dashed var(--gold-line)}
+.route li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;padding:8px 0;position:relative}
+.route .n{width:40px;height:40px;border-radius:50%;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font-weight:700;font-size:17px}
+.route b{display:block;font-size:17px}
+.route span{display:block;color:var(--muted);font-size:15px;line-height:1.6}
+
+/* コピー枠 */
+.prompt{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:12px 0 18px}
+.prompt .head{background:var(--paper);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.prompt .head b{font-size:16px;color:var(--brand-ink)}
+.copy{appearance:none;border:2px solid var(--brand-ink);background:var(--brand);color:var(--on-brand);font:inherit;font-weight:700;font-size:16px;padding:6px 18px;border-radius:10px;cursor:pointer;min-height:44px}
+.copy.done{background:var(--gold-line);border-color:var(--gold-line);color:#1a1a1a}
+.prompt pre{margin:0;padding:14px;white-space:pre-wrap;word-break:break-word;font-family:var(--sans);font-size:15px;line-height:1.75;background:var(--bg);color:var(--ink)}
+
+.steps{margin:0;padding:0 0 0 1.4em;display:grid;gap:6px}
+.steps li{padding-left:2px}
+
+.sample{display:grid;grid-template-columns:1fr;gap:6px;background:var(--paper);border-radius:12px;padding:14px 16px;margin:12px 0}
+.sample p{margin:0}
+.sample .url{font-weight:700;word-break:break-all}
+
+/* 締め */
+.close{text-align:center;padding-block:36px 8px}
+.close .kotowaza{font-family:var(--serif);font-size:24px;color:var(--brand-ink);margin:0 0 8px}
+.close p{margin:0}
+
+footer{background:var(--brand);color:var(--on-brand);margin-top:36px}
+footer .wrap{padding-block:28px 32px;display:grid;gap:10px}
+footer .eyebrow{margin:0}
+footer .clinic{font-family:var(--serif);font-size:20px;margin:0}
+footer p{margin:0;font-size:15px;line-height:1.75}
+footer .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+footer .links a{color:var(--on-brand);border:1px solid var(--gold-line);border-radius:10px;padding:8px 14px;text-decoration:none;font-weight:700;font-size:15px}
+footer .sig{color:var(--gold-line);font-size:13px}
+footer .note{font-size:13px;opacity:.9}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body style="margin:0">
+<header class="cover">
+  <div class="wrap">
+    <p class="eyebrow">SANJO KENKO-DO</p>
+    <h1><span>藤村様のサロン用</span>Googleマップに、お店を出そう</h1>
+    <div class="rule"></div>
+    <p>はじめてのGoogleビジネスプロフィール。スマホで、上から順にやるだけです。</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <nav class="toc" aria-label="目次">
+    <h2>今日の案内は4つの話です</h2>
+    <ol class="road">
+      <li><a href="#p1"><span class="dot">1</span><span class="lbl">準備</span></a></li>
+      <li><a href="#p2"><span class="dot">2</span><span class="lbl">登録</span></a></li>
+      <li><a href="#p3"><span class="dot">3</span><span class="lbl">本人確認</span></a></li>
+      <li><a href="#p4"><span class="dot">4</span><span class="lbl">仕上げ</span></a></li>
+    </ol>
+    <ol class="list">
+      <li><a href="#p1"><b>第1部</b>ホームページは「要る」か「なくても出せる」か</a></li>
+      <li><a href="#p2"><b>第2部</b>登録の画面は「全部読む」か「迷う所だけ」か</a></li>
+      <li><a href="#p3"><b>第3部</b>本人確認は「ハガキを待つ」か「動画を撮る」か</a></li>
+      <li><a href="#p4"><b>第4部</b>noteは「ブログを続ける」か「案内ページを1本」か</a></li>
+    </ol>
+  </nav>
+
+  <!-- 第1部 -->
+  <section class="part" id="p1">
+    <p class="part-no">第1部　準備</p>
+    <h2>ホームページは「要る」か「なくても出せる」か</h2>
+    <p class="lead">登録を始める前に、いちばん多い思い込みを外しておきます。</p>
+    <div class="vs">
+      <div class="card a">
+        <p class="tag">「要る」と思うと</p>
+        <p>ホームページを作るまで、何も始まりません。</p>
+      </div>
+      <div class="card b">
+        <p class="tag">実際は</p>
+        <p>Googleアカウントと、店名・住所・電話番号・業種の4つがあれば出せます。ウェブサイトの欄は、なければ空欄のままで大丈夫です。</p>
+      </div>
+    </div>
+    <p class="so">だから → ホームページがなくても、今日から始められます。</p>
+
+    <h3>手元にそろえるもの</h3>
+    <ul class="check">
+      <li><span class="box" aria-hidden="true"></span><div>Googleアカウント（Gmail）<small>ないときは、下のボタンから先に作ります。</small></div></li>
+      <li><span class="box" aria-hidden="true"></span><div>店名<small>看板・名刺と同じ書き方にします。</small></div></li>
+      <li><span class="box" aria-hidden="true"></span><div>新しいサロンの住所</div></li>
+      <li><span class="box" aria-hidden="true"></span><div>電話番号<small>ご自分がすぐ出られる番号に。確認の番号が電話やショートメールで届くことがあります。</small></div></li>
+      <li><span class="box" aria-hidden="true"></span><div>営業時間と定休日</div></li>
+      <li><span class="box" aria-hidden="true"></span><div>写真を数枚<small>外から見たお店・中の様子・施術のスペース。スマホで撮ったもので十分です。</small></div></li>
+    </ul>
+
+    <a class="go sub" href="https://accounts.google.com/signup" target="_blank" rel="noopener">Gmailを持っていない方はこちら<small>Googleアカウントを作る</small></a>
+
+    <div class="point">
+      <p>店名・住所・電話番号は、看板・名刺・note・Googleのどこでも一字一句同じに書きます。「1丁目2-3」と「一丁目2番3号」のような違いもそろえておくと、Googleの確認に通りやすくなります。</p>
+    </div>
+  </section>
+
+  <!-- 第2部 -->
+  <section class="part" id="p2">
+    <p class="part-no">第2部　登録</p>
+    <h2>登録の画面は「全部読む」か「迷う所だけ」か</h2>
+    <p class="lead">準備ができたら、いよいよ登録です。</p>
+    <div class="vs">
+      <div class="card a">
+        <p class="tag">全部読もうとすると</p>
+        <p>画面がたくさん出てきて、途中で疲れて止まってしまいます。</p>
+      </div>
+      <div class="card b">
+        <p class="tag">実際は</p>
+        <p>ほとんどの画面は入力して「次へ」を押すだけ。迷うのは、下の6か所だけです。</p>
+      </div>
+    </div>
+    <p class="so">だから → 下の「こう聞かれたら、こう答える」だけ見ながら進めばOKです。</p>
+
+    <a class="go" href="https://www.google.com/intl/ja_jp/business/" target="_blank" rel="noopener">ここから始める<small>Googleビジネスプロフィールのページが開きます</small></a>
+    <p class="hint">開いたら「今すぐ開始」を押して、Googleアカウントでログインします。うまく開かないときは、Googleで「Googleビジネスプロフィール」と検索して、同じく「今すぐ開始」を押してください。</p>
+
+    <h3>こう聞かれたら、こう答える</h3>
+    <ol class="qa">
+      <li>
+        <div class="q"><span class="n">1</span><p><span class="s">画面に出ること</span>お店の名前と、業種</p></div>
+        <div class="ans"><span class="chip">店名は看板と同じに</span><p>業種は文字を打つと候補が出ます。サロンの内容にいちばん近いものを選んでください。迷ったら谷先生に聞いてください。</p></div>
+      </li>
+      <li>
+        <div class="q"><span class="n">2</span><p><span class="s">画面に出ること</span>お客さんが来られる場所（住所）を追加するか</p></div>
+        <div class="ans"><span class="chip">「はい」を選んで次へ</span><p>お客さんに来てもらうサロンなので、住所を入れます。</p></div>
+      </li>
+      <li>
+        <div class="q"><span class="n">3</span><p><span class="s">画面に出ること</span>住所の入力</p></div>
+        <div class="ans"><span class="chip">郵便番号・都道府県・住所</span><p>第1部でそろえた書き方のまま入れます。</p></div>
+      </li>
+      <li>
+        <div class="q"><span class="n">4</span><p><span class="s">画面に出ること</span>似たお店がいくつか表示される</p></div>
+        <div class="ans"><span class="chip">「いずれも私のビジネスではありません」</span><p>はじめての登録なので、これにチェックして次へ進みます。</p></div>
+      </li>
+      <li>
+        <div class="q"><span class="n">5</span><p><span class="s">画面に出ること</span>商品の配達や、出張のサービスをするか</p></div>
+        <div class="ans"><span class="chip">お店に来てもらうだけなら「いいえ」</span><p>出張もするときだけ、当てはまるものにチェックします。</p></div>
+      </li>
+      <li>
+        <div class="q"><span class="n">6</span><p><span class="s">画面に出ること</span>電話番号と、ウェブサイト</p></div>
+        <div class="ans"><span class="chip">電話番号は入れる・ウェブサイトは空欄でOK</span><p>noteの案内ページ（第4部）ができてから、あとで足せます。</p></div>
+      </li>
+    </ol>
+    <p class="hint" style="margin-top:14px">Googleの画面は時々変わります。言葉が少し違っても、同じ意味のほうを選べば大丈夫です。</p>
+    <p class="so">このあと「確認方法」の画面が出たら、第3部へ進みます。</p>
+  </section>
+
+  <!-- 第3部 -->
+  <section class="part" id="p3">
+    <p class="part-no">第3部　本人確認</p>
+    <h2>本人確認は「ハガキを待つ」か「動画を撮る」か</h2>
+    <p class="lead">登録の最後に、「本当にこのお店の人ですか」を確かめる手続きがあります。ここがいちばんの山場です。</p>
+    <div class="vs">
+      <div class="card a">
+        <p class="tag">昔は</p>
+        <p>ハガキで番号が届くのを待ちました。今はほとんど使われていません。</p>
+      </div>
+      <div class="card b">
+        <p class="tag">今は</p>
+        <p>方法はGoogleが自動で選んで出してきます。電話やショートメールで5桁の番号が届くこともあれば、スマホで動画を撮るように言われることもあります。</p>
+      </div>
+    </div>
+    <p class="so">だから → 電話なら番号を入れるだけ。動画が出たら、下の台本どおりに撮ればOKです。</p>
+
+    <h3>動画のルール</h3>
+    <ul class="rules">
+      <li>1本で撮る</li>
+      <li>編集しない</li>
+      <li>サロンの場所で撮る</li>
+      <li>しゃべらなくていい</li>
+      <li class="ng">免許証などの身分証は映さない</li>
+    </ul>
+
+    <h3>撮る順番（歩きながら1〜2分）</h3>
+    <ol class="route">
+      <li><span class="n">1</span><div><b>外の様子</b><span>前の道や、近くの目印になる建物</span></div></li>
+      <li><span class="n">2</span><div><b>看板と入口</b><span>店名が分かるように、少し止めて映す</span></div></li>
+      <li><span class="n">3</span><div><b>サロンの中</b><span>施術のベッドや、使っている道具</span></div></li>
+      <li><span class="n">4</span><div><b>お店の人しかしない動き</b><span>鍵を開ける、など</span></div></li>
+      <li><span class="n">5</span><div><b>店名が入った書類</b><span>開業届の控え・名刺・チラシなど</span></div></li>
+    </ol>
+
+    <div class="point">
+      <p>いちばん落ちやすいのは「看板」です。お店に来てもらう形の登録は、店名の入った看板を映すのが基本です。小さな店名プレートでいいので、玄関に付けてから撮ると安心です。</p>
+      <p>もし通らなくても、理由が表示されるので、そこを足して撮り直せば大丈夫です。</p>
+    </div>
+  </section>
+
+  <!-- 第4部 -->
+  <section class="part" id="p4">
+    <p class="part-no">第4部　仕上げ</p>
+    <h2>noteは「ブログを続ける」か「案内ページを1本」か</h2>
+    <p class="lead">確認が通ったら、お店の紹介文と写真を入れて仕上げます。文章はAIに作ってもらってコピーするだけです。</p>
+    <div class="vs">
+      <div class="card a">
+        <p class="tag">ブログを続けようとすると</p>
+        <p>AIで書けても、忙しい時期に更新が止まります。止まったブログは「このお店、まだやってるのかな」と思われてしまいます。</p>
+      </div>
+      <div class="card b">
+        <p class="tag">案内ページを1本なら</p>
+        <p>日付に関係ない内容なので、一度作ればずっと使えます。ホームページの代わりとして、Googleの「ウェブサイト」欄に貼れます。</p>
+      </div>
+    </div>
+    <p class="so">だから → noteは案内ページを1本だけ。続けるのは、Googleに写真を時々足すことです。</p>
+
+    <h3>① Googleの紹介文をAIに作ってもらう</h3>
+    <p class="hint">ClaudeやChatGPTなどのAIに、下の文をコピーして貼り、【　】のところを書いて送ります。返ってきた文章を、Googleの「ビジネスの説明」に貼ります。</p>
+    <div class="prompt">
+      <div class="head"><b>Googleの紹介文用</b><button class="copy" type="button" data-target="p-gbp">コピー</button></div>
+<pre id="p-gbp">次の情報をもとに、Googleマップのお店紹介文（Googleビジネスプロフィールの「ビジネスの説明」）を書いてください。
+・750文字以内
+・です・ます調で、60代の方にも読みやすく
+・「絶対」「必ず治る」など大げさな言葉は使わない
+・電話番号やURLは入れない
+
+店名：【　】
+場所：【　】（例：高松市〇〇町、〇〇のそば）
+営業時間・定休日：【　】
+メニューと料金：【　】
+こんな方に来てほしい：【　】
+お店の雰囲気・こだわり：【　】</pre>
+    </div>
+
+    <h3>② noteの案内ページをAIに作ってもらう</h3>
+    <p class="hint">同じように、下の文をAIに送ります。</p>
+    <div class="prompt">
+      <div class="head"><b>noteの案内ページ用</b><button class="copy" type="button" data-target="p-note">コピー</button></div>
+<pre id="p-note">次の情報をもとに、noteに載せる「お店の案内ページ」を1本書いてください。
+・見出しは「どんなお店か」「メニューと料金」「場所と行き方」「ご予約・お問い合わせ」の4つ
+・日付や季節の話は入れず、ずっと使える内容にする
+・です・ます調で、60代の方にも読みやすく
+・店名・住所・電話番号は、下に書いたとおり一字一句そのまま使う
+
+店名：【　】
+住所：【　】
+電話番号：【　】
+営業時間・定休日：【　】
+メニューと料金：【　】
+行き方の目印：【　】
+お店の雰囲気・こだわり：【　】</pre>
+    </div>
+
+    <h3>③ noteをGoogleにつなぐ</h3>
+    <ol class="steps">
+      <li>noteで新しい記事を作り、AIの文章を貼って公開する</li>
+      <li>公開した記事のURL（アドレス）をコピーする</li>
+      <li>Googleのプロフィールの「編集」から、ウェブサイトの欄に貼る</li>
+    </ol>
+    <div class="sample">
+      <p>見本：谷先生も、ホームページの代わりにnoteを入れています。</p>
+      <p class="url"><a href="https://note.com/tubuyakiseitai" target="_blank" rel="noopener">https://note.com/tubuyakiseitai</a></p>
+    </div>
+
+    <div class="point">
+      <p>写真は、外から見たお店・中の様子・施術のスペースの3枚から始めれば十分です。そのあとは、月に1枚足すくらいで「ちゃんと営業しているお店」に見えます。</p>
+    </div>
+  </section>
+
+  <section class="close">
+    <p class="kotowaza">段取り八分、仕事二分</p>
+    <p>そろえて、順番どおりに進めれば、登録そのものはあっという間です。途中で分からなくなったら、いつでもLINEで聞いてください。</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="eyebrow">SANJO KENKO-DO</p>
+    <p class="clinic">三条健康堂接骨院</p>
+    <p>高松市由良町、由良川東公園のそば</p>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="links">
+      <a href="https://lin.ee/dwRtwDv" target="_blank" rel="noopener">公式LINE</a>
+      <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6" target="_blank" rel="noopener">Googleマップ</a>
+    </div>
+    <p class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</p>
+    <p class="note">※2026年10月時点の案内です。Googleの画面は変わることがあります。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function fallbackCopy(text){
+    var x = window.scrollX, y = window.scrollY;
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly','');
+    ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;';
+    document.body.appendChild(ta);
+    ta.focus({preventScroll:true});
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+    document.body.removeChild(ta);
+    window.scrollTo(x, y);
+    return ok;
+  }
+  function selectText(el){
+    try {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    } catch(e) {}
+  }
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', async function(){
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      var text = el.textContent;
+      var ok = false;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(text); ok = true; }
+      } catch(e) { ok = false; }
+      if (!ok) ok = fallbackCopy(text);
+      if (!ok) { selectText(el); btn.textContent = '文字を選びました'; }
+      else { btn.textContent = '✓ 完了'; btn.classList.add('done'); }
+      setTimeout(function(){ btn.textContent = 'コピー'; btn.classList.remove('done'); }, 1500);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
