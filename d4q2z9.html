@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福田様 施術報告書 2026.11.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --g:#1F4D3A; --g2:#2E6B50; --gl:#EAF2ED;
+    --gold:#B8962E; --goldl:#FBF6E8;
+    --ink:#1C2521; --muted:#46564E; --line:#DCE5DF;
+    --red:#C4513A; --redl:#FBEDEA;
+    --blue:#4F7FAE;
+    --bg:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;font-size:17px;line-height:1.8}
+  .wrap{max-width:520px;margin:0 auto;padding:0 16px}
+  svg{display:block;width:100%;height:auto}
+
+  /* 表紙 */
+  .cover{background:var(--g);color:#fff;padding:56px 0 48px;text-align:center}
+  .eyebrow{font-size:13px;letter-spacing:.32em;color:#E6D29A;font-weight:700}
+  .cover h1{font-family:"Noto Serif JP",serif;font-size:36px;font-weight:900;margin:14px 0 6px;letter-spacing:.08em}
+  .cover .name{font-family:"Noto Serif JP",serif;font-size:26px;font-weight:700}
+  .cover .date{font-size:16px;color:#D9E6DE;margin-top:4px}
+  .cover .hero{width:150px;margin:28px auto 22px}
+  .cover .catch{display:inline-block;border-top:1px solid #E6D29A;border-bottom:1px solid #E6D29A;padding:10px 6px;font-size:18px;font-weight:700;color:#fff}
+
+  .disc{font-size:14px;color:var(--muted);background:#F5F7F6;border-left:3px solid var(--gold);padding:12px 14px;margin:24px 0 0;line-height:1.7}
+
+  /* 目次 */
+  .toc{margin:28px 0 8px;border:2px solid var(--g);border-radius:14px;padding:20px 18px}
+  .toc .t{font-weight:900;color:var(--g);font-size:20px;margin-bottom:10px}
+  .toc ol{list-style:none}
+  .toc li{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-top:1px dashed var(--line);font-size:16px}
+  .toc li:first-child{border-top:none}
+  .toc .n{flex:none;background:var(--gold);color:#fff;font-size:13px;font-weight:700;border-radius:20px;padding:1px 10px}
+
+  /* 各部 */
+  section.part{padding:56px 0 8px}
+  .plabel{display:inline-block;background:var(--g);color:#fff;font-weight:700;font-size:14px;letter-spacing:.15em;padding:3px 14px;border-radius:20px}
+  h2{font-family:"Noto Serif JP",serif;font-size:22px;line-height:1.5;color:var(--g);margin:12px 0 10px;font-weight:900}
+  h2 .or{color:var(--gold);font-size:18px;margin:0 1px}
+  .lead{color:var(--muted);font-size:17px;margin-bottom:22px}
+
+  /* 比べるカード */
+  .cmp{border:1px solid var(--line);border-radius:16px;padding:16px 12px 14px;margin:0 0 14px;background:#fff}
+  .cmp .topic{font-size:15px;font-weight:700;color:var(--g);text-align:center;margin-bottom:8px}
+  .cols{display:grid;grid-template-columns:1fr 26px 1fr;align-items:center}
+  .col{text-align:center}
+  .tag{display:inline-block;font-size:14px;font-weight:700;border-radius:20px;padding:1px 12px;margin-bottom:6px}
+  .tag.ok{background:var(--gl);color:var(--g)}
+  .tag.now{background:var(--redl);color:var(--red)}
+  .arrow{color:var(--gold);font-size:22px;text-align:center;font-weight:900}
+  .cap{font-size:16px;font-weight:700;margin-top:6px;line-height:1.5}
+  .cap.ok{color:var(--g)} .cap.now{color:var(--red)}
+  .say{font-size:17px;margin:4px 4px 0;text-align:center}
+
+  /* 流れ */
+  .flowbox{background:var(--gl);border-radius:18px;padding:20px 16px 8px;margin-top:22px}
+  .flowbox .t{text-align:center;font-weight:900;color:var(--g);font-size:20px;margin-bottom:14px}
+  .step{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:center;background:#fff;border-radius:14px;padding:12px;margin-bottom:6px}
+  .step .ic{width:58px;height:58px}
+  .step b{display:block;color:var(--g);font-size:18px;line-height:1.4}
+  .step span{font-size:16px;color:var(--ink);line-height:1.6}
+  .down{text-align:center;color:var(--gold);font-size:18px;line-height:1;margin:0 0 6px}
+  .stamp{margin:24px auto 0;width:max-content;max-width:100%;border:3px solid var(--gold);color:var(--g);background:var(--goldl);font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;padding:10px 22px;border-radius:12px;transform:rotate(-2deg)}
+
+  /* 第3部 */
+  .sub{font-weight:900;color:var(--g);font-size:20px;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+  .sub:before{content:"";width:6px;height:22px;background:var(--gold);border-radius:3px}
+  .steps3{list-style:none}
+  .steps3 li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;font-size:17px}
+  .steps3 .no{width:40px;height:40px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+  .steps3 em{font-style:normal;font-weight:700;color:var(--g);background:linear-gradient(transparent 60%,#F3E6BC 60%)}
+  .speech{position:relative;background:var(--g);color:#fff;border-radius:18px;padding:20px 18px;font-size:19px;line-height:1.9;font-weight:500}
+  .speech:after{content:"";position:absolute;left:34px;bottom:-14px;border:8px solid transparent;border-top:8px solid var(--g);border-left:8px solid var(--g)}
+  .speech .k{display:inline-block;background:#fff;color:var(--g);font-weight:900;border-radius:6px;padding:0 8px;margin:0 2px}
+  .speech .k.gold{background:#E6D29A}
+  .qa{border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:8px}
+  .qa .q{font-weight:900;font-size:18px;color:var(--ink)}
+  .qa .a{display:flex;gap:8px;align-items:baseline;margin-top:4px;font-size:16px;color:var(--muted)}
+  .qa .a b{color:var(--g);font-size:17px}
+  .tip{background:var(--goldl);border-radius:14px;padding:14px 16px;font-size:16px;margin-top:14px}
+  .tip b{color:#7A6118}
+
+  .point{position:relative;border:2px solid var(--gold);border-radius:14px;padding:26px 16px 14px;margin-top:34px;background:#fff}
+  .point .ptag{position:absolute;top:-13px;left:16px;background:var(--gold);color:#fff;font-weight:900;font-size:13px;letter-spacing:.2em;padding:2px 12px;border-radius:4px}
+  .ev{padding:10px 0;border-top:1px dashed var(--line)}
+  .ev:first-of-type{border-top:none;padding-top:0}
+  .ev .star{color:var(--gold);font-size:16px;letter-spacing:.08em}
+  .ev .h{font-weight:900;color:var(--g);font-size:17px;line-height:1.5}
+  .ev p{font-size:16px;margin-top:4px}
+  .ev .src{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+
+  /* 最後の絵 */
+  .finale{padding:70px 0 60px;text-align:center}
+
+  /* フッター */
+  footer{background:var(--g);color:#fff;padding:40px 0 34px;margin-top:10px}
+  footer .theory{font-size:14px;color:#E6D29A;font-weight:700;letter-spacing:.06em}
+  footer .who{font-family:"Noto Serif JP",serif;font-size:24px;font-weight:900;margin:6px 0 10px}
+  footer .bio{font-size:15px;line-height:1.8;color:#E8F0EB}
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 14px}
+  .btns a{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;padding:13px 8px;border-radius:12px}
+  .btns .line{background:#06C755;color:#fff}
+  .btns .map{background:#fff;color:var(--g)}
+  footer .place{font-size:15px;text-align:center;color:#E8F0EB}
+  footer .sig{font-size:13px;color:#C9D8CF;text-align:center;margin-top:16px;line-height:1.7}
+  footer .brand{font-size:12px;letter-spacing:.3em;color:#E6D29A;text-align:center;margin-top:14px}
+</style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<header class="cover">
+  <div class="wrap">
+    <div class="eyebrow">SANJO KENKO-DO</div>
+    <h1>施術報告書</h1>
+    <div class="name">福田様</div>
+    <div class="date">2026年11月1日（日）</div>
+    <div class="hero">
+      <svg viewBox="0 0 150 90" aria-hidden="true">
+        <rect x="8" y="16" width="122" height="58" rx="10" fill="none" stroke="#fff" stroke-width="5"/>
+        <rect x="131" y="34" width="11" height="22" rx="3" fill="#fff"/>
+        <rect x="18" y="26" width="22" height="38" rx="4" fill="#7FD3A0"/>
+        <rect x="45" y="26" width="22" height="38" rx="4" fill="#7FD3A0"/>
+        <rect x="72" y="26" width="22" height="38" rx="4" fill="#7FD3A0"/>
+        <rect x="99" y="26" width="22" height="38" rx="4" fill="#7FD3A0"/>
+        <path d="M76 18 L60 48 L72 48 L66 74 L90 40 L77 40 L84 18 Z" fill="#E6D29A" stroke="#1F4D3A" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="catch">へっていた燃料に、<br>エネルギーが戻りました</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <p class="disc">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+
+  <nav class="toc">
+    <div class="t">今日の報告は3つの話です</div>
+    <ol>
+      <li><span class="n">第1部</span>いつもの体か、今日の体か</li>
+      <li><span class="n">第2部</span>止まった街か、明かりが戻った街か</li>
+      <li><span class="n">第3部</span>丸暗記で答えるか、比べて答えるか</li>
+    </ol>
+  </nav>
+
+  <!-- 第1部 -->
+  <section class="part">
+    <span class="plabel">第1部</span>
+    <h2>いつもの体<span class="or">か、</span>今日の体<span class="or">か</span></h2>
+    <p class="lead">まずは、元気な時の体と、今日の体を並べてみます。</p>
+
+    <!-- 燃料メーター -->
+    <div class="cmp">
+      <div class="topic">燃料のメーター</div>
+      <div class="cols">
+        <div class="col">
+          <span class="tag ok">元気な時</span>
+          <svg viewBox="0 0 160 112" aria-label="燃料メーター たっぷり">
+            <path d="M20 90 A60 60 0 0 1 50 38.04" fill="none" stroke="#E7B7AC" stroke-width="14"/>
+            <path d="M50 38.04 A60 60 0 0 1 110 38.04" fill="none" stroke="#EADBA9" stroke-width="14"/>
+            <path d="M110 38.04 A60 60 0 0 1 140 90" fill="none" stroke="#8FCBA6" stroke-width="14"/>
+            <text x="14" y="108" font-size="15" font-weight="700" fill="#46564E">E</text>
+            <text x="136" y="108" font-size="15" font-weight="700" fill="#46564E">F</text>
+            <line x1="80" y1="90" x2="127" y2="73" stroke="#1F4D3A" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="80" cy="90" r="9" fill="#1F4D3A"/>
+          </svg>
+          <div class="cap ok">たっぷり</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="col">
+          <span class="tag now">今日</span>
+          <svg viewBox="0 0 160 112" aria-label="燃料メーター へったまま">
+            <path d="M20 90 A60 60 0 0 1 50 38.04" fill="none" stroke="#E7B7AC" stroke-width="14"/>
+            <path d="M50 38.04 A60 60 0 0 1 110 38.04" fill="none" stroke="#EADBA9" stroke-width="14"/>
+            <path d="M110 38.04 A60 60 0 0 1 140 90" fill="none" stroke="#8FCBA6" stroke-width="14"/>
+            <text x="14" y="108" font-size="15" font-weight="700" fill="#46564E">E</text>
+            <text x="136" y="108" font-size="15" font-weight="700" fill="#46564E">F</text>
+            <line x1="80" y1="90" x2="33" y2="73" stroke="#C4513A" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="80" cy="90" r="9" fill="#C4513A"/>
+          </svg>
+          <div class="cap now">へったまま</div>
+        </div>
+      </div>
+      <p class="say">お仕事の疲れが続いて、燃料がへったまま走っていました。</p>
+    </div>
+
+    <!-- 体のチーム -->
+    <div class="cmp">
+      <div class="topic">体のチーム（肺と肝）</div>
+      <div class="cols">
+        <div class="col">
+          <span class="tag ok">元気な時</span>
+          <svg viewBox="0 0 160 120" aria-label="肺と肝がいっしょに荷物を運ぶ">
+            <rect x="24" y="22" width="112" height="12" rx="5" fill="#9C7A3C"/>
+            <circle cx="52" cy="64" r="24" fill="#DCE8F4" stroke="#4F7FAE" stroke-width="3"/>
+            <circle cx="108" cy="64" r="24" fill="#F6ECD0" stroke="#B8962E" stroke-width="3"/>
+            <line x1="40" y1="42" x2="40" y2="34" stroke="#4F7FAE" stroke-width="4" stroke-linecap="round"/>
+            <line x1="64" y1="42" x2="64" y2="34" stroke="#4F7FAE" stroke-width="4" stroke-linecap="round"/>
+            <line x1="96" y1="42" x2="96" y2="34" stroke="#B8962E" stroke-width="4" stroke-linecap="round"/>
+            <line x1="120" y1="42" x2="120" y2="34" stroke="#B8962E" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="45" cy="60" r="2.6" fill="#1C2521"/><circle cx="59" cy="60" r="2.6" fill="#1C2521"/>
+            <path d="M44 70 Q52 77 60 70" fill="none" stroke="#1C2521" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="101" cy="60" r="2.6" fill="#1C2521"/><circle cx="115" cy="60" r="2.6" fill="#1C2521"/>
+            <path d="M100 70 Q108 77 116 70" fill="none" stroke="#1C2521" stroke-width="2.4" stroke-linecap="round"/>
+            <text x="52" y="110" text-anchor="middle" font-size="15" font-weight="700" fill="#4F7FAE">肺</text>
+            <text x="108" y="110" text-anchor="middle" font-size="15" font-weight="700" fill="#9C7A3C">肝</text>
+          </svg>
+          <div class="cap ok">いっしょに運ぶ</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="col">
+          <span class="tag now">今日</span>
+          <svg viewBox="0 0 160 120" aria-label="肺はおやすみ、肝がひとりで踏んばる">
+            <rect x="74" y="16" width="70" height="12" rx="5" fill="#9C7A3C" transform="rotate(8 108 22)"/>
+            <rect x="74" y="4" width="34" height="14" rx="3" fill="#B49058" transform="rotate(8 108 22)"/>
+            <line x1="96" y1="42" x2="98" y2="28" stroke="#B8962E" stroke-width="4" stroke-linecap="round"/>
+            <line x1="120" y1="42" x2="120" y2="32" stroke="#B8962E" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="108" cy="64" r="24" fill="#F6ECD0" stroke="#B8962E" stroke-width="3"/>
+            <path d="M99 60 L105 62" stroke="#1C2521" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M117 60 L111 62" stroke="#1C2521" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M100 74 Q108 68 116 74" fill="none" stroke="#1C2521" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M136 48 q4 7 0 10 q-4 -3 0 -10z" fill="#6FA8D6"/>
+            <path d="M140 64 q3 6 0 8 q-3 -2 0 -8z" fill="#6FA8D6"/>
+            <circle cx="42" cy="76" r="22" fill="#DCE8F4" stroke="#4F7FAE" stroke-width="3"/>
+            <path d="M33 74 q4 3 8 0" fill="none" stroke="#1C2521" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M45 74 q4 3 8 0" fill="none" stroke="#1C2521" stroke-width="2.4" stroke-linecap="round"/>
+            <ellipse cx="43" cy="85" rx="3" ry="2" fill="#1C2521"/>
+            <text x="18" y="46" font-size="15" font-weight="700" fill="#4F7FAE">z</text>
+            <text x="28" y="36" font-size="19" font-weight="700" fill="#4F7FAE">z</text>
+            <text x="42" y="113" text-anchor="middle" font-size="15" font-weight="700" fill="#4F7FAE">肺</text>
+            <text x="108" y="113" text-anchor="middle" font-size="15" font-weight="700" fill="#9C7A3C">肝</text>
+          </svg>
+          <div class="cap now">肝がひとりで<br>踏んばる</div>
+        </div>
+      </div>
+      <p class="say">肺がおやすみ気味で、がんばり役の肝が、ひとりで穴うめをしていました。</p>
+    </div>
+
+    <!-- 背中と頭 -->
+    <div class="cmp">
+      <div class="topic">背中と頭（うしろから見た図）</div>
+      <div class="cols">
+        <div class="col">
+          <span class="tag ok">元気な時</span>
+          <svg viewBox="0 0 140 150" aria-label="やわらかい背中と頭">
+            <circle cx="70" cy="30" r="20" fill="#EAF2ED" stroke="#2E6B50" stroke-width="3"/>
+            <rect x="62" y="48" width="16" height="12" fill="#EAF2ED" stroke="#2E6B50" stroke-width="3"/>
+            <path d="M22 146 L26 78 Q28 62 50 60 L90 60 Q112 62 114 78 L118 146 Z" fill="#EAF2ED" stroke="#2E6B50" stroke-width="3" stroke-linejoin="round"/>
+            <line x1="70" y1="64" x2="70" y2="140" stroke="#9CC3AD" stroke-width="2" stroke-dasharray="4 5"/>
+          </svg>
+          <div class="cap ok">やわらか</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="col">
+          <span class="tag now">今日</span>
+          <svg viewBox="0 0 140 150" aria-label="カチカチの背中と頭">
+            <circle cx="70" cy="30" r="20" fill="#F7DDD6" stroke="#C4513A" stroke-width="3"/>
+            <rect x="62" y="48" width="16" height="12" fill="#F7DDD6" stroke="#C4513A" stroke-width="3"/>
+            <path d="M22 146 L26 78 Q28 62 50 60 L90 60 Q112 62 114 78 L118 146 Z" fill="#FFFFFF" stroke="#2E6B50" stroke-width="3" stroke-linejoin="round"/>
+            <ellipse cx="70" cy="96" rx="38" ry="28" fill="#F7DDD6"/>
+            <path d="M44 88 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6" fill="none" stroke="#C4513A" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M44 104 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6" fill="none" stroke="#C4513A" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M58 26 l4 -4 l4 4 l4 -4 l4 4 l4 -4 l4 4" fill="none" stroke="#C4513A" stroke-width="3" stroke-linejoin="round"/>
+          </svg>
+          <div class="cap now">カチカチ</div>
+        </div>
+      </div>
+      <p class="say">その分、背中と頭がかたくなっていました。</p>
+    </div>
+  </section>
+
+  <!-- 第2部 -->
+  <section class="part">
+    <span class="plabel">第2部</span>
+    <h2>止まった街<span class="or">か、</span>明かりが戻った街<span class="or">か</span></h2>
+    <p class="lead">福田様のご専門の「危機管理」にたとえると、今日の体はこんな流れでした。</p>
+
+    <div class="cmp">
+      <div class="cols">
+        <div class="col">
+          <span class="tag now">施術前</span>
+          <svg viewBox="0 0 160 130" aria-label="線がからまって明かりが届かない街">
+            <rect x="0" y="0" width="160" height="130" rx="12" fill="#2C3641"/>
+            <circle cx="132" cy="22" r="8" fill="#56616C"/>
+            <rect x="14" y="62" width="34" height="60" fill="#46515C"/>
+            <rect x="54" y="44" width="40" height="78" fill="#3D4852"/>
+            <rect x="100" y="70" width="44" height="52" fill="#46515C"/>
+            <g fill="#28313A"><rect x="21" y="70" width="8" height="8"/><rect x="33" y="70" width="8" height="8"/><rect x="21" y="86" width="8" height="8"/><rect x="33" y="86" width="8" height="8"/><rect x="62" y="52" width="9" height="9"/><rect x="77" y="52" width="9" height="9"/><rect x="62" y="68" width="9" height="9"/><rect x="77" y="68" width="9" height="9"/><rect x="62" y="84" width="9" height="9"/><rect x="77" y="84" width="9" height="9"/><rect x="108" y="78" width="9" height="9"/><rect x="125" y="78" width="9" height="9"/><rect x="108" y="94" width="9" height="9"/><rect x="125" y="94" width="9" height="9"/></g>
+            <line x1="8" y1="30" x2="8" y2="122" stroke="#8A949E" stroke-width="4"/>
+            <path d="M8 34 Q30 44 46 36" fill="none" stroke="#B9C1C8" stroke-width="2.5"/>
+            <path d="M46 36 q6 -8 10 2 q4 10 -8 6 q-10 -4 2 -10" fill="none" stroke="#B9C1C8" stroke-width="2.5"/>
+            <path d="M74 30 L68 38 L74 38 L68 46" fill="none" stroke="#E6D29A" stroke-width="2.5" stroke-linejoin="round"/>
+          </svg>
+          <div class="cap now">線がからまり<br>明かりが届かない</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="col">
+          <span class="tag ok">施術後</span>
+          <svg viewBox="0 0 160 130" aria-label="線がつながり明かりが戻った街">
+            <rect x="0" y="0" width="160" height="130" rx="12" fill="#E3F0E8"/>
+            <circle cx="132" cy="22" r="10" fill="#F2C94C"/>
+            <rect x="14" y="62" width="34" height="60" fill="#5E8C74"/>
+            <rect x="54" y="44" width="40" height="78" fill="#2E6B50"/>
+            <rect x="100" y="70" width="44" height="52" fill="#5E8C74"/>
+            <g fill="#F7D774"><rect x="21" y="70" width="8" height="8"/><rect x="33" y="70" width="8" height="8"/><rect x="21" y="86" width="8" height="8"/><rect x="33" y="86" width="8" height="8"/><rect x="62" y="52" width="9" height="9"/><rect x="77" y="52" width="9" height="9"/><rect x="62" y="68" width="9" height="9"/><rect x="77" y="68" width="9" height="9"/><rect x="62" y="84" width="9" height="9"/><rect x="77" y="84" width="9" height="9"/><rect x="108" y="78" width="9" height="9"/><rect x="125" y="78" width="9" height="9"/><rect x="108" y="94" width="9" height="9"/><rect x="125" y="94" width="9" height="9"/></g>
+            <line x1="8" y1="30" x2="8" y2="122" stroke="#6B7780" stroke-width="4"/>
+            <path d="M8 34 Q50 48 100 36 Q130 30 152 40" fill="none" stroke="#1F4D3A" stroke-width="2.5"/>
+          </svg>
+          <div class="cap ok">線がつながり<br>明かりが戻る</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flowbox">
+      <div class="t">体の中で起きたこと</div>
+
+      <div class="step">
+        <svg class="ic" viewBox="0 0 58 58" aria-hidden="true">
+          <circle cx="29" cy="29" r="28" fill="#EAF2ED"/>
+          <path d="M8 34 Q18 20 26 30 Q32 38 38 26 Q44 16 50 26" fill="none" stroke="#1F4D3A" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <div><b>① ほどける</b><span>背中と頭のこわばりが、ほどけました。</span></div>
+      </div>
+      <div class="down">▼</div>
+
+      <div class="step">
+        <svg class="ic" viewBox="0 0 58 58" aria-hidden="true">
+          <circle cx="29" cy="29" r="28" fill="#EAF2ED"/>
+          <path d="M6 30 Q13 18 20 30 T34 30 T48 30 T56 26" fill="none" stroke="#4F7FAE" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M6 40 Q13 32 20 40 T34 40 T48 40" fill="none" stroke="#9CBBD8" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div><b>② 第一次呼吸が動き出す</b><span>体の奥のゆっくりした波が、また打ちはじめます。</span></div>
+      </div>
+      <div class="down">▼</div>
+
+      <div class="step">
+        <svg class="ic" viewBox="0 0 58 58" aria-hidden="true">
+          <circle cx="29" cy="29" r="28" fill="#EAF2ED"/>
+          <path d="M16 22 A15 15 0 0 1 44 24" fill="none" stroke="#1F4D3A" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M44 14 L44 25 L34 24" fill="none" stroke="#1F4D3A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M42 36 A15 15 0 0 1 14 34" fill="none" stroke="#B8962E" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M14 44 L14 33 L24 34" fill="none" stroke="#B8962E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div><b>③ 自分で整える力が働く</b><span>体が自分の力で、元に戻ろうとします。</span></div>
+      </div>
+      <div class="down">▼</div>
+
+      <div class="step">
+        <svg class="ic" viewBox="0 0 58 58" aria-hidden="true">
+          <circle cx="29" cy="29" r="28" fill="#EAF2ED"/>
+          <rect x="10" y="19" width="34" height="20" rx="4" fill="#fff" stroke="#1F4D3A" stroke-width="3"/>
+          <rect x="45" y="25" width="4" height="8" rx="1.5" fill="#1F4D3A"/>
+          <rect x="14" y="23" width="7" height="12" rx="1.5" fill="#5DBB85"/>
+          <rect x="23" y="23" width="7" height="12" rx="1.5" fill="#5DBB85"/>
+          <rect x="32" y="23" width="7" height="12" rx="1.5" fill="#5DBB85"/>
+        </svg>
+        <div><b>④ エネルギーが入ってくる</b><span>へっていた燃料が、満ちてきます。</span></div>
+      </div>
+      <div class="down">▼</div>
+
+      <div class="step">
+        <svg class="ic" viewBox="0 0 58 58" aria-hidden="true">
+          <circle cx="29" cy="29" r="28" fill="#EAF2ED"/>
+          <line x1="29" y1="18" x2="29" y2="48" stroke="#1F4D3A" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M29 22 Q17 22 12 36" fill="none" stroke="#1F4D3A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M29 22 Q41 22 46 36" fill="none" stroke="#1F4D3A" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="12" cy="38" r="4.5" fill="#B8962E"/>
+          <circle cx="46" cy="38" r="4.5" fill="#B8962E"/>
+          <circle cx="29" cy="15" r="4" fill="#1F4D3A"/>
+        </svg>
+        <div><b>⑤ いいバランスの位置へ</b><span>やじろべえのように、まん中でピタッと立ちます。</span></div>
+      </div>
+    </div>
+
+    <div class="stamp">いつも通り、大丈夫です</div>
+  </section>
+
+  <!-- 第3部 -->
+  <section class="part">
+    <span class="plabel">第3部</span>
+    <h2>丸暗記で答える<span class="or">か、</span>比べて答える<span class="or">か</span></h2>
+    <p class="lead">ここからは体の話を離れて、博士論文の発表に向けたお話です。</p>
+
+    <div class="cmp">
+      <div class="cols">
+        <div class="col">
+          <span class="tag now">丸暗記</span>
+          <svg viewBox="0 0 160 120" aria-label="丸暗記は想定外の質問で止まる">
+            <rect x="14" y="10" width="78" height="100" rx="6" fill="#fff" stroke="#9AA6A0" stroke-width="2.5"/>
+            <g stroke="#C5CEC9" stroke-width="3" stroke-linecap="round"><line x1="24" y1="26" x2="82" y2="26"/><line x1="24" y1="38" x2="82" y2="38"/><line x1="24" y1="50" x2="78" y2="50"/><line x1="24" y1="62" x2="82" y2="62"/><line x1="24" y1="74" x2="74" y2="74"/><line x1="24" y1="86" x2="82" y2="86"/><line x1="24" y1="98" x2="66" y2="98"/></g>
+            <circle cx="122" cy="46" r="26" fill="#FBEDEA" stroke="#C4513A" stroke-width="3"/>
+            <text x="122" y="56" text-anchor="middle" font-size="28" font-weight="900" fill="#C4513A">?!</text>
+            <path d="M104 70 L98 82 L110 74" fill="#FBEDEA" stroke="#C4513A" stroke-width="3" stroke-linejoin="round"/>
+          </svg>
+          <div class="cap now">想定外の質問で<br>止まってしまう</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="col">
+          <span class="tag ok">比べる</span>
+          <svg viewBox="0 0 160 120" aria-label="比べる相手と差で答える">
+            <rect x="6" y="26" width="58" height="54" rx="10" fill="#EAF2ED" stroke="#2E6B50" stroke-width="2.5"/>
+            <text x="35" y="60" text-anchor="middle" font-size="24" font-weight="900" fill="#2E6B50">A</text>
+            <rect x="96" y="26" width="58" height="54" rx="10" fill="#1F4D3A"/>
+            <text x="125" y="60" text-anchor="middle" font-size="24" font-weight="900" fill="#fff">B</text>
+            <path d="M68 53 L92 53" stroke="#B8962E" stroke-width="4" stroke-linecap="round"/>
+            <path d="M86 46 L93 53 L86 60" fill="none" stroke="#B8962E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="58" y="90" width="44" height="26" rx="13" fill="#B8962E"/>
+            <text x="80" y="109" text-anchor="middle" font-size="16" font-weight="900" fill="#fff">差</text>
+            <text x="35" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#46564E">これまで</text>
+            <text x="125" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#46564E">この研究</text>
+          </svg>
+          <div class="cap ok">どんな質問も<br>同じ形で答えられる</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">準備は3ステップ</div>
+    <ol class="steps3">
+      <li><span class="no">1</span><span>AIで、聞かれそうな質問を<em>出しつくす</em></span></li>
+      <li><span class="no">2</span><span>質問ごとに<em>「比べる相手」と「その差」</em>を一つずつ覚える</span></li>
+      <li><span class="no">3</span><span>比べながら、<em>声に出して</em>リハーサル</span></li>
+    </ol>
+
+    <div class="sub">答えの型は、これ一つ</div>
+    <div class="speech">
+      これまでは<span class="k">A</span>でした。<br>
+      この研究は<span class="k">B</span>です。<br>
+      その差が<span class="k gold">新しさ</span>です。
+    </div>
+
+    <div class="sub" style="margin-top:40px">よく聞かれる3つと、比べる相手</div>
+    <div class="qa">
+      <div class="q">「何が新しいの？」</div>
+      <div class="a">→<b>これまでの研究</b>と比べる</div>
+    </div>
+    <div class="qa">
+      <div class="q">「結果はどうだった？」</div>
+      <div class="a">→<b>ほかの研究と、同じ所・ちがう所</b></div>
+    </div>
+    <div class="qa">
+      <div class="q">「足りない所は？」</div>
+      <div class="a">→<b>できたこと・まだの所</b>（次の研究へ）</div>
+    </div>
+
+    <div class="tip"><b>ひと工夫：</b>予備審査で先生方に言われたことも、AIに入れておきましょう。本番の質問が当たりやすくなります。</div>
+
+    <div class="point">
+      <span class="ptag">POINT</span>
+      <div class="ev">
+        <div class="star">★★★★☆</div>
+        <div class="h">比べて覚えると、本番で使える</div>
+        <p>2つの例を比べて学んだ人は、別々に学んだ人より約3倍、学んだやり方を本番の交渉で使えました。別々に学ぶだけでは、何も学ばないのとほぼ同じでした。</p>
+        <div class="src">ノースウェスタン大学ほかの実験（Loewenstein, Thompson, Gentner 1999・2003）</div>
+      </div>
+      <div class="ev">
+        <div class="star">★★★☆☆</div>
+        <div class="h">審査で見られるのは「比べる力」</div>
+        <p>博士の審査では「これまでの研究と比べて、どこが同じで、どこがちがうか。その理由は」がよく聞かれます。</p>
+        <div class="src">大学院生向けの審査対策ガイド（Grad Coach）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最後：変化のイラスト -->
+  <section class="finale" aria-label="施術前と施術後">
+    <svg viewBox="0 0 340 170" aria-hidden="true">
+      <text x="78" y="22" text-anchor="middle" font-size="17" font-weight="700" fill="#C4513A">施術前</text>
+      <rect x="14" y="44" width="122" height="78" rx="12" fill="#fff" stroke="#9AA6A0" stroke-width="5"/>
+      <rect x="137" y="70" width="10" height="26" rx="3" fill="#9AA6A0"/>
+      <rect x="25" y="55" width="22" height="56" rx="4" fill="#C4513A"/>
+      <path d="M160 83 L184 83" stroke="#B8962E" stroke-width="6" stroke-linecap="round"/>
+      <path d="M176 72 L188 83 L176 94" fill="none" stroke="#B8962E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="262" y="22" text-anchor="middle" font-size="17" font-weight="700" fill="#1F4D3A">施術後</text>
+      <rect x="198" y="44" width="122" height="78" rx="12" fill="#fff" stroke="#1F4D3A" stroke-width="5"/>
+      <rect x="321" y="70" width="10" height="26" rx="3" fill="#1F4D3A"/>
+      <rect x="209" y="55" width="22" height="56" rx="4" fill="#5DBB85"/>
+      <rect x="236" y="55" width="22" height="56" rx="4" fill="#5DBB85"/>
+      <rect x="263" y="55" width="22" height="56" rx="4" fill="#5DBB85"/>
+      <rect x="290" y="55" width="22" height="56" rx="4" fill="#5DBB85"/>
+      <path d="M266 40 L248 76 L262 76 L254 112 L282 68 L267 68 L276 40 Z" fill="#F2C94C" stroke="#1F4D3A" stroke-width="3" stroke-linejoin="round"/>
+    </svg>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="theory">施術の考え方：神経反射入力装置論</div>
+    <div class="who">谷 弘誠</div>
+    <p class="bio">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="btns">
+      <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談</a>
+      <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップ</a>
+    </div>
+    <div class="place">高松市由良町、由良川東公園のそば</div>
+    <div class="sig">高松発・一生動ける身体と人生の教養研究室｜無車・自転車・圧力鍋生活を実践する治療家より</div>
+    <div class="brand">SANJO KENKO-DO</div>
+  </div>
+</footer>
+
+</body>
+</html>
