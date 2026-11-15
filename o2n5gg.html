@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>谷先生の15分｜ゴムバンドとタイマーだけ</title>
+<style>
+  :root { --green:#12382a; --gold:#c9a44c; --gold2:#e6c46a; --paper:#f6f3ea; --ink:#1d2a24; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif; line-height:1.7; }
+  header { background:var(--green); color:#fff; padding:20px 18px 16px; border-bottom:4px solid var(--gold); }
+  header h1 { margin:0; font-size:22px; }
+  header p { margin:6px 0 0; font-size:14px; color:var(--gold2); }
+  main { max-width:560px; margin:0 auto; padding:12px 16px 290px; }
+  .rules { background:#fff; border:2px solid var(--gold); border-radius:12px; padding:8px 14px; font-size:14px; }
+  .rules summary { font-weight:700; color:var(--green); }
+  .rules ul { margin:0; padding-left:20px; }
+  .step-no { margin:12px 0 4px; font-size:14px; color:#5b6b62; text-align:center; }
+  .card { background:#fff; border-radius:14px; padding:18px 16px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .card h2 { margin:0 0 8px; font-size:22px; color:var(--green); }
+  .card ul { margin:0; padding-left:20px; font-size:16px; }
+  .bar { position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:4px solid var(--gold); padding:8px 16px 14px; box-shadow:0 -4px 12px rgba(0,0,0,.12); }
+  .bar-in { max-width:560px; margin:0 auto; }
+  .timer { margin:0; text-align:center; font-size:60px; line-height:1.15; font-weight:800; color:var(--green); font-variant-numeric:tabular-nums; letter-spacing:2px; }
+  .hint { text-align:center; font-size:14px; color:#5b6b62; height:24px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+  .btns { display:flex; gap:10px; margin-top:8px; }
+  button { flex:1; font-size:18px; font-weight:700; padding:13px 8px; border-radius:12px; border:2px solid var(--green); background:#fff; color:var(--green); }
+  button.main { background:var(--green); color:#fff; }
+  button:active { opacity:.7; }
+  .dots { display:flex; justify-content:center; gap:6px; margin:10px 0 0; }
+  .dot { width:10px; height:10px; border-radius:50%; background:#d5d0c0; }
+  .dot.on { background:var(--gold); }
+  .foot { margin-top:16px; font-size:12px; color:#5b6b62; }
+</style>
+</head>
+<body>
+<header>
+  <h1>谷先生の15分</h1>
+  <p>ゴムバンドとタイマーだけ。週に2〜3回。</p>
+</header>
+<main>
+  <details class="rules">
+    <summary>やり方の決まり（押すと開きます）</summary>
+    <ul>
+      <li>回数は決めません。タイマーを見て、だるくなったら次へ進みます。</li>
+      <li>力は6〜8割まで。「明日もやっていいな」と思えるところでやめます。</li>
+      <li>順番は自由です。テレビやラジオをつけたままで大丈夫です。</li>
+      <li>痛みが出たら、その種目はやめてください。</li>
+    </ul>
+  </details>
+
+  <div class="step-no" id="stepNo"></div>
+  <div class="card">
+    <h2 id="title"></h2>
+    <ul id="points"></ul>
+  </div>
+  <div class="foot">
+    三条健康堂接骨院　谷先生｜年間200冊読む治療家<br>
+    これは谷先生が自分でやっている運動の紹介です。体に不安がある方は、かかりつけの先生に相談してから行ってください。
+  </div>
+</main>
+<div class="bar"><div class="bar-in">
+  <div class="timer" id="timer">0:00</div>
+  <div class="hint" id="hint"></div>
+  <div class="btns">
+    <button id="startBtn" class="main">スタート</button>
+    <button id="resetBtn">0に戻す</button>
+  </div>
+  <div class="btns">
+    <button id="prevBtn">前へ</button>
+    <button id="nextBtn" class="main">次へ</button>
+  </div>
+  <div class="dots" id="dots"></div>
+</div></div>
+
+<script>
+var steps = [
+  { t:"バードドッグ（右手と左足）",
+    p:["四つんばいになります。","右手と左足を、床と同じ高さまで伸ばします。","顎は軽く引いて、目は両手のあいだの床を見ます。首は動かしません。","おへそを、ほんの少しだけ床のほうへ意識します。腰は反らしません。","首すじに太いすじが浮いたら、力みすぎの目印です。"],
+    h:"めやすは15秒。粘れる日は、もう少し。" },
+  { t:"バードドッグ（左手と右足）",
+    p:["手と足を入れかえて、同じようにやります。","慣れるまで、ゴムバンドはいりません。","慣れたら、いちばんゆるい輪のゴムバンドを、手と足にかけます。"],
+    h:"左右を、だるくなるまでくり返します。" },
+  { t:"立って足を動かす（右足）",
+    p:["壁かいすに手をそえて立ちます。","輪のゴムバンドを両足にかけます。最初はなしで大丈夫です。","右足を横へゆっくり動かします。","つま先を「正面」「内向き」「外向き」と変えて、それぞれやります。","体が横に倒れないように、まっすぐ立ったままやります。"],
+    h:"つま先の向きを変えると、効く場所が変わります。" },
+  { t:"立って足を動かす（左足）",
+    p:["足を入れかえて、同じようにやります。","つま先は「正面」「内向き」「外向き」の3つです。"],
+    h:"支えている足のお尻にも、効いています。" },
+  { t:"スクワット",
+    p:["足を腰の幅にひらきます。","お尻を後ろへ引くように、ゆっくりしゃがみます。","ひざは、つま先と同じ向きにします。","深くしゃがまなくて大丈夫です。"],
+    h:"だるくなったら、そこで終わりです。" },
+  { t:"エアロバイク",
+    p:["力は6〜8割です。全力は出しません。","ぜいぜい言うくらいで止めて、休みます。","これを3〜4セットやります。","タイマーを見て「あと5秒」「あと10秒」と、その場で決めます。","エアロバイクがなければ、外を走るか、自転車でも大丈夫です。"],
+    h:"出し切らないのが、続けるコツです。" }
+];
+var i = 0, sec = 0, tick = null;
+var $ = function(id){ return document.getElementById(id); };
+function fmt(s){ var m = Math.floor(s/60), r = s%60; return m + ":" + (r<10 ? "0"+r : r); }
+function stop(){ if(tick){ clearInterval(tick); tick = null; } $("startBtn").textContent = "スタート"; }
+function show(){
+  stop(); sec = 0;
+  var s = steps[i];
+  $("stepNo").textContent = (i+1) + " / " + steps.length;
+  $("title").textContent = s.t;
+  $("points").innerHTML = "";
+  s.p.forEach(function(x){ var li = document.createElement("li"); li.textContent = x; $("points").appendChild(li); });
+  $("hint").textContent = s.h;
+  $("timer").textContent = fmt(0);
+  $("dots").innerHTML = "";
+  steps.forEach(function(_, k){ var d = document.createElement("div"); d.className = "dot" + (k===i ? " on" : ""); $("dots").appendChild(d); });
+  $("nextBtn").textContent = (i === steps.length-1) ? "最初にもどる" : "次へ";
+}
+$("startBtn").addEventListener("click", function(){
+  if(tick){ stop(); return; }
+  $("startBtn").textContent = "止める";
+  tick = setInterval(function(){ sec++; $("timer").textContent = fmt(sec); }, 1000);
+});
+$("resetBtn").addEventListener("click", function(){ stop(); sec = 0; $("timer").textContent = fmt(0); });
+$("nextBtn").addEventListener("click", function(){ i = (i+1) % steps.length; show(); });
+$("prevBtn").addEventListener("click", function(){ i = (i-1+steps.length) % steps.length; show(); });
+show();
+</script>
+</body>
+</html>
