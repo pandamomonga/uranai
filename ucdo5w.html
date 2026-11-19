@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施術報告書｜本倉様｜2026年11月19日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:#1f4d3a; --g2:#2f6b52; --gbg:#e8f1ec;
+  --gold:#a8822a; --goldl:#e6d296;
+  --cold:#4f6f95; --coldbg:#e9eff6;
+  --warm:#c2661f; --warmbg:#fbeee0;
+  --ink:#1e2a25; --cream:#f7f3e8; --line:#d9d2bd;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:17px;line-height:1.8}
+.serif{font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px}
+svg{display:block;width:100%;height:auto}
+
+/* 表紙 */
+.cover{background:var(--g);color:#fff;text-align:center;padding:52px 20px 40px}
+.eyebrow{letter-spacing:.32em;font-size:13px;color:var(--goldl);font-weight:500}
+.cover h1{font-size:34px;margin:14px 0 22px;letter-spacing:.12em;font-weight:700}
+.cover .name{font-size:27px;font-weight:700}
+.cover .date{font-size:16px;margin-top:4px}
+.cover .catch{margin:26px auto 0;padding-top:22px;border-top:1px solid var(--goldl);
+  max-width:320px;font-size:21px;line-height:1.7;font-weight:600}
+.disc{background:var(--cream);border-left:4px solid var(--gold);
+  margin:22px 0 0;padding:12px 14px;font-size:15px;line-height:1.75}
+
+/* 目次 */
+.toc{margin:34px 0 8px}
+.toc h2{font-size:21px;color:var(--g);margin:0 0 12px;text-align:center}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line);
+  font-size:17px;font-weight:500;line-height:1.5}
+.toc .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--g);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+
+/* 各部 */
+.part{margin:52px 0 0}
+.part .no{display:inline-block;background:var(--gold);color:#fff;font-weight:700;
+  font-size:14px;letter-spacing:.14em;padding:2px 14px;border-radius:99px}
+.part h2{font-size:25px;line-height:1.5;color:var(--g);margin:10px 0 8px;font-weight:700}
+.lead{font-size:17px;margin:0 0 6px}
+.card{border:1px solid var(--line);border-radius:16px;padding:16px 14px;margin:16px 0;background:#fff}
+.card.cream{background:var(--cream);border-color:var(--cream)}
+.card h3{font-size:18px;margin:0 0 10px;color:var(--g);text-align:center;line-height:1.5}
+.cap{font-size:17px;font-weight:700;text-align:center;margin:10px 0 0;line-height:1.6}
+.sub{font-size:15px;text-align:center;margin:4px 0 0;line-height:1.6}
+
+.ba{display:grid;grid-template-columns:1fr 30px 1fr;align-items:center;gap:4px}
+.ba .col{text-align:center}
+.tag{display:inline-block;font-size:14px;font-weight:700;color:#fff;padding:1px 14px;border-radius:99px;margin-bottom:6px}
+.tag.b{background:var(--cold)} .tag.a{background:var(--g)}
+.arrow{font-size:26px;color:var(--gold);text-align:center;font-weight:700}
+
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.three .it{background:#fff;border-radius:12px;padding:10px 4px 12px;text-align:center}
+.three .it svg{width:58px;margin:0 auto 4px}
+.three .t{font-size:16px;font-weight:700;line-height:1.4}
+.three .s{font-size:13px;line-height:1.45;margin-top:2px}
+
+.legend{list-style:none;margin:8px 0 0;padding:0}
+.legend li{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:500;padding:5px 0;line-height:1.5}
+.legend .d{flex:none;width:30px;height:30px;border-radius:50%;background:var(--warm);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+
+.step{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.step .d{flex:none;width:32px;height:32px;border-radius:50%;background:var(--warm);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px}
+.step b{font-size:18px;color:var(--g);line-height:1.4}
+
+.point{position:relative;border:2px solid var(--gold);border-radius:14px;padding:22px 16px 14px;margin:26px 0 0;background:#fff}
+.point .pt{position:absolute;top:-13px;left:16px;background:var(--gold);color:#fff;font-weight:700;
+  font-size:14px;letter-spacing:.14em;padding:0 14px;border-radius:99px}
+.point p{margin:0;font-size:17px;line-height:1.75}
+
+.pick{border:2px solid var(--gold);background:#fff}
+.badge{display:inline-block;background:var(--gold);color:#fff;font-size:14px;font-weight:700;padding:1px 12px;border-radius:99px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.mini div{background:var(--cream);border-radius:12px;padding:12px 8px;text-align:center;font-size:15px;line-height:1.5;font-weight:500}
+.mini svg{width:46px;margin:0 auto 4px}
+
+/* 最後の絵 */
+.final{margin:56px 0 0;background:var(--cream);border-radius:20px;padding:22px 10px 20px}
+.final .lb{display:grid;grid-template-columns:1fr 1fr;text-align:center;font-weight:700;font-size:19px;margin-top:4px}
+.final .lb .b{color:var(--cold)} .final .lb .a{color:var(--g)}
+
+footer{background:var(--g);color:#fff;margin-top:56px;padding:34px 0 40px;font-size:15px;line-height:1.85}
+footer .th{font-size:17px;font-weight:700;color:var(--goldl);margin:0 0 4px}
+footer p{margin:0 0 16px}
+footer .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 16px}
+footer a{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;
+  padding:12px 6px;border-radius:10px;background:#fff;color:var(--g)}
+footer .loc{text-align:center;font-size:15px;margin:0}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="eyebrow">SANJO KENKO-DO</div>
+  <h1 class="serif">施術報告書</h1>
+  <div class="name">本倉様</div>
+  <div class="date">2026年11月19日（木）</div>
+  <div class="catch serif">ちぢんでいた左がわを、<br>のびのびに。</div>
+</header>
+
+<main class="wrap">
+
+<p class="disc">※本日の施術で触れた場所だけを記録したものです。症状の背景には、さまざまな要素が複雑に関わっています。</p>
+
+<nav class="toc">
+  <h2 class="serif">今日の報告は、4つの話です</h2>
+  <ol>
+    <li><span class="n">1</span>来たときの体</li>
+    <li><span class="n">2</span>かたくなっていた3か所</li>
+    <li><span class="n">3</span>ゆるめたあとの体</li>
+    <li><span class="n">4</span>これからのお酒</li>
+  </ol>
+</nav>
+
+<!-- ===== 第1部 ===== -->
+<section class="part">
+  <span class="no">第1部</span>
+  <h2 class="serif">来たときの体</h2>
+
+  <div class="card">
+    <div class="ba">
+      <div class="col"><span class="tag a">いつも</span>
+        <svg viewBox="0 0 150 100" role="img" aria-label="平らなシーソー">
+          <path d="M75 58 L58 90 L92 90 Z" fill="#2f6b52"/>
+          <line x1="14" y1="56" x2="136" y2="56" stroke="#1f4d3a" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="26" cy="38" r="14" fill="#1f4d3a"/><text x="26" y="43" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">左</text>
+          <circle cx="124" cy="38" r="14" fill="#1f4d3a"/><text x="124" y="43" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">右</text>
+        </svg>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col"><span class="tag b">今日</span>
+        <svg viewBox="0 0 150 100" role="img" aria-label="左が下がったシーソー">
+          <path d="M75 58 L58 90 L92 90 Z" fill="#4f6f95"/>
+          <g transform="rotate(-13 75 56)">
+            <line x1="14" y1="56" x2="136" y2="56" stroke="#4f6f95" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="26" cy="38" r="14" fill="#c2661f"/><text x="26" y="43" font-size="14" font-weight="700" fill="#fff" text-anchor="middle" transform="rotate(13 26 38)">左</text>
+            <circle cx="124" cy="38" r="14" fill="#4f6f95"/><text x="124" y="43" font-size="14" font-weight="700" fill="#fff" text-anchor="middle" transform="rotate(13 124 38)">右</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <p class="cap">左がわが下がっていました</p>
+  </div>
+
+  <div class="card">
+    <div class="ba">
+      <div class="col"><span class="tag a">いつも</span>
+        <svg viewBox="0 0 150 90" role="img" aria-label="満タンの電池">
+          <rect x="22" y="20" width="96" height="50" rx="9" fill="#fff" stroke="#1f4d3a" stroke-width="4"/>
+          <rect x="120" y="35" width="9" height="20" rx="3" fill="#1f4d3a"/>
+          <rect x="31" y="29" width="17" height="32" rx="3" fill="#2f6b52"/><rect x="52" y="29" width="17" height="32" rx="3" fill="#2f6b52"/>
+          <rect x="73" y="29" width="17" height="32" rx="3" fill="#2f6b52"/><rect x="94" y="29" width="17" height="32" rx="3" fill="#2f6b52"/>
+        </svg>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col"><span class="tag b">今日</span>
+        <svg viewBox="0 0 150 90" role="img" aria-label="まだ十分ある電池">
+          <rect x="22" y="20" width="96" height="50" rx="9" fill="#fff" stroke="#1f4d3a" stroke-width="4"/>
+          <rect x="120" y="35" width="9" height="20" rx="3" fill="#1f4d3a"/>
+          <rect x="31" y="29" width="17" height="32" rx="3" fill="#2f6b52"/><rect x="52" y="29" width="17" height="32" rx="3" fill="#2f6b52"/>
+          <rect x="73" y="29" width="17" height="32" rx="3" fill="#2f6b52"/><rect x="94" y="29" width="17" height="32" rx="3" fill="#fff" stroke="#2f6b52" stroke-width="2" stroke-dasharray="4 3"/>
+        </svg>
+      </div>
+    </div>
+    <p class="cap">元気は足りていました</p>
+  </div>
+
+  <div class="card cream">
+    <h3>重なっていた3つ</h3>
+    <div class="three">
+      <div class="it">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <g stroke="#4f6f95" stroke-width="4.5" stroke-linecap="round">
+            <line x1="32" y1="8" x2="32" y2="56"/><line x1="11" y1="20" x2="53" y2="44"/><line x1="11" y1="44" x2="53" y2="20"/>
+            <path d="M25 12 L32 18 L39 12 M25 52 L32 46 L39 52" fill="none" stroke-width="3.5"/>
+          </g>
+        </svg>
+        <div class="t">外の冷え</div><div class="s">急な冷えこみ</div>
+      </div>
+      <div class="it">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M16 10 L48 10 L43 56 L21 56 Z" fill="#e9eff6" stroke="#4f6f95" stroke-width="4" stroke-linejoin="round"/>
+          <rect x="24" y="20" width="11" height="11" rx="2" fill="#fff" stroke="#4f6f95" stroke-width="2.5" transform="rotate(-12 29 25)"/>
+          <rect x="31" y="34" width="11" height="11" rx="2" fill="#fff" stroke="#4f6f95" stroke-width="2.5" transform="rotate(14 36 39)"/>
+        </svg>
+        <div class="t">中の冷え</div><div class="s">冷たいお酒</div>
+      </div>
+      <div class="it">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="23" fill="none" stroke="#1f4d3a" stroke-width="5.5"/>
+          <circle cx="32" cy="32" r="6" fill="#1f4d3a"/>
+          <g stroke="#1f4d3a" stroke-width="5" stroke-linecap="round"><line x1="32" y1="38" x2="32" y2="53"/><line x1="26" y1="30" x2="11" y2="26"/><line x1="38" y1="30" x2="53" y2="26"/></g>
+        </svg>
+        <div class="t">すわり通し</div><div class="s">運転とデスク</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 第2部 ===== -->
+<section class="part">
+  <span class="no">第2部</span>
+  <h2 class="serif">かたくなっていた3か所</h2>
+
+  <div class="card">
+    <svg viewBox="0 0 320 400" role="img" aria-label="背中がわから見た体の図。左の首、左の胸と肋骨、左のお尻に印">
+      <text x="30" y="34" font-size="20" font-weight="700" fill="#1f4d3a" text-anchor="middle">左</text>
+      <text x="290" y="34" font-size="20" font-weight="700" fill="#1f4d3a" text-anchor="middle">右</text>
+      <line x1="20" y1="388" x2="300" y2="388" stroke="#1f4d3a" stroke-width="2" stroke-dasharray="6 5"/>
+      <!-- 輪郭 -->
+      <g stroke="#1f4d3a" stroke-linecap="round" fill="none">
+        <line x1="104" y1="122" x2="86" y2="214" stroke-width="27"/>
+        <line x1="216" y1="112" x2="236" y2="218" stroke-width="27"/>
+        <line x1="136" y1="236" x2="134" y2="352" stroke-width="33"/>
+        <line x1="186" y1="244" x2="188" y2="372" stroke-width="33"/>
+      </g>
+      <g stroke="#efe9d6" stroke-linecap="round" fill="none">
+        <line x1="104" y1="122" x2="86" y2="214" stroke-width="21"/>
+        <line x1="216" y1="112" x2="236" y2="218" stroke-width="21"/>
+        <line x1="136" y1="236" x2="134" y2="352" stroke-width="27"/>
+        <line x1="186" y1="244" x2="188" y2="372" stroke-width="27"/>
+      </g>
+      <rect x="148" y="74" width="24" height="30" fill="#efe9d6" stroke="#1f4d3a" stroke-width="3"/>
+      <path d="M100 116 Q160 92 220 104 L208 244 Q160 256 114 234 Z" fill="#efe9d6" stroke="#1f4d3a" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="160" cy="50" r="28" fill="#efe9d6" stroke="#1f4d3a" stroke-width="3"/>
+      <line x1="160" y1="106" x2="161" y2="240" stroke="#1f4d3a" stroke-width="2" stroke-dasharray="3 5"/>
+      <!-- 肋骨 -->
+      <g fill="none" stroke="#2f6b52" stroke-width="2.5" stroke-linecap="round">
+        <path d="M110 136 Q134 128 156 136"/><path d="M110 152 Q134 144 156 152"/><path d="M111 168 Q134 160 156 168"/><path d="M112 184 Q134 176 156 184"/>
+      </g>
+      <!-- ぎゅっ -->
+      <g stroke="#c2661f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M44 118 L44 150 M34 140 L44 150 L54 140"/>
+        <path d="M44 232 L44 200 M34 210 L44 200 L54 210"/>
+      </g>
+      <text x="44" y="181" font-size="16" font-weight="700" fill="#c2661f" text-anchor="middle">ぎゅっ</text>
+      <!-- 足の差 -->
+      <g stroke="#c2661f" stroke-width="3" stroke-linecap="round" fill="none"><path d="M134 372 L134 386 M129 377 L134 372 L139 377 M129 381 L134 386 L139 381"/></g>
+      <text x="62" y="352" font-size="15" font-weight="700" fill="#c2661f" text-anchor="middle">左足が</text>
+      <text x="62" y="372" font-size="15" font-weight="700" fill="#c2661f" text-anchor="middle">短く見える</text>
+      <!-- 印 -->
+      <g font-size="17" font-weight="700" fill="#fff" text-anchor="middle">
+        <circle cx="142" cy="92" r="15" fill="#c2661f" stroke="#fff" stroke-width="3"/><text x="142" y="98">2</text>
+        <circle cx="132" cy="158" r="15" fill="#c2661f" stroke="#fff" stroke-width="3"/><text x="132" y="164">3</text>
+        <circle cx="136" cy="226" r="15" fill="#c2661f" stroke="#fff" stroke-width="3"/><text x="136" y="232">1</text>
+      </g>
+    </svg>
+    <p class="sub">背中がわから見た図</p>
+    <ul class="legend">
+      <li><span class="d">1</span>左のお尻の奥</li>
+      <li><span class="d">2</span>左の首</li>
+      <li><span class="d">3</span>胸（心臓のまわりの肋骨）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 第3部 ===== -->
+<section class="part">
+  <span class="no">第3部</span>
+  <h2 class="serif">ゆるめたあとの体</h2>
+
+  <div class="card">
+    <div class="step"><span class="d">1</span><b>左のお尻の奥</b></div>
+    <div class="ba">
+      <div class="col"><span class="tag b">施術前</span>
+        <svg viewBox="0 0 120 110" role="img" aria-label="左足が短く見える">
+          <line x1="8" y1="102" x2="112" y2="102" stroke="#1f4d3a" stroke-width="2" stroke-dasharray="5 4"/>
+          <rect x="27" y="10" width="66" height="18" rx="9" fill="#4f6f95" transform="rotate(-6 60 19)"/>
+          <rect x="33" y="20" width="21" height="64" rx="10" fill="#4f6f95"/>
+          <rect x="66" y="22" width="21" height="80" rx="10" fill="#4f6f95"/>
+          <text x="43.5" y="58" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">左</text>
+          <text x="76.5" y="66" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">右</text>
+          <circle cx="40" cy="14" r="7" fill="#c2661f" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col"><span class="tag a">施術後</span>
+        <svg viewBox="0 0 120 110" role="img" aria-label="左右の足がそろう">
+          <line x1="8" y1="102" x2="112" y2="102" stroke="#1f4d3a" stroke-width="2" stroke-dasharray="5 4"/>
+          <rect x="27" y="10" width="66" height="18" rx="9" fill="#1f4d3a"/>
+          <rect x="33" y="22" width="21" height="80" rx="10" fill="#1f4d3a"/>
+          <rect x="66" y="22" width="21" height="80" rx="10" fill="#1f4d3a"/>
+          <text x="43.5" y="66" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">左</text>
+          <text x="76.5" y="66" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">右</text>
+        </svg>
+      </div>
+    </div>
+    <p class="cap">ゆるんで、足がそろいました</p>
+  </div>
+
+  <div class="card">
+    <div class="step"><span class="d">2</span><b>左の首</b></div>
+    <div class="ba">
+      <div class="col"><span class="tag b">施術前</span>
+        <svg viewBox="0 0 120 110" role="img" aria-label="左の首がつまっている">
+          <path d="M14 104 Q60 66 106 104" fill="none" stroke="#4f6f95" stroke-width="7" stroke-linecap="round"/>
+          <g transform="rotate(-13 60 88)">
+            <line x1="60" y1="56" x2="60" y2="84" stroke="#4f6f95" stroke-width="16" stroke-linecap="round"/>
+            <circle cx="60" cy="34" r="22" fill="#e9eff6" stroke="#4f6f95" stroke-width="5"/>
+          </g>
+          <path d="M40 62 L30 70 L42 76 L32 84" fill="none" stroke="#c2661f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="12" y="52" font-size="14" font-weight="700" fill="#1f4d3a" text-anchor="middle">左</text>
+          <text x="108" y="52" font-size="14" font-weight="700" fill="#1f4d3a" text-anchor="middle">右</text>
+        </svg>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col"><span class="tag a">施術後</span>
+        <svg viewBox="0 0 120 110" role="img" aria-label="首がまっすぐにのびる">
+          <path d="M14 104 Q60 66 106 104" fill="none" stroke="#1f4d3a" stroke-width="7" stroke-linecap="round"/>
+          <line x1="60" y1="56" x2="60" y2="84" stroke="#1f4d3a" stroke-width="16" stroke-linecap="round"/>
+          <circle cx="60" cy="34" r="22" fill="#e8f1ec" stroke="#1f4d3a" stroke-width="5"/>
+          <text x="12" y="52" font-size="14" font-weight="700" fill="#1f4d3a" text-anchor="middle">左</text>
+          <text x="108" y="52" font-size="14" font-weight="700" fill="#1f4d3a" text-anchor="middle">右</text>
+        </svg>
+      </div>
+    </div>
+    <p class="cap">つっぱりが、のびました</p>
+  </div>
+
+  <div class="card">
+    <div class="step"><span class="d">3</span><b>胸（心臓のまわりの肋骨）</b></div>
+    <div class="ba">
+      <div class="col"><span class="tag b">施術前</span>
+        <svg viewBox="0 0 120 110" role="img" aria-label="せまくなった胸">
+          <ellipse cx="60" cy="56" rx="24" ry="42" fill="#e9eff6" stroke="#4f6f95" stroke-width="5"/>
+          <g fill="none" stroke="#4f6f95" stroke-width="3" stroke-linecap="round"><path d="M42 38 Q60 30 78 38"/><path d="M40 52 Q60 44 80 52"/><path d="M40 66 Q60 58 80 66"/><path d="M43 80 Q60 72 77 80"/></g>
+          <g stroke="#c2661f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M6 56 L26 56 M19 49 L26 56 L19 63"/><path d="M114 56 L94 56 M101 49 L94 56 L101 63"/>
+          </g>
+        </svg>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col"><span class="tag a">施術後</span>
+        <svg viewBox="0 0 120 110" role="img" aria-label="ひろがった胸">
+          <ellipse cx="60" cy="56" rx="38" ry="44" fill="#e8f1ec" stroke="#1f4d3a" stroke-width="5"/>
+          <g fill="none" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"><path d="M32 38 Q60 28 88 38"/><path d="M28 52 Q60 42 92 52"/><path d="M28 66 Q60 56 92 66"/><path d="M33 80 Q60 70 87 80"/></g>
+          <g stroke="#a8822a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M20 56 L4 56 M10 50 L4 56 L10 62"/><path d="M100 56 L116 56 M110 50 L116 56 L110 62"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <p class="cap">ひろがって、息が入りやすく</p>
+  </div>
+
+  <div class="point">
+    <span class="pt">POINT</span>
+    <p>お尻・首・胸がゆるむと、<br>腰も楽になります。</p>
+  </div>
+</section>
+
+<!-- ===== 第4部 ===== -->
+<section class="part">
+  <span class="no">第4部</span>
+  <h2 class="serif">これからのお酒</h2>
+
+  <div class="card">
+    <h3>いきなり冷たい一杯</h3>
+    <svg viewBox="0 0 320 96" role="img" aria-label="冷たいビールでお腹が冷える">
+      <g transform="translate(58 14)">
+        <path d="M44 22 Q66 22 66 40 Q66 58 44 58" fill="none" stroke="#7a5a1c" stroke-width="5"/>
+        <rect x="0" y="10" width="46" height="60" rx="6" fill="#e9b93c" stroke="#7a5a1c" stroke-width="3"/>
+        <rect x="-3" y="2" width="52" height="18" rx="9" fill="#fff" stroke="#7a5a1c" stroke-width="3"/>
+      </g>
+      <path d="M150 48 L186 48 M176 38 L186 48 L176 58" fill="none" stroke="#4f6f95" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="244" cy="48" r="38" fill="#e9eff6" stroke="#4f6f95" stroke-width="4"/>
+      <text x="244" y="43" font-size="16" font-weight="700" fill="#3c5676" text-anchor="middle">お腹</text>
+      <text x="244" y="65" font-size="16" font-weight="700" fill="#3c5676" text-anchor="middle">ひえひえ</text>
+    </svg>
+  </div>
+
+  <div class="card pick">
+    <div style="text-align:center;margin-bottom:6px"><span class="badge">おすすめ</span></div>
+    <h3>先に、温かいひと口</h3>
+    <svg viewBox="0 0 320 110" role="img" aria-label="温かい汁ものを先に、それからビールでお腹がぽかぽか">
+      <g transform="translate(10 0)">
+        <g fill="none" stroke="#c2661f" stroke-width="3.5" stroke-linecap="round">
+          <path d="M22 30 Q16 22 22 14 Q28 6 22 0"/><path d="M38 32 Q32 24 38 16 Q44 8 38 2"/><path d="M54 30 Q48 22 54 14 Q60 6 54 0"/>
+        </g>
+        <path d="M4 44 L72 44 Q70 84 38 86 Q6 84 4 44 Z" fill="#1f4d3a"/>
+        <rect x="26" y="86" width="24" height="8" rx="3" fill="#1f4d3a"/>
+        <rect x="0" y="40" width="76" height="8" rx="4" fill="#a8822a"/>
+      </g>
+      <path d="M98 62 L116 62 M109 54 L116 62 L109 70" fill="none" stroke="#a8822a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <g transform="translate(130 26)">
+        <path d="M44 22 Q66 22 66 40 Q66 58 44 58" fill="none" stroke="#7a5a1c" stroke-width="5"/>
+        <rect x="0" y="10" width="46" height="60" rx="6" fill="#e9b93c" stroke="#7a5a1c" stroke-width="3"/>
+        <rect x="-3" y="2" width="52" height="18" rx="9" fill="#fff" stroke="#7a5a1c" stroke-width="3"/>
+      </g>
+      <path d="M208 62 L226 62 M219 54 L226 62 L219 70" fill="none" stroke="#a8822a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="274" cy="62" r="38" fill="#fbeee0" stroke="#c2661f" stroke-width="4"/>
+      <text x="274" y="57" font-size="16" font-weight="700" fill="#8f4712" text-anchor="middle">お腹</text>
+      <text x="274" y="79" font-size="16" font-weight="700" fill="#8f4712" text-anchor="middle">ぽかぽか</text>
+    </svg>
+    <p class="cap">みそ汁かスープを先に</p>
+  </div>
+
+  <div class="mini">
+    <div>
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="14" y="8" width="36" height="48" rx="6" fill="#fbeee0" stroke="#c2661f" stroke-width="4"/>
+        <path d="M32 44 C22 40 24 28 32 22 C31 30 40 30 38 38 C37 42 35 43 32 44 Z" fill="#c2661f"/>
+      </svg>
+      寒い日は<br>お腹にカイロ
+    </div>
+    <div>
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M16 10 L48 10 L43 56 L21 56 Z" fill="#fbeee0" stroke="#7a5a1c" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M19.5 30 L44.5 30 L43 56 L21 56 Z" fill="#e9b93c"/>
+        <rect x="27" y="34" width="10" height="10" rx="2" fill="#fff" stroke="#7a5a1c" stroke-width="2.5" transform="rotate(10 32 39)"/>
+      </svg>
+      ハイボールは<br>氷すくなめ
+    </div>
+  </div>
+</section>
+
+<!-- ===== 最後の絵 ===== -->
+<section class="final" aria-label="施術前と施術後">
+  <svg viewBox="0 0 340 210" role="img" aria-label="冷えてちぢこまった体から、のびのびした体へ">
+    <!-- 前 -->
+    <g fill="#9fb0c6">
+      <circle cx="56" cy="44" r="20"/><circle cx="82" cy="34" r="26"/><circle cx="110" cy="46" r="19"/><rect x="50" y="40" width="64" height="26" rx="13"/>
+    </g>
+    <g fill="#4f6f95"><circle cx="58" cy="84" r="4.5"/><circle cx="84" cy="94" r="4.5"/><circle cx="108" cy="82" r="4.5"/></g>
+    <g stroke="#4f6f95" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M92 138 Q114 156 96 178 L74 180 L80 200"/>
+      <path d="M96 150 L76 164"/>
+    </g>
+    <circle cx="78" cy="126" r="17" fill="#4f6f95"/>
+    <!-- 矢印 -->
+    <path d="M148 130 L190 130 M176 116 L190 130 L176 144" fill="none" stroke="#a8822a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 後 -->
+    <circle cx="300" cy="40" r="20" fill="#d9a520"/>
+    <g stroke="#d9a520" stroke-width="5" stroke-linecap="round">
+      <line x1="300" y1="6" x2="300" y2="12"/><line x1="266" y1="40" x2="272" y2="40"/><line x1="276" y1="16" x2="280" y2="20"/><line x1="324" y1="16" x2="320" y2="20"/><line x1="276" y1="64" x2="280" y2="60"/><line x1="328" y1="40" x2="334" y2="40"/><line x1="324" y1="64" x2="320" y2="60"/>
+    </g>
+    <g stroke="#1f4d3a" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M252 108 L252 156"/>
+      <path d="M252 118 L224 88"/><path d="M252 118 L280 88"/>
+      <path d="M252 156 L236 200"/><path d="M252 156 L268 200"/>
+    </g>
+    <circle cx="252" cy="82" r="17" fill="#1f4d3a"/>
+  </svg>
+  <div class="lb"><span class="b">施術前</span><span class="a">施術後</span></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="th">神経反射入力装置論</p>
+    <p>体は、入ってきた刺激に反応して、自分で整おうとします。施術は、そのきっかけを入れる仕事です。</p>
+    <p class="th">谷 弘誠</p>
+    <p>柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+    <div class="btns">
+      <a href="https://lin.ee/dwRtwDv">LINEで相談</a>
+      <a href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップ</a>
+    </div>
+    <p class="loc">三条健康堂接骨院<br>高松市由良町、由良川東公園のそば</p>
+  </div>
+</footer>
+
+</body>
+</html>
