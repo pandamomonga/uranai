@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="robots" content="noindex">
+<title>センサーライトのこと｜藤村様｜2026年11月23日</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light only;--g:#1f4d3a;--gold:#a8822a;--blue:#4f6f95;--or:#c2661f;--ink:#1c2a24;--line:#d9e2dc;--pale:#f3f7f4}
+*{box-sizing:border-box}
+html{background:#fff}
+body{margin:0;background:#fff;color:var(--ink);font-family:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;font-size:17px;line-height:1.7;-webkit-text-size-adjust:100%}
+.wrap{max-width:480px;margin:0 auto;background:#fff}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:"BIZ UDPGothic","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif}
+
+.cover{background:var(--g);color:#fff;padding:44px 24px 40px;text-align:center}
+.cover .eye{color:#e6cf8f;font-size:13px;letter-spacing:.28em;font-weight:700}
+.cover h1{margin:14px 0 6px;font-size:30px;letter-spacing:.12em}
+.cover .name{font-size:26px;font-weight:700;margin-top:18px}
+.cover .date{font-size:15px;margin-top:4px;color:#e9f1ec}
+.cover .catch{margin:26px auto 0;padding-top:20px;border-top:1px solid #e6cf8f;font-size:22px;font-weight:700;line-height:1.5;max-width:300px}
+
+.note{margin:22px 20px 0;padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-size:14px;line-height:1.7;color:#33443c;background:var(--pale)}
+
+.toc{margin:26px 20px 0}
+.toc h2{margin:0 0 10px;font-size:20px;color:var(--g)}
+.toc ol{list-style:none;margin:0;padding:0;border-top:2px solid var(--g)}
+.toc li{display:flex;gap:12px;align-items:baseline;padding:11px 2px;border-bottom:1px solid var(--line);font-weight:700;font-size:16px;line-height:1.5}
+.toc li span{flex:none;color:var(--gold);font-size:14px;width:44px}
+
+section{padding:44px 20px 6px}
+.part{display:inline-block;background:var(--gold);color:#fff;font-weight:700;font-size:14px;padding:3px 14px;border-radius:99px;letter-spacing:.08em}
+section h2{margin:10px 0 18px;font-size:23px;line-height:1.45;color:var(--g)}
+.fig{border:1px solid var(--line);border-radius:14px;padding:10px 6px;background:#fff}
+.legend{font-size:14px;text-align:center;color:#33443c;margin:10px 0 0;line-height:1.7}
+.legend b.gr{color:#2f7d57}.legend b.or{color:var(--or)}.legend b.bl{color:var(--blue)}
+
+.rank{list-style:none;margin:18px 0 0;padding:0}
+.rank li{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-weight:700;font-size:17px;line-height:1.5}
+.rank li i{flex:none;font-style:normal;width:46px;height:30px;border-radius:99px;background:var(--or);color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center}
+.ok{margin:14px 0 0;padding:12px 14px;border-radius:10px;background:#e7f2ec;color:var(--g);font-weight:700;text-align:center}
+.small{font-size:14px;color:#33443c;text-align:center;margin:12px 0 0}
+.say{font-size:18px;font-weight:700;text-align:center;color:var(--g);margin:18px 0 0;line-height:1.6}
+
+.spot{list-style:none;margin:16px 0 0;padding:0}
+.spot li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.spot .n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--or);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.spot .t{flex:1;font-weight:700;font-size:17px;line-height:1.4}
+.spot svg{flex:none;width:128px}
+
+.relief{margin:22px 0 0;padding:22px 16px;border-radius:14px;background:var(--g);color:#fff;text-align:center;font-weight:700;font-size:22px;line-height:1.6}
+.relief span{display:block;color:#e6cf8f;font-size:24px;margin-bottom:4px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{border:1px solid var(--line);border-radius:14px;padding:12px 8px 14px;text-align:center}
+.card svg{width:92px;margin:0 auto 6px}
+.card b{display:block;font-size:17px;line-height:1.45;color:var(--g)}
+.card small{display:block;font-size:14px;color:#33443c;line-height:1.5;margin-top:2px}
+
+.derm{margin:26px 0 0;border:2px solid var(--g);border-radius:14px;overflow:hidden}
+.derm h3{margin:0;padding:12px 14px;background:var(--g);color:#fff;font-size:19px;text-align:center}
+.derm .row{display:flex;align-items:center;gap:10px;padding:14px 12px}
+.derm .row+.row{border-top:1px solid var(--line)}
+.derm .no{flex:none;width:32px;height:32px;border-radius:50%;background:var(--gold);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.derm .tx{flex:1;font-weight:700;font-size:17px;line-height:1.45}
+.derm .tag{flex:none;font-weight:700;font-size:15px;padding:4px 12px;border-radius:99px;border:2px solid var(--g);color:var(--g);background:#fff}
+.derm .tag.self{border-color:var(--or);color:var(--or)}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:4px 10px 16px}
+.four div{text-align:center;font-weight:700;font-size:14px;line-height:1.4;color:var(--g)}
+.four svg{width:54px;margin:0 auto 2px}
+.steps{list-style:none;margin:16px 0 0;padding:0}
+.steps li{padding:12px 14px;margin-top:10px;border-radius:10px;background:var(--pale);font-weight:700;font-size:17px;line-height:1.55;border-left:5px solid var(--gold)}
+
+.last{padding:50px 20px 30px}
+footer{margin-top:30px;background:var(--g);color:#fff;padding:34px 22px 40px;text-align:center}
+footer .th{color:#e6cf8f;font-size:14px;letter-spacing:.1em}
+footer .th b{display:block;font-size:19px;letter-spacing:.2em;margin-top:4px}
+footer .nm{font-size:22px;font-weight:700;margin-top:20px}
+footer .bio{font-size:14px;line-height:1.8;margin:10px auto 0;max-width:330px;color:#eef4f0;text-align:left}
+footer .loc{font-size:15px;margin-top:16px}
+footer a{display:block;margin:12px auto 0;max-width:300px;padding:13px 10px;border-radius:99px;font-weight:700;font-size:16px;text-decoration:none}
+footer a.line{background:#fff;color:var(--g)}
+footer a.map{border:1.5px solid #e6cf8f;color:#fff}
+
+.facts{list-style:none;margin:16px 0 0;padding:0}
+.facts li{padding:12px 14px;margin-top:10px;border-radius:10px;background:var(--pale);font-weight:700;font-size:17px;line-height:1.55;border-left:5px solid var(--g)}
+.facts li small{display:block;font-weight:400;font-size:14px;color:#33443c;margin-top:2px}
+.time{display:flex;align-items:stretch;gap:6px;margin:16px 0 0}
+.time div{flex:1;border:2px solid var(--g);border-radius:12px;padding:10px 6px;text-align:center;font-weight:700;font-size:15px;line-height:1.45;color:var(--g)}
+.time div b{display:block;color:var(--gold);font-size:17px}
+.time span{flex:none;align-self:center;color:var(--gold);font-weight:700;font-size:22px}
+.way{border:2px solid var(--g);border-radius:14px;margin-top:14px;overflow:hidden}
+.way .hd{display:flex;align-items:center;gap:10px;background:var(--g);color:#fff;padding:10px 14px;font-weight:700;font-size:20px}
+.way .hd i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;background:#e6cf8f;color:var(--g);display:flex;align-items:center;justify-content:center;font-size:18px}
+.way .bd{display:flex;align-items:center;gap:12px;padding:14px}
+.way .bd svg{flex:none;width:70px}
+.way .big{font-weight:700;font-size:21px;line-height:1.4;color:var(--or)}
+.way .big small{display:block;font-size:14px;color:#33443c;font-weight:400}
+.way .fit{border-top:1px solid var(--line);padding:11px 14px;font-size:16px;font-weight:700;line-height:1.5;background:var(--pale)}
+.way .fit span{color:var(--gold)}
+.chk{list-style:none;margin:8px 0 0;padding:0}
+.chk li{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-weight:700;font-size:17px;line-height:1.5}
+.chk li svg{flex:none;width:30px}
+.chk li small{display:block;font-weight:400;font-size:14px;color:#33443c}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
+.three div{text-align:center;font-weight:700;font-size:14px;line-height:1.4;color:var(--g);border:1px solid var(--line);border-radius:12px;padding:10px 4px}
+.three svg{width:50px;margin:0 auto 4px}
+
+.two{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+.two>div{border-radius:14px;padding:12px 10px 14px;border:2px solid var(--g)}
+.two>div.ng{border-color:var(--or)}
+.two h3{margin:0 0 8px;font-size:17px;text-align:center;color:var(--g)}
+.two .ng h3{color:var(--or)}
+.two ul{list-style:none;margin:0;padding:0}
+.two li{font-weight:700;font-size:16px;line-height:1.45;padding:8px 0;border-top:1px solid var(--line)}
+.stepn{list-style:none;margin:16px 0 0;padding:0;counter-reset:s}
+.stepn li{counter-increment:s;display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-weight:700;font-size:17px;line-height:1.5}
+.stepn li::before{content:counter(s);flex:none;width:32px;height:32px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center}
+
+.cmp{border:1px solid var(--line);border-radius:14px;padding:10px 6px 12px;margin-top:14px}
+.cmp p{margin:6px 8px 0;text-align:center;font-weight:700;font-size:18px;line-height:1.5;color:var(--g)}
+.ox{list-style:none;margin:16px 0 0;padding:0}
+.ox li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-weight:700;font-size:17px;line-height:1.5}
+.ox li i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;background:#2f7d57}
+.ox li.x i{background:var(--or)}
+.how{border:2px solid var(--g);border-radius:14px;margin-top:14px;overflow:hidden}
+.how .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--g);color:#fff;padding:10px 14px;font-weight:700;font-size:19px}
+.how .hd span{flex:none;background:#e6cf8f;color:var(--g);border-radius:99px;padding:2px 12px;font-size:15px}
+.how .bd{padding:12px 14px;font-weight:700;font-size:17px;line-height:1.55}
+.how .bd small{display:block;font-weight:400;font-size:14px;color:#33443c;margin-top:2px}
+.how.weak{border-color:var(--or)}.how.weak .hd{background:var(--or)}.how.weak .hd span{background:#fff;color:var(--or)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="eye">SANJO KENKO-DO</div>
+  <h1>センサーライトのこと</h1>
+  <div class="name">藤村様</div>
+  <div class="date">2026年11月23日（月）</div>
+  <div class="catch">まず、明かりから。</div>
+</header>
+
+<p class="note">※数字は、イギリスの大きな調査のものです。「付けていた家は、入られにくかった」という結果で、効果を約束するものではありません。</p>
+
+<nav class="toc">
+  <h2>今日の話は、4つです</h2>
+  <ol>
+    <li><span>第1部</span>どれくらい効くか</li>
+    <li><span>第2部</span>どこに付けるか</li>
+    <li><span>第3部</span>どうやって付けるか</li>
+    <li><span>第4部</span>おすすめの順番</li>
+  </ol>
+</nav>
+
+<section>
+  <span class="part">第1部</span>
+  <h2>どれくらい効くか<br>（入られにくさ）</h2>
+  <div class="cmp"><svg viewBox="0 0 360 250" role="img" aria-label="何もない家を1とすると、センサーライトだけの家は最大3倍入られにくい。">
+      <line x1="30" y1="206" x2="330" y2="206" stroke="#c9d6ce" stroke-width="2"/>
+      <rect x="62" y="153" width="96" height="53" rx="8" fill="#4f6f95"/>
+      <rect x="202" y="46" width="96" height="160" rx="8" fill="#2f7d57"/>
+      <g font-weight="700" text-anchor="middle">
+        <text x="110" y="143" font-size="22" fill="#4f6f95">1</text>
+        <text x="250" y="36" font-size="22" fill="#2f7d57">最大3倍</text>
+        <text x="110" y="232" font-size="15" fill="#1c2a24">何もない家</text>
+        <text x="250" y="232" font-size="15" fill="#1c2a24">ライトだけの家</text>
+      </g></svg><p>ライト1つで、最大3倍。</p></div>
+  <div class="cmp"><svg viewBox="0 0 360 250" role="img" aria-label="何もない家を1とすると、カギとライトの家は20倍以上入られにくい。">
+      <line x1="30" y1="206" x2="330" y2="206" stroke="#c9d6ce" stroke-width="2"/>
+      <rect x="62" y="198" width="96" height="8" rx="8" fill="#4f6f95"/>
+      <rect x="202" y="46" width="96" height="160" rx="8" fill="#2f7d57"/>
+      <g font-weight="700" text-anchor="middle">
+        <text x="110" y="188" font-size="22" fill="#4f6f95">1</text>
+        <text x="250" y="36" font-size="22" fill="#2f7d57">20倍以上</text>
+        <text x="110" y="232" font-size="15" fill="#1c2a24">何もない家</text>
+        <text x="250" y="232" font-size="15" fill="#1c2a24">カギ＋ライトの家</text>
+      </g></svg><p>カギと組むと、20倍以上。</p></div>
+  <div class="relief"><span>高い警報器より、</span>明かりとカギ。</div>
+  <p class="small">同じ調査で、警報器は守りになっていませんでした。</p>
+</section>
+
+<section>
+  <span class="part">第2部</span>
+  <h2>どこに付けるか</h2>
+  <div class="fig">
+    <svg viewBox="0 0 360 240" role="img" aria-label="玄関ドアの斜め上にライトを付け、カギ穴のあたりを照らす。">
+      <rect x="20" y="206" width="320" height="8" rx="4" fill="#dfe9e3"/>
+      <rect x="120" y="56" width="96" height="150" rx="5" fill="#efe4c8" stroke="#1f4d3a" stroke-width="3"/>
+      <polygon points="254,54 104,206 262,206" fill="#f0c94a" fill-opacity=".45"/>
+      <circle cx="198" cy="136" r="8" fill="#fff" stroke="#c2661f" stroke-width="4"/>
+      <rect x="238" y="34" width="34" height="22" rx="6" fill="#1c2a24"/>
+      <rect x="244" y="22" width="22" height="12" rx="2" fill="#4f6f95"/>
+      <rect x="282" y="20" width="8" height="186" fill="#c9d6ce"/>
+      <g font-weight="700" text-anchor="middle">
+        <text x="300" y="80" font-size="14" fill="#1c2a24">ライト</text>
+        <text x="64" y="128" font-size="14" fill="#c2661f">カギ穴を</text>
+        <text x="64" y="146" font-size="14" fill="#c2661f">照らす</text>
+        <text x="255" y="14" font-size="12" fill="#4f6f95">ソーラー</text>
+      </g>
+    </svg>
+  </div>
+  <ul class="ox">
+    <li><i>○</i>カギ穴が照らされる向きに</li>
+    <li><i>○</i>人が、前を横切る場所に</li>
+    <li><i>○</i>昼に、日が当たる所に</li>
+    <li class="x"><i>×</i>エアコンの風が当たる所</li>
+    <li class="x"><i>×</i>3メートルより高い所</li>
+  </ul>
+</section>
+
+<section>
+  <span class="part">第3部</span>
+  <h2>どうやって付けるか</h2>
+  <div class="how">
+    <div class="hd">ネジ2本でとめる<span>いちばん確実</span></div>
+    <div class="bd">木の壁なら、これが本来の付け方です。<small>細いネジ2本だけ。穴は小さくてすみます。</small></div>
+  </div>
+  <div class="how">
+    <div class="hd">柱や雨どいに、はさむ<span>穴なし</span></div>
+    <div class="bd">はさむ金具（クランプ）つきの型を選びます。<small>柱・雨どい・手すりがあれば、これが安心です。</small></div>
+  </div>
+  <div class="how weak">
+    <div class="hd">両面テープ・磁石<span>落ちやすい</span></div>
+    <div class="bd">付けられます。ただ、つるつるの面だけです。<small>ざらざらの壁や木の板は、はがれやすいです。軽くて小さい型を選びます。</small></div>
+  </div>
+  <p class="say">両面テープでも付きます。<br>長く使うなら、ネジか、はさむ型を。</p>
+</section>
+
+<section>
+  <span class="part">第4部</span>
+  <h2>おすすめの順番</h2>
+  <ol class="stepn">
+    <li>センサーライトを付ける</li>
+    <li>カギを強くする</li>
+    <li>スマートロックを足す</li>
+    <li>カメラ（家にWi-Fiがあれば）</li>
+  </ol>
+  <div class="relief"><span>安心してください。</span>ライトは、Wi-Fiも設定も<br>いりません。</div>
+</section>
+
+<div class="last">
+  <svg viewBox="0 0 360 200" role="img" aria-label="暗い玄関から、明るい玄関へ。">
+    <rect x="30" y="14" width="120" height="150" rx="10" fill="#2b3a4d"/>
+    <rect x="66" y="50" width="48" height="114" rx="4" fill="#3e516b"/>
+    <path d="M166 90 H196 M186 78 L200 90 L186 102" fill="none" stroke="#a8822a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="210" y="14" width="120" height="150" rx="10" fill="#fff" stroke="#2f7d57" stroke-width="4"/>
+    <rect x="246" y="50" width="48" height="114" rx="4" fill="#efe4c8" stroke="#1f4d3a" stroke-width="3"/>
+    <polygon points="310,32 226,164 320,164" fill="#f0c94a" fill-opacity=".45"/>
+    <rect x="298" y="20" width="24" height="14" rx="4" fill="#1c2a24"/>
+    <g font-weight="700" font-size="18" text-anchor="middle"><text x="90" y="190" fill="#4f6f95">いま</text><text x="270" y="190" fill="#2f7d57">これから</text></g>
+  </svg>
+</div>
+
+<footer>
+  <div class="nm" style="margin-top:0">谷 弘誠</div>
+  <p class="bio">柔道整復師。三条健康堂接骨院 院長。香川県高松市にて30年間、延べ1万人以上の施術を行う。年間約200冊の読書を続け、noteメンバーシップ「50代からの教養ノート」を主宰。</p>
+  <div class="loc">高松市由良町、由良川東公園のそば</div>
+  <a class="line" href="https://lin.ee/dwRtwDv">LINEで相談する</a>
+  <a class="map" href="https://maps.app.goo.gl/KSWnwyvzUj99aT2Y6">Googleマップで場所を見る</a>
+</footer>
+
+</div>
+</body>
+</html>
